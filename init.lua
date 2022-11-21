@@ -11,6 +11,8 @@ opt.scrolloff = 10
 opt.relativenumber = true
 opt.wrap = false
 
+vim.g.copilot_assume_mapped = true
+
 autocmd("BufWritePre", {
   pattern = "*.go",
   callback = function()

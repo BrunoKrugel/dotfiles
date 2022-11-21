@@ -79,20 +79,7 @@ return {
       end,
     },
 
-    ["zbirenbaum/copilot.lua"] = {
-      event = "InsertEnter",
-      config = function ()
-        vim.defer_fn(function()
-          require "custom.plugins.config.copilot"
-        end, 100)
-      end,
-    },
-  
-    ["zbirenbaum/copilot-cmp"] = {
-      after = { "copilot.lua", "nvim-cmp" },
-    },  
-
-  --  ["github/copilot.vim"] = {},
+    ["github/copilot.vim"] = {},
 
     ["mfussenegger/nvim-dap"] = {},
     
@@ -153,29 +140,4 @@ return {
         ensure_installed = { "gopls", "goimports" }
       }
     },
-
-    ["hrsh7th/nvim-cmp"] = {
-      override_options = {
-        formatting = {
-          format = function(entry, vim_item)
-            if entry.source.name == 'copilot' then
-                vim_item.kind = string.format("%s %s", '', 'Github')
-            else
-                local icons = require("nvchad_ui.icons").lspkind
-                vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
-            end
-    
-            return vim_item
-          end,
-        },
-        sources = {
-          { name = "luasnip" },
-          { name = "nvim_lsp" },
-          { name = "buffer" },
-          { name = "nvim_lua" },
-          { name = "path" },
-          { name = "copilot" },
-        },
-      },
-    }
 }
