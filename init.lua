@@ -20,8 +20,3 @@ autocmd("BufWritePre", {
 
 -- Run gofmt on save
 vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').gofmt() ]], false)
-
-
--- vim.cmd [[autocmd BufWritePre *.go :GoImports]]
--- vim.cmd [[autocmd BufWritePre *.go :GoMetaLinter]]
--- vim.cmd [[autocmd BufWritePre,FileWritePre *.go :GoFmt]]

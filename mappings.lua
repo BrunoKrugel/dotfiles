@@ -29,5 +29,26 @@ M.general = {
     },
 }
 
+M.nvterm = {
+    t = {
+       -- toggle in terminal mode
+       ["<leader>h"] = {
+          function()
+             require("nvterm.terminal").toggle "horizontal"
+          end,
+          "   toggle horizontal term",
+       },
+    },
+ 
+    n = {
+       -- toggle in normal mode
+       ["<leader>h"] = {
+          function()
+             require("nvterm.terminal").toggle "horizontal"
+          end,
+          "   toggle horizontal term",
+       },
+    },
+ }
 
 return M
