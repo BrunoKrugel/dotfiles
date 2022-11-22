@@ -8,7 +8,7 @@ opt.backup = false
 opt.swapfile = false
 
 opt.scrolloff = 10
-opt.relativenumber = true
+opt.relativenumber = false
 opt.wrap = false
 
 -- autocmd("BufWritePre", {

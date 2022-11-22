@@ -102,12 +102,31 @@ return {
 
     ["folke/which-key.nvim"] = { disable = false },
 
+    ["kyazdani42/nvim-tree.lua"] = {
+      override_options = {
+        filters = {
+          dotfiles = true,
+          custom = { "node_modules" },
+        },
+        git = {
+          enable = true,
+        },       
+        renderer = {
+          highlight_git = true,
+          icons = {
+            show = {
+              git = true,
+            },
+          },
+        },      
+      }
+    },
+
     ["nvim-treesitter/nvim-treesitter"] = {
       override_options = {
         ensure_installed = {
           "lua", "go", "cpp", "c", "bash", "json", "json5", "gomod", "gowork", "yaml",
         },
-      
         textobjects = {
           select = {
             enable = true,
