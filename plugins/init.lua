@@ -66,10 +66,9 @@ return {
       end,
     },
   
-    ["Pocco81/AutoSave.nvim"] = {
-      module = "autosave",
+    ["Pocco81/auto-save.nvim"] = {
       config = function()
-          require("custom.plugins.config.autosave").autosave()
+        require("auto-save").setup()
       end,
     },
 
@@ -78,6 +77,8 @@ return {
           require "custom.plugins.config.go"
       end,
     },
+
+    ["fatih/vim-go"] = {},
 
     ["github/copilot.vim"] = {
       config = function()
@@ -128,9 +129,24 @@ return {
           "lua", "go", "cpp", "c", "bash", "json", "json5", "gomod", "gowork", "yaml",
         },
         textobjects = {
+          -- syntax-aware textobjects
+          enable = true,
+          lsp_interop = {
+            enable = enable,
+            peek_definition_code = {
+              ["DF"] = "@function.outer",
+              ["DF"] = "@class.outer"
+            }
+          },          
           select = {
             enable = true,
             keymaps = {
+              ["gff>"] = {
+                go = "(function_definition) @function",
+              },
+              ["gdf"] = {
+                go = "(method_declaration) @function"
+              },           
               ["af"] = "@function.outer",
               ["if"] = "@function.inner",
               ["ac"] = "@class.outer",
@@ -162,6 +178,32 @@ return {
       override_options = {
         ensure_installed = { "gopls", "goimports" }
       }
+    },
+
+    ["hrsh7th/nvim-cmp"] = {
+      override_options = {
+        formatting = {
+          format = function(entry, vim_item)
+            if entry.source.name == 'copilot' then
+              vim_item.kind = string.format("%s %s", '', 'Github')
+            else
+              local icons = require("nvchad_ui.icons").lspkind
+              vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
+            end
+    
+            return vim_item
+          end,
+        },            
+        sources = {
+          { name = "go" },
+          { name = "luasnip" },
+          { name = "copilot" },
+          { name = "nvim_lsp" },
+          { name = "buffer" },
+          { name = "nvim_lua" },
+          { name = "path" },
+        },
+      },
     },
 
     ["neovim/nvim-lspconfig"] = {
