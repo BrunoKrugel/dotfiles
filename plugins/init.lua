@@ -1,13 +1,4 @@
 return {
-
-    ["neovim/nvim-lspconfig"] = {
-      config = function()
-        vim.notify = require("noice").notify
-        vim.lsp.handlers["textDocument/hover"] = require("noice").hover
-        vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
-      end,
-    },
-
     ["jose-elias-alvarez/null-ls.nvim"] = {
       after = "nvim-lspconfig",
       config = function()
@@ -152,5 +143,15 @@ return {
       override_options = {
         ensure_installed = { "gopls", "goimports" }
       }
+    },
+
+    ["neovim/nvim-lspconfig"] = {
+      config = function()
+        require "custom.plugins.config.lspconfig"   
+        -- Noice     
+        vim.notify = require("noice").notify
+        vim.lsp.handlers["textDocument/hover"] = require("noice").hover
+        vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
+      end,
     },
 }

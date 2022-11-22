@@ -11,14 +11,12 @@ opt.scrolloff = 10
 opt.relativenumber = true
 opt.wrap = false
 
-vim.g.copilot_assume_mapped = true
-
-autocmd("BufWritePre", {
-  pattern = "*.go",
-  callback = function()
-    vim.lsp.buf.format { async = false }
-  end,
-})
+-- autocmd("BufWritePre", {
+--   pattern = "*.go",
+--   callback = function()
+--     vim.lsp.buf.format { async = false }
+--   end,
+-- })
 
 -- Run gofmt on save
 vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').gofmt() ]], false)
