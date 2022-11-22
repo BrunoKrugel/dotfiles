@@ -1,77 +1,86 @@
 return {
+
+    ["neovim/nvim-lspconfig"] = {
+      config = function()
+        vim.notify = require("noice").notify
+        vim.lsp.handlers["textDocument/hover"] = require("noice").hover
+        vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
+      end,
+    },
+
     ["jose-elias-alvarez/null-ls.nvim"] = {
-        after = "nvim-lspconfig",
-        config = function()
-          require "custom.plugins.config.null-ls"
-        end,
-      },
-    
-      ["phaazon/hop.nvim"] = {
-        opt = true,
-        event = "BufReadPost",
-        branch = "v2",
-        config = function()
-          require "custom.plugins.config.hop"
-        end,
-      },
-    
-      ["rainbowhxch/accelerated-jk.nvim"] = {
-        opt = true,
-        event = "BufWinEnter",
-        config = function()
-          require "custom.plugins.config.accelerated-jk"
-        end,
-      },
-    
-      ["RRethy/vim-illuminate"] = {
-        opt = true,
-        event = "BufReadPost",
-        config = function()
-          require "custom.plugins.config.illuminate"
-        end,
-      },
-    
-      ["dstein64/nvim-scrollview"] = {
-        opt = true,
-        event = { "BufReadPost" },
-        config = function()
-          require "custom.plugins.config.scrollview"
-        end,
-      },
-    
-      ["folke/noice.nvim"] = {
-        config = function()
-          require "custom.plugins.config.noice"
-        end,
-        requires = {
-          "MunifTanjim/nui.nvim",
-          "rcarriga/nvim-notify",
-          }
-      },
-    
-      ["folke/trouble.nvim"] = {
-        config = function()
-          require("trouble").setup()
-        end,
-        requires = {
-          "kyazdani42/nvim-web-devicons"
+      after = "nvim-lspconfig",
+      config = function()
+        require "custom.plugins.config.null-ls"
+      end,
+    },
+  
+    ["phaazon/hop.nvim"] = {
+      opt = true,
+      event = "BufReadPost",
+      branch = "v2",
+      config = function()
+        require "custom.plugins.config.hop"
+      end,
+    },
+  
+    ["rainbowhxch/accelerated-jk.nvim"] = {
+      opt = true,
+      event = "BufWinEnter",
+      config = function()
+        require "custom.plugins.config.accelerated-jk"
+      end,
+    },
+  
+    ["RRethy/vim-illuminate"] = {
+      opt = true,
+      event = "BufReadPost",
+      config = function()
+        require "custom.plugins.config.illuminate"
+      end,
+    },
+  
+    ["dstein64/nvim-scrollview"] = {
+      opt = true,
+      event = { "BufReadPost" },
+      config = function()
+        require "custom.plugins.config.scrollview"
+      end,
+    },
+  
+    ["folke/noice.nvim"] = {
+      config = function()
+        require "custom.plugins.config.noice"
+      end,
+      requires = {
+        "MunifTanjim/nui.nvim",
+        "rcarriga/nvim-notify",
         }
-      },
-    
-      ["karb94/neoscroll.nvim"] = {
-        opt = true,
-        event = "BufReadPost",
-        config = function()
-          require "custom.plugins.config.neoscroll"
-        end,
-      },
-    
-      ["Pocco81/AutoSave.nvim"] = {
-        module = "autosave",
-        config = function()
-           require("custom.plugins.config.autosave").autosave()
-        end,
-      },
+    },
+  
+    ["folke/trouble.nvim"] = {
+      config = function()
+        require("trouble").setup()
+      end,
+      requires = {
+        "kyazdani42/nvim-web-devicons"
+      }
+    },
+  
+    ["karb94/neoscroll.nvim"] = {
+      opt = true,
+      event = "BufReadPost",
+      config = function()
+        require "custom.plugins.config.neoscroll"
+      end,
+    },
+  
+    ["Pocco81/AutoSave.nvim"] = {
+      module = "autosave",
+      config = function()
+          require("custom.plugins.config.autosave").autosave()
+      end,
+    },
 
     ["ray-x/go.nvim"] = {
       config = function()
@@ -79,7 +88,11 @@ return {
       end,
     },
 
-    ["github/copilot.vim"] = {},
+    ["github/copilot.vim"] = {
+      config = function()
+          require "custom.plugins.config.copilot"
+      end,
+    },
 
     ["mfussenegger/nvim-dap"] = {},
     
