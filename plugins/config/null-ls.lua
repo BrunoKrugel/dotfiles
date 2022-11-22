@@ -14,23 +14,16 @@ end
 
 local sources = {
   -- Go
-	null_ls.builtins.formatting.gofmt,
-	null_ls.builtins.formatting.gofumpt,
+	-- null_ls.builtins.formatting.gofmt,
+	-- null_ls.builtins.formatting.gofumpt,
 	null_ls.builtins.formatting.goimports,
-	null_ls.builtins.formatting.goimports_reviser,
-  null_ls.builtins.diagnostics.golangci_lint,
-  --null_ls.builtins.diagnostics.revive,
-  --null_ls.builtins.formatting.golines,
-
-  -- Lua
-  b.formatting.stylua,
-
-  -- Shell
-  b.formatting.shfmt,
-  b.diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
+	-- null_ls.builtins.formatting.goimports_reviser,
+  -- null_ls.builtins.diagnostics.golangci_lint,
+  -- null_ls.builtins.diagnostics.revive,
+  -- null_ls.builtins.formatting.golines,
 }
 
 null_ls.setup {
-  debug = false,
+  debug = true,
   sources = sources,
 }

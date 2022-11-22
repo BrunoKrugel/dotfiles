@@ -98,9 +98,9 @@ return {
     ["tveskag/nvim-blame-line"] = {},
 
     -- Override
-    ["goolord/alpha-nvim"] = {
-      disable = false,
-    },
+    ["goolord/alpha-nvim"] = { disable = false },
+
+    ["folke/which-key.nvim"] = { disable = false },
 
     ["nvim-treesitter/nvim-treesitter"] = {
       override_options = {
