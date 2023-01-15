@@ -27,6 +27,7 @@ M.general = {
         -- Toggle blame line
         ["<leader>bl"] = {"<cmd> :ToggleBlameLine <CR>", "toggle blame line" },
         ["<leader>g"] = { "<cmd> :GoDef <CR>", "Go to definition" },
+        ["<leader>t"] = { "<cmd>TroubleToggle<cr>" },
     },
 }
 

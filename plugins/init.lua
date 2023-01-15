@@ -5,7 +5,11 @@ return {
         require "custom.plugins.config.null-ls"
       end,
     },
-  
+
+    ["pangloss/vim-javascript"] = { },
+
+    ['jelera/vim-javascript-syntax'] = { },
+
     ["phaazon/hop.nvim"] = {
       opt = true,
       event = "BufReadPost",
@@ -106,7 +110,7 @@ return {
     ["kyazdani42/nvim-tree.lua"] = {
       override_options = {
         filters = {
-          dotfiles = true,
+          -- dotfiles = true,
           custom = { "node_modules" },
         },
         git = {
@@ -126,7 +130,7 @@ return {
     ["nvim-treesitter/nvim-treesitter"] = {
       override_options = {
         ensure_installed = {
-          "lua", "go", "cpp", "c", "bash", "json", "json5", "gomod", "gowork", "yaml",
+          "lua", "go", "cpp", "c", "bash", "json", "json5", "gomod", "gowork", "yaml", "javascript",
         },
         textobjects = {
           -- syntax-aware textobjects
