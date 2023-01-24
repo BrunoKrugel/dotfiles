@@ -17,12 +17,12 @@ vim.g.copilot_assume_mapped = true
 -- vim.g.copilot_tab_fallback = ''
 -- vim.keymap.set('i', '<C-j>', [[copilot#Accept('')]], { noremap = true, silent = true, expr = true })
 
--- autocmd("BufWritePre", {
+autocmd("BufWritePre", {
 --   pattern = "*.go",
---   callback = function()
---     vim.lsp.buf.format { async = false }
---   end,
--- })
+  callback = function()
+    vim.lsp.buf.format { async = false }
+  end,
+})
 
 -- Run gofmt on save
 vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').gofmt() ]], false)
