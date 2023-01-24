@@ -21,9 +21,11 @@ local sources = {
   -- null_ls.builtins.diagnostics.golangci_lint,
   -- null_ls.builtins.diagnostics.revive,
   -- null_ls.builtins.formatting.golines,
-  null_ls.builtins.diagnostics.eslint_d.with({
-    diagnostics_format = '[eslint] #{m}\n(#{c})'
-  }),
+  -- null_ls.builtins.diagnostics.eslint_d.with({
+  --   diagnostics_format = '[eslint] #{m}\n(#{c})'
+  -- }),
+  -- null_ls.builtins.code_actions.eslint,
+  -- null_ls.builtins.diagnostics.eslint,
 }
 
 null_ls.setup {

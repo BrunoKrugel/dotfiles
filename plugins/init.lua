@@ -58,7 +58,7 @@ return {
         require("trouble").setup()
       end,
       requires = {
-        "kyazdani42/nvim-web-devicons"
+        "nvim-tree/nvim-web-devicons"
       }
     },
   
@@ -102,12 +102,24 @@ return {
 
     ["tveskag/nvim-blame-line"] = {},
 
+    ["folke/todo-comments.nvim"] = {
+      requires = "nvim-lua/plenary.nvim",
+    },
+
     -- Override
     ["goolord/alpha-nvim"] = { disable = false },
 
     ["folke/which-key.nvim"] = { disable = false },
 
-    ["kyazdani42/nvim-tree.lua"] = {
+    -- ["NvChad/ui"] = {
+    --   override_options = {
+    --     statusline = {
+    --       separator_style = "slant",
+    --     },
+    --   },
+    -- },
+
+    ["nvim-tree/nvim-tree.lua"] = {
       override_options = {
         filters = {
           -- dotfiles = true,

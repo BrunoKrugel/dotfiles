@@ -66,7 +66,17 @@ lspconfig.eslint.setup {
       vim.notify('[lspconfig] ESLint probe failed.', vim.log.levels.WARN)
       return {}
     end,
-},
+  },
+  root_dir =  require'lspconfig'.util.root_pattern(
+    '.eslintrc',
+    '.eslintrc.js',
+    '.eslintrc.cjs',
+    '.eslintrc.yaml',
+    '.eslintrc.yml',
+    '.eslintrc.json',
+    -- Disabled to prevent "No ESLint configuration found" exceptions
+    'package.json'
+  ), 
   settings = {
     codeAction = {
       disableRuleComment = {
