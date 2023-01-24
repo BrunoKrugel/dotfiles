@@ -103,6 +103,9 @@ return {
     ["tveskag/nvim-blame-line"] = {},
 
     ["folke/todo-comments.nvim"] = {
+      config = function()
+        require("todo-comments").setup()
+      end,
       requires = "nvim-lua/plenary.nvim",
     },
 
