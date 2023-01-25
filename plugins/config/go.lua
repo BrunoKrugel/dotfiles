@@ -8,5 +8,5 @@ go.setup{
     lsp_document_formatting = false,
     -- null_ls_document_formatting_disable = true,
     max_line_len = 300,
-    icons = {breakpoint = '🛑', currentpos = '🟢'},
+    icons = {breakpoint = '🔺', currentpos = '🔸'},
 }

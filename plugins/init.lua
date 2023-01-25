@@ -195,7 +195,7 @@ return {
 
     ["williamboman/mason.nvim"] = {
       override_options = {
-        ensure_installed = { "gopls", "goimports" }
+        ensure_installed = { "gopls", "goimports", "eslint-lsp", "prettier" }
       }
     },
 
