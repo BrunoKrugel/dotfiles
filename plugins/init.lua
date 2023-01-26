@@ -6,12 +6,19 @@ return {
       end,
     },
 
-    ["pangloss/vim-javascript"] = { },
+    ["pangloss/vim-javascript"] = { 
+      after = "nvim-treesitter",
+      ft = { "javascript", "javascriptreact" },
+    },
 
-    ['jelera/vim-javascript-syntax'] = { },
+    ['jelera/vim-javascript-syntax'] = { 
+      after = "nvim-treesitter",
+      ft = { "javascript", "javascriptreact" },
+     },
 
     ["phaazon/hop.nvim"] = {
       opt = true,
+      after = "ui",
       event = "BufReadPost",
       branch = "v2",
       config = function()
@@ -21,6 +28,7 @@ return {
   
     ["rainbowhxch/accelerated-jk.nvim"] = {
       opt = true,
+      after = "nvim-treesitter",
       event = "BufWinEnter",
       config = function()
         require "custom.plugins.config.accelerated-jk"
@@ -30,6 +38,7 @@ return {
     ["RRethy/vim-illuminate"] = {
       opt = true,
       event = "BufReadPost",
+      after = "nvim-treesitter",
       config = function()
         require "custom.plugins.config.illuminate"
       end,
@@ -50,7 +59,7 @@ return {
       requires = {
         "MunifTanjim/nui.nvim",
         "rcarriga/nvim-notify",
-        }
+      }
     },
   
     ["folke/trouble.nvim"] = {
@@ -61,7 +70,7 @@ return {
         "nvim-tree/nvim-web-devicons"
       }
     },
-  
+
     ["karb94/neoscroll.nvim"] = {
       opt = true,
       event = "BufReadPost",
@@ -71,18 +80,24 @@ return {
     },
   
     ["Pocco81/auto-save.nvim"] = {
+      event = "BufReadPost",
       config = function()
         require("auto-save").setup()
       end,
     },
 
     ["ray-x/go.nvim"] = {
+      ft = { "go", "gomod" },
+      after = "nvim-treesitter",
       config = function()
           require "custom.plugins.config.go"
       end,
     },
 
-    ["fatih/vim-go"] = {},
+    ["fatih/vim-go"] = {
+      ft = { "go", "gomod" },
+      after = "nvim-treesitter",
+    },
 
     ["github/copilot.vim"] = {
       config = function()
@@ -98,29 +113,37 @@ return {
 
     ["ray-x/guihua.lua"] = {},
 
-    ["p00f/nvim-ts-rainbow"] = {},
+    ["p00f/nvim-ts-rainbow"] = {
+      after = "nvim-treesitter",
+    },
 
-    ["tveskag/nvim-blame-line"] = {},
+    ["tveskag/nvim-blame-line"] = {
+      opt = true,
+      after = "nvim-treesitter",
+      event = "BufWinEnter",
+    },
 
     ["folke/todo-comments.nvim"] = {
+      requires = "nvim-lua/plenary.nvim",
       config = function()
         require("todo-comments").setup()
       end,
-      requires = "nvim-lua/plenary.nvim",
+    },
+
+    ["neovim/nvim-lspconfig"] = {
+      config = function()
+        require "custom.plugins.config.lspconfig"   
+        -- Noice     
+        vim.notify = require("noice").notify
+        vim.lsp.handlers["textDocument/hover"] = require("noice").hover
+        vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
+      end,
     },
 
     -- Override
     ["goolord/alpha-nvim"] = { disable = false },
 
     ["folke/which-key.nvim"] = { disable = false },
-
-    -- ["NvChad/ui"] = {
-    --   override_options = {
-    --     statusline = {
-    --       separator_style = "slant",
-    --     },
-    --   },
-    -- },
 
     ["nvim-tree/nvim-tree.lua"] = {
       override_options = {
@@ -223,15 +246,5 @@ return {
           { name = "path" },
         },
       },
-    },
-
-    ["neovim/nvim-lspconfig"] = {
-      config = function()
-        require "custom.plugins.config.lspconfig"   
-        -- Noice     
-        vim.notify = require("noice").notify
-        vim.lsp.handlers["textDocument/hover"] = require("noice").hover
-        vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
-      end,
     },
 }
