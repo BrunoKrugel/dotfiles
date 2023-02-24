@@ -10,9 +10,15 @@ M.accelerated_jk = {
 M.hop = {
     n = {
       ["<leader><leader>w"] = { "<cmd> HopWord <CR>", "hint all words" },
-      ["<leader><leader>b"] = { "<cmd> HopWord <CR>", "hint all words" },
-      ["<leader><leader>j"] = { "<cmd> HopLine <CR>", "hint line" },
-      ["<leader><leader>k"] = { "<cmd> HopLine <CR>", "hint line" },
+      ["<leader><leader>l"] = { "<cmd> HopLine <CR>", "hint line" },
+    },
+}
+
+M.searchbox = {
+    n = {
+      ["<C-F>"] = { "<cmd> SearchBoxIncSearch<CR>", "Search first occurence" },
+      ["<C-R>"] = { "<cmd> SearchBoxReplace confirm=menu<CR>", "Replace" },
+      ["<leader><leader>f"] = { "<cmd> SearchBoxMatchAll clear_matches=true<CR>", "Search matching all" },
     },
 }
   
