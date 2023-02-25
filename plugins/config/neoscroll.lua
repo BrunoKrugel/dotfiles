@@ -6,7 +6,10 @@ end
 
 neoscroll.setup {
   -- All these keys will be mapped to their corresponding default scrolling animation
-  mappings = {},
+  mappings = {
+    "<C-u>",
+    "<C-d>",
+  },
   hide_cursor = true, -- Hide cursor while scrolling
   stop_eof = true, -- Stop at <EOF> when scrolling downwards
   use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope

@@ -16,9 +16,9 @@ M.hop = {
 
 M.searchbox = {
     n = {
-      ["<C-F>"] = { "<cmd> SearchBoxIncSearch<CR>", "Search first occurence" },
+      ["<leader><leader>f"] = { "<cmd> SearchBoxIncSearch<CR>", "Search first occurence" },
+      ["<C-F>"] = { "<cmd> SearchBoxMatchAll clear_matches=true<CR>", "Search matching all" },
       ["<C-R>"] = { "<cmd> SearchBoxReplace confirm=menu<CR>", "Replace" },
-      ["<leader><leader>f"] = { "<cmd> SearchBoxMatchAll clear_matches=true<CR>", "Search matching all" },
     },
 }
   

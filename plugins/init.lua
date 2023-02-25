@@ -154,6 +154,17 @@ return {
       require("chatgpt").setup()
     end,
   },
+  
+  ["kosayoda/nvim-lightbulb"] = {
+    requires = {
+      "antoinemadec/FixCursorHold.nvim",
+    },
+  },
+  ["kevinhwang91/nvim-ufo"] = {
+    requires = {
+      "kevinhwang91/promise-async",
+    },
+  },  
   -- Override
   ["goolord/alpha-nvim"] = {
     disable = false,
