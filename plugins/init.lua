@@ -165,6 +165,15 @@ return {
       "kevinhwang91/promise-async",
     },
   },  
+  ["onsails/lspkind.nvim"] = {
+    config = function()
+      require "custom.plugins.config.lspkind"
+    end,
+  },
+  ["mg979/vim-visual-multi"] = {},
+  ["hrsh7th/cmp-nvim-lsp-signature-help"] = {},
+  ["hrsh7th/cmp-nvim-lsp-document-symbol"] = {},
+  ["hrsh7th/cmp-nvim-lsp"] = {},
   -- Override
   ["goolord/alpha-nvim"] = {
     disable = false,
@@ -275,17 +284,44 @@ return {
             vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
           end
 
+          local lspkind_icons = {
+            Text = '',
+            Method = '',
+            Function = '',
+            Constructor = ' ',
+            Field = '',
+            Variable = '',
+            Class = '',
+            Interface = '',
+            Module = '硫',
+            Property = '',
+            Unit = ' ',
+            Value = '',
+            Enum = ' ',
+            Keyword = 'ﱃ',
+            Snippet = ' ',
+            Color = ' ',
+            File = ' ',
+            Folder = ' ',
+            EnumMember = ' ',
+            Constant = ' ',
+            Struct = ' ',
+            Event = '',
+            Operator = '',
+            TypeParameter = ' ',
+            Copilot = ' ',
+          }
           return vim_item
         end,
       },
       sources = {
-        { name = "go" },
-        { name = "luasnip" },
-        { name = "copilot" },
         { name = "nvim_lsp" },
+        { name = "luasnip" },
         { name = "buffer" },
-        { name = "nvim_lua" },
         { name = "path" },
+        { name = 'nvim_lsp_document_symbol' },
+        { name = 'nvim_lsp_signature_help' },
+        { name = "copilot" },
       },
     },
   },
