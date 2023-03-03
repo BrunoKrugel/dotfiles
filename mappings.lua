@@ -11,6 +11,8 @@ M.hop = {
     n = {
       ["<leader><leader>w"] = { "<cmd> HopWord <CR>", "hint all words" },
       ["<leader><leader>l"] = { "<cmd> HopLine <CR>", "hint line" },
+      ["<leader>hl"] = { ":HopLineStart<CR>" },
+      ["<leader>hw"] = { ":HopWordCurrentLine<CR>" },
     },
 }
 
@@ -21,6 +23,35 @@ M.searchbox = {
       ["<C-R>"] = { "<cmd> SearchBoxReplace confirm=menu<CR>", "Replace" },
     },
 }
+
+M.lspsaga = {
+    n = {
+     ["<leader>ca"] = { "<cmd>Lspsaga code_action<CR>", "Code Action" },
+    --  ["gd"] = {
+    --     function()
+    --         vim.cmd("Lspsaga lsp_finder")
+    --     end,
+    --     "Go to definition",
+    -- },
+    -- ["<leader>lp"] = {
+    --     "<cmd>Lspsaga peek_definition<cr>",
+    --     "Peek definition",
+    -- },
+    -- ["<leader>k"] = {
+    --     "<Cmd>Lspsaga hover_doc<cr>",
+    --     "Hover lsp",
+    -- },
+    },
+}
+M.eft = {
+    n = {
+      f = { "<Plug>(eft-f)", "eft-f" },
+      F = { "<Plug>(eft-F)", "eft-F" },
+      t = { "<Plug>(eft-t)", "eft-t" },
+      T = { "<Plug>(eft-T)", "eft-T" },
+      [";"] = { "<Plug>(eft-repeat)", "eft-repeat" },
+    },
+  }
   
 M.general = {
     i = {
@@ -35,6 +66,13 @@ M.general = {
         ["<leader>g"] = { "<cmd> :GoDef <CR>", "Go to definition" },
         ["<leader>t"] = { "<cmd>TroubleToggle<cr>" },
     },
+}
+
+M.Telescope = {
+	n = {
+		["<leader>ft"] = { ":TodoTelescope<cr>", "   Open Todo Telescope" },
+        ["<leader>fs"] = { "<cmd> Telescope lsp_document_symbols symbol_width=50 <CR>", "lsp document symbols" },
+	},
 }
 
 M.nvterm = {

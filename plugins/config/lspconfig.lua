@@ -12,25 +12,25 @@ lspconfig.gopls.setup {
       buildFlags = { "-tags=wireinject" },
       usePlaceholders = true,
       analyses = {
-         nilness = true,
-         shadow = true,
-         unusedparams = true,
-         unusewrites = true,
+        nilness = true,
+        shadow = true,
+        unusedparams = true,
+        unusewrites = true,
       },
       staticcheck = true,
       codelenses = {
-         references = true,
-         test = true,
-         tidy = true,
-         upgrade_dependency = true,
-         generate = true,
+        references = true,
+        test = true,
+        tidy = true,
+        upgrade_dependency = true,
+        generate = true,
       },
       gofumpt = true,
     },
   },
 }
 
-lspconfig.lua_ls.setup { 
+lspconfig.lua_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
@@ -41,7 +41,7 @@ lspconfig.lua_ls.setup {
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
+        globals = { 'vim' },
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
@@ -93,7 +93,7 @@ lspconfig.eslint.setup {
       return {}
     end,
   },
-  root_dir =  require'lspconfig'.util.root_pattern(
+  root_dir = require 'lspconfig'.util.root_pattern(
     '.eslintrc',
     '.eslintrc.js',
     '.eslintrc.cjs',
@@ -102,7 +102,7 @@ lspconfig.eslint.setup {
     '.eslintrc.json',
     -- Disabled to prevent "No ESLint configuration found" exceptions
     'package.json'
-  ), 
+  ),
   settings = {
     codeAction = {
       disableRuleComment = {

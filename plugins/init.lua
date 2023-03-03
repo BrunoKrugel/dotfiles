@@ -1,3 +1,5 @@
+local overrides = require("custom.plugins.config.overrides")
+
 return {
   ["jose-elias-alvarez/null-ls.nvim"] = {
     after = "nvim-lspconfig",
@@ -5,9 +7,34 @@ return {
       require "custom.plugins.config.null-ls"
     end,
   },
-  ["pangloss/vim-javascript"] = {
+  ["rmagatti/goto-preview"] = {
+    config = function()
+      require("goto-preview").setup({
+        border = "rounded",
+        default_mappings = true,
+      })
+    end,
+  },
+--  ["dmitmel/cmp-vim-lsp"] = {},
+  ["abecodes/tabout.nvim"] = {
+    opt = true,
+    event = "InsertEnter",
+    wants = "nvim-treesitter",
+    after = "nvim-cmp",
+    config = function()
+      require "custom.plugins.config.tabout"
+    end,
+  },
+  ["windwp/nvim-ts-autotag"] = {
+    ft = { "html", "javascriptreact" },
     after = "nvim-treesitter",
-    ft = { "javascript", "javascriptreact" },
+    config = function()
+      local present, autotag = pcall(require, "nvim-ts-autotag")
+
+      if present then
+        autotag.setup()
+      end
+    end,
   },
   ['jelera/vim-javascript-syntax'] = {
     after = "nvim-treesitter",
@@ -56,7 +83,7 @@ return {
   },
   ["folke/trouble.nvim"] = {
     config = function()
-      require("trouble").setup()
+      require "custom.plugins.config.trouble"
     end,
     requires = {
       "nvim-tree/nvim-web-devicons"
@@ -71,10 +98,48 @@ return {
   },
   ["Pocco81/auto-save.nvim"] = {
     event = "BufReadPost",
+    -- config = function()
+    --   require("auto-save").setup()
+    -- end,
     config = function()
-      require("auto-save").setup()
+      require "custom.plugins.config.autosave"
+    end,    
+  },
+	["tzachar/cmp-tabnine"] = {
+		run = "./install.sh",
+		requires = "hrsh7th/nvim-cmp",
+		config = function()
+			local tabnine = require("cmp_tabnine.config")
+
+			tabnine:setup({
+				max_lines = 1000,
+				max_num_results = 20,
+				sort = true,
+				run_on_every_keystroke = true,
+				snippet_placeholder = "..",
+				ignored_file_types = {
+					-- default is not to ignore
+					-- uncomment to ignore in lua:
+					-- lua = true
+				},
+				show_prediction_strength = false,
+			})
+		end,
+	},
+  ["hrsh7th/cmp-emoji"] = {},
+	["hrsh7th/cmp-calc"] = {},
+  -- ["barrett-ruth/import-cost.nvim"] = {
+	-- 	build = "sh install.sh npm",
+	-- 	config = function()
+	-- 		require("custom.plugins.config.import-cost")
+	-- 	end,
+	-- },
+  ["lvimuser/lsp-inlayhints.nvim"] = {
+    config = function()
+      require("custom.plugins.config.lsp-inlayhints")
     end,
   },
+  ["ray-x/cmp-treesitter"] = {},
   ["ray-x/go.nvim"] = {
     ft = { "go", "gomod" },
     after = "nvim-treesitter",
@@ -82,10 +147,10 @@ return {
       require "custom.plugins.config.go"
     end,
   },
-  ["fatih/vim-go"] = {
-    ft = { "go", "gomod" },
-    after = "nvim-treesitter",
-  },
+  -- ["fatih/vim-go"] = {
+  --   ft = { "go", "gomod" },
+  --   after = "nvim-treesitter",
+  -- },
   ["github/copilot.vim"] = {
     config = function()
       require "custom.plugins.config.copilot"
@@ -124,7 +189,8 @@ return {
   ["mfussenegger/nvim-dap"] = {},
   ["rcarriga/nvim-dap-ui"] = {},
   ["theHamsta/nvim-dap-virtual-text"] = {},
-  ["ray-x/guihua.lua"] = {},
+  -- ["ray-x/guihua.lua"] = {},
+  ["avneesh0612/react-nextjs-snippets"] = {},
   ["p00f/nvim-ts-rainbow"] = {
     after = "nvim-treesitter",
   },
@@ -148,130 +214,169 @@ return {
       vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
     end,
   },
-  ["jackMort/ChatGPT.nvim"] = {
-    cmd = { "ChatGPT", "ChatGPTActAs" },
-    config = function()
-      require("chatgpt").setup()
-    end,
-  },
-  
+  -- ["jackMort/ChatGPT.nvim"] = {
+  -- 	opt = true,
+  -- 	keys = { "<leader>gpt" },
+  -- 	module_pattern = { "chatgpt*" },
+  -- 	after = { "nui.nvim", "telescope.nvim" },
+  -- 	config = function()
+  -- 		require("custom.plugins.gpt")
+  -- 	end,
+  -- 	requires = {
+  -- 		"MunifTanjim/nui.nvim",
+  -- 		"nvim-lua/plenary.nvim",
+  -- 		"nvim-telescope/telescope.nvim",
+  -- 	},
+  -- },
   ["kosayoda/nvim-lightbulb"] = {
     requires = {
       "antoinemadec/FixCursorHold.nvim",
     },
   },
-  ["kevinhwang91/nvim-ufo"] = {
-    requires = {
-      "kevinhwang91/promise-async",
-    },
-  },  
+  -- ["kevinhwang91/nvim-ufo"] = {
+  -- 	requires = "kevinhwang91/promise-async",
+  -- 	config = function()
+  -- 		require("custom.plugins.config.ufo")
+  -- 	end,
+  -- },
+  ["ludovicchabant/vim-gutentags"] = {},
+  ["weilbith/nvim-code-action-menu"] = {
+    cmd = "CodeActionMenu",
+  },
+  ["mg979/vim-visual-multi"] = {
+    opt = true,
+    event = "BufReadPost",
+    setup = function()
+      require "custom.plugins.config.visual-multi"
+    end,
+  },
+  ["nvim-treesitter/nvim-treesitter-textobjects"] = {
+    config = function()
+      require("custom.plugins.config.textobjects")
+    end,
+  },
+  -- =============================================== LSP
+  ["hrsh7th/cmp-nvim-lsp-signature-help"] = {},
+  ["hrsh7th/cmp-nvim-lsp-document-symbol"] = {},
+  ["hrsh7th/cmp-nvim-lsp"] = {},
+  -- ["jinzhongjia/LspUI.nvim"] = {
+  --   event = 'VimEnter',
+  --   config=function()
+  --     require "custom.plugins.config.lspui"
+  --   end
+  -- },
   ["onsails/lspkind.nvim"] = {
     config = function()
       require "custom.plugins.config.lspkind"
     end,
   },
-  ["mg979/vim-visual-multi"] = {},
-  ["hrsh7th/cmp-nvim-lsp-signature-help"] = {},
-  ["hrsh7th/cmp-nvim-lsp-document-symbol"] = {},
-  ["hrsh7th/cmp-nvim-lsp"] = {},
-  -- Override
-  ["goolord/alpha-nvim"] = {
-    disable = false,
-    override_options = {
-      header = {
-        val = {
-          "           ▄ ▄                   ",
-          "       ▄   ▄▄▄     ▄ ▄▄▄ ▄ ▄     ",
-          "       █ ▄ █▄█ ▄▄▄ █ █▄█ █ █     ",
-          "    ▄▄ █▄█▄▄▄█ █▄█▄█▄▄█▄▄█ █     ",
-          "  ▄ █▄▄█ ▄ ▄▄ ▄█ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄  ",
-          "  █▄▄▄▄ ▄▄▄ █ ▄ ▄▄▄ ▄ ▄▄▄ ▄ ▄ █ ▄ ",
-          "▄ █ █▄█ █▄█ █ █ █▄█ █ █▄█ ▄▄▄ █ █ ",
-          "█▄█ ▄ █▄▄█▄▄█ █ ▄▄█ █ ▄ █ █▄█▄█ █ ",
-          "    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█ █▄█▄▄▄█     ",
-        },
-      },
-    }
+  ["glepnir/lspsaga.nvim"] = {
+    config = function()
+      require("custom.plugins.config.lspsaga")
+    end,
+    commit = "707c9399b1cbe063c6942604209674edf1b3cf2e",
   },
   ["j-hui/fidget.nvim"] = {
     config = function()
       require("fidget").setup()
     end,
   },
-  ["folke/which-key.nvim"] = { disable = false },
-  ["nvim-tree/nvim-tree.lua"] = {
-    override_options = {
-      filters = {
-        -- dotfiles = true,
-        custom = { "node_modules" },
-      },
-      git = {
-        enable = true,
-      },
-      renderer = {
-        highlight_git = true,
-        icons = {
-          show = {
-            git = true,
+  ["nvim-treesitter/nvim-treesitter-context"] = {
+    config = function()
+      require("treesitter-context").setup({
+        enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+        throttle = true, -- Throttles plugin updates (may improve performance)
+        max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+        patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
+          -- For all filetypes
+          -- Note that setting an entry here replaces all other patterns for this entry.
+          -- By setting the 'default' entry below, you can control which nodes you want to
+          -- appear in the context window.
+          default = {
+            "class",
+            "function",
+            "method",
           },
         },
-      },
-    }
+      })
+    end,
+  },
+  ["melkster/modicator.nvim"] = {
+    config = function()
+      require("custom.plugins.config.modicator")
+    end,
+  },
+  ["anuvyklack/pretty-fold.nvim"] = {
+    config = function()
+      require("pretty-fold").setup({
+        keep_indentation = false,
+        fill_char = "━",
+        sections = {
+          left = {
+            "━ ",
+            function()
+              return string.rep("*", vim.v.foldlevel)
+            end,
+            " ━┫",
+            "content",
+            "┣",
+          },
+          right = {
+            "┫ ",
+            "number_of_folded_lines",
+            ": ",
+            "percentage",
+            " ┣━━",
+          },
+        },
+      })
+    end,
+  },
+  ["m-demare/hlargs.nvim"] = {
+    config = function()
+      require("hlargs").setup({})
+    end,
+  },
+  ["kevinhwang91/nvim-hlslens"] = {
+    config = function()
+      require("hlslens").setup()
+    end,
+  },
+  ["hrsh7th/vim-eft"] = {
+    opt = true,
+    event = "BufReadPost",
+  },
+  ["zbirenbaum/copilot.lua"] = {
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({})
+    end,
+  },
+  ["zbirenbaum/copilot-cmp"] = {
+    after = { "copilot.lua" },
+    config = function ()
+      require("copilot_cmp").setup()
+    end
+  },
+  ["MaximilianLloyd/ascii.nvim"] = {},
+  -- =============================================== Override options
+  ["folke/which-key.nvim"] = { disable = false },
+  ["goolord/alpha-nvim"] = {
+    disable = false,
+    override_options = overrides.alpha,
+  },
+  ["nvim-telescope/telescope.nvim"] = {
+    override_options = overrides.telescope,
+  },
+  ["nvim-tree/nvim-tree.lua"] = {
+    override_options = overrides.nvimtree,
   },
   ["nvim-treesitter/nvim-treesitter"] = {
-    override_options = {
-      ensure_installed = {
-        "lua", "go", "cpp", "c", "bash", "json", "json5", "gomod", "gowork", "yaml", "javascript", "java",
-      },
-      textobjects = {
-        -- syntax-aware textobjects
-        enable = true,
-        lsp_interop = {
-          enable = enable,
-          peek_definition_code = {
-            ["DF"] = "@function.outer",
-            ["DF"] = "@class.outer"
-          }
-        },
-        select = {
-          enable = true,
-          keymaps = {
-            ["gff>"] = {
-              go = "(function_definition) @function",
-            },
-            ["gdf"] = {
-              go = "(method_declaration) @function"
-            },
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
-            ["ac"] = "@class.outer",
-            ["ic"] = "@class.inner",
-            ["aa"] = "@parameter.outer",
-            ["ia"] = "@parameter.inner",
-          },
-        },
-        move = {
-          enable = true,
-          set_jumps = true,
-          goto_next_start = {
-            ["]]"] = "@function.outer",
-          },
-          goto_previous_start = {
-            ["[["] = "@function.outer",
-          },
-        },
-      },
-      rainbow = {
-        enable = true,
-        extended_mode = true,
-        max_file_lines = 1000,
-      },
-    },
+    override_options = overrides.treesitter,
   },
   ["williamboman/mason.nvim"] = {
-    override_options = {
-      ensure_installed = { "gopls", "goimports", "eslint-lsp", "prettier" }
-    }
+    override_options = overrides.mason,
   },
   ["hrsh7th/nvim-cmp"] = {
     override_options = {
@@ -315,10 +420,15 @@ return {
         end,
       },
       sources = {
+        { name = "copilot" },
         { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "buffer" },
+        { name = "treesitter" },
+        { name = "emoji" },
+        { name = "calc" },
         { name = "path" },
+        { name = 'vim_lsp' },
         { name = 'nvim_lsp_document_symbol' },
         { name = 'nvim_lsp_signature_help' },
         { name = "copilot" },
