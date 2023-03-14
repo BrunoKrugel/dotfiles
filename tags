@@ -11,68 +11,32 @@
 !_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
 !_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
 !_TAG_KIND_DESCRIPTION!Lua	f,function	/functions/
-!_TAG_KIND_DESCRIPTION!Markdown	S,subsection	/level 2 sections/
-!_TAG_KIND_DESCRIPTION!Markdown	T,l4subsection	/level 4 sections/
-!_TAG_KIND_DESCRIPTION!Markdown	c,chapter	/chapters/
-!_TAG_KIND_DESCRIPTION!Markdown	n,footnote	/footnotes/
-!_TAG_KIND_DESCRIPTION!Markdown	s,section	/sections/
-!_TAG_KIND_DESCRIPTION!Markdown	t,subsubsection	/level 3 sections/
-!_TAG_KIND_DESCRIPTION!Markdown	u,l5subsection	/level 5 sections/
 !_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
 !_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
 !_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
 !_TAG_OUTPUT_VERSION	0.0	/current.age/
 !_TAG_PARSER_VERSION!Lua	0.0	/current.age/
-!_TAG_PARSER_VERSION!Markdown	0.0	/current.age/
 !_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
 !_TAG_PROC_CWD	/Users/bruno.krugel/.config/nvim/lua/custom/	//
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	6.0.0	/p6.0.20230219.0/
-Dotfiles for NVChad	readme.md	/^# Dotfiles for NVChad$/;"	c
-Override	readme.md	/^# Override$/;"	c
-Pocco81/auto-save.nvim	readme.md	/^## Pocco81\/auto-save.nvim$/;"	s	chapter:Dotfiles for NVChad
-RRethy/vim-illuminate	readme.md	/^## RRethy\/vim-illuminate$/;"	s	chapter:Dotfiles for NVChad
-["[M"]	plugins/config/textobjects.lua	/^        ["[M"] = "@function.outer",$/;"	f
-["[m"]	plugins/config/textobjects.lua	/^        ["[m"] = "@function.outer",$/;"	f
-["]M"]	plugins/config/textobjects.lua	/^        ["]M"] = "@function.outer",$/;"	f
-["]m"]	plugins/config/textobjects.lua	/^        ["]m"] = "@function.outer",$/;"	f
-["af"]	plugins/config/textobjects.lua	/^        ["af"] = "@function.outer",$/;"	f
-["eslint/confirmESLintExecution"]	plugins/config/lspconfig.lua	/^    ["eslint\/confirmESLintExecution"] = function(_, result)$/;"	f
-["eslint/noLibrary"]	plugins/config/lspconfig.lua	/^    ["eslint\/noLibrary"] = function()$/;"	f
-["eslint/openDoc"]	plugins/config/lspconfig.lua	/^    ["eslint\/openDoc"] = function(_, result)$/;"	f
-["eslint/probeFailed"]	plugins/config/lspconfig.lua	/^    ["eslint\/probeFailed"] = function()$/;"	f
-["if"]	plugins/config/textobjects.lua	/^        ["if"] = "@function.inner",$/;"	f
+["[M"]	configs/textobjects.lua	/^        ["[M"] = "@function.outer",$/;"	f
+["[m"]	configs/textobjects.lua	/^        ["[m"] = "@function.outer",$/;"	f
+["]M"]	configs/textobjects.lua	/^        ["]M"] = "@function.outer",$/;"	f
+["]m"]	configs/textobjects.lua	/^        ["]m"] = "@function.outer",$/;"	f
+["af"]	configs/textobjects.lua	/^        ["af"] = "@function.outer",$/;"	f
+["eslint/confirmESLintExecution"]	configs/lspconfig.lua	/^    ["eslint\/confirmESLintExecution"] = function(_, result)$/;"	f
+["eslint/noLibrary"]	configs/lspconfig.lua	/^    ["eslint\/noLibrary"] = function()$/;"	f
+["eslint/openDoc"]	configs/lspconfig.lua	/^    ["eslint\/openDoc"] = function(_, result)$/;"	f
+["eslint/probeFailed"]	configs/lspconfig.lua	/^    ["eslint\/probeFailed"] = function()$/;"	f
+["if"]	configs/textobjects.lua	/^        ["if"] = "@function.inner",$/;"	f
 callback	init.lua	/^  callback = function()$/;"	f
-config	plugins/init.lua	/^    config = function()$/;"	f
-dstein64/nvim-scrollview	readme.md	/^## dstein64\/nvim-scrollview$/;"	s	chapter:Dotfiles for NVChad
-fatih/vim-go	readme.md	/^## fatih\/vim-go$/;"	s	chapter:Dotfiles for NVChad
-folke/noice.nvim	readme.md	/^## folke\/noice.nvim$/;"	s	chapter:Dotfiles for NVChad
-folke/todo-comments.nvim	readme.md	/^## folke\/todo-comments.nvim$/;"	s	chapter:Dotfiles for NVChad
-folke/trouble.nvim	readme.md	/^## folke\/trouble.nvim$/;"	s	chapter:Dotfiles for NVChad
-folke/which-key.nvim	readme.md	/^## folke\/which-key.nvim$/;"	s	chapter:Override
-format	plugins/init.lua	/^        format = function(entry, vim_item)$/;"	f
-github/copilot.vim	readme.md	/^## github\/copilot.vim$/;"	s	chapter:Dotfiles for NVChad
-goolord/alpha-nvim	readme.md	/^## goolord\/alpha-nvim$/;"	s	chapter:Override
-handler	plugins/config/ufo.lua	/^local handler = function(virtText, lnum, endLnum, width, truncate)$/;"	f
-hrsh7th/nvim-cmp	readme.md	/^## hrsh7th\/nvim-cmp/;"	s	chapter:Override
-jelera/vim-javascript-syntax	readme.md	/^## jelera\/vim-javascript-syntax$/;"	s	chapter:Dotfiles for NVChad
-jose-elias-alvarez/null-ls.nvim	readme.md	/^## jose-elias-alvarez\/null-ls.nvim$/;"	s	chapter:Dotfiles for NVChad
-karb94/neoscroll.nvim	readme.md	/^## karb94\/neoscroll.nvim$/;"	s	chapter:Dotfiles for NVChad
-mfussenegger/nvim-dap	readme.md	/^## mfussenegger\/nvim-dap$/;"	s	chapter:Dotfiles for NVChad
-neovim/nvim-lspconfig	readme.md	/^## neovim\/nvim-lspconfig$/;"	s	chapter:Dotfiles for NVChad
-nvim-tree/nvim-tree.lua	readme.md	/^## nvim-tree\/nvim-tree.lua$/;"	s	chapter:Override
-nvim-treesitter/nvim-treesitter	readme.md	/^## nvim-treesitter\/nvim-treesitter$/;"	s	chapter:Override
-p00f/nvim-ts-rainbow	readme.md	/^## p00f\/nvim-ts-rainbow$/;"	s	chapter:Dotfiles for NVChad
-pangloss/vim-javascript	readme.md	/^## pangloss\/vim-javascript $/;"	s	chapter:Dotfiles for NVChad
-phaazon/hop.nvim	readme.md	/^## phaazon\/hop.nvim$/;"	s	chapter:Dotfiles for NVChad
-provider_selector	plugins/config/ufo.lua	/^  provider_selector = function(bufnr, filetype, buftype)$/;"	f
-rainbowhxch/accelerated-jk.nvim	readme.md	/^## rainbowhxch\/accelerated-jk.nvim$/;"	s	chapter:Dotfiles for NVChad
-ray-x/go.nvim	readme.md	/^## ray-x\/go.nvim$/;"	s	chapter:Dotfiles for NVChad
-ray-x/guihua.lua	readme.md	/^## ray-x\/guihua.lua$/;"	s	chapter:Dotfiles for NVChad
-rcarriga/nvim-dap-ui	readme.md	/^## rcarriga\/nvim-dap-ui$/;"	s	chapter:Dotfiles for NVChad
-save_fn	plugins/config/autosave.lua	/^	save_fn = function()$/;"	f
-theHamsta/nvim-dap-virtual-text	readme.md	/^## theHamsta\/nvim-dap-virtual-text$/;"	s	chapter:Dotfiles for NVChad
-tveskag/nvim-blame-line	readme.md	/^## tveskag\/nvim-blame-line$/;"	s	chapter:Dotfiles for NVChad
-williamboman/mason.nvim	readme.md	/^## williamboman\/mason.nvim$/;"	s	chapter:Override
+config	plugins.lua	/^        config = function()$/;"	f
+config	plugins.lua	/^    config = function ()$/;"	f
+config	plugins.lua	/^    config = function()$/;"	f
+handler	configs/ufo.lua	/^local handler = function(virtText, lnum, endLnum, width, truncate)$/;"	f
+message	configs/autosave.lua	/^		message = function()$/;"	f
+provider_selector	configs/ufo.lua	/^  provider_selector = function(bufnr, filetype, buftype)$/;"	f
+save_fn	configs/autosave.lua	/^	save_fn = function()$/;"	f

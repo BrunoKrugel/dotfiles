@@ -1,21 +1,87 @@
 local M = {}
-local ascii = require("ascii")
+
+M.treesitter = {
+  ensure_installed = {
+    "lua", "go", "cpp", "c", "bash", "json", "json5", "gomod", "gowork", "yaml", "javascript", "java",
+  },
+  indent = {
+    enable = true,
+    disable = {
+      "python"
+    },
+  },
+  rainbow = {
+    enable = true,
+    extended_mode = true,
+    max_file_lines = 1000,
+  },
+}
+
+M.mason = {
+  ensure_installed = {
+    -- lua stuff
+    "lua-language-server",
+    "stylua",
+
+    -- web dev stuff
+    "css-lsp",
+    "html-lsp",
+    "typescript-language-server",
+    "deno",
+
+    "gopls",
+    "goimports",
+    "eslint-lsp",
+    "prettier"
+  },
+}
+
+-- git support in nvimtree
+M.nvimtree = {
+  filters = {
+    -- dotfiles = true,
+    custom = { "node_modules" },
+  },
+  git = {
+    enable = true,
+  },
+  hijack_unnamed_buffer_when_opening = true,
+  hijack_cursor = true,
+  diagnostics = {
+    enable = false,
+    show_on_dirs = false,
+    debounce_delay = 50,
+    icons = {
+      error = "",
+    },
+  },
+  system_open = { cmd = "thunar" },
+  sync_root_with_cwd = true,
+  renderer = {
+    highlight_opened_files = "name",
+    highlight_git = true,
+    group_empty = true,
+    icons = {
+      show = {
+        git = true,
+      },
+    },
+  },
+  tab = {
+    sync = {
+      open = true,
+      close = true,
+    },
+  },
+}
 
 M.telescope = {
   defaults = {
     file_ignore_patterns = { "node_modules", ".docker", ".git", "yarn.lock" },
   },
   extensions = {
-    project = {
-      base_dirs = {
-        { "~/Projects/" },
-      },
-      hidden_files = true, -- default: false
-      order_by = "asc",
-      sync_with_nvim_tree = true, -- default false
-    },
   },
-  extensions_list = { "themes", "terms", "notify", "project" },
+  extensions_list = { "themes", "terms", "notify" },
 }
 
 M.alpha = {
@@ -71,60 +137,6 @@ M.alpha = {
   -- },
 }
 
-M.mason = {
-  ensure_installed = {
-    "css-lsp",
-    "html-lsp",
-    "typescript-language-server",
-    "gopls",
-    "goimports",
-    "eslint-lsp",
-    "prettier"
-  },
-}
-
-M.whichkey = {
-  disable = false,
-}
-
-M.nvimtree = {
-  filters = {
-    -- dotfiles = true,
-    custom = { "node_modules" },
-  },
-  git = {
-    enable = true,
-  },
-  hijack_unnamed_buffer_when_opening = true,
-  hijack_cursor = true,
-  diagnostics = {
-    enable = false,
-    show_on_dirs = false,
-    debounce_delay = 50,
-    icons = {
-      error = "",
-    },
-  },
-  system_open = { cmd = "thunar" },
-  sync_root_with_cwd = true,
-  renderer = {
-    highlight_opened_files = "name",
-    highlight_git = true,
-    group_empty = true,
-    icons = {
-      show = {
-        git = true,
-      },
-    },
-  },
-  tab = {
-    sync = {
-      open = true,
-      close = true,
-    },
-  },
-}
-
 M.blankline = {
   filetype_exclude = {
     "help",
@@ -140,16 +152,4 @@ M.blankline = {
   },
 }
 
-M.treesitter = {
-  ensure_installed = {
-    "lua", "go", "cpp", "c", "bash", "json", "json5", "gomod", "gowork", "yaml", "javascript", "java",
-  },
-  rainbow = {
-    enable = true,
-    extended_mode = true,
-    max_file_lines = 1000,
-  },
-}
-
 return M
-
