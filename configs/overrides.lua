@@ -1,8 +1,17 @@
 local M = {}
 
+local cmp = require("cmp")
+local has_words_before = function()
+	if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+		return false
+	end
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
+end
+
 M.treesitter = {
   ensure_installed = {
-    "lua", "go", "cpp", "c", "bash", "json", "json5", "gomod", "gowork", "yaml", "javascript", "java",
+    "lua", "go", "cpp", "c", "bash", "json", "json5", "gomod", "gowork", "yaml", "javascript", "java", "go", "vim", "regex", "lua", "bash", "markdown", "markdown_inline",
   },
   indent = {
     enable = true,
@@ -150,6 +159,22 @@ M.blankline = {
     "lsp-installer",
     "norg",
   },
+}
+
+M.cmp = {
+  sources = {
+    { name = "copilot" },
+    { name = "nvim_lsp" },
+    { name = "luasnip" },
+    { name = "treesitter" },
+    { name = "buffer" },
+    { name = 'nvim_lsp_signature_help' },
+    { name = 'nvim_lsp_document_symbol' },
+    { name = "emoji" },
+    { name = "calc" },
+    { name = "path" },
+    { name = 'vim_lsp' },
+  }
 }
 
 return M

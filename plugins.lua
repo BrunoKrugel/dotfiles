@@ -28,6 +28,11 @@ local plugins = {
     opts = overrides.treesitter,
   },
 
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   opts = overrides.cmp,
+  -- },
+
   {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
@@ -63,21 +68,53 @@ local plugins = {
   },
 
   {
+    "romgrk/todoist.nvim",
+    lazy = false,
+  },
+
+  {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
-      require("copilot").setup({})
+      require("copilot").setup {
+        suggestion = {
+          enabled = false,
+          auto_trigger = false,
+          keymap = {
+            accept = "<Tab>",
+            accept_word = false,
+            accept_line = false,
+            next = "<M-]>",
+            prev = "<M-[>",
+            dismiss = "<C-]>",
+          },
+        },
+        panel = {
+          enabled = false,
+        },
+        server_opts_overrides = {
+          trace = "verbose",
+          settings = {
+            advanced = {
+              listCount = 3, -- #completions for panel
+              inlineSuggestCount = 3, -- #completions for getCompletions
+            },
+          },
+        },
+      }
     end,
   },
 
-  {
-    "zbirenbaum/copilot-cmp",
-    dependencies = { "copilot.lua" },
-    config = function ()
-      require("copilot_cmp").setup()
-    end
-  },
+	{
+		"zbirenbaum/copilot-cmp",
+		event = "VeryLazy",
+		after = { "copilot.lua" },
+    dependencies = { "zbirenbaum/copilot.lua" },
+		config = function()
+			require("copilot_cmp").setup()
+		end,
+	},
 
   {
     "folke/which-key.nvim",
@@ -225,7 +262,7 @@ local plugins = {
   },
   { "ray-x/cmp-treesitter" },
   { "ray-x/go.nvim",
-  lazy = true,
+    lazy = true,
     dependencies = { "ray-x/guihua.lua" },
     ft = { "go", "gomod" },
     dependencies = "nvim-treesitter",
@@ -233,11 +270,12 @@ local plugins = {
       require "custom.configs.go"
     end,
   },
-  -- { "github/copilot.vim",
-  --   config = function()
-  --     require "custom.configs.copilot"
-  --   end,
-  -- },
+  { "github/copilot.vim",
+    lazy = false,
+    config = function()
+      require "custom.configs.copilot"
+    end,
+  },
   -- { "brenoprata10/nvim-highlight-colors",
   --   config = function()
   --     require("nvim-highlight-colors").setup()
@@ -276,6 +314,7 @@ local plugins = {
   { 
     "folke/todo-comments.nvim",
     dependencies = "nvim-lua/plenary.nvim",
+    event = { "BufReadPost", "BufNewFile" },
     config = true,
   },
   -- { "neovim/nvim-lspconfig",
@@ -379,64 +418,6 @@ local plugins = {
     end,
   },
   -- { "MaximilianLloyd/ascii.nvim" },
-  { "hrsh7th/nvim-cmp",
-    opts = {
-      formatting = {
-        format = function(entry, vim_item)
-          if entry.source.name == 'copilot' then
-            vim_item.kind = string.format("%s %s", '', 'Github')
-          else
-            local icons = require("nvchad_ui.icons").lspkind
-            vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
-          end
-
-          local lspkind_icons = {
-            Text = '',
-            Method = '',
-            Function = '',
-            Constructor = ' ',
-            Field = '',
-            Variable = '',
-            Class = '',
-            Interface = '',
-            Module = '硫',
-            Property = '',
-            Unit = ' ',
-            Value = '',
-            Enum = ' ',
-            Keyword = 'ﱃ',
-            Snippet = ' ',
-            Color = ' ',
-            File = ' ',
-            Folder = ' ',
-            EnumMember = ' ',
-            Constant = ' ',
-            Struct = ' ',
-            Event = '',
-            Operator = '',
-            TypeParameter = ' ',
-            Copilot = ' ',
-          }
-          return vim_item
-        end,
-      },
-      sources = {
-        { name = "copilot" },
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "buffer" },
-        { name = "treesitter" },
-        { name = "emoji" },
-        { name = "calc" },
-        { name = "path" },
-        { name = 'vim_lsp' },
-        { name = 'nvim_lsp_document_symbol' },
-        { name = 'nvim_lsp_signature_help' },
-        { name = "copilot" },
-      },
-    },
-  },
-
 }
 
 return plugins

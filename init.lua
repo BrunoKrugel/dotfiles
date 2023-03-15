@@ -15,7 +15,7 @@ opt.wrap = false
 -- vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
 -- vim.g.copilot_tab_fallback = ''
--- vim.keymap.set('i', '<C-j>', [[copilot#Accept('')]], { noremap = true, silent = true, expr = true })
+-- vim.keymap.set('i', '<Tab>', [[copilot#Accept('')]], { noremap = true, silent = true, expr = true })
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
