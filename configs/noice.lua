@@ -5,6 +5,16 @@ if not present then
 end
 
 noice.setup({
+  routes = {
+    {
+      filter = {
+        event = "msg_show",
+        kind = "",
+        find = "written",
+      },
+      opts = { skip = true },
+    },
+  },
   lsp = {
     progress = {
       enabled = false,
@@ -17,9 +27,9 @@ noice.setup({
     },
     override = {
       -- override the default lsp markdown formatter with Noice
-      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+      ["vim.lsp.util.convert_input_to_markdown_lines"] = false,
       -- override the lsp markdown formatter with Noice
-      ["vim.lsp.util.stylize_markdown"] = true,
+      ["vim.lsp.util.stylize_markdown"] = false,
       -- override cmp documentation with Noice (needs the other options to work)
       ["cmp.entry.get_documentation"] = false,
     },

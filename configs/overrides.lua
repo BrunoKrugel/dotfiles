@@ -90,7 +90,7 @@ M.telescope = {
   },
   extensions = {
   },
-  extensions_list = { "themes", "terms", "notify" },
+  extensions_list = { "themes", "terms", "notify", "hop", "frecency"},
 }
 
 M.alpha = {

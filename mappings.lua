@@ -46,6 +46,7 @@ M.telescope = {
 	n = {
 		["<leader>fk"] = { "<cmd>Telescope keymaps<CR>", " find keymaps" },
 		["<leader>fs"] = { "<cmd>Telescope lsp_document_symbols<CR>", " find document symbols" },
+		["<leader>fr"] = { "<cmd>Telescope frecency<CR>", "Recent files" },
 	},
 }
 

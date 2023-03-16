@@ -4,11 +4,20 @@ if not present then
     return
 end
 
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 go.setup{
-    lsp_document_formatting = false,
+    lsp_cfg = {
+      capabilities = capabilities,
+      -- other setups
+    },
+    lsp_document_formatting = true,
     -- null_ls_document_formatting_disable = true,
     max_line_len = 300,
-    lsp_on_attach = true,
+    lsp_inlay_hints = {
+        enable = true,
+        only_current_line = true,
+      },
     trouble = true,
     icons = {breakpoint = '🔺', currentpos = '🔸'},
 }

@@ -28,10 +28,23 @@ local plugins = {
     opts = overrides.treesitter,
   },
 
-  -- {
-  --   "hrsh7th/nvim-cmp",
-  --   opts = overrides.cmp,
-  -- },
+  {
+    "hrsh7th/nvim-cmp",
+    opts = overrides.cmp,
+    dependencies = {
+      -- "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-emoji",
+      "hrsh7th/cmp-calc",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lua",
+      -- "hrsh7th/cmp-path",
+      "hrsh7th/cmp-vsnip",
+      "hrsh7th/cmp-nvim-lsp-document-symbol",
+      "hrsh7th/cmp-copilot",
+      "ray-x/cmp-treesitter",
+    },
+  },
 
   {
     "nvim-tree/nvim-tree.lua",
@@ -45,7 +58,12 @@ local plugins = {
   { "williamboman/mason.nvim",
     opts = overrides.mason,
   },
-
+  {'nvim-telescope/telescope-hop.nvim',
+  },
+  {
+    "nvim-telescope/telescope-frecency.nvim",
+    dependencies = {"kkharji/sqlite.lua"},
+  },
   {
     "anuvyklack/pretty-fold.nvim",
     config = function()
@@ -253,14 +271,11 @@ local plugins = {
       require "custom.configs.autosave"
     end,    
   },
-  { "hrsh7th/cmp-emoji" },
-	{ "hrsh7th/cmp-calc" },
   { "lvimuser/lsp-inlayhints.nvim",
     config = function()
       require("custom.configs.lsp-inlayhints")
     end,
   },
-  { "ray-x/cmp-treesitter" },
   { "ray-x/go.nvim",
     lazy = true,
     dependencies = { "ray-x/guihua.lua" },
