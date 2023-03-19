@@ -55,4 +55,3 @@ vim.keymap.set("n", "K", function()
     vim.lsp.buf.hover()
   end
 end)
-

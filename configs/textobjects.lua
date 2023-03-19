@@ -1,4 +1,4 @@
-require("nvim-treesitter.configs").setup({
+require("nvim-treesitter.configs").setup {
   textobjects = {
     move = {
       enable = true,
@@ -86,5 +86,4 @@ require("nvim-treesitter.configs").setup({
       include_surrounding_whitespace = true,
     },
   },
-})
-
+}

@@ -16,6 +16,9 @@ M.override = {
     fg = "none",
     bg = "none",
   },
+  IndentBlanklineContextStart = {
+    bg = "none",
+  },
 }
 
 ---@type HLTable

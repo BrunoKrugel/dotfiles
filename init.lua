@@ -23,21 +23,18 @@ for type, icon in pairs(signs) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 -- disable underline in diagnostics
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics,
-  {
-    underline = false,
-    virtual_text = {
-      spacing = 4,
-      prefix = "",
-    },
-    signs = true,
-    update_in_insert = false,
-  }
-)
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  underline = false,
+  virtual_text = {
+    spacing = 4,
+    prefix = "",
+  },
+  signs = true,
+  update_in_insert = false,
+})
 
 autocmd("BufWritePre", {
---   pattern = "*.go",
+  --   pattern = "*.go",
   callback = function()
     vim.lsp.buf.format { async = false }
   end,

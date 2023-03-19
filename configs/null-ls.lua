@@ -12,12 +12,10 @@ local sources = {
   b.formatting.deno_fmt, -- choosed deno for ts/js files cuz its very fast!
   b.formatting.prettier.with { filetypes = { "html", "markdown", "css" } }, -- so prettier works only on these filetypes
 
-  -- Lua
-  b.formatting.stylua,
-
   -- cpp
   b.formatting.clang_format,
-
+  b.formatting.stylua,
+  -- b.formatting.lua_format,
   -- Go
   -- null_ls.builtins.formatting.gofmt,
   -- null_ls.builtins.formatting.gofumpt,
@@ -38,8 +36,8 @@ local sources = {
   -- null_ls.builtins.diagnostics.eslint,
   -- null_ls.builtins.formatting.lua_format,
   --  null_ls.builtins.diagnostics.luacheck,
-  null_ls.builtins.completion.luasnip,
-  null_ls.builtins.formatting.prettierd  
+  b.completion.luasnip,
+  b.formatting.prettierd,
 }
 
 -- local goimports = b.formatting.goimports
@@ -48,7 +46,6 @@ local sources = {
 --   goimports = goimports.with { extra_args = { "-local", e } }
 -- end
 -- table.insert(sources, goimports)
-
 
 -- for go.nvim
 -- local gotest = require("go.null_ls").gotest()

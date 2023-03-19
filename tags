@@ -34,7 +34,6 @@
 ["if"]	configs/textobjects.lua	/^        ["if"] = "@function.inner",$/;"	f
 callback	init.lua	/^  callback = function()$/;"	f
 config	plugins.lua	/^        config = function()$/;"	f
-config	plugins.lua	/^    config = function ()$/;"	f
 config	plugins.lua	/^    config = function()$/;"	f
 handler	configs/ufo.lua	/^local handler = function(virtText, lnum, endLnum, width, truncate)$/;"	f
 message	configs/autosave.lua	/^		message = function()$/;"	f

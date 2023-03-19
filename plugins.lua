@@ -1,10 +1,10 @@
-local overrides = require("custom.configs.overrides")
+local overrides = require "custom.configs.overrides"
 
 ---@type NvPluginSpec[]
 local plugins = {
 
   -- Override plugin definition options
- 
+
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -45,24 +45,22 @@ local plugins = {
       "ray-x/cmp-treesitter",
     },
   },
-
+  {
+    "hrsh7th/cmp-cmdline",
+    event = "CmdLineEnter",
+  },
   {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
   },
 
-  { "nvim-telescope/telescope.nvim",
-    opts = overrides.telescope,
-  },
-  
-  { "williamboman/mason.nvim",
-    opts = overrides.mason,
-  },
-  {'nvim-telescope/telescope-hop.nvim',
-  },
+  { "nvim-telescope/telescope.nvim", opts = overrides.telescope },
+
+  { "williamboman/mason.nvim", opts = overrides.mason },
+  { "nvim-telescope/telescope-hop.nvim" },
   {
     "nvim-telescope/telescope-frecency.nvim",
-    dependencies = {"kkharji/sqlite.lua"},
+    dependencies = { "kkharji/sqlite.lua" },
   },
   {
     "anuvyklack/pretty-fold.nvim",
@@ -85,11 +83,86 @@ local plugins = {
     end,
   },
 
+  -- {
+  --   "romgrk/todoist.nvim",
+  --   lazy = false,
+  -- },
   {
-    "romgrk/todoist.nvim",
-    lazy = false,
-  },
+    "shellRaining/hlchunk.nvim",
+    event = "BufReadPost",
+    config = function()
+      require("hlchunk").setup {
+        chunk = {
+          enable = true,
+          support_filetypes = {
+            "*.ts",
+            "*.js",
+            "*.json",
+            "*.go",
+            "*.c",
+            "*.cpp",
+            "*.rs",
+            "*.h",
+            "*.hpp",
+            "*.lua",
+            "*.vue",
+          },
+          chars = {
+            horizontal_line = "─",
+            vertical_line = "│",
+            left_top = "╭",
+            left_bottom = "╰",
+            right_arrow = ">",
+          },
+          style = "#806d9c",
+        },
 
+        indent = {
+          enable = false,
+          use_treesitter = false,
+          -- You can uncomment to get more indented line look like
+          chars = {
+            "│",
+          },
+          -- you can uncomment to get more indented line style
+          style = {
+            vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID "Whitespace"), "fg", "gui"),
+          },
+          exclude_filetype = {
+            dashboard = true,
+            help = true,
+            lspinfo = true,
+            packer = true,
+            checkhealth = true,
+            man = true,
+            mason = true,
+            NvimTree = true,
+            plugin = true,
+          },
+        },
+
+        line_num = {
+          enable = true,
+          support_filetypes = {
+            "...",
+          },
+          style = "#806d9c",
+        },
+
+        blank = {
+          enable = false,
+          chars = {
+            "",
+          },
+          style = {
+            vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID "Whitespace"), "fg", "gui"),
+          },
+          exclude_filetype = "...",
+        },
+      }
+    end,
+  },
+  { "tenxsoydev/karen-yank.nvim", config = true },
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
@@ -124,15 +197,15 @@ local plugins = {
     end,
   },
 
-	{
-		"zbirenbaum/copilot-cmp",
-		event = "VeryLazy",
-		after = { "copilot.lua" },
+  {
+    "zbirenbaum/copilot-cmp",
+    event = "VeryLazy",
+    after = { "copilot.lua" },
     dependencies = { "zbirenbaum/copilot.lua" },
-		config = function()
-			require("copilot_cmp").setup()
-		end,
-	},
+    config = function()
+      require("copilot_cmp").setup()
+    end,
+  },
 
   {
     "folke/which-key.nvim",
@@ -140,14 +213,14 @@ local plugins = {
   },
   -- ------------------ OLD PLUGINS ------------------
 
-  { 
+  {
     "jose-elias-alvarez/null-ls.nvim",
     dependencies = "nvim-lspconfig",
     config = function()
       require "custom.configs.null-ls"
     end,
   },
-  -- -- { 
+  -- -- {
   -- --   "rmagatti/goto-preview",
   -- --   config = function()
   -- --     require("goto-preview").setup({
@@ -156,7 +229,7 @@ local plugins = {
   -- --     })
   -- --   end,
   -- -- },
-  { 
+  {
     "abecodes/tabout.nvim",
     lazy = true,
     event = "InsertEnter",
@@ -166,7 +239,7 @@ local plugins = {
     end,
   },
 
-  { 
+  {
     "windwp/nvim-ts-autotag",
     ft = { "html", "javascriptreact" },
     dependencies = "nvim-treesitter",
@@ -179,7 +252,7 @@ local plugins = {
     ft = { "javascript", "javascriptreact" },
   },
 
-  { 
+  {
     "phaazon/hop.nvim",
     lazy = true,
     dependencies = "ui",
@@ -190,7 +263,7 @@ local plugins = {
     end,
   },
 
-  { 
+  {
     "rainbowhxch/accelerated-jk.nvim",
     lazy = true,
     dependencies = "nvim-treesitter",
@@ -200,7 +273,7 @@ local plugins = {
     end,
   },
 
-  { 
+  {
     "RRethy/vim-illuminate",
     lazy = true,
     event = "BufReadPost",
@@ -210,7 +283,7 @@ local plugins = {
     end,
   },
 
-  { 
+  {
     "dstein64/nvim-scrollview",
     lazy = true,
     event = { "BufReadPost" },
@@ -219,7 +292,7 @@ local plugins = {
     end,
   },
 
-  { 
+  {
     "folke/noice.nvim",
     lazy = false,
     dependencies = {
@@ -231,18 +304,18 @@ local plugins = {
     end,
   },
 
-  { 
+  {
     "folke/trouble.nvim",
     lazy = false,
     dependencies = {
-      "nvim-tree/nvim-web-devicons"
+      "nvim-tree/nvim-web-devicons",
     },
     config = function()
       require "custom.configs.trouble"
     end,
   },
 
-  { 
+  {
     "karb94/neoscroll.nvim",
     lazy = true,
     event = "BufReadPost",
@@ -254,7 +327,7 @@ local plugins = {
   -- { "declancm/vim2vscode" }
   -- { "kizza/ask-vscode.nvim" }
 
-  { 
+  {
     "filipdutescu/renamer.nvim",
     event = "BufWinEnter",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -263,20 +336,22 @@ local plugins = {
     end,
   },
 
-  { 
+  {
     "Pocco81/auto-save.nvim",
     lazy = true,
     event = "BufReadPost",
     config = function()
       require "custom.configs.autosave"
-    end,    
-  },
-  { "lvimuser/lsp-inlayhints.nvim",
-    config = function()
-      require("custom.configs.lsp-inlayhints")
     end,
   },
-  { "ray-x/go.nvim",
+  {
+    "lvimuser/lsp-inlayhints.nvim",
+    config = function()
+      require "custom.configs.lsp-inlayhints"
+    end,
+  },
+  {
+    "ray-x/go.nvim",
     lazy = true,
     dependencies = { "ray-x/guihua.lua" },
     ft = { "go", "gomod" },
@@ -285,7 +360,8 @@ local plugins = {
       require "custom.configs.go"
     end,
   },
-  { "github/copilot.vim",
+  {
+    "github/copilot.vim",
     lazy = false,
     config = function()
       require "custom.configs.copilot"
@@ -296,7 +372,8 @@ local plugins = {
   --     require("nvim-highlight-colors").setup()
   --   end,
   -- },
-  { "VonHeikemen/searchbox.nvim",
+  {
+    "VonHeikemen/searchbox.nvim",
     dependencies = {
       "MunifTanjim/nui.nvim",
     },
@@ -311,22 +388,22 @@ local plugins = {
   -- -- { "nvim-telescope/telescope-dap.nvim",
   { "theHamsta/nvim-dap-virtual-text" },
   { "ray-x/guihua.lua" },
-  -- { 
-  --   "avneesh0612/react-nextjs-snippets" 
+  -- {
+  --   "avneesh0612/react-nextjs-snippets"
   --   ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
   -- },
-  { 
+  {
     "p00f/nvim-ts-rainbow",
     event = "BufReadPost",
     dependencies = "nvim-treesitter",
   },
-  { 
+  {
     "tveskag/nvim-blame-line",
     lazy = true,
     dependencies = "nvim-treesitter",
     event = "BufWinEnter",
   },
-  { 
+  {
     "folke/todo-comments.nvim",
     dependencies = "nvim-lua/plenary.nvim",
     event = { "BufReadPost", "BufNewFile" },
@@ -364,13 +441,14 @@ local plugins = {
   -- -- 		"nvim-telescope/telescope.nvim",
   -- -- 	},
   -- -- },
-  { "kosayoda/nvim-lightbulb",
+  {
+    "kosayoda/nvim-lightbulb",
     event = "BufWinEnter",
     dependencies = {
       "antoinemadec/FixCursorHold.nvim",
     },
   },
-  { 
+  {
     "ludovicchabant/vim-gutentags",
     lazy = false,
   },
@@ -384,9 +462,10 @@ local plugins = {
   --     require "custom.configs.visual-multi"
   --   end,
   -- },
-  { "nvim-treesitter/nvim-treesitter-textobjects",
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
     config = function()
-      require("custom.configs.textobjects")
+      require "custom.configs.textobjects"
     end,
   },
   -- -- =============================================== LSP
@@ -399,37 +478,37 @@ local plugins = {
   --     require "custom.configs.lspui"
   --   end
   -- },
-  { 
+  {
     "onsails/lspkind.nvim",
     config = function()
       require "custom.configs.lspkind"
     end,
   },
-  { 
+  {
     "glepnir/lspsaga.nvim",
     lazy = false,
     config = function()
-      require("custom.configs.lspsaga")
+      require "custom.configs.lspsaga"
     end,
     -- commit = "707c9399b1cbe063c6942604209674edf1b3cf2e",
   },
-  -- { 
+  -- {
   --   "j-hui/fidget.nvim",
   --   event = "BufWinEnter",
   --   config = true,
   -- },
-  { 
+  {
     "nvim-treesitter/nvim-treesitter-context",
     event = "BufWinEnter",
     config = function()
-      require("custom.configs.ts-context")
+      require "custom.configs.ts-context"
     end,
   },
-  { 
+  {
     "melkster/modicator.nvim",
     event = "BufWinEnter",
     config = function()
-      require("custom.configs.modicator")
+      require "custom.configs.modicator"
     end,
   },
   -- { "MaximilianLloyd/ascii.nvim" },

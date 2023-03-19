@@ -1,13 +1,6 @@
 local M = {}
 
 local cmp = require("cmp")
-local has_words_before = function()
-	if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
-		return false
-	end
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
-end
 
 M.treesitter = {
   ensure_installed = {
@@ -44,6 +37,8 @@ M.mason = {
     "prettier"
   },
 }
+
+
 
 -- git support in nvimtree
 M.nvimtree = {
@@ -159,6 +154,17 @@ M.blankline = {
     "lsp-installer",
     "norg",
   },
+  show_end_of_line = true,
+  show_trailing_blankline_indent = false,
+  show_first_indent_level = false,
+  show_current_context = true,
+  show_current_context_start = true,
+  vim.api.nvim_set_hl(0, "IndentBlanklineContextChar", { nocombine = true, fg = "none"}),
+  vim.api.nvim_set_hl(
+    0,
+    "IndentBlanklineContextStart",
+    { nocombine = false, underline = true, special = "none" }
+  ),
 }
 
 M.cmp = {
