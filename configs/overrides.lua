@@ -4,7 +4,7 @@ local cmp = require("cmp")
 
 M.treesitter = {
   ensure_installed = {
-    "lua", "go", "cpp", "c", "bash", "json", "json5", "gomod", "gowork", "yaml", "javascript", "java", "go", "vim", "regex", "lua", "bash", "markdown", "markdown_inline",
+    "lua", "go","bash", "json", "json5", "gomod", "gowork", "yaml", "javascript", "java", "go", "vim", "regex", "markdown", "markdown_inline", "tsx", "typescript",
   },
   indent = {
     enable = true,
@@ -14,7 +14,7 @@ M.treesitter = {
   },
   rainbow = {
     enable = true,
-    extended_mode = true,
+    extended_mode = false,
     max_file_lines = 1000,
   },
 }
@@ -29,12 +29,14 @@ M.mason = {
     "css-lsp",
     "html-lsp",
     "typescript-language-server",
-    "deno",
+    "prettier",
+    "eslint-lsp",
+    "css-lsp",
+    "html-lsp",
+
 
     "gopls",
     "goimports",
-    "eslint-lsp",
-    "prettier"
   },
 }
 
@@ -91,19 +93,6 @@ M.telescope = {
 M.alpha = {
   -- header = {
   --   val = {
-  --     "           ▄ ▄                   ",
-  --     "       ▄   ▄▄▄     ▄ ▄▄▄ ▄ ▄     ",
-  --     "       █ ▄ █▄█ ▄▄▄ █ █▄█ █ █     ",
-  --     "    ▄▄ █▄█▄▄▄█ █▄█▄█▄▄█▄▄█ █     ",
-  --     "  ▄ █▄▄█ ▄ ▄▄ ▄█ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄  ",
-  --     "  █▄▄▄▄ ▄▄▄ █ ▄ ▄▄▄ ▄ ▄▄▄ ▄ ▄ █ ▄ ",
-  --     "▄ █ █▄█ █▄█ █ █ █▄█ █ █▄█ ▄▄▄ █ █ ",
-  --     "█▄█ ▄ █▄▄█▄▄█ █ ▄▄█ █ ▄ █ █▄█▄█ █ ",
-  --     "    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█ █▄█▄▄▄█     ",
-  --   },
-  -- },
-  -- header = {
-  --   val = {
   --     "   🭇🬭🬭🬭🬭🬭🬭🬭🬭🬼    ",
   --     "  🭉🭁🭠🭘    🭣🭕🭌🬾   ",
   --     "  🭅█ ▁     █🭐  ",
@@ -136,9 +125,6 @@ M.alpha = {
       [[  .. . ."'                                         ]],
     },
   },
-  -- header = {
-  --   val = ascii.get_random("planets", "planets"),
-  -- },
 }
 
 M.blankline = {
@@ -163,7 +149,7 @@ M.blankline = {
   vim.api.nvim_set_hl(
     0,
     "IndentBlanklineContextStart",
-    { nocombine = false, underline = true, special = "none" }
+    { nocombine = false, underline = false, special = "none" }
   ),
 }
 
@@ -171,7 +157,11 @@ M.cmp = {
   sources = {
     { name = "copilot" },
     { name = "nvim_lsp" },
+    { name = 'cmp_tabnine'},
     { name = "luasnip" },
+    { name = "buffer" },
+    { name = "nvim_lua" },
+    { name = "path" },
     { name = "treesitter" },
     { name = "buffer" },
     { name = 'nvim_lsp_signature_help' },

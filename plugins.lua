@@ -27,7 +27,10 @@ local plugins = {
     "nvim-treesitter/nvim-treesitter",
     opts = overrides.treesitter,
   },
-
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    opts = overrides.blankline,
+  },
   {
     "hrsh7th/nvim-cmp",
     opts = overrides.cmp,
@@ -163,6 +166,20 @@ local plugins = {
     end,
   },
   { "tenxsoydev/karen-yank.nvim", config = true },
+  -- {
+  --   'ray-x/sad.nvim',
+  --   dev = (plugin_folder():find('github') ~= nil),
+  --   cmd = { 'Sad' },
+  --   lazy = true,
+  --   config = function()
+  --     require('sad').setup({
+  --       debug = true,
+  --       vsplit = false,
+  --       height_ratio = 0.8,
+  --       autoclose = false,
+  --     })
+  --   end,
+  -- },
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
@@ -241,16 +258,15 @@ local plugins = {
 
   {
     "windwp/nvim-ts-autotag",
-    ft = { "html", "javascriptreact" },
-    dependencies = "nvim-treesitter",
+    event = "InsertEnter",
     config = true,
   },
 
-  {
-    "jelera/vim-javascript-syntax",
-    dependencies = "nvim-treesitter",
-    ft = { "javascript", "javascriptreact" },
-  },
+  -- {
+  --   "jelera/vim-javascript-syntax",
+  --   dependencies = "nvim-treesitter",
+  --   ft = { "javascript", "javascriptreact" },
+  -- },
 
   {
     "phaazon/hop.nvim",
@@ -272,7 +288,7 @@ local plugins = {
       require "custom.configs.accelerated-jk"
     end,
   },
-
+  
   {
     "RRethy/vim-illuminate",
     lazy = true,
@@ -355,7 +371,9 @@ local plugins = {
     lazy = true,
     dependencies = { "ray-x/guihua.lua" },
     ft = { "go", "gomod" },
+    dependencies = { "ray-x/guihua.lua", "nvim-treesitter" },
     dependencies = "nvim-treesitter",
+    dependencies = { "ray-x/guihua.lua", "nvim-treesitter" },
     config = function()
       require "custom.configs.go"
     end,
@@ -382,7 +400,22 @@ local plugins = {
       require "custom.configs.searchbox"
     end,
   },
-
+  {
+    "tzachar/cmp-tabnine",
+    lazy = false,
+    dependencies = "hrsh7th/nvim-cmp",
+    build = "./install.sh",
+    config = function()
+      require('cmp_tabnine.config').setup {
+        max_lines = 1000,
+        max_num_results = 20,
+        sort = true,
+        run_on_every_keystroke = true,
+        snippet_placeholder = '..',
+        show_prediction_strength = false
+      }
+    end,
+  },
   { "mfussenegger/nvim-dap" },
   { "rcarriga/nvim-dap-ui" },
   -- -- { "nvim-telescope/telescope-dap.nvim",
@@ -393,15 +426,16 @@ local plugins = {
   --   ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
   -- },
   {
-    "p00f/nvim-ts-rainbow",
+    "mrjones2014/nvim-ts-rainbow",
     event = "BufReadPost",
     dependencies = "nvim-treesitter",
   },
-  {
-    "tveskag/nvim-blame-line",
-    lazy = true,
-    dependencies = "nvim-treesitter",
-    event = "BufWinEnter",
+  { 
+    "braxtons12/blame_line.nvim",
+    event = "BufReadPost",
+    config = function()
+      require "custom.configs.blameline"
+    end,
   },
   {
     "folke/todo-comments.nvim",
@@ -464,6 +498,8 @@ local plugins = {
   -- },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
+    event = "BufWinEnter",
+    event = "BufWinEnter",
     config = function()
       require "custom.configs.textobjects"
     end,

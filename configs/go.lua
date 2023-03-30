@@ -17,7 +17,8 @@ go.setup{
     lsp_inlay_hints = {
         enable = true,
         only_current_line = true,
+        other_hints_prefix = "• ",
       },
     trouble = true,
-    icons = {breakpoint = '🔺', currentpos = '🔸'},
+    icons = {breakpoint = '', currentpos = ''},
 }

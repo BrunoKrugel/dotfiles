@@ -19,6 +19,12 @@ M.override = {
   IndentBlanklineContextStart = {
     bg = "none",
   },
+  ["@definition"] = {
+    underline = false,
+  },
+  -- ["@attribute"] = {
+  --   italic = true,
+  -- },
 }
 
 ---@type HLTable

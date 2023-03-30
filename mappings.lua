@@ -1,6 +1,39 @@
 ---@type MappingsTable
 local M = {}
 
+-- <C> -> Ctrl
+-- <leader> -> Space
+-- <A> -> alt
+-- <S> -> shift
+
+
+M.disabled = {
+  n = {
+      ["<leader>b"] = "",
+  }
+}
+
+M.comment = {
+  plugin = true,
+
+  -- toggle comment in both modes
+  n = {
+    ["<M>/"] = {
+      function()
+        require("Comment.api").toggle.linewise.current()
+      end,
+      "toggle comment",
+    },
+  },
+
+  v = {
+    ["<M>/"] = {
+      "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+      "toggle comment",
+    },
+  },
+}
+
 M.accelerated_jk = {
   n = {
     j = { "<Plug>(accelerated_jk_gj)", "accelerated gj movement" },
@@ -12,14 +45,12 @@ M.general = {
   i = {
     -- Move line up and down
     ["<C-Up>"] = { "<cmd> :m-2<CR>", "move up" },
-    ["<C-Down>"] = { "<cmd> :m+<CR>", "move up" },
+    ["<C-Down>"] = { "<cmd> :m+<CR>", "move down" },
     -- ["F2"] = { "<cmd> :lua require('renamer').rename()<CR>", "Rename" },
   },
 
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
-    ["<leader>bl"] = { "<cmd> :ToggleBlameLine <CR>", "Toggle blame line" },
-    ["<leader>g"] = { "<cmd> :GoDef <CR>", "Go to definition" },
     ["<leader>t"] = { "<cmd>TroubleToggle<cr>", "Toggle warnings" },
     ["<leader>td"] = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", "Todo/Fix/Fixme (Trouble)" },
     ["<leader>vs"] = { "<cmd>:AskVisualStudioCode<CR>", "Ask Visual Code" },
@@ -28,7 +59,14 @@ M.general = {
     ["<C-Down>"] = { "<cmd> :m+<CR>", "move up" },
     -- Renamer
     ["<leader>rn"] = { "<cmd> :lua require('renamer').rename()<CR>", "Rename" },
-    -- Debug in GO
+    --
+    ["<Esc>"] = { ":noh <CR>", "clear highlights", opts = { silent = true } },
+  },
+}
+
+M.go = {
+  n = {
+    ["<leader>g"] = { "<cmd> :GoDef <CR>", "Go to definition" },
     ["<leader>tt"] = { "<cmd> :GoBreakToggle<CR>", "Rename" },
   },
 }
@@ -39,6 +77,7 @@ M.git = {
     ["<leader>gb"] = { "<cmd>Telescope git_branches<CR>", "  git branches" },
     ["<leader>gs"] = { "<cmd>Telescope git_status<CR>", "  git status" },
     ["<leader>gg"] = { "<cmd>LazyGit<CR>", "  LazyGit" },
+    ["<leader>gb"] = { "<cmd>:BlameLineToggle <CR>", "  Toggle blame line" },
   },
 }
 
@@ -79,6 +118,18 @@ M.tabufline = {
   },
 }
 
+M.nvimtree = {
+  plugin = true,
+
+  n = {
+    -- toggle
+    ["<C-b>"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" },
+
+    -- focus
+    ["<leader>n"] = { "<cmd> NvimTreeFocus <CR>", "focus nvimtree" },
+  },
+}
+
 -- more keybinds!
 M.hop = {
   n = {
@@ -114,15 +165,6 @@ M.lspsaga = {
     --     "<Cmd>Lspsaga hover_doc<cr>",
     --     "Hover lsp",
     -- },
-  },
-}
-M.eft = {
-  n = {
-    f = { "<Plug>(eft-f)", "eft-f" },
-    F = { "<Plug>(eft-F)", "eft-F" },
-    t = { "<Plug>(eft-t)", "eft-t" },
-    T = { "<Plug>(eft-T)", "eft-T" },
-    [";"] = { "<Plug>(eft-repeat)", "eft-repeat" },
   },
 }
 

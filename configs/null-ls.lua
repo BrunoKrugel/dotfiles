@@ -17,25 +17,25 @@ local sources = {
   b.formatting.stylua,
   -- b.formatting.lua_format,
   -- Go
-  -- null_ls.builtins.formatting.gofmt,
-  -- null_ls.builtins.formatting.gofumpt,
-  -- null_ls.builtins.formatting.goimports,
-  -- null_ls.builtins.formatting.goimports_reviser,
-  -- null_ls.builtins.diagnostics.golangci_lint,
-  -- null_ls.builtins.diagnostics.revive,
-  -- null_ls.builtins.formatting.golines.with({
+  -- b.formatting.gofmt,
+  -- b.formatting.gofumpt,
+  -- b.formatting.goimports,
+  -- b.formatting.goimports_reviser,
+  -- b.diagnostics.golangci_lint,
+  -- b.diagnostics.revive,
+  -- b.formatting.golines.with({
   --   extra_args = {
   --     "--max-len=180",
   --     "--base-formatter=gofumpt",
   --   },
   -- }),
-  -- null_ls.builtins.diagnostics.eslint_d.with({
+  -- b.diagnostics.eslint_d.with({
   --   diagnostics_format = '[eslint] #{m}\n(#{c})'
   -- }),
-  -- null_ls.builtins.code_actions.eslint,
-  -- null_ls.builtins.diagnostics.eslint,
-  -- null_ls.builtins.formatting.lua_format,
-  --  null_ls.builtins.diagnostics.luacheck,
+  -- b.code_actions.eslint,
+  -- b.diagnostics.eslint,
+  -- b.formatting.lua_format,
+  --  b.diagnostics.luacheck,
   b.completion.luasnip,
   b.formatting.prettierd,
 }
