@@ -46,6 +46,7 @@ local plugins = {
       "hrsh7th/cmp-nvim-lsp-document-symbol",
       "hrsh7th/cmp-copilot",
       "ray-x/cmp-treesitter",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
     },
   },
   {
@@ -60,11 +61,12 @@ local plugins = {
   { "nvim-telescope/telescope.nvim", opts = overrides.telescope },
 
   { "williamboman/mason.nvim", opts = overrides.mason },
-  { "nvim-telescope/telescope-hop.nvim" },
   {
     "nvim-telescope/telescope-frecency.nvim",
+    event = "VimEnter",
     dependencies = { "kkharji/sqlite.lua" },
   },
+  -- { "mikelue/vim-maven-plugin" },
   {
     "anuvyklack/pretty-fold.nvim",
     config = function()
@@ -74,6 +76,7 @@ local plugins = {
 
   {
     "m-demare/hlargs.nvim",
+    event = "VimEnter",
     config = function()
       require("hlargs").setup()
     end,
@@ -86,10 +89,6 @@ local plugins = {
     end,
   },
 
-  -- {
-  --   "romgrk/todoist.nvim",
-  --   lazy = false,
-  -- },
   {
     "shellRaining/hlchunk.nvim",
     event = "BufReadPost",
@@ -165,6 +164,13 @@ local plugins = {
       }
     end,
   },
+  {
+    "chikko80/error-lens.nvim",
+    event = "BufRead",
+    dependencies = {
+        "nvim-telescope/telescope.nvim"
+    }
+  },
   { "tenxsoydev/karen-yank.nvim", config = true },
   -- {
   --   'ray-x/sad.nvim',
@@ -228,7 +234,6 @@ local plugins = {
     "folke/which-key.nvim",
     enabled = true,
   },
-  -- ------------------ OLD PLUGINS ------------------
 
   {
     "jose-elias-alvarez/null-ls.nvim",
@@ -339,10 +344,6 @@ local plugins = {
       require "custom.configs.neoscroll"
     end,
   },
-
-  -- { "declancm/vim2vscode" }
-  -- { "kizza/ask-vscode.nvim" }
-
   {
     "filipdutescu/renamer.nvim",
     event = "BufWinEnter",
@@ -418,7 +419,6 @@ local plugins = {
   },
   { "mfussenegger/nvim-dap" },
   { "rcarriga/nvim-dap-ui" },
-  -- -- { "nvim-telescope/telescope-dap.nvim",
   { "theHamsta/nvim-dap-virtual-text" },
   { "ray-x/guihua.lua" },
   -- {
@@ -430,19 +430,23 @@ local plugins = {
     event = "BufReadPost",
     dependencies = "nvim-treesitter",
   },
-  { 
-    "braxtons12/blame_line.nvim",
-    event = "BufReadPost",
-    config = function()
-      require "custom.configs.blameline"
-    end,
-  },
+  -- { 
+  --   "braxtons12/blame_line.nvim",
+  --   event = "BufReadPost",
+  --   config = function()
+  --     require "custom.configs.blameline"
+  --   end,
+  -- },
   {
     "folke/todo-comments.nvim",
     dependencies = "nvim-lua/plenary.nvim",
     event = { "BufReadPost", "BufNewFile" },
     config = true,
   },
+  -- { 
+  --   "mfussenegger/nvim-jdtls",
+  --   config = true,
+  -- },
   -- { "neovim/nvim-lspconfig",
   --   config = function()
   --     -- require("plugins.configs.lspconfig")
@@ -453,28 +457,6 @@ local plugins = {
   --     vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
   --   end,
   -- },
-  -- -- { "williamboman/mason-lspconfig.nvim",
-  -- --   requires = "neovim/nvim-lspconfig",
-  -- --   requires = "williamboman/mason.nvim",
-  -- --   config = function()
-  -- --     require("mason-lspconfig").setup()
-  -- --   end,
-  -- -- },
-  -- -- { "LeonHeidelbach/trailblazer.nvim",
-  -- -- { "jackMort/ChatGPT.nvim",
-  -- -- 	lazy = true,
-  -- -- 	keys = { "<leader>gpt" },
-  -- -- 	module_pattern = { "chatgpt*" },
-  -- -- 	dependencies = { "nui.nvim", "telescope.nvim" },
-  -- -- 	config = function()
-  -- -- 		require("custom.plugins.gpt")
-  -- -- 	end,
-  -- -- 	dependencies = {
-  -- -- 		"MunifTanjim/nui.nvim",
-  -- -- 		"nvim-lua/plenary.nvim",
-  -- -- 		"nvim-telescope/telescope.nvim",
-  -- -- 	},
-  -- -- },
   {
     "kosayoda/nvim-lightbulb",
     event = "BufWinEnter",
@@ -486,9 +468,6 @@ local plugins = {
     "ludovicchabant/vim-gutentags",
     lazy = false,
   },
-  -- { "weilbith/nvim-code-action-menu",
-  --   cmd = "CodeActionMenu",
-  -- },
   -- { "mg979/vim-visual-multi",
   --   lazy = true,
   --   event = "BufReadPost",
@@ -499,21 +478,10 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     event = "BufWinEnter",
-    event = "BufWinEnter",
     config = function()
       require "custom.configs.textobjects"
     end,
   },
-  -- -- =============================================== LSP
-  { "hrsh7th/cmp-nvim-lsp-signature-help" },
-  { "hrsh7th/cmp-nvim-lsp-document-symbol" },
-  { "hrsh7th/cmp-nvim-lsp" },
-  -- { "jinzhongjia/LspUI.nvim",
-  --   event = 'VimEnter',
-  --   config=function()
-  --     require "custom.configs.lspui"
-  --   end
-  -- },
   {
     "onsails/lspkind.nvim",
     config = function()
@@ -526,13 +494,7 @@ local plugins = {
     config = function()
       require "custom.configs.lspsaga"
     end,
-    -- commit = "707c9399b1cbe063c6942604209674edf1b3cf2e",
   },
-  -- {
-  --   "j-hui/fidget.nvim",
-  --   event = "BufWinEnter",
-  --   config = true,
-  -- },
   {
     "nvim-treesitter/nvim-treesitter-context",
     event = "BufWinEnter",

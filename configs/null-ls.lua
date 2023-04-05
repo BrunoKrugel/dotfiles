@@ -11,11 +11,8 @@ local sources = {
   -- webdev stuff
   b.formatting.deno_fmt, -- choosed deno for ts/js files cuz its very fast!
   b.formatting.prettier.with { filetypes = { "html", "markdown", "css" } }, -- so prettier works only on these filetypes
-
-  -- cpp
   b.formatting.clang_format,
   b.formatting.stylua,
-  -- b.formatting.lua_format,
   -- Go
   -- b.formatting.gofmt,
   -- b.formatting.gofumpt,
@@ -36,8 +33,12 @@ local sources = {
   -- b.diagnostics.eslint,
   -- b.formatting.lua_format,
   --  b.diagnostics.luacheck,
+  b.diagnostics.checkstyle.with({
+    extra_args = { "-c", "/google_checks.xml" },
+  }),
+  b.formatting.yamlfmt,
+  -- b.formatting.xmlformat,
   b.completion.luasnip,
-  b.formatting.prettierd,
 }
 
 -- local goimports = b.formatting.goimports

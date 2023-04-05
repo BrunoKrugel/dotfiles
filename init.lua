@@ -34,7 +34,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 })
 
 autocmd("BufWritePre", {
-  --   pattern = "*.go",
+  pattern = { "*.go", "*.js", "*.java", "*.lua" },
   callback = function()
     vim.lsp.buf.format { async = false }
   end,
