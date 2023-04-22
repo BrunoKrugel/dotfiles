@@ -33,9 +33,9 @@ local sources = {
   -- b.diagnostics.eslint,
   -- b.formatting.lua_format,
   --  b.diagnostics.luacheck,
-  b.diagnostics.checkstyle.with({
-    extra_args = { "-c", "/google_checks.xml" },
-  }),
+  -- b.diagnostics.checkstyle.with {
+  --   extra_args = { "-c", "/google_checks.xml" },
+  -- },
   b.formatting.yamlfmt,
   -- b.formatting.xmlformat,
   b.completion.luasnip,

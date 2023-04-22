@@ -25,6 +25,9 @@ local plugins = {
   -- overrde plugin configs
   {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+      { "JoosepAlviste/nvim-ts-context-commentstring", ft = "javascriptreact" },
+    },
     opts = overrides.treesitter,
   },
   {
@@ -73,7 +76,14 @@ local plugins = {
       require "custom.configs.pretty-fold"
     end,
   },
-
+  {
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup {
+        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+      }
+    end,
+  },
   {
     "m-demare/hlargs.nvim",
     event = "VimEnter",
@@ -441,6 +451,11 @@ local plugins = {
     "folke/todo-comments.nvim",
     dependencies = "nvim-lua/plenary.nvim",
     event = { "BufReadPost", "BufNewFile" },
+    config = true,
+  },
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "BufReadPost",
     config = true,
   },
   -- { 

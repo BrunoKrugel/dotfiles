@@ -17,6 +17,10 @@ M.treesitter = {
     extended_mode = false,
     max_file_lines = 1000,
   },
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false,
+  },
 }
 
 M.mason = {
@@ -154,6 +158,26 @@ M.blankline = {
 }
 
 M.cmp = {
+  mapping = {
+    ["<Up>"] = require "cmp".mapping.select_prev_item(),
+    ["<Down>"] = require "cmp".mapping.select_next_item(),
+    ["<Tab>"] = require("cmp").mapping(function(fallback)
+      local luasnip = require "luasnip"
+      local copilot_keys = vim.fn["copilot#Accept"]()
+      if require "cmp".visible() then
+        require "cmp".select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      elseif copilot_keys ~= "" and type(copilot_keys) == "string" then
+        vim.api.nvim_feedkeys(copilot_keys, "i", true)
+      else
+        fallback()
+      end
+    end, {
+      "i",
+      "s",
+    }),
+  },
   sources = {
     { name = "copilot" },
     { name = "nvim_lsp" },
