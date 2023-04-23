@@ -43,6 +43,9 @@ autocmd("BufWritePre", {
 -- Run gofmt on save
 vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').gofmt() ]], false)
 
+vim.g.bookmark_sign = ""
+vim.g.bookmark_highlight = "DevIconErb"
+
 -- Auto resize panes when resizing nvim window
 autocmd("VimResized", {
   pattern = "*",

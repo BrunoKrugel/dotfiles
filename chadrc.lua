@@ -9,6 +9,17 @@ M.ui = {
   theme_toggle = { "chadracula", "one_light" },
   statusline = {
     theme = "vscode_colored",
+    overriden_modules = function()
+      local st_modules = require "nvchad_ui.statusline.vscode_colored"
+      -- this is just default table of statusline modules
+  
+      return {
+        LSP_Diagnostics = function()
+          return st_modules.LSP_Diagnostics() .. require('copilot_status').status_string() 
+          -- or just return "" to hide this module
+        end,
+      }
+    end,
   },
   cmp = {
     icons = true,

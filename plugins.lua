@@ -46,6 +46,7 @@ local plugins = {
       "hrsh7th/cmp-nvim-lua",
       -- "hrsh7th/cmp-path",
       "hrsh7th/cmp-vsnip",
+      "delphinus/cmp-ctags",
       "hrsh7th/cmp-nvim-lsp-document-symbol",
       "hrsh7th/cmp-copilot",
       "ray-x/cmp-treesitter",
@@ -57,12 +58,23 @@ local plugins = {
     event = "CmdLineEnter",
   },
   {
+    "Snyssfx/goerr-nvim",
+    ft = "go",
+  },
+  {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
   },
 
-  { "nvim-telescope/telescope.nvim", opts = overrides.telescope },
-
+  { 
+    "nvim-telescope/telescope.nvim", 
+    opts = overrides.telescope,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "debugloop/telescope-undo.nvim",
+      "tom-anders/telescope-vim-bookmarks.nvim",
+    },
+  },
   { "williamboman/mason.nvim", opts = overrides.mason },
   {
     "nvim-telescope/telescope-frecency.nvim",
@@ -91,14 +103,47 @@ local plugins = {
       require("hlargs").setup()
     end,
   },
-
+  { 
+    "xiyaowong/virtcolumn.nvim",
+    event = "VimEnter",
+  },
+  {
+    'kevinhwang91/nvim-ufo',
+    dependencies = {'kevinhwang91/promise-async'},
+  },
+  {
+    "MattesGroeger/vim-bookmarks",
+    event = "BufReadPost",
+  },
+  {
+    "jonahgoldwastaken/copilot-status.nvim",
+    dependencies = { "copilot.lua" }, -- or "zbirenbaum/copilot.lua"
+    lazy = true,
+    event = "BufReadPost",
+    config = function()
+      require('copilot_status').setup({
+        icons = {
+          idle = " ",
+          error = " ",
+          offline = " ",
+          warning = "𥉉 ",
+          loading = " ",
+        },
+        debug = false,
+      })
+    end,
+  },
   {
     "kevinhwang91/nvim-hlslens",
     config = function()
       require("hlslens").setup()
     end,
   },
-
+  {
+    "petertriho/nvim-scrollbar",
+    event = "VimEnter",
+    config = true,
+  },
   {
     "shellRaining/hlchunk.nvim",
     event = "BufReadPost",
@@ -178,7 +223,7 @@ local plugins = {
     "chikko80/error-lens.nvim",
     event = "BufRead",
     dependencies = {
-        "nvim-telescope/telescope.nvim"
+        "nvim-telescope/telescope.nvim",
     }
   },
   { "tenxsoydev/karen-yank.nvim", config = true },
@@ -314,14 +359,14 @@ local plugins = {
     end,
   },
 
-  {
-    "dstein64/nvim-scrollview",
-    lazy = true,
-    event = { "BufReadPost" },
-    config = function()
-      require "custom.configs.scrollview"
-    end,
-  },
+  -- {
+  --   "dstein64/nvim-scrollview",
+  --   lazy = true,
+  --   event = { "BufReadPost" },
+  --   config = function()
+  --     require "custom.configs.scrollview"
+  --   end,
+  -- },
 
   {
     "folke/noice.nvim",
@@ -345,7 +390,6 @@ local plugins = {
       require "custom.configs.trouble"
     end,
   },
-
   {
     "karb94/neoscroll.nvim",
     lazy = true,
@@ -472,13 +516,13 @@ local plugins = {
   --     vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
   --   end,
   -- },
-  {
-    "kosayoda/nvim-lightbulb",
-    event = "BufWinEnter",
-    dependencies = {
-      "antoinemadec/FixCursorHold.nvim",
-    },
-  },
+  -- {
+  --   "kosayoda/nvim-lightbulb",
+  --   event = "BufWinEnter",
+  --   dependencies = {
+  --     "antoinemadec/FixCursorHold.nvim",
+  --   },
+  -- },
   {
     "ludovicchabant/vim-gutentags",
     lazy = false,

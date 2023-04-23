@@ -91,7 +91,7 @@ M.telescope = {
   },
   extensions = {
   },
-  extensions_list = { "themes", "terms", "notify", "frecency"},
+  extensions_list = { "themes", "terms", "notify", "frecency", "undo", "vim_bookmarks"},
 }
 
 M.alpha = {

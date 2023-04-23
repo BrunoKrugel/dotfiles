@@ -86,6 +86,8 @@ M.telescope = {
     ["<leader>fk"] = { "<cmd>Telescope keymaps<CR>", " find keymaps" },
     ["<leader>fs"] = { "<cmd>Telescope lsp_document_symbols<CR>", " find document symbols" },
     ["<leader>fr"] = { "<cmd>Telescope frecency<CR>", "Recent files" },
+    ["<leader>fu"] = { "<cmd>Telescope undo<CR>", "Undo tree" },
+    ["<leader>fb"] = { "<cmd>Telescope vim_bookmarks all<CR>", "Bookmark" },
   },
 }
 
@@ -145,6 +147,15 @@ M.searchbox = {
     ["<leader><leader>f"] = { "<cmd> SearchBoxIncSearch<CR>", "Search first occurence" },
     ["<C-F>"] = { "<cmd> SearchBoxMatchAll clear_matches=true<CR>", "Search matching all" },
     ["<C-R>"] = { "<cmd> SearchBoxReplace confirm=menu<CR>", "Replace" },
+  },
+}
+
+M.bookmark = {
+  n = {
+    ["<leader>bm"] = { "<cmd> BookmarkToggle<CR>", "Toggle bookmark" },
+    ["<leader>bn"] = { "<cmd> BookmarkNext<CR>", "Next bookmark" },
+    ["<leader>bp"] = { "<cmd> BookmarkPrev<CR>", "Prev bookmark" },
+    ["<leader>bc"] = { "<cmd> BookmarkClear<CR>", "Clear bookmark" },
   },
 }
 
