@@ -5,6 +5,13 @@ local M = {}
 -- <leader> -> Space
 -- <A> -> alt
 -- <S> -> shift
+-- <M> -> meta (cmd key on mac)
+-- <D> -> super (windows key on windows)
+-- <kPoint> -> Keypad Point (.)
+-- <kEqual> -> Keypad Equal (=)
+-- <kPlus> -> Keypad Plus (+)
+-- <kMinus> -> Keypad Minus (-)
+
 
 
 M.disabled = {
@@ -18,64 +25,85 @@ M.comment = {
 
   -- toggle comment in both modes
   n = {
-    ["<M>/"] = {
+    ["<A-/>"] = {
       function()
         require("Comment.api").toggle.linewise.current()
       end,
-      "toggle comment",
+      "  Toggle comment",
     },
   },
 
   v = {
-    ["<M>/"] = {
+    ["<A-/>"] = {
       "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-      "toggle comment",
+      "  Toggle comment",
     },
   },
 }
 
 M.accelerated_jk = {
   n = {
-    j = { "<Plug>(accelerated_jk_gj)", "accelerated gj movement" },
-    k = { "<Plug>(accelerated_jk_gk)", "accelerated gk movement" },
+    j = { "<Plug>(accelerated_jk_gj)", " Accelerated down movement" },
+    k = { "<Plug>(accelerated_jk_gk)", " Accelerated up movement" },
   },
 }
 
 M.general = {
   i = {
     -- Move line up and down
-    ["<C-Up>"] = { "<cmd> :m-2<CR>", "move up" },
-    ["<C-Down>"] = { "<cmd> :m+<CR>", "move down" },
+    ["<C-Up>"] = { "<cmd> :m-2<CR>", " Move up" },
+    ["<C-Down>"] = { "<cmd> :m+<CR>", " Move down" },
     -- ["F2"] = { "<cmd> :lua require('renamer').rename()<CR>", "Rename" },
   },
 
   n = {
-    [";"] = { ":", "enter command mode", opts = { nowait = true } },
-    ["<leader>t"] = { "<cmd>TroubleToggle<cr>", "Toggle warnings" },
-    ["<leader>td"] = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", "Todo/Fix/Fixme (Trouble)" },
-    ["<leader>vs"] = { "<cmd>:AskVisualStudioCode<CR>", "Ask Visual Code" },
+    [";"] = { ":", "󰘳 Enter command mode", opts = { nowait = true } },
+    ["<leader>t"] = { "<cmd>TroubleToggle<cr>", " Toggle warnings" },
+    ["<leader>td"] = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", " Todo/Fix/Fixme (Trouble)" },
+    ["<leader>vs"] = { "<cmd>:AskVisualStudioCode<CR>", "󰨞 Ask Visual Code" },
     -- Move line up and down
-    ["<C-Up>"] = { "<cmd> :m-2<CR>", "move up" },
-    ["<C-Down>"] = { "<cmd> :m+<CR>", "move up" },
+    ["<C-Up>"] = { "<cmd> :m-2<CR>", "󰜸 Move line up" },
+    ["<C-Down>"] = { "<cmd> :m+<CR>", "󰜯 Move line down" },
     -- Renamer
-    ["<leader>rn"] = { "<cmd> :lua require('renamer').rename()<CR>", "Rename" },
+    ["<leader>rn"] = { "<cmd> :lua require('renamer').rename()<CR>", "󰑕 Rename" },
     --
-    ["<Esc>"] = { ":noh <CR>", "clear highlights", opts = { silent = true } },
+    ["<Esc>"] = { ":noh <CR>", " Clear highlights", opts = { silent = true } },
+    ["<C-h>"] = { "<cmd>vs <CR>", "󰤼 Vertical split", opts = { nowait = true } },
+    ["<C-y>"] = { "<cmd>sp <CR>", "󰤻 Horizontal split", opts = { nowait = true } },
+    ["<leader>tr"] = { 
+      function() 
+        require('base46').toggle_transparency()
+      end, 
+      "󰂵 Toggle transparency" 
+     }
+  },
+  v = {
+    ["<C-Up>"] = { ":m'<-2<CR>gv=gv", "move selection up" },
+    ["<C-Down>"] = { ":m'>+1<CR>gv=gv", "move selection down" },
   },
 }
 
-M.go = {
+M.treesitter = {
   n = {
-    ["<leader>g"] = { "<cmd> :GoDef <CR>", "Go to definition" },
-    ["<leader>tt"] = { "<cmd> :GoBreakToggle<CR>", "Rename" },
+    ["<leader>cu"] = { "<cmd> TSCaptureUnderCursor <CR>", " Find media" },
+  },
+}
+
+M.debug = {
+  n = {
+    ["<leader>tt"] = { "<cmd> :GoBreakToggle<CR>", " Toggle breakpoint" },
+    ["<F5>"] = {"<cmd> :DapContinue <CR>", " Continue"},
+    ["<F10>"] = {"<cmd> :DapStepOver <CR>", " Step over"},
+    ["<F11>"] = {"<cmd> :DapStepInto <CR>", " Step into"},
+    ["<F12>"] = {"<cmd> :DapStepOut <CR>", " Step out"},
   },
 }
 
 M.git = {
   n = {
-    ["<leader>gc"] = { "<cmd>Telescope git_commits<CR>", "  git commits" },
-    ["<leader>gb"] = { "<cmd>Telescope git_branches<CR>", "  git branches" },
-    ["<leader>gs"] = { "<cmd>Telescope git_status<CR>", "  git status" },
+    ["<leader>gc"] = { "<cmd>Telescope git_commits<CR>", "  Git commits" },
+    ["<leader>gb"] = { "<cmd>Telescope git_branches<CR>", "  Git branches" },
+    ["<leader>gs"] = { "<cmd>Telescope git_status<CR>", "  Git status" },
     ["<leader>gg"] = { "<cmd>LazyGit<CR>", "  LazyGit" },
     ["<leader>gb"] = { "<cmd>:BlameLineToggle <CR>", "  Toggle blame line" },
   },
@@ -83,11 +111,12 @@ M.git = {
 
 M.telescope = {
   n = {
-    ["<leader>fk"] = { "<cmd>Telescope keymaps<CR>", " find keymaps" },
-    ["<leader>fs"] = { "<cmd>Telescope lsp_document_symbols<CR>", " find document symbols" },
-    ["<leader>fr"] = { "<cmd>Telescope frecency<CR>", "Recent files" },
-    ["<leader>fu"] = { "<cmd>Telescope undo<CR>", "Undo tree" },
-    ["<leader>fb"] = { "<cmd>Telescope vim_bookmarks all<CR>", "Bookmark" },
+    ["<leader>fk"] = { "<cmd>Telescope keymaps<CR>", " Find keymaps" },
+    ["<leader>fs"] = { "<cmd>Telescope lsp_document_symbols<CR>", " Find document symbols" },
+    ["<leader>fr"] = { "<cmd>Telescope frecency<CR>", " Recent files" },
+    ["<leader>fu"] = { "<cmd>Telescope undo<CR>", " Undo tree" },
+    ["<leader>fb"] = { "<cmd>Telescope vim_bookmarks all<CR>", " Bookmark" },
+    ["<leader>fi"] = { "<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<CR>", " Find current file"},
   },
 }
 
@@ -100,14 +129,14 @@ M.tabufline = {
       function()
         require("nvchad_ui.tabufline").tabuflineNext()
       end,
-      "goto next buffer",
+      " Goto next buffer",
     },
 
     ["<S-Tab>"] = {
       function()
         require("nvchad_ui.tabufline").tabuflinePrev()
       end,
-      "goto prev buffer",
+      " Goto prev buffer",
     },
 
     -- close buffer + hide terminal buffer
@@ -115,7 +144,7 @@ M.tabufline = {
       function()
         require("nvchad_ui.tabufline").close_buffer()
       end,
-      "close buffer",
+      " Close buffer",
     },
   },
 }
@@ -125,17 +154,17 @@ M.nvimtree = {
 
   n = {
     -- toggle
-    ["<C-b>"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" },
+    ["<C-b>"] = { "<cmd> NvimTreeToggle <CR>", "󰔱 Toggle nvimtree" },
 
     -- focus
-    ["<leader>n"] = { "<cmd> NvimTreeFocus <CR>", "focus nvimtree" },
+    ["<leader>n"] = { "<cmd> NvimTreeFocus <CR>", "󰔱 Focus nvimtree" },
   },
 }
 
 -- more keybinds!
 M.hop = {
   n = {
-    ["<leader><leader>w"] = { "<cmd> HopWord <CR>", "hint all words" },
+    ["<leader><leader>w"] = { "<cmd> HopWord <CR>", "󰸱 hint all words" },
     ["<leader><leader>l"] = { "<cmd> HopLine <CR>", "hint line" },
     ["<leader>hl"] = { ":HopLineStart<CR>" },
     ["<leader>hw"] = { ":HopWordCurrentLine<CR>" },
@@ -144,24 +173,24 @@ M.hop = {
 
 M.searchbox = {
   n = {
-    ["<leader><leader>f"] = { "<cmd> SearchBoxIncSearch<CR>", "Search first occurence" },
-    ["<C-F>"] = { "<cmd> SearchBoxMatchAll clear_matches=true<CR>", "Search matching all" },
-    ["<C-R>"] = { "<cmd> SearchBoxReplace confirm=menu<CR>", "Replace" },
+    ["<leader><leader>f"] = { "<cmd> SearchBoxIncSearch<CR>", " Search first occurence" },
+    ["<C-F>"] = { "<cmd> SearchBoxMatchAll clear_matches=true<CR>", "󱘟 Search matching all" },
+    ["<C-R>"] = { "<cmd> SearchBoxReplace confirm=menu<CR>", " Replace" },
   },
 }
 
 M.bookmark = {
   n = {
-    ["<leader>bm"] = { "<cmd> BookmarkToggle<CR>", "Toggle bookmark" },
-    ["<leader>bn"] = { "<cmd> BookmarkNext<CR>", "Next bookmark" },
-    ["<leader>bp"] = { "<cmd> BookmarkPrev<CR>", "Prev bookmark" },
-    ["<leader>bc"] = { "<cmd> BookmarkClear<CR>", "Clear bookmark" },
+    ["<leader>bm"] = { "<cmd> BookmarkToggle<CR>", " Toggle bookmark" },
+    ["<leader>bn"] = { "<cmd> BookmarkNext<CR>", "󰮰 Next bookmark" },
+    ["<leader>bp"] = { "<cmd> BookmarkPrev<CR>", "󰮲 Prev bookmark" },
+    ["<leader>bc"] = { "<cmd> BookmarkClear<CR>", "󰃢 Clear bookmark" },
   },
 }
 
 M.lspsaga = {
   n = {
-    ["<leader>ca"] = { "<cmd>Lspsaga code_action<CR>", "Code Action" },
+    ["<leader>ca"] = { "<cmd>Lspsaga code_action<CR>", "󰅱 Code Action" },
     --  ["gd"] = {
     --     function()
     --         vim.cmd("Lspsaga lsp_finder")
@@ -186,7 +215,7 @@ M.nvterm = {
       function()
         require("nvterm.terminal").toggle "horizontal"
       end,
-      "   toggle horizontal term",
+      " toggle horizontal term",
     },
   },
 
@@ -196,7 +225,7 @@ M.nvterm = {
       function()
         require("nvterm.terminal").toggle "horizontal"
       end,
-      "   toggle horizontal term",
+      " toggle horizontal term",
     },
   },
 }
@@ -205,29 +234,29 @@ M.lspconfig = {
   i = {
     ["<C-e>"] = {
       "copilot#Accept('<CR>')",
-      "   copilot accept",
+      " Copilot accept",
       opts = { expr = true, silent = true, replace_keycodes = false },
     },
   },
   n = {
-    ["<leader>o"] = { "<cmd>Lspsaga outline<CR>", "   Show Outline" },
+    ["<leader>o"] = { "<cmd>Lspsaga outline<CR>", " Show Outline" },
     --  LSP
-    ["gr"] = { "<cmd>Telescope lsp_references<CR>", "  lsp references" },
-    ["[d"] = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", "  Prev Diagnostic" },
-    ["]d"] = { "<cmd>Lspsaga diagnostic_jump_next<CR>", "  Next Diagnostic" },
-    ["<leader>la"] = { "<cmd>Lspsaga code_action<CR>", "   Show Code Actions" },
-    ["<leader>lf"] = { "<cmd>Lspsaga lsp_finder<CR>", "   Lsp Finder" },
+    ["gr"] = { "<cmd>Telescope lsp_references<CR>", " Lsp references" },
+    ["[d"] = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", " Prev Diagnostic" },
+    ["]d"] = { "<cmd>Lspsaga diagnostic_jump_next<CR>", " Next Diagnostic" },
+    ["<leader>la"] = { "<cmd>Lspsaga code_action<CR>", " Show Code Actions" },
+    ["<leader>lf"] = { "<cmd>Lspsaga lsp_finder<CR>", "󰈞 Lsp Finder" },
     ["<leader>lr"] = {
       function()
         require("nvchad_ui.renamer").open()
       end,
-      "   Lsp Rename",
+      "󰑕 Lsp Rename",
     },
     ["<leader>lq"] = {
       function()
         vim.diagnostic.setloclist()
       end,
-      "   Lsp Quickfix",
+      "󰁨 Lsp Quickfix",
     },
   },
 }

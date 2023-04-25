@@ -62,6 +62,17 @@ local plugins = {
     ft = "go",
   },
   {
+    "wuelnerdotexe/vim-astro",
+    ft = "astro",
+  },
+  {
+    "nvim-treesitter/playground",
+    cmd = "TSCaptureUnderCursor",
+    config = function()
+      require("nvim-treesitter.configs").setup()
+    end,
+  },
+  {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
   },

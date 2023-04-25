@@ -15,7 +15,7 @@ M.ui = {
   
       return {
         LSP_Diagnostics = function()
-          return st_modules.LSP_Diagnostics() .. require('copilot_status').status_string() 
+          return "%#CopilotHl#" .. require('copilot_status').status_string() .. " " .. st_modules.LSP_Diagnostics() 
           -- or just return "" to hide this module
         end,
       }
