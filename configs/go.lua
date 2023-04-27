@@ -20,5 +20,6 @@ go.setup{
         other_hints_prefix = "• ",
       },
     trouble = true,
+    lsp_keymaps = false,
     icons = {breakpoint = '', currentpos = ''},
 }
