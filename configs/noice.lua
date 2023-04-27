@@ -14,6 +14,46 @@ noice.setup({
       },
       opts = { skip = true },
     },
+    {
+      filter = {
+        event = "msg_show",
+        find = "%d+L, %d+B",
+      },
+      view = "mini",
+    },
+    {
+      filter = { event = 'msg_show', find = 'Hunk %d+ of %d+' },
+      view = 'mini',
+    },
+    {
+      filter = { event = 'msg_show', find = '%d+ more lines' },
+      opts = { skip = true },
+    },
+    {
+      filter = { event = 'msg_show', find = '%d+ lines yanked' },
+      opts = { skip = true },
+    },
+    {
+      filter = { event = 'msg_show', kind = 'quickfix' },
+      view = 'mini',
+    },
+    {
+      filter = { event = 'msg_show', kind = 'search_count' },
+      view = 'mini',
+    },
+    {
+      filter = { event = 'msg_show', kind = 'wmsg' },
+      view = 'mini',
+    },
+    -- {
+    -- 	filter = {
+    -- 		cond = function()
+    -- 			return not focused
+    -- 		end,
+    -- 	},
+    -- 	view = "notify",
+    -- 	opts = { stop = false },
+    -- },
   },
   lsp = {
     progress = {
@@ -31,7 +71,7 @@ noice.setup({
       -- override the lsp markdown formatter with Noice
       ["vim.lsp.util.stylize_markdown"] = false,
       -- override cmp documentation with Noice (needs the other options to work)
-      ["cmp.entry.get_documentation"] = false,
+      ["cmp.entry.get_documentation"] = true,
     },
   },
   notify = {
@@ -73,6 +113,7 @@ noice.setup({
       filter_opts = { reverse = true },
     },
   },
+  ---@type NoiceConfigViews
   views = {
     cmdline_popup = {
       position = {
@@ -102,6 +143,23 @@ noice.setup({
         winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
       },
     },
+    mini = {
+      zindex = 100,
+      win_options = { winblend = 0 },
+    },
   },
+  presets = {
+    -- bottom_search = true,
+    command_palette = true,
+    -- long_message_to_split = true,
+    -- inc_rename = true,
+    -- cmdline_output_to_split = false,
+    lsp_doc_border = true,
+  },
+  -- format = {
+  --   level = {
+  --     icons = true,
+  --   },
+  -- },
 })
 

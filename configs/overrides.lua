@@ -4,7 +4,7 @@ local cmp = require("cmp")
 
 M.treesitter = {
   ensure_installed = {
-    "lua", "go","bash", "json", "json5", "gomod", "gowork", "yaml", "javascript", "java", "go", "vim", "regex", "markdown", "markdown_inline", "tsx", "typescript",
+    "lua","bash", "json", "json5", "gomod", "gowork", "go", "gosum", "yaml", "javascript", "java", "vim", "regex", "markdown", "markdown_inline", "tsx", "typescript",
   },
   indent = {
     enable = true,
@@ -12,6 +12,9 @@ M.treesitter = {
       "python"
     },
   },
+  playground = {
+		enable = true,
+	},
   rainbow = {
     enable = true,
     extended_mode = false,
@@ -20,6 +23,9 @@ M.treesitter = {
   context_commentstring = {
     enable = true,
     enable_autocmd = false,
+  },
+  autotag = {
+    enable = true,
   },
 }
 
@@ -62,7 +68,10 @@ M.nvimtree = {
     show_on_dirs = false,
     debounce_delay = 50,
     icons = {
-      error = "",
+			hint = "",
+			info = "",
+			warning = "",
+			error = "",
     },
   },
   system_open = { cmd = "thunar" },
@@ -74,6 +83,19 @@ M.nvimtree = {
     icons = {
       show = {
         git = true,
+      },
+      glyphs = {
+        git = {
+          unstaged = "",
+          -- unstaged = "",
+          staged = "",
+          unmerged = "",
+          renamed = "➜",
+          -- untracked = "",
+          untracked = "",
+          deleted = "",
+          ignored = "◌",
+        },
       },
     },
   },
@@ -145,6 +167,7 @@ M.blankline = {
     "norg",
   },
   show_end_of_line = true,
+  show_foldtext = true,
   show_trailing_blankline_indent = false,
   show_first_indent_level = false,
   show_current_context = true,
@@ -170,6 +193,7 @@ M.cmp = {
         luasnip.expand_or_jump()
       elseif copilot_keys ~= "" and type(copilot_keys) == "string" then
         vim.api.nvim_feedkeys(copilot_keys, "i", true)
+        -- vim.api.nvim_feedkeys(vim.fn['copilot#Accept'](vim.api.nvim_replace_termcodes('<Tab>', true, true, true)), 'n', true)
       else
         fallback()
       end

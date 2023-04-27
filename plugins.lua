@@ -27,6 +27,7 @@ local plugins = {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       { "JoosepAlviste/nvim-ts-context-commentstring", ft = "javascriptreact" },
+      "windwp/nvim-ts-autotag",
     },
     opts = overrides.treesitter,
   },
@@ -114,10 +115,11 @@ local plugins = {
       require("hlargs").setup()
     end,
   },
-  { 
-    "xiyaowong/virtcolumn.nvim",
-    event = "VimEnter",
-  },
+  -- { 
+  --   "xiyaowong/virtcolumn.nvim",
+  --   config = true,
+  --   event = "BufReadPre",
+  -- },
   {
     'kevinhwang91/nvim-ufo',
     dependencies = {'kevinhwang91/promise-async'},
@@ -231,6 +233,16 @@ local plugins = {
     end,
   },
   {
+    "sindrets/diffview.nvim",
+    cmd = "DiffviewOpen",
+    config = true,
+  },
+  {
+    "simrat39/symbols-outline.nvim",
+    cmd = "SymbolsOutline",
+    config = true,
+  },
+  {
     "chikko80/error-lens.nvim",
     event = "BufRead",
     dependencies = {
@@ -326,19 +338,74 @@ local plugins = {
       require "custom.configs.tabout"
     end,
   },
-
   {
-    "windwp/nvim-ts-autotag",
-    event = "InsertEnter",
-    config = true,
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-neotest/neotest-go",
+    },
+    config = function()
+      -- get neotest namespace (api call creates or returns namespace)
+      local neotest_ns = vim.api.nvim_create_namespace("neotest")
+      vim.diagnostic.config({
+        virtual_text = {
+          format = function(diagnostic)
+            local message =
+              diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
+            return message
+          end,
+        },
+      }, neotest_ns)
+      require("neotest").setup({
+        -- your neotest config here
+        adapters = {
+          require("neotest-go"),
+        },
+      })
+    end,
   },
-
-  -- {
-  --   "jelera/vim-javascript-syntax",
-  --   dependencies = "nvim-treesitter",
-  --   ft = { "javascript", "javascriptreact" },
-  -- },
-
+  -- :Backseat
+  -- :BackseatClear
+  {
+    "james1236/backseat.nvim",
+    config = function()
+        require("backseat").setup({
+            -- Alternatively, set the env var $OPENAI_API_KEY by putting "export OPENAI_API_KEY=sk-xxxxx" in your ~/.bashrc
+            -- openai_api_key = 'sk-xxxxxxxxxxxxxx', -- Get yours from platform.openai.com/account/api-keys
+            openai_model_id = 'gpt-3.5-turbo', --gpt-4 (If you do not have access to a model, it says "The model does not exist")
+            -- language = 'english', -- Such as 'japanese', 'french', 'pirate', 'LOLCAT'
+            -- split_threshold = 100,
+            -- additional_instruction = "Respond snarkily", -- (GPT-3 will probably deny this request, but GPT-4 complies)
+            -- highlight = {
+            --     icon = '', -- ''
+            --     group = 'Comment',
+            -- }
+        })
+    end
+  },
+  {
+    "luukvbaal/statuscol.nvim", config = function()
+      -- local builtin = require("statuscol.builtin")
+      require("statuscol").setup({
+        -- configuration goes here, for example:
+        -- relculright = true,
+        -- segments = {
+        --   { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+        --   {
+        --     sign = { name = { "Diagnostic" }, maxwidth = 2, auto = true },
+        --     click = "v:lua.ScSa"
+        --   },
+        --   { text = { builtin.lnumfunc }, click = "v:lua.ScLa", },
+        --   {
+        --     sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = true },
+        --     click = "v:lua.ScSa"
+        --   },
+        -- }
+      })
+    end,
+  },
   {
     "phaazon/hop.nvim",
     lazy = true,
@@ -438,8 +505,6 @@ local plugins = {
     dependencies = { "ray-x/guihua.lua" },
     ft = { "go", "gomod" },
     dependencies = { "ray-x/guihua.lua", "nvim-treesitter" },
-    dependencies = "nvim-treesitter",
-    dependencies = { "ray-x/guihua.lua", "nvim-treesitter" },
     config = function()
       require "custom.configs.go"
     end,
@@ -538,7 +603,8 @@ local plugins = {
     "ludovicchabant/vim-gutentags",
     lazy = false,
   },
-  -- { "mg979/vim-visual-multi",
+  -- { 
+  --   "mg979/vim-visual-multi",
   --   lazy = true,
   --   event = "BufReadPost",
   --   setup = function()

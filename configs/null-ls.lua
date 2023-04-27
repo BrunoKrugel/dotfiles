@@ -13,6 +13,7 @@ local sources = {
   b.formatting.prettier.with { filetypes = { "html", "markdown", "css" } }, -- so prettier works only on these filetypes
   b.formatting.clang_format,
   b.formatting.stylua,
+  b.code_actions.gitsigns,
   -- Go
   -- b.formatting.gofmt,
   -- b.formatting.gofumpt,

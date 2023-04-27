@@ -48,28 +48,55 @@ M.accelerated_jk = {
   },
 }
 
-M.general = {
+M.text = {
   i = {
     -- Move line up and down
     ["<C-Up>"] = { "<cmd> :m-2<CR>", " Move up" },
     ["<C-Down>"] = { "<cmd> :m+<CR>", " Move down" },
-    -- ["F2"] = { "<cmd> :lua require('renamer').rename()<CR>", "Rename" },
+    -- Navigate
+    ["<A-Left>"] = { "<ESC>I", " Move to beginning of line" },
+    ["<A-Right>"] = { "<ESC>A", " Move to end of line" },
+    ["<A-d>"] = { "<ESC>diw", " Delete word"},
   },
 
   n = {
-    [";"] = { ":", "󰘳 Enter command mode", opts = { nowait = true } },
-    ["<leader>t"] = { "<cmd>TroubleToggle<cr>", " Toggle warnings" },
-    ["<leader>td"] = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", " Todo/Fix/Fixme (Trouble)" },
-    ["<leader>vs"] = { "<cmd>:AskVisualStudioCode<CR>", "󰨞 Ask Visual Code" },
+    -- Navigate
+    ["<A-Left>"] = { "<ESC>_", "󰜲 Move to beginning of line" },
+    ["<A-Right>"] = { "<ESC>$", "󰜵 Move to end of line" },
+    ["<F3>"] = { "n", " Next" },
+    ["<S-F3>"] = { "N", " Previous" },
+    -- Operations
+    ["<C-z>"] = { "u", "󰕌 Undo" },
+    ["<C-r>"] = { "<cmd>redo<CR>", "󰑎 Redo" },
+    ["<C-x>"] = { "dd", "󰆐 Cut" },
+    ["<C-v>"] = { "p", "󰆒 Paste" },
+    ["<C-c>"] = { "y", " Copy" },
+    ["<A-d>"] = { "viw", " Select word"},
     -- Move line up and down
     ["<C-Up>"] = { "<cmd> :m-2<CR>", "󰜸 Move line up" },
     ["<C-Down>"] = { "<cmd> :m+<CR>", "󰜯 Move line down" },
+    
     -- Renamer
     ["<leader>rn"] = { "<cmd> :lua require('renamer').rename()<CR>", "󰑕 Rename" },
     --
     ["<Esc>"] = { ":noh <CR>", " Clear highlights", opts = { silent = true } },
+  },
+}
+
+M.general = {
+
+  n = {
+    [";"] = { ":", "󰘳 Enter command mode", opts = { nowait = true } },
+
+    ["<leader>t"] = { "<cmd>TroubleToggle<cr>", " Toggle warnings" },
+    ["<leader>td"] = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", " Todo/Fix/Fixme (Trouble)" },
+    ["<leader>vs"] = { "<cmd>:AskVisualStudioCode<CR>", "󰨞 Ask Visual Code" },
+
+    -- Split
     ["<C-h>"] = { "<cmd>vs <CR>", "󰤼 Vertical split", opts = { nowait = true } },
     ["<C-y>"] = { "<cmd>sp <CR>", "󰤻 Horizontal split", opts = { nowait = true } },
+    
+    ["<leader>cs"] = { "<cmd>SymbolsOutline<cr>", " Symbols Outline" },
     ["<leader>tr"] = { 
       function() 
         require('base46').toggle_transparency()
@@ -80,6 +107,14 @@ M.general = {
   v = {
     ["<C-Up>"] = { ":m'<-2<CR>gv=gv", "move selection up" },
     ["<C-Down>"] = { ":m'>+1<CR>gv=gv", "move selection down" },
+    ['"'] = { 'xi"<esc>pa"<esc>', "Insert double quote" },
+    ["'"] = { "xi'<esc>pa'<esc>", "Insert single double"},
+    ['v['] = { 'xi[<esc>pa]<esc>', "Insert ["},
+    ['v]'] = { 'xi[<esc>pa]<esc>', "Insert ]"},
+    ['v{'] = { 'xi{<esc>pa}<esc>', "Insert {"},
+    ['v}'] = { 'xi{<esc>pa}<esc>', "Insert }"},
+    ['('] = { 'xi(<esc>pa)<esc>', "Insert ("},
+    [')'] = { 'xi(<esc>pa)<esc>', "Insert )"},
   },
 }
 
@@ -106,6 +141,11 @@ M.git = {
     ["<leader>gs"] = { "<cmd>Telescope git_status<CR>", "  Git status" },
     ["<leader>gg"] = { "<cmd>LazyGit<CR>", "  LazyGit" },
     ["<leader>gb"] = { "<cmd>:BlameLineToggle <CR>", "  Toggle blame line" },
+    ["<leader>gvd"] = { "<cmd> DiffviewOpen<CR>", "  Show git diff" },
+		["<leader>gvf"] = { "<cmd> DiffviewFileHistory %<CR>", "  Show file history" },
+    ["<leader>gvp"] = { "<cmd> DiffviewOpen --cached<CR>", "  Show staged diffs" },
+    ["<leader>gvr"] = { "<cmd> DiffviewRefresh<CR>", "  Refresh diff view" },
+    ["<leader>gvc"] = { "<cmd> DiffviewClose<CR>", "  Close diff view" },
   },
 }
 
