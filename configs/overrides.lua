@@ -1,20 +1,88 @@
 local M = {}
 
-local cmp = require("cmp")
+local cmp = require "cmp"
+
+M.devicons = {
+  override_by_filename = {
+    ["makefile"] = {
+      icon = "",
+      color = "#f1502f",
+      cterm_color = "239",
+      name = "Makefile",
+    },
+    ["mod"] = {
+      icon = "",
+      color = "#519aba",
+      name = "Mod",
+    },
+    ["sum"] = {
+      icon = "",
+      color = "#cbcb40",
+      cterm_color = "185",
+      name = "Sum",
+    },
+    [".gitignore"] = {
+      icon = "",
+      color = "#e24329",
+      cterm_color = "196",
+      name = "GitIgnore",
+    },
+    ["js"] = {
+      icon = "",
+      color = "#cbcb41",
+      cterm_color = "185",
+      name = "Js",
+    },
+    ["lock"] = {
+      icon = "",
+      color = "#bbbbbb",
+      cterm_color = "250",
+      name = "Lock",
+    },
+    ["package.json"] = {
+      icon = "",
+      color = "#e8274b",
+      name = "PackageJson",
+    },
+    ["tags"] = {
+      icon = "",
+      color = "#bbbbbb",
+      cterm_color = "250",
+      name = "Tags",
+    },
+  },
+}
 
 M.treesitter = {
   ensure_installed = {
-    "lua","bash", "json", "json5", "gomod", "gowork", "go", "gosum", "yaml", "javascript", "java", "vim", "regex", "markdown", "markdown_inline", "tsx", "typescript",
+    "lua",
+    "bash",
+    "json",
+    "html",
+    "json5",
+    "gomod",
+    "gowork",
+    "go",
+    "gosum",
+    "yaml",
+    "javascript",
+    "java",
+    "vim",
+    "regex",
+    "markdown",
+    "markdown_inline",
+    "tsx",
+    "typescript",
   },
   indent = {
     enable = true,
     disable = {
-      "python"
+      "python",
     },
   },
   playground = {
-		enable = true,
-	},
+    enable = true,
+  },
   rainbow = {
     enable = true,
     extended_mode = false,
@@ -44,13 +112,10 @@ M.mason = {
     "css-lsp",
     "html-lsp",
 
-
     "gopls",
     "goimports",
   },
 }
-
-
 
 -- git support in nvimtree
 M.nvimtree = {
@@ -68,10 +133,10 @@ M.nvimtree = {
     show_on_dirs = false,
     debounce_delay = 50,
     icons = {
-			hint = "",
-			info = "",
-			warning = "",
-			error = "",
+      hint = "",
+      info = "",
+      warning = "",
+      error = "",
     },
   },
   system_open = { cmd = "thunar" },
@@ -111,9 +176,7 @@ M.telescope = {
   defaults = {
     file_ignore_patterns = { "node_modules", ".docker", ".git", "yarn.lock" },
   },
-  extensions = {
-  },
-  extensions_list = { "themes", "terms", "notify", "frecency", "undo", "vim_bookmarks"},
+  extensions_list = { "themes", "terms", "notify", "frecency", "undo", "vim_bookmarks" },
 }
 
 M.alpha = {
@@ -129,7 +192,7 @@ M.alpha = {
   --   },
   -- },
   header = {
-    val = { 
+    val = {
       [[                                           ,o88888 ]],
       [[                                        ,o8888888' ]],
       [[                  ,:o:o:oooo.        ,8O88Pd8888"  ]],
@@ -172,23 +235,19 @@ M.blankline = {
   show_first_indent_level = false,
   show_current_context = true,
   show_current_context_start = true,
-  vim.api.nvim_set_hl(0, "IndentBlanklineContextChar", { nocombine = true, fg = "none"}),
-  vim.api.nvim_set_hl(
-    0,
-    "IndentBlanklineContextStart",
-    { nocombine = false, underline = false, special = "none" }
-  ),
+  vim.api.nvim_set_hl(0, "IndentBlanklineContextChar", { nocombine = true, fg = "none" }),
+  vim.api.nvim_set_hl(0, "IndentBlanklineContextStart", { nocombine = false, underline = false, special = "none" }),
 }
 
 M.cmp = {
   mapping = {
-    ["<Up>"] = require "cmp".mapping.select_prev_item(),
-    ["<Down>"] = require "cmp".mapping.select_next_item(),
+    ["<Up>"] = require("cmp").mapping.select_prev_item(),
+    ["<Down>"] = require("cmp").mapping.select_next_item(),
     ["<Tab>"] = require("cmp").mapping(function(fallback)
       local luasnip = require "luasnip"
       local copilot_keys = vim.fn["copilot#Accept"]()
-      if require "cmp".visible() then
-        require "cmp".select_next_item()
+      if require("cmp").visible() then
+        require("cmp").select_next_item()
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
       elseif copilot_keys ~= "" and type(copilot_keys) == "string" then
@@ -205,20 +264,20 @@ M.cmp = {
   sources = {
     { name = "copilot" },
     { name = "nvim_lsp" },
-    { name = 'cmp_tabnine'},
+    { name = "cmp_tabnine" },
     { name = "luasnip" },
     { name = "buffer" },
     { name = "nvim_lua" },
     { name = "path" },
     { name = "treesitter" },
     { name = "buffer" },
-    { name = 'nvim_lsp_signature_help' },
-    { name = 'nvim_lsp_document_symbol' },
+    { name = "nvim_lsp_signature_help" },
+    { name = "nvim_lsp_document_symbol" },
     { name = "emoji" },
     { name = "calc" },
     { name = "path" },
-    { name = 'vim_lsp' },
-  }
+    { name = "vim_lsp" },
+  },
 }
 
 return M

@@ -13,6 +13,9 @@ local plugins = {
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
           require "custom.configs.null-ls"
+  --     vim.notify = require("noice").notify
+  --     vim.lsp.handlers["textDocument/hover"] = require("noice").hover
+  --     vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
         end,
       },
     },
@@ -30,6 +33,10 @@ local plugins = {
       "windwp/nvim-ts-autotag",
     },
     opts = overrides.treesitter,
+  },
+  {
+    "nvim-tree/nvim-web-devicons",
+    opts = overrides.devicons,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -52,6 +59,14 @@ local plugins = {
       "hrsh7th/cmp-copilot",
       "ray-x/cmp-treesitter",
       "hrsh7th/cmp-nvim-lsp-signature-help",
+      {
+        "tzachar/cmp-tabnine",
+        build = "./install.sh",
+        config = function()
+          local tabnine = require "cmp_tabnine.config"
+          tabnine:setup {} -- put your options here
+        end,
+      },
     },
   },
   {
@@ -340,6 +355,7 @@ local plugins = {
   },
   {
     "nvim-neotest/neotest",
+    ft = { "go" },
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
@@ -531,22 +547,22 @@ local plugins = {
       require "custom.configs.searchbox"
     end,
   },
-  {
-    "tzachar/cmp-tabnine",
-    lazy = false,
-    dependencies = "hrsh7th/nvim-cmp",
-    build = "./install.sh",
-    config = function()
-      require('cmp_tabnine.config').setup {
-        max_lines = 1000,
-        max_num_results = 20,
-        sort = true,
-        run_on_every_keystroke = true,
-        snippet_placeholder = '..',
-        show_prediction_strength = false
-      }
-    end,
-  },
+  -- {
+  --   "tzachar/cmp-tabnine",
+  --   lazy = false,
+  --   dependencies = "hrsh7th/nvim-cmp",
+  --   build = "./install.sh",
+  --   config = function()
+  --     require('cmp_tabnine.config').setup {
+  --       max_lines = 1000,
+  --       max_num_results = 20,
+  --       sort = true,
+  --       run_on_every_keystroke = true,
+  --       snippet_placeholder = '..',
+  --       show_prediction_strength = false
+  --     }
+  --   end,
+  -- },
   { "mfussenegger/nvim-dap" },
   { "rcarriga/nvim-dap-ui" },
   { "theHamsta/nvim-dap-virtual-text" },
@@ -581,16 +597,6 @@ local plugins = {
   -- { 
   --   "mfussenegger/nvim-jdtls",
   --   config = true,
-  -- },
-  -- { "neovim/nvim-lspconfig",
-  --   config = function()
-  --     -- require("plugins.configs.lspconfig")
-  --     require "custom.configs.lspconfig"
-  --     -- Noice
-  --     vim.notify = require("noice").notify
-  --     vim.lsp.handlers["textDocument/hover"] = require("noice").hover
-  --     vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
-  --   end,
   -- },
   -- {
   --   "kosayoda/nvim-lightbulb",

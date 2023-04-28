@@ -22,6 +22,8 @@
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	6.0.0	/p6.0.20230219.0/
+LSP_Diagnostics	chadrc.lua	/^        LSP_Diagnostics = function()$/;"	f
+["<Tab>"]	configs/overrides.lua	/^    ["<Tab>"] = require("cmp").mapping(function(fallback)$/;"	f
 ["[M"]	configs/textobjects.lua	/^        ["[M"] = "@function.outer",$/;"	f
 ["[m"]	configs/textobjects.lua	/^        ["[m"] = "@function.outer",$/;"	f
 ["]M"]	configs/textobjects.lua	/^        ["]M"] = "@function.outer",$/;"	f
@@ -34,8 +36,11 @@
 ["if"]	configs/textobjects.lua	/^        ["if"] = "@function.inner",$/;"	f
 callback	init.lua	/^  callback = function()$/;"	f
 config	plugins.lua	/^        config = function()$/;"	f
+config	plugins.lua	/^    "luukvbaal\/statuscol.nvim", config = function()$/;"	f
 config	plugins.lua	/^    config = function()$/;"	f
+format	plugins.lua	/^          format = function(diagnostic)$/;"	f
 handler	configs/ufo.lua	/^local handler = function(virtText, lnum, endLnum, width, truncate)$/;"	f
 message	configs/autosave.lua	/^		message = function()$/;"	f
+overriden_modules	chadrc.lua	/^    overriden_modules = function()$/;"	f
 provider_selector	configs/ufo.lua	/^  provider_selector = function(bufnr, filetype, buftype)$/;"	f
 save_fn	configs/autosave.lua	/^	save_fn = function()$/;"	f
