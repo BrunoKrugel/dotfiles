@@ -73,6 +73,7 @@ M.treesitter = {
     "markdown_inline",
     "tsx",
     "typescript",
+    "astro",
   },
   indent = {
     enable = true,
