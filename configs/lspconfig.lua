@@ -120,3 +120,25 @@ lspconfig.eslint.setup {
     }
   },
 }
+
+-- virtual text config
+-- vim.diagnostic.config({
+--   -- virtual_text = {
+--   --   source = 'always',
+--   --   prefix = '■',
+--   --   -- Only show virtual text matching the given severity
+--   --   severity = {
+--   --     -- Specify a range of severities
+--   --     min = vim.diagnostic.severity.ERROR,
+--   --   },
+--   -- },
+--   virtual_text = false,
+--   float = {
+--     source = 'always',
+--     border = 'rounded',
+--   },
+--   signs = true,
+--   underline = false,
+--   update_in_insert = false,
+--   severity_sort = true,
+-- })
