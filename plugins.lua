@@ -254,14 +254,14 @@ local plugins = {
     cmd = "SymbolsOutline",
     config = true,
   },
-  {
-    "chikko80/error-lens.nvim",
-    event = "BufRead",
-    dependencies = {
-        "nvim-telescope/telescope.nvim",
-    }
-  },
   { "tenxsoydev/karen-yank.nvim", config = true },
+  -- {
+  --   "chikko80/error-lens.nvim",
+  --   event = "BufRead",
+  --   dependencies = {
+  --       "nvim-telescope/telescope.nvim",
+  --   }
+  -- },
   -- {
   --   'ray-x/sad.nvim',
   --   dev = (plugin_folder():find('github') ~= nil),
@@ -286,7 +286,7 @@ local plugins = {
           enabled = false,
           auto_trigger = false,
           keymap = {
-            accept = "<Tab>",
+            -- accept = "<Tab>",
             accept_word = false,
             accept_line = false,
             next = "<M-]>",
@@ -522,6 +522,13 @@ local plugins = {
       require "custom.configs.go"
     end,
   },
+  -- {
+  --   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+  --   event = "BufReadPost",
+  --   config = function()
+  --     require("lsp_lines").setup()
+  --   end,
+  -- },
   {
     "github/copilot.vim",
     lazy = false,
