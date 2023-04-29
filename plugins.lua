@@ -503,7 +503,6 @@ local plugins = {
 
   {
     "Pocco81/auto-save.nvim",
-    lazy = true,
     event = "BufReadPost",
     config = function()
       require "custom.configs.autosave"
@@ -517,8 +516,6 @@ local plugins = {
   },
   {
     "ray-x/go.nvim",
-    lazy = true,
-    dependencies = { "ray-x/guihua.lua" },
     ft = { "go", "gomod" },
     dependencies = { "ray-x/guihua.lua", "nvim-treesitter" },
     config = function()
