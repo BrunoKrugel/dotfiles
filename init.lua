@@ -34,14 +34,11 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 })
 
 autocmd("BufWritePre", {
-  pattern = { "*.go", "*.js", "*.java", "*.lua" },
+  pattern = { "*.js", "*.java", "*.lua" },
   callback = function()
     vim.lsp.buf.format { async = false }
   end,
 })
-
--- Run gofmt on save
--- vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').gofmt() ]], false)
 
 vim.g.bookmark_sign = ""
 vim.g.bookmark_highlight = "DevIconErb"
