@@ -45,3 +45,7 @@ autoSave.setup({
 	-- don't quite catch all the buffers we'd prefer not to write to.
 	exclude_ft = {},
 })
+
+autoSave.hook_before_saving = function()
+	vim.lsp.buf.formatting_sync()
+end
