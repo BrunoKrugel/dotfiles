@@ -319,7 +319,10 @@ local plugins = {
       require("copilot_cmp").setup()
     end,
   },
-
+  { 
+    "kdheepak/lazygit.nvim",
+    cmd = "LazyGit",
+  },
   {
     "folke/which-key.nvim",
     enabled = true,
