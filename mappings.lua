@@ -80,6 +80,13 @@ M.text = {
     ["<leader>rn"] = { "<cmd> :lua require('renamer').rename()<CR>", "󰑕 Rename" },
     --
     ["<Esc>"] = { ":noh <CR>", " Clear highlights", opts = { silent = true } },
+
+    ["<leader>fm"] = {
+      function()
+        vim.lsp.buf.format { async = true }
+      end,
+      " Lsp formatting",
+    },
   },
 }
 
