@@ -84,9 +84,6 @@ local plugins = {
   {
     "nvim-treesitter/playground",
     cmd = "TSCaptureUnderCursor",
-    config = function()
-      require("nvim-treesitter.configs").setup()
-    end,
   },
   {
     "nvim-tree/nvim-tree.lua",
