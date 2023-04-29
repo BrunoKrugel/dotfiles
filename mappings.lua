@@ -302,6 +302,13 @@ M.lspconfig = {
       end,
       "󰁨 Lsp Quickfix",
     },
+
+    ["<leader>l"] = {
+      function()
+        require("lsp_lines").toggle()
+      end,
+      "Toggle lsp_lines",
+    },
   },
 }
 

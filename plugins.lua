@@ -521,13 +521,13 @@ local plugins = {
       require "custom.configs.go"
     end,
   },
-  {
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    ft = { "go", "gomod" },
-    config = function()
-      require("lsp_lines").setup()
-    end,
-  },
+  -- {
+  --   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+  --   ft = { "go", "gomod" },
+  --   config = function()
+  --     require("lsp_lines").setup()
+  --   end,
+  -- },
   {
     "github/copilot.vim",
     lazy = false,
