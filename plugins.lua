@@ -547,30 +547,10 @@ local plugins = {
       require "custom.configs.searchbox"
     end,
   },
-  -- {
-  --   "tzachar/cmp-tabnine",
-  --   lazy = false,
-  --   dependencies = "hrsh7th/nvim-cmp",
-  --   build = "./install.sh",
-  --   config = function()
-  --     require('cmp_tabnine.config').setup {
-  --       max_lines = 1000,
-  --       max_num_results = 20,
-  --       sort = true,
-  --       run_on_every_keystroke = true,
-  --       snippet_placeholder = '..',
-  --       show_prediction_strength = false
-  --     }
-  --   end,
-  -- },
   { "mfussenegger/nvim-dap" },
   { "rcarriga/nvim-dap-ui" },
   { "theHamsta/nvim-dap-virtual-text" },
   { "ray-x/guihua.lua" },
-  -- {
-  --   "avneesh0612/react-nextjs-snippets"
-  --   ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-  -- },
   {
     "mrjones2014/nvim-ts-rainbow",
     event = "BufReadPost",
@@ -594,10 +574,6 @@ local plugins = {
     event = "BufReadPost",
     config = true,
   },
-  -- { 
-  --   "mfussenegger/nvim-jdtls",
-  --   config = true,
-  -- },
   -- {
   --   "kosayoda/nvim-lightbulb",
   --   event = "BufWinEnter",
@@ -651,7 +627,6 @@ local plugins = {
       require "custom.configs.modicator"
     end,
   },
-  -- { "MaximilianLloyd/ascii.nvim" },
 }
 
 return plugins
