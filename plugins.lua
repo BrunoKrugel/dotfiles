@@ -532,11 +532,6 @@ local plugins = {
       require "custom.configs.copilot"
     end,
   },
-  -- { "brenoprata10/nvim-highlight-colors",
-  --   config = function()
-  --     require("nvim-highlight-colors").setup()
-  --   end,
-  -- },
   {
     "VonHeikemen/searchbox.nvim",
     dependencies = {
