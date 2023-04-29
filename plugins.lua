@@ -382,10 +382,9 @@ local plugins = {
       })
     end,
   },
-  -- :Backseat
-  -- :BackseatClear
   {
     "james1236/backseat.nvim",
+    cmd = { "Backseat", "BackseatClear" },
     config = function()
         require("backseat").setup({
             -- Alternatively, set the env var $OPENAI_API_KEY by putting "export OPENAI_API_KEY=sk-xxxxx" in your ~/.bashrc
@@ -522,13 +521,13 @@ local plugins = {
       require "custom.configs.go"
     end,
   },
-  -- {
-  --   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-  --   event = "BufReadPost",
-  --   config = function()
-  --     require("lsp_lines").setup()
-  --   end,
-  -- },
+  {
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    ft = { "go", "gomod" },
+    config = function()
+      require("lsp_lines").setup()
+    end,
+  },
   {
     "github/copilot.vim",
     lazy = false,
