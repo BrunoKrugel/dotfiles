@@ -66,7 +66,7 @@ M.text = {
     ["<F3>"] = { "n", " Next" },
     ["<S-F3>"] = { "N", " Previous" },
     -- Operations
-    ["<C-z>"] = { "u", "󰕌 Undo" },
+    ["<C-z>"] = { "<cmd>2u<CR>", "󰕌 Undo" },
     ["<C-r>"] = { "<cmd>redo<CR>", "󰑎 Redo" },
     ["<C-x>"] = { "dd", "󰆐 Cut" },
     ["<C-v>"] = { "p", "󰆒 Paste" },
