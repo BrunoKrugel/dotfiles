@@ -282,35 +282,32 @@ M.nvterm = {
 
 M.harpoon = {
   n = {
-    ["<leader>a"] = {
+    ["<leader>ha"] = {
       function() 
         require("harpoon.mark").add_file() 
       end, "󱡁 Harpoon Add file" 
     },
-    [ "<C-e>"] = { 
-      function() 
-        require("harpoon.ui").toggle_quick_menu() 
-      end,  "󱡀 Toggle quick menu" 
+    [ "<leader>ta"] = { "<cmd>Telescope harpoon marks<CR>",  "󱡀 Toggle quick menu" 
     },
-    [ "<C-j>"] = { 
+    [ "<leader>1"] = { 
       function() 
         require("harpoon.ui").nav_file(1) 
-      end,  "Nav file 1" 
+      end,  "󱪼 Navigate to file 1" 
     },
-    [ "<C-k>"] = { 
+    [ "<leader>2"] = { 
       function() 
         require("harpoon.ui").nav_file(2) 
-      end,  "Nav file 2" 
+      end,  "󱪽 Navigate to file 2" 
     },
-    [ "<C-l>"] = { 
+    [ "<leader>3"] = { 
       function() 
         require("harpoon.ui").nav_file(3) 
-      end,  "Nav file 3" 
+      end,  "󱪾 Navigate to file 3" 
     },
-    [ "<C-;>"] = { 
+    [ "<leader>4"] = { 
       function() 
         require("harpoon.ui").nav_file(4) 
-      end,  "Nav file 4" 
+      end,  "󱪿 Navigate to file 4" 
     },
   },
 }

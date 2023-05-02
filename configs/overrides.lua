@@ -177,7 +177,7 @@ M.telescope = {
   defaults = {
     file_ignore_patterns = { "node_modules", ".docker", ".git", "yarn.lock" },
   },
-  extensions_list = { "themes", "terms", "notify", "frecency", "undo", "vim_bookmarks" },
+  extensions_list = { "themes", "terms", "notify", "frecency", "undo", "vim_bookmarks", "harpoon" },
   extensions = {
     fzf = {
       fuzzy = true,

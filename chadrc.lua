@@ -13,9 +13,20 @@ M.ui = {
       local st_modules = require "nvchad_ui.statusline.vscode_colored"
       -- this is just default table of statusline modules
   
+      local function get_marked()
+        local Marked = require("harpoon.mark")
+        local filename = vim.api.nvim_buf_get_name(0)
+        local success, index = pcall(Marked.get_index_of, filename)
+        if success and index and index ~= nil then
+          return "󱡀 " .. index .. " "
+        else
+          return ""
+        end
+      end
+
       return {
         LSP_Diagnostics = function()
-          return "%#CopilotHl#" .. require('copilot_status').status_string() .. " " .. st_modules.LSP_Diagnostics() 
+          return "%#CopilotHl#" .. require('copilot_status').status_string() .. " " .. "%#HarpoonHl#" .. get_marked() .. st_modules.LSP_Diagnostics() 
           -- or just return "" to hide this module
         end,
       }
