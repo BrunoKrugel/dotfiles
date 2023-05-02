@@ -178,6 +178,14 @@ M.telescope = {
     file_ignore_patterns = { "node_modules", ".docker", ".git", "yarn.lock" },
   },
   extensions_list = { "themes", "terms", "notify", "frecency", "undo", "vim_bookmarks" },
+  extensions = {
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = "smart_case",
+    },
+  },
 }
 
 M.alpha = {
@@ -229,6 +237,7 @@ M.blankline = {
     "nvchad_cheatsheet",
     "lsp-installer",
     "norg",
+    "Empty",
   },
   show_end_of_line = true,
   show_foldtext = true,
