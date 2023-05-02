@@ -70,6 +70,27 @@ local plugins = {
     },
   },
   {
+    "code-biscuits/nvim-biscuits",
+    event = "BufRead",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("nvim-biscuits").setup {
+        cursor_line_only = true,
+        default_config = {
+          min_distance = 10,
+          max_length = 50,
+          prefix_string = " 󰆘 ",
+          prefix_highlight = "Comment",
+          enable_linehl = true,
+        },
+      }
+    end,
+  },
+  {
+    "ThePrimeagen/harpoon",
+    cmd = "Harpoon",
+  },
+  {
     "hrsh7th/cmp-cmdline",
     event = "CmdLineEnter",
   },
@@ -97,6 +118,14 @@ local plugins = {
       "nvim-lua/plenary.nvim",
       "debugloop/telescope-undo.nvim",
       "tom-anders/telescope-vim-bookmarks.nvim",
+      {
+        "ThePrimeagen/harpoon",
+        cmd = "Harpoon",
+      },
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+      },
     },
   },
   { "williamboman/mason.nvim", opts = overrides.mason },
@@ -313,7 +342,6 @@ local plugins = {
   {
     "zbirenbaum/copilot-cmp",
     event = "VeryLazy",
-    after = { "copilot.lua" },
     dependencies = { "zbirenbaum/copilot.lua" },
     config = function()
       require("copilot_cmp").setup()
@@ -475,7 +503,7 @@ local plugins = {
 
   {
     "folke/trouble.nvim",
-    lazy = false,
+    cmd = { "TroubleToggle", "Trouble" },
     dependencies = {
       "nvim-tree/nvim-web-devicons",
     },
@@ -524,6 +552,7 @@ local plugins = {
   -- {
   --   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
   --   ft = { "go", "gomod" },
+  --   event = "LspAttach",
   --   config = function()
   --     require("lsp_lines").setup()
   --   end,

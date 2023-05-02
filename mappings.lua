@@ -81,6 +81,12 @@ M.text = {
     --
     ["<Esc>"] = { ":noh <CR>", " Clear highlights", opts = { silent = true } },
 
+    ["<leader>bc"] = {
+      function()
+        require('nvim-biscuits').toggle_biscuits()
+      end, "󰆘 Toggle biscuits"
+    },
+
     ["<leader>fm"] = {
       function()
         vim.lsp.buf.format { async = true }
@@ -172,14 +178,14 @@ M.tabufline = {
 
   n = {
     -- cycle through buffers
-    ["<TAB>"] = {
+    ["<tab>"] = {
       function()
         require("nvchad_ui.tabufline").tabuflineNext()
       end,
       " Goto next buffer",
     },
 
-    ["<S-Tab>"] = {
+    ["<S-tab>"] = {
       function()
         require("nvchad_ui.tabufline").tabuflinePrev()
       end,
@@ -270,6 +276,41 @@ M.nvterm = {
         require("nvterm.terminal").toggle "horizontal"
       end,
       " toggle horizontal term",
+    },
+  },
+}
+
+M.harpoon = {
+  n = {
+    ["<leader>a"] = {
+      function() 
+        require("harpoon.mark").add_file() 
+      end, "󱡁 Harpoon Add file" 
+    },
+    [ "<C-e>"] = { 
+      function() 
+        require("harpoon.ui").toggle_quick_menu() 
+      end,  "󱡀 Toggle quick menu" 
+    },
+    [ "<C-j>"] = { 
+      function() 
+        require("harpoon.ui").nav_file(1) 
+      end,  "Nav file 1" 
+    },
+    [ "<C-k>"] = { 
+      function() 
+        require("harpoon.ui").nav_file(2) 
+      end,  "Nav file 2" 
+    },
+    [ "<C-l>"] = { 
+      function() 
+        require("harpoon.ui").nav_file(3) 
+      end,  "Nav file 3" 
+    },
+    [ "<C-;>"] = { 
+      function() 
+        require("harpoon.ui").nav_file(4) 
+      end,  "Nav file 4" 
     },
   },
 }
