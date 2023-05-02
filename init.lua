@@ -30,13 +30,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
   update_in_insert = false,
 })
 
-autocmd("BufWritePre", {
-  pattern = { "*.js", "*.java", "*.lua" },
-  callback = function()
-    vim.lsp.buf.format { async = false }
-  end,
-})
-
 vim.g.bookmark_sign = ""
 vim.g.bookmark_highlight = "DevIconErb"
 
@@ -54,4 +47,19 @@ vim.o.foldcolumn = "0"
 autocmd("VimResized", {
   pattern = "*",
   command = "tabdo wincmd =",
+})
+
+-- autocmd BufEnter * silent! lcd %:p:h
+-- the same as autochdir but better for nvim-tree and other plugins.
+autocmd("BufEnter", {
+  pattern = "*",
+  command = "silent! lcd %:p:h"
+})
+
+-- Auto format on save
+autocmd("BufWritePre", {
+  pattern = { "*.js", "*.java", "*.lua" },
+  callback = function()
+    vim.lsp.buf.format { async = false }
+  end,
 })
