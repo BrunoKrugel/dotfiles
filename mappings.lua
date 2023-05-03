@@ -94,6 +94,19 @@ M.text = {
       " Lsp formatting",
     },
   },
+
+  v = {
+    ["<C-Up>"] = { ":m'<-2<CR>gv=gv", "󰜸 Move selection up" },
+    ["<C-Down>"] = { ":m'>+1<CR>gv=gv", "󰜯 Move selection down" },
+    ['"'] = { 'xi"<esc>pa"<esc>', "󱀡 Insert double quote" },
+    ["'"] = { "xi'<esc>pa'<esc>", "󱀢 Insert single double"},
+    ['v['] = { 'xi[<esc>pa]<esc>', "󰅪 Insert ["},
+    ['v]'] = { 'xi[<esc>pa]<esc>', "󰅪 Insert ]"},
+    ['v{'] = { 'xi{<esc>pa}<esc>', " Insert {"},
+    ['v}'] = { 'xi{<esc>pa}<esc>', " Insert }"},
+    ['('] = { 'xi(<esc>pa)<esc>', "󱃗 Insert ("},
+    [')'] = { 'xi(<esc>pa)<esc>', "󱃗 Insert )"},
+  },
 }
 
 M.general = {
@@ -103,12 +116,12 @@ M.general = {
 
     ["<leader>t"] = { "<cmd>TroubleToggle<cr>", " Toggle warnings" },
     ["<leader>td"] = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", " Todo/Fix/Fixme (Trouble)" },
-    ["<leader>vs"] = { "<cmd>:AskVisualStudioCode<CR>", "󰨞 Ask Visual Code" },
 
     -- Split
     ["<C-h>"] = { "<cmd>vs <CR>", "󰤼 Vertical split", opts = { nowait = true } },
     ["<C-y>"] = { "<cmd>sp <CR>", "󰤻 Horizontal split", opts = { nowait = true } },
     
+    ["<leader>el"] = { "<cmd>ErrorLensToggle<cr>", "󱇭 Toggle error lens" },
     ["<leader>cs"] = { "<cmd>SymbolsOutline<cr>", " Symbols Outline" },
     ["<leader>tr"] = { 
       function() 
@@ -116,18 +129,6 @@ M.general = {
       end, 
       "󰂵 Toggle transparency" 
      }
-  },
-  v = {
-    ["<C-Up>"] = { ":m'<-2<CR>gv=gv", "move selection up" },
-    ["<C-Down>"] = { ":m'>+1<CR>gv=gv", "move selection down" },
-    ['"'] = { 'xi"<esc>pa"<esc>', "Insert double quote" },
-    ["'"] = { "xi'<esc>pa'<esc>", "Insert single double"},
-    ['v['] = { 'xi[<esc>pa]<esc>', "Insert ["},
-    ['v]'] = { 'xi[<esc>pa]<esc>', "Insert ]"},
-    ['v{'] = { 'xi{<esc>pa}<esc>', "Insert {"},
-    ['v}'] = { 'xi{<esc>pa}<esc>', "Insert }"},
-    ['('] = { 'xi(<esc>pa)<esc>', "Insert ("},
-    [')'] = { 'xi(<esc>pa)<esc>', "Insert )"},
   },
 }
 
@@ -231,7 +232,7 @@ M.searchbox = {
 
 M.bookmark = {
   n = {
-    ["<leader>bm"] = { "<cmd> BookmarkToggle<CR>", " Toggle bookmark" },
+    ["<leader>tb"] = { "<cmd> BookmarkToggle<CR>", "󰃅 Add bookmark" },
     ["<leader>bn"] = { "<cmd> BookmarkNext<CR>", "󰮰 Next bookmark" },
     ["<leader>bp"] = { "<cmd> BookmarkPrev<CR>", "󰮲 Prev bookmark" },
     ["<leader>bc"] = { "<cmd> BookmarkClear<CR>", "󰃢 Clear bookmark" },
@@ -267,6 +268,7 @@ M.nvterm = {
       end,
       " toggle horizontal term",
     },
+    ["C-c"] = { [[<C-\><C-c>]], "󰜺 Send sigint" },
   },
 
   n = {
@@ -287,7 +289,11 @@ M.harpoon = {
         require("harpoon.mark").add_file() 
       end, "󱡁 Harpoon Add file" 
     },
-    [ "<leader>ta"] = { "<cmd>Telescope harpoon marks<CR>",  "󱡀 Toggle quick menu" 
+    [ "<leader>ta"] = { "<cmd>Telescope harpoon marks<CR>",  "󱡀 Toggle quick menu" },
+    ["<leader>hb"] = {
+      function() 
+        require("harpoon.mark").toggle_quick_menu()
+      end, "󱠿 Harpoon Menu" 
     },
     [ "<leader>1"] = { 
       function() 

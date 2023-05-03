@@ -22,7 +22,7 @@ go.setup{
     trouble = true,
     lsp_keymaps = false,
     icons = {breakpoint = '', currentpos = ''},
-    -- lsp_diag_virtual_text = false,
-    lsp_diag_virtual_text = { space = 0, prefix = "" }, 
+    lsp_diag_virtual_text = false,
+    -- lsp_diag_virtual_text = { space = 0, prefix = "" }, 
     --  cat
 }

@@ -134,7 +134,6 @@ local plugins = {
     event = "VimEnter",
     dependencies = { "kkharji/sqlite.lua" },
   },
-  -- { "mikelue/vim-maven-plugin" },
   {
     "anuvyklack/pretty-fold.nvim",
     config = function()
@@ -167,7 +166,7 @@ local plugins = {
   },
   {
     "MattesGroeger/vim-bookmarks",
-    event = "BufReadPost",
+    cmd = "BookmarkToggle",
   },
   {
     "jonahgoldwastaken/copilot-status.nvim",
@@ -189,6 +188,7 @@ local plugins = {
   },
   {
     "kevinhwang91/nvim-hlslens",
+    event = "BufReadPost",
     config = function()
       require("hlslens").setup()
     end,
@@ -284,13 +284,15 @@ local plugins = {
     config = true,
   },
   { "tenxsoydev/karen-yank.nvim", config = true },
-  -- {
-  --   "chikko80/error-lens.nvim",
-  --   event = "BufRead",
-  --   dependencies = {
-  --       "nvim-telescope/telescope.nvim",
-  --   }
-  -- },
+  {
+    "chikko80/error-lens.nvim",
+    event = "BufRead",
+    ft = "go",
+    config = true,
+    dependencies = {
+        "nvim-telescope/telescope.nvim",
+    }
+  },
   -- {
   --   'ray-x/sad.nvim',
   --   dev = (plugin_folder():find('github') ~= nil),

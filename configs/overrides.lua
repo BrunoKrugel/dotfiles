@@ -7,7 +7,6 @@ M.devicons = {
     ["makefile"] = {
       icon = "",
       color = "#f1502f",
-      cterm_color = "239",
       name = "Makefile",
     },
     ["mod"] = {
