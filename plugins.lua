@@ -13,9 +13,9 @@ local plugins = {
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
           require "custom.configs.null-ls"
-  --     vim.notify = require("noice").notify
-  --     vim.lsp.handlers["textDocument/hover"] = require("noice").hover
-  --     vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
+          --     vim.notify = require("noice").notify
+          --     vim.lsp.handlers["textDocument/hover"] = require("noice").hover
+          --     vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
         end,
       },
     },
@@ -36,12 +36,14 @@ local plugins = {
   },
   {
     "nvim-tree/nvim-web-devicons",
+    dependencies = { 'justinhj/battery.nvim', config = true, },
     opts = overrides.devicons,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
     opts = overrides.blankline,
   },
+
   {
     "hrsh7th/nvim-cmp",
     opts = overrides.cmp,
@@ -111,8 +113,8 @@ local plugins = {
     opts = overrides.nvimtree,
   },
 
-  { 
-    "nvim-telescope/telescope.nvim", 
+  {
+    "nvim-telescope/telescope.nvim",
     opts = overrides.telescope,
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -128,7 +130,7 @@ local plugins = {
       },
     },
   },
-  { "williamboman/mason.nvim", opts = overrides.mason },
+  { "williamboman/mason.nvim",        opts = overrides.mason },
   {
     "nvim-telescope/telescope-frecency.nvim",
     event = "VimEnter",
@@ -155,14 +157,14 @@ local plugins = {
       require("hlargs").setup()
     end,
   },
-  -- { 
+  -- {
   --   "xiyaowong/virtcolumn.nvim",
   --   config = true,
   --   event = "BufReadPre",
   -- },
   {
-    'kevinhwang91/nvim-ufo',
-    dependencies = {'kevinhwang91/promise-async'},
+    "kevinhwang91/nvim-ufo",
+    dependencies = { "kevinhwang91/promise-async" },
   },
   {
     "MattesGroeger/vim-bookmarks",
@@ -174,7 +176,7 @@ local plugins = {
     lazy = true,
     event = "BufReadPost",
     config = function()
-      require('copilot_status').setup({
+      require("copilot_status").setup {
         icons = {
           idle = " ",
           error = " ",
@@ -183,7 +185,7 @@ local plugins = {
           loading = " ",
         },
         debug = false,
-      })
+      }
     end,
   },
   {
@@ -283,15 +285,19 @@ local plugins = {
     cmd = "SymbolsOutline",
     config = true,
   },
-  { "tenxsoydev/karen-yank.nvim", config = true },
+  {
+    "tenxsoydev/karen-yank.nvim",
+    event = "BufReadPost",
+    config = true,
+  },
   {
     "chikko80/error-lens.nvim",
     event = "BufRead",
     ft = "go",
     config = true,
     dependencies = {
-        "nvim-telescope/telescope.nvim",
-    }
+      "nvim-telescope/telescope.nvim",
+    },
   },
   -- {
   --   'ray-x/sad.nvim',
@@ -332,7 +338,7 @@ local plugins = {
           trace = "verbose",
           settings = {
             advanced = {
-              listCount = 3, -- #completions for panel
+              listCount = 3,          -- #completions for panel
               inlineSuggestCount = 3, -- #completions for getCompletions
             },
           },
@@ -349,7 +355,18 @@ local plugins = {
       require("copilot_cmp").setup()
     end,
   },
-  { 
+  {
+    "nguyenvukhang/nvim-toggler",
+    event = "BufReadPost",
+    config = function()
+      require("nvim-toggler").setup {
+        -- removes the default <leader>i keymap
+        remove_default_keybinds = true,
+      }
+    end,
+  },
+
+  {
     "kdheepak/lazygit.nvim",
     cmd = "LazyGit",
   },
@@ -394,61 +411,63 @@ local plugins = {
     },
     config = function()
       -- get neotest namespace (api call creates or returns namespace)
-      local neotest_ns = vim.api.nvim_create_namespace("neotest")
+      local neotest_ns = vim.api.nvim_create_namespace "neotest"
       vim.diagnostic.config({
         virtual_text = {
           format = function(diagnostic)
-            local message =
-              diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
+            local message = diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
             return message
           end,
         },
       }, neotest_ns)
-      require("neotest").setup({
+      require("neotest").setup {
         -- your neotest config here
         adapters = {
-          require("neotest-go"),
+          require "neotest-go",
         },
-      })
+      }
     end,
   },
   {
     "james1236/backseat.nvim",
     cmd = { "Backseat", "BackseatClear" },
     config = function()
-        require("backseat").setup({
-            -- Alternatively, set the env var $OPENAI_API_KEY by putting "export OPENAI_API_KEY=sk-xxxxx" in your ~/.bashrc
-            -- openai_api_key = 'sk-xxxxxxxxxxxxxx', -- Get yours from platform.openai.com/account/api-keys
-            openai_model_id = 'gpt-3.5-turbo', --gpt-4 (If you do not have access to a model, it says "The model does not exist")
-            -- language = 'english', -- Such as 'japanese', 'french', 'pirate', 'LOLCAT'
-            -- split_threshold = 100,
-            -- additional_instruction = "Respond snarkily", -- (GPT-3 will probably deny this request, but GPT-4 complies)
-            -- highlight = {
-            --     icon = '', -- ''
-            --     group = 'Comment',
-            -- }
-        })
-    end
+      require("backseat").setup {
+        -- Alternatively, set the env var $OPENAI_API_KEY by putting "export OPENAI_API_KEY=sk-xxxxx" in your ~/.bashrc
+        -- openai_api_key = 'sk-xxxxxxxxxxxxxx', -- Get yours from platform.openai.com/account/api-keys
+        openai_model_id = "gpt-3.5-turbo", --gpt-4 (If you do not have access to a model, it says "The model does not exist")
+        -- language = 'english', -- Such as 'japanese', 'french', 'pirate', 'LOLCAT'
+        -- split_threshold = 100,
+        -- additional_instruction = "Respond snarkily", -- (GPT-3 will probably deny this request, but GPT-4 complies)
+        highlight = {
+          icon = "󱚟", -- ''
+          -- group = 'Comment',
+        },
+      }
+    end,
   },
   {
-    "luukvbaal/statuscol.nvim", config = function()
-      -- local builtin = require("statuscol.builtin")
-      require("statuscol").setup({
-        -- configuration goes here, for example:
-        -- relculright = true,
-        -- segments = {
-        --   { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-        --   {
-        --     sign = { name = { "Diagnostic" }, maxwidth = 2, auto = true },
-        --     click = "v:lua.ScSa"
-        --   },
-        --   { text = { builtin.lnumfunc }, click = "v:lua.ScLa", },
-        --   {
-        --     sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = true },
-        --     click = "v:lua.ScSa"
-        --   },
-        -- }
-      })
+    "luukvbaal/statuscol.nvim",
+    config = function()
+      event =
+          "BufWinEnter",
+          -- local builtin = require("statuscol.builtin")
+          require("statuscol").setup {
+            -- configuration goes here, for example:
+            -- relculright = true,
+            -- segments = {
+            --   { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+            --   {
+            --     sign = { name = { "Diagnostic" }, maxwidth = 2, auto = true },
+            --     click = "v:lua.ScSa"
+            --   },
+            --   { text = { builtin.lnumfunc }, click = "v:lua.ScLa", },
+            --   {
+            --     sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = true },
+            --     click = "v:lua.ScSa"
+            --   },
+            -- }
+          }
     end,
   },
   {
@@ -471,7 +490,6 @@ local plugins = {
       require "custom.configs.accelerated-jk"
     end,
   },
-  
   {
     "RRethy/vim-illuminate",
     lazy = true,
@@ -539,6 +557,7 @@ local plugins = {
   },
   {
     "lvimuser/lsp-inlayhints.nvim",
+    event = "LspAttach",
     config = function()
       require "custom.configs.lsp-inlayhints"
     end,
@@ -585,7 +604,7 @@ local plugins = {
     event = "BufReadPost",
     dependencies = "nvim-treesitter",
   },
-  -- { 
+  -- {
   --   "braxtons12/blame_line.nvim",
   --   event = "BufReadPost",
   --   config = function()
@@ -614,14 +633,14 @@ local plugins = {
     "ludovicchabant/vim-gutentags",
     lazy = false,
   },
-  -- { 
-  --   "mg979/vim-visual-multi",
-  --   lazy = true,
-  --   event = "BufReadPost",
-  --   setup = function()
-  --     require "custom.configs.visual-multi"
-  --   end,
-  -- },
+  {
+    "mg979/vim-visual-multi",
+    lazy = true,
+    event = "BufReadPost",
+    setup = function()
+      require "custom.configs.visual-multi"
+    end,
+  },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     event = "BufWinEnter",
@@ -631,13 +650,14 @@ local plugins = {
   },
   {
     "onsails/lspkind.nvim",
+    event = "LspAttach",
     config = function()
       require "custom.configs.lspkind"
     end,
   },
   {
     "glepnir/lspsaga.nvim",
-    lazy = false,
+    event = "LspAttach",
     config = function()
       require "custom.configs.lspsaga"
     end,
