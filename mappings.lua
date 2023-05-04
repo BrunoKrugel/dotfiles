@@ -78,6 +78,11 @@ M.text = {
     
     -- Renamer
     ["<leader>rn"] = { "<cmd> :lua require('renamer').rename()<CR>", "󰑕 Rename" },
+    ["<leader>i"] = {
+      function()
+        require('nvim-toggler').toggle()
+      end, "󰌁 Invert text"
+    },
     --
     ["<Esc>"] = { ":noh <CR>", " Clear highlights", opts = { silent = true } },
 
@@ -200,6 +205,17 @@ M.tabufline = {
       end,
       " Close buffer",
     },
+  },
+}
+
+M.test = {
+  n = {
+        ["<leader>nt"] = {
+          function()
+            require("neotest").run.run(vim.fn.expand("%"))
+          end,
+          "󰙨 Run neotest",
+        },
   },
 }
 
