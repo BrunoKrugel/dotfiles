@@ -44,10 +44,18 @@ lspconfig.gopls.setup {
   },
 }
 
-
 lspconfig.eslint.setup {
   on_attach = on_attach,
-  filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue", "astro" },
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx",
+    "vue",
+    "astro",
+  },
   cmd = { "vscode-eslint-language-server", "--stdio" },
   handlers = {
     ["eslint/confirmESLintExecution"] = function(_, result)
@@ -58,7 +66,7 @@ lspconfig.eslint.setup {
     end,
 
     ["eslint/noLibrary"] = function()
-      vim.notify('[lspconfig] Unable to find ESLint library.', vim.log.levels.WARN)
+      vim.notify("[lspconfig] Unable to find ESLint library.", vim.log.levels.WARN)
       return {}
     end,
 
@@ -67,44 +75,44 @@ lspconfig.eslint.setup {
         return
       end
       local sysname = vim.loop.os_uname().sysname
-      if sysname:match 'Windows' then
-        os.execute(string.format('start %q', result.url))
-      elseif sysname:match 'Linux' then
-        os.execute(string.format('xdg-open %q', result.url))
+      if sysname:match "Windows" then
+        os.execute(string.format("start %q", result.url))
+      elseif sysname:match "Linux" then
+        os.execute(string.format("xdg-open %q", result.url))
       else
-        os.execute(string.format('open %q', result.url))
+        os.execute(string.format("open %q", result.url))
       end
       return {}
     end,
 
     ["eslint/probeFailed"] = function()
-      vim.notify('[lspconfig] ESLint probe failed.', vim.log.levels.WARN)
+      vim.notify("[lspconfig] ESLint probe failed.", vim.log.levels.WARN)
       return {}
     end,
   },
-  root_dir = require 'lspconfig'.util.root_pattern(
-    '.eslintrc',
-    '.eslintrc.js',
-    '.eslintrc.cjs',
-    '.eslintrc.yaml',
-    '.eslintrc.yml',
-    '.eslintrc.json',
+  root_dir = require("lspconfig").util.root_pattern(
+    ".eslintrc",
+    ".eslintrc.js",
+    ".eslintrc.cjs",
+    ".eslintrc.yaml",
+    ".eslintrc.yml",
+    ".eslintrc.json",
     -- Disabled to prevent "No ESLint configuration found" exceptions
-    'package.json'
+    "package.json"
   ),
   settings = {
     codeAction = {
       disableRuleComment = {
         enable = true,
-        location = "separateLine"
+        location = "separateLine",
       },
       showDocumentation = {
-        enable = true
-      }
+        enable = true,
+      },
     },
     codeActionOnSave = {
       enable = false,
-      mode = "all"
+      mode = "all",
     },
     format = true,
     nodePath = "",
@@ -116,8 +124,8 @@ lspconfig.eslint.setup {
     useESLintClass = false,
     validate = "on",
     workingDirectory = {
-      mode = "location"
-    }
+      mode = "location",
+    },
   },
 }
 
@@ -142,3 +150,4 @@ lspconfig.eslint.setup {
 --   update_in_insert = false,
 --   severity_sort = true,
 -- })
+

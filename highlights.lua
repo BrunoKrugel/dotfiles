@@ -30,9 +30,9 @@ M.override = {
 ---@type HLTable
 M.add = {
   NvimTreeOpenedFolderName = { fg = "green", bold = true },
-  CopilotHl = { fg = "green", bg = "statusline_bg",},
-  HarpoonHl = { fg = "cyan", bg = "statusline_bg",},
-  BatteryHl = { fg = "nord_blue", bg = "statusline_bg",},
+  CopilotHl = { fg = "green", bg = "statusline_bg" },
+  HarpoonHl = { fg = "cyan", bg = "statusline_bg" },
+  BatteryHl = { fg = "nord_blue", bg = "statusline_bg" },
 }
 
 return M

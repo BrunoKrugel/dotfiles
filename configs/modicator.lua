@@ -1,7 +1,7 @@
-local modicator = require("modicator")
+local modicator = require "modicator"
 
 -- NOTE: Modicator requires line_numbers and cursorline to be enabled
-modicator.setup({
+modicator.setup {
   -- Show warning if any required option is missing
   show_warnings = true,
   highlights = {
@@ -46,5 +46,4 @@ modicator.setup({
       },
     },
   },
-})
-
+}

@@ -5,3 +5,4 @@ if not present then
 end
 
 searchbox.setup {}
+

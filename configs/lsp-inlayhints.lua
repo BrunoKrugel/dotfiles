@@ -3,7 +3,7 @@ if not present then
   return
 end
 
-lspInlayHints.setup({
+lspInlayHints.setup {
   inlay_hints = {
     parameter_hints = {
       show = true,
@@ -33,5 +33,4 @@ lspInlayHints.setup({
   },
   enabled_at_startup = true,
   debug_mode = false,
-})
-
+}

@@ -4,7 +4,7 @@ if not present then
   return
 end
 
-lspsaga.setup({
+lspsaga.setup {
   -- symbol_in_winbar = {
   -- 	in_custom = false,
   -- 	enable = true,
@@ -146,5 +146,4 @@ lspsaga.setup({
     },
     kind = {},
   },
-})
-
+}

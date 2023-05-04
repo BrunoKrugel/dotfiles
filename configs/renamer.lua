@@ -4,6 +4,7 @@ if not present then
   return
 end
 
-require('renamer').setup {
-    title = '',
+require("renamer").setup {
+  title = "",
 }
+

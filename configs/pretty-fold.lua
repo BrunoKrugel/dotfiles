@@ -4,7 +4,7 @@ if not present then
   return
 end
 
-prettyFold.setup({
+prettyFold.setup {
   keep_indentation = false,
   fill_char = "━",
   sections = {
@@ -25,4 +25,5 @@ prettyFold.setup({
       " ┣━━",
     },
   },
-})
+}
+

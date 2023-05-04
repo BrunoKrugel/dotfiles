@@ -36,7 +36,7 @@ local plugins = {
   },
   {
     "nvim-tree/nvim-web-devicons",
-    dependencies = { 'justinhj/battery.nvim', config = true, },
+    dependencies = { "justinhj/battery.nvim", config = true },
     opts = overrides.devicons,
   },
   {
@@ -61,6 +61,10 @@ local plugins = {
       "hrsh7th/cmp-copilot",
       "ray-x/cmp-treesitter",
       "hrsh7th/cmp-nvim-lsp-signature-help",
+      { "jcdickinson/codeium.nvim", config = true },
+      { "jcdickinson/codeium.nvim", config = true },
+      { "jcdickinson/codeium.nvim", config = true },
+      { "jcdickinson/codeium.nvim", config = true },
       {
         "tzachar/cmp-tabnine",
         build = "./install.sh",
@@ -86,6 +90,17 @@ local plugins = {
           enable_linehl = true,
         },
       }
+    end,
+  },
+  {
+    "declancm/vim2vscode",
+    cmd = "Code",
+  },
+  {
+    "andythigpen/nvim-coverage",
+    ft = "go",
+    config = function()
+      require("coverage").setup()
     end,
   },
   {
@@ -138,6 +153,7 @@ local plugins = {
   },
   {
     "anuvyklack/pretty-fold.nvim",
+    event = "BufReadPre",
     config = function()
       require "custom.configs.pretty-fold"
     end,
@@ -165,6 +181,7 @@ local plugins = {
   {
     "kevinhwang91/nvim-ufo",
     dependencies = { "kevinhwang91/promise-async" },
+    event = "BufReadPost",
   },
   {
     "MattesGroeger/vim-bookmarks",
@@ -448,26 +465,24 @@ local plugins = {
   },
   {
     "luukvbaal/statuscol.nvim",
+    event = "BufWinEnter",
     config = function()
-      event =
-          "BufWinEnter",
-          -- local builtin = require("statuscol.builtin")
-          require("statuscol").setup {
-            -- configuration goes here, for example:
-            -- relculright = true,
-            -- segments = {
-            --   { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-            --   {
-            --     sign = { name = { "Diagnostic" }, maxwidth = 2, auto = true },
-            --     click = "v:lua.ScSa"
-            --   },
-            --   { text = { builtin.lnumfunc }, click = "v:lua.ScLa", },
-            --   {
-            --     sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = true },
-            --     click = "v:lua.ScSa"
-            --   },
-            -- }
-          }
+      require("statuscol").setup {
+        -- configuration goes here, for example:
+        -- relculright = true,
+        -- segments = {
+        --   { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+        --   {
+        --     sign = { name = { "Diagnostic" }, maxwidth = 2, auto = true },
+        --     click = "v:lua.ScSa"
+        --   },
+        --   { text = { builtin.lnumfunc }, click = "v:lua.ScLa", },
+        --   {
+        --     sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = true },
+        --     click = "v:lua.ScSa"
+        --   },
+        -- }
+      }
     end,
   },
   {

@@ -12,12 +12,10 @@ local M = {}
 -- <kPlus> -> Keypad Plus (+)
 -- <kMinus> -> Keypad Minus (-)
 
-
-
 M.disabled = {
   n = {
-      ["<leader>b"] = "",
-  }
+    ["<leader>b"] = "",
+  },
 }
 
 M.comment = {
@@ -56,7 +54,7 @@ M.text = {
     -- Navigate
     ["<A-Left>"] = { "<ESC>I", " Move to beginning of line" },
     ["<A-Right>"] = { "<ESC>A", " Move to end of line" },
-    ["<A-d>"] = { "<ESC>diw", " Delete word"},
+    ["<A-d>"] = { "<ESC>diw", " Delete word" },
   },
 
   n = {
@@ -71,25 +69,27 @@ M.text = {
     ["<C-x>"] = { "dd", "󰆐 Cut" },
     ["<C-v>"] = { "p", "󰆒 Paste" },
     ["<C-c>"] = { "y", " Copy" },
-    ["<A-d>"] = { "viw", " Select word"},
+    ["<A-d>"] = { "viw", " Select word" },
     -- Move line up and down
     ["<C-Up>"] = { "<cmd> :m-2<CR>", "󰜸 Move line up" },
     ["<C-Down>"] = { "<cmd> :m+<CR>", "󰜯 Move line down" },
-    
+
     -- Renamer
     ["<leader>rn"] = { "<cmd> :lua require('renamer').rename()<CR>", "󰑕 Rename" },
     ["<leader>i"] = {
       function()
-        require('nvim-toggler').toggle()
-      end, "󰌁 Invert text"
+        require("nvim-toggler").toggle()
+      end,
+      "󰌁 Invert text",
     },
     --
     ["<Esc>"] = { ":noh <CR>", " Clear highlights", opts = { silent = true } },
 
     ["<leader>bc"] = {
       function()
-        require('nvim-biscuits').toggle_biscuits()
-      end, "󰆘 Toggle biscuits"
+        require("nvim-biscuits").toggle_biscuits()
+      end,
+      "󰆘 Toggle biscuits",
     },
 
     ["<leader>fm"] = {
@@ -104,18 +104,17 @@ M.text = {
     ["<C-Up>"] = { ":m'<-2<CR>gv=gv", "󰜸 Move selection up" },
     ["<C-Down>"] = { ":m'>+1<CR>gv=gv", "󰜯 Move selection down" },
     ['"'] = { 'xi"<esc>pa"<esc>', "󱀡 Insert double quote" },
-    ["'"] = { "xi'<esc>pa'<esc>", "󱀢 Insert single double"},
-    ['v['] = { 'xi[<esc>pa]<esc>', "󰅪 Insert ["},
-    ['v]'] = { 'xi[<esc>pa]<esc>', "󰅪 Insert ]"},
-    ['v{'] = { 'xi{<esc>pa}<esc>', " Insert {"},
-    ['v}'] = { 'xi{<esc>pa}<esc>', " Insert }"},
-    ['('] = { 'xi(<esc>pa)<esc>', "󱃗 Insert ("},
-    [')'] = { 'xi(<esc>pa)<esc>', "󱃗 Insert )"},
+    ["'"] = { "xi'<esc>pa'<esc>", "󱀢 Insert single double" },
+    ["v["] = { "xi[<esc>pa]<esc>", "󰅪 Insert [" },
+    ["v]"] = { "xi[<esc>pa]<esc>", "󰅪 Insert ]" },
+    ["v{"] = { "xi{<esc>pa}<esc>", " Insert {" },
+    ["v}"] = { "xi{<esc>pa}<esc>", " Insert }" },
+    ["("] = { "xi(<esc>pa)<esc>", "󱃗 Insert (" },
+    [")"] = { "xi(<esc>pa)<esc>", "󱃗 Insert )" },
   },
 }
 
 M.general = {
-
   n = {
     [";"] = { ":", "󰘳 Enter command mode", opts = { nowait = true } },
 
@@ -125,15 +124,15 @@ M.general = {
     -- Split
     ["<C-h>"] = { "<cmd>vs <CR>", "󰤼 Vertical split", opts = { nowait = true } },
     ["<C-y>"] = { "<cmd>sp <CR>", "󰤻 Horizontal split", opts = { nowait = true } },
-    
+
     ["<leader>el"] = { "<cmd>ErrorLensToggle<cr>", "󱇭 Toggle error lens" },
     ["<leader>cs"] = { "<cmd>SymbolsOutline<cr>", " Symbols Outline" },
-    ["<leader>tr"] = { 
-      function() 
-        require('base46').toggle_transparency()
-      end, 
-      "󰂵 Toggle transparency" 
-     }
+    ["<leader>tr"] = {
+      function()
+        require("base46").toggle_transparency()
+      end,
+      "󰂵 Toggle transparency",
+    },
   },
 }
 
@@ -146,10 +145,10 @@ M.treesitter = {
 M.debug = {
   n = {
     ["<leader>tt"] = { "<cmd> :GoBreakToggle<CR>", " Toggle breakpoint" },
-    ["<F5>"] = {"<cmd> :DapContinue <CR>", " Continue"},
-    ["<F10>"] = {"<cmd> :DapStepOver <CR>", " Step over"},
-    ["<F11>"] = {"<cmd> :DapStepInto <CR>", " Step into"},
-    ["<F12>"] = {"<cmd> :DapStepOut <CR>", " Step out"},
+    ["<F5>"] = { "<cmd> :DapContinue <CR>", " Continue" },
+    ["<F10>"] = { "<cmd> :DapStepOver <CR>", " Step over" },
+    ["<F11>"] = { "<cmd> :DapStepInto <CR>", " Step into" },
+    ["<F12>"] = { "<cmd> :DapStepOut <CR>", " Step out" },
   },
 }
 
@@ -161,7 +160,7 @@ M.git = {
     ["<leader>gg"] = { "<cmd>LazyGit<CR>", "  LazyGit" },
     ["<leader>gb"] = { "<cmd>:BlameLineToggle <CR>", "  Toggle blame line" },
     ["<leader>gvd"] = { "<cmd> DiffviewOpen<CR>", "  Show git diff" },
-		["<leader>gvf"] = { "<cmd> DiffviewFileHistory %<CR>", "  Show file history" },
+    ["<leader>gvf"] = { "<cmd> DiffviewFileHistory %<CR>", "  Show file history" },
     ["<leader>gvp"] = { "<cmd> DiffviewOpen --cached<CR>", "  Show staged diffs" },
     ["<leader>gvr"] = { "<cmd> DiffviewRefresh<CR>", "  Refresh diff view" },
     ["<leader>gvc"] = { "<cmd> DiffviewClose<CR>", "  Close diff view" },
@@ -175,7 +174,10 @@ M.telescope = {
     ["<leader>fr"] = { "<cmd>Telescope frecency<CR>", " Recent files" },
     ["<leader>fu"] = { "<cmd>Telescope undo<CR>", " Undo tree" },
     ["<leader>fb"] = { "<cmd>Telescope vim_bookmarks all<CR>", " Bookmark" },
-    ["<leader>fi"] = { "<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<CR>", " Find current file"},
+    ["<leader>fi"] = {
+      "<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<CR>",
+      " Find current file",
+    },
   },
 }
 
@@ -210,12 +212,12 @@ M.tabufline = {
 
 M.test = {
   n = {
-        ["<leader>nt"] = {
-          function()
-            require("neotest").run.run(vim.fn.expand("%"))
-          end,
-          "󰙨 Run neotest",
-        },
+    ["<leader>nt"] = {
+      function()
+        require("neotest").run.run(vim.fn.expand "%")
+      end,
+      "󰙨 Run neotest",
+    },
   },
 }
 
@@ -301,35 +303,41 @@ M.nvterm = {
 M.harpoon = {
   n = {
     ["<leader>ha"] = {
-      function() 
-        require("harpoon.mark").add_file() 
-      end, "󱡁 Harpoon Add file" 
+      function()
+        require("harpoon.mark").add_file()
+      end,
+      "󱡁 Harpoon Add file",
     },
-    [ "<leader>ta"] = { "<cmd>Telescope harpoon marks<CR>",  "󱡀 Toggle quick menu" },
+    ["<leader>ta"] = { "<cmd>Telescope harpoon marks<CR>", "󱡀 Toggle quick menu" },
     ["<leader>hb"] = {
-      function() 
+      function()
         require("harpoon.mark").toggle_quick_menu()
-      end, "󱠿 Harpoon Menu" 
+      end,
+      "󱠿 Harpoon Menu",
     },
-    [ "<leader>1"] = { 
-      function() 
-        require("harpoon.ui").nav_file(1) 
-      end,  "󱪼 Navigate to file 1" 
+    ["<leader>1"] = {
+      function()
+        require("harpoon.ui").nav_file(1)
+      end,
+      "󱪼 Navigate to file 1",
     },
-    [ "<leader>2"] = { 
-      function() 
-        require("harpoon.ui").nav_file(2) 
-      end,  "󱪽 Navigate to file 2" 
+    ["<leader>2"] = {
+      function()
+        require("harpoon.ui").nav_file(2)
+      end,
+      "󱪽 Navigate to file 2",
     },
-    [ "<leader>3"] = { 
-      function() 
-        require("harpoon.ui").nav_file(3) 
-      end,  "󱪾 Navigate to file 3" 
+    ["<leader>3"] = {
+      function()
+        require("harpoon.ui").nav_file(3)
+      end,
+      "󱪾 Navigate to file 3",
     },
-    [ "<leader>4"] = { 
-      function() 
-        require("harpoon.ui").nav_file(4) 
-      end,  "󱪿 Navigate to file 4" 
+    ["<leader>4"] = {
+      function()
+        require("harpoon.ui").nav_file(4)
+      end,
+      "󱪿 Navigate to file 4",
     },
   },
 }

@@ -1,10 +1,11 @@
 local present, blameline = pcall(require, "blame_line")
 
 if not present then
-    return
+  return
 end
 
-blameline.setup{
-    show_in_insert = false,
-    template = "<author> • <author-time> • <summary>",
+blameline.setup {
+  show_in_insert = false,
+  template = "<author> • <author-time> • <summary>",
 }
+

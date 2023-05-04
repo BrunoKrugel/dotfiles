@@ -48,7 +48,7 @@ autocmd("VimResized", {
 -- the same as autochdir but better for nvim-tree and other plugins.
 autocmd("BufEnter", {
   pattern = "*",
-  command = "silent! lcd %:p:h"
+  command = "silent! lcd %:p:h",
 })
 
 -- Auto format on save
@@ -58,3 +58,4 @@ autocmd("BufWritePre", {
     vim.lsp.buf.format { async = false }
   end,
 })
+

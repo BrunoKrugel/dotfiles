@@ -4,7 +4,7 @@ if not present then
   return
 end
 
-noice.setup({
+noice.setup {
   routes = {
     {
       filter = {
@@ -22,28 +22,28 @@ noice.setup({
       view = "mini",
     },
     {
-      filter = { event = 'msg_show', find = 'Hunk %d+ of %d+' },
-      view = 'mini',
+      filter = { event = "msg_show", find = "Hunk %d+ of %d+" },
+      view = "mini",
     },
     {
-      filter = { event = 'msg_show', find = '%d+ more lines' },
+      filter = { event = "msg_show", find = "%d+ more lines" },
       opts = { skip = true },
     },
     {
-      filter = { event = 'msg_show', find = '%d+ lines yanked' },
+      filter = { event = "msg_show", find = "%d+ lines yanked" },
       opts = { skip = true },
     },
     {
-      filter = { event = 'msg_show', kind = 'quickfix' },
-      view = 'mini',
+      filter = { event = "msg_show", kind = "quickfix" },
+      view = "mini",
     },
     {
-      filter = { event = 'msg_show', kind = 'search_count' },
-      view = 'mini',
+      filter = { event = "msg_show", kind = "search_count" },
+      view = "mini",
     },
     {
-      filter = { event = 'msg_show', kind = 'wmsg' },
-      view = 'mini',
+      filter = { event = "msg_show", kind = "wmsg" },
+      view = "mini",
     },
     -- {
     -- 	filter = {
@@ -161,5 +161,4 @@ noice.setup({
   --     icons = true,
   --   },
   -- },
-})
-
+}
