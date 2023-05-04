@@ -10,12 +10,12 @@ M.devicons = {
       name = "Makefile",
     },
     ["mod"] = {
-      icon = "",
+      icon = "󰟓",
       color = "#519aba",
       name = "Mod",
     },
     ["sum"] = {
-      icon = "",
+      icon = "󰟓",
       color = "#cbcb40",
       cterm_color = "185",
       name = "Sum",
