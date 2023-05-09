@@ -2,7 +2,6 @@ local overrides = require "custom.configs.overrides"
 
 ---@type NvPluginSpec[]
 local plugins = {
-
   -- Override plugin definition options
 
   {
@@ -62,9 +61,6 @@ local plugins = {
       "ray-x/cmp-treesitter",
       "hrsh7th/cmp-nvim-lsp-signature-help",
       { "jcdickinson/codeium.nvim", config = true },
-      { "jcdickinson/codeium.nvim", config = true },
-      { "jcdickinson/codeium.nvim", config = true },
-      { "jcdickinson/codeium.nvim", config = true },
       {
         "tzachar/cmp-tabnine",
         build = "./install.sh",
@@ -74,6 +70,13 @@ local plugins = {
         end,
       },
     },
+  },
+  {
+    "nvim-telescope/telescope-ui-select.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("telescope").load_extension "ui-select"
+    end,
   },
   {
     "code-biscuits/nvim-biscuits",
@@ -93,9 +96,15 @@ local plugins = {
     end,
   },
   {
+    "kristijanhusak/vim-js-file-import",
+    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+    build = "npm install",
+  },
+  {
     "declancm/vim2vscode",
     cmd = "Code",
   },
+  { "ethanholz/nvim-lastplace", config = true,         event = "BufRead" },
   {
     "andythigpen/nvim-coverage",
     ft = "go",
@@ -145,7 +154,7 @@ local plugins = {
       },
     },
   },
-  { "williamboman/mason.nvim",        opts = overrides.mason },
+  { "williamboman/mason.nvim",  opts = overrides.mason },
   {
     "nvim-telescope/telescope-frecency.nvim",
     event = "VimEnter",
@@ -355,7 +364,7 @@ local plugins = {
           trace = "verbose",
           settings = {
             advanced = {
-              listCount = 3,          -- #completions for panel
+              listCount = 3,          -- #completions for panel  listCount = 3,          -- #completions for panel  listCount = 3,          -- #completions for panel
               inlineSuggestCount = 3, -- #completions for getCompletions
             },
           },
@@ -656,6 +665,8 @@ local plugins = {
       require "custom.configs.visual-multi"
     end,
   },
+  -- { "gen740/SmoothCursor.nvim",   event = "VimEnter",    config = true },
+  { "danilamihailov/beacon.nvim", event = "BufReadPost" },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     event = "BufWinEnter",
@@ -663,13 +674,23 @@ local plugins = {
       require "custom.configs.textobjects"
     end,
   },
-  {
-    "onsails/lspkind.nvim",
-    event = "LspAttach",
-    config = function()
-      require "custom.configs.lspkind"
-    end,
-  },
+  -- {
+  --   "onsails/lspkind.nvim",
+  --   event = "LspAttach",
+  -- 	config = function()
+  -- 		local lspkind = require("lspkind")
+  -- 		require("cmp").setup({
+  --       formatting = {
+  --         format = require('lspkind').cmp_format({
+  --             mode = "symbol",
+  --             maxwidth = 50,
+  --             ellipsis_char = '...',
+  --             symbol_map = { Codeium = "", }
+  --         })
+  --       },
+  -- 		})
+  -- 	end,d,
+  -- },
   {
     "glepnir/lspsaga.nvim",
     event = "LspAttach",

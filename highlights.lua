@@ -22,7 +22,15 @@ M.override = {
   ["@definition"] = {
     underline = false,
   },
-  -- ["@attribute"] = {
+  ["@variable"] = { fg = "purple" },
+  CopilotSuggestion = {
+    fg = "#83a598",
+  },
+  CopilotAnnotation = {
+    fg = "#03a598",
+  },
+
+  --["@attribute"] = {
   --   italic = true,
   -- },
 }
@@ -33,6 +41,8 @@ M.add = {
   CopilotHl = { fg = "green", bg = "statusline_bg" },
   HarpoonHl = { fg = "cyan", bg = "statusline_bg" },
   BatteryHl = { fg = "nord_blue", bg = "statusline_bg" },
+  CmpItemKindCodeium = { fg = "#51BDAC" },
+  CmpItemKindTabNine = { fg = "#C73BE3" },
 }
 
 return M

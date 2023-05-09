@@ -7,20 +7,7 @@ local highlights = require "custom.highlights"
 M.ui = {
   theme = "chadracula",
   theme_toggle = { "chadracula", "one_light" },
-  -- tabufline = {
-  --   overriden_modules = function()
-  --     local modules = require "nvchad_ui.tabufline.modules"
 
-  --     return {
-  --       buttons = function()
-  --         -- local toggle_themeBtn = "%@TbToggle_theme@%#TbLineThemeToggleBtn#" .. vim.g.toggle_theme_icon .. "%X"
-  --         -- local CloseAllBufsBtn = "%@TbCloseAllBufs@%#TbLineCloseAllBufsBtn#" .. " 󰅙 " .. "%X"
-  --         -- return toggle_themeBtn .. CloseAllBufsBtn
-  --         return ""
-  --       end,
-  --     }
-  --   end,
-  -- },
   statusline = {
     theme = "vscode_colored",
     overriden_modules = function()
@@ -56,7 +43,7 @@ M.ui = {
   cmp = {
     icons = true,
     lspkind_text = true,
-    style = "default", -- default/flat_light/flat_dark/atom/atom_colored
+    style = "flat_dark", -- default/flat_light/flat_dark/atom/atom_colored
   },
 
   hl_override = highlights.override,
