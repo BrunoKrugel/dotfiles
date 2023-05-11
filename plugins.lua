@@ -104,14 +104,33 @@ local plugins = {
     "declancm/vim2vscode",
     cmd = "Code",
   },
-  { "ethanholz/nvim-lastplace", config = true,         event = "BufRead" },
-  {
-    "andythigpen/nvim-coverage",
-    ft = "go",
-    config = function()
-      require("coverage").setup()
-    end,
-  },
+  { "ethanholz/nvim-lastplace", config = true, event = "BufRead" },
+  -- {
+  --   "andythigpen/nvim-coverage",
+  --   ft = "go",
+  --   config = function()
+  --     require("coverage").setup({
+  --       commands = true, -- create commands
+  --       highlights = {
+  --         -- customize highlight groups created by the plugin
+  --         covered = { fg = "#C3E88D" },   -- supports style, fg, bg, sp (see :h highlight-gui)
+  --         uncovered = { fg = "#F07178" },
+  --       },
+  --       signs = {
+  --         -- use your own highlight groups or text markers
+  --         covered = { hl = "CoverageCovered", text = "▎" },
+  --         uncovered = { hl = "CoverageUncovered", text = "▎" },
+  --       },
+  --       summary = {
+  --         -- customize the summary pop-up
+  --         min_coverage = 80.0,      -- minimum coverage threshold (used for highlighting)
+  --       },
+  --       lang = {
+  --         -- customize language specific settings
+  --       },
+  --     })
+  --   end,
+  -- },
   {
     "ThePrimeagen/harpoon",
     cmd = "Harpoon",
@@ -154,7 +173,7 @@ local plugins = {
       },
     },
   },
-  { "williamboman/mason.nvim",  opts = overrides.mason },
+  { "williamboman/mason.nvim", opts = overrides.mason },
   {
     "nvim-telescope/telescope-frecency.nvim",
     event = "VimEnter",
@@ -364,7 +383,7 @@ local plugins = {
           trace = "verbose",
           settings = {
             advanced = {
-              listCount = 3,          -- #completions for panel  listCount = 3,          -- #completions for panel  listCount = 3,          -- #completions for panel
+              listCount = 3, -- #completions for panel  listCount = 3,          -- #completions for panel  listCount = 3,          -- #completions for panel
               inlineSuggestCount = 3, -- #completions for getCompletions
             },
           },
@@ -449,7 +468,9 @@ local plugins = {
       require("neotest").setup {
         -- your neotest config here
         adapters = {
-          require "neotest-go",
+          require("neotest-go")({
+            args = { "-count=1", "-coverprofile coverage.out", "-covermode=count" }
+          })
         },
       }
     end,
@@ -471,6 +492,28 @@ local plugins = {
         },
       }
     end,
+  },
+  {
+    "jackMort/ChatGPT.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("chatgpt").setup {
+        keymaps = {
+          close = { "<C-c>", "<Esc>" },
+          yank_last = "<C-y>",
+          scroll_up = "<C-u>",
+          scroll_down = "<C-d>",
+          toggle_settings = "<C-o>",
+          new_session = "<C-n>",
+          cycle_windows = "<Tab>",
+        },
+      }
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
   },
   {
     "luukvbaal/statuscol.nvim",
@@ -659,8 +702,7 @@ local plugins = {
   },
   {
     "mg979/vim-visual-multi",
-    lazy = true,
-    event = "BufReadPost",
+    cmd = "VisualMulti",
     setup = function()
       require "custom.configs.visual-multi"
     end,
