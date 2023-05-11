@@ -73,6 +73,7 @@ M.treesitter = {
     "tsx",
     "typescript",
     "astro",
+    "dockerfile",
   },
   indent = {
     enable = true,
@@ -281,10 +282,8 @@ M.cmp = {
     { name = "nvim_lua" },
     { name = "path" },
     { name = "treesitter" },
-    { name = "buffer" },
     { name = "nvim_lsp_signature_help" },
     { name = "nvim_lsp_document_symbol" },
-    { name = "emoji" },
     { name = "calc" },
     { name = "path" },
     { name = "vim_lsp" },
