@@ -23,7 +23,12 @@ go.setup {
   lsp_keymaps = false,
   icons = { breakpoint = "", currentpos = "" },
   lsp_diag_virtual_text = false,
+  gocoverage_sign = "│",
   -- lsp_diag_virtual_text = { space = 0, prefix = "" },
   --  cat
 }
+
+vim.api.nvim_set_hl(0, "goCoverageUncover", { fg = "#F1FA8C" })
+vim.api.nvim_set_hl(0, "goCoverageUncovered", { fg = "#e8274b" })
+vim.api.nvim_set_hl(0, "goCoverageCovered", { fg = "#50fa7b" })
 
