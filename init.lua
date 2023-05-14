@@ -40,5 +40,12 @@ vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
+vim.fn.sign_define('DapBreakpoint', {
+  text = "",
+  texthl = 'NeotestAdapterName',
+  linehl = '',
+  numhl = '',
+})
+
 require("custom.autocmd")
 require("custom.usrcmd")
