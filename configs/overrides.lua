@@ -210,6 +210,25 @@ M.blankline = {
   vim.api.nvim_set_hl(0, "IndentBlanklineContextStart", { nocombine = false, underline = false, special = "none" }),
 }
 
+M.nvterm = {
+  terminals = {
+    shell = vim.o.shell,
+    list = {},
+    type_opts = {
+      float = {
+        relative = "editor",
+        row = 0.16,
+        col = 0.09,
+        width = 0.75,
+        height = 0.7,
+        border = "single",
+      },
+      horizontal = { location = "rightbelow", split_ratio = 0.3 },
+      vertical = { location = "rightbelow", split_ratio = 0.5 },
+    },
+  },
+}
+
 M.cmp = {
   mapping = {
     ["<Up>"] = require("cmp").mapping.select_prev_item(),
