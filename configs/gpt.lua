@@ -7,8 +7,8 @@ end
 local config = {
   welcome_message = WELCOME_MESSAGE, -- set to "" if you don't like the fancy godot robot
   loading_text = "loading",
-  question_sign = "🧑",            -- you can use emoji if you want e.g. 🙂
-  answer_sign = "🤖",              --
+  question_sign = "󱍋",            -- you can use emoji if you want e.g. 🙂
+  answer_sign = "󱜚",              --
   max_line_length = 120,
   yank_register = "+",
   chat_layout = {
@@ -74,4 +74,3 @@ local config = {
   },
 }
 require("chatgpt").setup(config)
-
