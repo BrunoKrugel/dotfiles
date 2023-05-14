@@ -21,8 +21,6 @@ local plugins = {
       require "custom.configs.lspconfig"
     end, -- Override to setup mason-lspconfig
   },
-
-  -- overrde plugin configs
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
@@ -30,6 +28,10 @@ local plugins = {
       "windwp/nvim-ts-autotag",
     },
     opts = overrides.treesitter,
+  },
+  {
+    "NvChad/nvterm",
+    opts = overrides.nvterm,
   },
   {
     "nvim-tree/nvim-web-devicons",
@@ -61,7 +63,7 @@ local plugins = {
       },
     },
   },
-  { "williamboman/mason.nvim", opts = overrides.mason },
+  { "williamboman/mason.nvim",  opts = overrides.mason },
   {
     "hrsh7th/nvim-cmp",
     opts = overrides.cmp,
@@ -102,16 +104,7 @@ local plugins = {
     event = "BufRead",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
-      require("nvim-biscuits").setup {
-        cursor_line_only = true,
-        default_config = {
-          min_distance = 10,
-          max_length = 50,
-          prefix_string = " 󰆘 ",
-          prefix_highlight = "Comment",
-          enable_linehl = true,
-        },
-      }
+      require "custom.configs.biscuits"
     end,
   },
   {
@@ -123,7 +116,7 @@ local plugins = {
     "declancm/vim2vscode",
     cmd = "Code",
   },
-  { "ethanholz/nvim-lastplace", config = true, event = "BufRead" },
+  { "ethanholz/nvim-lastplace", config = true,         event = "BufRead" },
   {
     "ThePrimeagen/harpoon",
     cmd = "Harpoon",
@@ -178,8 +171,8 @@ local plugins = {
           require("statuscol").setup {
             relculright = true,
             segments = {
-              { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-              { text = { "%s" }, click = "v:lua.ScSa" },
+              { text = { builtin.foldfunc },      click = "v:lua.ScFa" },
+              { text = { "%s" },                  click = "v:lua.ScSa" },
               { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
             },
           }
@@ -199,8 +192,7 @@ local plugins = {
   },
   {
     "jonahgoldwastaken/copilot-status.nvim",
-    dependencies = { "copilot.lua" }, -- or "zbirenbaum/copilot.lua"
-    lazy = true,
+    dependencies = { "copilot.lua" },
     event = "BufReadPost",
     config = function()
       require("copilot_status").setup {
@@ -231,75 +223,7 @@ local plugins = {
     "shellRaining/hlchunk.nvim",
     event = "BufReadPost",
     config = function()
-      require("hlchunk").setup {
-        chunk = {
-          enable = true,
-          support_filetypes = {
-            "*.ts",
-            "*.js",
-            "*.json",
-            "*.go",
-            "*.c",
-            "*.cpp",
-            "*.rs",
-            "*.h",
-            "*.hpp",
-            "*.lua",
-            "*.vue",
-          },
-          chars = {
-            horizontal_line = "─",
-            vertical_line = "│",
-            left_top = "╭",
-            left_bottom = "╰",
-            right_arrow = ">",
-          },
-          style = "#806d9c",
-        },
-
-        indent = {
-          enable = false,
-          use_treesitter = false,
-          -- You can uncomment to get more indented line look like
-          chars = {
-            "│",
-          },
-          -- you can uncomment to get more indented line style
-          style = {
-            vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID "Whitespace"), "fg", "gui"),
-          },
-          exclude_filetype = {
-            dashboard = true,
-            help = true,
-            lspinfo = true,
-            packer = true,
-            checkhealth = true,
-            man = true,
-            mason = true,
-            NvimTree = true,
-            plugin = true,
-          },
-        },
-
-        line_num = {
-          enable = true,
-          support_filetypes = {
-            "...",
-          },
-          style = "#806d9c",
-        },
-
-        blank = {
-          enable = false,
-          chars = {
-            "",
-          },
-          style = {
-            vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID "Whitespace"), "fg", "gui"),
-          },
-          exclude_filetype = "...",
-        },
-      }
+      require "custom.configs.hlchunk"
     end,
   },
   {
@@ -310,7 +234,13 @@ local plugins = {
   {
     "simrat39/symbols-outline.nvim",
     cmd = "SymbolsOutline",
-    config = true,
+    config = function()
+      require("symbols-outline").setup {
+        auto_preview = false,
+        position = "right",
+        width = 16,
+      }
+    end,
   },
   {
     "tenxsoydev/karen-yank.nvim",
@@ -326,20 +256,19 @@ local plugins = {
       "nvim-telescope/telescope.nvim",
     },
   },
-  -- {
-  --   'ray-x/sad.nvim',
-  --   dev = (plugin_folder():find('github') ~= nil),
-  --   cmd = { 'Sad' },
-  --   lazy = true,
-  --   config = function()
-  --     require('sad').setup({
-  --       debug = true,
-  --       vsplit = false,
-  --       height_ratio = 0.8,
-  --       autoclose = false,
-  --     })
-  --   end,
-  -- },
+  {
+    "ray-x/sad.nvim",
+    cmd = { "Sad" },
+    lazy = true,
+    config = function()
+      require("sad").setup {
+        debug = true,
+        vsplit = false,
+        height_ratio = 0.8,
+        autoclose = false,
+      }
+    end,
+  },
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
@@ -365,7 +294,7 @@ local plugins = {
           trace = "verbose",
           settings = {
             advanced = {
-              listCount = 3, -- #completions for panel  listCount = 3,          -- #completions for panel  listCount = 3,          -- #completions for panel
+              listCount = 3,          -- #completions for panel  listCount = 3,          -- #completions for panel  listCount = 3,          -- #completions for panel
               inlineSuggestCount = 3, -- #completions for getCompletions
             },
           },
@@ -477,19 +406,9 @@ local plugins = {
   },
   {
     "jackMort/ChatGPT.nvim",
-    event = "VeryLazy",
+    cmd = "ChatGPT",
     config = function()
-      require("chatgpt").setup {
-        keymaps = {
-          close = { "<C-c>", "<Esc>" },
-          yank_last = "<C-y>",
-          scroll_up = "<C-u>",
-          scroll_down = "<C-d>",
-          toggle_settings = "<C-o>",
-          new_session = "<C-n>",
-          cycle_windows = "<Tab>",
-        },
-      }
+      require "custom.configs.gpt"
     end,
     dependencies = {
       "MunifTanjim/nui.nvim",
@@ -497,33 +416,9 @@ local plugins = {
       "nvim-telescope/telescope.nvim",
     },
   },
-  -- {
-  --   "luukvbaal/statuscol.nvim",
-  --   event = "BufWinEnter",
-  --   config = function()
-  --     require("statuscol").setup {
-  -- configuration goes here, for example:
-  -- relculright = true,
-  -- segments = {
-  --   { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-  --   {
-  --     sign = { name = { "Diagnostic" }, maxwidth = 2, auto = true },
-  --     click = "v:lua.ScSa"
-  --   },
-  --   { text = { builtin.lnumfunc }, click = "v:lua.ScLa", },
-  --   {
-  --     sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = true },
-  --     click = "v:lua.ScSa"
-  --   },
-  -- }
-  --     }
-  --   end,
-  -- },
   {
     "phaazon/hop.nvim",
-    lazy = true,
-    dependencies = "ui",
-    event = "BufReadPost",
+    cmd = { "HopWord", "HopLine", "HopLineStart", "HopWordCurrentLine" },
     branch = "v2",
     config = function()
       require "custom.configs.hop"
@@ -532,7 +427,6 @@ local plugins = {
 
   {
     "rainbowhxch/accelerated-jk.nvim",
-    lazy = true,
     dependencies = "nvim-treesitter",
     event = "BufWinEnter",
     config = function()
@@ -541,23 +435,12 @@ local plugins = {
   },
   {
     "RRethy/vim-illuminate",
-    lazy = true,
     event = "BufReadPost",
     dependencies = "nvim-treesitter",
     config = function()
       require "custom.configs.illuminate"
     end,
   },
-
-  -- {
-  --   "dstein64/nvim-scrollview",
-  --   lazy = true,
-  --   event = { "BufReadPost" },
-  --   config = function()
-  --     require "custom.configs.scrollview"
-  --   end,
-  -- },
-
   {
     "folke/noice.nvim",
     lazy = false,
@@ -582,7 +465,6 @@ local plugins = {
   },
   {
     "karb94/neoscroll.nvim",
-    lazy = true,
     event = "BufReadPost",
     config = function()
       require "custom.configs.neoscroll"
@@ -596,7 +478,6 @@ local plugins = {
       require "custom.configs.renamer"
     end,
   },
-
   {
     "Pocco81/auto-save.nvim",
     event = "BufReadPost",
@@ -645,7 +526,7 @@ local plugins = {
     end,
   },
   { "mfussenegger/nvim-dap" },
-  { "rcarriga/nvim-dap-ui", dependencies = { "theHamsta/nvim-dap-virtual-text" } },
+  { "rcarriga/nvim-dap-ui",           dependencies = { "theHamsta/nvim-dap-virtual-text" } },
   { "theHamsta/nvim-dap-virtual-text" },
   { "ray-x/guihua.lua" },
   {
@@ -653,31 +534,19 @@ local plugins = {
     event = "BufReadPost",
     dependencies = "nvim-treesitter",
   },
-  -- {
-  --   "braxtons12/blame_line.nvim",
-  --   event = "BufReadPost",
-  --   config = function()
-  --     require "custom.configs.blameline"
-  --   end,
-  -- },
   {
     "folke/todo-comments.nvim",
     dependencies = "nvim-lua/plenary.nvim",
-    event = { "BufReadPost", "BufNewFile" },
-    config = true,
+    event = { "BufReadPost" },
+    config = function()
+      require "custom.configs.todo"
+    end,
   },
   {
     "ray-x/lsp_signature.nvim",
     event = "BufReadPost",
     config = true,
   },
-  -- {
-  --   "kosayoda/nvim-lightbulb",
-  --   event = "BufWinEnter",
-  --   dependencies = {
-  --     "antoinemadec/FixCursorHold.nvim",
-  --   },
-  -- },
   {
     "ludovicchabant/vim-gutentags",
     lazy = false,
