@@ -25,21 +25,21 @@ local autocmd = vim.api.nvim_create_autocmd
 
 -- Auto resize panes when resizing nvim window
 autocmd("VimResized", {
-    pattern = "*",
-    command = "tabdo wincmd =",
-  })
-  
-  -- autocmd BufEnter * silent! lcd %:p:h
-  -- the same as autochdir but better for nvim-tree and other plugins.
+  pattern = "*",
+  command = "tabdo wincmd =",
+})
+
+-- autocmd BufEnter * silent! lcd %:p:h
+-- the same as autochdir but better for nvim-tree and other plugins.
 --   autocmd("BufEnter", {
 --     pattern = "*",
 --     command = "silent! lcd %:p:h",
 --   })
-  
-  -- Auto format on save
-  autocmd("BufWritePre", {
-    pattern = { "*.js", "*.java", "*.lua" },
-    callback = function()
-      vim.lsp.buf.format { async = false }
-    end,
-  })
+
+-- Auto format on save
+autocmd("BufWritePre", {
+  pattern = { "*.js", "*.java", "*.lua" },
+  callback = function()
+    vim.lsp.buf.format { async = false }
+  end,
+})
