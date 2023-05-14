@@ -2,8 +2,6 @@ local overrides = require "custom.configs.overrides"
 
 ---@type NvPluginSpec[]
 local plugins = {
-  -- Override plugin definition options
-
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -42,7 +40,28 @@ local plugins = {
     "lukas-reineke/indent-blankline.nvim",
     opts = overrides.blankline,
   },
-
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = overrides.nvimtree,
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = overrides.telescope,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "debugloop/telescope-undo.nvim",
+      "tom-anders/telescope-vim-bookmarks.nvim",
+      {
+        "ThePrimeagen/harpoon",
+        cmd = "Harpoon",
+      },
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+      },
+    },
+  },
+  { "williamboman/mason.nvim", opts = overrides.mason },
   {
     "hrsh7th/nvim-cmp",
     opts = overrides.cmp,
@@ -105,32 +124,6 @@ local plugins = {
     cmd = "Code",
   },
   { "ethanholz/nvim-lastplace", config = true, event = "BufRead" },
-  -- {
-  --   "andythigpen/nvim-coverage",
-  --   ft = "go",
-  --   config = function()
-  --     require("coverage").setup({
-  --       commands = true, -- create commands
-  --       highlights = {
-  --         -- customize highlight groups created by the plugin
-  --         covered = { fg = "#C3E88D" },   -- supports style, fg, bg, sp (see :h highlight-gui)
-  --         uncovered = { fg = "#F07178" },
-  --       },
-  --       signs = {
-  --         -- use your own highlight groups or text markers
-  --         covered = { hl = "CoverageCovered", text = "▎" },
-  --         uncovered = { hl = "CoverageUncovered", text = "▎" },
-  --       },
-  --       summary = {
-  --         -- customize the summary pop-up
-  --         min_coverage = 80.0,      -- minimum coverage threshold (used for highlighting)
-  --       },
-  --       lang = {
-  --         -- customize language specific settings
-  --       },
-  --     })
-  --   end,
-  -- },
   {
     "ThePrimeagen/harpoon",
     cmd = "Harpoon",
@@ -140,10 +133,6 @@ local plugins = {
     event = "CmdLineEnter",
   },
   {
-    "Snyssfx/goerr-nvim",
-    ft = "go",
-  },
-  {
     "wuelnerdotexe/vim-astro",
     ft = "astro",
   },
@@ -151,29 +140,6 @@ local plugins = {
     "nvim-treesitter/playground",
     cmd = "TSCaptureUnderCursor",
   },
-  {
-    "nvim-tree/nvim-tree.lua",
-    opts = overrides.nvimtree,
-  },
-
-  {
-    "nvim-telescope/telescope.nvim",
-    opts = overrides.telescope,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "debugloop/telescope-undo.nvim",
-      "tom-anders/telescope-vim-bookmarks.nvim",
-      {
-        "ThePrimeagen/harpoon",
-        cmd = "Harpoon",
-      },
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-      },
-    },
-  },
-  { "williamboman/mason.nvim", opts = overrides.mason },
   {
     "nvim-telescope/telescope-frecency.nvim",
     event = "VimEnter",
@@ -201,15 +167,31 @@ local plugins = {
       require("hlargs").setup()
     end,
   },
-  -- {
-  --   "xiyaowong/virtcolumn.nvim",
-  --   config = true,
-  --   event = "BufReadPre",
-  -- },
   {
     "kevinhwang91/nvim-ufo",
-    dependencies = { "kevinhwang91/promise-async" },
+    dependencies = {
+      "kevinhwang91/promise-async",
+      {
+        "luukvbaal/statuscol.nvim",
+        config = function()
+          local builtin = require "statuscol.builtin"
+          require("statuscol").setup {
+            relculright = true,
+            segments = {
+              { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+              { text = { "%s" }, click = "v:lua.ScSa" },
+              { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+            },
+          }
+        end,
+      },
+    },
     event = "BufReadPost",
+    opts = {
+      provider_selector = function()
+        return { "treesitter", "indent" }
+      end,
+    },
   },
   {
     "MattesGroeger/vim-bookmarks",
@@ -468,9 +450,9 @@ local plugins = {
       require("neotest").setup {
         -- your neotest config here
         adapters = {
-          require("neotest-go")({
-            args = { "-count=1", "-coverprofile coverage.out", "-covermode=count" }
-          })
+          require "neotest-go" {
+            args = { "-count=1", "-coverprofile coverage.out", "-covermode=count" },
+          },
         },
       }
     end,
@@ -515,28 +497,28 @@ local plugins = {
       "nvim-telescope/telescope.nvim",
     },
   },
-  {
-    "luukvbaal/statuscol.nvim",
-    event = "BufWinEnter",
-    config = function()
-      require("statuscol").setup {
-        -- configuration goes here, for example:
-        -- relculright = true,
-        -- segments = {
-        --   { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-        --   {
-        --     sign = { name = { "Diagnostic" }, maxwidth = 2, auto = true },
-        --     click = "v:lua.ScSa"
-        --   },
-        --   { text = { builtin.lnumfunc }, click = "v:lua.ScLa", },
-        --   {
-        --     sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = true },
-        --     click = "v:lua.ScSa"
-        --   },
-        -- }
-      }
-    end,
-  },
+  -- {
+  --   "luukvbaal/statuscol.nvim",
+  --   event = "BufWinEnter",
+  --   config = function()
+  --     require("statuscol").setup {
+  -- configuration goes here, for example:
+  -- relculright = true,
+  -- segments = {
+  --   { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+  --   {
+  --     sign = { name = { "Diagnostic" }, maxwidth = 2, auto = true },
+  --     click = "v:lua.ScSa"
+  --   },
+  --   { text = { builtin.lnumfunc }, click = "v:lua.ScLa", },
+  --   {
+  --     sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = true },
+  --     click = "v:lua.ScSa"
+  --   },
+  -- }
+  --     }
+  --   end,
+  -- },
   {
     "phaazon/hop.nvim",
     lazy = true,
@@ -663,7 +645,7 @@ local plugins = {
     end,
   },
   { "mfussenegger/nvim-dap" },
-  { "rcarriga/nvim-dap-ui" },
+  { "rcarriga/nvim-dap-ui", dependencies = { "theHamsta/nvim-dap-virtual-text" } },
   { "theHamsta/nvim-dap-virtual-text" },
   { "ray-x/guihua.lua" },
   {
