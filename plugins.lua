@@ -5,21 +5,17 @@ local plugins = {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      -- format & linting
       {
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
           require "custom.configs.null-ls"
-          --     vim.notify = require("noice").notify
-          --     vim.lsp.handlers["textDocument/hover"] = require("noice").hover
-          --     vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
         end,
       },
     },
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
-    end, -- Override to setup mason-lspconfig
+    end,
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -302,7 +298,6 @@ local plugins = {
       }
     end,
   },
-
   {
     "zbirenbaum/copilot-cmp",
     event = "VeryLazy",
@@ -321,7 +316,6 @@ local plugins = {
       }
     end,
   },
-
   {
     "kdheepak/lazygit.nvim",
     cmd = "LazyGit",
@@ -330,7 +324,6 @@ local plugins = {
     "folke/which-key.nvim",
     enabled = true,
   },
-
   {
     "jose-elias-alvarez/null-ls.nvim",
     dependencies = "nvim-lspconfig",
@@ -338,15 +331,6 @@ local plugins = {
       require "custom.configs.null-ls"
     end,
   },
-  -- -- {
-  -- --   "rmagatti/goto-preview",
-  -- --   config = function()
-  -- --     require("goto-preview").setup({
-  -- --       border = "rounded",
-  -- --       default_mappings = true,
-  -- --     })
-  -- --   end,
-  -- -- },
   {
     "abecodes/tabout.nvim",
     lazy = true,
@@ -527,8 +511,6 @@ local plugins = {
   },
   { "mfussenegger/nvim-dap" },
   { "rcarriga/nvim-dap-ui",           dependencies = { "theHamsta/nvim-dap-virtual-text" } },
-  { "theHamsta/nvim-dap-virtual-text" },
-  { "ray-x/guihua.lua" },
   {
     "mrjones2014/nvim-ts-rainbow",
     event = "BufReadPost",
@@ -567,23 +549,6 @@ local plugins = {
       require "custom.configs.textobjects"
     end,
   },
-  -- {
-  --   "onsails/lspkind.nvim",
-  --   event = "LspAttach",
-  -- 	config = function()
-  -- 		local lspkind = require("lspkind")
-  -- 		require("cmp").setup({
-  --       formatting = {
-  --         format = require('lspkind').cmp_format({
-  --             mode = "symbol",
-  --             maxwidth = 50,
-  --             ellipsis_char = '...',
-  --             symbol_map = { Codeium = "", }
-  --         })
-  --       },
-  -- 		})
-  -- 	end,d,
-  -- },
   {
     "glepnir/lspsaga.nvim",
     event = "LspAttach",
