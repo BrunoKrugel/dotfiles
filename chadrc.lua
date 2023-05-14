@@ -40,24 +40,25 @@ M.ui = {
       }
     end,
   },
+
   cmp = {
     icons = true,
     lspkind_text = true,
     style = "flat_dark", -- default/flat_light/flat_dark/atom/atom_colored
   },
 
+  lsp = {
+    signature = {
+      disabled = false,
+      silent = true,
+    },
+  },
+
   hl_override = highlights.override,
   hl_add = highlights.add,
+
   nvdash = {
     load_on_startup = true,
-    --     header = {
-    --     "   🭇🬭🬭🬭🬭🬭🬭🬭🬭🬼    ",
-    --     "  🭉🭁🭠🭘    🭣🭕🭌🬾   ",
-    --     " 🭅█ ▁     █🭐   ",
-    --     " ██🬿      🭊██   ",
-    --     " 🭋█🬝🮄🮄🮄🮄🮄🮄🮄🮄🬆█🭀  ",
-    --     " 🭤🭒🬺🬹🬱🬭🬭🬭🬭🬵🬹🬹🭝🭙  ",
-    -- },
     header = {
       [[                                           ,o88888 ]],
       [[                                        ,o8888888' ]],
