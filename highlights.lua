@@ -43,6 +43,17 @@ M.add = {
   BatteryHl = { fg = "nord_blue", bg = "statusline_bg" },
   CmpItemKindCodeium = { fg = "#51BDAC" },
   CmpItemKindTabNine = { fg = "#C73BE3" },
+  EndOfBuffer = {
+    bg = "black",
+    fg = "black",
+  },
+  NonText = {
+    bg = "black",
+    fg = "black",
+  },
+  FoldColumn = {
+    bg = "black",
+  },
 }
 
 return M
