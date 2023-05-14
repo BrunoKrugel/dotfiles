@@ -34,7 +34,8 @@ vim.g.bookmark_sign = ""
 vim.g.bookmark_highlight = "DevIconErb"
 
 vim.o.foldcolumn = "1"
-vim.o.foldlevel = 99
+vim.o.foldlevel = 1
+vim.o.foldnestmax = 2
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
