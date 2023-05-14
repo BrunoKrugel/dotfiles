@@ -111,6 +111,17 @@ M.text = {
     ["v}"] = { "xi{<esc>pa}<esc>", " Insert }" },
     ["("] = { "xi(<esc>pa)<esc>", "󱃗 Insert (" },
     [")"] = { "xi(<esc>pa)<esc>", "󱃗 Insert )" },
+    -- Indent backward/forward:
+    ["<"] = { "<gv", "ident backward", opts = { silent = false } },
+    [">"] = { ">gv", "ident forward", opts = { silent = false } },
+  },
+
+  c = {
+    -- Autocomplete for brackets:
+    ["("] = { "()<left>", "Auto complete (", opts = { silent = false } },
+    ["<"] = { "<><left>", "Auto complete <", opts = { silent = false } },
+    ['"'] = { '""<left>', [[Auto complete "]], opts = { silent = false } },
+    ["'"] = { "''<left>", "Auto complete '", opts = { silent = false } },
   },
 }
 
