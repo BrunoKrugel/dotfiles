@@ -59,7 +59,7 @@ local plugins = {
       },
     },
   },
-  { "williamboman/mason.nvim",  opts = overrides.mason },
+  { "williamboman/mason.nvim", opts = overrides.mason },
   {
     "hrsh7th/nvim-cmp",
     opts = overrides.cmp,
@@ -112,7 +112,7 @@ local plugins = {
     "declancm/vim2vscode",
     cmd = "Code",
   },
-  { "ethanholz/nvim-lastplace", config = true,         event = "BufRead" },
+  { "ethanholz/nvim-lastplace", config = true, event = "BufRead" },
   {
     "ThePrimeagen/harpoon",
     cmd = "Harpoon",
@@ -167,8 +167,8 @@ local plugins = {
           require("statuscol").setup {
             relculright = true,
             segments = {
-              { text = { builtin.foldfunc },      click = "v:lua.ScFa" },
-              { text = { "%s" },                  click = "v:lua.ScSa" },
+              { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+              { text = { "%s" }, click = "v:lua.ScSa" },
               { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
             },
           }
@@ -176,11 +176,13 @@ local plugins = {
       },
     },
     event = "BufReadPost",
-    opts = {
-      provider_selector = function()
-        return { "treesitter", "indent" }
-      end,
-    },
+    config = function()
+      require("ufo").setup {
+        provider_selector = function()
+          return { "treesitter", "indent" }
+        end,
+      }
+    end,
   },
   {
     "MattesGroeger/vim-bookmarks",
@@ -290,7 +292,7 @@ local plugins = {
           trace = "verbose",
           settings = {
             advanced = {
-              listCount = 3,          -- #completions for panel  listCount = 3,          -- #completions for panel  listCount = 3,          -- #completions for panel
+              listCount = 3, -- #completions for panel  listCount = 3,          -- #completions for panel  listCount = 3,          -- #completions for panel
               inlineSuggestCount = 3, -- #completions for getCompletions
             },
           },
@@ -313,6 +315,21 @@ local plugins = {
       require("nvim-toggler").setup {
         -- removes the default <leader>i keymap
         remove_default_keybinds = true,
+      }
+    end,
+  },
+  {
+    "gennaro-tedesco/nvim-possession",
+    lazy = false,
+    dependencies = {
+      "ibhagwan/fzf-lua",
+    },
+    config = function()
+      require("nvim-possession").setup {
+        autoload = true,
+        sessions = {
+          sessions_icon = "",
+        },
       }
     end,
   },
@@ -510,7 +527,7 @@ local plugins = {
     end,
   },
   { "mfussenegger/nvim-dap" },
-  { "rcarriga/nvim-dap-ui",           dependencies = { "theHamsta/nvim-dap-virtual-text" } },
+  { "rcarriga/nvim-dap-ui", dependencies = { "theHamsta/nvim-dap-virtual-text" } },
   {
     "mrjones2014/nvim-ts-rainbow",
     event = "BufReadPost",

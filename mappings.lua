@@ -70,6 +70,7 @@ M.text = {
     ["<C-v>"] = { "p", "󰆒 Paste" },
     ["<C-c>"] = { "y", " Copy" },
     ["<A-d>"] = { "viw", " Select word" },
+    ["<leader>d"] = { "viwxi", "delete word" },
     -- Move line up and down
     ["<C-Up>"] = { "<cmd> :m-2<CR>", "󰜸 Move line up" },
     ["<C-Down>"] = { "<cmd> :m+<CR>", "󰜯 Move line down" },
@@ -101,8 +102,8 @@ M.text = {
   },
 
   v = {
-    ["<C-Up>"] = { ":m'<-2<CR>gv=gv", "󰜸 Move selection up" },
-    ["<C-Down>"] = { ":m'>+1<CR>gv=gv", "󰜯 Move selection down" },
+    ["<C-Up>"] = { ":m'<-2<CR>gv=gv", "󰜸 Move selection up", opts = { silent = true } },
+    ["<C-Down>"] = { ":m'>+1<CR>gv=gv", "󰜯 Move selection down", opts = { silent = true } },
     ['"'] = { 'xi"<esc>pa"<esc>', "󱀡 Insert double quote" },
     ["'"] = { "xi'<esc>pa'<esc>", "󱀢 Insert single double" },
     ["v["] = { "xi[<esc>pa]<esc>", "󰅪 Insert [" },
@@ -128,6 +129,7 @@ M.text = {
 M.general = {
   n = {
     [";"] = { ":", "󰘳 Enter command mode", opts = { nowait = true } },
+    ["<leader>q"] = { "<cmd> qa! <CR>", "󰗼 Exit" },
 
     ["<leader>t"] = { "<cmd>TroubleToggle<cr>", " Toggle warnings" },
     ["<leader>td"] = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", " Todo/Fix/Fixme (Trouble)" },
@@ -227,7 +229,7 @@ M.test = {
       function()
         require("neotest").run.run(vim.fn.expand "%")
       end,
-      "󰙨 Run neotest",
+      "󰤑 Run neotest",
     },
   },
 }
@@ -238,6 +240,29 @@ M.nvimtree = {
   n = {
     -- toggle
     ["<C-b>"] = { "<cmd> NvimTreeToggle <CR>", "󰔱 Toggle nvimtree" },
+  },
+}
+
+M.session = {
+  n = {
+    ["<leader>sl"] = {
+      function()
+        require("nvim-possession").list()
+      end,
+      " List session",
+    },
+    ["<leader>sn"] = {
+      function()
+        require("nvim-possession").new()
+      end,
+      " Save session",
+    },
+    ["<leader>sd"] = {
+      function()
+        require("nvim-possession").delete()
+      end,
+      " Save session",
+    },
   },
 }
 
@@ -322,7 +347,7 @@ M.harpoon = {
     ["<leader>ta"] = { "<cmd>Telescope harpoon marks<CR>", "󱡀 Toggle quick menu" },
     ["<leader>hb"] = {
       function()
-        require("harpoon.mark").toggle_quick_menu()
+        require("harpoon.ui").toggle_quick_menu()
       end,
       "󱠿 Harpoon Menu",
     },

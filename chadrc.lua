@@ -24,6 +24,15 @@ M.ui = {
           return ""
         end
       end
+
+      local function get_session()
+        local session = require("nvim-possession").status()
+        if session ~= nil then
+          return "󰐃 "
+        else
+          return "󰐄 "
+        end
+      end
       return {
         LSP_Diagnostics = function()
           return "%#CopilotHl#"
@@ -33,6 +42,9 @@ M.ui = {
               .. get_marked()
               .. "%#BatteryHl#"
               .. require("battery").get_status_line()
+              .. " "
+              .. "%#SessionHl#"
+              .. get_session()
               .. " "
               .. st_modules.LSP_Diagnostics()
           -- or just return "" to hide this module
