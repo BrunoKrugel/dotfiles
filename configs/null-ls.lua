@@ -7,8 +7,13 @@ end
 local b = null_ls.builtins
 
 local sources = {
-  b.formatting.deno_fmt,                                                    -- choosed deno for ts/js files cuz its very fast!
-  b.formatting.prettier.with { filetypes = { "html", "markdown", "css" } }, -- so prettier works only on these filetypes
+  -- b.formatting.deno_fmt.with {
+  --   extra_args = {
+  --     "--config",
+  --     vim.fn.expand "~/.config/.deno.json",
+  --   },
+  -- },
+  b.formatting.prettier,
   b.formatting.clang_format,
   b.formatting.stylua.with {
     extra_args = { "--config-path", vim.fn.expand "~/.config/stylua.toml" },
@@ -58,7 +63,7 @@ local sources = {
 -- table.insert(sources, golangci_lint)
 -- table.insert(sources, gotest_codeaction)
 
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+-- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup {
   debug = true,
   sources = sources,
