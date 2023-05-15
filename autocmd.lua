@@ -37,19 +37,19 @@ autocmd("VimResized", {
 --   })
 
 -- Auto format on save
-autocmd("BufWritePre", {
-  pattern = { "*.js", "*.java", "*.lua" },
-  callback = function()
-    vim.lsp.buf.format { async = false }
-  end,
-})
+-- autocmd("BufWritePre", {
+--   pattern = { "*.js", "*.java", "*.lua" },
+--   callback = function()
+--     vim.lsp.buf.format { async = false }
+--   end,
+-- })
 
-autocmd("TextYankPost", {
-  pattern = "*",
-  callback = function()
-    vim.highlight.on_yank {
-      higroup = "IncSearch",
-      timeout = 100,
-    }
-  end,
-})
+-- autocmd("TextYankPost", {
+--   pattern = "*",
+--   callback = function()
+--     vim.highlight.on_yank {
+--       higroup = "IncSearch",
+--       timeout = 100,
+--     }
+--   end,
+-- })

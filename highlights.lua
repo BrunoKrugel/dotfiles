@@ -41,6 +41,7 @@ M.add = {
   CopilotHl = { fg = "green", bg = "statusline_bg" },
   HarpoonHl = { fg = "cyan", bg = "statusline_bg" },
   BatteryHl = { fg = "nord_blue", bg = "statusline_bg" },
+  SessionHl = { fg = "#e535ab", bg = "statusline_bg" },
   CmpItemKindCodeium = { fg = "#51BDAC" },
   CmpItemKindTabNine = { fg = "#C73BE3" },
   EndOfBuffer = {
