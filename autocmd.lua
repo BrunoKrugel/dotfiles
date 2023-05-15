@@ -29,6 +29,13 @@ autocmd("VimResized", {
   command = "tabdo wincmd =",
 })
 
+autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    client.server_capabilities.semanticTokensProvider = nil
+  end,
+});
+
 -- autocmd BufEnter * silent! lcd %:p:h
 -- the same as autochdir but better for nvim-tree and other plugins.
 --   autocmd("BufEnter", {
