@@ -1,5 +1,4 @@
 local opt = vim.opt
-local autocmd = vim.api.nvim_create_autocmd
 
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
@@ -40,12 +39,20 @@ vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
-vim.fn.sign_define('DapBreakpoint', {
+vim.fn.sign_define("DapBreakpoint", {
   text = "",
-  texthl = 'NeotestAdapterName',
-  linehl = '',
-  numhl = '',
+  texthl = "NeotestAdapterName",
+  linehl = "",
+  numhl = "",
 })
 
-require("custom.autocmd")
-require("custom.usrcmd")
+if vim.g.neovide then
+  opt.guifont = "Hack Nerd Font:h12"
+  vim.g.neovide_refresh_rate = 120
+  vim.g.neovide_remember_window_size = true
+  vim.g.neovide_cursor_antialiasing = true
+  vim.g.neovide_input_macos_alt_is_meta = true
+end
+
+require "custom.autocmd"
+require "custom.usrcmd"
