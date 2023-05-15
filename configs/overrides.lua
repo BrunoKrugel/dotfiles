@@ -111,8 +111,17 @@ M.mason = {
     "css-lsp",
     "html-lsp",
 
+    "codespell",
+    "jsonlint",
+    "json-lsp",
+
+    -- golang
     "gopls",
     "goimports",
+    "golines",
+    "gomodifytags",
+    "sonarlint-language-server",
+
   },
 }
 

@@ -18,7 +18,6 @@ local sources = {
   b.formatting.stylua.with {
     extra_args = { "--config-path", vim.fn.expand "~/.config/stylua.toml" },
   },
-  b.code_actions.gitsigns,
   -- Go
   -- b.formatting.gofmt,
   b.formatting.gofumpt,
@@ -33,11 +32,6 @@ local sources = {
   --     "--base-formatter=gofumpt",
   --   },
   -- }),
-  -- b.diagnostics.eslint_d.with({
-  --   diagnostics_format = '[eslint] #{m}\n(#{c})'
-  -- }),
-  -- b.code_actions.eslint,
-  -- b.diagnostics.eslint,
   -- b.formatting.lua_format,
   --  b.diagnostics.luacheck,
   -- b.diagnostics.checkstyle.with {
@@ -45,7 +39,19 @@ local sources = {
   -- },
   b.formatting.yamlfmt,
   -- b.formatting.xmlformat,
+  -- Diagnostics
+  b.diagnostics.eslint,
+  b.diagnostics.fish,
+  b.diagnostics.checkmake,
+  b.diagnostics.codespell,
+  b.diagnostics.dotenv_linter,
+  b.diagnostics.jsonlint,
+  -- Completion
   b.completion.luasnip,
+  -- Code actions
+  b.code_actions.gitsigns,
+  b.code_actions.gomodifytags,
+  b.code_actions.eslint,
 }
 
 -- local goimports = b.formatting.goimports
