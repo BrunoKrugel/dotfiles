@@ -70,12 +70,12 @@ M.text = {
     ["<C-v>"] = { "p", "󰆒 Paste" },
     ["<C-c>"] = { "y", " Copy" },
     ["<A-d>"] = { "viw", " Select word" },
-    ["<leader>d"] = { "viwxi", "delete word" },
+    ["<leader>d"] = { "viwxi", " Delete word" },
     -- Move line up and down
     ["<C-Up>"] = { "<cmd> :m-2<CR>", "󰜸 Move line up" },
     ["<C-Down>"] = { "<cmd> :m+<CR>", "󰜯 Move line down" },
-
     -- Renamer
+    ["<C-A-R>"] = { "<cmd>:MurenToggle<CR>", "󱝪 Toggle Search"},
     ["<leader>rn"] = { "<cmd> :lua require('renamer').rename()<CR>", "󰑕 Rename" },
     ["<leader>i"] = {
       function()
