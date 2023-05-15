@@ -127,6 +127,11 @@ local plugins = {
     event = "CmdLineEnter",
   },
   {
+    "AckslD/muren.nvim",
+    cmd = "MurenToggle",
+    config = true,
+  },
+  {
     "wuelnerdotexe/vim-astro",
     ft = "astro",
   },
