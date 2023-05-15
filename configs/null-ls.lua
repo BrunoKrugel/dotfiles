@@ -10,7 +10,9 @@ local sources = {
   b.formatting.deno_fmt,                                                    -- choosed deno for ts/js files cuz its very fast!
   b.formatting.prettier.with { filetypes = { "html", "markdown", "css" } }, -- so prettier works only on these filetypes
   b.formatting.clang_format,
-  b.formatting.stylua,
+  b.formatting.stylua.with {
+    extra_args = { "--config-path", vim.fn.expand "~/.config/stylua.toml" },
+  },
   b.code_actions.gitsigns,
   -- Go
   -- b.formatting.gofmt,

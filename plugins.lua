@@ -342,13 +342,6 @@ local plugins = {
     enabled = true,
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",
-    dependencies = "nvim-lspconfig",
-    config = function()
-      require "custom.configs.null-ls"
-    end,
-  },
-  {
     "abecodes/tabout.nvim",
     lazy = true,
     event = "InsertEnter",
