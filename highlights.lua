@@ -16,6 +16,7 @@ M.override = {
     fg = "none",
     bg = "none",
   },
+  DiffAdd = { fg = "green" },
   IndentBlanklineContextStart = {
     bg = "none",
   },
