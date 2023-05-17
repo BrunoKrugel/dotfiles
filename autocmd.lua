@@ -1,4 +1,3 @@
-local opt = vim.opt
 local autocmd = vim.api.nvim_create_autocmd
 
 -- autocmd({ "ModeChanged" }, {
@@ -48,6 +47,13 @@ autocmd("LspAttach", {
 --   pattern = { "*.js", "*.java", "*.lua" },
 --   callback = function()
 --     vim.lsp.buf.format { async = false }
+--   end,
+-- })
+
+-- autocmd("BufWritePost", {
+--   pattern = "*",
+--   callback = function()
+--     require('base46').load_all_highlights()
 --   end,
 -- })
 
