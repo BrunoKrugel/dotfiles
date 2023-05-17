@@ -123,6 +123,25 @@ M.mason = {
     "sonarlint-language-server",
 
   },
+
+  ui = {
+    icons = {
+      package_pending = " ",
+      package_installed = "󰄳 ",
+      package_uninstalled = " 󰇚",
+    },
+
+    keymaps = {
+      toggle_server_expand = "<CR>",
+      install_server = "i",
+      update_server = "u",
+      check_server_version = "c",
+      update_all_servers = "U",
+      check_outdated_servers = "C",
+      uninstall_server = "X",
+      cancel_installation = "<C-c>",
+    },
+  },
 }
 
 -- git support in nvimtree
@@ -182,7 +201,7 @@ M.nvimtree = {
 
 M.telescope = {
   defaults = {
-    file_ignore_patterns = { "node_modules", ".docker", ".git", "yarn.lock" },
+    file_ignore_patterns = { "node_modules", ".docker", ".git", "yarn.lock", "go.sum", "go.mod", "tags" },
   },
   extensions_list = { "themes", "terms", "notify", "frecency", "undo", "vim_bookmarks", "harpoon" },
   extensions = {
