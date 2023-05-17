@@ -255,13 +255,13 @@ M.session = {
       function()
         require("nvim-possession").new()
       end,
-      " Save session",
+      " New session",
     },
     ["<leader>sd"] = {
       function()
         require("nvim-possession").delete()
       end,
-      " Save session",
+      " Delete session",
     },
   },
 }

@@ -439,7 +439,7 @@ local plugins = {
   },
   {
     "RRethy/vim-illuminate",
-    event = "BufReadPost",
+    event = "VeryLazy",
     dependencies = "nvim-treesitter",
     config = function()
       require "custom.configs.illuminate"
