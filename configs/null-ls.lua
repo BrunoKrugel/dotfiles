@@ -43,7 +43,7 @@ local sources = {
   b.diagnostics.eslint,
   b.diagnostics.fish,
   b.diagnostics.checkmake,
-  b.diagnostics.codespell,
+  -- b.diagnostics.codespell,
   b.diagnostics.dotenv_linter,
   b.diagnostics.jsonlint,
   -- Completion
