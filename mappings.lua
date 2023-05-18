@@ -104,6 +104,8 @@ M.text = {
   v = {
     ["<C-Up>"] = { ":m'<-2<CR>gv=gv", "󰜸 Move selection up", opts = { silent = true } },
     ["<C-Down>"] = { ":m'>+1<CR>gv=gv", "󰜯 Move selection down", opts = { silent = true } },
+    ["<Home>"] = { "gg", "Home"},
+    ["<End>"] = { "G", "End"},
     ['"'] = { 'xi"<esc>pa"<esc>', "󱀡 Insert double quote" },
     ["'"] = { "xi'<esc>pa'<esc>", "󱀢 Insert single double" },
     ["v["] = { "xi[<esc>pa]<esc>", "󰅪 Insert [" },
@@ -146,6 +148,12 @@ M.general = {
       end,
       "󰂵 Toggle transparency",
     },
+    ["<leader>w"] = {
+      function()
+        require("nvchad_ui.tabufline").close_buffer()
+      end,
+      "Close buffer",
+    },
   },
 }
 
@@ -171,7 +179,12 @@ M.git = {
     ["<leader>gb"] = { "<cmd>Telescope git_branches<CR>", "  Git branches" },
     ["<leader>gs"] = { "<cmd>Telescope git_status<CR>", "  Git status" },
     ["<leader>gg"] = { "<cmd>LazyGit<CR>", "  LazyGit" },
-    ["<leader>bl"] = { "<cmd>:Gitsigns toggle_current_line_blame <CR>", "  Toggle blame line" },
+    ["<leader>gl"] = {
+      function()
+        package.loaded.gitsigns.blame_line()
+      end,
+      "  Blame line",
+    },
     ["<leader>gvd"] = { "<cmd> DiffviewOpen<CR>", "  Show git diff" },
     ["<leader>gvf"] = { "<cmd> DiffviewFileHistory %<CR>", "  Show file history" },
     ["<leader>gvp"] = { "<cmd> DiffviewOpen --cached<CR>", "  Show staged diffs" },

@@ -11,11 +11,6 @@ local plugins = {
           require "custom.configs.null-ls"
         end,
       },
-      {
-        "folke/neodev.nvim",
-        ft = "lua",
-        config = true,
-      },
     },
     config = function()
       require "plugins.configs.lspconfig"
@@ -25,7 +20,6 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
-      { "JoosepAlviste/nvim-ts-context-commentstring", ft = "javascriptreact" },
       "windwp/nvim-ts-autotag",
     },
     opts = overrides.treesitter,
@@ -153,6 +147,7 @@ local plugins = {
   },
   {
     "numToStr/Comment.nvim",
+    dependencies = {"JoosepAlviste/nvim-ts-context-commentstring", ft = "javascriptreact"},
     config = function()
       require("Comment").setup {
         pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
@@ -445,6 +440,13 @@ local plugins = {
       require "custom.configs.illuminate"
     end,
   },
+  -- {
+  --   "echasnovski/mini.nvim",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require("mini.animate").setup()
+  --   end,
+  -- },
   {
     "folke/noice.nvim",
     lazy = false,
