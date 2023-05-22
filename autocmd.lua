@@ -1,5 +1,6 @@
 local autocmd = vim.api.nvim_create_autocmd
 
+-- Change cursor color on mode change
 -- autocmd({ "ModeChanged" }, {
 --   callback = function()
 --     local current_mode = vim.fn.mode()
@@ -28,21 +29,21 @@ autocmd("VimResized", {
   command = "tabdo wincmd =",
 })
 
+-- Fix semantic tokens for lsp
 autocmd("LspAttach", {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     client.server_capabilities.semanticTokensProvider = nil
   end,
-});
+})
 
--- autocmd BufEnter * silent! lcd %:p:h
 -- the same as autochdir but better for nvim-tree and other plugins.
 --   autocmd("BufEnter", {
 --     pattern = "*",
 --     command = "silent! lcd %:p:h",
 --   })
 
--- Auto format on save
+-- Auto format on save (mess with undo history)
 -- autocmd("BufWritePre", {
 --   pattern = { "*.js", "*.java", "*.lua" },
 --   callback = function()
@@ -50,6 +51,7 @@ autocmd("LspAttach", {
 --   end,
 -- })
 
+-- Load highlights on save
 -- autocmd("BufWritePost", {
 --   pattern = "*",
 --   callback = function()
@@ -57,6 +59,7 @@ autocmd("LspAttach", {
 --   end,
 -- })
 
+-- Highlight yanked text
 -- autocmd("TextYankPost", {
 --   pattern = "*",
 --   callback = function()
