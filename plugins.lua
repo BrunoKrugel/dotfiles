@@ -592,9 +592,11 @@ local plugins = {
   },
   {
     "rest-nvim/rest.nvim",
-    cmd = { "RestRun", "RestNvim", "RestNvimPreview", "RestNvimPreviewClose" },
+    ft = { "http" },
     config = function()
-      require "custom.configs.rest"
+      require("rest-nvim").setup({
+        result_split_horizontal = true,
+      })
     end,
   },
   {
