@@ -110,6 +110,7 @@ M.mason = {
     "eslint-lsp",
     "css-lsp",
     "html-lsp",
+    "http",
 
     "codespell",
     "jsonlint",
@@ -147,7 +148,7 @@ M.mason = {
 -- git support in nvimtree
 M.nvimtree = {
   filters = {
-    -- dotfiles = true,
+    dotfiles = false,
     custom = { "node_modules" },
   },
   git = {
