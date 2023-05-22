@@ -47,6 +47,11 @@ M.devicons = {
       cterm_color = "250",
       name = "Tags",
     },
+    ["http"] = {
+      icon = "󰖟",
+      color = "#519aba",
+      name = "Http",
+    },
   },
 }
 
@@ -56,6 +61,7 @@ M.treesitter = {
     "bash",
     "json",
     "html",
+    "jq",
     "json5",
     "gomod",
     "gowork",
