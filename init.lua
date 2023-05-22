@@ -1,4 +1,5 @@
 local opt = vim.opt
+local g = vim.g
 
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
@@ -7,13 +8,20 @@ opt.backup = false
 opt.swapfile = false
 
 opt.scrolloff = 10
-opt.relativenumber = false
+opt.relativenumber = false -- Show relative numberline
 opt.wrap = false
+opt.splitkeep = "screen"  -- Maintain code view when splitting
+opt.foldcolumn = "1" -- show foldcolumn in nvim 0.9
+opt.foldlevel = 1 -- set high foldlevel for nvim-ufo
+opt.foldnestmax = 2
+opt.foldlevelstart = 99
+opt.foldenable = true
+opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 -- Avoid conflict with nvim-cmp's tab fallback
--- vim.g.copilot_no_tab_map = true
-vim.g.copilot_assume_mapped = true
--- vim.g.copilot_tab_fallback = ''
+-- g.copilot_no_tab_map = true
+g.copilot_assume_mapped = true
+-- g.copilot_tab_fallback = ''
 -- vim.keymap.set('i', '<Tab>', [[copilot#Accept('')]], { noremap = true, silent = true, expr = true })
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
@@ -29,15 +37,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
   update_in_insert = false,
 })
 
-vim.g.bookmark_sign = ""
-vim.g.bookmark_highlight = "DevIconErb"
-
-vim.o.foldcolumn = "1"
-vim.o.foldlevel = 1
-vim.o.foldnestmax = 2
-vim.o.foldlevelstart = 99
-vim.o.foldenable = true
-vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+g.bookmark_sign = ""
+g.bookmark_highlight = "DevIconErb"
+g.highlighturl_enabled = true -- highlight URLs by default
 
 vim.fn.sign_define("DapBreakpoint", {
   text = "",
@@ -46,13 +48,6 @@ vim.fn.sign_define("DapBreakpoint", {
   numhl = "",
 })
 
-if vim.g.neovide then
-  opt.guifont = "Hack Nerd Font:h12"
-  vim.g.neovide_refresh_rate = 120
-  vim.g.neovide_remember_window_size = true
-  vim.g.neovide_cursor_antialiasing = true
-  vim.g.neovide_input_macos_alt_is_meta = true
-end
-
 require "custom.autocmd"
 require "custom.usrcmd"
+require "custom.neovide"
