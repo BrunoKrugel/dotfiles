@@ -18,6 +18,15 @@ M.disabled = {
   },
 }
 
+M.rest = {
+  n = {
+    ["<leader>re"] = { "<cmd> RestRun <CR>", "RestNvim Run" },
+    ["<leader>rr"] = { "<cmd> RestNvim <CR>", "RestNvim Run" },
+    ["<leader>rp"] = { "<cmd> RestNvimPreview <CR>", "RestNvim Preview" },
+    ["<leader>rc"] = { "<cmd> RestNvimPreviewClose <CR>", "RestNvim Preview Close" },
+  },
+}
+
 M.comment = {
   plugin = true,
 
@@ -58,6 +67,7 @@ M.text = {
   },
 
   n = {
+    ["<leader>cc"] = { "<cmd> CCToggle <CR>", "Toggle ColorColumn display" },
     -- Navigate
     ["<A-Left>"] = { "<ESC>_", "󰜲 Move to beginning of line" },
     ["<A-Right>"] = { "<ESC>$", "󰜵 Move to end of line" },
@@ -75,7 +85,7 @@ M.text = {
     ["<C-Up>"] = { "<cmd> :m-2<CR>", "󰜸 Move line up" },
     ["<C-Down>"] = { "<cmd> :m+<CR>", "󰜯 Move line down" },
     -- Renamer
-    ["<C-A-R>"] = { "<cmd>:MurenToggle<CR>", "󱝪 Toggle Search"},
+    ["<C-A-R>"] = { "<cmd>:MurenToggle<CR>", "󱝪 Toggle Search" },
     ["<leader>rn"] = { "<cmd> :lua require('renamer').rename()<CR>", "󰑕 Rename" },
     ["<leader>i"] = {
       function()
@@ -104,8 +114,8 @@ M.text = {
   v = {
     ["<C-Up>"] = { ":m'<-2<CR>gv=gv", "󰜸 Move selection up", opts = { silent = true } },
     ["<C-Down>"] = { ":m'>+1<CR>gv=gv", "󰜯 Move selection down", opts = { silent = true } },
-    ["<Home>"] = { "gg", "Home"},
-    ["<End>"] = { "G", "End"},
+    ["<Home>"] = { "gg", "Home" },
+    ["<End>"] = { "G", "End" },
     ['"'] = { 'xi"<esc>pa"<esc>', "󱀡 Insert double quote" },
     ["'"] = { "xi'<esc>pa'<esc>", "󱀢 Insert single double" },
     ["v["] = { "xi[<esc>pa]<esc>", "󰅪 Insert [" },
@@ -308,7 +318,7 @@ M.bookmark = {
 
 M.lspsaga = {
   n = {
-    ["<leader>ca"] = { "<cmd>Lspsaga code_action<CR>", "󰅱 Code Action" },
+    ["<leader>ac"] = { "<cmd>Lspsaga code_action<CR>", "󰅱 Code Action" },
     --  ["gd"] = {
     --     function()
     --         vim.cmd("Lspsaga lsp_finder")

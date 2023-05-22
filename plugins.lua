@@ -56,6 +56,10 @@ local plugins = {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
       },
+      {
+        "nvim-telescope/telescope-frecency.nvim",
+        dependencies = { "kkharji/sqlite.lua" },
+      },
     },
   },
   { "williamboman/mason.nvim", opts = overrides.mason },
@@ -127,16 +131,12 @@ local plugins = {
   },
   {
     "wuelnerdotexe/vim-astro",
+    event = "VeryLazy",
     ft = "astro",
   },
   {
     "nvim-treesitter/playground",
     cmd = "TSCaptureUnderCursor",
-  },
-  {
-    "nvim-telescope/telescope-frecency.nvim",
-    event = "VimEnter",
-    dependencies = { "kkharji/sqlite.lua" },
   },
   {
     "anuvyklack/pretty-fold.nvim",
@@ -147,7 +147,7 @@ local plugins = {
   },
   {
     "numToStr/Comment.nvim",
-    dependencies = {"JoosepAlviste/nvim-ts-context-commentstring", ft = "javascriptreact"},
+    dependencies = { "JoosepAlviste/nvim-ts-context-commentstring", ft = "javascriptreact" },
     config = function()
       require("Comment").setup {
         pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
@@ -252,7 +252,7 @@ local plugins = {
   },
   {
     "chikko80/error-lens.nvim",
-    event = "BufRead",
+    event = "LspAttach",
     ft = "go",
     config = true,
     dependencies = {
@@ -272,6 +272,7 @@ local plugins = {
       }
     end,
   },
+  -- { 'mrjones2014/smart-splits.nvim', config = true, event = "BufReadPost" },
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
@@ -526,10 +527,28 @@ local plugins = {
     dependencies = {
       "MunifTanjim/nui.nvim",
     },
-    event = "BufReadPost",
+    cmd = { "SearchBoxMatchAll", "SearchBoxReplace", "SearchBoxIncSearch" },
+    config = true,
+  },
+  {
+    "lukas-reineke/virt-column.nvim",
+    cmd = "CCToggle",
     config = function()
-      require "custom.configs.searchbox"
+      require("virt-column").setup {
+        char = "|",
+      }
     end,
+  },
+  {
+    "rest-nvim/rest.nvim",
+    cmd = { "RestRun", "RestNvim", "RestNvimPreview", "RestNvimPreviewClose" },
+    config = function()
+      require "custom.configs.rest"
+    end,
+  },
+  {
+    "f-person/git-blame.nvim",
+    cmd = "GitBlameToggle",
   },
   { "mfussenegger/nvim-dap" },
   { "rcarriga/nvim-dap-ui", dependencies = { "theHamsta/nvim-dap-virtual-text" } },
