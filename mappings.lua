@@ -87,6 +87,7 @@ M.text = {
     -- Renamer
     ["<C-A-R>"] = { "<cmd>:MurenToggle<CR>", "󱝪 Toggle Search" },
     ["<leader>rn"] = { "<cmd> :lua require('renamer').rename()<CR>", "󰑕 Rename" },
+    ["<leader>re"] = { "<cmd> :IncRename<CR>", "󰑕 Rename" },
     ["<leader>i"] = {
       function()
         require("nvim-toggler").toggle()
@@ -143,14 +144,19 @@ M.general = {
     [";"] = { ":", "󰘳 Enter command mode", opts = { nowait = true } },
     ["<leader>q"] = { "<cmd> qa! <CR>", "󰗼 Exit" },
 
+    -- Keep cursor in the center line when C-D / C-U
+    ["<C-d>"] = { "<C-d>zz", opts = { silent = true } },
+    ["<C-u>"] = { "<C-u>zz", opts = { silent = true } },
+
+    -- Diagnostics and TODOs
     ["<leader>t"] = { "<cmd>TroubleToggle<cr>", " Toggle warnings" },
     ["<leader>td"] = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", " Todo/Fix/Fixme (Trouble)" },
+    ["<leader>el"] = { "<cmd>ErrorLensToggle<cr>", "󱇭 Toggle error lens" },
 
     -- Split
     ["<C-h>"] = { "<cmd>vs <CR>", "󰤼 Vertical split", opts = { nowait = true } },
     ["<C-y>"] = { "<cmd>sp <CR>", "󰤻 Horizontal split", opts = { nowait = true } },
 
-    ["<leader>el"] = { "<cmd>ErrorLensToggle<cr>", "󱇭 Toggle error lens" },
     ["<leader>cs"] = { "<cmd>SymbolsOutline<cr>", " Symbols Outline" },
     ["<leader>tr"] = {
       function()
@@ -294,6 +300,8 @@ M.hop = {
   n = {
     ["<leader><leader>w"] = { "<cmd> HopWord <CR>", "󰸱 hint all words" },
     ["<leader><leader>l"] = { "<cmd> HopLine <CR>", "hint line" },
+    ["f"] = { "<cmd> lua require'hop'.hint_char1() <CR>", "Hop 1 char" },
+    ["F"] = { "<cmd> lua require'hop'.hint_char2() <CR>", "Hop 2 char" },
     ["<leader>hl"] = { ":HopLineStart<CR>" },
     ["<leader>hw"] = { ":HopWordCurrentLine<CR>" },
   },
@@ -316,23 +324,52 @@ M.bookmark = {
   },
 }
 
+-- M.smartsplits = {
+-- 	n = {
+-- 		["<A-Up>"] = { "<cmd>lua require('smart-splits').resize_up()<CR>", "Resize window up" },
+-- 		["<A-Down>"] = { "<cmd>lua require('smart-splits').resize_down()<CR>", "Resize window down" },
+-- 		["<A-Left>"] = { "<cmd>lua require('smart-splits').resize_left()<CR>", "Resize window left" },
+-- 		["<A-Right>"] = { "<cmd>lua require('smart-splits').resize_right()<CR>", "Resize window right" },
+-- 		["<leader>h"] = { "<cmd>lua require('smart-splits').swap_buf_left()<CR>", "Swap buffer left" },
+-- 		["<leader>j"] = { "<cmd>lua require('smart-splits').swap_buf_down()<CR>", "Swap buffer down" },
+-- 		["<leader>k"] = { "<cmd>lua require('smart-splits').swap_buf_up()<CR>", "Swap buffer up" },
+-- 		["<<leader>l"] = { "<cmd>lua require('smart-splits').swap_buf_right()<CR>", "Swap buffer right" },
+-- 	},
+-- }
+
+-- M.navigator = {
+--   n = {
+
+--     ["<C-h>"] = { "<cmd> NavigatorLeft <CR>", "navigate left" },
+--     ["<C-j>"] = { "<cmd> NavigatorDown <CR>", "navigate down" },
+--     ["<C-k>"] = { "<cmd> NavigatorUp <CR>", "navigate up" },
+--     ["<C-l>"] = { "<cmd> NavigatorRight <CR>", "navigate right" },
+--   },
+--   t = {
+--     ["<C-h>"] = { "<cmd> NavigatorLeft <CR>", "navigate left" },
+--     ["<C-j>"] = { "<cmd> NavigatorDown <CR>", "navigate down" },
+--     ["<C-k>"] = { "<cmd> NavigatorUp <CR>", "navigate up" },
+--     ["<C-l>"] = { "<cmd> NavigatorRight <CR>", "navigate right" },
+--   },
+-- }
+
 M.lspsaga = {
   n = {
     ["<leader>ac"] = { "<cmd>Lspsaga code_action<CR>", "󰅱 Code Action" },
-    --  ["gd"] = {
-    --     function()
-    --         vim.cmd("Lspsaga lsp_finder")
-    --     end,
-    --     "Go to definition",
-    -- },
-    -- ["<leader>lp"] = {
-    --     "<cmd>Lspsaga peek_definition<cr>",
-    --     "Peek definition",
-    -- },
-    -- ["<leader>k"] = {
-    --     "<Cmd>Lspsaga hover_doc<cr>",
-    --     "Hover lsp",
-    -- },
+    ["gd"] = {
+      function()
+        vim.cmd "Lspsaga lsp_finder"
+      end,
+      "Go to definition",
+    },
+    ["<leader>lp"] = {
+      "<cmd>Lspsaga peek_definition<cr>",
+      "Peek definition",
+    },
+    ["<leader>k"] = {
+      "<Cmd>Lspsaga hover_doc<cr>",
+      "Hover lsp",
+    },
   },
 }
 
