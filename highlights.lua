@@ -56,6 +56,17 @@ M.add = {
   FoldColumn = {
     bg = "black",
   },
+
+  TSRainbowRed = { fg = "#be6069" },
+  TSRainbowYellow = { fg = "#ebca8a" },
+  TSRainbowBlue = { fg = "#81a0c0" },
+  TSRainbowOrange = { fg = "#b48dac" },
+  TSRainbowGreen = { fg = "#a3bd8b" },
+  TSRainbowViolet = { fg = "#88bfcf" },
+  TSRainbowCyan = { fg = "#e5e8ef" },
+  HlSearchNear = { fg = "#2E3440", bg = "#EBCB8B" },
+  HlSearchLens = { fg = "#2E3440", bg = "#88bfcf" },
+  HlSearchLensNear = { fg = "#2E3440", bg = "#EBCB8B" },
 }
 
 return M
