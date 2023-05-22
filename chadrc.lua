@@ -12,8 +12,7 @@ M.ui = {
     theme = "vscode_colored",
     overriden_modules = function()
       local st_modules = require "nvchad_ui.statusline.vscode_colored"
-      -- this is just default table of statusline modules
-
+      -- Load info for harpoon
       local function get_marked()
         local Marked = require "harpoon.mark"
         local filename = vim.api.nvim_buf_get_name(0)
@@ -24,7 +23,7 @@ M.ui = {
           return ""
         end
       end
-
+      -- Load info for possession
       local function get_session()
         local session = require("nvim-possession").status()
         if session ~= nil then
@@ -47,7 +46,6 @@ M.ui = {
             .. get_session()
             .. " "
             .. st_modules.LSP_Diagnostics()
-          -- or just return "" to hide this module
         end,
       }
     end,
