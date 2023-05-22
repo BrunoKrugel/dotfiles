@@ -23,10 +23,6 @@ create_cmd("CCToggle", function()
   end
 end, {})
 
-create_cmd("RestRun", function ()
-  require("rest-nvim").run()
-end, {})
-
 create_cmd("AutosaveToggle", function()
   vim.g.autosave = not vim.g.autosave
 
