@@ -86,6 +86,12 @@ M.treesitter = {
     enable = true,
     extended_mode = false,
     max_file_lines = 1000,
+    query = {
+			"rainbow-parens",
+			html = "rainbow-tags",
+			javascript = "rainbow-tags-react",
+			tsx = "rainbow-tags",
+		},
   },
   context_commentstring = {
     enable = true,
