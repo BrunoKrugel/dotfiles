@@ -20,10 +20,7 @@ M.disabled = {
 
 M.rest = {
   n = {
-    ["<leader>re"] = { "<cmd> RestRun <CR>", "RestNvim Run" },
-    ["<leader>rr"] = { "<cmd> RestNvim <CR>", "RestNvim Run" },
-    ["<leader>rp"] = { "<cmd> RestNvimPreview <CR>", "RestNvim Preview" },
-    ["<leader>rc"] = { "<cmd> RestNvimPreviewClose <CR>", "RestNvim Preview Close" },
+    ["<leader>re"] = { function() require("rest-nvim").run() end, "󰖟 RestNvim Run" },
   },
 }
 
@@ -264,10 +261,10 @@ M.test = {
 }
 
 M.nvimtree = {
-  plugin = true,
-
   n = {
-    -- toggle
+    ["<C-b>"] = { "<cmd> NvimTreeToggle <CR>", "󰔱 Toggle nvimtree" },
+  },
+  i = {
     ["<C-b>"] = { "<cmd> NvimTreeToggle <CR>", "󰔱 Toggle nvimtree" },
   },
 }
