@@ -155,6 +155,7 @@ noice.setup {
     -- inc_rename = true,
     -- cmdline_output_to_split = false,
     lsp_doc_border = true,
+    inc_rename = true,
   },
   -- format = {
   --   level = {
