@@ -2,6 +2,7 @@ local overrides = require "custom.configs.overrides"
 
 ---@type NvPluginSpec[]
 local plugins = {
+  ----------------------------------------- default plugins ------------------------------------------
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -11,6 +12,7 @@ local plugins = {
           require "custom.configs.null-ls"
         end,
       },
+      -- { "ray-x/lsp_signature.nvim" },
     },
     config = function()
       require "plugins.configs.lspconfig"
@@ -91,11 +93,19 @@ local plugins = {
       },
     },
   },
+  --------------------------------------------- custom plugins ----------------------------------------------
   {
     "nvim-telescope/telescope-ui-select.nvim",
     event = "VeryLazy",
     config = function()
       require("telescope").load_extension "ui-select"
+    end,
+  },
+  {
+    "numToStr/Navigator.nvim",
+    cmd = { "NavigatorLeft", "NavigatorRight", "NavigatorUp", "NavigatorDown" },
+    config = function()
+      require("Navigator").setup()
     end,
   },
   {
@@ -115,7 +125,6 @@ local plugins = {
     "declancm/vim2vscode",
     cmd = "Code",
   },
-  { "ethanholz/nvim-lastplace", config = true, event = "BufRead" },
   {
     "ThePrimeagen/harpoon",
     cmd = "Harpoon",
@@ -140,7 +149,18 @@ local plugins = {
   },
   {
     "anuvyklack/pretty-fold.nvim",
-    event = "BufReadPre",
+    event = "BufWinEnter",
+    dependencies = {
+      {
+        "anuvyklack/fold-preview.nvim",
+        dependencies = {
+          "anuvyklack/keymap-amend.nvim",
+        },
+        opts = {
+          border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+        },
+      },
+    },
     config = function()
       require "custom.configs.pretty-fold"
     end,
@@ -156,7 +176,7 @@ local plugins = {
   },
   {
     "m-demare/hlargs.nvim",
-    event = "VimEnter",
+    event = "BufWinEnter",
     config = function()
       require("hlargs").setup()
     end,
@@ -181,6 +201,7 @@ local plugins = {
       },
     },
     event = "BufReadPost",
+    keys = { "zf", "zo", "za", "zc", "zM", "zR" },
     config = function()
       require("ufo").setup {
         provider_selector = function()
@@ -247,7 +268,7 @@ local plugins = {
   },
   {
     "tenxsoydev/karen-yank.nvim",
-    event = "BufReadPost",
+    event = "VeryLazy",
     config = true,
   },
   {
@@ -270,6 +291,18 @@ local plugins = {
         height_ratio = 0.8,
         autoclose = false,
       }
+    end,
+  },
+  {
+    "smjonas/inc-rename.nvim",
+    event = "LspAttach",
+    config = true,
+  },
+  {
+    "toppair/peek.nvim",
+    build = "deno task --quiet build:debug",
+    config = function()
+      require "custom.configs.peek"
     end,
   },
   -- { 'mrjones2014/smart-splits.nvim', config = true, event = "BufReadPost" },
@@ -316,7 +349,7 @@ local plugins = {
   },
   {
     "nguyenvukhang/nvim-toggler",
-    event = "BufReadPost",
+    keys = { "<leader>i" },
     config = function()
       require("nvim-toggler").setup {
         -- removes the default <leader>i keymap
@@ -332,7 +365,7 @@ local plugins = {
     },
     config = function()
       require("nvim-possession").setup {
-        autoload = true,
+        autoload = false,
         sessions = {
           sessions_icon = "",
         },
@@ -428,14 +461,14 @@ local plugins = {
   {
     "rainbowhxch/accelerated-jk.nvim",
     dependencies = "nvim-treesitter",
-    event = "BufWinEnter",
+    event = "VeryLazy",
     config = function()
       require "custom.configs.accelerated-jk"
     end,
   },
   {
     "RRethy/vim-illuminate",
-    event = "VeryLazy",
+    event = { "CursorHold", "CursorHoldI" },
     dependencies = "nvim-treesitter",
     config = function()
       require "custom.configs.illuminate"
@@ -472,7 +505,7 @@ local plugins = {
   },
   {
     "karb94/neoscroll.nvim",
-    event = "BufReadPost",
+    keys = { "<C-d>", "<C-u>" },
     config = function()
       require "custom.configs.neoscroll"
     end,
@@ -502,7 +535,10 @@ local plugins = {
   {
     "ray-x/go.nvim",
     ft = { "go", "gomod" },
-    dependencies = { "ray-x/guihua.lua", "nvim-treesitter" },
+    dependencies = { {
+      "ray-x/guihua.lua",
+      build = "cd lua/fzy && make",
+    }, "nvim-treesitter" },
     config = function()
       require "custom.configs.go"
     end,
@@ -515,6 +551,21 @@ local plugins = {
   --     require("lsp_lines").setup()
   --   end,
   -- },
+  {
+    "zbirenbaum/neodim",
+    event = "LspAttach",
+    branch = v2,
+    config = function()
+      require("neodim").setup {
+        refresh_delay = 75, -- time in ms to wait after typing before refresh diagnostics
+        alpha = 0.75,
+        blend_color = "#000000",
+        hide = { underline = true, virtual_text = true, signs = true },
+        priority = 100, -- priority of dim highlights (increasing may interfere with semantic tokens!!)
+        disable = {}, -- table of filetypes to disable neodim
+      }
+    end,
+  },
   {
     "github/copilot.vim",
     lazy = false,
@@ -550,8 +601,8 @@ local plugins = {
     "f-person/git-blame.nvim",
     cmd = "GitBlameToggle",
   },
-  { "mfussenegger/nvim-dap" },
-  { "rcarriga/nvim-dap-ui", dependencies = { "theHamsta/nvim-dap-virtual-text" } },
+  { "mfussenegger/nvim-dap", event = "VeryLazy" },
+  { "rcarriga/nvim-dap-ui", event = "VeryLazy", dependencies = { "theHamsta/nvim-dap-virtual-text" } },
   {
     "mrjones2014/nvim-ts-rainbow",
     event = "BufReadPost",
@@ -560,6 +611,7 @@ local plugins = {
   {
     "folke/todo-comments.nvim",
     dependencies = "nvim-lua/plenary.nvim",
+
     event = { "BufReadPost" },
     config = function()
       require "custom.configs.todo"
@@ -580,6 +632,13 @@ local plugins = {
     setup = function()
       require "custom.configs.visual-multi"
     end,
+  },
+  {
+    "dstein64/vim-startuptime",
+    config = function()
+      vim.cmd "let $NEOVIM_MEASURE_STARTUP_TIME = 'TRUE'"
+    end,
+    cmd = { "StartupTime" },
   },
   -- { "gen740/SmoothCursor.nvim",   event = "VimEnter",    config = true },
   { "danilamihailov/beacon.nvim", event = "BufReadPost" },
