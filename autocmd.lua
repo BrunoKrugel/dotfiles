@@ -37,6 +37,17 @@ autocmd("LspAttach", {
   end,
 })
 
+-- Auto Command for removing scrolloff for certain filetypes
+autocmd({ "BufEnter" }, {
+  callback = function ()
+    vim.o.scrolloff = (
+      vim.bo.filetype == "NvimTree" or
+      vim.bo.filetype == "nvdash"   or
+      vim.bo.filetype == "terminal")
+      and 0 or 10
+  end
+})
+
 -- the same as autochdir but better for nvim-tree and other plugins.
 --   autocmd("BufEnter", {
 --     pattern = "*",

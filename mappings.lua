@@ -27,7 +27,7 @@ M.rest = {
 M.comment = {
   plugin = true,
 
-  -- toggle comment in both modes
+  -- toggle comment in both modesx
   n = {
     ["<A-/>"] = {
       function()
@@ -85,7 +85,7 @@ M.text = {
     ["<C-A-R>"] = { "<cmd>:MurenToggle<CR>", "󱝪 Toggle Search" },
     ["<leader>rn"] = { "<cmd> :lua require('renamer').rename()<CR>", "󰑕 Rename" },
     ["<leader>re"] = { "<cmd> :IncRename<CR>", "󰑕 Rename" },
-    ["<leader>i"] = {
+    ["<leader>it"] = {
       function()
         require("nvim-toggler").toggle()
       end,
