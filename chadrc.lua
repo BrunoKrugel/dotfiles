@@ -32,6 +32,15 @@ M.ui = {
           return "󰐄 "
         end
       end
+
+      local function get_npm()
+        local npm = require("package-info").get_status()
+        if npm ~= nil then
+          return npm
+        else
+          return ""
+        end
+      end
       return {
         LSP_Diagnostics = function()
           return "%#CopilotHl#"
@@ -45,7 +54,14 @@ M.ui = {
             .. "%#SessionHl#"
             .. get_session()
             .. " "
+            -- .. "%#NpmHl#"
+            -- .. get_npm()
+            -- .. " "
             .. st_modules.LSP_Diagnostics()
+        end,
+
+        LSP_progress = function()
+          return st_modules.LSP_progress() .. " " .. "%#NpmHl#" .. get_npm()
         end,
       }
     end,
