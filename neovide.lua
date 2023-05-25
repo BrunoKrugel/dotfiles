@@ -7,4 +7,5 @@ if g.neovide then
     g.neovide_remember_window_size = true
     g.neovide_cursor_antialiasing = true
     g.neovide_input_macos_alt_is_meta = true
+    g.neovide_input_use_logo = false  
 end

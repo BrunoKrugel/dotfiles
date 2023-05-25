@@ -17,6 +17,10 @@ local plugins = {
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
+      -- Noice
+      -- vim.notify = require("noice").notify
+      -- vim.lsp.handlers["textDocument/hover"] = require("noice").hover
+      -- vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
     end,
   },
   {
@@ -50,6 +54,7 @@ local plugins = {
       "nvim-lua/plenary.nvim",
       "debugloop/telescope-undo.nvim",
       "tom-anders/telescope-vim-bookmarks.nvim",
+      "tsakirist/telescope-lazy.nvim",
       {
         "ThePrimeagen/harpoon",
         cmd = "Harpoon",
@@ -454,7 +459,7 @@ local plugins = {
     cmd = { "HopWord", "HopLine", "HopLineStart", "HopWordCurrentLine" },
     branch = "v2",
     config = function()
-      require "custom.configs.hop"
+      require("hop").setup { keys = "etovxqpdygfblzhckisuran" }
     end,
   },
 
@@ -528,6 +533,7 @@ local plugins = {
   {
     "lvimuser/lsp-inlayhints.nvim",
     event = "LspAttach",
+    branch = "anticonceal",
     config = function()
       require "custom.configs.lsp-inlayhints"
     end,
@@ -594,9 +600,9 @@ local plugins = {
     "rest-nvim/rest.nvim",
     ft = { "http" },
     config = function()
-      require("rest-nvim").setup({
+      require("rest-nvim").setup {
         result_split_horizontal = true,
-      })
+      }
     end,
   },
   {
@@ -604,7 +610,11 @@ local plugins = {
     cmd = "GitBlameToggle",
   },
   { "mfussenegger/nvim-dap", event = "VeryLazy" },
-  { "rcarriga/nvim-dap-ui", event = "VeryLazy", dependencies = { "theHamsta/nvim-dap-virtual-text" } },
+  {
+    "rcarriga/nvim-dap-ui",
+    event = "VeryLazy",
+    dependencies = { "theHamsta/nvim-dap-virtual-text", branch = "inline-text", config = true },
+  },
   {
     "mrjones2014/nvim-ts-rainbow",
     event = "BufReadPost",
@@ -641,6 +651,41 @@ local plugins = {
       vim.cmd "let $NEOVIM_MEASURE_STARTUP_TIME = 'TRUE'"
     end,
     cmd = { "StartupTime" },
+  },
+  { "ThePrimeagen/vim-be-good", cmd = "VimBeGood" },
+  { 'echasnovski/mini.surround', event = "VeryLazy"},
+  {
+    'samodostal/image.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      {
+        'm00qek/baleia.nvim',
+        tag = 'v1.3.0',
+      },
+    },
+    opts = {
+      render = {
+        min_padding = 5,
+        show_label = true,
+        use_dither = true,
+        foreground_color = true,
+        background_color = true
+      },
+      events = {
+        update_on_nvim_resize = true,
+      },
+    },
+    init = function ()
+      if not vim.fn.executable('ascii-image-converter') then
+        vim.api.nvim_command('echo "Command is not executable. snap install ascii-image-converter"')
+      end
+    end,
+    lazy = false,
+  },
+  {
+    "vuki656/package-info.nvim",
+    ft = { "json", "lua" },
+    config = true,
   },
   -- { "gen740/SmoothCursor.nvim",   event = "VimEnter",    config = true },
   { "danilamihailov/beacon.nvim", event = "BufReadPost" },

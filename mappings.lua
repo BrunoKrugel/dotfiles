@@ -20,7 +20,12 @@ M.disabled = {
 
 M.rest = {
   n = {
-    ["<leader>re"] = { function() require("rest-nvim").run() end, "󰖟 RestNvim Run" },
+    ["<leader>rs"] = {
+      function()
+        require("rest-nvim").run()
+      end,
+      "󰖟 RestNvim Run",
+    },
   },
 }
 
@@ -30,6 +35,12 @@ M.comment = {
   -- toggle comment in both modesx
   n = {
     ["<A-/>"] = {
+      function()
+        require("Comment.api").toggle.linewise.current()
+      end,
+      "  Toggle comment",
+    },
+    ["<D-/>"] = {
       function()
         require("Comment.api").toggle.linewise.current()
       end,
@@ -47,8 +58,8 @@ M.comment = {
 
 M.accelerated_jk = {
   n = {
-    j = { "<Plug>(accelerated_jk_gj)", " Accelerated down movement" },
     k = { "<Plug>(accelerated_jk_gk)", " Accelerated up movement" },
+    j = { "<Plug>(accelerated_jk_gj)", " Accelerated down movement" },
   },
 }
 
@@ -82,9 +93,16 @@ M.text = {
     ["<C-Up>"] = { "<cmd> :m-2<CR>", "󰜸 Move line up" },
     ["<C-Down>"] = { "<cmd> :m+<CR>", "󰜯 Move line down" },
     -- Renamer
-    ["<C-A-R>"] = { "<cmd>:MurenToggle<CR>", "󱝪 Toggle Search" },
+    ["<C-R>"] = { "<cmd>:MurenToggle<CR>", "󱝪 Toggle Search" },
     ["<leader>rn"] = { "<cmd> :lua require('renamer').rename()<CR>", "󰑕 Rename" },
-    ["<leader>re"] = { "<cmd> :IncRename<CR>", "󰑕 Rename" },
+    ["<leader>re"] = {
+      function()
+        return ":IncRename " .. vim.fn.expand "<cword>"
+      end,
+      -- ":IncRename "
+      "󰑕 Rename",
+      opts = { expr = true },
+    },
     ["<leader>it"] = {
       function()
         require("nvim-toggler").toggle()
@@ -101,6 +119,7 @@ M.text = {
       "󰆘 Toggle biscuits",
     },
 
+    ["<leader>fi"] = { " <cmd>:GoImport", "Format imports", opts = { silent = true } },
     ["<leader>fm"] = {
       function()
         vim.lsp.buf.format { async = true }
@@ -120,8 +139,8 @@ M.text = {
     ["v]"] = { "xi[<esc>pa]<esc>", "󰅪 Insert ]" },
     ["v{"] = { "xi{<esc>pa}<esc>", " Insert {" },
     ["v}"] = { "xi{<esc>pa}<esc>", " Insert }" },
-    ["("] = { "xi(<esc>pa)<esc>", "󱃗 Insert (" },
-    [")"] = { "xi(<esc>pa)<esc>", "󱃗 Insert )" },
+    ["("] = { "di(<esc>pa)<esc>", "󱃗 Insert (" },
+    [")"] = { "di(<esc>pa)<esc>", "󱃗 Insert )" },
     -- Indent backward/forward:
     ["<"] = { "<gv", "ident backward", opts = { silent = false } },
     [">"] = { ">gv", "ident forward", opts = { silent = false } },
@@ -170,6 +189,23 @@ M.general = {
   },
 }
 
+M.node = {
+  n = {
+    ["<leader>ns"] = {
+      "<cmd> lua require('package-info').show() <CR>",
+      "󰑬 Show package info",
+    },
+    ["<leader>nd"] = {
+      "<cmd> lua require('package-info').delete() <CR>",
+      "󰑬 Delete package",
+    },
+    ["<leader>np"] = {
+      "<cmd> lua require('package-info').change_version() <CR>",
+      "󰑬 install package",
+    },
+  },
+}
+
 M.treesitter = {
   n = {
     ["<leader>cu"] = { "<cmd> TSCaptureUnderCursor <CR>", " Find media" },
@@ -213,7 +249,7 @@ M.telescope = {
     ["<leader>fr"] = { "<cmd>Telescope frecency<CR>", " Recent files" },
     ["<leader>fu"] = { "<cmd>Telescope undo<CR>", " Undo tree" },
     ["<leader>fb"] = { "<cmd>Telescope vim_bookmarks all<CR>", " Bookmark" },
-    ["<leader>fi"] = {
+    ["<leader>fz"] = {
       "<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<CR>",
       " Find current file",
     },
@@ -296,9 +332,9 @@ M.session = {
 M.hop = {
   n = {
     ["<leader><leader>w"] = { "<cmd> HopWord <CR>", "󰸱 hint all words" },
-    ["<leader><leader>l"] = { "<cmd> HopLine <CR>", "hint line" },
-    ["f"] = { "<cmd> lua require'hop'.hint_char1() <CR>", "Hop 1 char" },
-    ["F"] = { "<cmd> lua require'hop'.hint_char2() <CR>", "Hop 2 char" },
+    -- ["<leader><leader>l"] = { "<cmd> HopLine <CR>", "hint line" },
+    ["<leader>f"] = { "<cmd> lua require'hop'.hint_char1() <CR>", "Hop 1 char" },
+    ["<leader>F"] = { "<cmd> lua require'hop'.hint_char2() <CR>", "Hop 2 char" },
     ["<leader>hl"] = { ":HopLineStart<CR>" },
     ["<leader>hw"] = { ":HopWordCurrentLine<CR>" },
   },
@@ -353,10 +389,14 @@ M.bookmark = {
 M.lspsaga = {
   n = {
     ["<leader>ac"] = { "<cmd>Lspsaga code_action<CR>", "󰅱 Code Action" },
-    ["gd"] = {
+    ["gh"] = {
       function()
         vim.cmd "Lspsaga lsp_finder"
       end,
+      "Go to definition",
+    },
+    ["gd"] = {
+      "<cmd>Lspsaga goto_definition<cr>",
       "Go to definition",
     },
     ["<leader>lp"] = {
@@ -450,13 +490,6 @@ M.lspconfig = {
     ["[d"] = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", " Prev Diagnostic" },
     ["]d"] = { "<cmd>Lspsaga diagnostic_jump_next<CR>", " Next Diagnostic" },
     ["<leader>la"] = { "<cmd>Lspsaga code_action<CR>", " Show Code Actions" },
-    ["<leader>lf"] = { "<cmd>Lspsaga lsp_finder<CR>", "󰈞 Lsp Finder" },
-    ["<leader>lr"] = {
-      function()
-        require("nvchad_ui.renamer").open()
-      end,
-      "󰑕 Lsp Rename",
-    },
     ["<leader>lq"] = {
       function()
         vim.diagnostic.setloclist()
