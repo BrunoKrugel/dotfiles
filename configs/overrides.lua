@@ -93,11 +93,11 @@ M.treesitter = {
     extended_mode = false,
     max_file_lines = 1000,
     query = {
-			"rainbow-parens",
-			html = "rainbow-tags",
-			javascript = "rainbow-tags-react",
-			tsx = "rainbow-tags",
-		},
+      "rainbow-parens",
+      html = "rainbow-tags",
+      javascript = "rainbow-tags-react",
+      tsx = "rainbow-tags",
+    },
   },
   context_commentstring = {
     enable = true,
@@ -134,7 +134,6 @@ M.mason = {
     "golines",
     "gomodifytags",
     "sonarlint-language-server",
-
   },
 
   ui = {
@@ -216,13 +215,38 @@ M.telescope = {
   defaults = {
     file_ignore_patterns = { "node_modules", ".docker", ".git", "yarn.lock", "go.sum", "go.mod", "tags" },
   },
-  extensions_list = { "themes", "terms", "notify", "frecency", "undo", "vim_bookmarks", "harpoon" },
+  extensions_list = {
+    "themes",
+    "terms",
+    "notify",
+    "frecency",
+    "undo",
+    "vim_bookmarks",
+    "harpoon",
+    "package_info",
+    "lazy",
+  },
   extensions = {
     fzf = {
       fuzzy = true,
       override_generic_sorter = true,
       override_file_sorter = true,
       case_mode = "smart_case",
+    },
+    lazy = {
+      -- Whether or not to show the icon in the first column
+      show_icon = true,
+      -- Mappings for the actions
+      mappings = {
+        open_in_browser = "<C-o>",
+        open_in_file_browser = "<M-b>",
+        open_in_find_files = "<C-f>",
+        open_in_live_grep = "<C-g>",
+        open_plugins_picker = "<C-b>", -- Works only after having called first another action
+        open_lazy_root_find_files = "<C-r>f",
+        open_lazy_root_live_grep = "<C-r>g",
+      },
+      -- Other telescope configuration options
     },
   },
 }
@@ -231,8 +255,6 @@ M.blankline = {
   filetype_exclude = {
     "help",
     "terminal",
-    "alpha",
-    "packer",
     "lspinfo",
     "TelescopePrompt",
     "TelescopeResults",
@@ -241,6 +263,9 @@ M.blankline = {
     "norg",
     "Empty",
   },
+  -- char = "¦",
+  -- context_char = "¦",
+  buftype_exclude = { "terminal", "nofile" },
   show_end_of_line = true,
   show_foldtext = true,
   show_trailing_blankline_indent = false,
