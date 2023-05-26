@@ -24,6 +24,13 @@ local plugins = {
     end,
   },
   {
+    'https://github.com/adelarsq/image_preview.nvim',
+    event = 'VeryLazy',
+    config = function()
+        require("image_preview").setup()
+    end
+},
+  {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       "windwp/nvim-ts-autotag",
@@ -41,6 +48,7 @@ local plugins = {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
+    -- enabled = false,
     opts = overrides.blankline,
   },
   {
@@ -259,17 +267,6 @@ local plugins = {
     "sindrets/diffview.nvim",
     cmd = "DiffviewOpen",
     config = true,
-  },
-  {
-    "simrat39/symbols-outline.nvim",
-    cmd = "SymbolsOutline",
-    config = function()
-      require("symbols-outline").setup {
-        auto_preview = false,
-        position = "right",
-        width = 16,
-      }
-    end,
   },
   {
     "tenxsoydev/karen-yank.nvim",
