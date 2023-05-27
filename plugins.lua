@@ -341,6 +341,7 @@ local plugins = {
       }
     end,
   },
+  { "tpope/vim-surround", event = "VeryLazy"},
   {
     "zbirenbaum/copilot-cmp",
     event = "VeryLazy",
@@ -694,7 +695,7 @@ local plugins = {
     end,
   },
   {
-    "glepnir/lspsaga.nvim",
+    "nvimdev/lspsaga.nvim",
     event = "LspAttach",
     config = function()
       require "custom.configs.lspsaga"
