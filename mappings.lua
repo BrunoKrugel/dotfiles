@@ -119,7 +119,7 @@ M.text = {
       "󰆘 Toggle biscuits",
     },
 
-    ["<leader>fi"] = { " <cmd>:GoImport", "Format imports", opts = { silent = true } },
+    ["<leader>fi"] = { " <cmd>:GoImport<CR>", "Format imports", opts = { silent = true } },
     ["<leader>fm"] = {
       function()
         vim.lsp.buf.format { async = true }
@@ -133,14 +133,6 @@ M.text = {
     ["<C-Down>"] = { ":m'>+1<CR>gv=gv", "󰜯 Move selection down", opts = { silent = true } },
     ["<Home>"] = { "gg", "Home" },
     ["<End>"] = { "G", "End" },
-    ['"'] = { 'xi"<esc>pa"<esc>', "󱀡 Insert double quote" },
-    ["'"] = { "xi'<esc>pa'<esc>", "󱀢 Insert single double" },
-    ["v["] = { "xi[<esc>pa]<esc>", "󰅪 Insert [" },
-    ["v]"] = { "xi[<esc>pa]<esc>", "󰅪 Insert ]" },
-    ["v{"] = { "xi{<esc>pa}<esc>", " Insert {" },
-    ["v}"] = { "xi{<esc>pa}<esc>", " Insert }" },
-    ["("] = { "di(<esc>pa)<esc>", "󱃗 Insert (" },
-    [")"] = { "di(<esc>pa)<esc>", "󱃗 Insert )" },
     -- Indent backward/forward:
     ["<"] = { "<gv", "ident backward", opts = { silent = false } },
     [">"] = { ">gv", "ident forward", opts = { silent = false } },
@@ -332,9 +324,7 @@ M.session = {
 M.hop = {
   n = {
     ["<leader><leader>w"] = { "<cmd> HopWord <CR>", "󰸱 hint all words" },
-    -- ["<leader><leader>l"] = { "<cmd> HopLine <CR>", "hint line" },
-    ["<leader>f"] = { "<cmd> lua require'hop'.hint_char1() <CR>", "Hop 1 char" },
-    ["<leader>F"] = { "<cmd> lua require'hop'.hint_char2() <CR>", "Hop 2 char" },
+    ["<leader><leader>l"] = { "<cmd> HopLine <CR>", "hint line" },
     ["<leader>hl"] = { ":HopLineStart<CR>" },
     ["<leader>hw"] = { ":HopWordCurrentLine<CR>" },
   },
@@ -505,11 +495,5 @@ M.lspconfig = {
     },
   },
 }
-
--- M.copilot = {
---   i = {
---     ["<C-j>"] = { 'copilot#Accept("<CR>")', "Accept completition", opts = { silent = true, expr = true } },
---   }
--- }
 
 return M
