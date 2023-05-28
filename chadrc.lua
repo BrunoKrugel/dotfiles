@@ -109,6 +109,15 @@ M.ui = {
       [[ ..''                                              ]],
       [[                                                  ]],
     },
+    buttons = {
+      { "󰈭  Global Search", "Spc f w", "Telescope live_grep" },
+      { "  Find File", "Spc f f", "Telescope find_files" },
+      { "󰈚  Recent Files", "Spc f r", "Telescope oldfiles" },
+      {"󰔫 Diagnostics", "Spc t  ", "TroubleToggle"},
+      { "  Bookmarks", "Spc b a", "Telescope marks" },
+      { "  Themes", "Spc t h", "Telescope themes" },
+      { "  Mappings", "Spc c h", "NvCheatsheet" },
+    },
   },
 }
 

@@ -157,7 +157,7 @@ M.general = {
     ["<C-u>"] = { "<C-u>zz", " Scroll up", opts = { silent = true } },
 
     -- Diagnostics and TODOs
-    ["<leader>t"] = { "<cmd>TroubleToggle<cr>", " Toggle warnings" },
+    ["<leader>t"] = { "<cmd>TroubleToggle<cr>", "󰔫 Toggle warnings" },
     ["<leader>td"] = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", " Todo/Fix/Fixme" },
     ["<leader>el"] = { "<cmd>ErrorLensToggle<cr>", "󱇭 Toggle error lens" },
 
@@ -375,7 +375,7 @@ M.bookmark = {
 
 M.lspsaga = {
   n = {
-    ["<leader>ac"] = { "<cmd>Lspsaga code_action<CR>", "󰅱 Code Action" },
+    ["<leader>ca"] = { "<cmd>Lspsaga code_action<CR>", "󰅱 Code Action" },
     ["gh"] = {
       function()
         vim.cmd "Lspsaga lsp_finder"
