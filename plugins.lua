@@ -24,12 +24,12 @@ local plugins = {
     end,
   },
   {
-    'https://github.com/adelarsq/image_preview.nvim',
-    event = 'VeryLazy',
+    "https://github.com/adelarsq/image_preview.nvim",
+    event = "VeryLazy",
     config = function()
-        require("image_preview").setup()
-    end
-},
+      require("image_preview").setup()
+    end,
+  },
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
@@ -301,18 +301,18 @@ local plugins = {
     config = true,
   },
   {
-    'toppair/peek.nvim',
-    build = 'deno task --quiet build:fast',
-    ft = {'markdown', 'vimwiki'},
+    "toppair/peek.nvim",
+    build = "deno task --quiet build:fast",
+    ft = { "markdown", "vimwiki" },
     config = function()
-      require('peek').setup({
-        app = 'firefox',
-        filetype = { 'markdown', 'vimwiki' },
-        })
+      require("peek").setup {
+        app = "firefox",
+        filetype = { "markdown", "vimwiki" },
+      }
     end,
     init = function()
-      vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
-      vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
+      vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+      vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
     end,
   },
   -- { 'mrjones2014/smart-splits.nvim', config = true, event = "BufReadPost" },
@@ -349,7 +349,7 @@ local plugins = {
       }
     end,
   },
-  { "tpope/vim-surround", event = "VeryLazy"},
+  { "tpope/vim-surround", event = "VeryLazy" },
   {
     "zbirenbaum/copilot-cmp",
     event = "VeryLazy",
@@ -518,7 +518,10 @@ local plugins = {
     "karb94/neoscroll.nvim",
     keys = { "<C-d>", "<C-u>" },
     config = function()
-      require "custom.configs.neoscroll"
+      require("neoscroll").setup { mappings = {
+        "<C-u>",
+        "<C-d>",
+      } }
     end,
   },
   {
@@ -663,14 +666,14 @@ local plugins = {
     cmd = { "StartupTime" },
   },
   { "ThePrimeagen/vim-be-good", cmd = "VimBeGood" },
-  { 'echasnovski/mini.surround', event = "VeryLazy"},
+  { "echasnovski/mini.surround", event = "VeryLazy" },
   {
-    'samodostal/image.nvim',
+    "samodostal/image.nvim",
     dependencies = {
-      'nvim-lua/plenary.nvim',
+      "nvim-lua/plenary.nvim",
       {
-        'm00qek/baleia.nvim',
-        tag = 'v1.3.0',
+        "m00qek/baleia.nvim",
+        tag = "v1.3.0",
       },
     },
     opts = {
@@ -679,15 +682,15 @@ local plugins = {
         show_label = true,
         use_dither = true,
         foreground_color = true,
-        background_color = true
+        background_color = true,
       },
       events = {
         update_on_nvim_resize = true,
       },
     },
-    init = function ()
-      if not vim.fn.executable('ascii-image-converter') then
-        vim.api.nvim_command('echo "Command is not executable. snap install ascii-image-converter"')
+    init = function()
+      if not vim.fn.executable "ascii-image-converter" then
+        vim.api.nvim_command 'echo "Command is not executable. snap install ascii-image-converter"'
       end
     end,
     lazy = false,
