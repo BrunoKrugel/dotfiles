@@ -135,6 +135,38 @@ _With [ts-context](https://github.com/nvim-treesitter/nvim-treesitter-context)_
 
 </div>
 
+## Search and replace
+
+### Local Search
+
+<div align="center">
+
+![search](./img/search.png)
+
+_With [SearchBox](https://github.com/VonHeikemen/searchbox.nvim)_
+
+</div>
+
+### Local Rename
+
+<div align="center">
+
+![rename](./img/rename.png)
+
+_With [IncRename](https://github.com/smjonas/inc-rename.nvim)_
+
+</div>
+
+### Global rename
+
+<div align="center">
+
+![muren](./img/muren.png)
+
+_With [Muren](https://github.com/AckslD/muren.nvim)_
+
+</div>
+
 ## Bookmarks
 
 <div align="center">
@@ -189,3 +221,9 @@ _With [LazyGit](https://github.com/kdheepak/lazygit.nvim)_
 ## Neovide
 
 Config ready for neovide, options are available in the `neovide.lua` file.
+
+## Other plugins
+
+- Auto save with [auto-save](https://github.com/Pocco81/auto-save.nvim)
+- UI overhaul with [Noice](https://github.com/folke/noice.nvim)
+- UI Improvement with [Telescope-ui-select](https://github.com/nvim-telescope/telescope-ui-select.nvim)

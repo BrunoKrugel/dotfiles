@@ -93,7 +93,7 @@ M.text = {
     ["<C-Up>"] = { "<cmd> :m-2<CR>", "󰜸 Move line up" },
     ["<C-Down>"] = { "<cmd> :m+<CR>", "󰜯 Move line down" },
     -- Renamer
-    ["<C-R>"] = { "<cmd>:MurenToggle<CR>", "󱝪 Toggle Search" },
+    ["<C-R>"] = { "<cmd>:MurenFresh<CR>", "󱝪 Toggle Search" },
     ["<leader>rn"] = { "<cmd> :lua require('renamer').rename()<CR>", "󰑕 Rename" },
     ["<leader>re"] = {
       function()
@@ -379,7 +379,7 @@ M.bookmark = {
 
 M.lspsaga = {
   n = {
-    ["<leader>ca"] = { "<cmd>Lspsaga code_action<CR>", "󰅱 Code Action" },
+    ["<leader>."] = { "<cmd>Lspsaga code_action<CR>", "󰅱 Code Action" },
     ["gh"] = {
       function()
         vim.cmd "Lspsaga lsp_finder"
