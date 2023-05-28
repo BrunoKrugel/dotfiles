@@ -26,8 +26,8 @@ opt.foldenable = true
 opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 -- Spell
-opt.spell = true
-opt.spelllang = { 'en_us' }
+-- opt.spell = true
+-- opt.spelllang = { 'en_us' }
 
 -- Copilot
 g.copilot_assume_mapped = true
