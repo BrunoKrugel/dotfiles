@@ -1,10 +1,6 @@
--- To find any highlight groups: "<cmd> Telescope highlights"
--- Each highlight group can take a table with variables fg, bg, bold, italic, etc
--- base30 variable names can also be used as colors
-
 local M = {}
 
----@type HLTable
+---@type Base46HLGroupsList
 M.override = {
   CursorLine = {
     bg = "black2",
@@ -31,6 +27,7 @@ M.override = {
     fg = "#03a598",
   },
 
+  Cursor = {bg = "#FFFFFF"},
   --["@attribute"] = {
   --   italic = true,
   -- },
@@ -57,13 +54,13 @@ M.add = {
     bg = "black",
   },
 
-  TSRainbowRed = { fg = "#be6069" },
-  TSRainbowYellow = { fg = "#ebca8a" },
-  TSRainbowBlue = { fg = "#81a0c0" },
-  TSRainbowOrange = { fg = "#b48dac" },
-  TSRainbowGreen = { fg = "#a3bd8b" },
-  TSRainbowViolet = { fg = "#88bfcf" },
-  TSRainbowCyan = { fg = "#e5e8ef" },
+  TSRainbowRed = { fg = "red" },
+  TSRainbowYellow = { fg = "yellow" },
+  TSRainbowBlue = { fg = "blue" },
+  TSRainbowOrange = { fg = "orange" },
+  TSRainbowGreen = { fg = "green" },
+  TSRainbowViolet = { fg = "purple" },
+  TSRainbowCyan = { fg = "cyan" },
   HlSearchNear = { fg = "#2E3440", bg = "#EBCB8B" },
   HlSearchLens = { fg = "#2E3440", bg = "#88bfcf" },
   HlSearchLensNear = { fg = "#2E3440", bg = "#EBCB8B" },
