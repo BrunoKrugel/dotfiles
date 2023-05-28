@@ -485,13 +485,17 @@ local plugins = {
       require "custom.configs.illuminate"
     end,
   },
-  -- {
-  --   "echasnovski/mini.nvim",
-  --   event = "VeryLazy",
-  --   config = function()
-  --     require("mini.animate").setup()
-  --   end,
-  -- },
+  {
+    "echasnovski/mini.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("mini.animate").setup {
+        scroll = {
+          enable = false,
+        },
+      }
+    end,
+  },
   {
     "folke/noice.nvim",
     lazy = false,

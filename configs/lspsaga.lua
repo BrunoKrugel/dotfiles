@@ -90,8 +90,8 @@ lspsaga.setup {
     expand = "",
     collapse = "",
     preview = " ",
-    code_action = "💡",
-    diagnostic = "🐞",
+    code_action = "",
+    diagnostic = "",
     incoming = " ",
     outgoing = " ",
     colors = {

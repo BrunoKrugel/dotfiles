@@ -121,6 +121,20 @@ _With [Todo-comments](https://github.com/folke/todo-comments.nvim)_
 
 </div>
 
+## Context
+
+<div align="center">
+
+![context](./img/context.png)
+
+_With [Biscuits](https://github.com/code-biscuits/nvim-biscuits)_
+
+![fcontext](./img/fcontext.png)
+
+_With [ts-context](https://github.com/nvim-treesitter/nvim-treesitter-context)_
+
+</div>
+
 ## Bookmarks
 
 <div align="center">
