@@ -8,6 +8,9 @@ M.override = {
   Comment = {
     italic = true,
   },
+  Include = {
+    fg = "pink",
+  },
   NvDashAscii = {
     fg = "none",
     bg = "none",
