@@ -39,7 +39,9 @@ For questions feel free to open an issue or you can find me in the [NvChad disco
 
 </div>
 
-You can navigate between the options with `<Up>` and `<Down>` and select with `<CR>`, if copilot is active, you can use `<Tab>` to select the copilot option.
+You can navigate between the options with `<Up>` and `<Down>` and select with `<CR>`.
+
+If copilot suggestion is active, you can use `<Tab>` to select the copilot option.
 
 ## Code foldable in a VSCode style
 
@@ -91,7 +93,7 @@ _With [LSPSaga](https://github.com/nvimdev/lspsaga.nvim)_
 
 _With [Illuminate](https://github.com/RRethy/vim-illuminate)_
 
-<div>
+</div>
 
 ## Bookmarks
 
