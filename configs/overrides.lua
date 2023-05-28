@@ -325,13 +325,14 @@ M.cmp = {
     { name = "codeium" },
     { name = "cmp_tabnine" },
     -- { name = "luasnip" },
-    { name = "buffer", keyword_length = 3 },
     -- { name = "nvim_lua" },
     { name = "path" },
     { name = "treesitter" },
     { name = "nvim_lsp_signature_help" },
     { name = "nvim_lsp_document_symbol" },
     { name = "vim_lsp" },
+    { name = "buffer", keyword_length = 3 },
+    { name = "spell" },
   },
 }
 
