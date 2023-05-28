@@ -22,3 +22,11 @@ g.copilot_assume_mapped = true
 g.bookmark_sign = ""
 g.bookmark_highlight = "DevIconErb"
 g.highlighturl_enabled = true -- highlight URLs by default
+
+-- visual-multi
+g.VM_show_warnings = 0
+g.VM_default_mappings = 0
+g.VM_maps = {
+  ["Find Under"] = "gb",
+  ["Find Subword Under"] = "gb",
+}

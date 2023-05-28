@@ -654,9 +654,6 @@ local plugins = {
   {
     "mg979/vim-visual-multi",
     cmd = "VisualMulti",
-    setup = function()
-      require "custom.configs.visual-multi"
-    end,
   },
   {
     "dstein64/vim-startuptime",
