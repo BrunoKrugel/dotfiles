@@ -113,7 +113,7 @@ _With [Bookmark](https://github.com/MattesGroeger/vim-bookmarks)_
 
 <div align="center">
 
-![status](./img/statusline.png)
+![status](./img/Statusline.png)
 
 </div>
 
