@@ -55,7 +55,7 @@ If copilot suggestion is active, you can use `<Tab>` to select the copilot optio
 
 ![fold](./img/fold.png)
 
-_With [UFO](https://github.com/kevinhwang91/nvim-ufo)_
+_With [UFO](https://github.com/kevinhwang91/nvim-ufo), [Pretty Fold](https://github.com/anuvyklack/pretty-fold.nvim)_
 
 </div>
 

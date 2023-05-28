@@ -529,7 +529,9 @@ local plugins = {
     event = "BufWinEnter",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
-      require "custom.configs.renamer"
+      require("renamer").setup {
+        title = "",
+      }
     end,
   },
   {
