@@ -78,12 +78,12 @@ autocmd({ "BufEnter" }, {
 -- })
 
 -- Load highlights on save
--- autocmd("BufWritePost", {
---   pattern = "*",
---   callback = function()
---     require('base46').load_all_highlights()
---   end,
--- })
+autocmd("BufWritePost", {
+  pattern = "*.lua",
+  callback = function()
+    require('base46').load_all_highlights()
+  end,
+})
 
 -- Highlight yanked text
 -- autocmd("TextYankPost", {
