@@ -301,10 +301,18 @@ local plugins = {
     config = true,
   },
   {
-    "toppair/peek.nvim",
-    build = "deno task --quiet build:debug",
+    'toppair/peek.nvim',
+    build = 'deno task --quiet build:fast',
+    ft = {'markdown', 'vimwiki'},
     config = function()
-      require "custom.configs.peek"
+      require('peek').setup({
+        app = 'firefox',
+        filetype = { 'markdown', 'vimwiki' },
+        })
+    end,
+    init = function()
+      vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
+      vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
     end,
   },
   -- { 'mrjones2014/smart-splits.nvim', config = true, event = "BufReadPost" },
