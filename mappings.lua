@@ -182,6 +182,12 @@ M.diagnostics = {
     ["<leader>td"] = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME,BUG,TEST,NOTE<cr>", " Todo/Fix/Fixme" },
     ["<leader>el"] = { "<cmd>ErrorLensToggle<cr>", "󱇭 Toggle error lens" },
     ["<leader>ft"] = { "<cmd>:TodoTelescope<cr>", " Telescope TODO" },
+    ["<Leader>ls"]= {
+      function()
+        require("lsp_lines").toggle()
+      end,
+      "Toggle lsp_lines"
+    },
   },
 }
 

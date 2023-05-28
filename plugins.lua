@@ -564,14 +564,14 @@ local plugins = {
       require "custom.configs.go"
     end,
   },
-  -- {
-  --   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-  --   ft = { "go", "gomod" },
-  --   event = "LspAttach",
-  --   config = function()
-  --     require("lsp_lines").setup()
-  --   end,
-  -- },
+  {
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    ft = { "go", "gomod" },
+    event = "LspAttach",
+    config = function()
+      require("lsp_lines").setup()
+    end,
+  },
   {
     "github/copilot.vim",
     lazy = false,
@@ -681,7 +681,7 @@ local plugins = {
         vim.api.nvim_command 'echo "Command is not executable. snap install ascii-image-converter"'
       end
     end,
-    lazy = false,
+    ft = { "png", "jpg", "jpeg" },
   },
   {
     "vuki656/package-info.nvim",

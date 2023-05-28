@@ -23,9 +23,10 @@ I have been a VSCode user for years and I am slowly moving forward to `NVIM`, so
 ## Instalation guide
 
 1. Same as [NvChad](https://nvchad.com/docs/quickstart/install)
-2. I am using `Hack Nerd Font`
-3. My terminal is `WezTerm`
-4. I am using a M1, so some things may not work out of the box for you
+2. Download and install [CTAGS](https://github.com/universal-ctags/ctags)
+3. I am using `Hack Nerd Font`
+4. My terminal is `WezTerm`
+5. I am using a M1, so some things may not work out of the box for you
 
 ## Help
 
@@ -80,6 +81,18 @@ _With [Trouble](https://github.com/folke/trouble.nvim)_
 _With [Error Lens](https://github.com/chikko80/error-lens.nvim)_
 
 </div>
+
+### Diagnostics with LSP Lines
+
+<div align="center">
+
+![scrollbar](./img/lsp.png)
+
+_With [lsp-lines](https://github.com/ErichDonGubler/lsp_lines.nvim)_
+
+</div>
+
+LSP Lines is only enabled for Go, so it may need some tweaking for other languages.
 
 ### Diagnostics in scrollbar
 
@@ -208,6 +221,11 @@ I do not like format on save, so my config is set to format on `<leader>fm` only
 
 For `.go` files, you can use `<leader>fi` to complete imports.
 
+## Improved GoToDefinition
+
+I am using universal CTAGS to have a better GoToDefinition, the tags are generated automatically with [guttentags](https://github.com/ludovicchabant/vim-gutentags).
+Keybind to use is `<C-]>`.
+
 ## Github
 
 <div align="center">
@@ -227,3 +245,4 @@ Config ready for neovide, options are available in the `neovide.lua` file.
 - Auto save with [auto-save](https://github.com/Pocco81/auto-save.nvim)
 - UI overhaul with [Noice](https://github.com/folke/noice.nvim)
 - UI Improvement with [Telescope-ui-select](https://github.com/nvim-telescope/telescope-ui-select.nvim)
+- Arguments highlights with [hlargs](https://github.com/m-demare/hlargs.nvim)
