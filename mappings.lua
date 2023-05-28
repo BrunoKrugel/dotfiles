@@ -156,11 +156,6 @@ M.general = {
     ["<C-d>"] = { "<C-d>zz", " Scroll down", opts = { silent = true } },
     ["<C-u>"] = { "<C-u>zz", " Scroll up", opts = { silent = true } },
 
-    -- Diagnostics and TODOs
-    ["<leader>t"] = { "<cmd>TroubleToggle<cr>", "󰔫 Toggle warnings" },
-    ["<leader>td"] = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", " Todo/Fix/Fixme" },
-    ["<leader>el"] = { "<cmd>ErrorLensToggle<cr>", "󱇭 Toggle error lens" },
-
     -- Split
     ["<C-h>"] = { "<cmd>vs <CR>", "󰤼 Vertical split", opts = { nowait = true } },
     ["<C-y>"] = { "<cmd>sp <CR>", "󰤻 Horizontal split", opts = { nowait = true } },
@@ -178,6 +173,15 @@ M.general = {
       end,
       "Close buffer",
     },
+  },
+}
+
+M.diagnostics = {
+  n = {
+    ["<leader>t"] = { "<cmd>TroubleToggle<cr>", "󰔫 Toggle warnings" },
+    ["<leader>td"] = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME,BUG,TEST,NOTE<cr>", " Todo/Fix/Fixme" },
+    ["<leader>el"] = { "<cmd>ErrorLensToggle<cr>", "󱇭 Toggle error lens" },
+    ["<leader>ft"] = { "<cmd>:TodoTelescope<cr>", " Telescope TODO" },
   },
 }
 

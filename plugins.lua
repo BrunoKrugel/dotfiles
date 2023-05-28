@@ -620,13 +620,17 @@ local plugins = {
   },
   {
     "folke/todo-comments.nvim",
-    dependencies = "nvim-lua/plenary.nvim",
-
-    event = { "BufReadPost" },
+    event = "BufWinEnter",
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require "custom.configs.todo"
     end,
   },
+  -- {
+  --   "nvim-zh/colorful-winsep.nvim",
+  --   event = { "WinNew" },
+  --   config = true,
+  -- },
   {
     "ray-x/lsp_signature.nvim",
     event = "BufReadPost",

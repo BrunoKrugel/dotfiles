@@ -17,6 +17,7 @@ opt.foldnestmax = 2
 opt.foldlevelstart = 99
 opt.foldenable = true
 opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+opt.signcolumn = "auto:1-2"
 
 -- Avoid conflict with nvim-cmp's tab fallback
 -- g.copilot_no_tab_map = true

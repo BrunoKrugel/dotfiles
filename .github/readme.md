@@ -2,6 +2,12 @@
 <p align="center">Custom config for <a href="https://github.com/NvChad/NvChad">git@github.com:NvChad/NvChad</a><p>
 <h3 align="center">
 
+![Lines of code](https://img.shields.io/tokei/lines/github/BrunoKrugel/dotfiles?color=%2381A1C1&label=LINES&logoColor=%2381A1C1&style=for-the-badge)
+![Bloat](https://img.shields.io/badge/Bloat-Minimal-c585cf?style=for-the-badge)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/BrunoKrugel/dotfiles?color=e1b56a&style=for-the-badge)
+![GitHub Repo stars](https://img.shields.io/github/stars/BrunoKrugel/dotfiles?color=74be88&style=for-the-badge)
+![GitHub top language](https://img.shields.io/github/languages/top/BrunoKrugel/dotfiles?color=6d92bf&style=for-the-badge)
+
 <div align="center">
     
 ![prv-min](./img/prv.png)
@@ -123,7 +129,7 @@ From left to right:
 
 1. Github copilot status (it shows if copilot is active or not)
 2. Harpoon file navigation (it shows if harpoon is harpooned or not)
-3. Baterry status (usefull when using in fullscreen)
+3. Battery status (usefull when using in fullscreen)
 4. Session status (icon for Possession plugin)
 
 ## Keybinds
