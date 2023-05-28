@@ -75,7 +75,7 @@ M.text = {
   },
 
   n = {
-    ["<leader>cc"] = { "<cmd> CCToggle <CR>", "Toggle ColorColumn display" },
+    ["<leader>cc"] = { "<cmd> CCToggle <CR>", " Toggle ColorColumn display" },
     -- Navigate
     ["<A-Left>"] = { "<ESC>_", "󰜲 Move to beginning of line" },
     ["<A-Right>"] = { "<ESC>$", "󰜵 Move to end of line" },
@@ -119,7 +119,7 @@ M.text = {
       "󰆘 Toggle biscuits",
     },
 
-    ["<leader>fi"] = { " <cmd>:GoImport<CR>", "Format imports", opts = { silent = true } },
+    ["<leader>fi"] = { " <cmd>:GoImport<CR>", " Format imports", opts = { silent = true } },
     ["<leader>fm"] = {
       function()
         vim.lsp.buf.format { async = true }
@@ -134,8 +134,8 @@ M.text = {
     ["<Home>"] = { "gg", "Home" },
     ["<End>"] = { "G", "End" },
     -- Indent backward/forward:
-    ["<"] = { "<gv", "ident backward", opts = { silent = false } },
-    [">"] = { ">gv", "ident forward", opts = { silent = false } },
+    ["<"] = { "<gv", " Ident backward", opts = { silent = false } },
+    [">"] = { ">gv", " Ident forward", opts = { silent = false } },
   },
 
   c = {
@@ -153,12 +153,12 @@ M.general = {
     ["<leader>q"] = { "<cmd> qa! <CR>", "󰗼 Exit" },
 
     -- Keep cursor in the center line when C-D / C-U
-    ["<C-d>"] = { "<C-d>zz", opts = { silent = true } },
-    ["<C-u>"] = { "<C-u>zz", opts = { silent = true } },
+    ["<C-d>"] = { "<C-d>zz", " Scroll down", opts = { silent = true } },
+    ["<C-u>"] = { "<C-u>zz", " Scroll up", opts = { silent = true } },
 
     -- Diagnostics and TODOs
     ["<leader>t"] = { "<cmd>TroubleToggle<cr>", " Toggle warnings" },
-    ["<leader>td"] = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", " Todo/Fix/Fixme (Trouble)" },
+    ["<leader>td"] = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", " Todo/Fix/Fixme" },
     ["<leader>el"] = { "<cmd>ErrorLensToggle<cr>", "󱇭 Toggle error lens" },
 
     -- Split
@@ -240,7 +240,6 @@ M.telescope = {
     ["<leader>fs"] = { "<cmd>Telescope lsp_document_symbols<CR>", " Find document symbols" },
     ["<leader>fr"] = { "<cmd>Telescope frecency<CR>", " Recent files" },
     ["<leader>fu"] = { "<cmd>Telescope undo<CR>", " Undo tree" },
-    ["<leader>fb"] = { "<cmd>Telescope vim_bookmarks all<CR>", " Bookmark" },
     ["<leader>fz"] = {
       "<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<CR>",
       " Find current file",
@@ -320,7 +319,6 @@ M.session = {
   },
 }
 
--- more keybinds!
 M.hop = {
   n = {
     ["<leader><leader>w"] = { "<cmd> HopWord <CR>", "󰸱 hint all words" },
@@ -332,18 +330,18 @@ M.hop = {
 
 M.searchbox = {
   n = {
-    ["<leader><leader>f"] = { "<cmd> SearchBoxIncSearch<CR>", " Search first occurence" },
     ["<C-F>"] = { "<cmd> SearchBoxMatchAll clear_matches=true<CR>", "󱘟 Search matching all" },
-    ["<C-R>"] = { "<cmd> SearchBoxReplace confirm=menu<CR>", " Replace" },
+    ["<A-R>"] = { "<cmd> SearchBoxReplace confirm=menu<CR>", " Replace" },
   },
 }
 
 M.bookmark = {
   n = {
-    ["<leader>tb"] = { "<cmd> BookmarkToggle<CR>", "󰃅 Add bookmark" },
+    ["<leader>ba"] = { "<cmd> BookmarkToggle<CR>", "󰃅 Add bookmark" },
     ["<leader>bn"] = { "<cmd> BookmarkNext<CR>", "󰮰 Next bookmark" },
     ["<leader>bp"] = { "<cmd> BookmarkPrev<CR>", "󰮲 Prev bookmark" },
     ["<leader>bc"] = { "<cmd> BookmarkClear<CR>", "󰃢 Clear bookmark" },
+    ["<leader>bm"] = { "<cmd>Telescope vim_bookmarks all<CR>", " Bookmark Menu" },
   },
 }
 
@@ -362,7 +360,6 @@ M.bookmark = {
 
 -- M.navigator = {
 --   n = {
-
 --     ["<C-h>"] = { "<cmd> NavigatorLeft <CR>", "navigate left" },
 --     ["<C-j>"] = { "<cmd> NavigatorDown <CR>", "navigate down" },
 --     ["<C-k>"] = { "<cmd> NavigatorUp <CR>", "navigate up" },
@@ -397,6 +394,17 @@ M.lspsaga = {
       "<Cmd>Lspsaga hover_doc<cr>",
       "Hover lsp",
     },
+    ["<leader>o"] = { "<cmd>Lspsaga outline<CR>", " Show Outline" },
+    --  LSP
+    ["gr"] = { "<cmd>Telescope lsp_references<CR>", " Lsp references" },
+    ["[d"] = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", " Prev Diagnostic" },
+    ["]d"] = { "<cmd>Lspsaga diagnostic_jump_next<CR>", " Next Diagnostic" },
+    ["<leader>lq"] = {
+      function()
+        vim.diagnostic.setloclist()
+      end,
+      "󰁨 Lsp Quickfix",
+    },
   },
 }
 
@@ -407,9 +415,9 @@ M.nvterm = {
       function()
         require("nvterm.terminal").toggle "horizontal"
       end,
-      " toggle horizontal term",
+      " Toggle horizontal term",
     },
-    ["C-c"] = { [[<C-\><C-c>]], "󰜺 Send sigint" },
+    ["C-c"] = { [[<C-\><C-c>]], "󰜺 Send SigInt" },
   },
 
   n = {
@@ -418,7 +426,7 @@ M.nvterm = {
       function()
         require("nvterm.terminal").toggle "horizontal"
       end,
-      " toggle horizontal term",
+      " Toggle horizontal term",
     },
   },
 }
@@ -466,26 +474,7 @@ M.harpoon = {
 }
 
 M.lspconfig = {
-  i = {
-    ["<C-e>"] = {
-      "copilot#Accept('<CR>')",
-      " Copilot accept",
-      opts = { expr = true, silent = true, replace_keycodes = false },
-    },
-  },
   n = {
-    ["<leader>o"] = { "<cmd>Lspsaga outline<CR>", " Show Outline" },
-    --  LSP
-    ["gr"] = { "<cmd>Telescope lsp_references<CR>", " Lsp references" },
-    ["[d"] = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", " Prev Diagnostic" },
-    ["]d"] = { "<cmd>Lspsaga diagnostic_jump_next<CR>", " Next Diagnostic" },
-    ["<leader>la"] = { "<cmd>Lspsaga code_action<CR>", " Show Code Actions" },
-    ["<leader>lq"] = {
-      function()
-        vim.diagnostic.setloclist()
-      end,
-      "󰁨 Lsp Quickfix",
-    },
 
     ["<leader>l"] = {
       function()

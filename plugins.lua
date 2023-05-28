@@ -685,7 +685,6 @@ local plugins = {
     ft = { "json", "lua" },
     config = true,
   },
-  -- { "gen740/SmoothCursor.nvim",   event = "VimEnter",    config = true },
   { "danilamihailov/beacon.nvim", event = "BufReadPost" },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
