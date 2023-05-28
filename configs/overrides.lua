@@ -251,6 +251,18 @@ M.telescope = {
   },
 }
 
+M.chad_ui =  {
+  statusline = {
+      -- separator_style = {
+      --     left = " ",
+      --     right = " ",
+      -- },
+      overriden_modules = function()
+          return require "custom.configs.statusline"
+      end,
+  },
+}
+
 M.blankline = {
   filetype_exclude = {
     "help",

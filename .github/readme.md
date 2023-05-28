@@ -81,6 +81,16 @@ _With [Error Lens](https://github.com/chikko80/error-lens.nvim)_
 
 </div>
 
+### Diagnostics in scrollbar
+
+<div align="center">
+
+![scrollbar](./img/discroll.png)
+
+_With [nvim-scrollbar](https://github.com/petertriho/nvim-scrollbar)_
+
+</div>
+
 ## Winbar
 
 <div align="center">
@@ -98,6 +108,16 @@ _With [LSPSaga](https://github.com/nvimdev/lspsaga.nvim)_
 ![word](./img/word.png)
 
 _With [Illuminate](https://github.com/RRethy/vim-illuminate)_
+
+</div>
+
+## TODO Tracking
+
+<div align="center">
+
+![todo](./img/todo.png)
+
+_With [Todo-comments](https://github.com/folke/todo-comments.nvim)_
 
 </div>
 
