@@ -246,3 +246,4 @@ Config ready for neovide, options are available in the `neovide.lua` file.
 - UI overhaul with [Noice](https://github.com/folke/noice.nvim)
 - UI Improvement with [Telescope-ui-select](https://github.com/nvim-telescope/telescope-ui-select.nvim)
 - Arguments highlights with [hlargs](https://github.com/m-demare/hlargs.nvim)
+- Quick file navigation with [Harpoon](https://github.com/ThePrimeagen/harpoon)
