@@ -75,7 +75,7 @@ lspconfig.eslint.setup {
         return
       end
       local sysname = vim.loop.os_uname().sysname
-      if sysname:match "Windows" then
+      if sysname:match "Windows_NT" then
         os.execute(string.format("start %q", result.url))
       elseif sysname:match "Linux" then
         os.execute(string.format("xdg-open %q", result.url))
