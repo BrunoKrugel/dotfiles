@@ -140,7 +140,7 @@ M.mason = {
     icons = {
       package_pending = " ",
       package_installed = "󰄳 ",
-      package_uninstalled = " 󰇚",
+      package_uninstalled = "󰇚 ",
     },
 
     keymaps = {
@@ -301,17 +301,17 @@ M.cmp = {
     ["<Up>"] = require("cmp").mapping.select_prev_item(),
     ["<Down>"] = require("cmp").mapping.select_next_item(),
     ["<Tab>"] = {},
-    ["<CR>"] = require("cmp").mapping({
-      i = function(fallback)
-        if require("cmp").visible() and require("cmp").get_active_entry() then
-          require("cmp").confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = false })
-        else
-          fallback()
-        end
-      end,
-      s = require("cmp").mapping.confirm({ select = true }),
-      c = require("cmp").mapping.confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = true }),
-    }),
+    -- ["<CR>"] = require("cmp").mapping({
+    --   i = function(fallback)
+    --     if require("cmp").visible() and require("cmp").get_active_entry() then
+    --       require("cmp").confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = false })
+    --     else
+    --       fallback()
+    --     end
+    --   end,
+    --   s = require("cmp").mapping.confirm({ select = true }),
+    --   c = require("cmp").mapping.confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = true }),
+    -- }),
     ["<ESC>"] = require("cmp").mapping.abort(),
     -- ["<Tab>"] = require("cmp").mapping(function(fallback)
     --   local luasnip = require "luasnip"

@@ -157,6 +157,7 @@ local plugins = {
     event = "VeryLazy",
     ft = "astro",
   },
+  { 'Bekaboo/dropbar.nvim' },
   {
     "nvim-treesitter/playground",
     cmd = "TSCaptureUnderCursor",
@@ -567,7 +568,8 @@ local plugins = {
   },
   {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    ft = { "go", "gomod" },
+    -- ft = { "go", "gomod" },
+    keys = { "<leader>ls" },
     config = function()
       require("lsp_lines").setup()
     end,
