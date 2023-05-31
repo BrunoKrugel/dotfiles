@@ -26,7 +26,8 @@ I have been a VSCode user for years and I am slowly moving forward to `NVIM`, so
 2. Download and install [CTAGS](https://github.com/universal-ctags/ctags)
 3. I am using `Hack Nerd Font`
 4. My terminal is `WezTerm`
-5. I am using a M1, so some things may not work out of the box for you
+5. My neovim version is `nightly`
+6. I am using a M1, so some things may not work out of the box for you
 
 ## Help
 
@@ -233,6 +234,18 @@ Keybind to use is `<C-]>`.
 ![LazyGit](./img/lazygit.png)
 
 _With [LazyGit](https://github.com/kdheepak/lazygit.nvim)_
+
+</div>
+
+## Theme
+
+I have adapted the Evondev Dracula theme from VSCode to Neovim, you can find it in the `theme` folder.
+
+<div align="center">
+
+![theme](./img/theme.png)
+
+![theme2](./img/theme2.png)
 
 </div>
 

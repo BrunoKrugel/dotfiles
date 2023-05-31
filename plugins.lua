@@ -192,13 +192,13 @@ local plugins = {
     event = "VeryLazy",
     ft = "astro",
   },
-  {
-    "b0o/incline.nvim",
-    event = "VeryLazy",
-    config = function()
-      require "custom.configs.incline"
-    end,
-  },
+  -- {
+  --   "b0o/incline.nvim",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require "custom.configs.incline"
+  --   end,
+  -- },
   { "Bekaboo/dropbar.nvim", event = "VeryLazy" },
   {
     "nvim-treesitter/playground",
