@@ -71,7 +71,7 @@ lspsaga.setup {
     },
   },
   symbol_in_winbar = {
-    enable = true,
+    enable = false,
     separator = " ",
     hide_keyword = true,
     show_file = true,
@@ -96,7 +96,7 @@ lspsaga.setup {
     outgoing = " ",
     colors = {
       --float window normal background color
-      normal_bg = "#000000",
+      normal_bg = "#141423",
       --title background color
       title_bg = "#FF7070",
       red = "#e95678",
