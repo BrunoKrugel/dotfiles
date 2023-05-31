@@ -153,11 +153,46 @@ local plugins = {
     config = true,
   },
   {
+    "gelguy/wilder.nvim",
+    event = "CmdLineEnter",
+    config = function()
+      local wilder = require "wilder"
+      wilder.setup { modes = { ":", "/", "?" } }
+    end,
+  },
+  {
+    "zbirenbaum/neodim",
+    event = "LspAttach",
+    branch = "v2",
+    config = function()
+      require("neodim").setup {
+        refresh_delay = 75, -- time in ms to wait after typing before refresh diagnostics
+        alpha = 0.75,
+        blend_color = "#000000",
+        hide = { underline = true, virtual_text = true, signs = true },
+        priority = 100, -- priority of dim highlights (increasing may interfere with semantic tokens!!)
+        disable = {}, -- table of filetypes to disable neodim
+      }
+    end,
+  },
+  {
+    "gorbit99/codewindow.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("codewindow").setup {
+        show_cursor = false, -- Show the cursor position in the minimap
+        window_border = "rounded", -- The border style of the floating window (accepts all usual options)
+      }
+      -- vim.api.nvim_set_hl(0, 'CodewindowBorder', {fg = '#141423'})
+    end,
+  },
+  { "HampusHauffman/bionic.nvim", cmd = { "Bionic" } },
+  {
     "wuelnerdotexe/vim-astro",
     event = "VeryLazy",
     ft = "astro",
   },
-  { 'Bekaboo/dropbar.nvim' },
+  { "Bekaboo/dropbar.nvim", event = "VeryLazy" },
   {
     "nvim-treesitter/playground",
     cmd = "TSCaptureUnderCursor",

@@ -79,8 +79,8 @@ M.text = {
     -- Navigate
     ["<A-Left>"] = { "<ESC>_", "󰜲 Move to beginning of line" },
     ["<A-Right>"] = { "<ESC>$", "󰜵 Move to end of line" },
-    ["<F3>"] = { "n", " Next" },
-    ["<S-F3>"] = { "N", " Previous" },
+    ["<F3>"] = { "N", " Next" },
+    ["<S-F3>"] = { "n", " Previous" },
     -- Operations
     ["<C-z>"] = { "<cmd>2u<CR>", "󰕌 Undo" },
     ["<C-r>"] = { "<cmd>redo<CR>", "󰑎 Redo" },
@@ -118,7 +118,10 @@ M.text = {
       end,
       "󰆘 Toggle biscuits",
     },
-
+    ["<Leader>bb"] = {
+      "<cmd>:Bionic<CR>",
+      "󱄽 Toggle Bionic",
+    },
     ["<leader>fi"] = { " <cmd>:GoImport<CR>", " Format imports", opts = { silent = true } },
     ["<leader>fm"] = {
       function()
@@ -182,11 +185,22 @@ M.diagnostics = {
     ["<leader>td"] = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME,BUG,TEST,NOTE<cr>", " Todo/Fix/Fixme" },
     ["<leader>el"] = { "<cmd>ErrorLensToggle<cr>", "󱇭 Toggle error lens" },
     ["<leader>ft"] = { "<cmd>:TodoTelescope<cr>", " Telescope TODO" },
-    ["<Leader>ls"]= {
+    ["<Leader>ls"] = {
       function()
         require("lsp_lines").toggle()
       end,
-      "Toggle lsp_lines"
+      "Toggle lsp_lines",
+    },
+  },
+}
+
+M.minimap = {
+  n = {
+    ["<leader>mm"] = {
+      function()
+        require("codewindow").toggle_minimap()
+      end,
+      " Toggle minimap",
     },
   },
 }
@@ -195,15 +209,15 @@ M.node = {
   n = {
     ["<leader>ns"] = {
       "<cmd> lua require('package-info').show() <CR>",
-      "󰑬 Show package info",
+      "󰎙 Show package info",
     },
     ["<leader>nd"] = {
       "<cmd> lua require('package-info').delete() <CR>",
-      "󰑬 Delete package",
+      "󰎙 Delete package",
     },
     ["<leader>np"] = {
       "<cmd> lua require('package-info').change_version() <CR>",
-      "󰑬 install package",
+      "󰎙 install package",
     },
   },
 }
@@ -331,10 +345,10 @@ M.session = {
 
 M.hop = {
   n = {
-    ["<leader><leader>w"] = { "<cmd> HopWord <CR>", "󰸱 hint all words" },
-    ["<leader><leader>l"] = { "<cmd> HopLine <CR>", "hint line" },
-    ["<leader>hl"] = { ":HopLineStart<CR>" },
-    ["<leader>hw"] = { ":HopWordCurrentLine<CR>" },
+    ["<leader><leader>w"] = { "<cmd> HopWord <CR>", "󰸱 Hint all words" },
+    ["<leader><leader>l"] = { "<cmd> HopLine <CR>", "󰸱 Hint line" },
+    ["<leader>hl"] = { ":HopLineStart<CR>", "󰕭 Hint Columns" },
+    ["<leader>hw"] = { ":HopWordCurrentLine<CR>", "󰗉 Hint Words" },
   },
 }
 

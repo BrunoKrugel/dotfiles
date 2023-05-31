@@ -30,7 +30,7 @@ create_cmd("AutosaveToggle", function()
     vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
       group = vim.api.nvim_create_augroup("Autosave", {}),
       callback = function()
-        if vim.api.nvim_buf_get_name(0) and #vim.bo.buftype ==0 then
+        if vim.api.nvim_buf_get_name(0) and #vim.bo.buftype == 0 then
           vim.cmd "silent w"
           vim.api.nvim_echo(
             { { "󰄳", "LazyProgressDone" }, { " file autosaved at " .. os.date "%I:%M %p" } },
