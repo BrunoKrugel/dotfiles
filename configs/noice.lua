@@ -5,6 +5,12 @@ if not present then
 end
 
 noice.setup {
+  cmdline = {
+    format = {
+      search_down = { kind = "search", pattern = "^/", icon = "", lang = "regex" },
+      search_up = { kind = "search", pattern = "^%?", icon = "", lang = "regex" },
+    },
+  },
   routes = {
     {
       filter = {
@@ -44,6 +50,38 @@ noice.setup {
     {
       filter = { event = "msg_show", kind = "wmsg" },
       view = "mini",
+    },
+    {
+      filter = {
+        any = {
+          {
+            event = "msg_show",
+            kind = "",
+            find = "%d+ change;",
+          },
+          {
+            event = "msg_show",
+            kind = "",
+            find = "%d+ line less;",
+          },
+          {
+            event = "msg_show",
+            kind = "",
+            find = "%d+ fewer lines;?",
+          },
+          {
+            event = "msg_show",
+            kind = "",
+            find = "%d+ more lines?;",
+          },
+          {
+            event = "msg_show",
+            kind = "",
+            find = '".+" %d+L, %d+B',
+          },
+        },
+      },
+      opts = { skip = true },
     },
     -- {
     -- 	filter = {
