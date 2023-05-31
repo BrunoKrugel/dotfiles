@@ -8,21 +8,6 @@ create_cmd("PeekClose", function()
   require("peek").close()
 end, {})
 
-create_cmd("Nvtfloat", function()
-  require("nvterm.terminal").toggle "float"
-end, {})
-
--- Toggle colorcolumn display
-create_cmd("CCToggle", function()
-  vim.g.ccenabled = not vim.g.ccenabled
-  if vim.g.ccenabled then
-    vim.opt.colorcolumn = "120"
-    vim.g.virtcolumn_char = "┊"
-  else
-    vim.opt.colorcolumn = "0"
-  end
-end, {})
-
 create_cmd("AutosaveToggle", function()
   vim.g.autosave = not vim.g.autosave
 

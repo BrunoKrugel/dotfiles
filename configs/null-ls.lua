@@ -14,7 +14,6 @@ local sources = {
   --   },
   -- },
   b.formatting.prettier,
-  b.formatting.clang_format,
   b.formatting.stylua.with {
     extra_args = { "--config-path", vim.fn.expand "~/.config/stylua.toml" },
   },
@@ -44,7 +43,6 @@ local sources = {
   b.diagnostics.fish,
   b.diagnostics.checkmake,
   -- b.diagnostics.codespell,
-  b.diagnostics.dotenv_linter,
   b.diagnostics.jsonlint,
   -- Completion
   b.completion.luasnip,
