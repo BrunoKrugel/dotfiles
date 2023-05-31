@@ -111,9 +111,11 @@ _With [nvim-scrollbar](https://github.com/petertriho/nvim-scrollbar)_
 
 ![navic](./img/navic.png)
 
-_With [LSPSaga](https://github.com/nvimdev/lspsaga.nvim)_
+_With [LSPSaga](https://github.com/nvimdev/lspsaga.nvim) or [Dropbar](https://github.com/Bekaboo/dropbar.nvim)_
 
 </div>
+
+If you do not use neovim `nightly`, you should disable the plugin `dropbar.lua` and then enable the lspsaga winbar in `lspsaga.lua`.
 
 ## Word highlight
 
