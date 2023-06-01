@@ -122,7 +122,6 @@ M.mason = {
     "eslint-lsp",
     "css-lsp",
     "html-lsp",
-    "http",
 
     "codespell",
     "jsonlint",
