@@ -136,6 +136,13 @@ local plugins = {
     end,
   },
   {
+    "rainbowhxch/accelerated-jk.nvim",
+    event = "BufReadPost",
+    config = function()
+      require "custom.configs.accelerated"
+    end,
+  },
+  {
     "m-demare/hlargs.nvim",
     event = "BufWinEnter",
     config = function()
