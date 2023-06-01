@@ -12,7 +12,6 @@ local plugins = {
           require "custom.configs.null-ls"
         end,
       },
-      -- { "ray-x/lsp_signature.nvim" },
     },
     config = function()
       require "plugins.configs.lspconfig"
@@ -153,29 +152,6 @@ local plugins = {
     config = true,
   },
   {
-    "gelguy/wilder.nvim",
-    event = "CmdLineEnter",
-    config = function()
-      local wilder = require "wilder"
-      wilder.setup { modes = { ":", "/", "?" } }
-    end,
-  },
-  {
-    "zbirenbaum/neodim",
-    event = "LspAttach",
-    branch = "v2",
-    config = function()
-      require("neodim").setup {
-        refresh_delay = 75, -- time in ms to wait after typing before refresh diagnostics
-        alpha = 0.75,
-        blend_color = "#000000",
-        hide = { underline = true, virtual_text = true, signs = true },
-        priority = 100, -- priority of dim highlights (increasing may interfere with semantic tokens!!)
-        disable = {}, -- table of filetypes to disable neodim
-      }
-    end,
-  },
-  {
     "gorbit99/codewindow.nvim",
     event = "VeryLazy",
     config = function()
@@ -199,7 +175,6 @@ local plugins = {
   --     require "custom.configs.incline"
   --   end,
   -- },
-  { "Bekaboo/dropbar.nvim", event = "VeryLazy" },
   {
     "nvim-treesitter/playground",
     cmd = "TSCaptureUnderCursor",
@@ -326,19 +301,6 @@ local plugins = {
     dependencies = {
       "nvim-telescope/telescope.nvim",
     },
-  },
-  {
-    "ray-x/sad.nvim",
-    cmd = { "Sad" },
-    lazy = true,
-    config = function()
-      require("sad").setup {
-        debug = true,
-        vsplit = false,
-        height_ratio = 0.8,
-        autoclose = false,
-      }
-    end,
   },
   {
     "smjonas/inc-rename.nvim",
@@ -513,7 +475,6 @@ local plugins = {
       require("hop").setup { keys = "etovxqpdygfblzhckisuran" }
     end,
   },
-
   {
     "rainbowhxch/accelerated-jk.nvim",
     dependencies = "nvim-treesitter",
@@ -552,7 +513,6 @@ local plugins = {
       require "custom.configs.noice"
     end,
   },
-
   {
     "folke/trouble.nvim",
     cmd = { "TroubleToggle", "Trouble" },
@@ -574,16 +534,6 @@ local plugins = {
     end,
   },
   {
-    "filipdutescu/renamer.nvim",
-    event = "BufWinEnter",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("renamer").setup {
-        title = "",
-      }
-    end,
-  },
-  {
     "Pocco81/auto-save.nvim",
     event = "BufReadPost",
     config = function()
@@ -593,7 +543,6 @@ local plugins = {
   {
     "lvimuser/lsp-inlayhints.nvim",
     event = "LspAttach",
-    branch = "anticonceal",
     config = function()
       require "custom.configs.lsp-inlayhints"
     end,
@@ -658,7 +607,7 @@ local plugins = {
   {
     "rcarriga/nvim-dap-ui",
     event = "VeryLazy",
-    dependencies = { "theHamsta/nvim-dap-virtual-text", branch = "inline-text", config = true },
+    dependencies = { "theHamsta/nvim-dap-virtual-text", config = true },
   },
   {
     "mrjones2014/nvim-ts-rainbow",
@@ -673,11 +622,6 @@ local plugins = {
       require "custom.configs.todo"
     end,
   },
-  -- {
-  --   "nvim-zh/colorful-winsep.nvim",
-  --   event = { "WinNew" },
-  --   config = true,
-  -- },
   {
     "ray-x/lsp_signature.nvim",
     event = "BufReadPost",
