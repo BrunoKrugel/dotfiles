@@ -30,7 +30,7 @@ M.override = {
     fg = "#03a598",
   },
 
-  Cursor = {bg = "#FFFFFF"},
+  Cursor = { bg = "#FFFFFF" },
   --["@attribute"] = {
   --   italic = true,
   -- },

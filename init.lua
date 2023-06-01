@@ -19,6 +19,5 @@ vim.fn.sign_define("DapBreakpoint", {
 })
 
 require "custom.autocmd"
-require "custom.usrcmd"
 require "custom.neovide"
 require "custom.options"

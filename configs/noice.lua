@@ -83,15 +83,6 @@ noice.setup {
       },
       opts = { skip = true },
     },
-    -- {
-    -- 	filter = {
-    -- 		cond = function()
-    -- 			return not focused
-    -- 		end,
-    -- 	},
-    -- 	view = "notify",
-    -- 	opts = { stop = false },
-    -- },
   },
   lsp = {
     progress = {
@@ -187,17 +178,9 @@ noice.setup {
     },
   },
   presets = {
-    -- bottom_search = true,
+    bottom_search = true,
     command_palette = true,
-    -- long_message_to_split = true,
-    -- inc_rename = true,
-    -- cmdline_output_to_split = false,
     lsp_doc_border = true,
     inc_rename = true,
   },
-  -- format = {
-  --   level = {
-  --     icons = true,
-  --   },
-  -- },
 }

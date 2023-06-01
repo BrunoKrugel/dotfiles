@@ -132,7 +132,6 @@ M.mason = {
     "goimports",
     "golines",
     "gomodifytags",
-    "sonarlint-language-server",
   },
 
   ui = {
@@ -269,7 +268,7 @@ M.blankline = {
   show_end_of_line = true,
   show_foldtext = true,
   show_trailing_blankline_indent = false,
-  show_first_indent_level = false,
+  show_first_indent_level = true,
   show_current_context = true,
   show_current_context_start = true,
   vim.api.nvim_set_hl(0, "IndentBlanklineContextChar", { nocombine = true, fg = "none" }),

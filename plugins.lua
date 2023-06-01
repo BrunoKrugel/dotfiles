@@ -19,29 +19,19 @@ local plugins = {
     end,
   },
   {
-    "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-      "windwp/nvim-ts-autotag",
-    },
-    opts = overrides.treesitter,
+    "folke/which-key.nvim",
+    enabled = true,
   },
+  ----------------------------------------- override plugins ------------------------------------------
+
   {
-    "NvChad/nvterm",
-    opts = overrides.nvterm,
+    "williamboman/mason.nvim",
+    opts = overrides.mason,
   },
   {
     "nvim-tree/nvim-web-devicons",
     dependencies = { "justinhj/battery.nvim", config = true },
     opts = overrides.devicons,
-  },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    -- enabled = false,
-    opts = overrides.blankline,
-  },
-  {
-    "nvim-tree/nvim-tree.lua",
-    opts = overrides.nvimtree,
   },
   {
     "nvim-telescope/telescope.nvim",
@@ -65,24 +55,44 @@ local plugins = {
       },
     },
   },
-  { "williamboman/mason.nvim", opts = overrides.mason },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    opts = overrides.blankline,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+      {
+        "mrjones2014/nvim-ts-rainbow",
+        event = "BufReadPost",
+      },
+      "windwp/nvim-ts-autotag",
+    },
+    opts = overrides.treesitter,
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = overrides.nvimtree,
+  },
   {
     "hrsh7th/nvim-cmp",
     opts = overrides.cmp,
     dependencies = {
-      -- "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-emoji",
       "hrsh7th/cmp-calc",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lua",
       "f3fora/cmp-spell",
-      -- "hrsh7th/cmp-path",
       "hrsh7th/cmp-vsnip",
       "delphinus/cmp-ctags",
       "hrsh7th/cmp-nvim-lsp-document-symbol",
       "hrsh7th/cmp-copilot",
       "ray-x/cmp-treesitter",
+      {
+        "hrsh7th/cmp-cmdline",
+        event = "CmdLineEnter",
+      },
       "hrsh7th/cmp-nvim-lsp-signature-help",
       { "jcdickinson/codeium.nvim", config = true },
       {
@@ -95,19 +105,26 @@ local plugins = {
       },
     },
   },
-  --------------------------------------------- custom plugins ----------------------------------------------
   {
-    "nvim-telescope/telescope-ui-select.nvim",
-    event = "VeryLazy",
+    "karb94/neoscroll.nvim",
+    keys = { "<C-d>", "<C-u>" },
     config = function()
-      require("telescope").load_extension "ui-select"
+      require("neoscroll").setup { mappings = {
+        "<C-u>",
+        "<C-d>",
+      } }
     end,
   },
   {
-    "numToStr/Navigator.nvim",
-    cmd = { "NavigatorLeft", "NavigatorRight", "NavigatorUp", "NavigatorDown" },
+    "ThePrimeagen/harpoon",
+    cmd = "Harpoon",
+  },
+  ----------------------------------------- enhance plugins ------------------------------------------
+  {
+    "Pocco81/auto-save.nvim",
+    event = "BufReadPost",
     config = function()
-      require("Navigator").setup()
+      require "custom.configs.autosave"
     end,
   },
   {
@@ -119,26 +136,160 @@ local plugins = {
     end,
   },
   {
-    "kristijanhusak/vim-js-file-import",
-    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-    build = "npm install",
+    "m-demare/hlargs.nvim",
+    event = "BufWinEnter",
+    config = function()
+      require("hlargs").setup()
+    end,
   },
+  {
+    "MattesGroeger/vim-bookmarks",
+    cmd = "BookmarkToggle",
+  },
+  {
+    "RRethy/vim-illuminate",
+    event = { "CursorHold", "CursorHoldI" },
+    dependencies = "nvim-treesitter",
+    config = function()
+      require "custom.configs.illuminate"
+    end,
+  },
+  {
+    "phaazon/hop.nvim",
+    cmd = { "HopWord", "HopLine", "HopLineStart", "HopWordCurrentLine" },
+    branch = "v2",
+    config = function()
+      require("hop").setup { keys = "etovxqpdygfblzhckisuran" }
+    end,
+  },
+  {
+    "nguyenvukhang/nvim-toggler",
+    keys = { "<leader>i" },
+    config = function()
+      require("nvim-toggler").setup {
+        -- removes the default <leader>i keymap
+        remove_default_keybinds = true,
+      }
+    end,
+  },
+  { "tpope/vim-surround", event = "VeryLazy" },
   {
     "declancm/vim2vscode",
     cmd = "Code",
   },
   {
-    "ThePrimeagen/harpoon",
-    cmd = "Harpoon",
+    "nvim-treesitter/playground",
+    cmd = "TSCaptureUnderCursor",
   },
   {
-    "hrsh7th/cmp-cmdline",
-    event = "CmdLineEnter",
+    "nvim-treesitter/nvim-treesitter-context",
+    event = "BufWinEnter",
+    config = function()
+      require "custom.configs.context"
+    end,
   },
   {
-    "AckslD/muren.nvim",
-    cmd = "MurenToggle",
+    "mfussenegger/nvim-dap",
+    dependencies = { { "theHamsta/nvim-dap-virtual-text", config = true }, "rcarriga/nvim-dap-ui" },
+  },
+  {
+    "melkster/modicator.nvim",
+    event = "BufWinEnter",
+    config = function()
+      require "custom.configs.modicator"
+    end,
+  },
+  { "HampusHauffman/bionic.nvim", cmd = { "Bionic" } },
+  {
+    "lukas-reineke/virt-column.nvim",
+    cmd = "CCToggle",
+    config = function()
+      require("virt-column").setup {
+        char = "|",
+      }
+    end,
+  },
+  {
+    "rest-nvim/rest.nvim",
+    ft = { "http" },
+    config = function()
+      require("rest-nvim").setup {
+        result_split_horizontal = true,
+      }
+    end,
+  },
+  ----------------------------------------- ui plugins ------------------------------------------
+  {
+    "folke/noice.nvim",
+    lazy = false,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+    config = function()
+      require "custom.configs.noice"
+    end,
+  },
+  {
+    "petertriho/nvim-scrollbar",
+    event = "BufReadPost",
     config = true,
+  },
+  {
+    "folke/todo-comments.nvim",
+    event = "BufReadPost",
+    config = function()
+      require "custom.configs.todo"
+    end,
+  },
+  {
+    "chikko80/error-lens.nvim",
+    event = "LspAttach",
+    ft = "go",
+    config = true,
+  },
+  {
+    "folke/trouble.nvim",
+    cmd = { "TroubleToggle", "Trouble" },
+    config = function()
+      require "custom.configs.trouble"
+    end,
+  },
+  {
+    "jonahgoldwastaken/copilot-status.nvim",
+    dependencies = { "copilot.lua" },
+    event = "BufReadPost",
+    config = function()
+      require("copilot_status").setup {
+        icons = {
+          idle = " ",
+          error = " ",
+          offline = " ",
+          warning = "𥉉 ",
+          loading = " ",
+        },
+        debug = false,
+      }
+    end,
+  },
+  {
+    "nvim-telescope/telescope-ui-select.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("telescope").load_extension "ui-select"
+    end,
+  },
+  { "danilamihailov/beacon.nvim", event = "BufReadPost" },
+  {
+    "echasnovski/mini.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("mini.animate").setup {
+        scroll = {
+          enable = false,
+        },
+      }
+    end,
   },
   {
     "gorbit99/codewindow.nvim",
@@ -151,57 +302,30 @@ local plugins = {
       -- vim.api.nvim_set_hl(0, 'CodewindowBorder', {fg = '#141423'})
     end,
   },
-  { "HampusHauffman/bionic.nvim", cmd = { "Bionic" } },
   {
-    "wuelnerdotexe/vim-astro",
-    event = "VeryLazy",
-    ft = "astro",
-  },
-  -- {
-  --   "b0o/incline.nvim",
-  --   event = "VeryLazy",
-  --   config = function()
-  --     require "custom.configs.incline"
-  --   end,
-  -- },
-  {
-    "nvim-treesitter/playground",
-    cmd = "TSCaptureUnderCursor",
-  },
-
-  {
-    "anuvyklack/pretty-fold.nvim",
-    event = "BufWinEnter",
-    dependencies = {
-      {
-        "anuvyklack/fold-preview.nvim",
-        dependencies = {
-          "anuvyklack/keymap-amend.nvim",
-        },
-        opts = {
-          border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-        },
-      },
-    },
+    "shellRaining/hlchunk.nvim",
+    event = "BufReadPost",
     config = function()
-      require "custom.configs.pretty-fold"
+      require "custom.configs.hlchunk"
     end,
   },
   {
-    "numToStr/Comment.nvim",
-    dependencies = { "JoosepAlviste/nvim-ts-context-commentstring", ft = "javascriptreact" },
-    config = function()
-      require("Comment").setup {
-        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-      }
-    end,
+    "kdheepak/lazygit.nvim",
+    cmd = "LazyGit",
   },
   {
-    "m-demare/hlargs.nvim",
-    event = "BufWinEnter",
-    config = function()
-      require("hlargs").setup()
-    end,
+    "smjonas/inc-rename.nvim",
+    event = "LspAttach",
+    config = true,
+  },
+  {
+    "AckslD/muren.nvim",
+    cmd = "MurenToggle",
+    config = true,
+  },
+  {
+    "f-person/git-blame.nvim",
+    cmd = "GitBlameToggle",
   },
   {
     "kevinhwang91/nvim-ufo",
@@ -233,25 +357,59 @@ local plugins = {
     end,
   },
   {
-    "MattesGroeger/vim-bookmarks",
-    cmd = "BookmarkToggle",
+    "jinzhongjia/LspUI.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("LspUI").setup()
+    end,
   },
   {
-    "jonahgoldwastaken/copilot-status.nvim",
-    dependencies = { "copilot.lua" },
-    event = "BufReadPost",
+    "lvimuser/lsp-inlayhints.nvim",
+    event = "LspAttach",
     config = function()
-      require("copilot_status").setup {
-        icons = {
-          idle = " ",
-          error = " ",
-          offline = " ",
-          warning = "𥉉 ",
-          loading = " ",
-        },
-        debug = false,
-      }
+      require "custom.configs.inlayhints"
     end,
+  },
+  {
+    "samodostal/image.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      {
+        "m00qek/baleia.nvim",
+        tag = "v1.3.0",
+      },
+    },
+    opts = {
+      render = {
+        min_padding = 5,
+        show_label = true,
+        use_dither = true,
+        foreground_color = true,
+        background_color = true,
+      },
+      events = {
+        update_on_nvim_resize = true,
+      },
+    },
+    init = function()
+      if not vim.fn.executable "ascii-image-converter" then
+        vim.api.nvim_command 'echo "Command is not executable. snap install ascii-image-converter"'
+      end
+    end,
+    ft = { "png", "jpg", "jpeg" },
+  },
+  {
+    "VonHeikemen/searchbox.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
+    cmd = { "SearchBoxMatchAll", "SearchBoxReplace", "SearchBoxIncSearch" },
+    config = true,
+  },
+  {
+    "sindrets/diffview.nvim",
+    cmd = "DiffviewOpen",
+    config = true,
   },
   {
     "kevinhwang91/nvim-hlslens",
@@ -261,140 +419,62 @@ local plugins = {
     end,
   },
   {
-    "petertriho/nvim-scrollbar",
-    event = "VimEnter",
-    config = true,
-  },
-  {
-    "shellRaining/hlchunk.nvim",
-    event = "BufReadPost",
-    config = function()
-      require "custom.configs.hlchunk"
-    end,
-  },
-  {
-    "sindrets/diffview.nvim",
-    cmd = "DiffviewOpen",
-    config = true,
-  },
-  {
-    "tenxsoydev/karen-yank.nvim",
-    event = "VeryLazy",
-    config = true,
-  },
-  {
-    "chikko80/error-lens.nvim",
-    event = "LspAttach",
-    ft = "go",
-    config = true,
+    "anuvyklack/pretty-fold.nvim",
+    event = "BufWinEnter",
     dependencies = {
-      "nvim-telescope/telescope.nvim",
-    },
-  },
-  {
-    "smjonas/inc-rename.nvim",
-    event = "LspAttach",
-    config = true,
-  },
-  {
-    "toppair/peek.nvim",
-    build = "deno task --quiet build:fast",
-    ft = { "markdown", "vimwiki" },
-    config = function()
-      require("peek").setup {
-        app = "firefox",
-        filetype = { "markdown", "vimwiki" },
-      }
-    end,
-    init = function()
-      vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
-      vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
-    end,
-  },
-  -- { 'mrjones2014/smart-splits.nvim', config = true, event = "BufReadPost" },
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup {
-        suggestion = {
-          enabled = false,
-          auto_trigger = false,
-          keymap = {
-            -- accept = "<Tab>",
-            accept_word = false,
-            accept_line = false,
-            next = "<M-]>",
-            prev = "<M-[>",
-            dismiss = "<C-]>",
-          },
+      {
+        "anuvyklack/fold-preview.nvim",
+        dependencies = {
+          "anuvyklack/keymap-amend.nvim",
         },
-        panel = {
-          enabled = false,
+        opts = {
+          border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
         },
-        server_opts_overrides = {
-          trace = "verbose",
-          settings = {
-            advanced = {
-              listCount = 3, -- #completions for panel  listCount = 3,          -- #completions for panel  listCount = 3,          -- #completions for panel
-              inlineSuggestCount = 3, -- #completions for getCompletions
-            },
-          },
-        },
-      }
-    end,
-  },
-  { "tpope/vim-surround", event = "VeryLazy" },
-  {
-    "zbirenbaum/copilot-cmp",
-    event = "VeryLazy",
-    dependencies = { "zbirenbaum/copilot.lua" },
-    config = function()
-      require("copilot_cmp").setup()
-    end,
-  },
-  {
-    "nguyenvukhang/nvim-toggler",
-    keys = { "<leader>i" },
-    config = function()
-      require("nvim-toggler").setup {
-        -- removes the default <leader>i keymap
-        remove_default_keybinds = true,
-      }
-    end,
-  },
-  {
-    "gennaro-tedesco/nvim-possession",
-    lazy = false,
-    dependencies = {
-      "ibhagwan/fzf-lua",
+      },
     },
     config = function()
-      require("nvim-possession").setup {
-        autoload = false,
-        sessions = {
-          sessions_icon = "",
-        },
-      }
+      require "custom.configs.pretty-fold"
     end,
   },
   {
-    "kdheepak/lazygit.nvim",
-    cmd = "LazyGit",
-  },
-  {
-    "folke/which-key.nvim",
-    enabled = true,
-  },
-  {
-    "abecodes/tabout.nvim",
-    lazy = true,
-    event = "InsertEnter",
-    dependencies = "nvim-cmp",
+    "nvimdev/lspsaga.nvim",
+    event = "LspAttach",
     config = function()
-      require "custom.configs.tabout"
+      require "custom.configs.lspsaga"
     end,
+  },
+  ----------------------------------------- language plugins ------------------------------------------
+  {
+    "ray-x/go.nvim",
+    ft = { "go", "gomod" },
+    dependencies = {
+      {
+        "ray-x/guihua.lua",
+        build = "cd lua/fzy && make",
+      },
+      "nvim-treesitter",
+    },
+    config = function()
+      require "custom.configs.go"
+    end,
+  },
+  -- {
+  --   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+  --   -- ft = { "go", "gomod" },
+  --   keys = { "<leader>ls" },
+  --   config = function()
+  --     require("lsp_lines").setup()
+  --   end,
+  -- },
+  {
+    "kristijanhusak/vim-js-file-import",
+    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+    build = "npm install",
+  },
+  {
+    "vuki656/package-info.nvim",
+    ft = { "json", "lua" },
+    config = true,
   },
   {
     "nvim-neotest/neotest",
@@ -426,134 +506,10 @@ local plugins = {
       }
     end,
   },
+  ----------------------------------------- completions plugins ------------------------------------------
   {
-    "james1236/backseat.nvim",
-    cmd = { "Backseat", "BackseatClear" },
-    config = function()
-      require("backseat").setup {
-        -- Alternatively, set the env var $OPENAI_API_KEY by putting "export OPENAI_API_KEY=sk-xxxxx" in your ~/.bashrc
-        -- openai_api_key = 'sk-xxxxxxxxxxxxxx', -- Get yours from platform.openai.com/account/api-keys
-        openai_model_id = "gpt-3.5-turbo", --gpt-4 (If you do not have access to a model, it says "The model does not exist")
-        -- language = 'english', -- Such as 'japanese', 'french', 'pirate', 'LOLCAT'
-        -- split_threshold = 100,
-        -- additional_instruction = "Respond snarkily", -- (GPT-3 will probably deny this request, but GPT-4 complies)
-        highlight = {
-          icon = "󱚟", -- ''
-          -- group = 'Comment',
-        },
-      }
-    end,
-  },
-  {
-    "jackMort/ChatGPT.nvim",
-    cmd = "ChatGPT",
-    config = function()
-      require "custom.configs.gpt"
-    end,
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-  },
-  {
-    "phaazon/hop.nvim",
-    cmd = { "HopWord", "HopLine", "HopLineStart", "HopWordCurrentLine" },
-    branch = "v2",
-    config = function()
-      require("hop").setup { keys = "etovxqpdygfblzhckisuran" }
-    end,
-  },
-  {
-    "rainbowhxch/accelerated-jk.nvim",
-    dependencies = "nvim-treesitter",
-    event = "VeryLazy",
-    config = function()
-      require "custom.configs.accelerated-jk"
-    end,
-  },
-  {
-    "RRethy/vim-illuminate",
-    event = { "CursorHold", "CursorHoldI" },
-    dependencies = "nvim-treesitter",
-    config = function()
-      require "custom.configs.illuminate"
-    end,
-  },
-  {
-    "echasnovski/mini.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("mini.animate").setup {
-        scroll = {
-          enable = false,
-        },
-      }
-    end,
-  },
-  {
-    "folke/noice.nvim",
-    lazy = false,
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-    },
-    config = function()
-      require "custom.configs.noice"
-    end,
-  },
-  {
-    "folke/trouble.nvim",
-    cmd = { "TroubleToggle", "Trouble" },
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-    },
-    config = function()
-      require "custom.configs.trouble"
-    end,
-  },
-  {
-    "karb94/neoscroll.nvim",
-    keys = { "<C-d>", "<C-u>" },
-    config = function()
-      require("neoscroll").setup { mappings = {
-        "<C-u>",
-        "<C-d>",
-      } }
-    end,
-  },
-  {
-    "Pocco81/auto-save.nvim",
+    "ludovicchabant/vim-gutentags",
     event = "BufReadPost",
-    config = function()
-      require "custom.configs.autosave"
-    end,
-  },
-  {
-    "lvimuser/lsp-inlayhints.nvim",
-    event = "LspAttach",
-    config = function()
-      require "custom.configs.lsp-inlayhints"
-    end,
-  },
-  {
-    "ray-x/go.nvim",
-    ft = { "go", "gomod" },
-    dependencies = { {
-      "ray-x/guihua.lua",
-      build = "cd lua/fzy && make",
-    }, "nvim-treesitter" },
-    config = function()
-      require "custom.configs.go"
-    end,
-  },
-  {
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    -- ft = { "go", "gomod" },
-    keys = { "<leader>ls" },
-    config = function()
-      require("lsp_lines").setup()
-    end,
   },
   {
     "github/copilot.vim",
@@ -563,135 +519,43 @@ local plugins = {
     end,
   },
   {
-    "VonHeikemen/searchbox.nvim",
+    "zbirenbaum/copilot.lua",
+    event = "InsertEnter",
     dependencies = {
-      "MunifTanjim/nui.nvim",
-    },
-    cmd = { "SearchBoxMatchAll", "SearchBoxReplace", "SearchBoxIncSearch" },
-    config = true,
-  },
-  {
-    "lukas-reineke/virt-column.nvim",
-    cmd = "CCToggle",
-    config = function()
-      require("virt-column").setup {
-        char = "|",
-      }
-    end,
-  },
-  {
-    "rest-nvim/rest.nvim",
-    ft = { "http" },
-    config = function()
-      require("rest-nvim").setup {
-        result_split_horizontal = true,
-      }
-    end,
-  },
-  {
-    "f-person/git-blame.nvim",
-    cmd = "GitBlameToggle",
-  },
-  { "mfussenegger/nvim-dap", event = "VeryLazy" },
-  {
-    "rcarriga/nvim-dap-ui",
-    event = "VeryLazy",
-    dependencies = { "theHamsta/nvim-dap-virtual-text", config = true },
-  },
-  {
-    "mrjones2014/nvim-ts-rainbow",
-    event = "BufReadPost",
-    dependencies = "nvim-treesitter",
-  },
-  {
-    "folke/todo-comments.nvim",
-    event = "BufWinEnter",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require "custom.configs.todo"
-    end,
-  },
-  {
-    "ray-x/lsp_signature.nvim",
-    event = "BufReadPost",
-    config = true,
-  },
-  {
-    "ludovicchabant/vim-gutentags",
-    lazy = false,
-  },
-  {
-    "mg979/vim-visual-multi",
-    cmd = "VisualMulti",
-  },
-  {
-    "dstein64/vim-startuptime",
-    config = function()
-      vim.cmd "let $NEOVIM_MEASURE_STARTUP_TIME = 'TRUE'"
-    end,
-    cmd = { "StartupTime" },
-  },
-  { "echasnovski/mini.surround", event = "VeryLazy" },
-  {
-    "samodostal/image.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
       {
-        "m00qek/baleia.nvim",
-        tag = "v1.3.0",
+        "zbirenbaum/copilot-cmp",
+        config = function()
+          require("copilot_cmp").setup()
+        end,
       },
     },
-    opts = {
-      render = {
-        min_padding = 5,
-        show_label = true,
-        use_dither = true,
-        foreground_color = true,
-        background_color = true,
-      },
-      events = {
-        update_on_nvim_resize = true,
-      },
-    },
-    init = function()
-      if not vim.fn.executable "ascii-image-converter" then
-        vim.api.nvim_command 'echo "Command is not executable. snap install ascii-image-converter"'
-      end
-    end,
-    ft = { "png", "jpg", "jpeg" },
-  },
-  {
-    "vuki656/package-info.nvim",
-    ft = { "json", "lua" },
-    config = true,
-  },
-  { "danilamihailov/beacon.nvim", event = "BufReadPost" },
-  {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    event = "BufWinEnter",
     config = function()
-      require "custom.configs.textobjects"
-    end,
-  },
-  {
-    "nvimdev/lspsaga.nvim",
-    event = "LspAttach",
-    config = function()
-      require "custom.configs.lspsaga"
-    end,
-  },
-  {
-    "nvim-treesitter/nvim-treesitter-context",
-    event = "BufWinEnter",
-    config = function()
-      require "custom.configs.ts-context"
-    end,
-  },
-  {
-    "melkster/modicator.nvim",
-    event = "BufWinEnter",
-    config = function()
-      require "custom.configs.modicator"
+      require("copilot").setup {
+        suggestion = {
+          enabled = false,
+          auto_trigger = false,
+          keymap = {
+            -- accept = "<Tab>",
+            accept_word = false,
+            accept_line = false,
+            next = "<M-]>",
+            prev = "<M-[>",
+            dismiss = "<C-]>",
+          },
+        },
+        panel = {
+          enabled = false,
+        },
+        server_opts_overrides = {
+          trace = "verbose",
+          settings = {
+            advanced = {
+              listCount = 3,
+              inlineSuggestCount = 3,
+            },
+          },
+        },
+      }
     end,
   },
 }

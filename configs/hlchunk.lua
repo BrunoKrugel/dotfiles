@@ -73,4 +73,3 @@ hlchunk.setup {
     exclude_filetype = "...",
   },
 }
-

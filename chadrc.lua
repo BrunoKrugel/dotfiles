@@ -7,7 +7,6 @@ local highlights = require "custom.highlights"
 M.ui = {
   theme = "chadracula",
   theme_toggle = { "chadracula", "one_light" },
-
   statusline = {
     theme = "vscode_colored",
     overriden_modules = function()
@@ -23,24 +22,16 @@ M.ui = {
           return ""
         end
       end
-      -- Load info for possession
-      local function get_session()
-        local session = require("nvim-possession").status()
-        if session ~= nil then
-          return "󰐃 "
-        else
-          return "󰐄 "
-        end
-      end
+      -- -- Load info for possession
+      -- local function get_session()
+      --   local session = require("nvim-possession").status()
+      --   if session ~= nil then
+      --     return "󰐃 "
+      --   else
+      --     return "󰐄 "
+      --   end
+      -- end
 
-      local function get_npm()
-        local npm = require("package-info").get_status()
-        if npm ~= nil then
-          return npm
-        else
-          return ""
-        end
-      end
       return {
         LSP_Diagnostics = function()
           return "%#CopilotHl#"
@@ -51,17 +42,13 @@ M.ui = {
             .. "%#BatteryHl#"
             .. require("battery").get_status_line()
             .. " "
-            .. "%#SessionHl#"
-            .. get_session()
-            .. " "
+            -- .. "%#SessionHl#"
+            -- .. get_session()
+            -- .. " "
             -- .. "%#NpmHl#"
             -- .. get_npm()
             -- .. " "
             .. st_modules.LSP_Diagnostics()
-        end,
-
-        LSP_progress = function()
-          return st_modules.LSP_progress() .. " " .. "%#NpmHl#" .. get_npm()
         end,
       }
     end,
@@ -109,21 +96,10 @@ M.ui = {
       [[ ..''                                              ]],
       [[                                                  ]],
     },
-    buttons = {
-      { "󰈭  Global Search", "Spc f w", "Telescope live_grep" },
-      { "  Find File", "Spc f f", "Telescope find_files" },
-      { "󰈚  Recent Files", "Spc f r", "Telescope oldfiles" },
-      {"󰔫 Diagnostics", "Spc t  ", "TroubleToggle"},
-      { "  Bookmarks", "Spc b a", "Telescope marks" },
-      { "  Themes", "Spc t h", "Telescope themes" },
-      { "  Mappings", "Spc c h", "NvCheatsheet" },
-    },
   },
 }
 
 M.plugins = "custom.plugins"
-
--- check core.mappings for table structure
 M.mappings = require "custom.mappings"
 
 return M

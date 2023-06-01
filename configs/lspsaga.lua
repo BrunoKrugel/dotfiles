@@ -71,7 +71,7 @@ lspsaga.setup {
     },
   },
   symbol_in_winbar = {
-    enable = false,
+    enable = true,
     separator = " ",
     hide_keyword = true,
     show_file = true,
