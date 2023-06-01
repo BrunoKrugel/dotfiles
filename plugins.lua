@@ -16,17 +16,6 @@ local plugins = {
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
-      -- Noice
-      -- vim.notify = require("noice").notify
-      -- vim.lsp.handlers["textDocument/hover"] = require("noice").hover
-      -- vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
-    end,
-  },
-  {
-    "https://github.com/adelarsq/image_preview.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("image_preview").setup()
     end,
   },
   {
@@ -642,7 +631,6 @@ local plugins = {
     end,
     cmd = { "StartupTime" },
   },
-  { "ThePrimeagen/vim-be-good", cmd = "VimBeGood" },
   { "echasnovski/mini.surround", event = "VeryLazy" },
   {
     "samodostal/image.nvim",
