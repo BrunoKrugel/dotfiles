@@ -12,6 +12,14 @@ local plugins = {
           require "custom.configs.null-ls"
         end,
       },
+      "ray-x/lsp_signature.nvim",
+      {
+        "folke/neodev.nvim",
+        opts = {},
+        config = function()
+          require("neodev").setup {}
+        end,
+      },
     },
     config = function()
       require "plugins.configs.lspconfig"
@@ -128,6 +136,33 @@ local plugins = {
     end,
   },
   {
+    "tenxsoydev/karen-yank.nvim",
+    event = "VeryLazy",
+    config = true,
+  },
+  {
+    "max397574/better-escape.nvim",
+    event = "InsertEnter",
+    config = function()
+      require("better_escape").setup()
+    end,
+  },
+  -- {
+  --   "gennaro-tedesco/nvim-possession",
+  --   lazy = false,
+  --   dependencies = {
+  --     "ibhagwan/fzf-lua",
+  --   },
+  --   config = function()
+  --     require("nvim-possession").setup {
+  --       autoload = true,
+  --       sessions = {
+  --         sessions_icon = "",
+  --       },
+  --     }
+  --   end,
+  -- },
+  {
     "code-biscuits/nvim-biscuits",
     event = "BufRead",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
@@ -171,7 +206,7 @@ local plugins = {
   },
   {
     "nguyenvukhang/nvim-toggler",
-    keys = { "<leader>i" },
+    event = "BufReadPost",
     config = function()
       require("nvim-toggler").setup {
         -- removes the default <leader>i keymap
@@ -225,6 +260,21 @@ local plugins = {
       }
     end,
   },
+  {
+    "zbirenbaum/neodim",
+    event = "LspAttach",
+    branch = "v2",
+    config = function()
+      require("neodim").setup {
+        refresh_delay = 75, -- time in ms to wait after typing before refresh diagnostics
+        alpha = 0.75,
+        blend_color = "#000000",
+        hide = { underline = true, virtual_text = true, signs = true },
+        priority = 100, -- priority of dim highlights (increasing may interfere with semantic tokens!!)
+        disable = {}, -- table of filetypes to disable neodim
+      }
+    end,
+  },
   ----------------------------------------- ui plugins ------------------------------------------
   {
     "folke/noice.nvim",
@@ -251,7 +301,6 @@ local plugins = {
   },
   {
     "chikko80/error-lens.nvim",
-    event = "LspAttach",
     ft = "go",
     config = true,
   },
@@ -363,6 +412,20 @@ local plugins = {
       }
     end,
   },
+  -- {
+  --   "yaocccc/nvim-foldsign",
+  --   event = "CursorHold",
+  --   config = function()
+  --     require("nvim-foldsign").setup {
+  --       offset = -2,
+  --       foldsigns = {
+  --         open = "-", -- mark the beginning of a fold
+  --         close = "+", -- show a closed fold
+  --         seps = { "│", "┃" }, -- open fold middle marker
+  --       },
+  --     }
+  --   end,
+  -- },
   {
     "jinzhongjia/LspUI.nvim",
     event = "VeryLazy",
@@ -386,24 +449,26 @@ local plugins = {
         tag = "v1.3.0",
       },
     },
-    opts = {
-      render = {
-        min_padding = 5,
-        show_label = true,
-        use_dither = true,
-        foreground_color = true,
-        background_color = true,
-      },
-      events = {
-        update_on_nvim_resize = true,
-      },
-    },
+    config = function()
+      require("image").setup {
+        render = {
+          min_padding = 5,
+          show_label = true,
+          use_dither = true,
+          foreground_color = true,
+          background_color = true,
+        },
+        events = {
+          update_on_nvim_resize = true,
+        },
+      }
+    end,
     init = function()
       if not vim.fn.executable "ascii-image-converter" then
         vim.api.nvim_command 'echo "Command is not executable. snap install ascii-image-converter"'
       end
     end,
-    ft = { "png", "jpg", "jpeg" },
+    event = "VeryLazy",
   },
   {
     "VonHeikemen/searchbox.nvim",
@@ -511,6 +576,22 @@ local plugins = {
           },
         },
       }
+    end,
+  },
+  {
+    "toppair/peek.nvim",
+    build = "deno task --quiet build:fast",
+    ft = { "markdown", "vimwiki" },
+    config = function()
+      require("peek").setup {
+        app = "webview",
+        theme = "dark",
+        filetype = { "markdown", "vimwiki" },
+      }
+    end,
+    init = function()
+      vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+      vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
     end,
   },
   ----------------------------------------- completions plugins ------------------------------------------

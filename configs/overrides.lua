@@ -310,7 +310,7 @@ M.cmp = {
     --   s = require("cmp").mapping.confirm({ select = true }),
     --   c = require("cmp").mapping.confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = true }),
     -- }),
-    ["<ESC>"] = require("cmp").mapping.abort(),
+    -- ["<ESC>"] = require("cmp").mapping.abort(),
     -- ["<Tab>"] = require("cmp").mapping(function(fallback)
     --   local luasnip = require "luasnip"
     --   local copilot_keys = vim.fn["copilot#Accept"]()
@@ -331,7 +331,6 @@ M.cmp = {
   },
   sources = {
     { name = "copilot" },
-    { name = "nvim_lsp" },
     { name = "codeium" },
     { name = "cmp_tabnine" },
     -- { name = "luasnip" },
@@ -341,8 +340,13 @@ M.cmp = {
     { name = "nvim_lsp_signature_help" },
     { name = "nvim_lsp_document_symbol" },
     { name = "vim_lsp" },
-    { name = "buffer", keyword_length = 3 },
     { name = "spell" },
+    {
+      name = "nvim_lsp",
+      entry_filter = function(entry, ctx)
+        return require("cmp").lsp.CompletionItemKind.Text ~= entry:get_kind()
+      end,
+    },
   },
 }
 

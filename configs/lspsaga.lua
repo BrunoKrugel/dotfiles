@@ -83,7 +83,7 @@ lspsaga.setup {
     -- currently only round theme
     theme = "round",
     -- this option only work in neovim 0.9
-    title = true,
+    title = false,
     -- border type can be single,double,rounded,solid,shadow.
     border = "rounded",
     winblend = 0,
