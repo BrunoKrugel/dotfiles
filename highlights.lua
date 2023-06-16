@@ -23,6 +23,9 @@ M.override = {
     underline = false,
   },
   ["@variable"] = { fg = "purple" },
+  ["@namespace"] = { fg = "white" },
+  ["@function.builtin"] = { fg = "cyan" },
+  ["@function.call"] = { fg = "green" },
   CopilotSuggestion = {
     fg = "#83a598",
   },

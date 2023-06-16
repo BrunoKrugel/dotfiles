@@ -14,6 +14,18 @@ autocmd("LspAttach", {
   end,
 })
 
+autocmd({ "BufAdd", "BufDelete", "BufEnter", "TabEnter", "ModeChanged", "DiagnosticChanged" }, {
+  callback = function()
+    require("sidebar-nvim").update()
+  end,
+})
+
+-- autocmd("VimEnter", {
+--   callback = function()
+--     require("nvim-tree.api").tree.open()
+--   end,
+-- })
+
 -- Fix NvimTree not opening on startup
 -- autocmd({ "BufEnter" }, {
 --   pattern = "NvimTree*",
