@@ -39,6 +39,4 @@ M.run = function()
   vim.opt.statuscolumn = "%!v:lua.require('custom.statuscolumn').draw()"
 end
 
-
-
 return M

@@ -38,7 +38,6 @@ vim.o.foldcolumn = "2"
 vim.o.number = true
 vim.o.numberwidth = 2
 
-
 -- Spell
 -- opt.spell = true
 -- opt.spelllang = { 'en_us' }

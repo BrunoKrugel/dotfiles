@@ -50,6 +50,10 @@ local plugins = {
       "tom-anders/telescope-vim-bookmarks.nvim",
       "tsakirist/telescope-lazy.nvim",
       {
+        "edolphin-ydf/goimpl.nvim",
+        ft = "go",
+      },
+      {
         "ThePrimeagen/harpoon",
         cmd = "Harpoon",
       },
@@ -244,10 +248,11 @@ local plugins = {
   { "HampusHauffman/bionic.nvim", cmd = { "Bionic" } },
   {
     "lukas-reineke/virt-column.nvim",
-    cmd = "CCToggle",
+    event = "BufReadPost",
     config = function()
       require("virt-column").setup {
-        char = "|",
+        char = "┃",
+        virtcolumn = "120",
       }
     end,
   },
@@ -275,6 +280,57 @@ local plugins = {
       }
     end,
   },
+  {
+    "TobinPalmer/rayso.nvim",
+    cmd = { "Rayso" },
+    config = function()
+      require("rayso").setup {
+        open_cmd = "chrome",
+      }
+    end,
+  },
+  {
+    "mg979/vim-visual-multi",
+    event = "BufReadPost",
+  },
+  --   :TSJToggle - toggle node under cursor (split if one-line and join if multiline);
+  -- :TSJSplit - split node under cursor;
+  -- :TSJJoin - join node under cursor;
+  {
+    "Wansmer/treesj",
+
+    event = "BufReadPost",
+    config = function()
+      require("treesj").setup {
+        use_default_keymaps = true,
+      }
+    end,
+  },
+  -- {
+  --   "nvim-zh/colorful-winsep.nvim",
+  --   event = { "WinNew" },
+  --   config = function()
+  --     require("colorful-winsep").setup {
+  --       -- highlight for Window separator
+  --       highlight = {
+  --         bg = "#16161E",
+  --         fg = "#1F3442",
+  --       },
+  --       -- timer refresh rate
+  --       interval = 30,
+  --       -- This plugin will not be activated for filetype in the following table.
+  --       no_exec_files = { "packer", "TelescopePrompt", "mason", "CompetiTest", "NvimTree" },
+  --       -- Symbols for separator lines, the order: horizontal, vertical, top left, top right, bottom left, bottom right.
+  --       symbols = { "━", "┃", "┏", "┓", "┗", "┛" },
+  --       close_event = function()
+  --         -- Executed after closing the window separator
+  --       end,
+  --       create_event = function()
+  --         -- Executed after creating the window separator
+  --       end,
+  --     }
+  --   end,
+  -- },
   ----------------------------------------- ui plugins ------------------------------------------
   {
     "folke/noice.nvim",
@@ -383,35 +439,36 @@ local plugins = {
     "f-person/git-blame.nvim",
     cmd = "GitBlameToggle",
   },
+  -- {
+  --   "kevinhwang91/nvim-ufo",
+  --   dependencies = {
+  --     "kevinhwang91/promise-async",
   {
-    "kevinhwang91/nvim-ufo",
-    dependencies = {
-      "kevinhwang91/promise-async",
-      {
-        "luukvbaal/statuscol.nvim",
-        config = function()
-          local builtin = require "statuscol.builtin"
-          require("statuscol").setup {
-            relculright = true,
-            segments = {
-              { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-              { text = { "%s" }, click = "v:lua.ScSa" },
-              { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
-            },
-          }
-        end,
-      },
-    },
+    "luukvbaal/statuscol.nvim",
     event = "BufReadPost",
-    keys = { "zf", "zo", "za", "zc", "zM", "zR" },
     config = function()
-      require("ufo").setup {
-        provider_selector = function()
-          return { "treesitter", "indent" }
-        end,
+      local builtin = require "statuscol.builtin"
+      require("statuscol").setup {
+        relculright = true,
+        segments = {
+          { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+          { text = { "%s" }, click = "v:lua.ScSa" },
+          { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+        },
       }
     end,
   },
+  --   },
+  --   event = "BufReadPost",
+  --   keys = { "zf", "zo", "za", "zc", "zM", "zR" },
+  --   config = function()
+  --     require("ufo").setup {
+  --       provider_selector = function()
+  --         return { "treesitter", "indent" }
+  --       end,
+  --     }
+  --   end,
+  -- },
   -- {
   --   "yaocccc/nvim-foldsign",
   --   event = "CursorHold",
@@ -508,11 +565,39 @@ local plugins = {
       require "custom.configs.pretty-fold"
     end,
   },
+  -- {
+  --   "VidocqH/lsp-lens.nvim",
+  --   event = "BufReadPost",
+  --   config = true,
+  -- },
+  {
+    "sidebar-nvim/sidebar.nvim",
+    event = "VeryLazy",
+    config = function()
+      require "custom.configs.sidebar"
+    end,
+  },
   {
     "nvimdev/lspsaga.nvim",
     event = "LspAttach",
     config = function()
       require "custom.configs.lspsaga"
+    end,
+  },
+  {
+    "max397574/colortils.nvim",
+    cmd = "Colortils",
+    config = function()
+      require("colortils").setup()
+    end,
+  },
+  {
+    "dnlhc/glance.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("glance").setup {
+        -- your configuration
+      }
     end,
   },
   ----------------------------------------- language plugins ------------------------------------------
@@ -599,6 +684,10 @@ local plugins = {
     "ludovicchabant/vim-gutentags",
     event = "BufReadPost",
   },
+  -- {
+  --   "skywind3000/gutentags_plus",
+  --   event = "BufReadPost",
+  -- },
   {
     "github/copilot.vim",
     lazy = false,

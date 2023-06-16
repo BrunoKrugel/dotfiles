@@ -29,6 +29,24 @@ M.rest = {
   },
 }
 
+M.sidebar = {
+  n = {
+    ["<leader>sb"] = {
+      function()
+        require("sidebar-nvim").toggle()
+      end,
+      "Toggle Sidebar",
+    },
+  },
+}
+
+M.folder = {
+  n = {
+    ["<leader>c"] = { "zc", " Close folder" },
+    ["<leader>a"] = { "zo", " Open folder" },
+  },
+}
+
 M.comment = {
   plugin = true,
 
@@ -94,8 +112,14 @@ M.text = {
     ["<C-Down>"] = { "<cmd> :m+<CR>", "󰜯 Move line down" },
     -- Renamer
     ["<C-R>"] = { "<cmd>:MurenFresh<CR>", "󱝪 Toggle Search" },
-    ["<leader>rn"] = { "<cmd> :lua require('renamer').rename()<CR>", "󰑕 Rename" },
-    ["<leader>re"] = {
+    -- ["<leader>rn"] = { "<cmd> :lua require('renamer').rename()<CR>", "󰑕 Rename" },
+    ["<leader>ra"] = {
+      function()
+        require("nvchad_ui.renamer").open()
+      end,
+      "LSP rename",
+    },
+    ["<leader>rn"] = {
       function()
         return ":IncRename " .. vim.fn.expand "<cword>"
       end,
@@ -221,6 +245,12 @@ M.node = {
     },
   },
 }
+
+-- vim.api.nvim_set_keymap('n', '<leader>im', [[<cmd>lua require'telescope'.extensions.goimpl.goimpl{}<CR>]], {noremap=true, silent=true})
+-- :Glance references show references of the word under the cursor from the LSP server
+-- :Glance definitions show definitions of the word under the cursor from the LSP server
+-- :Glance type_definitions show type definitions of the word under the cursor from the LSP server
+-- :Glance implementations show implementations of the word under the cursor from the LSP server
 
 M.treesitter = {
   n = {

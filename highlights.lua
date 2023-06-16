@@ -59,7 +59,11 @@ M.add = {
   FoldColumn = {
     bg = "black",
   },
-
+  VirtColumn = { fg = "black2" },
+  Folded = {
+    bg = "black",
+    fg = "white",
+  },
   TSRainbowRed = { fg = "red" },
   TSRainbowYellow = { fg = "yellow" },
   TSRainbowBlue = { fg = "blue" },
