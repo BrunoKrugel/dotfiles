@@ -211,7 +211,7 @@ M.nvimtree = {
 
 M.telescope = {
   defaults = {
-    file_ignore_patterns = { "node_modules", ".docker", ".git", "yarn.lock", "go.sum", "go.mod", "tags" },
+    file_ignore_patterns = { "node_modules", ".docker", ".git", "yarn.lock", "go.sum", "go.mod", "tags", "mocks", },
   },
   extensions_list = {
     "themes",
@@ -223,6 +223,7 @@ M.telescope = {
     "harpoon",
     "package_info",
     "lazy",
+    "goimpl",
   },
   extensions = {
     fzf = {
@@ -310,7 +311,7 @@ M.cmp = {
     --   s = require("cmp").mapping.confirm({ select = true }),
     --   c = require("cmp").mapping.confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = true }),
     -- }),
-    -- ["<ESC>"] = require("cmp").mapping.abort(),
+    -- ["<ESC>"] = require("cmp").mapping.close(),
     -- ["<Tab>"] = require("cmp").mapping(function(fallback)
     --   local luasnip = require "luasnip"
     --   local copilot_keys = vim.fn["copilot#Accept"]()
