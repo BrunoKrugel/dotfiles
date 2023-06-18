@@ -32,20 +32,16 @@ M.override = {
   CopilotAnnotation = {
     fg = "#03a598",
   },
-
   Cursor = { bg = "#FFFFFF" },
-  --["@attribute"] = {
-  --   italic = true,
-  -- },
 }
 
 ---@type HLTable
 M.add = {
   NvimTreeOpenedFolderName = { fg = "purple", bold = true },
-  CopilotHl = { fg = "green", bg = "statusline_bg" },
-  HarpoonHl = { fg = "cyan", bg = "statusline_bg" },
-  BatteryHl = { fg = "nord_blue", bg = "statusline_bg" },
-  SessionHl = { fg = "#e535ab", bg = "statusline_bg" },
+  SagaWinbarFolder = {
+    fg="blue"
+  },
+  -- Cmp Highlights
   CmpItemKindCodeium = { fg = "#51BDAC" },
   CmpItemKindTabNine = { fg = "#C73BE3" },
   EndOfBuffer = {
@@ -56,14 +52,15 @@ M.add = {
     bg = "black",
     fg = "black",
   },
+  VirtColumn = { fg = "black2" },
   FoldColumn = {
     bg = "black",
   },
-  VirtColumn = { fg = "black2" },
   Folded = {
     bg = "black",
     fg = "white",
   },
+  -- Tree Sitter
   TSRainbowRed = { fg = "red" },
   TSRainbowYellow = { fg = "yellow" },
   TSRainbowBlue = { fg = "blue" },
@@ -71,9 +68,15 @@ M.add = {
   TSRainbowGreen = { fg = "green" },
   TSRainbowViolet = { fg = "purple" },
   TSRainbowCyan = { fg = "cyan" },
+  -- Search highlights
   HlSearchNear = { fg = "#2E3440", bg = "#EBCB8B" },
   HlSearchLens = { fg = "#2E3440", bg = "#88bfcf" },
   HlSearchLensNear = { fg = "#2E3440", bg = "#EBCB8B" },
+  -- Custom highlights
+  CopilotHl = { fg = "green", bg = "statusline_bg" },
+  HarpoonHl = { fg = "cyan", bg = "statusline_bg" },
+  BatteryHl = { fg = "nord_blue", bg = "statusline_bg" },
+  SessionHl = { fg = "#e535ab", bg = "statusline_bg" },
 }
 
 return M

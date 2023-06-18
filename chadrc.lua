@@ -3,7 +3,7 @@ local M = {}
 
 -- Path to overriding theme and highlights files
 local highlights = require "custom.highlights"
-
+-- 
 M.ui = {
   theme = "chadracula",
   theme_toggle = { "chadracula", "one_light" },
@@ -67,6 +67,8 @@ M.ui = {
       silent = true,
     },
   },
+
+  telescope = { style = "bordered" },
 
   hl_override = highlights.override,
   hl_add = highlights.add,
@@ -144,6 +146,27 @@ M.ui = {
       -- [[⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⠿⣿⣿⣿⣟⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀]],
       -- [[⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠿⠿⢿⠿⠷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀]],
     },
+  },
+}
+
+M.lazy_nvim = {
+  ui = {
+    border = "solid",
+  },
+}
+
+M.settings = {
+  cc_size = "130",
+  so_size = 10,
+
+  -- Blacklisted files where cc and so must be disabled
+  blacklist = {
+    "NvimTree",
+    "nvdash",
+    "nvcheatsheet",
+    "terminal",
+    "Trouble",
+    "help",
   },
 }
 

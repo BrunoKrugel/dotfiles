@@ -141,7 +141,7 @@ local plugins = {
   },
   {
     "tenxsoydev/karen-yank.nvim",
-    event = "VeryLazy",
+    event = "BufReadPost",
     config = true,
   },
   {
@@ -160,6 +160,7 @@ local plugins = {
   --   config = function()
   --     require("nvim-possession").setup {
   --       autoload = true,
+  --       autosave = true,
   --       sessions = {
   --         sessions_icon = "",
   --       },
@@ -252,7 +253,7 @@ local plugins = {
     config = function()
       require("virt-column").setup {
         char = "┃",
-        virtcolumn = "120",
+        -- virtcolumn = "120",
       }
     end,
   },
@@ -271,12 +272,12 @@ local plugins = {
     branch = "v2",
     config = function()
       require("neodim").setup {
-        refresh_delay = 75, -- time in ms to wait after typing before refresh diagnostics
+        refresh_delay = 75,
         alpha = 0.75,
         blend_color = "#000000",
         hide = { underline = true, virtual_text = true, signs = true },
-        priority = 100, -- priority of dim highlights (increasing may interfere with semantic tokens!!)
-        disable = {}, -- table of filetypes to disable neodim
+        priority = 100,
+        disable = {},
       }
     end,
   },
@@ -298,7 +299,6 @@ local plugins = {
   -- :TSJJoin - join node under cursor;
   {
     "Wansmer/treesj",
-
     event = "BufReadPost",
     config = function()
       require("treesj").setup {
@@ -334,7 +334,7 @@ local plugins = {
   ----------------------------------------- ui plugins ------------------------------------------
   {
     "folke/noice.nvim",
-    lazy = false,
+    event = "UIEnter",
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
@@ -485,7 +485,7 @@ local plugins = {
   -- },
   {
     "jinzhongjia/LspUI.nvim",
-    event = "VeryLazy",
+    event = "LspAttach",
     config = function()
       require("LspUI").setup()
     end,
@@ -499,6 +499,7 @@ local plugins = {
   },
   {
     "samodostal/image.nvim",
+    event = "VeryLazy",
     dependencies = {
       "nvim-lua/plenary.nvim",
       {
@@ -525,14 +526,13 @@ local plugins = {
         vim.api.nvim_command 'echo "Command is not executable. snap install ascii-image-converter"'
       end
     end,
-    event = "VeryLazy",
   },
   {
     "VonHeikemen/searchbox.nvim",
+    cmd = { "SearchBoxMatchAll", "SearchBoxReplace", "SearchBoxIncSearch" },
     dependencies = {
       "MunifTanjim/nui.nvim",
     },
-    cmd = { "SearchBoxMatchAll", "SearchBoxReplace", "SearchBoxIncSearch" },
     config = true,
   },
   {
@@ -572,7 +572,7 @@ local plugins = {
   -- },
   {
     "sidebar-nvim/sidebar.nvim",
-    event = "VeryLazy",
+    key = "<leader>sb",
     config = function()
       require "custom.configs.sidebar"
     end,
@@ -684,10 +684,6 @@ local plugins = {
     "ludovicchabant/vim-gutentags",
     event = "BufReadPost",
   },
-  -- {
-  --   "skywind3000/gutentags_plus",
-  --   event = "BufReadPost",
-  -- },
   {
     "github/copilot.vim",
     lazy = false,

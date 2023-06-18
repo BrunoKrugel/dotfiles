@@ -63,21 +63,30 @@ require("sidebar-nvim").setup {
   initial_width = 35,
   hide_statusline = false,
   update_interval = 100,
-  section_separator = { "", "-----", "" },
+  section_separator = { "", "─────", "" },
   section_title_separator = { "" },
   containers = {
     attach_shell = "/bin/sh",
     show_all = true,
     interval = 5000,
   },
+  ["git"] = {
+    icon = "",
+  },
+  ["diagnostics"] = {
+    icon = "",
+  },
+  ["todos"] = {
+    icon = "",
+  },
   sections = {
     "git",
     "diagnostics",
     "todos",
     -- "symbols",
-    "files",
-    buffers,
-    terms,
+    -- "files",
+    -- buffers,
+    -- terms,
     harpoon_marks,
   },
 }

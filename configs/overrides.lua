@@ -287,7 +287,7 @@ M.nvterm = {
         col = 0.09,
         width = 0.75,
         height = 0.7,
-        border = "single",
+        border = "none",
       },
       horizontal = { location = "rightbelow", split_ratio = 0.3 },
       vertical = { location = "rightbelow", split_ratio = 0.5 },
@@ -300,17 +300,17 @@ M.cmp = {
     ["<Up>"] = require("cmp").mapping.select_prev_item(),
     ["<Down>"] = require("cmp").mapping.select_next_item(),
     ["<Tab>"] = {},
-    -- ["<CR>"] = require("cmp").mapping({
-    --   i = function(fallback)
-    --     if require("cmp").visible() and require("cmp").get_active_entry() then
-    --       require("cmp").confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = false })
-    --     else
-    --       fallback()
-    --     end
-    --   end,
-    --   s = require("cmp").mapping.confirm({ select = true }),
-    --   c = require("cmp").mapping.confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = true }),
-    -- }),
+    ["<CR>"] = require("cmp").mapping({
+      i = function(fallback)
+        if require("cmp").visible() and require("cmp").get_active_entry() then
+          require("cmp").confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = false })
+        else
+          fallback()
+        end
+      end,
+      s = require("cmp").mapping.confirm({ select = true }),
+      c = require("cmp").mapping.confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = true }),
+    }),
     -- ["<ESC>"] = require("cmp").mapping.close(),
     -- ["<Tab>"] = require("cmp").mapping(function(fallback)
     --   local luasnip = require "luasnip"
