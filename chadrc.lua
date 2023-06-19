@@ -50,29 +50,25 @@ M.ui = {
 
         fileInfo = function()
           local icon = " 󰈚 "
-          local filename = (fn.expand "%" == "" and "Empty ") or fn.expand "%:t"
-
+          local filename = fn.expand("%:t")
+          local icon_text
+        
           if filename ~= "Empty " then
             local devicons_present, devicons = pcall(require, "nvim-web-devicons")
-
+        
             if devicons_present then
               local ft_icon, ft_icon_hl = devicons.get_icon(filename, string.match(filename, "%a+$"))
               icon = (ft_icon ~= nil and " " .. ft_icon) or ""
-              icon_hl = (ft_icon_hl ~= nil and ft_icon_hl) or "DevIconDefault"
+              local icon_hl = ft_icon_hl or "DevIconDefault"
+              local hl_fg = fn.synIDattr(fn.synIDtrans(fn.hlID(icon_hl)), "fg")
+              local hl_bg = fn.synIDattr(fn.synIDtrans(fn.hlID("StText")), "bg")
+              vim.api.nvim_set_hl(0, "St_" .. icon_hl, { fg = hl_fg, bg = hl_bg })
+              icon_text = "%#St_" .. icon_hl .. "# " .. icon .. "%#StText# " .. filename .. " "
             end
-            filename = filename .. " "
-            hl_fg = fn.synIDattr(fn.synIDtrans(fn.hlID(icon_hl)), "fg")
-            hl_bg = fn.synIDattr(fn.synIDtrans(fn.hlID "StText"), "bg")
-            vim.api.nvim_set_hl(0, "St_" .. icon_hl, { fg = hl_fg, bg = hl_bg })
-            icon_text = "%#" .. "St_" .. icon_hl .. "#" .. " " .. icon .. "%#StText# " .. filename
           end
-
-          if icon_text ~= nil then
-            return icon_text
-          else
-            return "%#StText# " .. icon .. filename
-          end
-        end,        
+        
+          return icon_text or ("%#StText# " .. icon .. filename)
+        end,       
 
         LSP_status = function()
           if rawget(vim, "lsp") then
