@@ -105,7 +105,6 @@ local plugins = {
         "hrsh7th/cmp-cmdline",
         event = "CmdLineEnter",
       },
-      "hrsh7th/cmp-nvim-lsp-signature-help",
       { "jcdickinson/codeium.nvim", config = true },
       {
         "tzachar/cmp-tabnine",
