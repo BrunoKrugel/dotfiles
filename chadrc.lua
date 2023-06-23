@@ -38,12 +38,16 @@ M.ui = {
 
       return {
 
+        -- St_NormalMode
+        -- St_VisualMode
+        -- St_InsertMode
+        -- St_TerminalMode
+        -- St_ReplaceMode
         mode = function()
           modes["n"][3] = "  "
           modes["v"][3] = "  "
           modes["i"][3] = "  "
           modes["t"][3] = "  "
-
           local m = vim.api.nvim_get_mode().mode
           return "%#" .. modes[m][2] .. "#" .. (modes[m][3] or "  ") .. modes[m][1] .. " "
         end,
@@ -109,7 +113,7 @@ M.ui = {
 
   lsp = {
     signature = {
-      disabled = false,
+      disabled = true,
       silent = true,
     },
   },
