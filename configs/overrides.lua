@@ -224,6 +224,7 @@ M.telescope = {
     "package_info",
     "lazy",
     "goimpl",
+    "noice",
   },
   extensions = {
     fzf = {
