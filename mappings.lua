@@ -103,6 +103,7 @@ M.text = {
     -- Navigate
     ["<A-Left>"] = { "<ESC>_", "󰜲 Move to beginning of line" },
     ["<A-Right>"] = { "<ESC>$", "󰜵 Move to end of line" },
+    ["<C-a>"] = {"ggvG", " Select all" },
     ["<F3>"] = { "N", " Next" },
     ["<S-F3>"] = { "n", " Previous" },
     -- Operations
@@ -383,9 +384,9 @@ M.session = {
 M.hop = {
   n = {
     ["<leader><leader>w"] = { "<cmd> HopWord <CR>", "󰸱 Hint all words" },
-    ["<leader><leader>l"] = { "<cmd> HopLine <CR>", "󰸱 Hint line" },
-    ["<leader>hl"] = { ":HopLineStart<CR>", "󰕭 Hint Columns" },
-    ["<leader>hw"] = { ":HopWordCurrentLine<CR>", "󰗉 Hint Words" },
+    -- ["<leader><leader>l"] = { "<cmd> HopLine <CR>", "󰸱 Hint line" },
+    ["<leader><leader>l"] = { ":HopLineStart<CR>", "󰕭 Hint Columns" },
+    ["<leader><leader>h"] = { ":HopWordCurrentLine<CR>", "󰗉 Hint Words" },
   },
 }
 
@@ -543,7 +544,7 @@ M.lspconfig = {
       end,
       "󱖫 Toggle LSP Lines",
     },
-    ["<F12>"] = { "<cmd> :Glance references<CR>", "󰘐 References" },
+    ["<F12>"] = { "<cmd>Glance references<CR>", "󰘐 References" },
   },
 }
 
