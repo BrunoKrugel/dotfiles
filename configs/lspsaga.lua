@@ -22,7 +22,8 @@ lspsaga.setup {
     close = "<Esc>",
   },
   code_action = {
-    num_shortcut = true,
+    extend_gitsigns = false,
+    num_shortcut = false,
     keys = {
       -- string |table type
       quit = "<ESC>",
