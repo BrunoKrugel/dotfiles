@@ -39,19 +39,19 @@ M.override = {
 M.add = {
   NvimTreeOpenedFolderName = { fg = "purple", bold = true },
   SagaWinbarFolder = {
-    fg="blue"
+    fg = "blue",
   },
   -- Cmp Highlights
   CmpItemKindCodeium = { fg = "#51BDAC" },
   CmpItemKindTabNine = { fg = "#C73BE3" },
-  EndOfBuffer = {
-    bg = "black",
-    fg = "black",
-  },
-  NonText = {
-    bg = "black",
-    fg = "black",
-  },
+  -- EndOfBuffer = {
+  --   bg = "black",
+  --   fg = "black",
+  -- },
+  -- NonText = {
+  --   bg = "black",
+  --   fg = "black",
+  -- },
   VirtColumn = { fg = "black2" },
   FoldColumn = {
     bg = "black",
@@ -77,6 +77,9 @@ M.add = {
   HarpoonHl = { fg = "cyan", bg = "statusline_bg" },
   BatteryHl = { fg = "nord_blue", bg = "statusline_bg" },
   SessionHl = { fg = "#e535ab", bg = "statusline_bg" },
+  GitSignsCurrentLineBlame = {
+    fg = "cyan",
+  },
 }
 
 return M
