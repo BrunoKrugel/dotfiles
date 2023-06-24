@@ -282,12 +282,7 @@ M.git = {
     ["<leader>gb"] = { "<cmd>Telescope git_branches<CR>", "  Git branches" },
     ["<leader>gs"] = { "<cmd>Telescope git_status<CR>", "  Git status" },
     ["<leader>gg"] = { "<cmd>LazyGit<CR>", "  LazyGit" },
-    ["<leader>gl"] = {
-      function()
-        package.loaded.gitsigns.blame_line()
-      end,
-      "  Blame line",
-    },
+    ["<leader>gl"] = { "<cmd>Gitsigns toggle_current_line_blame<CR>", "  Blame line" },
     ["<leader>gvd"] = { "<cmd> DiffviewOpen<CR>", "  Show git diff" },
     ["<leader>gvf"] = { "<cmd> DiffviewFileHistory %<CR>", "  Show file history" },
     ["<leader>gvp"] = { "<cmd> DiffviewOpen --cached<CR>", "  Show staged diffs" },
