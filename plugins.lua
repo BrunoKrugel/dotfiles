@@ -96,7 +96,7 @@ local plugins = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lua",
       "f3fora/cmp-spell",
-      "hrsh7th/cmp-vsnip",
+      -- "hrsh7th/cmp-vsnip",
       "delphinus/cmp-ctags",
       "hrsh7th/cmp-nvim-lsp-document-symbol",
       "hrsh7th/cmp-copilot",
