@@ -20,6 +20,13 @@ autocmd({ "BufAdd", "BufDelete", "BufEnter", "TabEnter", "ModeChanged", "Diagnos
   end,
 })
 
+-- autocmd("BufWritePost", {
+--   pattern = "*.lua",
+--   callback = function()
+--     require("base46").load_all_highlights()
+--   end,
+-- })
+
 -- autocmd("VimEnter", {
 --   callback = function()
 --     require("nvim-tree.api").tree.open()
@@ -32,7 +39,6 @@ autocmd({ "BufAdd", "BufDelete", "BufEnter", "TabEnter", "ModeChanged", "Diagnos
 --   callback = function()
 --     local api = require "nvim-tree.api"
 --     local view = require "nvim-tree.view"
---
 --     if not view.is_visible() then
 --       api.tree.open()
 --     end
