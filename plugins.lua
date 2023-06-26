@@ -31,7 +31,6 @@ local plugins = {
     enabled = true,
   },
   ----------------------------------------- override plugins ------------------------------------------
-
   {
     "williamboman/mason.nvim",
     opts = overrides.mason,
@@ -136,6 +135,17 @@ local plugins = {
     event = "BufReadPost",
     config = function()
       require "custom.configs.autosave"
+    end,
+  },
+  {
+    "ethanholz/nvim-lastplace",
+    event = "BufReadPost",
+    config = function()
+      require("nvim-lastplace").setup {
+        lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
+        lastplace_ignore_filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" },
+        lastplace_open_folds = true,
+      }
     end,
   },
   {
