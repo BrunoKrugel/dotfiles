@@ -297,6 +297,10 @@ M.nvterm = {
 }
 
 M.cmp = {
+  completion = {
+    completeopt = "menu,menuone",
+    autocomplete = false,
+  },
   mapping = {
     ["<Up>"] = require("cmp").mapping.select_prev_item(),
     ["<Down>"] = require("cmp").mapping.select_next_item(),
@@ -330,6 +334,16 @@ M.cmp = {
     --   "i",
     --   "s",
     -- }),
+    ["<ESC>"] = require("cmp").mapping(function(fallback)
+      if require("cmp").visible() then
+        require("cmp").abort()
+      else
+        fallback()
+      end
+    end, {
+      "i",
+      "s",
+    }),
   },
   sources = {
     { name = "copilot" },
@@ -337,6 +351,14 @@ M.cmp = {
     { name = "cmp_tabnine" },
     -- { name = "luasnip" },
     -- { name = "nvim_lua" },
+    {
+      name = "ctags",
+      -- default values
+      option = {
+        executable = "ctags",
+        trigger_characters = { "." },
+      },
+    },
     { name = "path" },
     { name = "treesitter" },
     { name = "nvim_lsp_signature_help" },
