@@ -2,8 +2,8 @@ local M = {}
 
 -- Clickable area
 _G.ClickMe = function()
-    print "Clicked!"
-    -- require("noice").cmd("history")
+    -- print "Clicked!"
+    require("noice").cmd("history")
 end
 
 M.statusline = {

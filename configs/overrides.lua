@@ -41,6 +41,11 @@ M.devicons = {
       color = "#e8274b",
       name = "PackageJson",
     },
+    [".eslintignore"] = {
+      icon = "󰱺",
+      color = "#e8274b",
+      name = "EslintIgnore",
+    },
     ["tags"] = {
       icon = "",
       color = "#bbbbbb",
