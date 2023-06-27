@@ -211,7 +211,7 @@ M.nvimtree = {
 
 M.telescope = {
   defaults = {
-    file_ignore_patterns = { "node_modules", ".docker", ".git", "yarn.lock", "go.sum", "go.mod", "tags", "mocks", },
+    file_ignore_patterns = { "node_modules", ".docker", ".git", "yarn.lock", "go.sum", "go.mod", "tags", "mocks" },
   },
   extensions_list = {
     "themes",
@@ -277,22 +277,9 @@ M.blankline = {
   vim.api.nvim_set_hl(0, "IndentBlanklineContextStart", { nocombine = false, underline = false, special = "none" }),
 }
 
-M.nvterm = {
-  terminals = {
-    shell = vim.o.shell,
-    list = {},
-    type_opts = {
-      float = {
-        relative = "editor",
-        row = 0.16,
-        col = 0.09,
-        width = 0.75,
-        height = 0.7,
-        border = "none",
-      },
-      horizontal = { location = "rightbelow", split_ratio = 0.3 },
-      vertical = { location = "rightbelow", split_ratio = 0.5 },
-    },
+M.colorizer = {
+  user_default_options = {
+    names = false,
   },
 }
 
@@ -305,17 +292,17 @@ M.cmp = {
     ["<Up>"] = require("cmp").mapping.select_prev_item(),
     ["<Down>"] = require("cmp").mapping.select_next_item(),
     ["<Tab>"] = {},
-    ["<CR>"] = require("cmp").mapping({
+    ["<CR>"] = require("cmp").mapping {
       i = function(fallback)
         if require("cmp").visible() and require("cmp").get_active_entry() then
-          require("cmp").confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = false })
+          require("cmp").confirm { behavior = require("cmp").ConfirmBehavior.Replace, select = false }
         else
           fallback()
         end
       end,
-      s = require("cmp").mapping.confirm({ select = true }),
-      c = require("cmp").mapping.confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = true }),
-    }),
+      s = require("cmp").mapping.confirm { select = true },
+      c = require("cmp").mapping.confirm { behavior = require("cmp").ConfirmBehavior.Replace, select = true },
+    },
     -- ["<ESC>"] = require("cmp").mapping.close(),
     -- ["<Tab>"] = require("cmp").mapping(function(fallback)
     --   local luasnip = require "luasnip"
@@ -372,6 +359,17 @@ M.cmp = {
       end,
     },
   },
+  -- sorting = {
+  --   comparators = {
+  --     -- require("cmp").config.compare.recently_used,
+  --     -- require("cmp").config.compare.sort_text,
+  --     require("cmp").config.compare.exact,
+  --     require("cmp").config.compare.score,
+  --     require("cmp").config.compare.kind,
+  --     require("cmp").config.compare.length,
+  --     require("cmp").config.compare.order,
+  --   },
+  -- },
 }
 
 return M
