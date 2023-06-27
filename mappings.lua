@@ -96,6 +96,12 @@ M.text = {
     ["<A-Left>"] = { "<ESC>I", " Move to beginning of line" },
     ["<A-Right>"] = { "<ESC>A", " Move to end of line" },
     ["<A-d>"] = { "<ESC>diw", " Delete word" },
+    ["<S-CR>"] = {
+      function()
+        vim.cmd "normal o"
+      end,
+      " New line",
+    },
   },
 
   n = {
@@ -103,7 +109,7 @@ M.text = {
     -- Navigate
     ["<A-Left>"] = { "<ESC>_", "󰜲 Move to beginning of line" },
     ["<A-Right>"] = { "<ESC>$", "󰜵 Move to end of line" },
-    ["<C-a>"] = {"ggvG", " Select all" },
+    ["<C-a>"] = { "ggvG", " Select all" },
     ["<F3>"] = { "N", " Next" },
     ["<S-F3>"] = { "n", " Previous" },
     -- Operations
@@ -290,6 +296,7 @@ M.git = {
     ["<leader>gvc"] = { "<cmd> DiffviewClose<CR>", "  Close diff view" },
   },
 }
+-- require('cmp').complete({ config = { sources = { { name = 'vsnip' } } } })
 
 M.telescope = {
   n = {
