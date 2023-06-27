@@ -16,24 +16,8 @@ noice.setup {
       filter = {
         event = "msg_show",
         kind = "",
-        find = "written",
       },
       opts = { skip = true },
-    },
-    -- {
-    --   filter = {
-    --     event = "msg_show",
-    --     find = "%d+L, %d+B",
-    --   },
-    --   view = "mini",
-    -- },
-    {
-      view = "split",
-      filter = { event = "msg_show", min_height = 20 },
-    },
-    {
-      filter = { event = "msg_show", find = "Hunk %d+ of %d+" },
-      view = "mini",
     },
     {
       filter = { event = "msg_show", find = "%d+ more lines" },
@@ -42,18 +26,6 @@ noice.setup {
     {
       filter = { event = "msg_show", find = "%d+ lines yanked" },
       opts = { skip = true },
-    },
-    {
-      filter = { event = "msg_show", kind = "quickfix" },
-      view = "mini",
-    },
-    {
-      filter = { event = "msg_show", kind = "search_count" },
-      view = "mini",
-    },
-    {
-      filter = { event = "msg_show", kind = "wmsg" },
-      view = "mini",
     },
     {
       filter = {
