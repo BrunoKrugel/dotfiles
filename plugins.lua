@@ -86,6 +86,10 @@ local plugins = {
     opts = overrides.nvimtree,
   },
   {
+    "NvChad/nvim-colorizer.lua",
+    opts = overrides.colorizer,
+  },
+  {
     "hrsh7th/nvim-cmp",
     opts = overrides.cmp,
     dependencies = {
@@ -124,10 +128,6 @@ local plugins = {
         "<C-d>",
       } }
     end,
-  },
-  {
-    "ThePrimeagen/harpoon",
-    cmd = "Harpoon",
   },
   ----------------------------------------- enhance plugins ------------------------------------------
   {
