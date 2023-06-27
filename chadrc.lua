@@ -2,9 +2,14 @@
 local M = {}
 local fn = vim.fn
 
+-- Clickable area
+_G.ClickMe = function()
+  print("Clicked!") 
+  -- require("noice").cmd("history")
+end
+
 -- Path to overriding theme and highlights files
 local highlights = require "custom.highlights"
--- 
 M.ui = {
   theme = "darcula",
   theme_toggle = { "darcula", "one_light" },
@@ -51,34 +56,33 @@ M.ui = {
           local m = vim.api.nvim_get_mode().mode
           return "%#" .. modes[m][2] .. "#" .. (modes[m][3] or "  ") .. modes[m][1] .. " "
         end,
-
         fileInfo = function()
           local icon = " 󰈚 "
-          local filename = fn.expand("%:t")
+          local filename = fn.expand "%:t"
           local icon_text
-        
+
           if filename ~= "Empty " then
             local devicons_present, devicons = pcall(require, "nvim-web-devicons")
-        
+
             if devicons_present then
               local ft_icon, ft_icon_hl = devicons.get_icon(filename, string.match(filename, "%a+$"))
               icon = (ft_icon ~= nil and " " .. ft_icon) or ""
               local icon_hl = ft_icon_hl or "DevIconDefault"
               local hl_fg = fn.synIDattr(fn.synIDtrans(fn.hlID(icon_hl)), "fg")
-              local hl_bg = fn.synIDattr(fn.synIDtrans(fn.hlID("StText")), "bg")
+              local hl_bg = fn.synIDattr(fn.synIDtrans(fn.hlID "StText"), "bg")
               vim.api.nvim_set_hl(0, "St_" .. icon_hl, { fg = hl_fg, bg = hl_bg })
               icon_text = "%#St_" .. icon_hl .. "# " .. icon .. "%#StText# " .. filename .. " "
             end
           end
-        
+
           return icon_text or ("%#StText# " .. icon .. filename)
-        end,       
+        end,
 
         LSP_status = function()
           if rawget(vim, "lsp") then
             for _, client in ipairs(vim.lsp.get_active_clients()) do
               if client.attached_buffers[vim.api.nvim_get_current_buf()] and client.name ~= "null-ls" then
-                return (vim.o.columns > 100 and "%#St_LspStatus#   " .. client.name .. "  ") or "   LSP  "
+                return (vim.o.columns > 100 and "%#St_LspStatus#   " .. client.name .. "  %#NotificationHl#%@v:lua.ClickMe@  ") or "   LSP  %#NotificationHl#%@v:lua.ClickMe@  "
               end
             end
           end
@@ -100,6 +104,7 @@ M.ui = {
             -- .. get_npm()
             -- .. " "
             .. st_modules.LSP_Diagnostics()
+            -- .. "%#NotificationHl#%@v:lua.ClickMe@"
         end,
       }
     end,
