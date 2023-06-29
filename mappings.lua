@@ -109,7 +109,7 @@ M.text = {
     -- Navigate
     ["<A-Left>"] = { "<ESC>_", "󰜲 Move to beginning of line" },
     ["<A-Right>"] = { "<ESC>$", "󰜵 Move to end of line" },
-    ["<C-a>"] = { "ggvG", " Select all" },
+    ["<C-a>"] = { "gg0vG", " Select all" },
     ["<F3>"] = { "n", " Next" },
     ["<S-F3>"] = { "N", " Previous" },
     -- Operations
