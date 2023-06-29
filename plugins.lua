@@ -633,7 +633,7 @@ local plugins = {
   --   end,
   -- },
   {
-    "kristijanhusak/vim-js-file-import",
+    "galooshi/vim-import-js",
     ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
     build = "npm install",
   },

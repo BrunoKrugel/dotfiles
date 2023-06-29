@@ -110,8 +110,8 @@ M.text = {
     ["<A-Left>"] = { "<ESC>_", "󰜲 Move to beginning of line" },
     ["<A-Right>"] = { "<ESC>$", "󰜵 Move to end of line" },
     ["<C-a>"] = { "ggvG", " Select all" },
-    ["<F3>"] = { "N", " Next" },
-    ["<S-F3>"] = { "n", " Previous" },
+    ["<F3>"] = { "n", " Next" },
+    ["<S-F3>"] = { "N", " Previous" },
     -- Operations
     ["<C-z>"] = { "<cmd>2u<CR>", "󰕌 Undo" },
     ["<C-r>"] = { "<cmd>redo<CR>", "󰑎 Redo" },
@@ -255,7 +255,11 @@ M.node = {
     },
     ["<leader>np"] = {
       "<cmd> lua require('package-info').change_version() <CR>",
-      "󰎙 install package",
+      "󰎙 Install package",
+    },
+    ["<leader>ip"] = {
+      "<cmd>ImportJSFix<CR>",
+      "󰎙 Import missing package",
     },
   },
 }
