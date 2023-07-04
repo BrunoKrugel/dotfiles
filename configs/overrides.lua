@@ -167,6 +167,7 @@ M.nvimtree = {
   },
   git = {
     enable = true,
+    ignore = false,
   },
   hijack_unnamed_buffer_when_opening = true,
   hijack_cursor = true,
