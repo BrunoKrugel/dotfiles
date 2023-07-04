@@ -73,10 +73,10 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
-      {
-        "mrjones2014/nvim-ts-rainbow",
-        event = "BufReadPost",
-      },
+      -- {
+      --   "mrjones2014/nvim-ts-rainbow",
+      --   event = "BufReadPost",
+      -- },
       "windwp/nvim-ts-autotag",
     },
     opts = overrides.treesitter,
@@ -285,7 +285,7 @@ local plugins = {
         alpha = 0.75,
         blend_color = "#000000",
         hide = { underline = true, virtual_text = true, signs = true },
-        priority = 100,
+        priority = 150,
         disable = {},
       }
     end,
@@ -303,9 +303,6 @@ local plugins = {
     "mg979/vim-visual-multi",
     event = "BufReadPost",
   },
-  --   :TSJToggle - toggle node under cursor (split if one-line and join if multiline);
-  -- :TSJSplit - split node under cursor;
-  -- :TSJJoin - join node under cursor;
   {
     "Wansmer/treesj",
     event = "BufReadPost",
