@@ -81,6 +81,8 @@ M.polish_hl = {
   ["@variable"] = { fg = M.base_30.purple },
   ["@namespace"] = { fg = M.base_30.white },
   ["@function.call"] = { fg = M.base_30.vibrant_green },
+  ["@function"] = { fg = M.base_30.green },
+  ["@repeat"] = { fg = M.base_30.green },
   -- Overrides
   Include = { fg = M.base_30.pink },
   Error = { fg = pallete.Color0 },

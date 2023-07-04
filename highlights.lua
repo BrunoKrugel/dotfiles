@@ -24,6 +24,7 @@ M.override = {
   },
   ["@variable"] = { fg = "purple" },
   ["@namespace"] = { fg = "white" },
+  Repeat = { fg = "pink" },
   ["@function.builtin"] = { fg = "cyan" },
   ["@function.call"] = { fg = "green" },
   CopilotSuggestion = {
@@ -61,13 +62,13 @@ M.add = {
     fg = "white",
   },
   -- Tree Sitter
-  TSRainbowRed = { fg = "red" },
-  TSRainbowYellow = { fg = "yellow" },
-  TSRainbowBlue = { fg = "blue" },
-  TSRainbowOrange = { fg = "orange" },
-  TSRainbowGreen = { fg = "green" },
-  TSRainbowViolet = { fg = "purple" },
-  TSRainbowCyan = { fg = "cyan" },
+  RainbowDelimiterRed = { fg = "red" },
+  RainbowDelimiterYellow = { fg = "yellow" },
+  RainbowDelimiterBlue = { fg = "blue" },
+  RainbowDelimiterOrange = { fg = "orange" },
+  RainbowDelimiterGreen = { fg = "green" },
+  RainbowDelimiterViolet = { fg = "purple" },
+  RainbowDelimiterCyan = { fg = "cyan" },
   -- Search highlights
   HlSearchNear = { fg = "#2E3440", bg = "#EBCB8B" },
   HlSearchLens = { fg = "#2E3440", bg = "#88bfcf" },
