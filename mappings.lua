@@ -469,7 +469,10 @@ M.lspsaga = {
       " Peek definition",
     },
     ["<leader>k"] = {
-      "<Cmd>Lspsaga hover_doc<cr>",
+      -- "<Cmd>Lspsaga hover_doc<cr>",
+      function()
+       require("pretty_hover").hover()
+      end,
       "󱙼 Hover lsp",
     },
     ["<leader>o"] = { "<cmd>Lspsaga outline<CR>", " Show Outline" },
