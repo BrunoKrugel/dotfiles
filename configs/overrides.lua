@@ -239,6 +239,7 @@ M.telescope = {
     "lazy",
     "goimpl",
     "noice",
+    "dap",
   },
   extensions = {
     fzf = {
