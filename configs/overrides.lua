@@ -128,10 +128,14 @@ M.mason = {
     "css-lsp",
     "html-lsp",
 
+    -- Spell
     "codespell",
+
+    -- Json
     "jsonlint",
     "json-lsp",
 
+    "yaml-language-server",
     -- golang
     "gopls",
     "goimports",
@@ -163,7 +167,11 @@ M.mason = {
 M.nvimtree = {
   filters = {
     dotfiles = false,
-    custom = { "node_modules" },
+    custom = {
+      "**/node_modules",
+      "**/%.git",
+      "**/%.github",
+    },
   },
   git = {
     enable = true,
