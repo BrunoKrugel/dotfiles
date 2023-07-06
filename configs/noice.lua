@@ -77,7 +77,23 @@ noice.setup {
       },
       view = nil, -- when nil, use defaults from documentation
       ---@type NoiceViewOptions
-      opts = {}, -- merged with defaults from documentation
+      opts = {
+        focusable = false,
+        size = {
+          max_height = 15,
+          max_width = 60,
+        },
+        win_options = {
+          wrap = false,
+        },
+      }, -- merged with defaults from documentation
+    },
+    documentation = {
+      opts = {
+        border = {
+          padding = { 0, 0 },
+        },
+      },
     },
     override = {
       -- override the default lsp markdown formatter with Noice

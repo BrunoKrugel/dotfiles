@@ -6,8 +6,8 @@ local core = require "custom.configs.core"
 -- Path to overriding theme and highlights files
 local highlights = require "custom.highlights"
 M.ui = {
-  theme = "darcula",
-  theme_toggle = { "darcula", "one_light" },
+  theme = "chadracula",
+  theme_toggle = { "chadracula", "one_light" },
   lsp_semantic_tokens = false,
   statusline = core.statusline,
 
