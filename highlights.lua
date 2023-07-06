@@ -2,46 +2,38 @@ local M = {}
 
 ---@type Base46HLGroupsList
 M.override = {
-  CursorLine = {
-    bg = "black2",
-  },
-  Comment = {
-    italic = true,
-  },
-  Include = {
-    fg = "pink",
-  },
-  NvDashAscii = {
-    fg = "none",
-    bg = "none",
-  },
-  DiffAdd = { fg = "green" },
-  IndentBlanklineContextStart = {
-    bg = "none",
-  },
-  ["@definition"] = {
-    underline = false,
-  },
+  -- Cursor
+  Cursor = { bg = "#FFFFFF" },
+  CursorLine = { bg = "black2" },
+  Comment = { italic = true },
+  NvDashAscii = { fg = "none", bg = "none" },
+  IndentBlanklineContextStart = { bg = "none" },
+  -- TreeSitter highlights
+  Repeat = { fg = "pink" },
+  Include = { fg = "pink" },
+  ["@definition"] = { underline = false },
   ["@variable"] = { fg = "purple" },
   ["@namespace"] = { fg = "white" },
-  Repeat = { fg = "pink" },
   ["@function.builtin"] = { fg = "cyan" },
   ["@function.call"] = { fg = "green" },
-  CopilotSuggestion = {
-    fg = "#83a598",
-  },
-  CopilotAnnotation = {
-    fg = "#03a598",
-  },
-  Cursor = { bg = "#FFFFFF" },
+  -- Copilot
+  CopilotSuggestion = { fg = "#83a598" },
+  CopilotAnnotation = { fg = "#03a598" },
+  -- NvimTree
+  NvimTreeGitNew = { fg = "green" },
+  NvimTreeGitDirty = { fg = "yellow" },
+  NvimTreeGitDeleted = { fg = "red" },
+  NvimTreeCursorLine = { bg = "one_bg3" },
+  -- GitSigns
+  DiffChange = { fg = "yellow" },
+  DiffAdd = { fg = "vibrant_green" },
+  DiffText = { fg = "white", bg = "red", bold = true },
 }
 
 ---@type HLTable
 M.add = {
   NvimTreeOpenedFolderName = { fg = "purple", bold = true },
-  SagaWinbarFolder = {
-    fg = "blue",
-  },
+  SagaWinbarFolder = { fg = "blue" },
   -- Cmp Highlights
   CmpItemKindCodeium = { fg = "#51BDAC" },
   CmpItemKindTabNine = { fg = "#C73BE3" },
@@ -54,14 +46,12 @@ M.add = {
   --   fg = "black",
   -- },
   VirtColumn = { fg = "black2" },
-  FoldColumn = {
-    bg = "black",
-  },
+  FoldColumn = { bg = "black" },
   Folded = {
     bg = "black",
     fg = "white",
   },
-  -- Tree Sitter
+  -- Tree Sitter Rainbow
   RainbowDelimiterRed = { fg = "red" },
   RainbowDelimiterYellow = { fg = "yellow" },
   RainbowDelimiterBlue = { fg = "blue" },
@@ -82,6 +72,11 @@ M.add = {
   GitSignsCurrentLineBlame = {
     fg = "cyan",
   },
+  -- LSP Saga
+  SagaBorder = { fg = "blue" },
+  HoverNormal = { fg = "white" },
+  CodeActionText = { fg = "white" },
+  CodeActionNumber = { link = "Number" },
 }
 
 return M
