@@ -15,6 +15,10 @@ create_cmd("ColorcolumnToggle", function()
   end
 end, {})
 
+create_cmd("TDebug", function()
+  require("dapui").toggle()
+end, {})
+
 -- Disable scrolloff in blacklisted filetypes
 create_autocmd({ "BufEnter" }, {
   callback = function()
