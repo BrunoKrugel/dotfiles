@@ -131,7 +131,7 @@ M.text = {
       function()
         require("nvchad_ui.renamer").open()
       end,
-      "LSP rename",
+      "󰑕 LSP rename",
     },
     ["<leader>rn"] = {
       function()
@@ -160,7 +160,6 @@ M.text = {
       "<cmd>:Bionic<CR>",
       "󱄽 Toggle Bionic",
     },
-    ["<leader>fi"] = { " <cmd>:GoImport<CR>", " Format imports", opts = { silent = true } },
     ["<leader>fm"] = {
       function()
         vim.lsp.buf.format { async = true }
@@ -185,6 +184,17 @@ M.text = {
     ["<"] = { "<><left>", "Auto complete <", opts = { silent = false } },
     ['"'] = { '""<left>', [[Auto complete "]], opts = { silent = false } },
     ["'"] = { "''<left>", "Auto complete '", opts = { silent = false } },
+  },
+}
+
+M.go = {
+  n = {
+    ["<leader>fi"] = { " <cmd>:GoImport<CR>", " Format imports", opts = { silent = true } },
+    ["<leader>gif"] = { " <cmd>:GoIfErr<CR>", " Create If Err", opts = { silent = true } },
+    ["<leader>gfs"] = { " <cmd>:GoFillStruct<CR>", " Fill struct", opts = { silent = true } },
+    ["<leader>gcv"] = { " <cmd>:GoCoverage -p<CR>", " Show coverage", opts = { silent = true } },
+    ["<leader>gt"] = { " <cmd>:GoAlt!<CR>", " Go to test", opts = { silent = true } },
+    ["<leader>gca"] = { " <cmd>:GoCodeAction<CR>", " Code action", opts = { silent = true } },
   },
 }
 
@@ -272,7 +282,7 @@ M.node = {
 
 M.treesitter = {
   n = {
-    ["<leader>cu"] = { "<cmd> TSCaptureUnderCursor <CR>", " Find media" },
+    ["<leader>cu"] = { "<cmd> TSCaptureUnderCursor <CR>", " Find highlight" },
   },
 }
 
