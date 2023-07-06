@@ -6,14 +6,11 @@ require("nvim-dap-virtual-text").setup {
   highlight_new_as_changed = true,
   show_stop_reason = true,
   -- prefix virtual text with comment string
-  commented = false,
+  commented = true,
   -- only show virtual text at first definition (if there are multiple)
   only_first_definition = true,
   -- show virtual text on all all references of the variable (not only definitions)
-  all_references = true,
-  -- filter references (not definitions) pattern when all_references is activated
-  -- (Lua gmatch pattern, default filters out Python modules)
-  filter_references_pattern = "<module",
+  all_references = false,
   -- experimental features:
   -- position of virtual text, see `:h nvim_buf_set_extmark()`
   virt_text_pos = "eol",
