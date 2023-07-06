@@ -23,6 +23,7 @@ lspsaga.setup {
   },
   code_action = {
     extend_gitsigns = false,
+    show_server_name = false,
     num_shortcut = false,
     keys = {
       -- string |table type
