@@ -64,6 +64,7 @@ local plugins = {
         "nvim-telescope/telescope-frecency.nvim",
         dependencies = { "kkharji/sqlite.lua" },
       },
+      { "JoosepAlviste/nvim-ts-context-commentstring", event = "BufRead" },
     },
   },
   {
@@ -137,26 +138,26 @@ local plugins = {
     "hiphish/rainbow-delimiters.nvim",
     event = "BufReadPost",
     config = function()
-      local rainbow_delimiters = require 'rainbow-delimiters'
+      local rainbow_delimiters = require "rainbow-delimiters"
 
       vim.g.rainbow_delimiters = {
-          strategy = {
-              [''] = rainbow_delimiters.strategy['global'],
-              vim = rainbow_delimiters.strategy['local'],
-          },
-          query = {
-              [''] = 'rainbow-delimiters',
-              lua = 'rainbow-blocks',
-          },
-          highlight = {
-              'RainbowDelimiterRed',
-              'RainbowDelimiterYellow',
-              'RainbowDelimiterBlue',
-              'RainbowDelimiterOrange',
-              'RainbowDelimiterGreen',
-              'RainbowDelimiterViolet',
-              'RainbowDelimiterCyan',
-          },
+        strategy = {
+          [""] = rainbow_delimiters.strategy["global"],
+          vim = rainbow_delimiters.strategy["local"],
+        },
+        query = {
+          [""] = "rainbow-delimiters",
+          lua = "rainbow-blocks",
+        },
+        highlight = {
+          "RainbowDelimiterRed",
+          "RainbowDelimiterYellow",
+          "RainbowDelimiterBlue",
+          "RainbowDelimiterOrange",
+          "RainbowDelimiterGreen",
+          "RainbowDelimiterViolet",
+          "RainbowDelimiterCyan",
+        },
       }
     end,
   },
@@ -269,7 +270,20 @@ local plugins = {
   },
   {
     "mfussenegger/nvim-dap",
-    dependencies = { { "theHamsta/nvim-dap-virtual-text", config = true }, "rcarriga/nvim-dap-ui" },
+    dependencies = {
+      {
+        "theHamsta/nvim-dap-virtual-text",
+        config = function()
+          require "custom.configs.virtual-text"
+        end,
+      },
+      {
+        "rcarriga/nvim-dap-ui",
+        config = function()
+          require "custom.configs.dapui"
+        end,
+      },
+    },
   },
   {
     "melkster/modicator.nvim",
@@ -370,6 +384,13 @@ local plugins = {
     },
     config = function()
       require "custom.configs.noice"
+    end,
+  },
+  {
+    "Pocco81/true-zen.nvim",
+    cmd = { "TZAtaraxis" },
+    config = function()
+      require("true-zen").setup {}
     end,
   },
   {
@@ -567,7 +588,17 @@ local plugins = {
   {
     "sindrets/diffview.nvim",
     cmd = "DiffviewOpen",
-    config = true,
+    config = function()
+      require("diffview").setup {
+        enhanced_diff_hl = true,
+        view = {
+          merge_tool = {
+            layout = "diff3_mixed",
+            disable_diagnostics = true,
+          },
+        },
+      }
+    end,
   },
   {
     "kevinhwang91/nvim-hlslens",
@@ -593,6 +624,11 @@ local plugins = {
     config = function()
       require "custom.configs.pretty-fold"
     end,
+  },
+  {
+    "Fildo7525/pretty_hover",
+    event = "LspAttach",
+    config = true,
   },
   -- {
   --   "VidocqH/lsp-lens.nvim",
@@ -638,11 +674,11 @@ local plugins = {
         "ray-x/guihua.lua",
         build = "cd lua/fzy && make",
       },
-      "nvim-treesitter",
     },
     config = function()
       require "custom.configs.go"
     end,
+    build = ':lua require("go.install").update_all_sync()',
   },
   -- {
   --   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
