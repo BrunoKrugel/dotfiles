@@ -6,6 +6,52 @@ _G.ClickMe = function()
   require("noice").cmd "history"
 end
 
+M.dapui = {
+  icons = { expanded = "▾", collapsed = "▸" },
+  mappings = {
+    -- Use a table to apply multiple mappings
+    expand = { "<CR>", "<2-LeftMouse>" },
+    open = "o",
+    remove = "d",
+    edit = "e",
+    repl = "r",
+    toggle = "t",
+  },
+  expand_lines = false,
+  layouts = {
+    {
+      elements = {
+        { id = "scopes", size = 0.40 },
+        { id = "breakpoints", size = 0.20 },
+        { id = "stacks", size = 0.20 },
+        { id = "watches", size = 0.20 },
+      },
+      size = 40, -- 40 columns
+      position = "left",
+    },
+    {
+      elements = {
+        -- "console",
+        "repl",
+      },
+      size = 0.25, -- 25% of total lines
+      position = "bottom",
+    },
+  },
+  floating = {
+    max_height = nil, -- These can be integers or a float between 0 and 1.
+    max_width = nil, -- Floats will be treated as percentage of your screen.
+    border = "rounded", -- Border style. Can be "single", "double" or "rounded"
+    mappings = {
+      close = { "q", "<Esc>" },
+    },
+  },
+  windows = { indent = 1 },
+  render = {
+    max_type_length = nil, -- Can be integer or nil.
+  },
+}
+
 M.statusline = {
   theme = "vscode_colored",
   overriden_modules = function()
@@ -74,10 +120,7 @@ M.statusline = {
         if rawget(vim, "lsp") then
           for _, client in ipairs(vim.lsp.get_active_clients()) do
             if client.attached_buffers[vim.api.nvim_get_current_buf()] and client.name ~= "null-ls" then
-              return (
-                vim.o.columns > 100
-                and "%#St_LspStatus#   " .. client.name .. "  %#NotificationHl#%@v:lua.ClickMe@  "
-              ) or "   LSP  %#NotificationHl#%@v:lua.ClickMe@  "
+              return (vim.o.columns > 100 and "%#St_LspStatus#   " .. client.name) or "   LSP"
             end
           end
         end
@@ -97,6 +140,10 @@ M.statusline = {
           -- .. " "
           .. st_modules.LSP_Diagnostics()
         -- .. "%#NotificationHl#%@v:lua.ClickMe@"
+      end,
+
+      cwd = function()
+        return "  %#NotificationHl#%@v:lua.ClickMe@  " .. st_modules.cwd()
       end,
     }
   end,
