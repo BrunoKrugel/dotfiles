@@ -143,7 +143,7 @@ M.statusline = {
       end,
 
       cwd = function()
-        return "  %#NotificationHl#%@v:lua.ClickMe@  " .. st_modules.cwd()
+        return " %#NotificationHl#%@v:lua.ClickMe@ " .. st_modules.cwd()
       end,
     }
   end,
