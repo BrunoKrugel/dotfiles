@@ -6,6 +6,11 @@ _G.ClickMe = function()
   require("noice").cmd "history"
 end
 
+-- Clickable area
+_G.ClickTerm = function()
+  require("nvterm.terminal").toggle "horizontal"
+end
+
 M.dapui = {
   icons = { expanded = "▾", collapsed = "▸" },
   mappings = {
@@ -143,7 +148,7 @@ M.statusline = {
       end,
 
       cwd = function()
-        return " %#NotificationHl#%@v:lua.ClickMe@ " .. st_modules.cwd()
+        return " %#TermHl#%@v:lua.ClickTerm@  %#NotificationHl#%@v:lua.ClickMe@  " .. st_modules.cwd()
       end,
     }
   end,

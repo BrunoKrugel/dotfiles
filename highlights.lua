@@ -69,6 +69,8 @@ M.add = {
   BatteryHl = { fg = "nord_blue", bg = "statusline_bg" },
   SessionHl = { fg = "#e535ab", bg = "statusline_bg" },
   NotificationHl = { fg = "white", bg = "statusline_bg" },
+  TermHl = { fg = "vibrant_green", bg = "statusline_bg" },
+
   GitSignsCurrentLineBlame = {
     fg = "cyan",
   },
