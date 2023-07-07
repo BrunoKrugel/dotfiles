@@ -22,7 +22,9 @@ lspsaga.setup {
     close = "<Esc>",
   },
   code_action = {
-    num_shortcut = true,
+    extend_gitsigns = false,
+    show_server_name = false,
+    num_shortcut = false,
     keys = {
       -- string |table type
       quit = "<ESC>",
@@ -71,7 +73,7 @@ lspsaga.setup {
     },
   },
   symbol_in_winbar = {
-    enable = false,
+    enable = true,
     separator = " ",
     hide_keyword = true,
     show_file = true,
@@ -83,7 +85,7 @@ lspsaga.setup {
     -- currently only round theme
     theme = "round",
     -- this option only work in neovim 0.9
-    title = true,
+    title = false,
     -- border type can be single,double,rounded,solid,shadow.
     border = "rounded",
     winblend = 0,

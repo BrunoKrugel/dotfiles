@@ -4,7 +4,7 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 local lspconfig = require "lspconfig"
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "tsserver", "clangd", "eslint", "gopls", "jdtls", "astro" }
+local servers = { "html", "cssls", "tsserver", "clangd", "eslint", "gopls", "jdtls", "astro", "grammarly", "marksman", "emmet_ls", "yamlls" }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -13,13 +13,12 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+vim.lsp.handlers["textDocument/hover"] = require("noice").hover
+vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
+
 lspconfig.gopls.setup {
   on_attach = on_attach,
   filetypes = { "go", "gomod", "gowork", "gotmpl" },
-  handlers = {
-    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" }),
-    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" }),
-  },
   capabilities = capabilities,
   settings = {
     gopls = {
@@ -150,4 +149,3 @@ lspconfig.eslint.setup {
 --   update_in_insert = false,
 --   severity_sort = true,
 -- })
-

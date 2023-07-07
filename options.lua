@@ -2,6 +2,8 @@ local opt = vim.opt
 local g = vim.g
 local o = vim.o
 
+-- opt.colorcolumn = "90"
+
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 opt.backup = false
@@ -18,12 +20,23 @@ opt.wrap = false
 -- zM fold all blocks
 -- zR unfold all blocks
 -- za toggle folding
+opt.foldenable = true
+
+-- UFO
 opt.foldcolumn = "1" -- show foldcolumn in nvim 0.9
 opt.foldlevel = 1
 opt.foldnestmax = 1
 opt.foldlevelstart = 99
-opt.foldenable = true
 opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+
+-- CUSTOM
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+vim.o.signcolumn = "yes"
+vim.o.foldcolumn = "2"
+-- vim.o.signcolumn = "number"
+vim.o.number = true
+vim.o.numberwidth = 2
 
 -- Spell
 -- opt.spell = true

@@ -16,20 +16,8 @@ noice.setup {
       filter = {
         event = "msg_show",
         kind = "",
-        find = "written",
       },
       opts = { skip = true },
-    },
-    {
-      filter = {
-        event = "msg_show",
-        find = "%d+L, %d+B",
-      },
-      view = "mini",
-    },
-    {
-      filter = { event = "msg_show", find = "Hunk %d+ of %d+" },
-      view = "mini",
     },
     {
       filter = { event = "msg_show", find = "%d+ more lines" },
@@ -38,18 +26,6 @@ noice.setup {
     {
       filter = { event = "msg_show", find = "%d+ lines yanked" },
       opts = { skip = true },
-    },
-    {
-      filter = { event = "msg_show", kind = "quickfix" },
-      view = "mini",
-    },
-    {
-      filter = { event = "msg_show", kind = "search_count" },
-      view = "mini",
-    },
-    {
-      filter = { event = "msg_show", kind = "wmsg" },
-      view = "mini",
     },
     {
       filter = {
@@ -83,31 +59,47 @@ noice.setup {
       },
       opts = { skip = true },
     },
-    -- {
-    -- 	filter = {
-    -- 		cond = function()
-    -- 			return not focused
-    -- 		end,
-    -- 	},
-    -- 	view = "notify",
-    -- 	opts = { stop = false },
-    -- },
   },
   lsp = {
     progress = {
       enabled = false,
     },
     hover = {
-      enabled = false,
+      enabled = true,
     },
     signature = {
-      enabled = false,
+      enabled = true,
+      auto_open = {
+        enabled = true,
+        trigger = true, -- Automatically show signature help when typing a trigger character from the LSP
+        luasnip = true, -- Will open signature help when jumping to Luasnip insert nodes
+        throttle = 50, -- Debounce lsp signature help request by 50ms
+      },
+      view = nil, -- when nil, use defaults from documentation
+      ---@type NoiceViewOptions
+      opts = {
+        focusable = false,
+        size = {
+          max_height = 15,
+          max_width = 60,
+        },
+        win_options = {
+          wrap = false,
+        },
+      }, -- merged with defaults from documentation
+    },
+    documentation = {
+      opts = {
+        border = {
+          padding = { 0, 0 },
+        },
+      },
     },
     override = {
       -- override the default lsp markdown formatter with Noice
-      ["vim.lsp.util.convert_input_to_markdown_lines"] = false,
+      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
       -- override the lsp markdown formatter with Noice
-      ["vim.lsp.util.stylize_markdown"] = false,
+      ["vim.lsp.util.stylize_markdown"] = true,
       -- override cmp documentation with Noice (needs the other options to work)
       ["cmp.entry.get_documentation"] = true,
     },
@@ -187,17 +179,9 @@ noice.setup {
     },
   },
   presets = {
-    -- bottom_search = true,
+    bottom_search = true,
     command_palette = true,
-    -- long_message_to_split = true,
-    -- inc_rename = true,
-    -- cmdline_output_to_split = false,
     lsp_doc_border = true,
     inc_rename = true,
   },
-  -- format = {
-  --   level = {
-  --     icons = true,
-  --   },
-  -- },
 }

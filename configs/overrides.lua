@@ -41,6 +41,11 @@ M.devicons = {
       color = "#e8274b",
       name = "PackageJson",
     },
+    [".eslintignore"] = {
+      icon = "󰱺",
+      color = "#e8274b",
+      name = "EslintIgnore",
+    },
     ["tags"] = {
       icon = "",
       color = "#bbbbbb",
@@ -123,16 +128,19 @@ M.mason = {
     "css-lsp",
     "html-lsp",
 
+    -- Spell
     "codespell",
+
+    -- Json
     "jsonlint",
     "json-lsp",
 
+    "yaml-language-server",
     -- golang
     "gopls",
     "goimports",
     "golines",
     "gomodifytags",
-    "sonarlint-language-server",
   },
 
   ui = {
@@ -159,10 +167,15 @@ M.mason = {
 M.nvimtree = {
   filters = {
     dotfiles = false,
-    custom = { "node_modules" },
+    custom = {
+      "**/node_modules",
+      "**/%.git",
+      "**/%.github",
+    },
   },
   git = {
     enable = true,
+    ignore = false,
   },
   hijack_unnamed_buffer_when_opening = true,
   hijack_cursor = true,
@@ -212,7 +225,7 @@ M.nvimtree = {
 
 M.telescope = {
   defaults = {
-    file_ignore_patterns = { "node_modules", ".docker", ".git", "yarn.lock", "go.sum", "go.mod", "tags" },
+    file_ignore_patterns = { "node_modules", ".docker", ".git", "yarn.lock", "go.sum", "go.mod", "tags", "mocks" },
   },
   extensions_list = {
     "themes",
@@ -224,6 +237,9 @@ M.telescope = {
     "harpoon",
     "package_info",
     "lazy",
+    "goimpl",
+    "noice",
+    "dap",
   },
   extensions = {
     fzf = {
@@ -269,49 +285,40 @@ M.blankline = {
   show_end_of_line = true,
   show_foldtext = true,
   show_trailing_blankline_indent = false,
-  show_first_indent_level = false,
+  show_first_indent_level = true,
   show_current_context = true,
   show_current_context_start = true,
   vim.api.nvim_set_hl(0, "IndentBlanklineContextChar", { nocombine = true, fg = "none" }),
   vim.api.nvim_set_hl(0, "IndentBlanklineContextStart", { nocombine = false, underline = false, special = "none" }),
 }
 
-M.nvterm = {
-  terminals = {
-    shell = vim.o.shell,
-    list = {},
-    type_opts = {
-      float = {
-        relative = "editor",
-        row = 0.16,
-        col = 0.09,
-        width = 0.75,
-        height = 0.7,
-        border = "single",
-      },
-      horizontal = { location = "rightbelow", split_ratio = 0.3 },
-      vertical = { location = "rightbelow", split_ratio = 0.5 },
-    },
+M.colorizer = {
+  user_default_options = {
+    names = false,
   },
 }
 
 M.cmp = {
+  completion = {
+    completeopt = "menu,menuone",
+    autocomplete = false,
+  },
   mapping = {
     ["<Up>"] = require("cmp").mapping.select_prev_item(),
     ["<Down>"] = require("cmp").mapping.select_next_item(),
     ["<Tab>"] = {},
-    -- ["<CR>"] = require("cmp").mapping({
-    --   i = function(fallback)
-    --     if require("cmp").visible() and require("cmp").get_active_entry() then
-    --       require("cmp").confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = false })
-    --     else
-    --       fallback()
-    --     end
-    --   end,
-    --   s = require("cmp").mapping.confirm({ select = true }),
-    --   c = require("cmp").mapping.confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = true }),
-    -- }),
-    ["<ESC>"] = require("cmp").mapping.abort(),
+    ["<CR>"] = require("cmp").mapping {
+      i = function(fallback)
+        if require("cmp").visible() and require("cmp").get_active_entry() then
+          require("cmp").confirm { behavior = require("cmp").ConfirmBehavior.Replace, select = false }
+        else
+          fallback()
+        end
+      end,
+      s = require("cmp").mapping.confirm { select = true },
+      c = require("cmp").mapping.confirm { behavior = require("cmp").ConfirmBehavior.Replace, select = true },
+    },
+    -- ["<ESC>"] = require("cmp").mapping.close(),
     -- ["<Tab>"] = require("cmp").mapping(function(fallback)
     --   local luasnip = require "luasnip"
     --   local copilot_keys = vim.fn["copilot#Accept"]()
@@ -329,22 +336,55 @@ M.cmp = {
     --   "i",
     --   "s",
     -- }),
+    ["<ESC>"] = require("cmp").mapping(function(fallback)
+      if require("cmp").visible() then
+        require("cmp").abort()
+      else
+        fallback()
+      end
+    end, {
+      "i",
+      "s",
+    }),
   },
   sources = {
     { name = "copilot" },
-    { name = "nvim_lsp" },
     { name = "codeium" },
     { name = "cmp_tabnine" },
     -- { name = "luasnip" },
     -- { name = "nvim_lua" },
+    {
+      name = "ctags",
+      -- default values
+      option = {
+        executable = "ctags",
+        trigger_characters = { "." },
+      },
+    },
     { name = "path" },
     { name = "treesitter" },
     { name = "nvim_lsp_signature_help" },
     { name = "nvim_lsp_document_symbol" },
     { name = "vim_lsp" },
-    { name = "buffer", keyword_length = 3 },
     { name = "spell" },
+    {
+      name = "nvim_lsp",
+      entry_filter = function(entry, ctx)
+        return require("cmp").lsp.CompletionItemKind.Text ~= entry:get_kind()
+      end,
+    },
   },
+  -- sorting = {
+  --   comparators = {
+  --     -- require("cmp").config.compare.recently_used,
+  --     -- require("cmp").config.compare.sort_text,
+  --     require("cmp").config.compare.exact,
+  --     require("cmp").config.compare.score,
+  --     require("cmp").config.compare.kind,
+  --     require("cmp").config.compare.length,
+  --     require("cmp").config.compare.order,
+  --   },
+  -- },
 }
 
 return M

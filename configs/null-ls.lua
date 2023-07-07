@@ -39,7 +39,7 @@ local sources = {
   b.formatting.yamlfmt,
   -- b.formatting.xmlformat,
   -- Diagnostics
-  b.diagnostics.eslint,
+  -- b.diagnostics.eslint,
   b.diagnostics.fish,
   b.diagnostics.checkmake,
   -- b.diagnostics.codespell,

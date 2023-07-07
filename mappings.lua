@@ -29,6 +29,30 @@ M.rest = {
   },
 }
 
+M.sidebar = {
+  n = {
+    ["<leader>sb"] = {
+      function()
+        require("sidebar-nvim").toggle()
+      end,
+      " Toggle Sidebar",
+    },
+  },
+}
+
+M.folder = {
+  n = {
+    ["<leader>c"] = { "zc", " Close folder" },
+    ["<leader>a"] = { "zo", " Open folder" },
+    ["<leader>p"] = {
+      function()
+        require("fold-preview").toggle_preview()
+      end,
+      " Open folder recursively",
+    },
+  },
+}
+
 M.comment = {
   plugin = true,
 
@@ -72,15 +96,22 @@ M.text = {
     ["<A-Left>"] = { "<ESC>I", " Move to beginning of line" },
     ["<A-Right>"] = { "<ESC>A", " Move to end of line" },
     ["<A-d>"] = { "<ESC>diw", " Delete word" },
+    ["<S-CR>"] = {
+      function()
+        vim.cmd "normal o"
+      end,
+      " New line",
+    },
   },
 
   n = {
-    ["<leader>cc"] = { "<cmd> CCToggle <CR>", " Toggle ColorColumn display" },
+    ["<leader>cc"] = { "<cmd> ColorcolumnToggle <CR>", " Toggle ColorColumn display" },
     -- Navigate
     ["<A-Left>"] = { "<ESC>_", "󰜲 Move to beginning of line" },
     ["<A-Right>"] = { "<ESC>$", "󰜵 Move to end of line" },
-    ["<F3>"] = { "N", " Next" },
-    ["<S-F3>"] = { "n", " Previous" },
+    ["<C-a>"] = { "gg0vG", " Select all" },
+    ["<F3>"] = { "n", " Next" },
+    ["<S-F3>"] = { "N", " Previous" },
     -- Operations
     ["<C-z>"] = { "<cmd>2u<CR>", "󰕌 Undo" },
     ["<C-r>"] = { "<cmd>redo<CR>", "󰑎 Redo" },
@@ -93,9 +124,16 @@ M.text = {
     ["<C-Up>"] = { "<cmd> :m-2<CR>", "󰜸 Move line up" },
     ["<C-Down>"] = { "<cmd> :m+<CR>", "󰜯 Move line down" },
     -- Renamer
-    ["<C-R>"] = { "<cmd>:MurenFresh<CR>", "󱝪 Toggle Search" },
-    ["<leader>rn"] = { "<cmd> :lua require('renamer').rename()<CR>", "󰑕 Rename" },
-    ["<leader>re"] = {
+    ["<C-R>"] = { "<cmd>:MurenToggle<CR>", "󱝪 Toggle Search" },
+    ["<leader>sp"] = { "<cmd>:TSJToggle<CR>", "󰯌 Toggle split/join" },
+    -- ["<leader>rn"] = { "<cmd> :lua require('renamer').rename()<CR>", "󰑕 Rename" },
+    ["<leader>ra"] = {
+      function()
+        require("nvchad_ui.renamer").open()
+      end,
+      "󰑕 LSP rename",
+    },
+    ["<leader>rn"] = {
       function()
         return ":IncRename " .. vim.fn.expand "<cword>"
       end,
@@ -122,7 +160,6 @@ M.text = {
       "<cmd>:Bionic<CR>",
       "󱄽 Toggle Bionic",
     },
-    ["<leader>fi"] = { " <cmd>:GoImport<CR>", " Format imports", opts = { silent = true } },
     ["<leader>fm"] = {
       function()
         vim.lsp.buf.format { async = true }
@@ -147,6 +184,17 @@ M.text = {
     ["<"] = { "<><left>", "Auto complete <", opts = { silent = false } },
     ['"'] = { '""<left>', [[Auto complete "]], opts = { silent = false } },
     ["'"] = { "''<left>", "Auto complete '", opts = { silent = false } },
+  },
+}
+
+M.go = {
+  n = {
+    ["<leader>fi"] = { " <cmd>:GoImport<CR>", " Format imports", opts = { silent = true } },
+    ["<leader>gif"] = { " <cmd>:GoIfErr<CR>", " Create If Err", opts = { silent = true } },
+    ["<leader>gfs"] = { " <cmd>:GoFillStruct<CR>", " Fill struct", opts = { silent = true } },
+    ["<leader>gcv"] = { " <cmd>:GoCoverage -p<CR>", " Show coverage", opts = { silent = true } },
+    ["<leader>gt"] = { " <cmd>:GoAlt!<CR>", " Go to test", opts = { silent = true } },
+    ["<leader>gca"] = { " <cmd>:GoCodeAction<CR>", " Code action", opts = { silent = true } },
   },
 }
 
@@ -182,7 +230,7 @@ M.general = {
 M.diagnostics = {
   n = {
     ["<leader>t"] = { "<cmd>TroubleToggle<cr>", "󰔫 Toggle warnings" },
-    ["<leader>td"] = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME,BUG,TEST,NOTE<cr>", " Todo/Fix/Fixme" },
+    ["<leader>td"] = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME,BUG,TEST,NOTE<cr>", " Todo/Fix/Fixme" },
     ["<leader>el"] = { "<cmd>ErrorLensToggle<cr>", "󱇭 Toggle error lens" },
     ["<leader>ft"] = { "<cmd>:TodoTelescope<cr>", " Telescope TODO" },
     ["<Leader>ls"] = {
@@ -217,14 +265,24 @@ M.node = {
     },
     ["<leader>np"] = {
       "<cmd> lua require('package-info').change_version() <CR>",
-      "󰎙 install package",
+      "󰎙 Install package",
+    },
+    ["<leader>ip"] = {
+      "<cmd>ImportJSFix<CR>",
+      "󰎙 Import missing package",
     },
   },
 }
 
+-- vim.api.nvim_set_keymap('n', '<leader>im', [[<cmd>lua require'telescope'.extensions.goimpl.goimpl{}<CR>]], {noremap=true, silent=true})
+-- :Glance references show references of the word under the cursor from the LSP server
+-- :Glance definitions show definitions of the word under the cursor from the LSP server
+-- :Glance type_definitions show type definitions of the word under the cursor from the LSP server
+-- :Glance implementations show implementations of the word under the cursor from the LSP server
+
 M.treesitter = {
   n = {
-    ["<leader>cu"] = { "<cmd> TSCaptureUnderCursor <CR>", " Find media" },
+    ["<leader>cu"] = { "<cmd> TSCaptureUnderCursor <CR>", " Find highlight" },
   },
 }
 
@@ -234,7 +292,7 @@ M.debug = {
     ["<F5>"] = { "<cmd> :DapContinue <CR>", " Continue" },
     ["<F10>"] = { "<cmd> :DapStepOver <CR>", " Step over" },
     ["<F11>"] = { "<cmd> :DapStepInto <CR>", " Step into" },
-    ["<F12>"] = { "<cmd> :DapStepOut <CR>", " Step out" },
+    ["<F9>"] = { "<cmd> :DapStepOut <CR>", " Step out" },
   },
 }
 
@@ -244,12 +302,7 @@ M.git = {
     ["<leader>gb"] = { "<cmd>Telescope git_branches<CR>", "  Git branches" },
     ["<leader>gs"] = { "<cmd>Telescope git_status<CR>", "  Git status" },
     ["<leader>gg"] = { "<cmd>LazyGit<CR>", "  LazyGit" },
-    ["<leader>gl"] = {
-      function()
-        package.loaded.gitsigns.blame_line()
-      end,
-      "  Blame line",
-    },
+    ["<leader>gl"] = { "<cmd>Gitsigns toggle_current_line_blame<CR>", "  Blame line" },
     ["<leader>gvd"] = { "<cmd> DiffviewOpen<CR>", "  Show git diff" },
     ["<leader>gvf"] = { "<cmd> DiffviewFileHistory %<CR>", "  Show file history" },
     ["<leader>gvp"] = { "<cmd> DiffviewOpen --cached<CR>", "  Show staged diffs" },
@@ -257,6 +310,7 @@ M.git = {
     ["<leader>gvc"] = { "<cmd> DiffviewClose<CR>", "  Close diff view" },
   },
 }
+-- require('cmp').complete({ config = { sources = { { name = 'vsnip' } } } })
 
 M.telescope = {
   n = {
@@ -346,9 +400,9 @@ M.session = {
 M.hop = {
   n = {
     ["<leader><leader>w"] = { "<cmd> HopWord <CR>", "󰸱 Hint all words" },
-    ["<leader><leader>l"] = { "<cmd> HopLine <CR>", "󰸱 Hint line" },
-    ["<leader>hl"] = { ":HopLineStart<CR>", "󰕭 Hint Columns" },
-    ["<leader>hw"] = { ":HopWordCurrentLine<CR>", "󰗉 Hint Words" },
+    -- ["<leader><leader>l"] = { "<cmd> HopLine <CR>", "󰸱 Hint line" },
+    ["<leader><leader>l"] = { ":HopLineStart<CR>", "󰕭 Hint Columns" },
+    ["<leader><leader>h"] = { ":HopWordCurrentLine<CR>", "󰗉 Hint Words" },
   },
 }
 
@@ -400,23 +454,26 @@ M.bookmark = {
 M.lspsaga = {
   n = {
     ["<leader>."] = { "<cmd>Lspsaga code_action<CR>", "󰅱 Code Action" },
-    ["gh"] = {
+    ["gf"] = {
       function()
         vim.cmd "Lspsaga lsp_finder"
       end,
-      "Go to definition",
+      " Go to definition",
     },
-    ["gd"] = {
+    ["gt"] = {
       "<cmd>Lspsaga goto_definition<cr>",
-      "Go to definition",
+      " Go to definition",
     },
     ["<leader>lp"] = {
       "<cmd>Lspsaga peek_definition<cr>",
-      "Peek definition",
+      " Peek definition",
     },
     ["<leader>k"] = {
-      "<Cmd>Lspsaga hover_doc<cr>",
-      "Hover lsp",
+      -- "<Cmd>Lspsaga hover_doc<cr>",
+      function()
+       require("pretty_hover").hover()
+      end,
+      "󱙼 Hover lsp",
     },
     ["<leader>o"] = { "<cmd>Lspsaga outline<CR>", " Show Outline" },
     --  LSP
@@ -504,8 +561,9 @@ M.lspconfig = {
       function()
         require("lsp_lines").toggle()
       end,
-      "Toggle lsp_lines",
+      "󱖫 Toggle LSP Lines",
     },
+    ["<F12>"] = { "<cmd>Glance references<CR>", "󰘐 References" },
   },
 }
 

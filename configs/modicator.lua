@@ -16,34 +16,34 @@ modicator.setup {
     -- Color and bold/italic options for each mode. You can add a bold and/or
     -- italic key pair to override the default highlight for a specific mode if
     -- you would like.
-    modes = {
-      ["n"] = {
-        foreground = "#f8f8f2",
-      },
-      ["i"] = {
-        foreground = "#50fa7b",
-      },
-      ["v"] = {
-        foreground = "#62d6e8",
-      },
-      ["V"] = {
-        foreground = "#62d6e8",
-      },
-      ["�"] = { -- This symbol is the ^V character
-        foreground = "#62d6e8",
-      },
-      ["s"] = {
-        foreground = "#ff86d3",
-      },
-      ["S"] = {
-        foreground = "#ff86d3",
-      },
-      ["R"] = {
-        foreground = "#50fa7b",
-      },
-      ["c"] = {
-        foreground = "#c197fd",
-      },
-    },
+    -- modes = {
+    --   ["n"] = {
+    --     foreground = "#f8f8f2",
+    --   },
+    --   ["i"] = {
+    --     foreground = "#50fa7b",
+    --   },
+    --   ["v"] = {
+    --     foreground = "#62d6e8",
+    --   },
+    --   ["V"] = {
+    --     foreground = "#62d6e8",
+    --   },
+    --   ["�"] = { -- This symbol is the ^V character
+    --     foreground = "#62d6e8",
+    --   },
+    --   ["s"] = {
+    --     foreground = "#ff86d3",
+    --   },
+    --   ["S"] = {
+    --     foreground = "#ff86d3",
+    --   },
+    --   ["R"] = {
+    --     foreground = "#50fa7b",
+    --   },
+    --   ["c"] = {
+    --     foreground = "#c197fd",
+    --   },
+    -- },
   },
 }

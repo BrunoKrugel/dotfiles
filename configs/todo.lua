@@ -1,8 +1,6 @@
--- TODO : Make beautiful toods
 require("todo-comments").setup {
-  signs = true, -- show icons in the signs column
-  sign_priority = 8, -- sign priority
-  -- keywords recognized as todo comments
+  signs = true,
+  sign_priority = 8,
   keywords = {
     FIX = {
       icon = " ", -- icon used for the sign, and in search results

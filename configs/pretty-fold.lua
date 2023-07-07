@@ -26,4 +26,3 @@ prettyFold.setup {
     },
   },
 }
-
