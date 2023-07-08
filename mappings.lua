@@ -118,7 +118,7 @@ M.text = {
     ["<C-x>"] = { "dd", "󰆐 Cut" },
     ["<C-v>"] = { "p", "󰆒 Paste" },
     ["<C-c>"] = { "y", " Copy" },
-    ["<A-d>"] = { "viw", " Select word" },
+    -- ["<A-d>"] = { "viw", " Select word" },
     ["<leader>d"] = { "viwxi", " Delete word" },
     -- Move line up and down
     ["<C-Up>"] = { "<cmd> :m-2<CR>", "󰜸 Move line up" },
@@ -126,6 +126,8 @@ M.text = {
     -- Renamer
     ["<C-R>"] = { "<cmd>:MurenToggle<CR>", "󱝪 Toggle Search" },
     ["<leader>sp"] = { "<cmd>:TSJToggle<CR>", "󰯌 Toggle split/join" },
+    ["<A-d>"] = { "<cmd>:MCstart<CR>", "Multi cursor" },
+
     -- ["<leader>rn"] = { "<cmd> :lua require('renamer').rename()<CR>", "󰑕 Rename" },
     ["<leader>ra"] = {
       function()
@@ -471,7 +473,7 @@ M.lspsaga = {
     ["<leader>k"] = {
       -- "<Cmd>Lspsaga hover_doc<cr>",
       function()
-       require("pretty_hover").hover()
+        require("pretty_hover").hover()
       end,
       "󱙼 Hover lsp",
     },

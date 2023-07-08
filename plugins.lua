@@ -179,6 +179,11 @@ local plugins = {
     config = true,
   },
   {
+    "smoka7/multicursors.nvim",
+    event = "VeryLazy",
+    config = true,
+  },
+  {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
     config = function()
@@ -336,10 +341,6 @@ local plugins = {
         open_cmd = "chrome",
       }
     end,
-  },
-  {
-    "mg979/vim-visual-multi",
-    event = "BufReadPost",
   },
   {
     "Wansmer/treesj",
@@ -604,9 +605,12 @@ local plugins = {
   {
     "kevinhwang91/nvim-hlslens",
     event = "BufReadPost",
-    config = function()
-      require("hlslens").setup()
-    end,
+    config = true,
+  },
+  {
+    "levouh/tint.nvim",
+    event = "BufReadPost",
+    config = true,
   },
   {
     "anuvyklack/pretty-fold.nvim",
@@ -709,7 +713,6 @@ local plugins = {
       "nvim-neotest/neotest-go",
     },
     config = function()
-      -- get neotest namespace (api call creates or returns namespace)
       local neotest_ns = vim.api.nvim_create_namespace "neotest"
       vim.diagnostic.config({
         virtual_text = {
@@ -720,7 +723,6 @@ local plugins = {
         },
       }, neotest_ns)
       require("neotest").setup {
-        -- your neotest config here
         adapters = {
           require "neotest-go" {
             args = { "-count=1", "-coverprofile coverage.out", "-covermode=count" },
