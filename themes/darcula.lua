@@ -103,6 +103,7 @@ M.polish_hl = {
   NvimTreeOpenedFolderName = { fg = pallete.Color13, bold = true },
   FoldColumn = { fg = pallete.Color13 },
   StatusLine = { fg = pallete.Color13, bg = pallete.Color14 },
+  St_cwd = { fg = "white" },
   -- TSPunctDelimiter = { fg = pallete.Color13 },
 }
 
