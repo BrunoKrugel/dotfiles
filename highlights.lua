@@ -3,7 +3,7 @@ local M = {}
 ---@type Base46HLGroupsList
 M.override = {
   -- Cursor
-  Cursor = { bg = "#FFFFFF" },
+  Cursor = { bg = "white" },
   CursorLine = { bg = "black2" },
   Comment = { italic = true },
   NvDashAscii = { fg = "none", bg = "none" },
@@ -32,7 +32,11 @@ M.override = {
 
 ---@type HLTable
 M.add = {
+  MultiCursor = { bg = "white" },
+  MultiCursorMain = { bg = "white" },
+
   NvimTreeOpenedFolderName = { fg = "purple", bold = true },
+  NvimTreeOpenedFile = { fg = "green", bold = true },
   SagaWinbarFolder = { fg = "blue" },
   -- Cmp Highlights
   CmpItemKindCodeium = { fg = "#51BDAC" },
@@ -47,10 +51,7 @@ M.add = {
   -- },
   VirtColumn = { fg = "black2" },
   FoldColumn = { bg = "black" },
-  Folded = {
-    bg = "black",
-    fg = "white",
-  },
+  Folded = { bg = "black", fg = "white" },
   -- Tree Sitter Rainbow
   RainbowDelimiterRed = { fg = "red" },
   RainbowDelimiterYellow = { fg = "yellow" },
