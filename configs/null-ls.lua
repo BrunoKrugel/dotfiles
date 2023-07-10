@@ -47,7 +47,7 @@ local sources = {
   -- Completion
   b.completion.luasnip,
   -- Code actions
-  b.code_actions.gitsigns,
+  -- b.code_actions.gitsigns,
   b.code_actions.gomodifytags,
   b.code_actions.eslint,
 }
