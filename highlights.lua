@@ -24,16 +24,14 @@ M.override = {
   NvimTreeGitDirty = { fg = "yellow" },
   NvimTreeGitDeleted = { fg = "red" },
   NvimTreeCursorLine = { bg = "one_bg3" },
-  -- GitSigns
-  DiffChange = { fg = "yellow" },
-  DiffAdd = { fg = "vibrant_green" },
-  DiffText = { fg = "white", bg = "red", bold = true },
 }
 
 ---@type HLTable
 M.add = {
   MultiCursor = { bg = "white" },
   MultiCursorMain = { bg = "white" },
+
+  LightBulbSign = { bg = "black", fg = "yellow" },
 
   NvimTreeOpenedFolderName = { fg = "purple", bold = true },
   NvimTreeOpenedFile = { fg = "green", bold = true },
@@ -60,6 +58,20 @@ M.add = {
   RainbowDelimiterGreen = { fg = "green" },
   RainbowDelimiterViolet = { fg = "purple" },
   RainbowDelimiterCyan = { fg = "cyan" },
+  -- ErrorLens
+  ErrorLensErrorText = { fg = "#FF6363" },
+  ErrorLensErrorBg = { bg = "#4B252C" },
+  -- ErrorLensWarnText = { bg = "#403733" },
+  ErrorLensWarnBg = { bg = "#403733", fg = "#FA973A"},
+  ErrorLensInfoText = { fg = "#5B38E8" },
+  ErrorLensInfoBg = { bg = "#281478" },
+  ErrorLensHintText = { fg = "#25E64B" },
+  ErrorLensHintBg = { bg = "#147828" },
+  -- GitSigns
+  DiffChange = { fg = "yellow" },
+  DiffAdd = { fg = "vibrant_green" },
+  DiffText = { fg = "white", bg = "red", bold = true },
+
   -- Search highlights
   HlSearchNear = { fg = "#2E3440", bg = "#EBCB8B" },
   HlSearchLens = { fg = "#2E3440", bg = "#88bfcf" },
