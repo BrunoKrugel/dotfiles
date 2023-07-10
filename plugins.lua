@@ -180,6 +180,9 @@ local plugins = {
   },
   {
     "smoka7/multicursors.nvim",
+    dependencies = {
+      'smoka7/hydra.nvim',
+  },
     event = "VeryLazy",
     config = true,
   },
@@ -388,6 +391,20 @@ local plugins = {
       require "custom.configs.noice"
     end,
   },
+  -- {
+  --   "kosayoda/nvim-lightbulb",
+  --   event = "LspAttach",
+  --   config = function()
+  --     require("nvim-lightbulb").setup {
+  --       autocmd = { enabled = true },
+  --       sign = {
+  --         enabled = true,
+  --         text = "",
+  --         hl = "LightBulbSign",
+  --     },
+  --     }
+  --   end,
+  -- },
   {
     "Pocco81/true-zen.nvim",
     cmd = { "TZAtaraxis" },
@@ -471,6 +488,15 @@ local plugins = {
     event = "BufReadPost",
     config = function()
       require "custom.configs.hlchunk"
+    end,
+  },
+  {
+    'weilbith/nvim-code-action-menu',
+    cmd = 'CodeActionMenu',
+    init = function()
+      vim.g.code_action_menu_show_details = true
+      vim.g.code_action_menu_show_diff = true
+      vim.g.code_action_menu_show_action_kind = true
     end,
   },
   {
