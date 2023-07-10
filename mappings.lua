@@ -403,8 +403,8 @@ M.hop = {
   n = {
     ["<leader><leader>w"] = { "<cmd> HopWord <CR>", "󰸱 Hint all words" },
     -- ["<leader><leader>l"] = { "<cmd> HopLine <CR>", "󰸱 Hint line" },
-    ["<leader><leader>l"] = { ":HopLineStart<CR>", "󰕭 Hint Columns" },
-    ["<leader><leader>h"] = { ":HopWordCurrentLine<CR>", "󰗉 Hint Words" },
+    ["<leader><leader>c"] = { ":HopLineStart<CR>", "󰕭 Hint Columns" },
+    ["<leader><leader>l"] = { ":HopWordCurrentLine<CR>", "󰗉 Hint Line" },
   },
 }
 
@@ -455,7 +455,7 @@ M.bookmark = {
 
 M.lspsaga = {
   n = {
-    ["<leader>."] = { "<cmd>Lspsaga code_action<CR>", "󰅱 Code Action" },
+    ["<leader>."] = { "<cmd>CodeActionMenu<CR>", "󰅱 Code Action" },
     ["gf"] = {
       function()
         vim.cmd "Lspsaga lsp_finder"
