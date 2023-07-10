@@ -14,12 +14,14 @@ autocmd("LspAttach", {
   end,
 })
 
+-- Update SideBar
 autocmd({ "BufAdd", "BufDelete", "BufEnter", "TabEnter", "ModeChanged", "DiagnosticChanged" }, {
   callback = function()
     require("sidebar-nvim").update()
   end,
 })
 
+-- Enable it when changing highlights
 -- autocmd("BufWritePost", {
 --   pattern = "*.lua",
 --   callback = function()
@@ -27,13 +29,14 @@ autocmd({ "BufAdd", "BufDelete", "BufEnter", "TabEnter", "ModeChanged", "Diagnos
 --   end,
 -- })
 
+-- Open NvimTree on startup
 -- autocmd("VimEnter", {
 --   callback = function()
 --     require("nvim-tree.api").tree.open()
 --   end,
 -- })
 
--- Fix NvimTree not opening on startup
+-- Fix NvimTree not opening on startup when using session restore plugin
 -- autocmd({ "BufEnter" }, {
 --   pattern = "NvimTree*",
 --   callback = function()
@@ -44,7 +47,8 @@ autocmd({ "BufAdd", "BufDelete", "BufEnter", "TabEnter", "ModeChanged", "Diagnos
 --     end
 --   end,
 -- })
--- Auto format on save (mess with undo history)
+
+-- Enable this to Auto format on save, bu it will mess with undo history
 -- autocmd("BufWritePre", {
 --   pattern = { "*.js", "*.java", "*.lua" },
 --   callback = function()
