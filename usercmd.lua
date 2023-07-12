@@ -19,6 +19,13 @@ create_cmd("TDebug", function()
   require("dapui").toggle()
 end, {})
 
+create_cmd("TUpdate", function()
+  require("lazy").load({ plugins = { "mason.nvim", "nvim-treesitter" } })
+  vim.cmd("MasonUpdate")
+  vim.cmd("TSUpdate")
+  vim.cmd("NvChadUpdate")
+end, {})
+
 -- Disable scrolloff in blacklisted filetypes
 create_autocmd({ "BufEnter" }, {
   callback = function()
