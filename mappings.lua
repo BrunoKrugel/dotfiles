@@ -200,18 +200,22 @@ M.go = {
   },
 }
 
+M.window = {
+  n = {
+    ["<leader><leader>h"] = { "<cmd>vs <CR>", "󰤼 Vertical split", opts = { nowait = true } },
+    ["<leader><leader>v"] = { "<cmd>sp <CR>", "󰤻 Horizontal split", opts = { nowait = true } },
+  },
+}
+
 M.general = {
   n = {
     [";"] = { ":", "󰘳 Enter command mode", opts = { nowait = true } },
-    ["<leader>q"] = { "<cmd> qa! <CR>", "󰗼 Exit" },
+    ["<leader>q"] = { "<cmd>q<CR>", "󰗼 Exit" },
+    ["<C-p>"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "󰘳 Find files" },
 
     -- Keep cursor in the center line when C-D / C-U
     ["<C-d>"] = { "<C-d>zz", " Scroll down", opts = { silent = true } },
     ["<C-u>"] = { "<C-u>zz", " Scroll up", opts = { silent = true } },
-
-    -- Split
-    ["<C-h>"] = { "<cmd>vs <CR>", "󰤼 Vertical split", opts = { nowait = true } },
-    ["<C-y>"] = { "<cmd>sp <CR>", "󰤻 Horizontal split", opts = { nowait = true } },
 
     ["<leader>cs"] = { "<cmd>SymbolsOutline<cr>", " Symbols Outline" },
     ["<leader>tr"] = {
@@ -224,7 +228,7 @@ M.general = {
       function()
         require("nvchad_ui.tabufline").close_buffer()
       end,
-      "Close buffer",
+      " Close buffer",
     },
   },
 }
