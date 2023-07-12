@@ -59,14 +59,14 @@ M.add = {
   RainbowDelimiterViolet = { fg = "purple" },
   RainbowDelimiterCyan = { fg = "cyan" },
   -- ErrorLens
-  ErrorLensErrorText = { fg = "#FF6363" },
-  ErrorLensErrorBg = { bg = "#4B252C" },
+  -- ErrorLensErrorText = { fg = "#FF6363" },
+  -- ErrorLensErrorBg = { bg = "#4B252C" },
   -- ErrorLensWarnText = { bg = "#403733" },
-  ErrorLensWarnBg = { bg = "#403733", fg = "#FA973A"},
-  ErrorLensInfoText = { fg = "#5B38E8" },
-  ErrorLensInfoBg = { bg = "#281478" },
-  ErrorLensHintText = { fg = "#25E64B" },
-  ErrorLensHintBg = { bg = "#147828" },
+  -- ErrorLensWarnBg = { bg = "#403733", fg = "#FA973A"},
+  -- ErrorLensInfoText = { fg = "#5B38E8" },
+  -- ErrorLensInfoBg = { bg = "#281478" },
+  -- ErrorLensHintText = { fg = "#25E64B" },
+  -- ErrorLensHintBg = { bg = "#147828" },
   -- GitSigns
   DiffChange = { fg = "yellow" },
   DiffAdd = { fg = "vibrant_green" },
@@ -82,7 +82,8 @@ M.add = {
   BatteryHl = { fg = "nord_blue", bg = "statusline_bg" },
   SessionHl = { fg = "#e535ab", bg = "statusline_bg" },
   NotificationHl = { fg = "white", bg = "statusline_bg" },
-  TermHl = { fg = "vibrant_green", bg = "statusline_bg" },
+  TermHl = { fg = "green", bg = "statusline_bg" },
+  SplitHl = { fg = "white", bg = "statusline_bg" },
 
   GitSignsCurrentLineBlame = {
     fg = "cyan",
