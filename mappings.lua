@@ -210,7 +210,8 @@ M.window = {
 M.general = {
   n = {
     [";"] = { ":", "󰘳 Enter command mode", opts = { nowait = true } },
-    ["<leader>q"] = { "<cmd>q<CR>", "󰗼 Exit" },
+    ["<leader>q"] = { "<cmd>q<CR>", "󰗼 Close" },
+    ["<leader>qq"] = { "<cmd>qa!<CR>", "󰗼 Exit" },
     ["<C-p>"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "󰘳 Find files" },
 
     -- Keep cursor in the center line when C-D / C-U

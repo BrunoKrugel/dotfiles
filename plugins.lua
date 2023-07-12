@@ -49,6 +49,7 @@ local plugins = {
       "tom-anders/telescope-vim-bookmarks.nvim",
       "tsakirist/telescope-lazy.nvim",
       "nvim-telescope/telescope-dap.nvim",
+      "yagiziskirik/AirSupport.nvim",
       {
         "edolphin-ydf/goimpl.nvim",
         ft = "go",
@@ -76,6 +77,7 @@ local plugins = {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       "windwp/nvim-ts-autotag",
+      "chrisgrieser/nvim-various-textobjs",
     },
     opts = overrides.treesitter,
   },
@@ -181,8 +183,8 @@ local plugins = {
   {
     "smoka7/multicursors.nvim",
     dependencies = {
-      'smoka7/hydra.nvim',
-  },
+      "smoka7/hydra.nvim",
+    },
     event = "VeryLazy",
     config = true,
   },
@@ -491,8 +493,8 @@ local plugins = {
     end,
   },
   {
-    'weilbith/nvim-code-action-menu',
-    cmd = 'CodeActionMenu',
+    "weilbith/nvim-code-action-menu",
+    cmd = "CodeActionMenu",
     init = function()
       vim.g.code_action_menu_show_details = true
       vim.g.code_action_menu_show_diff = true
@@ -631,7 +633,16 @@ local plugins = {
   {
     "kevinhwang91/nvim-hlslens",
     event = "BufReadPost",
-    config = true,
+    config = function()
+      require("scrollbar.handlers.search").setup {}
+    end,
+  },
+  {
+    "tzachar/highlight-undo.nvim",
+    event = "BufReadPost",
+    config = function()
+      require("highlight-undo").setup {}
+    end,
   },
   {
     "levouh/tint.nvim",
@@ -666,6 +677,15 @@ local plugins = {
   --   event = "BufReadPost",
   --   config = true,
   -- },
+  {
+    "ziontee113/icon-picker.nvim",
+    cmd = "IconPickerNormal",
+    config = function()
+      require("icon-picker").setup {
+        disable_legacy_commands = true,
+      }
+    end,
+  },
   {
     "sidebar-nvim/sidebar.nvim",
     key = "<leader>sb",
@@ -771,6 +791,15 @@ local plugins = {
     init = function()
       vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
       vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+    end,
+  },
+  {
+    "TobinPalmer/rayso.nvim",
+    cmd = { "Rayso" },
+    config = function()
+      require("rayso").setup {
+        open_cmd = "chrome",
+      }
     end,
   },
   ----------------------------------------- completions plugins ------------------------------------------
