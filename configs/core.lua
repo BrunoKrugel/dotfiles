@@ -11,6 +11,11 @@ _G.ClickTerm = function()
   require("nvterm.terminal").toggle "horizontal"
 end
 
+_G.ClickSplit = function()
+  -- require("nvterm.terminal").toggle "horizontal"
+  vim.cmd "vs"
+end
+
 M.dapui = {
   icons = { expanded = "▾", collapsed = "▸" },
   mappings = {
@@ -57,6 +62,18 @@ M.dapui = {
   },
 }
 
+M.tabufline = {
+  overriden_modules = function()
+    local modules = require "nvchad_ui.tabufline.modules"
+
+    return {
+      buttons = function()
+        return "%#SplitHl#%@v:lua.ClickSplit@ " .. modules.buttons()
+      end,
+    }
+  end,
+}
+
 M.statusline = {
   theme = "vscode_colored",
   overriden_modules = function()
@@ -92,7 +109,7 @@ M.statusline = {
       -- St_TerminalMode
       -- St_ReplaceMode
       mode = function()
-        modes["n"][3] = "  "
+        modes["n"][3] = "  "
         modes["v"][3] = "  "
         modes["i"][3] = "  "
         modes["t"][3] = "  "
@@ -124,7 +141,10 @@ M.statusline = {
       LSP_status = function()
         if rawget(vim, "lsp") then
           for _, client in ipairs(vim.lsp.get_active_clients()) do
-            if client.attached_buffers[vim.api.nvim_get_current_buf()] and (client.name ~= "null-ls" and client.name ~= "copilot") then
+            if
+              client.attached_buffers[vim.api.nvim_get_current_buf()]
+              and (client.name ~= "null-ls" and client.name ~= "copilot")
+            then
               return (vim.o.columns > 100 and "%#St_LspStatus#   " .. client.name) or "   LSP"
             end
           end
@@ -139,7 +159,7 @@ M.statusline = {
           .. get_marked()
           .. "%#BatteryHl#"
           .. require("battery").get_status_line()
-          .. " "
+          .. " %#TermHl#%@v:lua.ClickTerm@  "
           -- .. "%#SessionHl#"
           -- .. get_session()
           -- .. " "
@@ -147,7 +167,7 @@ M.statusline = {
       end,
 
       cwd = function()
-        return " %#TermHl#%@v:lua.ClickTerm@ " .. " %#NotificationHl#%@v:lua.ClickMe@  " .. st_modules.cwd()
+        return " %#NotificationHl#%@v:lua.ClickMe@  " .. st_modules.cwd()
       end,
     }
   end,
