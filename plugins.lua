@@ -716,6 +716,33 @@ local plugins = {
       }
     end,
   },
+  { "lewis6991/whatthejump.nvim", event = "VeryLazy" },
+  {
+    "Zeioth/compiler.nvim",
+    cmd = { "CompilerOpen", "CompilerToggleResults" },
+    dependencies = {
+      {
+        "stevearc/overseer.nvim",
+        commit = "3047ede61cc1308069ad1184c0d447ebee92d749",
+        opts = {
+          task_list = {
+            direction = "bottom",
+            min_height = 25,
+            max_height = 25,
+            default_detail = 1,
+            bindings = {
+              ["q"] = function()
+                vim.cmd "OverseerClose"
+              end,
+            },
+          },
+        },
+      },
+    },
+    config = function(_, opts)
+      require("compiler").setup(opts)
+    end,
+  },
   ----------------------------------------- language plugins ------------------------------------------
   {
     "ray-x/go.nvim",
@@ -743,6 +770,11 @@ local plugins = {
     "galooshi/vim-import-js",
     ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
     build = "npm install",
+  },
+  {
+    "pmizio/typescript-tools.nvim",
+    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+    opts = {},
   },
   {
     "vuki656/package-info.nvim",
