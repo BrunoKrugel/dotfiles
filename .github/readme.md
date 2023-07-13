@@ -18,6 +18,8 @@
 
 ## Introduction
 
+I do not own anything related to NvChad, this is only my configs that I use with it.
+
 I have been a VSCode user for years and I am slowly moving forward to `NVIM`, so this is my config that mimic `VSCode` key binds and UI, with a goal of removing plugins as I am getting used to it and learning more about `NVIM`.
 
 ## Installation guide
@@ -28,7 +30,7 @@ I have been a VSCode user for years and I am slowly moving forward to `NVIM`, so
 4. I am using `Hack Nerd Font`
 5. My terminal is `WezTerm`
 6. My neovim version is `Nightly`
-7. I am using an M1, so some things may not work out of the box for you
+7. I am using a M1, so, some things may not work out of the box for you
 
 ## Help
 
@@ -38,9 +40,12 @@ For questions feel free to open an issue or you can find me in the [NvChad disco
 
 - [x] Lua
 - [x] Go ([go.nvim](https://github.com/ray-x/go.nvim))
-- [x] JavaScript
+- [x] Web development (JS, TS, HTML, CSS, React, Astro)
+- [x] Markdown
 
-## CMP fully integrated with AI completion
+TreeSitter is enabled and will automatically install parsers for you.
+
+## CMP fully integrated with AI completions
 
 <div align="center">
 
@@ -70,7 +75,7 @@ These plugins are currently disabled, because a custom fold plugin is active in 
 
 ## Diagnostics in a VSCode style
 
-### Diagnostics tab
+### Diagnostics Tab
 
 <div align="center">
 
@@ -241,7 +246,7 @@ All the keybinds are available in the `mappings.lua` file, and also described in
 
 Commom Text keybinds are also available:
 
-- Ctrl + A Select All 
+- Ctrl + A Select All
 - Ctrl + X Cut
 - Ctrl + C Copy
 - Ctrl + V Paste
@@ -269,6 +274,7 @@ _With [LazyGit](https://github.com/kdheepak/lazygit.nvim)_
 </div>
 
 ## Colorpicker tool
+
 <div align="center">
 
 ![Colorpicker](./img/colorpicker.png)
@@ -277,11 +283,9 @@ _With [Colortils](https://github.com/nvim-colortils/colortils.nvim)_
 
 </div>
 
-
-
 ## Theme
 
-I have adapted the Evondev Dracula theme from VSCode to Neovim, you can find it in the `theme` folder.
+I have adapted the [Evondev Dracula](https://github.com/evondev/evondev-dracula) theme from VSCode to Neovim, you can find it in the `theme` folder.
 
 <div align="center">
 
@@ -303,3 +307,4 @@ Config ready for neovide, options are available in the `neovide.lua` file.
 - Arguments highlights with [hlargs](https://github.com/m-demare/hlargs.nvim)
 - Quick file navigation with [Harpoon](https://github.com/ThePrimeagen/harpoon)
 - Dim unused buffers with [Tint](https://github.com/levouh/tint.nvim)
+- Minimap with [Codewindow](https://github.com/gorbit99/codewindow.nvim)
