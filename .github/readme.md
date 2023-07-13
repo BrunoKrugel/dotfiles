@@ -18,16 +18,17 @@
 
 ## Introduction
 
-I have been a VSCode user for years and I am slowly moving forward to `NVIM`, so this is my config that mimic `VSCode` keybinds and UI, with a goal from removing plugins as I am getting used to it and learning more about `NVIM`.
+I have been a VSCode user for years and I am slowly moving forward to `NVIM`, so this is my config that mimic `VSCode` key binds and UI, with a goal of removing plugins as I am getting used to it and learning more about `NVIM`.
 
-## Instalation guide
+## Installation guide
 
 1. Same as [NvChad](https://nvchad.com/docs/quickstart/install)
-2. Download and install [CTAGS](https://github.com/universal-ctags/ctags)
-3. I am using `Hack Nerd Font`
-4. My terminal is `WezTerm`
-5. My neovim version is `nightly`
-6. I am using a M1, so some things may not work out of the box for you
+2. After installing NvChad, clone this repo inside your custom NvChad folder.
+3. Download and install [CTAGS](https://github.com/universal-ctags/ctags) (for a better Go To Definition)
+4. I am using `Hack Nerd Font`
+5. My terminal is `WezTerm`
+6. My neovim version is `Nightly`
+7. I am using an M1, so some things may not work out of the box for you
 
 ## Help
 
@@ -47,9 +48,13 @@ For questions feel free to open an issue or you can find me in the [NvChad disco
 
 </div>
 
+Cmp will not open automatically, to trigger it, press `<C-Space>`.
+
 You can navigate between the options with `<Up>` and `<Down>` and select with `<CR>`.
 
-If copilot suggestion is active, you can use `<Tab>` to select the copilot option.
+If Cmp is visible, you can use `<Esc>` to close it without leaving `Insert` mode.
+
+If the copilot suggestion is active, you can use `<Tab>` to select the copilot option.
 
 ## Code foldable in a VSCode style
 
@@ -60,6 +65,8 @@ If copilot suggestion is active, you can use `<Tab>` to select the copilot optio
 _With [UFO](https://github.com/kevinhwang91/nvim-ufo), [Pretty Fold](https://github.com/anuvyklack/pretty-fold.nvim)_
 
 </div>
+
+These plugins are currently disabled, because a custom fold plugin is active in `status.lua`, but fell free to activate again.
 
 ## Diagnostics in a VSCode style
 
@@ -115,7 +122,7 @@ _With [LSPSaga](https://github.com/nvimdev/lspsaga.nvim) or [Dropbar](https://gi
 
 </div>
 
-If you do not use neovim `nightly`, you should disable the plugin `dropbar.lua` and then enable the lspsaga winbar in `lspsaga.lua`.
+Dropbar currently only work in neovim `nightly` and is disabled by default, if you want to use it, enable the plugin `dropbar.lua` and then disable the lspsaga winbar in `lspsaga.lua`.
 
 ## Word highlight
 
@@ -214,9 +221,31 @@ From left to right:
 3. Battery status (usefull when using in fullscreen)
 4. Session status (icon for Possession plugin)
 
+## Custom Tabufline icons
+
+<div align="center">
+
+![status](./img/tabufline.png)
+
+</div>
+
+From left to right:
+
+1. GitHub UI (on click will open `LazyGit` window)
+2. Compiler and Run (on click will open `Compiler.nvim`)
+3. Split window button (on click will split the current window vertically)
+
 ## Keybinds
 
 All the keybinds are available in the `mappings.lua` file, and also described in the NVCheatSheet, you can access it with `<leader>ch`.
+
+Commom Text keybinds are also available:
+
+- Ctrl + A Select All 
+- Ctrl + X Cut
+- Ctrl + C Copy
+- Ctrl + V Paste
+- Ctrl + Z Undo
 
 ## Formatting
 
@@ -238,6 +267,17 @@ Keybind to use is `<C-]>`.
 _With [LazyGit](https://github.com/kdheepak/lazygit.nvim)_
 
 </div>
+
+## Colorpicker tool
+<div align="center">
+
+![Colorpicker](./img/colorpicker.png)
+
+_With [Colortils](https://github.com/nvim-colortils/colortils.nvim)_
+
+</div>
+
+
 
 ## Theme
 
@@ -262,3 +302,4 @@ Config ready for neovide, options are available in the `neovide.lua` file.
 - UI Improvement with [Telescope-ui-select](https://github.com/nvim-telescope/telescope-ui-select.nvim)
 - Arguments highlights with [hlargs](https://github.com/m-demare/hlargs.nvim)
 - Quick file navigation with [Harpoon](https://github.com/ThePrimeagen/harpoon)
+- Dim unused buffers with [Tint](https://github.com/levouh/tint.nvim)
