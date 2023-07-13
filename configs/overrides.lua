@@ -61,6 +61,7 @@ M.devicons = {
 }
 
 M.treesitter = {
+  auto_install = true,
   ensure_installed = {
     "lua",
     "bash",
