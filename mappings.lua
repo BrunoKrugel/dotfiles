@@ -87,6 +87,30 @@ M.accelerated_jk = {
   },
 }
 
+M.development = {
+  n = {
+    ["<leader>it"] = {
+      function()
+        require("nvim-toggler").toggle()
+      end,
+      "󰌁 Invert text",
+    },
+    ["<leader>fm"] = {
+      function()
+        vim.lsp.buf.format { async = true }
+      end,
+      " Lsp formatting",
+    },
+    ["<leader>bc"] = {
+      function()
+        require("nvim-biscuits").toggle_biscuits()
+      end,
+      "󰆘 Toggle context",
+    },
+    ["<A-p>"] = { "<cmd>Colortils picker<CR>", " Delete word" },
+  },
+}
+
 M.text = {
   i = {
     -- Move line up and down
@@ -113,9 +137,9 @@ M.text = {
     ["<F3>"] = { "n", " Next" },
     ["<S-F3>"] = { "N", " Previous" },
     -- Operations
-    ["<C-z>"] = { "<cmd>2u<CR>", "󰕌 Undo" },
+    ["<C-z>"] = { "<cmd>u<CR>", "󰕌 Undo" },
     ["<C-r>"] = { "<cmd>redo<CR>", "󰑎 Redo" },
-    ["<C-x>"] = { "dd", "󰆐 Cut" },
+    ["<C-x>"] = { "yd", "󰆐 Cut" },
     ["<C-v>"] = { "p", "󰆒 Paste" },
     ["<C-c>"] = { "y", " Copy" },
     -- ["<A-d>"] = { "viw", " Select word" },
@@ -143,30 +167,11 @@ M.text = {
       "󰑕 Rename",
       opts = { expr = true },
     },
-    ["<leader>it"] = {
-      function()
-        require("nvim-toggler").toggle()
-      end,
-      "󰌁 Invert text",
-    },
-    --
     ["<Esc>"] = { ":noh <CR>", " Clear highlights", opts = { silent = true } },
 
-    ["<leader>bc"] = {
-      function()
-        require("nvim-biscuits").toggle_biscuits()
-      end,
-      "󰆘 Toggle biscuits",
-    },
     ["<Leader>bb"] = {
       "<cmd>:Bionic<CR>",
       "󱄽 Toggle Bionic",
-    },
-    ["<leader>fm"] = {
-      function()
-        vim.lsp.buf.format { async = true }
-      end,
-      " Lsp formatting",
     },
   },
 
