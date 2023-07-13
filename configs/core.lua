@@ -24,6 +24,11 @@ _G.ClickRun = function()
   vim.cmd "CompilerOpen"
 end
 
+_G.ClickUpdate = function()
+  require("base46").load_all_highlights()
+  vim.notify "Highlights reloaded!"
+end
+
 M.dapui = {
   icons = { expanded = "▾", collapsed = "▸" },
   mappings = {
@@ -76,8 +81,8 @@ M.tabufline = {
 
     return {
       buttons = function()
-        return "%#SplitHl#%@v:lua.ClickGit@ %#SplitHl#%@v:lua.ClickRun@ %#SplitHl#%@v:lua.ClickSplit@ "
-          .. modules.buttons()
+        return "%#SplitHl#%@v:lua.ClickUpdate@  %#SplitHl#%@v:lua.ClickGit@ %#SplitHl#%@v:lua.ClickRun@ %#SplitHl#%@v:lua.ClickSplit@ "
+          -- .. modules.buttons()
       end,
     }
   end,
