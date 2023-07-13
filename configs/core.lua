@@ -16,6 +16,14 @@ _G.ClickSplit = function()
   vim.cmd "vs"
 end
 
+_G.ClickGit = function()
+  vim.cmd "LazyGit"
+end
+
+_G.ClickRun = function()
+  vim.cmd "CompilerOpen"
+end
+
 M.dapui = {
   icons = { expanded = "▾", collapsed = "▸" },
   mappings = {
@@ -68,7 +76,8 @@ M.tabufline = {
 
     return {
       buttons = function()
-        return "%#SplitHl#%@v:lua.ClickSplit@ " .. modules.buttons()
+        return "%#SplitHl#%@v:lua.ClickGit@ %#SplitHl#%@v:lua.ClickRun@ %#SplitHl#%@v:lua.ClickSplit@ "
+          .. modules.buttons()
       end,
     }
   end,
