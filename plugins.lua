@@ -94,10 +94,10 @@ local plugins = {
     opts = overrides.cmp,
     dependencies = {
       "hrsh7th/cmp-emoji",
-      "hrsh7th/cmp-calc",
-      "hrsh7th/cmp-buffer",
+      -- "hrsh7th/cmp-calc",
+      -- "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-nvim-lua",
+      -- "hrsh7th/cmp-nvim-lua",
       "f3fora/cmp-spell",
       -- "hrsh7th/cmp-vsnip",
       "delphinus/cmp-ctags",
@@ -115,6 +115,18 @@ local plugins = {
         config = function()
           local tabnine = require "cmp_tabnine.config"
           tabnine:setup {} -- put your options here
+        end,
+      },
+      {
+        -- snippet plugin
+        "L3MON4D3/LuaSnip",
+        config = function(_, opts)
+          require("plugins.configs.others").luasnip(opts) -- from default luasnip conf
+
+          local luasnip = require "luasnip"
+
+          luasnip.filetype_extend("javascriptreact", { "html" })
+          require("luasnip/loaders/from_vscode").lazy_load() -- from default luasnip conf
         end,
       },
     },
