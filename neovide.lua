@@ -8,4 +8,8 @@ if g.neovide then
   g.neovide_cursor_antialiasing = true
   g.neovide_input_macos_alt_is_meta = true
   g.neovide_input_use_logo = false
+  g.neovide_padding_top = 0
+  g.neovide_padding_bottom = 0
+  g.neovide_padding_right = 0
+  g.neovide_padding_left = 0
 end
