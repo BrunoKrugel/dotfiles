@@ -353,7 +353,7 @@ M.cmp = {
     { name = "copilot" },
     { name = "codeium" },
     { name = "cmp_tabnine" },
-    -- { name = "luasnip" },
+    { name = "luasnip" },
     -- { name = "nvim_lua" },
     {
       name = "ctags",
