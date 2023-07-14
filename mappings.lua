@@ -139,7 +139,7 @@ M.text = {
     -- Operations
     ["<C-z>"] = { "<cmd>u<CR>", "󰕌 Undo" },
     ["<C-r>"] = { "<cmd>redo<CR>", "󰑎 Redo" },
-    ["<C-x>"] = { "yd", "󰆐 Cut" },
+    ["<C-x>"] = { "x", "󰆐 Cut" },
     ["<C-v>"] = { "p", "󰆒 Paste" },
     ["<C-c>"] = { "y", " Copy" },
     -- ["<A-d>"] = { "viw", " Select word" },
