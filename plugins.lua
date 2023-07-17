@@ -37,7 +37,7 @@ local plugins = {
   },
   {
     "nvim-tree/nvim-web-devicons",
-    dependencies = { "justinhj/battery.nvim", config = true },
+    -- dependencies = { "justinhj/battery.nvim", config = true },
     opts = overrides.devicons,
   },
   {
@@ -710,6 +710,7 @@ local plugins = {
   {
     "sidebar-nvim/sidebar.nvim",
     key = "<leader>sb",
+    dependencies = { "sidebar-nvim/sections-dap" },
     config = function()
       require "custom.configs.sidebar"
     end,

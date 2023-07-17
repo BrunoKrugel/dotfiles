@@ -100,8 +100,8 @@ M.statusline = {
       local filename = vim.api.nvim_buf_get_name(0)
       local success, index = pcall(Marked.get_index_of, filename)
       if success and index and index ~= nil then
-        return "󱡀 " .. index .. " "
-      else
+          return "󱡀 " .. index .. " "
+        else
         return ""
       end
     end
@@ -171,13 +171,13 @@ M.statusline = {
           .. " "
           .. "%#HarpoonHl#"
           .. get_marked()
-          .. "%#BatteryHl#"
-          .. require("battery").get_status_line()
-          .. " %#TermHl#%@v:lua.ClickTerm@  "
+          -- .. "%#BatteryHl#"
+          -- .. require("battery").get_status_line()
           -- .. "%#SessionHl#"
           -- .. get_session()
           -- .. " "
           .. st_modules.LSP_Diagnostics()
+          .. "%#TermHl#%@v:lua.ClickTerm@  "
       end,
 
       cwd = function()
