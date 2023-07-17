@@ -77,7 +77,7 @@ M.add = {
   HlSearchLens = { fg = "#2E3440", bg = "#88bfcf" },
   HlSearchLensNear = { fg = "#2E3440", bg = "#EBCB8B" },
   -- Custom highlights
-  CopilotHl = { fg = "green", bg = "statusline_bg" },
+  CopilotHl = { fg = "white", bg = "statusline_bg" },
   HarpoonHl = { fg = "cyan", bg = "statusline_bg" },
   BatteryHl = { fg = "nord_blue", bg = "statusline_bg" },
   SessionHl = { fg = "#e535ab", bg = "statusline_bg" },
@@ -93,6 +93,8 @@ M.add = {
   HoverNormal = { fg = "white" },
   CodeActionText = { fg = "white" },
   CodeActionNumber = { link = "Number" },
+  -- Sidebar
+  
 }
 
 return M
