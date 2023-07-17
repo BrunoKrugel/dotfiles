@@ -31,6 +31,60 @@ local buffers = {
   end,
 }
 
+local base_info = {
+  title = "Info",
+  icon = "",
+  draw = function()
+    local lines = {}
+
+    -- Mode
+    local modes = {
+      ["n"] = "Normal",
+      ["no"] = "N·Operator Pending",
+      ["v"] = "Visual",
+      ["V"] = "V·Line",
+      [""] = "V·Block",
+      ["s"] = "Select",
+      ["S"] = "S·Line",
+      [""] = "S·Block",
+      ["i"] = "Insert",
+      ["R"] = "Replace",
+      ["Rv"] = "V·Replace",
+      ["c"] = "Command",
+      ["cv"] = "Vim Ex",
+      ["ce"] = "Ex",
+      ["r"] = "Prompt",
+      ["rm"] = "More",
+      ["r?"] = "Confirm",
+      ["!"] = "Shell",
+      ["t"] = "Terminal",
+    }
+    local mode = vim.fn.mode()
+    local mode_name = modes[mode]
+    table.insert(lines, "mode: " .. (mode_name and mode_name or "undefined"))
+
+    -- Git branch
+    if vim.fn.isdirectory ".git" then
+      local branch = vim.fn.system "git branch --show-current 2> /dev/null | tr -d '\n'"
+      if branch ~= "" then
+        table.insert(lines, "branch: " .. branch)
+      end
+    end
+
+    -- Project Stuff
+    local current_project = require("conduct").current_project.name
+    if current_project ~= nil then
+      table.insert(lines, "project: " .. current_project)
+      local current_session = require("conduct").current_session
+      table.insert(lines, "session: " .. current_session)
+    end
+
+    return {
+      lines = lines,
+    }
+  end,
+}
+
 local harpoon_marks = {
   title = "Harpoon Marks",
   icon = "󱡀 ",
@@ -63,7 +117,7 @@ require("sidebar-nvim").setup {
   initial_width = 35,
   hide_statusline = false,
   update_interval = 100,
-  section_separator = { "", "─────", "" },
+  section_separator = { "", "──────────────────────────────", "" },
   section_title_separator = { "" },
   containers = {
     attach_shell = "/bin/sh",
@@ -79,14 +133,21 @@ require("sidebar-nvim").setup {
   ["todos"] = {
     icon = "",
   },
+  dap = {
+    breakpoints = {
+      icon = "",
+    },
+  },
   sections = {
     "git",
     "diagnostics",
     "todos",
-    -- "symbols",
+    "symbols",
     -- "files",
     -- buffers,
     -- terms,
+    "containers",
+    require "dap-sidebar-nvim.breakpoints",
     harpoon_marks,
   },
 }
