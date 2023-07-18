@@ -271,6 +271,10 @@ M.node = {
       "<cmd> lua require('package-info').show() <CR>",
       "󰎙 Show package info",
     },
+    ["<leader>up"] = {
+      "<cmd> lua require('package-info').update() <CR>",
+      "󰎙 Update package",
+    },
     ["<leader>nd"] = {
       "<cmd> lua require('package-info').delete() <CR>",
       "󰎙 Delete package",

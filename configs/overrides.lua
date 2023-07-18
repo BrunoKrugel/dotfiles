@@ -365,9 +365,7 @@ M.cmp = {
     },
     { name = "path" },
     { name = "treesitter" },
-    { name = "nvim_lsp_signature_help" },
     { name = "nvim_lsp_document_symbol" },
-    { name = "vim_lsp" },
     { name = "spell" },
     {
       name = "nvim_lsp",
