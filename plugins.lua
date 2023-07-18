@@ -93,7 +93,7 @@ local plugins = {
     "hrsh7th/nvim-cmp",
     opts = overrides.cmp,
     dependencies = {
-      "hrsh7th/cmp-emoji",
+      -- "hrsh7th/cmp-emoji",
       -- "hrsh7th/cmp-calc",
       -- "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp",
@@ -318,10 +318,15 @@ local plugins = {
     },
   },
   {
-    "melkster/modicator.nvim",
+    "mawkler/modicator.nvim",
     event = "BufWinEnter",
+    init = function()
+      vim.o.cursorline = true
+      vim.o.number = true
+      vim.o.termguicolors = true
+    end,
     config = function()
-      require "custom.configs.modicator"
+      require("modicator").setup()
     end,
   },
   { "HampusHauffman/bionic.nvim", cmd = { "Bionic" } },
@@ -792,11 +797,6 @@ local plugins = {
     "galooshi/vim-import-js",
     ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
     build = "npm install",
-  },
-  {
-    "pmizio/typescript-tools.nvim",
-    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-    opts = {},
   },
   {
     "vuki656/package-info.nvim",
