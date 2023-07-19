@@ -773,7 +773,7 @@ local plugins = {
   ----------------------------------------- language plugins ------------------------------------------
   {
     "ray-x/go.nvim",
-    ft = { "go", "gomod" },
+    ft = { "go", "gomod", "gosum", "gowork" },
     dependencies = {
       {
         "ray-x/guihua.lua",

@@ -63,27 +63,33 @@ M.devicons = {
 M.treesitter = {
   auto_install = true,
   ensure_installed = {
+    "vim",
     "lua",
     "bash",
     "json",
-    "html",
-    "jq",
     "json5",
-    "gomod",
-    "gowork",
-    "go",
-    "gosum",
+    "jq",
     "yaml",
-    "javascript",
     "java",
-    "vim",
+    "dockerfile",
     "regex",
+
+    -- Markdown
     "markdown",
     "markdown_inline",
-    "tsx",
+    -- Go Lang
+    "go",
+    "gomod",
+    "gowork",
+    "gosum",
+    "gohtmltmpl",
+
+    -- Web Dev
+    "javascript",
     "typescript",
+    "tsx",
+    "html",
     "astro",
-    "dockerfile",
   },
   indent = {
     enable = true,
