@@ -53,8 +53,8 @@ local sources = {
 
 -- From go.nvim
 -- table.insert(sources, require("go.null_ls").golangci_lint())
-table.insert(sources, require("go.null_ls").gotest())
-table.insert(sources, require("go.null_ls").gotest_action())
+-- table.insert(sources, require("go.null_ls").gotest())
+-- table.insert(sources, require("go.null_ls").gotest_action())
 
 -- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup {
