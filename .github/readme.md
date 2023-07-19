@@ -240,6 +240,17 @@ From left to right:
 2. Compiler and Run (on click will open `Compiler.nvim`)
 3. Split window button (on click will split the current window vertically)
 
+## References
+
+<div align="center">
+
+![Reference](./img/reference.png)
+
+_With [Glance](https://github.com/DNLHC/glance.nvim)_
+
+</div>
+
+
 ## Keybinds
 
 All the keybinds are available in the `mappings.lua` file, and also described in the NVCheatSheet, you can access it with `<leader>ch`.
