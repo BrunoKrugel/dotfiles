@@ -82,7 +82,6 @@ M.treesitter = {
     "gomod",
     "gowork",
     "gosum",
-    "gohtmltmpl",
 
     -- Web Dev
     "javascript",
