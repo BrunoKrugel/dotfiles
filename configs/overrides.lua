@@ -136,12 +136,17 @@ M.mason = {
     "jsonlint",
     "json-lsp",
 
+    "dockerfile-language-server",
     "yaml-language-server",
+
     -- golang
     "gopls",
     "goimports",
     "golines",
     "gomodifytags",
+    "impl",
+    "iferr",
+    "staticcheck",
   },
 
   ui = {
