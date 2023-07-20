@@ -216,22 +216,22 @@ local plugins = {
       require("better_escape").setup()
     end,
   },
-  -- {
-  --   "gennaro-tedesco/nvim-possession",
-  --   lazy = false,
-  --   dependencies = {
-  --     "ibhagwan/fzf-lua",
-  --   },
-  --   config = function()
-  --     require("nvim-possession").setup {
-  --       autoload = true,
-  --       autosave = true,
-  --       sessions = {
-  --         sessions_icon = "",
-  --       },
-  --     }
-  --   end,
-  -- },
+  {
+    "gennaro-tedesco/nvim-possession",
+    event = "VimEnter",
+    dependencies = {
+      "ibhagwan/fzf-lua",
+    },
+    config = function()
+      require("nvim-possession").setup {
+        autoload = true,
+        autosave = true,
+        sessions = {
+          sessions_icon = "",
+        },
+      }
+    end,
+  },
   {
     "code-biscuits/nvim-biscuits",
     event = "BufRead",
@@ -454,6 +454,7 @@ local plugins = {
   },
   {
     "chikko80/error-lens.nvim",
+    event = 'BufRead',
     ft = "go",
     config = true,
   },

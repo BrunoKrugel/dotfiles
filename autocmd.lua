@@ -37,16 +37,16 @@ autocmd({ "BufAdd", "BufDelete", "BufEnter", "TabEnter", "ModeChanged", "Diagnos
 -- })
 
 -- Fix NvimTree not opening on startup when using session restore plugin
--- autocmd({ "BufEnter" }, {
---   pattern = "NvimTree*",
---   callback = function()
---     local api = require "nvim-tree.api"
---     local view = require "nvim-tree.view"
---     if not view.is_visible() then
---       api.tree.open()
---     end
---   end,
--- })
+autocmd({ "BufEnter" }, {
+  pattern = "NvimTree*",
+  callback = function()
+    local api = require "nvim-tree.api"
+    local view = require "nvim-tree.view"
+    if not view.is_visible() then
+      api.tree.open()
+    end
+  end,
+})
 
 -- Enable this to Auto format on save, bu it will mess with undo history
 -- autocmd("BufWritePre", {
