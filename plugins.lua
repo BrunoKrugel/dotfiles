@@ -66,7 +66,6 @@ local plugins = {
         "nvim-telescope/telescope-frecency.nvim",
         dependencies = { "kkharji/sqlite.lua" },
       },
-      { "JoosepAlviste/nvim-ts-context-commentstring", event = "BufRead" },
     },
   },
   {
@@ -78,6 +77,7 @@ local plugins = {
     dependencies = {
       "windwp/nvim-ts-autotag",
       "chrisgrieser/nvim-various-textobjs",
+      { "JoosepAlviste/nvim-ts-context-commentstring", event = "BufRead" },
     },
     opts = overrides.treesitter,
   },
