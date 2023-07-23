@@ -133,6 +133,7 @@ M.mason = {
     "eslint-lsp",
     "css-lsp",
     "html-lsp",
+    "emmet-ls",
 
     -- Spell
     "codespell",
