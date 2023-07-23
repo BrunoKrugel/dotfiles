@@ -105,15 +105,6 @@ M.statusline = {
         return ""
       end
     end
-    -- Load info for possession
-    -- local function get_session()
-    --   local session = require("nvim-possession").status()
-    --   if session ~= nil then
-    --     return "󰐃 "
-    --   else
-    --     return "󰐄 "
-    --   end
-    -- end
 
     return {
 
@@ -173,8 +164,6 @@ M.statusline = {
           .. get_marked()
           -- .. "%#BatteryHl#"
           -- .. require("battery").get_status_line()
-          -- .. "%#SessionHl#"
-          -- .. get_session()
           -- .. " "
           .. st_modules.LSP_Diagnostics()
           .. "%#TermHl#%@v:lua.ClickTerm@  "
