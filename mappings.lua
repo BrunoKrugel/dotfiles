@@ -392,24 +392,14 @@ M.nvimtree = {
 
 M.session = {
   n = {
-    ["<leader>sl"] = {
+    ["<leader>ss"] = {
       function()
-        require("nvim-possession").list()
+        require("auto-session.session-lens").search_session()
       end,
-      " List session",
+      "󰆓 List session",
     },
-    ["<leader>sn"] = {
-      function()
-        require("nvim-possession").new()
-      end,
-      " New session",
-    },
-    ["<leader>sd"] = {
-      function()
-        require("nvim-possession").delete()
-      end,
-      " Delete session",
-    },
+    ["<leader>sd"] = { "<cmd>SessionDelete<CR>", "󱙃 Delete Session" },
+
   },
 }
 
@@ -496,7 +486,7 @@ M.lspsaga = {
     ["gr"] = { "<cmd>Telescope lsp_references<CR>", " Lsp references" },
     ["[d"] = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", " Prev Diagnostic" },
     ["]d"] = { "<cmd>Lspsaga diagnostic_jump_next<CR>", " Next Diagnostic" },
-    ["<leader>lq"] = {
+    ["<leader>qf"] = {
       function()
         vim.diagnostic.setloclist()
       end,

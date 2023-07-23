@@ -77,7 +77,14 @@ local plugins = {
     dependencies = {
       "windwp/nvim-ts-autotag",
       "chrisgrieser/nvim-various-textobjs",
-      { "JoosepAlviste/nvim-ts-context-commentstring", event = "BufRead" },
+      {
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        config = function()
+          require("Comment").setup {
+            pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+          }
+        end,
+      },
     },
     opts = overrides.treesitter,
   },
@@ -217,20 +224,23 @@ local plugins = {
     end,
   },
   {
-    "gennaro-tedesco/nvim-possession",
+    'rmagatti/auto-session',
     event = "VimEnter",
-    dependencies = {
-      "ibhagwan/fzf-lua",
-    },
     config = function()
-      require("nvim-possession").setup {
-        autoload = true,
-        autosave = true,
-        sessions = {
-          sessions_icon = "",
+      require("auto-session").setup {
+        log_level = "error",
+        auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/"},
+        auto_session_enabled = true,
+        auto_save_enabled = true,
+        auto_restore_enabled = true,
+        auto_session_enable_last_session = vim.loop.cwd() == vim.loop.os_homedir(),
+        session_lens = {
+          load_on_setup = true,
+          theme_conf = { border = true },
+          previewer = true,
         },
       }
-    end,
+    end
   },
   {
     "code-biscuits/nvim-biscuits",
@@ -454,7 +464,7 @@ local plugins = {
   },
   {
     "chikko80/error-lens.nvim",
-    event = 'BufRead',
+    event = "BufRead",
     ft = "go",
     config = true,
   },
