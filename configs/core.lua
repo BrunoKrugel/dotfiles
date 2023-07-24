@@ -1,6 +1,6 @@
 local M = {}
 
-require "custom.configs.ui"
+require "custom.configs.mouse"
 
 M.dapui = {
   icons = { expanded = "▾", collapsed = "▸" },
@@ -52,7 +52,7 @@ M.tabufline = {
 
     return {
       buttons = function()
-        return "%#SplitHl#%@v:lua.ClickUpdate@  %#SplitHl#%@v:lua.ClickGit@  %#SplitHl#%@v:lua.ClickRun@  %#SplitHl#%@v:lua.ClickSplit@  %#SplitHl#%@v:lua.ClickSelect@ "
+        return "%#SplitHl#%@v:lua.ClickUpdate@  %#SplitHl#%@v:lua.ClickGit@  %#SplitHl#%@v:lua.ClickRun@  %#SplitHl#%@v:lua.ClickSplit@ "
       end,
     }
   end,

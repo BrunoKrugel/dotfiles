@@ -25,8 +25,4 @@ _G.ClickUpdate = function()
   vim.notify "Highlights reloaded!"
 end
 
-_G.ClickSelect = function()
-  vim.cmd "lua MyMenu()"
-end
-
 return M
