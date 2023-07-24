@@ -224,12 +224,12 @@ local plugins = {
     end,
   },
   {
-    'rmagatti/auto-session',
+    "rmagatti/auto-session",
     event = "VimEnter",
     config = function()
       require("auto-session").setup {
         log_level = "error",
-        auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/"},
+        auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
         auto_session_enabled = true,
         auto_save_enabled = true,
         auto_restore_enabled = true,
@@ -240,7 +240,17 @@ local plugins = {
           previewer = true,
         },
       }
-    end
+    end,
+  },
+  {
+    "axkirillov/hbac.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("hbac").setup {
+        autoclose = true,
+        threshold = 5,
+      }
+    end,
   },
   {
     "code-biscuits/nvim-biscuits",
