@@ -467,8 +467,8 @@ local plugins = {
           options = {
             showcmd = true,
           },
-          twilight = { enabled = false }, 
-          gitsigns = { enabled = true }, 
+          twilight = { enabled = false },
+          gitsigns = { enabled = true },
         },
       }
     end,
