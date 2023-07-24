@@ -890,6 +890,11 @@ local plugins = {
       }
     end,
   },
+  {
+    "javiorfo/nvim-soil",
+    ft = "plantuml",
+    dependencies = { "javiorfo/nvim-nyctophilia" },
+  },
   ----------------------------------------- completions plugins ------------------------------------------
   {
     "ludovicchabant/vim-gutentags",
