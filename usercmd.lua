@@ -20,10 +20,10 @@ create_cmd("TDebug", function()
 end, {})
 
 create_cmd("TUpdate", function()
-  require("lazy").load({ plugins = { "mason.nvim", "nvim-treesitter" } })
-  vim.cmd("MasonUpdate")
-  vim.cmd("TSUpdate")
-  vim.cmd("NvChadUpdate")
+  require("lazy").load { plugins = { "mason.nvim", "nvim-treesitter" } }
+  vim.cmd "MasonUpdate"
+  vim.cmd "TSUpdate"
+  vim.cmd "NvChadUpdate"
 end, {})
 
 -- Disable scrolloff in blacklisted filetypes
