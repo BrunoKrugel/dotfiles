@@ -1,38 +1,10 @@
 local M = {}
 
--- Clickable area
-_G.ClickMe = function()
-  -- print "Clicked!"
-  require("noice").cmd "history"
-end
-
--- Clickable area
-_G.ClickTerm = function()
-  require("nvterm.terminal").toggle "horizontal"
-end
-
-_G.ClickSplit = function()
-  -- require("nvterm.terminal").toggle "horizontal"
-  vim.cmd "vs"
-end
-
-_G.ClickGit = function()
-  vim.cmd "LazyGit"
-end
-
-_G.ClickRun = function()
-  vim.cmd "CompilerOpen"
-end
-
-_G.ClickUpdate = function()
-  require("base46").load_all_highlights()
-  vim.notify "Highlights reloaded!"
-end
+require "custom.configs.ui"
 
 M.dapui = {
   icons = { expanded = "▾", collapsed = "▸" },
   mappings = {
-    -- Use a table to apply multiple mappings
     expand = { "<CR>", "<2-LeftMouse>" },
     open = "o",
     remove = "d",
@@ -77,12 +49,10 @@ M.dapui = {
 
 M.tabufline = {
   overriden_modules = function()
-    local modules = require "nvchad_ui.tabufline.modules"
 
     return {
       buttons = function()
-        return "%#SplitHl#%@v:lua.ClickUpdate@  %#SplitHl#%@v:lua.ClickGit@ %#SplitHl#%@v:lua.ClickRun@ %#SplitHl#%@v:lua.ClickSplit@ "
-          -- .. modules.buttons()
+        return "%#SplitHl#%@v:lua.ClickUpdate@  %#SplitHl#%@v:lua.ClickGit@  %#SplitHl#%@v:lua.ClickRun@  %#SplitHl#%@v:lua.ClickSplit@  %#SplitHl#%@v:lua.ClickSelect@ "
       end,
     }
   end,
@@ -100,8 +70,8 @@ M.statusline = {
       local filename = vim.api.nvim_buf_get_name(0)
       local success, index = pcall(Marked.get_index_of, filename)
       if success and index and index ~= nil then
-          return "󱡀 " .. index .. " "
-        else
+        return "󱡀 " .. index .. " "
+      else
         return ""
       end
     end
