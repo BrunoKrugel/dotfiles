@@ -454,10 +454,23 @@ local plugins = {
   --   end,
   -- },
   {
-    "Pocco81/true-zen.nvim",
-    cmd = { "TZAtaraxis" },
+    "folke/zen-mode.nvim",
+    cmd = "ZenMode",
     config = function()
-      require("true-zen").setup {}
+      require("zen-mode").setup {
+        window = {
+          backdrop = 0.93,
+          width = 150,
+          height = 1,
+        },
+        plugins = {
+          options = {
+            showcmd = true,
+          },
+          twilight = { enabled = false }, 
+          gitsigns = { enabled = true }, 
+        },
+      }
     end,
   },
   {
