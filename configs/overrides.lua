@@ -137,6 +137,8 @@ M.mason = {
 
     -- Spell
     "codespell",
+    "marksman",
+    "grammarly-languageserver",
 
     -- Json
     "jsonlint",
