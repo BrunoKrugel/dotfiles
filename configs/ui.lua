@@ -26,18 +26,7 @@ _G.ClickUpdate = function()
 end
 
 _G.ClickSelect = function()
-  vim.ui.select({ "Australia", "Belarus", "Canada", "Denmark", "Egypt", "Fiji" }, {
-    prompt = "Select a country",
-    format_item = function(item)
-      return "I like to visit " .. item
-    end,
-  }, function(country, idx)
-    if country then
-      print("You selected " .. country .. " at index " .. idx)
-    else
-      print "You cancelled"
-    end
-  end)
+  vim.cmd "lua MyMenu()"
 end
 
 return M
