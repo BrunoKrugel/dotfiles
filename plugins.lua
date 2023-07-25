@@ -37,7 +37,6 @@ local plugins = {
   },
   {
     "nvim-tree/nvim-web-devicons",
-    -- dependencies = { "justinhj/battery.nvim", config = true },
     opts = overrides.devicons,
   },
   {
@@ -47,7 +46,6 @@ local plugins = {
       "debugloop/telescope-undo.nvim",
       "tom-anders/telescope-vim-bookmarks.nvim",
       "tsakirist/telescope-lazy.nvim",
-      "yagiziskirik/AirSupport.nvim",
       {
         "ThePrimeagen/harpoon",
         cmd = "Harpoon",
@@ -94,11 +92,8 @@ local plugins = {
     "hrsh7th/nvim-cmp",
     opts = overrides.cmp,
     dependencies = {
-      -- "hrsh7th/cmp-emoji",
-      -- "hrsh7th/cmp-calc",
       -- "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp",
-      -- "hrsh7th/cmp-nvim-lua",
       "f3fora/cmp-spell",
       -- "hrsh7th/cmp-vsnip",
       "delphinus/cmp-ctags",
@@ -118,18 +113,17 @@ local plugins = {
           tabnine:setup {} -- put your options here
         end,
       },
-      {
-        -- snippet plugin
-        "L3MON4D3/LuaSnip",
-        config = function(_, opts)
-          require("plugins.configs.others").luasnip(opts) -- from default luasnip conf
-
-          local luasnip = require "luasnip"
-
-          luasnip.filetype_extend("javascriptreact", { "html" })
-          require("luasnip/loaders/from_vscode").lazy_load() -- from default luasnip conf
-        end,
-      },
+      -- {
+      --   "L3MON4D3/LuaSnip",
+      --   config = function(_, opts)
+      --     require("plugins.configs.others").luasnip(opts) -- from default luasnip conf
+      --
+      --     local luasnip = require "luasnip"
+      --
+      --     luasnip.filetype_extend("javascriptreact", { "html" })
+      --     require("luasnip/loaders/from_vscode").lazy_load() -- from default luasnip conf
+      --   end,
+      -- },
     },
   },
   {
@@ -144,8 +138,8 @@ local plugins = {
   },
   ----------------------------------------- enhance plugins ------------------------------------------
   {
-    "Pocco81/auto-save.nvim",
-    event = "BufReadPost",
+    "okuuva/auto-save.nvim",
+    event = { "InsertLeave", "TextChanged" },
     config = function()
       require "custom.configs.autosave"
     end,
@@ -433,20 +427,6 @@ local plugins = {
       require "custom.configs.noice"
     end,
   },
-  -- {
-  --   "kosayoda/nvim-lightbulb",
-  --   event = "LspAttach",
-  --   config = function()
-  --     require("nvim-lightbulb").setup {
-  --       autocmd = { enabled = true },
-  --       sign = {
-  --         enabled = true,
-  --         text = "",
-  --         hl = "LightBulbSign",
-  --     },
-  --     }
-  --   end,
-  -- },
   {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
@@ -481,7 +461,7 @@ local plugins = {
   },
   {
     "chikko80/error-lens.nvim",
-    event = "BufRead",
+    -- event = "BufRead",
     ft = "go",
     config = true,
   },
@@ -699,11 +679,6 @@ local plugins = {
     end,
   },
   {
-    "levouh/tint.nvim",
-    event = "BufReadPost",
-    config = true,
-  },
-  {
     "anuvyklack/pretty-fold.nvim",
     event = "BufWinEnter",
     dependencies = {
@@ -738,14 +713,6 @@ local plugins = {
       require("icon-picker").setup {
         disable_legacy_commands = true,
       }
-    end,
-  },
-  {
-    "sidebar-nvim/sidebar.nvim",
-    key = "<leader>sb",
-    dependencies = { "sidebar-nvim/sections-dap" },
-    config = function()
-      require "custom.configs.sidebar"
     end,
   },
   {
