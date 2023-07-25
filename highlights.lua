@@ -94,7 +94,6 @@ M.add = {
   CodeActionText = { fg = "white" },
   CodeActionNumber = { link = "Number" },
   -- Sidebar
-  
 }
 
 return M
