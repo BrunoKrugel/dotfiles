@@ -29,17 +29,6 @@ M.rest = {
   },
 }
 
-M.sidebar = {
-  n = {
-    ["<leader>sb"] = {
-      function()
-        require("sidebar-nvim").toggle()
-      end,
-      " Toggle Sidebar",
-    },
-  },
-}
-
 M.folder = {
   n = {
     ["<leader>c"] = { "zc", " Close folder" },
