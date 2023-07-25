@@ -14,13 +14,6 @@ autocmd("LspAttach", {
   end,
 })
 
--- Update SideBar
-autocmd({ "BufAdd", "BufDelete", "BufEnter", "TabEnter", "ModeChanged", "DiagnosticChanged" }, {
-  callback = function()
-    require("sidebar-nvim").update()
-  end,
-})
-
 -- Enable it when changing highlights
 -- autocmd("BufWritePost", {
 --   pattern = "*.lua",
