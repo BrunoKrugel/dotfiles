@@ -388,16 +388,20 @@ M.session = {
       "󰆓 List session",
     },
     ["<leader>sd"] = { "<cmd>SessionDelete<CR>", "󱙃 Delete Session" },
-
   },
 }
 
 M.hop = {
   n = {
     ["<leader><leader>w"] = { "<cmd> HopWord <CR>", "󰸱 Hint all words" },
-    -- ["<leader><leader>l"] = { "<cmd> HopLine <CR>", "󰸱 Hint line" },
-    ["<leader><leader>c"] = { ":HopLineStart<CR>", "󰕭 Hint Columns" },
-    ["<leader><leader>l"] = { ":HopWordCurrentLine<CR>", "󰗉 Hint Line" },
+    ["<leader><leader>t"] = {
+      function()
+        require("tsht").move { side = "start" }
+      end,
+      " Hint Tree",
+    },
+    ["<leader><leader>c"] = { "<cmd> HopLineStart<CR>", "󰕭 Hint Columns" },
+    ["<leader><leader>l"] = { "<cmd> HopWordCurrentLine<CR>", "󰗉 Hint Line" },
   },
 }
 
@@ -551,13 +555,13 @@ M.harpoon = {
 
 M.lspconfig = {
   n = {
-
     ["<leader>l"] = {
       function()
         require("lsp_lines").toggle()
       end,
       "󱖫 Toggle LSP Lines",
     },
+    ["<leader><leader>n"] = { "<cmd> lua require('tsht').nodes() <CR>", " Select Node" },
     ["<F12>"] = { "<cmd>Glance references<CR>", "󰘐 References" },
   },
 }
