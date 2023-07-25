@@ -77,12 +77,6 @@ M.statusline = {
     end
 
     return {
-
-      -- St_NormalMode
-      -- St_VisualMode
-      -- St_InsertMode
-      -- St_TerminalMode
-      -- St_ReplaceMode
       mode = function()
         modes["n"][3] = "  "
         modes["v"][3] = "  "
@@ -132,9 +126,6 @@ M.statusline = {
           .. " "
           .. "%#HarpoonHl#"
           .. get_marked()
-          -- .. "%#BatteryHl#"
-          -- .. require("battery").get_status_line()
-          -- .. " "
           .. st_modules.LSP_Diagnostics()
           .. "%#TermHl#%@v:lua.ClickTerm@  "
       end,

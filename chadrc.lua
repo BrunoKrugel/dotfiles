@@ -1,6 +1,6 @@
 ---@type ChadrcConfig
 local M = {}
-local fn = vim.fn
+
 local core = require "custom.configs.core"
 
 -- Path to overriding theme and highlights files
@@ -31,12 +31,6 @@ M.ui = {
   hl_add = highlights.add,
 
   nvdash = core.nvdash,
-}
-
-M.lazy_nvim = {
-  ui = {
-    border = "solid",
-  },
 }
 
 M.settings = {
