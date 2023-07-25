@@ -44,16 +44,10 @@ local plugins = {
     "nvim-telescope/telescope.nvim",
     opts = overrides.telescope,
     dependencies = {
-      "nvim-lua/plenary.nvim",
       "debugloop/telescope-undo.nvim",
       "tom-anders/telescope-vim-bookmarks.nvim",
       "tsakirist/telescope-lazy.nvim",
-      "nvim-telescope/telescope-dap.nvim",
       "yagiziskirik/AirSupport.nvim",
-      {
-        "edolphin-ydf/goimpl.nvim",
-        ft = "go",
-      },
       {
         "ThePrimeagen/harpoon",
         cmd = "Harpoon",

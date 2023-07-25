@@ -35,21 +35,15 @@ M.add = {
 
   NvimTreeOpenedFolderName = { fg = "purple", bold = true },
   NvimTreeOpenedFile = { fg = "green", bold = true },
-  SagaWinbarFolder = { fg = "blue" },
+
   -- Cmp Highlights
   CmpItemKindCodeium = { fg = "#51BDAC" },
   CmpItemKindTabNine = { fg = "#C73BE3" },
-  -- EndOfBuffer = {
-  --   bg = "black",
-  --   fg = "black",
-  -- },
-  -- NonText = {
-  --   bg = "black",
-  --   fg = "black",
-  -- },
+
   VirtColumn = { fg = "black2" },
   FoldColumn = { bg = "black" },
   Folded = { bg = "black", fg = "white" },
+
   -- Tree Sitter Rainbow
   RainbowDelimiterRed = { fg = "red" },
   RainbowDelimiterYellow = { fg = "yellow" },
@@ -58,16 +52,7 @@ M.add = {
   RainbowDelimiterGreen = { fg = "green" },
   RainbowDelimiterViolet = { fg = "purple" },
   RainbowDelimiterCyan = { fg = "cyan" },
-  -- ErrorLens
-  -- ErrorLensErrorText = { fg = "#FF6363" },
-  -- ErrorLensErrorBg = { bg = "#4B252C" },
-  -- ErrorLensWarnText = { bg = "#403733" },
-  -- ErrorLensWarnBg = { bg = "#403733", fg = "#FA973A"},
-  -- ErrorLensInfoText = { fg = "#5B38E8" },
-  -- ErrorLensInfoBg = { bg = "#281478" },
-  -- ErrorLensHintText = { fg = "#25E64B" },
-  -- ErrorLensHintBg = { bg = "#147828" },
-  -- GitSigns
+
   DiffChange = { fg = "yellow" },
   DiffAdd = { fg = "vibrant_green" },
   DiffText = { fg = "white", bg = "red", bold = true },
@@ -76,6 +61,18 @@ M.add = {
   HlSearchNear = { fg = "#2E3440", bg = "#EBCB8B" },
   HlSearchLens = { fg = "#2E3440", bg = "#88bfcf" },
   HlSearchLensNear = { fg = "#2E3440", bg = "#EBCB8B" },
+
+  GitSignsCurrentLineBlame = {
+    fg = "cyan",
+  },
+
+  -- LSP Saga
+  SagaBorder = { fg = "blue" },
+  SagaWinbarFolder = { fg = "blue" },
+  HoverNormal = { fg = "white" },
+  CodeActionText = { fg = "white" },
+  CodeActionNumber = { link = "Number" },
+
   -- Custom highlights
   CopilotHl = { fg = "white", bg = "statusline_bg" },
   HarpoonHl = { fg = "cyan", bg = "statusline_bg" },
@@ -84,16 +81,6 @@ M.add = {
   NotificationHl = { fg = "white", bg = "statusline_bg" },
   TermHl = { fg = "green", bg = "statusline_bg" },
   SplitHl = { fg = "white", bg = "statusline_bg" },
-
-  GitSignsCurrentLineBlame = {
-    fg = "cyan",
-  },
-  -- LSP Saga
-  SagaBorder = { fg = "blue" },
-  HoverNormal = { fg = "white" },
-  CodeActionText = { fg = "white" },
-  CodeActionNumber = { link = "Number" },
-  -- Sidebar
 }
 
 return M
