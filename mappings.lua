@@ -298,6 +298,12 @@ M.debug = {
     ["<F10>"] = { "<cmd> :DapStepOver <CR>", " Step over" },
     ["<F11>"] = { "<cmd> :DapStepInto <CR>", " Step into" },
     ["<F9>"] = { "<cmd> :DapStepOut <CR>", " Step out" },
+    ["<leader><leader>p"] = {
+      function()
+        require("debugprint").debugprint()
+      end,
+      " Step out",
+    },
   },
 }
 
