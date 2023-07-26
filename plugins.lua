@@ -275,10 +275,9 @@ local plugins = {
     end,
   },
   {
-    "phaazon/hop.nvim",
+    "smoka7/hop.nvim",
     cmd = { "HopWord", "HopLine", "HopLineStart", "HopWordCurrentLine" },
     dependencies = "mfussenegger/nvim-treehopper",
-    branch = "v2",
     config = function()
       require("hop").setup { keys = "etovxqpdygfblzhckisuran" }
     end,
