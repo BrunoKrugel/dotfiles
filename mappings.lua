@@ -372,6 +372,17 @@ M.tabufline = {
   },
 }
 
+M.docker = {
+  n = {
+    ["<leader>ld"] = {
+      function()
+        require("nvterm.terminal").send("lazydocker", "float")
+      end,
+      " Open LazyDocker",
+    },
+  },
+}
+
 M.test = {
   n = {
     ["<leader>nt"] = {
