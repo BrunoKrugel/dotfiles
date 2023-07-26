@@ -289,10 +289,15 @@ local plugins = {
     event = "BufReadPost",
     config = function()
       require("nvim-toggler").setup {
-        -- removes the default <leader>i keymap
         remove_default_keybinds = true,
       }
     end,
+  },
+  {
+    "barrett-ruth/live-server.nvim",
+    cmd = "LiveServerStart",
+    build = "yarn global add live-server",
+    config = true,
   },
   { "tpope/vim-surround", event = "VeryLazy" },
   {
