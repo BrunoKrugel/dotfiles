@@ -156,7 +156,14 @@ M.text = {
       "󰑕 Rename",
       opts = { expr = true },
     },
-    ["<Esc>"] = { ":noh <CR>", " Clear highlights", opts = { silent = true } },
+    ["<Esc>"] = {
+      function()
+        vim.cmd "noh"
+        vim.cmd "Noice dismiss"
+      end,
+      " Clear highlights",
+      opts = { silent = true },
+    },
 
     ["<Leader>bb"] = {
       "<cmd>:Bionic<CR>",
