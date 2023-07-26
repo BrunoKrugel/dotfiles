@@ -374,12 +374,7 @@ M.tabufline = {
 
 M.docker = {
   n = {
-    ["<leader>ld"] = {
-      function()
-        require("nvterm.terminal").send("lazydocker", "float")
-      end,
-      " Open LazyDocker",
-    },
+    ["<leader>ld"] = { "<cmd> LazyDocker <CR>", "󰡨 Open LazyDocker" },
   },
 }
 

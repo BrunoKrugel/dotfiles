@@ -547,6 +547,10 @@ local plugins = {
     cmd = "LazyGit",
   },
   {
+    "BrunoKrugel/lazydocker.nvim",
+    cmd = "LazyDocker",
+  },
+  {
     "smjonas/inc-rename.nvim",
     event = "LspAttach",
     config = true,
