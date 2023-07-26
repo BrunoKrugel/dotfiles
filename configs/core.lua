@@ -48,13 +48,10 @@ M.dapui = {
 }
 
 M.tabufline = {
-  overriden_modules = function()
-
-    return {
-      buttons = function()
-        return "%#SplitHl#%@v:lua.ClickUpdate@  %#SplitHl#%@v:lua.ClickGit@  %#SplitHl#%@v:lua.ClickRun@  %#SplitHl#%@v:lua.ClickSplit@ "
-      end,
-    }
+  overriden_modules = function(modules)
+    modules[4] = (function()
+      return "%#SplitHl#%@v:lua.ClickUpdate@  %#SplitHl#%@v:lua.ClickGit@  %#SplitHl#%@v:lua.ClickRun@  %#SplitHl#%@v:lua.ClickSplit@ "
+    end)()
   end,
 }
 
