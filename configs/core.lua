@@ -88,7 +88,7 @@ M.statusline = {
             client.attached_buffers[vim.api.nvim_get_current_buf()]
             and (client.name ~= "null-ls" and client.name ~= "copilot")
           then
-            return (vim.o.columns > 100 and "%#St_LspStatus#   " .. client.name) or "   LSP"
+            return (vim.o.columns > 100 and "%#St_LspStatus#  " .. client.name) or "  LSP"
           end
         end
       end
