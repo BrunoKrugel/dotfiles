@@ -103,8 +103,12 @@ M.development = {
 M.text = {
   i = {
     -- Move line up and down
-    ["<C-Up>"] = { "<cmd> :m-2<CR>", " Move up" },
-    ["<C-Down>"] = { "<cmd> :m+<CR>", " Move down" },
+    -- ["<C-Up>"] = { "<cmd> :m-2<CR>", "󰜸 Move line up" },
+    ["<C-Up>"] = { "<cmd>m .-2<CR>==", "󰜸 Move line up" },
+
+    -- ["<C-Down>"] = { "<cmd> :m+<CR>", "󰜯 Move line down" },
+    ["<C-Down>"] = { "<cmd>m .+1<CR>==", "󰜯 Move line down" },
+
     -- Navigate
     ["<A-Left>"] = { "<ESC>I", " Move to beginning of line" },
     ["<A-Right>"] = { "<ESC>A", " Move to end of line" },
@@ -134,8 +138,12 @@ M.text = {
     -- ["<A-d>"] = { "viw", " Select word" },
     ["<leader>d"] = { 'viw"_di', " Delete word" },
     -- Move line up and down
-    ["<C-Up>"] = { "<cmd> :m-2<CR>", "󰜸 Move line up" },
-    ["<C-Down>"] = { "<cmd> :m+<CR>", "󰜯 Move line down" },
+    -- ["<C-Up>"] = { "<cmd> :m-2<CR>", "󰜸 Move line up" },
+    ["<C-Up>"] = { "<cmd>m .-2<CR>==", "󰜸 Move line up" },
+
+    -- ["<C-Down>"] = { "<cmd> :m+<CR>", "󰜯 Move line down" },
+    ["<C-Down>"] = { "<cmd>m .+1<CR>==", "󰜯 Move line down" },
+
     -- Renamer
     ["<C-R>"] = { "<cmd>:MurenToggle<CR>", "󱝪 Toggle Search" },
     ["<leader>sp"] = { "<cmd>:TSJToggle<CR>", "󰯌 Toggle split/join" },
