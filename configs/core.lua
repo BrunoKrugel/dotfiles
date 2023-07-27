@@ -81,19 +81,6 @@ M.statusline = {
       return "%#" .. modes[m][2] .. "#" .. (modes[m][3] or "  ") .. modes[m][1] .. " "
     end)()
 
-    modules[12] = (function()
-      if rawget(vim, "lsp") then
-        for _, client in ipairs(vim.lsp.get_active_clients()) do
-          if
-            client.attached_buffers[vim.api.nvim_get_current_buf()]
-            and (client.name ~= "null-ls" and client.name ~= "copilot")
-          then
-            return (vim.o.columns > 100 and "%#St_LspStatus#  " .. client.name) or "  LSP"
-          end
-        end
-      end
-    end)()
-
     modules[2] = (function()
       local icon = " 󰈚 "
       local filename = vim.fn.expand "%:t"
@@ -120,7 +107,7 @@ M.statusline = {
       modules,
       4,
       (function()
-        return "%#CopilotHl#" .. require("copilot_status").status_string() .. " " .. "%#HarpoonHl#" .. Get_marked()
+        return "%#HarpoonHl#" .. Get_marked()
       end)()
     )
 
@@ -132,11 +119,24 @@ M.statusline = {
       end)()
     )
 
+    modules[14] = (function()
+      if rawget(vim, "lsp") then
+        for _, client in ipairs(vim.lsp.get_active_clients()) do
+          if
+            client.attached_buffers[vim.api.nvim_get_current_buf()]
+            and (client.name ~= "null-ls" and client.name ~= "copilot")
+          then
+            return (vim.o.columns > 100 and "%#St_LspStatus# " .. client.name) or "  LSP"
+          end
+        end
+      end
+    end)()
+
     table.insert(
       modules,
       15,
       (function()
-        return "  %#NotificationHl#%@v:lua.ClickMe@  "
+        return " %#CopilotHl#" .. require("copilot_status").status_string() .. " %#NotificationHl#%@v:lua.ClickMe@  "
       end)()
     )
   end,
