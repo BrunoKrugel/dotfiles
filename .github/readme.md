@@ -1,20 +1,32 @@
 <h1 align="center">Nvim(Chad) configuration</h1>
-<p align="center">Custom config for <a href="https://github.com/NvChad/NvChad">git@github.com:NvChad/NvChad</a><p>
-<h3 align="center">
+<p align="center">Custom config for <a href="https://github.com/NvChad/NvChad">NvChad</a><p>
 
-![Lines of code](https://img.shields.io/tokei/lines/github/BrunoKrugel/dotfiles?color=%2381A1C1&label=LINES&logoColor=%2381A1C1&style=for-the-badge)
-![Bloat](https://img.shields.io/badge/Bloat-Minimal-c585cf?style=for-the-badge)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/BrunoKrugel/dotfiles?color=e1b56a&style=for-the-badge)
-![GitHub Repo stars](https://img.shields.io/github/stars/BrunoKrugel/dotfiles?color=74be88&style=for-the-badge)
-![GitHub top language](https://img.shields.io/github/languages/top/BrunoKrugel/dotfiles?color=6d92bf&style=for-the-badge)
-
-<div align="center">
+<div align="center"><p>
+    <a href="https://github.com/BrunoKrugel/dotfiles/pulse">
+      <img alt="Last commit" src="https://img.shields.io/github/last-commit/BrunoKrugel/dotfiles?style=for-the-badge&logo=starship&color=8bd5ca&logoColor=D9E0EE&labelColor=302D41"/>
+    </a>
+    <a href="https://github.com/BrunoKrugel/dotfiles/stargazers">
+      <img alt="Stars" src="https://img.shields.io/github/stars/BrunoKrugel/dotfiles?style=for-the-badge&logo=starship&color=c69ff5&logoColor=D9E0EE&labelColor=302D41" />
+    </a>
+    <a href="https://github.com/BrunoKrugel/dotfiles/issues">
+      <img alt="Issues" src="https://img.shields.io/github/issues/BrunoKrugel/dotfiles?style=for-the-badge&logo=bilibili&color=F5E0DC&logoColor=D9E0EE&labelColor=302D41" />
+    </a>
+    <a href="https://github.com/BrunoKrugek/dotfiles">
+      <img alt="Repo Size" src="https://img.shields.io/github/repo-size/BrunoKrugel/dotfiles?color=%23DDB6F2&label=SIZE&logo=codesandbox&style=for-the-badge&logoColor=D9E0EE&labelColor=302D41" />
+    </a>
+</div>    
     
 ![prv-min](./img/prv.png)
 </div>
 
 </h3>
 <hr>
+
+<div align="center">
+<a href="https://dotfyle.com/BrunoKrugel/dotfiles"><img src="https://dotfyle.com/BrunoKrugel/dotfiles/badges/plugins?style=flat" /></a>
+<a href="https://dotfyle.com/BrunoKrugel/dotfiles"><img src="https://dotfyle.com/BrunoKrugel/dotfiles/badges/leaderkey?style=flat" /></a>
+<a href="https://dotfyle.com/BrunoKrugel/dotfiles"><img src="https://dotfyle.com/BrunoKrugel/dotfiles/badges/plugin-manager?style=flat" /></a>
+</div>
 
 ## Introduction
 
@@ -42,6 +54,23 @@ For questions feel free to open an issue or you can find me in the [NvChad disco
 - [x] Go ([go.nvim](https://github.com/ray-x/go.nvim))
 - [x] Web development (JS, TS, HTML, CSS, React, Astro)
 - [x] Markdown
+
+## Language Servers installed
+
+- astro
+- clangd
+- cssls
+- dockerls
+- emmet_ls
+- eslint
+- gopls
+- grammarly
+- html
+- jdtls
+- jsonls
+- marksman
+- tsserver
+- yamlls
 
 TreeSitter is enabled and will automatically install parsers for you.
 
@@ -250,7 +279,6 @@ _With [Glance](https://github.com/DNLHC/glance.nvim)_
 
 </div>
 
-
 ## Keybinds
 
 All the keybinds are available in the `mappings.lua` file, and also described in the NVCheatSheet, you can access it with `<leader>ch`.
@@ -317,5 +345,187 @@ Config ready for neovide, options are available in the `neovide.lua` file.
 - UI Improvement with [Telescope-ui-select](https://github.com/nvim-telescope/telescope-ui-select.nvim)
 - Arguments highlights with [hlargs](https://github.com/m-demare/hlargs.nvim)
 - Quick file navigation with [Harpoon](https://github.com/ThePrimeagen/harpoon)
-- Dim unused buffers with [Tint](https://github.com/levouh/tint.nvim)
 - Minimap with [Codewindow](https://github.com/gorbit99/codewindow.nvim)
+
+
+## Plugins
+
+<details>
+<summary>Full List</summary>
+
+### bars-and-lines
+
+- [luukvbaal/statuscol.nvim](https://dotfyle.com/plugins/luukvbaal/statuscol.nvim)
+
+### code-runner
+
+- [stevearc/overseer.nvim](https://dotfyle.com/plugins/stevearc/overseer.nvim)
+- [Zeioth/compiler.nvim](https://dotfyle.com/plugins/Zeioth/compiler.nvim)
+
+### color
+
+- [NvChad/nvim-colorizer.lua](https://dotfyle.com/plugins/NvChad/nvim-colorizer.lua)
+
+### comment
+
+- [JoosepAlviste/nvim-ts-context-commentstring](https://dotfyle.com/plugins/JoosepAlviste/nvim-ts-context-commentstring)
+- [folke/todo-comments.nvim](https://dotfyle.com/plugins/folke/todo-comments.nvim)
+
+### completion
+
+- [zbirenbaum/copilot.lua](https://dotfyle.com/plugins/zbirenbaum/copilot.lua)
+- [hrsh7th/nvim-cmp](https://dotfyle.com/plugins/hrsh7th/nvim-cmp)
+
+### cursorline
+
+- [mawkler/modicator.nvim](https://dotfyle.com/plugins/mawkler/modicator.nvim)
+- [RRethy/vim-illuminate](https://dotfyle.com/plugins/RRethy/vim-illuminate)
+
+### debugging
+
+- [rcarriga/nvim-dap-ui](https://dotfyle.com/plugins/rcarriga/nvim-dap-ui)
+- [mfussenegger/nvim-dap](https://dotfyle.com/plugins/mfussenegger/nvim-dap)
+- [andrewferrier/debugprint.nvim](https://dotfyle.com/plugins/andrewferrier/debugprint.nvim)
+
+### dependency-management
+
+- [vuki656/package-info.nvim](https://dotfyle.com/plugins/vuki656/package-info.nvim)
+
+### diagnostics
+
+- [folke/trouble.nvim](https://dotfyle.com/plugins/folke/trouble.nvim)
+
+### editing-support
+
+- [debugloop/telescope-undo.nvim](https://dotfyle.com/plugins/debugloop/telescope-undo.nvim)
+- [anuvyklack/pretty-fold.nvim](https://dotfyle.com/plugins/anuvyklack/pretty-fold.nvim)
+- [nvim-treesitter/nvim-treesitter-context](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-context)
+- [folke/zen-mode.nvim](https://dotfyle.com/plugins/folke/zen-mode.nvim)
+- [windwp/nvim-ts-autotag](https://dotfyle.com/plugins/windwp/nvim-ts-autotag)
+- [gbprod/cutlass.nvim](https://dotfyle.com/plugins/gbprod/cutlass.nvim)
+- [Wansmer/treesj](https://dotfyle.com/plugins/Wansmer/treesj)
+- [chrisgrieser/nvim-various-textobjs](https://dotfyle.com/plugins/chrisgrieser/nvim-various-textobjs)
+- [okuuva/auto-save.nvim](https://dotfyle.com/plugins/okuuva/auto-save.nvim)
+- [ethanholz/nvim-lastplace](https://dotfyle.com/plugins/ethanholz/nvim-lastplace)
+
+### fuzzy-finder
+
+- [nvim-telescope/telescope.nvim](https://dotfyle.com/plugins/nvim-telescope/telescope.nvim)
+
+### git
+
+- [kdheepak/lazygit.nvim](https://dotfyle.com/plugins/kdheepak/lazygit.nvim)
+- [f-person/git-blame.nvim](https://dotfyle.com/plugins/f-person/git-blame.nvim)
+- [sindrets/diffview.nvim](https://dotfyle.com/plugins/sindrets/diffview.nvim)
+
+### golang
+
+- [ray-x/go.nvim](https://dotfyle.com/plugins/ray-x/go.nvim)
+
+### icon
+
+- [ziontee113/icon-picker.nvim](https://dotfyle.com/plugins/ziontee113/icon-picker.nvim)
+
+### indent
+
+- [shellRaining/hlchunk.nvim](https://dotfyle.com/plugins/shellRaining/hlchunk.nvim)
+- [lukas-reineke/indent-blankline.nvim](https://dotfyle.com/plugins/lukas-reineke/indent-blankline.nvim)
+
+### keybinding
+
+- [anuvyklack/keymap-amend.nvim](https://dotfyle.com/plugins/anuvyklack/keymap-amend.nvim)
+- [max397574/better-escape.nvim](https://dotfyle.com/plugins/max397574/better-escape.nvim)
+- [folke/which-key.nvim](https://dotfyle.com/plugins/folke/which-key.nvim)
+
+### lsp
+
+- [smjonas/inc-rename.nvim](https://dotfyle.com/plugins/smjonas/inc-rename.nvim)
+- [jose-elias-alvarez/null-ls.nvim](https://dotfyle.com/plugins/jose-elias-alvarez/null-ls.nvim)
+- [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
+- [weilbith/nvim-code-action-menu](https://dotfyle.com/plugins/weilbith/nvim-code-action-menu)
+- [VidocqH/lsp-lens.nvim](https://dotfyle.com/plugins/VidocqH/lsp-lens.nvim)
+- [ray-x/lsp_signature.nvim](https://dotfyle.com/plugins/ray-x/lsp_signature.nvim)
+- [nvimdev/lspsaga.nvim](https://dotfyle.com/plugins/nvimdev/lspsaga.nvim)
+- [jinzhongjia/LspUI.nvim](https://dotfyle.com/plugins/jinzhongjia/LspUI.nvim)
+
+### lsp-installer
+
+- [williamboman/mason.nvim](https://dotfyle.com/plugins/williamboman/mason.nvim)
+
+### markdown-and-latex
+
+- [toppair/peek.nvim](https://dotfyle.com/plugins/toppair/peek.nvim)
+
+### marks
+
+- [ThePrimeagen/harpoon](https://dotfyle.com/plugins/ThePrimeagen/harpoon)
+
+### media
+
+- [samodostal/image.nvim](https://dotfyle.com/plugins/samodostal/image.nvim)
+
+### motion
+
+- [phaazon/hop.nvim](https://dotfyle.com/plugins/phaazon/hop.nvim)
+
+### nvim-dev
+
+- [ray-x/guihua.lua](https://dotfyle.com/plugins/ray-x/guihua.lua)
+- [kkharji/sqlite.lua](https://dotfyle.com/plugins/kkharji/sqlite.lua)
+- [folke/neodev.nvim](https://dotfyle.com/plugins/folke/neodev.nvim)
+- [MunifTanjim/nui.nvim](https://dotfyle.com/plugins/MunifTanjim/nui.nvim)
+- [nvim-lua/plenary.nvim](https://dotfyle.com/plugins/nvim-lua/plenary.nvim)
+
+### scrollbar
+
+- [gorbit99/codewindow.nvim](https://dotfyle.com/plugins/gorbit99/codewindow.nvim)
+- [petertriho/nvim-scrollbar](https://dotfyle.com/plugins/petertriho/nvim-scrollbar)
+
+### scrolling
+
+- [karb94/neoscroll.nvim](https://dotfyle.com/plugins/karb94/neoscroll.nvim)
+
+### search
+
+- [AckslD/muren.nvim](https://dotfyle.com/plugins/AckslD/muren.nvim)
+- [kevinhwang91/nvim-hlslens](https://dotfyle.com/plugins/kevinhwang91/nvim-hlslens)
+
+### session
+
+- [rmagatti/auto-session](https://dotfyle.com/plugins/rmagatti/auto-session)
+
+### snippet
+
+- [TobinPalmer/rayso.nvim](https://dotfyle.com/plugins/TobinPalmer/rayso.nvim)
+- [L3MON4D3/LuaSnip](https://dotfyle.com/plugins/L3MON4D3/LuaSnip)
+
+### split-and-window
+
+- [nvim-zh/colorful-winsep.nvim](https://dotfyle.com/plugins/nvim-zh/colorful-winsep.nvim)
+
+### syntax
+
+- [m-demare/hlargs.nvim](https://dotfyle.com/plugins/m-demare/hlargs.nvim)
+- [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter)
+
+### terminal-integration
+
+- [m00qek/baleia.nvim](https://dotfyle.com/plugins/m00qek/baleia.nvim)
+
+### test
+
+- [nvim-neotest/neotest](https://dotfyle.com/plugins/nvim-neotest/neotest)
+
+### utility
+
+- [zbirenbaum/neodim](https://dotfyle.com/plugins/zbirenbaum/neodim)
+- [anuvyklack/fold-preview](https://dotfyle.com/plugins/anuvyklack/fold-preview)
+- [yaocccc/nvim-foldsign](https://dotfyle.com/plugins/yaocccc/nvim-foldsign)
+- [code-biscuits/nvim-biscuits](https://dotfyle.com/plugins/code-biscuits/nvim-biscuits)
+- [folke/noice.nvim](https://dotfyle.com/plugins/folke/noice.nvim)
+- [rcarriga/nvim-notify](https://dotfyle.com/plugins/rcarriga/nvim-notify)
+- [echasnovski/mini.nvim](https://dotfyle.com/plugins/echasnovski/mini.nvim)
+- [nguyenvukhang/nvim-toggler](https://dotfyle.com/plugins/nguyenvukhang/nvim-toggler)
+- [kevinhwang91/nvim-ufo](https://dotfyle.com/plugins/kevinhwang91/nvim-ufo)
+
+</details>
