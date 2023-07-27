@@ -583,6 +583,9 @@ local plugins = {
           require("statuscol").setup {
             relculright = true,
             segments = {
+              {
+                text = { " " },
+              },
               -- Segment 1: Add padding
               { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
               {

@@ -27,7 +27,6 @@ local sources = {
   b.diagnostics.fish,
   b.diagnostics.checkmake,
   b.diagnostics.jsonlint,
-  b.diagnostics.staticcheck,
   -- b.diagnostics.eslint,
   -- b.diagnostics.luacheck,
   -- b.diagnostics.checkstyle.with {

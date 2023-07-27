@@ -10,7 +10,6 @@ local servers = {
   "tsserver",
   "clangd",
   "eslint",
-  "gopls",
   "jdtls",
   "astro",
   "grammarly",
