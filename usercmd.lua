@@ -3,6 +3,22 @@ local create_cmd = vim.api.nvim_create_user_command
 local settings = require("custom.chadrc").settings
 local g = vim.g
 
+local function setAutoCmp(mode)
+  if mode then
+    require("cmp").setup {
+      completion = {
+        autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
+      },
+    }
+  else
+    require("cmp").setup {
+      completion = {
+        autocomplete = false,
+      },
+    }
+  end
+end
+
 -- Toggle colorcolumn
 create_cmd("ColorcolumnToggle", function()
   vim.g.ccenable = not vim.g.ccenable
@@ -16,6 +32,18 @@ end, {})
 
 create_cmd("TDebug", function()
   require("dapui").toggle()
+end, {})
+
+g.cmptoggle = false
+create_cmd("CmpToggle", function()
+  g.cmptoggle = not g.cmptoggle
+  if g.cmptoggle then
+    vim.cmd 'echo  "CmpAutoComplete is on"'
+    setAutoCmp(true)
+  else
+    vim.cmd 'echo  "CmpAutoComplete is off"'
+    setAutoCmp(false)
+  end
 end, {})
 
 create_cmd("TUpdate", function()
