@@ -126,7 +126,8 @@ M.statusline = {
             client.attached_buffers[vim.api.nvim_get_current_buf()]
             and (client.name ~= "null-ls" and client.name ~= "copilot")
           then
-            return (vim.o.columns > 100 and "%#St_LspStatus# " .. client.name) or "  LSP"
+            local copilot = "%#CopilotHl#" .. require("copilot_status").status_string() .. " "
+            return (vim.o.columns > 100 and copilot .. "%#St_LspStatus# " .. client.name) or copilot .. "  LSP"
           end
         end
       end
@@ -136,7 +137,7 @@ M.statusline = {
       modules,
       15,
       (function()
-        return " %#CopilotHl#" .. require("copilot_status").status_string() .. " %#NotificationHl#%@v:lua.ClickMe@  "
+        return " %#NotificationHl#%@v:lua.ClickMe@  "
       end)()
     )
   end,
