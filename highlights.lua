@@ -43,7 +43,7 @@ M.add = {
   CmpItemKindTabNine = { fg = "#C73BE3" },
 
   VirtColumn = { fg = "black2" },
-  FoldColumn = { bg = "black" },
+  FoldColumn = { bg = "black", fg = "white" },
   Folded = { bg = "black", fg = "white" },
 
   -- Tree Sitter Rainbow
