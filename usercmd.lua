@@ -1,9 +1,7 @@
 ---@diagnostic disable: need-check-nil
 local create_cmd = vim.api.nvim_create_user_command
-local create_autocmd = vim.api.nvim_create_autocmd
-local g = vim.g
-
 local settings = require("custom.chadrc").settings
+local g = vim.g
 
 -- Toggle colorcolumn
 create_cmd("ColorcolumnToggle", function()
@@ -29,7 +27,7 @@ end, {})
 
 g.codeium = false
 create_cmd("CodeiumToggle", function()
-  vim.notify( "Codeium is " .. (g.codeium and "OFF" or "ON") , "info", {
+  vim.notify("Codeium is " .. (g.codeium and "OFF" or "ON"), "info", {
     title = "Codeium",
     icon = "",
     on_open = function()
@@ -39,6 +37,6 @@ create_cmd("CodeiumToggle", function()
       else
         vim.cmd "CodeiumDisable"
       end
-    end
+    end,
   })
 end, {})
