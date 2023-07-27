@@ -45,8 +45,8 @@ M.dapui = {
     },
   },
   floating = {
-    max_height = nil, -- These can be integers or a float between 0 and 1.
-    max_width = nil, -- Floats will be treated as percentage of your screen.
+    max_height = nil,
+    max_width = nil,
     border = "rounded", -- Border style. Can be "single", "double" or "rounded"
     mappings = {
       close = { "q", "<Esc>" },
@@ -54,7 +54,7 @@ M.dapui = {
   },
   windows = { indent = 1 },
   render = {
-    max_type_length = nil, -- Can be integer or nil.
+    max_type_length = nil,
   },
 }
 
