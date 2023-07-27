@@ -31,6 +31,8 @@ M.add = {
   MultiCursor = { bg = "white" },
   MultiCursorMain = { bg = "white" },
 
+  DapBreakpoint = { fg = "red" },
+
   LightBulbSign = { bg = "black", fg = "yellow" },
 
   NvimTreeOpenedFolderName = { fg = "purple", bold = true },
