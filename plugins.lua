@@ -570,6 +570,12 @@ local plugins = {
     dependencies = {
       "kevinhwang91/promise-async",
       {
+        'jghauser/fold-cycle.nvim',
+        config = function()
+          require('fold-cycle').setup()
+        end
+      },
+      {
         "luukvbaal/statuscol.nvim",
         event = "BufReadPost",
         config = function()

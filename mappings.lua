@@ -31,13 +31,14 @@ M.rest = {
 
 M.folder = {
   n = {
-    ["<leader>c"] = { "zc", " Close folder" },
-    ["<leader>a"] = { "zo", " Open folder" },
+    ["<leader>a"] = { 
+      function() 
+        require('fold-cycle').toggle_all() 
+      end, " Toggle folder" },
     ["<leader>p"] = {
       function()
         require("fold-preview").toggle_preview()
-      end,
-      " Open folder recursively",
+      end, " Fold preview",
     },
   },
 }
