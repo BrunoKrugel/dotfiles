@@ -570,10 +570,10 @@ local plugins = {
     dependencies = {
       "kevinhwang91/promise-async",
       {
-        'jghauser/fold-cycle.nvim',
+        "jghauser/fold-cycle.nvim",
         config = function()
-          require('fold-cycle').setup()
-        end
+          require("fold-cycle").setup()
+        end,
       },
       {
         "luukvbaal/statuscol.nvim",
@@ -613,6 +613,7 @@ local plugins = {
     },
     config = function()
       require("ufo").setup {
+        close_fold_kinds = { "imports", "import" },
         provider_selector = function(_, filetype, buftype)
           return (filetype == "" or buftype == "nofile") and "indent" -- only use indent until a file is opened
             or { "treesitter", "indent" } -- if file opened, try to use treesitter if available
