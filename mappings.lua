@@ -341,6 +341,7 @@ M.git = {
 
 M.telescope = {
   n = {
+    ["<leader>li"] = { "<cmd>Telescope highlights<CR>", "Highlights" },
     ["<leader>fk"] = { "<cmd>Telescope keymaps<CR>", " Find keymaps" },
     ["<leader>fs"] = { "<cmd>Telescope lsp_document_symbols<CR>", " Find document symbols" },
     ["<leader>fr"] = { "<cmd>Telescope frecency<CR>", " Recent files" },
