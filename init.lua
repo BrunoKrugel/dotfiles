@@ -13,7 +13,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 
 vim.fn.sign_define("DapBreakpoint", {
   text = "",
-  texthl = "NeotestAdapterName",
+  texthl = "DapBreakpoint",
   linehl = "",
   numhl = "",
 })
