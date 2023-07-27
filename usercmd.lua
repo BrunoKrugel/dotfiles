@@ -1,6 +1,7 @@
 ---@diagnostic disable: need-check-nil
 local create_cmd = vim.api.nvim_create_user_command
 local create_autocmd = vim.api.nvim_create_autocmd
+local g = vim.g
 
 local settings = require("custom.chadrc").settings
 
@@ -26,18 +27,18 @@ create_cmd("TUpdate", function()
   vim.cmd "NvChadUpdate"
 end, {})
 
--- Disable scrolloff in blacklisted filetypes
-create_autocmd({ "BufEnter" }, {
-  callback = function()
-    vim.o.scrolloff = (vim.tbl_contains(settings.blacklist, vim.bo.ft) and 0 or settings.so_size)
-  end,
-})
-
--- Disable colorcolumn in blacklisted filetypes
-create_autocmd({ "FileType" }, {
-  callback = function()
-    if vim.g.ccenable then
-      vim.opt_local.cc = (vim.tbl_contains(settings.blacklist, vim.bo.ft) and "0" or settings.cc_size)
+g.codeium = false
+create_cmd("CodeiumToggle", function()
+  vim.notify( "Codeium is " .. (g.codeium and "OFF" or "ON") , "info", {
+    title = "Codeium",
+    icon = "",
+    on_open = function()
+      g.codeium = not g.codeium
+      if g.codeium then
+        vim.cmd "CodeiumEnable"
+      else
+        vim.cmd "CodeiumDisable"
+      end
     end
-  end,
-})
+  })
+end, {})

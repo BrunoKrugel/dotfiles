@@ -303,6 +303,7 @@ M.colorizer = {
   user_default_options = {
     names = false,
     RRGGBBAA = true,
+    rgb_fn = true,
   },
 }
 
@@ -375,6 +376,7 @@ M.cmp = {
     { name = "spell" },
     {
       name = "nvim_lsp",
+      keyword_length = 5,
       entry_filter = function(entry, ctx)
         return require("cmp").lsp.CompletionItemKind.Text ~= entry:get_kind()
       end,
