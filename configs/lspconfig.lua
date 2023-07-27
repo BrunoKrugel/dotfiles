@@ -19,6 +19,7 @@ local servers = {
   "yamlls",
   "jsonls",
   "dockerls",
+  "lua_ls",
 }
 
 for _, lsp in ipairs(servers) do

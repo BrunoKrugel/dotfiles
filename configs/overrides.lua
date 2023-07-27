@@ -312,6 +312,11 @@ M.cmp = {
     completeopt = "menu,menuone",
     autocomplete = false,
   },
+  experimental = {
+    ghost_text = {
+      hl_group = "Comment"
+    }
+  },
   mapping = {
     ["<Up>"] = require("cmp").mapping.select_prev_item(),
     ["<Down>"] = require("cmp").mapping.select_next_item(),
@@ -360,11 +365,8 @@ M.cmp = {
     { name = "copilot" },
     { name = "codeium" },
     { name = "cmp_tabnine" },
-    -- { name = "luasnip" },
-    -- { name = "nvim_lua" },
     {
       name = "ctags",
-      -- default values
       option = {
         executable = "ctags",
         trigger_characters = { "." },
@@ -373,7 +375,6 @@ M.cmp = {
     { name = "path" },
     { name = "treesitter" },
     { name = "nvim_lsp_document_symbol" },
-    { name = "spell" },
     {
       name = "nvim_lsp",
       keyword_length = 5,
