@@ -30,10 +30,10 @@ opt.foldlevelstart = 99
 opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 -- CUSTOM
-vim.o.foldmethod = "expr"
-vim.o.foldexpr = "nvim_treesitter#foldexpr()"
-vim.o.signcolumn = "yes"
-vim.o.foldcolumn = "2"
+-- vim.o.foldmethod = "expr"
+-- vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.o.signcolumn = "yes"
+-- vim.o.foldcolumn = "2"
 -- vim.o.signcolumn = "number"
 vim.o.number = true
 vim.o.numberwidth = 2
