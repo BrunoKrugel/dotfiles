@@ -564,50 +564,56 @@ local plugins = {
     "f-person/git-blame.nvim",
     cmd = "GitBlameToggle",
   },
-  -- {
-  --   "kevinhwang91/nvim-ufo",
-  --   dependencies = {
-  --     "kevinhwang91/promise-async",
   {
-    "luukvbaal/statuscol.nvim",
+    "kevinhwang91/nvim-ufo",
     event = "BufReadPost",
+    dependencies = {
+      "kevinhwang91/promise-async",
+      {
+        "luukvbaal/statuscol.nvim",
+        event = "BufReadPost",
+        config = function()
+          local builtin = require "statuscol.builtin"
+          require("statuscol").setup {
+            relculright = true,
+            segments = {
+              -- Segment 1: Add padding
+              { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+              {
+                text = { " " },
+              },
+              -- Segment 2: Show signs with one character width
+              {
+                sign = { name = { ".*" }, maxwidth = 1, colwidth = 1 },
+                auto = true,
+                click = "v:lua.ScSa",
+              },
+              -- Segment 3: Show line number
+              {
+                text = { " ", " ", builtin.lnumfunc, " " },
+                click = "v:lua.ScLa",
+                condition = { true, builtin.not_empty },
+              },
+              -- Segment 4: Add padding
+              {
+                text = { " " },
+                hl = "Normal",
+                condition = { true, builtin.not_empty },
+              },
+            },
+          }
+        end,
+      },
+    },
     config = function()
-      local builtin = require "statuscol.builtin"
-      require("statuscol").setup {
-        relculright = true,
-        segments = {
-          { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-          { text = { "%s" }, click = "v:lua.ScSa" },
-          { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
-        },
+      require("ufo").setup {
+        provider_selector = function(_, filetype, buftype)
+          return (filetype == "" or buftype == "nofile") and "indent" -- only use indent until a file is opened
+            or { "treesitter", "indent" } -- if file opened, try to use treesitter if available
+        end,
       }
     end,
   },
-  --   },
-  --   event = "BufReadPost",
-  --   keys = { "zf", "zo", "za", "zc", "zM", "zR" },
-  --   config = function()
-  --     require("ufo").setup {
-  --       provider_selector = function()
-  --         return { "treesitter", "indent" }
-  --       end,
-  --     }
-  --   end,
-  -- },
-  -- {
-  --   "yaocccc/nvim-foldsign",
-  --   event = "CursorHold",
-  --   config = function()
-  --     require("nvim-foldsign").setup {
-  --       offset = -2,
-  --       foldsigns = {
-  --         open = "-", -- mark the beginning of a fold
-  --         close = "+", -- show a closed fold
-  --         seps = { "│", "┃" }, -- open fold middle marker
-  --       },
-  --     }
-  --   end,
-  -- },
   {
     "jinzhongjia/LspUI.nvim",
     event = "LspAttach",
