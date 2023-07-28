@@ -91,7 +91,7 @@ M.development = {
       end,
       " Lsp formatting",
     },
-    ["<leader>bc"] = {
+    ["<leader>bi"] = {
       function()
         require("nvim-biscuits").toggle_biscuits()
       end,

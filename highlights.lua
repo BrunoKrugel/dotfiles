@@ -12,7 +12,7 @@ M.override = {
   Repeat = { fg = "pink" },
   Include = { fg = "pink" },
   ["@definition"] = { underline = false },
-  ["@variable"] = { fg = "purple" },
+  ["@variable"] = { fg = "white" },
   ["@namespace"] = { fg = "white" },
   ["@function.builtin"] = { fg = "cyan" },
   ["@function.call"] = { fg = "green" },
