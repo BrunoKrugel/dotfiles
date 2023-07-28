@@ -45,6 +45,7 @@ vim.api.nvim_create_autocmd({ "FileType", "BufWinEnter" }, {
       "starter",
       "TelescopePrompt",
       "Trouble",
+      "NvimTree",
     }
 
     local b = vim.api.nvim_get_current_buf()
