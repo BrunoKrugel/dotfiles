@@ -39,16 +39,30 @@ autocmd("FileType", {
   end,
 })
 
+autocmd("BufEnter", {
+  nested = true,
+  callback = function()
+    local api = require('nvim-tree.api')
+    if #vim.api.nvim_list_wins() == 1 and api.tree.is_tree_buf() then
+      vim.defer_fn(function()
+        api.tree.toggle({find_file = true, focus = true})
+        api.tree.toggle({find_file = true, focus = true})
+        vim.cmd("wincmd p")
+      end, 0)
+    end
+  end
+})
+
 local prefetch = vim.api.nvim_create_augroup("prefetch", { clear = true })
 autocmd("BufRead", {
   group = prefetch,
-  pattern = "*.py",
+  pattern = "*.go",
   callback = function()
     require("cmp_tabnine"):prefetch(vim.fn.expand "%:p")
   end,
 })
 
-vim.api.nvim_create_autocmd({ "FileType", "BufWinEnter" }, {
+autocmd({ "FileType", "BufWinEnter" }, {
   callback = function()
     local ft_ignore = {
       "man",
