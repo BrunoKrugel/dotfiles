@@ -131,6 +131,7 @@ M.statusline = {
           end
         end
       end
+      return ""
     end)()
 
     table.insert(
