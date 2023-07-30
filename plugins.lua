@@ -46,7 +46,15 @@ local plugins = {
       "debugloop/telescope-undo.nvim",
       "tom-anders/telescope-vim-bookmarks.nvim",
       "tsakirist/telescope-lazy.nvim",
-      "andrewferrier/debugprint.nvim",
+      {
+        "andrewferrier/debugprint.nvim",
+        config = function()
+          require("debugprint").setup {
+            create_keymaps = false,
+            create_commands = false,
+          }
+        end,
+      },
       {
         "ThePrimeagen/harpoon",
         cmd = "Harpoon",
