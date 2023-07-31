@@ -1,4 +1,5 @@
 local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
 local settings = require("custom.chadrc").settings
 
 -- Auto resize panes when resizing nvim window
@@ -27,10 +28,11 @@ autocmd("LspAttach", {
 --   end,
 -- })
 
+-- Close Nvimtree before quit nvim
 autocmd("FileType", {
   pattern = { "NvimTree" },
   callback = function(args)
-    vim.api.nvim_create_autocmd("VimLeavePre", {
+    autocmd("VimLeavePre", {
       callback = function()
         vim.api.nvim_buf_delete(args.buf, { force = true })
         return true
@@ -60,12 +62,27 @@ autocmd("BufEnter", {
 })
 
 -- Prefetch tabnine
-local prefetch = vim.api.nvim_create_augroup("prefetch", { clear = true })
 autocmd("BufRead", {
-  group = prefetch,
+  group = augroup("prefetch", { clear = true }),
   pattern = "*",
   callback = function()
     require("cmp_tabnine"):prefetch(vim.fn.expand "%:p")
+  end,
+})
+
+-- Don't auto comment new line
+autocmd("BufEnter", { 
+  command = [[set formatoptions-=cro]] 
+})
+
+-- Go to last loc when opening a buffer
+autocmd("BufReadPost", {
+  callback = function()
+    local mark = vim.api.nvim_buf_get_mark(0, '"')
+    local lcount = vim.api.nvim_buf_line_count(0)
+    if mark[1] > 0 and mark[1] <= lcount then
+      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+    end
   end,
 })
 
@@ -94,25 +111,27 @@ autocmd({ "FileType", "BufWinEnter" }, {
 })
 
 -- Highlight on yank
-local yankGrp = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 autocmd("TextYankPost", {
   command = "silent! lua vim.highlight.on_yank()",
-  group = yankGrp,
+  group = augroup("YankHighlight", { clear = true }),
 })
 
 -- Show cursor line only in active window
-local cursorGrp = vim.api.nvim_create_augroup("CursorLine", { clear = true })
-autocmd({ "InsertEnter", "WinLeave" }, {
+autocmd({ "InsertLeave", "WinEnter" }, {
   pattern = "*",
-  command = "set nocursorline",
-  group = cursorGrp,
+  command = "set cursorline",
+  group = augroup("CursorLine", { clear = true }),
 })
+autocmd({ "InsertEnter", "WinLeave" },{
+   pattern = "*",
+   command = "set nocursorline",
+   group = augroup("CursorLine", { clear = true }) }
+)
 
 --- Remove all trailing whitespace on save
-local TrimWhiteSpaceGrp = vim.api.nvim_create_augroup("TrimWhiteSpaceGrp", { clear = true })
 autocmd("BufWritePre", {
   command = [[:%s/\s\+$//e]],
-  group = TrimWhiteSpaceGrp,
+  group = augroup("TrimWhiteSpaceGrp", { clear = true }),
 })
 
 -- Disable colorcolumn in blacklisted filetypes
@@ -146,7 +165,7 @@ autocmd({ "BufEnter" }, {
 --   end,
 -- })
 
--- Enable this to Auto format on save, bu it will mess with undo history
+-- Auto format on save, but it will mess with undo history
 -- autocmd("BufWritePre", {
 --   pattern = { "*.js", "*.java", "*.lua" },
 --   callback = function()
