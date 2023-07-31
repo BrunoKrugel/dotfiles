@@ -39,29 +39,37 @@ autocmd("FileType", {
   end,
 })
 
+-- Open new buffer if only Nvimtree is open
 autocmd("BufEnter", {
   nested = true,
   callback = function()
-    local api = require('nvim-tree.api')
+    local api = require "nvim-tree.api"
     if #vim.api.nvim_list_wins() == 1 and api.tree.is_tree_buf() then
       vim.defer_fn(function()
-        api.tree.toggle({find_file = true, focus = true})
-        api.tree.toggle({find_file = true, focus = true})
-        vim.cmd("wincmd p")
+        api.tree.toggle { find_file = true, focus = true }
+        api.tree.toggle { find_file = true, focus = true }
+        vim.cmd "wincmd p"
       end, 0)
     end
-  end
+  end,
 })
 
+-- Close nvim if NvimTree is only running buffer
+autocmd("BufEnter", {
+  command = [[if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]],
+})
+
+-- Prefetch tabnine
 local prefetch = vim.api.nvim_create_augroup("prefetch", { clear = true })
 autocmd("BufRead", {
   group = prefetch,
-  pattern = "*.go",
+  pattern = "*",
   callback = function()
     require("cmp_tabnine"):prefetch(vim.fn.expand "%:p")
   end,
 })
 
+-- Disable status column in the following files
 autocmd({ "FileType", "BufWinEnter" }, {
   callback = function()
     local ft_ignore = {
@@ -83,6 +91,28 @@ autocmd({ "FileType", "BufWinEnter" }, {
       end
     end
   end,
+})
+
+-- Highlight on yank
+local yankGrp = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+autocmd("TextYankPost", {
+  command = "silent! lua vim.highlight.on_yank()",
+  group = yankGrp,
+})
+
+-- Show cursor line only in active window
+local cursorGrp = vim.api.nvim_create_augroup("CursorLine", { clear = true })
+autocmd({ "InsertEnter", "WinLeave" }, {
+  pattern = "*",
+  command = "set nocursorline",
+  group = cursorGrp,
+})
+
+--- Remove all trailing whitespace on save
+local TrimWhiteSpaceGrp = vim.api.nvim_create_augroup("TrimWhiteSpaceGrp", { clear = true })
+autocmd("BufWritePre", {
+  command = [[:%s/\s\+$//e]],
+  group = TrimWhiteSpaceGrp,
 })
 
 -- Disable colorcolumn in blacklisted filetypes
