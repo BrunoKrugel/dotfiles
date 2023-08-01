@@ -123,17 +123,17 @@ local plugins = {
           tabnine:setup {} -- put your options here
         end,
       },
-      -- {
-      --   "L3MON4D3/LuaSnip",
-      --   config = function(_, opts)
-      --     require("plugins.configs.others").luasnip(opts) -- from default luasnip conf
-      --
-      --     local luasnip = require "luasnip"
-      --
-      --     luasnip.filetype_extend("javascriptreact", { "html" })
-      --     require("luasnip/loaders/from_vscode").lazy_load() -- from default luasnip conf
-      --   end,
-      -- },
+      {
+        "L3MON4D3/LuaSnip",
+        config = function(_, opts)
+          require("plugins.configs.others").luasnip(opts) -- from default luasnip conf
+      
+          local luasnip = require "luasnip"
+      
+          luasnip.filetype_extend("javascriptreact", { "html" })
+          require("luasnip/loaders/from_vscode").lazy_load() -- from default luasnip conf
+        end,
+      },
     },
   },
   {

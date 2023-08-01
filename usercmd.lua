@@ -34,7 +34,7 @@ create_cmd("TDebug", function()
   require("dapui").toggle()
 end, {})
 
-g.cmptoggle = false
+g.cmptoggle = true
 create_cmd("CmpToggle", function()
   g.cmptoggle = not g.cmptoggle
   if g.cmptoggle then

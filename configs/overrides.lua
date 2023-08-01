@@ -319,8 +319,8 @@ M.colorizer = {
 
 M.cmp = {
   completion = {
-    completeopt = "menu,menuone",
-    autocomplete = false,
+    completeopt = "menu,menuone,noinsert,noselect",
+    autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
   },
   experimental = {
     ghost_text = {
@@ -342,24 +342,6 @@ M.cmp = {
       s = require("cmp").mapping.confirm { select = true },
       c = require("cmp").mapping.confirm { behavior = require("cmp").ConfirmBehavior.Replace, select = true },
     },
-    -- ["<ESC>"] = require("cmp").mapping.close(),
-    -- ["<Tab>"] = require("cmp").mapping(function(fallback)
-    --   local luasnip = require "luasnip"
-    --   local copilot_keys = vim.fn["copilot#Accept"]()
-    --   if require("cmp").visible() then
-    --     require("cmp").select_next_item()
-    --   elseif luasnip.expand_or_jumpable() then
-    --     luasnip.expand_or_jump()
-    --   elseif copilot_keys ~= "" and type(copilot_keys) == "string" then
-    --     vim.api.nvim_feedkeys(copilot_keys, "i", true)
-    --     -- vim.api.nvim_feedkeys(vim.fn['copilot#Accept'](vim.api.nvim_replace_termcodes('<Tab>', true, true, true)), 'n', true)
-    --   else
-    --     fallback()
-    --   end
-    -- end, {
-    --   "i",
-    --   "s",
-    -- }),
     ["<ESC>"] = require("cmp").mapping(function(fallback)
       if require("cmp").visible() then
         require("cmp").abort()
@@ -375,16 +357,18 @@ M.cmp = {
     { name = "copilot" },
     { name = "codeium" },
     { name = "cmp_tabnine" },
-    {
-      name = "ctags",
-      option = {
-        executable = "ctags",
-        trigger_characters = { "." },
-      },
-    },
+    -- {
+    --   name = "ctags",
+    --   option = {
+    --     executable = "ctags",
+    --     trigger_characters = { "." },
+    --   },
+    -- },
     { name = "path" },
     { name = "treesitter" },
     { name = "nvim_lsp_document_symbol" },
+    { name = "luasnip" },
+    { name = "nvim_lua" },
     {
       name = "nvim_lsp",
       keyword_length = 5,
