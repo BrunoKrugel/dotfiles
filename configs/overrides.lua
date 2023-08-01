@@ -250,6 +250,7 @@ M.telescope = {
     "vim_bookmarks",
     "harpoon",
     "noice",
+    "ast_grep",
   },
   extensions = {
     fzf = {
@@ -258,6 +259,15 @@ M.telescope = {
       override_file_sorter = true,
       case_mode = "smart_case",
     },
+    ast_grep = {
+      command = {
+          "sg",
+          "--json=stream",
+          "-p",
+      }, 
+      grep_open_files = false, 
+      lang = nil,
+  },
     lazy = {
       show_icon = true,
       mappings = {

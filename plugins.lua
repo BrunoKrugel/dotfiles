@@ -46,6 +46,7 @@ local plugins = {
       "debugloop/telescope-undo.nvim",
       "tom-anders/telescope-vim-bookmarks.nvim",
       "tsakirist/telescope-lazy.nvim",
+      "Marskey/telescope-sg",
       {
         "andrewferrier/debugprint.nvim",
         config = function()
@@ -591,27 +592,29 @@ local plugins = {
           require("statuscol").setup {
             relculright = true,
             segments = {
-              {
-                text = { " " },
-              },
               -- Segment 1: Add padding
-              { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
               {
                 text = { " " },
               },
-              -- Segment 2: Show signs with one character width
+              -- Segment 2: Fold Column
+              { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+              -- Segment 3: Add padding
+              {
+                text = { " " },
+              },
+              -- Segment 4: Show signs with one character width
               {
                 sign = { name = { ".*" }, maxwidth = 1, colwidth = 1 },
                 auto = true,
                 click = "v:lua.ScSa",
               },
-              -- Segment 3: Show line number
+              -- Segment 5: Show line number
               {
                 text = { " ", " ", builtin.lnumfunc, " " },
                 click = "v:lua.ScLa",
                 condition = { true, builtin.not_empty },
               },
-              -- Segment 4: Add padding
+              -- Segment 6: Add padding
               {
                 text = { " " },
                 hl = "Normal",
