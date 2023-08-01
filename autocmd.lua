@@ -71,8 +71,8 @@ autocmd("BufRead", {
 })
 
 -- Don't auto comment new line
-autocmd("BufEnter", { 
-  command = [[set formatoptions-=cro]] 
+autocmd("BufEnter", {
+  command = [[set formatoptions-=cro]],
 })
 
 -- Go to last loc when opening a buffer
@@ -122,11 +122,11 @@ autocmd({ "InsertLeave", "WinEnter" }, {
   command = "set cursorline",
   group = augroup("CursorLine", { clear = true }),
 })
-autocmd({ "InsertEnter", "WinLeave" },{
-   pattern = "*",
-   command = "set nocursorline",
-   group = augroup("CursorLine", { clear = true }) }
-)
+autocmd({ "InsertEnter", "WinLeave" }, {
+  pattern = "*",
+  command = "set nocursorline",
+  group = augroup("CursorLine", { clear = true }),
+})
 
 --- Remove all trailing whitespace on save
 autocmd("BufWritePre", {
