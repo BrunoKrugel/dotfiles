@@ -31,14 +31,17 @@ M.rest = {
 
 M.folder = {
   n = {
-    ["<leader>a"] = { 
-      function() 
-        require('fold-cycle').toggle_all() 
-      end, " Toggle folder" },
+    ["<leader>a"] = {
+      function()
+        require("fold-cycle").toggle_all()
+      end,
+      "󰴋 Toggle folder",
+    },
     ["<leader>p"] = {
       function()
         require("fold-preview").toggle_preview()
-      end, " Fold preview",
+      end,
+      "󱞊 Fold preview",
     },
   },
 }
@@ -125,8 +128,8 @@ M.text = {
   n = {
     ["<leader>cc"] = { "<cmd> ColorcolumnToggle <CR>", " Toggle ColorColumn display" },
     -- Navigate
-    ["<A-Left>"] = { "<ESC>_", "󰜲 Move to beginning of line" },
-    ["<A-Right>"] = { "<ESC>$", "󰜵 Move to end of line" },
+    ["<C-Left>"] = { "<ESC>_", "󰜲 Move to beginning of line" },
+    ["<C-Right>"] = { "<ESC>$", "󰜵 Move to end of line" },
     ["<C-a>"] = { "gg0vG", " Select all" },
     ["<F3>"] = { "n", " Next" },
     ["<S-F3>"] = { "N", " Previous" },
@@ -138,19 +141,12 @@ M.text = {
     ["<C-c>"] = { "y", " Copy" },
     -- ["<A-d>"] = { "viw", " Select word" },
     ["<leader>d"] = { 'viw"_di', " Delete word" },
-    -- Move line up and down
-    -- ["<C-Up>"] = { "<cmd> :m-2<CR>", "󰜸 Move line up" },
     ["<C-Up>"] = { "<cmd>m .-2<CR>==", "󰜸 Move line up" },
-
-    -- ["<C-Down>"] = { "<cmd> :m+<CR>", "󰜯 Move line down" },
     ["<C-Down>"] = { "<cmd>m .+1<CR>==", "󰜯 Move line down" },
-
     -- Renamer
     ["<C-R>"] = { "<cmd>:MurenToggle<CR>", "󱝪 Toggle Search" },
     ["<leader>sp"] = { "<cmd>:TSJToggle<CR>", "󰯌 Toggle split/join" },
     ["<A-d>"] = { "<cmd>:MCstart<CR>", "Multi cursor" },
-
-    -- ["<leader>rn"] = { "<cmd> :lua require('renamer').rename()<CR>", "󰑕 Rename" },
     ["<leader>ra"] = {
       function()
         require("nvchad_ui.renamer").open()
@@ -254,7 +250,7 @@ M.diagnostics = {
       function()
         require("lsp_lines").toggle()
       end,
-      "Toggle lsp_lines",
+      " Toggle lsp_lines",
     },
   },
 }
@@ -337,7 +333,6 @@ M.git = {
     ["<leader>gvc"] = { "<cmd> DiffviewClose<CR>", "  Close diff view" },
   },
 }
--- require('cmp').complete({ config = { sources = { { name = 'vsnip' } } } })
 
 M.telescope = {
   n = {
