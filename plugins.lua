@@ -755,9 +755,8 @@ local plugins = {
     end,
   },
   {
-    "galooshi/vim-import-js",
-    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-    build = "npm install",
+    "llllvvuu/nvim-js-actions",
+    keys = { "<leader>jc" },
   },
   {
     "vuki656/package-info.nvim",

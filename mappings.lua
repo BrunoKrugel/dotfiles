@@ -284,9 +284,9 @@ M.node = {
       "<cmd> lua require('package-info').change_version() <CR>",
       "󰎙 Install package",
     },
-    ["<leader>ip"] = {
-      "<cmd>ImportJSFix<CR>",
-      "󰎙 Import missing package",
+    ["<leader>jc"] = {
+      "<cmd> lua require('nvim-js-actions').js_arrow_fn.toggle()<CR>",
+      "󰎙 Toggle arrow",
     },
   },
 }
