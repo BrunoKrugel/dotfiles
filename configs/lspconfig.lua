@@ -12,6 +12,7 @@ local servers = {
   "eslint",
   "jdtls",
   "astro",
+  "gopls",
   "grammarly",
   "marksman",
   "emmet_ls",

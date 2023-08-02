@@ -447,34 +447,6 @@ M.bookmark = {
   },
 }
 
--- M.smartsplits = {
--- 	n = {
--- 		["<A-Up>"] = { "<cmd>lua require('smart-splits').resize_up()<CR>", "Resize window up" },
--- 		["<A-Down>"] = { "<cmd>lua require('smart-splits').resize_down()<CR>", "Resize window down" },
--- 		["<A-Left>"] = { "<cmd>lua require('smart-splits').resize_left()<CR>", "Resize window left" },
--- 		["<A-Right>"] = { "<cmd>lua require('smart-splits').resize_right()<CR>", "Resize window right" },
--- 		["<leader>h"] = { "<cmd>lua require('smart-splits').swap_buf_left()<CR>", "Swap buffer left" },
--- 		["<leader>j"] = { "<cmd>lua require('smart-splits').swap_buf_down()<CR>", "Swap buffer down" },
--- 		["<leader>k"] = { "<cmd>lua require('smart-splits').swap_buf_up()<CR>", "Swap buffer up" },
--- 		["<<leader>l"] = { "<cmd>lua require('smart-splits').swap_buf_right()<CR>", "Swap buffer right" },
--- 	},
--- }
-
--- M.navigator = {
---   n = {
---     ["<C-h>"] = { "<cmd> NavigatorLeft <CR>", "navigate left" },
---     ["<C-j>"] = { "<cmd> NavigatorDown <CR>", "navigate down" },
---     ["<C-k>"] = { "<cmd> NavigatorUp <CR>", "navigate up" },
---     ["<C-l>"] = { "<cmd> NavigatorRight <CR>", "navigate right" },
---   },
---   t = {
---     ["<C-h>"] = { "<cmd> NavigatorLeft <CR>", "navigate left" },
---     ["<C-j>"] = { "<cmd> NavigatorDown <CR>", "navigate down" },
---     ["<C-k>"] = { "<cmd> NavigatorUp <CR>", "navigate up" },
---     ["<C-l>"] = { "<cmd> NavigatorRight <CR>", "navigate right" },
---   },
--- }
-
 M.lspsaga = {
   n = {
     ["<leader>."] = { "<cmd>CodeActionMenu<CR>", "󰅱 Code Action" },
@@ -580,12 +552,6 @@ M.harpoon = {
 
 M.lspconfig = {
   n = {
-    ["<leader>l"] = {
-      function()
-        require("lsp_lines").toggle()
-      end,
-      "󱖫 Toggle LSP Lines",
-    },
     ["<leader><leader>n"] = { "<cmd> lua require('tsht').nodes() <CR>", " Select Node" },
     ["<F12>"] = { "<cmd>Glance references<CR>", "󰘐 References" },
   },

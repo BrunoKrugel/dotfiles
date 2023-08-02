@@ -740,7 +740,7 @@ local plugins = {
   },
   {
     "dnlhc/glance.nvim",
-    event = "VeryLazy",
+    cmd = "Glance",
     config = function()
       require("glance").setup {
         -- your configuration
