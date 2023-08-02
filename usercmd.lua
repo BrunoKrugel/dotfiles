@@ -19,6 +19,15 @@ local function setAutoCmp(mode)
   end
 end
 
+--Open Peek
+create_cmd("PeekOpen", function()
+  require("peek").open()
+end, {})
+
+create_cmd("PeekClose", function()
+  require("peek").close()
+end, {})
+
 -- Toggle colorcolumn
 create_cmd("ColorcolumnToggle", function()
   vim.g.ccenable = not vim.g.ccenable
@@ -30,10 +39,12 @@ create_cmd("ColorcolumnToggle", function()
   end
 end, {})
 
+-- Open DapUi
 create_cmd("TDebug", function()
   require("dapui").toggle()
 end, {})
 
+-- Toggle CMP
 g.cmptoggle = true
 create_cmd("CmpToggle", function()
   g.cmptoggle = not g.cmptoggle
@@ -46,6 +57,7 @@ create_cmd("CmpToggle", function()
   end
 end, {})
 
+-- Update nvim
 create_cmd("TUpdate", function()
   require("lazy").load { plugins = { "mason.nvim", "nvim-treesitter" } }
   vim.cmd "MasonUpdate"
@@ -53,6 +65,7 @@ create_cmd("TUpdate", function()
   vim.cmd "NvChadUpdate"
 end, {})
 
+-- Toggle Codeium
 g.codeium = false
 create_cmd("CodeiumToggle", function()
   vim.notify("Codeium is " .. (g.codeium and "OFF" or "ON"), "info", {

@@ -77,6 +77,7 @@ local plugins = {
   },
   {
     "nvim-tree/nvim-tree.lua",
+    dependencies = { "antosha417/nvim-lsp-file-operations" },
     opts = overrides.nvimtree,
   },
   {
@@ -189,7 +190,7 @@ local plugins = {
   },
   {
     "smoka7/multicursors.nvim",
-    cmd = { 'MCstart', 'MCvisual', 'MCclear', 'MCpattern', 'MCvisualPattern', 'MCunderCursor' },
+    cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
     config = true,
     dependencies = {
       "smoka7/hydra.nvim",
@@ -800,10 +801,6 @@ local plugins = {
         theme = "dark",
         filetype = { "markdown", "vimwiki" },
       }
-    end,
-    init = function()
-      vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
-      vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
     end,
   },
   {
