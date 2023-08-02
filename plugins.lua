@@ -100,7 +100,7 @@ local plugins = {
       -- "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp",
       "f3fora/cmp-spell",
-      -- "hrsh7th/cmp-vsnip",
+      "hrsh7th/cmp-vsnip",
       "delphinus/cmp-ctags",
       "hrsh7th/cmp-nvim-lsp-document-symbol",
       "hrsh7th/cmp-copilot",
@@ -210,13 +210,6 @@ local plugins = {
     },
   },
   {
-    "max397574/better-escape.nvim",
-    event = "InsertEnter",
-    config = function()
-      require("better_escape").setup()
-    end,
-  },
-  {
     "rmagatti/auto-session",
     event = "VimEnter",
     config = function()
@@ -241,7 +234,7 @@ local plugins = {
     config = function()
       require("hbac").setup {
         autoclose = true,
-        threshold = 3,
+        threshold = 5,
       }
     end,
   },
@@ -255,7 +248,7 @@ local plugins = {
   },
   {
     "rainbowhxch/accelerated-jk.nvim",
-    event = "BufReadPost",
+    keys = { "j", "k"},
     config = function()
       require "custom.configs.accelerated"
     end,
@@ -290,7 +283,7 @@ local plugins = {
   },
   {
     "nguyenvukhang/nvim-toggler",
-    event = "BufReadPost",
+    keys = {"<leader>it"},
     config = function()
       require("nvim-toggler").setup {
         remove_default_keybinds = true,
