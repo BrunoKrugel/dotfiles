@@ -327,11 +327,12 @@ M.cmp = {
   completion = {
     completeopt = "menu,menuone,noinsert,noselect",
     autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
+    keyword_length = 2,
   },
   experimental = {
     ghost_text = {
-      hl_group = "Comment"
-    }
+      hl_group = "Comment",
+    },
   },
   mapping = {
     ["<Up>"] = require("cmp").mapping.select_prev_item(),
@@ -358,6 +359,12 @@ M.cmp = {
       "i",
       "s",
     }),
+  },
+  performance = {
+    debounce = 300,
+    throttle = 60,
+    max_view_entries = 10,
+    fetching_timeout = 200,
   },
   sources = {
     { name = "copilot" },
