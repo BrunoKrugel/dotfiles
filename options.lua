@@ -2,8 +2,6 @@ local opt = vim.opt
 local g = vim.g
 local o = vim.o
 
--- opt.colorcolumn = "90"
-
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 opt.backup = false
@@ -11,6 +9,7 @@ opt.swapfile = false
 opt.scrolloff = 10 -- always show minimum n lines after current line
 opt.relativenumber = false -- Show relative numberline
 opt.wrap = false
+opt.iskeyword:append("-")
 -- g.highlighturl_enabled = true -- highlight URLs by default
 -- opt.splitkeep = "screen"  -- Maintain code view when splitting
 
