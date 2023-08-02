@@ -32,6 +32,77 @@ end
 vim.lsp.handlers["textDocument/hover"] = require("noice").hover
 vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
 
+lspconfig.lua_ls.setup {
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = "LuaJIT",
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = { "use", "vim" },
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      -- Enable ls hints
+      hint = {
+        enable = true,
+        setType = true,
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+}
+
+lspconfig.tsserver.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  single_file_support = true,
+  init_options = {
+    preferences = {
+      includeCompletionsWithSnippetText = true,
+      includeCompletionsWithInsertText = true,
+    },
+  },
+  settings = {
+    completions = {
+      completeFunctionCalls = true,
+    },
+    typescript = {
+      inlayHints = {
+        includeInlayParameterNameHints = "all",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+      },
+    },
+    javascript = {
+      inlayHints = {
+        includeInlayParameterNameHints = "all",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+      },
+    },
+    preferences = {
+      importModuleSpecifierPreference = "non-relative",
+      upddateImportsOnFileMove = "always",
+    },
+  },
+}
+
 lspconfig.gopls.setup {
   on_attach = on_attach,
   filetypes = { "go", "gomod", "gowork", "gosum", "goimpl" },
