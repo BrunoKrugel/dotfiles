@@ -283,6 +283,13 @@ M.telescope = {
   },
 }
 
+local hl_list = {}
+for i, color in pairs { "#662121", "#767621", "#216631", "#325a5e", "#324b7b", "#562155" } do
+  local name = "IndentBlanklineIndent" .. i
+  vim.api.nvim_set_hl(0, name, { fg = color })
+  table.insert(hl_list, name)
+end
+
 M.blankline = {
   filetype_exclude = {
     "help",
@@ -296,8 +303,6 @@ M.blankline = {
     "Empty",
     "",
   },
-  -- char = "¦",
-  -- context_char = "¦",
   buftype_exclude = { "terminal", "nofile" },
   show_end_of_line = true,
   show_foldtext = true,
@@ -305,6 +310,7 @@ M.blankline = {
   show_first_indent_level = true,
   show_current_context = true,
   show_current_context_start = true,
+  -- char_highlight_list = hl_list,
   vim.api.nvim_set_hl(0, "IndentBlanklineContextChar", { nocombine = true, fg = "none" }),
   vim.api.nvim_set_hl(0, "IndentBlanklineContextStart", { nocombine = false, underline = false, special = "none" }),
 }
