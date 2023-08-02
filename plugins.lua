@@ -436,7 +436,9 @@ local plugins = {
   {
     "petertriho/nvim-scrollbar",
     event = "BufReadPost",
-    config = true,
+    config = function()
+      require "custom.configs.scrollbar"
+    end,
   },
   {
     "folke/todo-comments.nvim",
