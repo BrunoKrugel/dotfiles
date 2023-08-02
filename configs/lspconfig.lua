@@ -33,12 +33,14 @@ vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
 
 lspconfig.gopls.setup {
   on_attach = on_attach,
-  filetypes = { "go", "gomod", "gowork", "gotmpl" },
+  filetypes = { "go", "gomod", "gowork", "gosum", "goimpl" },
   capabilities = capabilities,
   settings = {
     gopls = {
       buildFlags = { "-tags=wireinject" },
       usePlaceholders = true,
+      completeUnimported = true,
+      vulncheck = "Imports",
       analyses = {
         nilness = true,
         shadow = true,
@@ -143,24 +145,24 @@ lspconfig.eslint.setup {
   },
 }
 
--- virtual text config
--- vim.diagnostic.config({
---   -- virtual_text = {
---   --   source = 'always',
---   --   prefix = '■',
---   --   -- Only show virtual text matching the given severity
---   --   severity = {
---   --     -- Specify a range of severities
---   --     min = vim.diagnostic.severity.ERROR,
---   --   },
---   -- },
---   virtual_text = false,
---   float = {
---     source = 'always',
---     border = 'rounded',
---   },
---   signs = true,
---   underline = false,
---   update_in_insert = false,
---   severity_sort = true,
--- })
+vim.diagnostic.config {
+  virtual_lines = false,
+  virtual_text = {
+    source = "always",
+    prefix = "■",
+    -- Only show virtual text matching the given severity
+    severity = {
+      -- Specify a range of severities
+      min = vim.diagnostic.severity.ERROR,
+    },
+  },
+  -- virtual_text = false,
+  float = {
+    source = "always",
+    border = "rounded",
+  },
+  signs = true,
+  underline = false,
+  update_in_insert = true,
+  severity_sort = true,
+}
