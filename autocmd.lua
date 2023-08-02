@@ -150,6 +150,13 @@ autocmd({ "BufEnter" }, {
   end,
 })
 
+autocmd({ "BufReadPost" }, {
+  pattern = { "*" },
+  callback = function()
+      vim.api.nvim_exec('silent! normal! g`"zv', false)
+  end,
+})
+
 -- Enable it when changing highlights
 -- autocmd("BufWritePost", {
 --   pattern = "*.lua",
