@@ -150,6 +150,7 @@ autocmd({ "BufEnter" }, {
   end,
 })
 
+-- Restore cursor
 autocmd({ "BufReadPost" }, {
   pattern = { "*" },
   callback = function()

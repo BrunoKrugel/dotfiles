@@ -13,7 +13,7 @@ local plugins = {
         end,
       },
       { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
-      { "folke/neodev.nvim", ft= "lua", opts = { experimental = { pathStrict = true } } },
+      { "folke/neodev.nvim", ft = "lua", opts = { experimental = { pathStrict = true } } },
     },
     config = function()
       require "plugins.configs.lspconfig"
@@ -168,6 +168,10 @@ local plugins = {
         },
       }
     end,
+  },
+  {
+    "cbochs/portal.nvim",
+    cmd = { "Portal" },
   },
   {
     "gbprod/cutlass.nvim",

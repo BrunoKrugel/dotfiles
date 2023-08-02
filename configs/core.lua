@@ -2,6 +2,9 @@ local M = {}
 
 require "custom.configs.mouse"
 
+-- 󰞏 on
+-- 󱜞 off
+
 function Get_marked()
   local Marked = require "harpoon.mark"
   local filename = vim.api.nvim_buf_get_name(0)

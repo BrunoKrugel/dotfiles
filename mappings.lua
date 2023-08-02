@@ -300,10 +300,12 @@ M.node = {
 M.treesitter = {
   n = {
     ["<leader>cu"] = { "<cmd> TSCaptureUnderCursor <CR>", " Find highlight" },
-    ["<leader>to"] = { 
-      function() 
-        require('treesj').toggle() 
-      end, "󱓡 Toggle split/join" },
+    ["<leader>to"] = {
+      function()
+        require("treesj").toggle()
+      end,
+      "󱓡 Toggle split/join",
+    },
   },
 }
 
@@ -508,6 +510,18 @@ M.nvterm = {
         require("nvterm.terminal").toggle "horizontal"
       end,
       " Toggle horizontal term",
+    },
+  },
+}
+
+M.portal = {
+  n = {
+    ["<leader>pj"] = { "<cmd>Portal jumplist backward<CR>", "󱡁 Portal Jumplist" },
+    ["<leader>ph"] = {
+      function()
+        require("portal.builtin").harpoon.tunnel()
+      end,
+      "󱡁 Portal Harpoon",
     },
   },
 }
