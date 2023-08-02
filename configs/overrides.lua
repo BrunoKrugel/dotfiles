@@ -261,13 +261,13 @@ M.telescope = {
     },
     ast_grep = {
       command = {
-          "sg",
-          "--json=stream",
-          "-p",
-      }, 
-      grep_open_files = false, 
+        "sg",
+        "--json=stream",
+        "-p",
+      },
+      grep_open_files = false,
       lang = nil,
-  },
+    },
     lazy = {
       show_icon = true,
       mappings = {

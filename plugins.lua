@@ -12,7 +12,6 @@ local plugins = {
           require "custom.configs.null-ls"
         end,
       },
-      "ray-x/lsp_signature.nvim",
       { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
       { "folke/neodev.nvim", opts = { experimental = { pathStrict = true } } },
     },
@@ -42,15 +41,6 @@ local plugins = {
       "tom-anders/telescope-vim-bookmarks.nvim",
       "tsakirist/telescope-lazy.nvim",
       "Marskey/telescope-sg",
-      {
-        "andrewferrier/debugprint.nvim",
-        config = function()
-          require("debugprint").setup {
-            create_keymaps = false,
-            create_commands = false,
-          }
-        end,
-      },
       {
         "ThePrimeagen/harpoon",
         cmd = "Harpoon",
@@ -147,6 +137,16 @@ local plugins = {
     event = { "InsertLeave", "TextChanged" },
     config = function()
       require "custom.configs.autosave"
+    end,
+  },
+  {
+    "andrewferrier/debugprint.nvim",
+    keys = { "<leader><leader>p" },
+    config = function()
+      require("debugprint").setup {
+        create_keymaps = false,
+        create_commands = false,
+      }
     end,
   },
   {
@@ -248,7 +248,7 @@ local plugins = {
   },
   {
     "rainbowhxch/accelerated-jk.nvim",
-    keys = { "j", "k"},
+    keys = { "j", "k" },
     config = function()
       require "custom.configs.accelerated"
     end,
@@ -283,7 +283,7 @@ local plugins = {
   },
   {
     "nguyenvukhang/nvim-toggler",
-    keys = {"<leader>it"},
+    keys = { "<leader>it" },
     config = function()
       require("nvim-toggler").setup {
         remove_default_keybinds = true,
@@ -387,7 +387,7 @@ local plugins = {
   },
   {
     "Wansmer/treesj",
-    event = "BufReadPost",
+    keys = { "<leader>to" },
     config = function()
       require("treesj").setup {
         use_default_keymaps = true,
@@ -490,13 +490,12 @@ local plugins = {
   },
   {
     "gorbit99/codewindow.nvim",
-    event = "VeryLazy",
+    keys = { "<leader>mm" },
     config = function()
       require("codewindow").setup {
-        show_cursor = false, -- Show the cursor position in the minimap
-        window_border = "rounded", -- The border style of the floating window (accepts all usual options)
+        show_cursor = false,
+        window_border = "rounded",
       }
-      -- vim.api.nvim_set_hl(0, 'CodewindowBorder', {fg = '#141423'})
     end,
   },
   {
@@ -684,21 +683,20 @@ local plugins = {
   },
   {
     "anuvyklack/pretty-fold.nvim",
-    event = "BufWinEnter",
-    dependencies = {
-      {
-        "anuvyklack/fold-preview.nvim",
-        dependencies = {
-          "anuvyklack/keymap-amend.nvim",
-        },
-        opts = {
-          border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-        },
-      },
-    },
+    keys = { "<leader>a" },
     config = function()
       require "custom.configs.pretty-fold"
     end,
+  },
+  {
+    "anuvyklack/fold-preview.nvim",
+    keys = { "<leader>p" },
+    dependencies = {
+      "anuvyklack/keymap-amend.nvim",
+    },
+    opts = {
+      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+    },
   },
   {
     "Fildo7525/pretty_hover",
@@ -798,7 +796,7 @@ local plugins = {
   },
   {
     "vuki656/package-info.nvim",
-    ft = { "json", "lua" },
+    ft = { "json" },
     config = true,
   },
   {
@@ -832,7 +830,7 @@ local plugins = {
   {
     "toppair/peek.nvim",
     build = "deno task --quiet build:fast",
-    ft = { "markdown", "vimwiki" },
+    cmd = { "PeekOpen", "PeekClose" },
     config = function()
       require("peek").setup {
         app = "webview",

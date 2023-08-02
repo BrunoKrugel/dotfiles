@@ -300,6 +300,10 @@ M.node = {
 M.treesitter = {
   n = {
     ["<leader>cu"] = { "<cmd> TSCaptureUnderCursor <CR>", " Find highlight" },
+    ["<leader>to"] = { 
+      function() 
+        require('treesj').toggle() 
+      end, "󱓡 Toggle split/join" },
   },
 }
 
