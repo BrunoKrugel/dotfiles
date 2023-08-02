@@ -5,6 +5,7 @@ if not present then
 end
 
 biscuits.setup {
+  show_on_start = false,
   cursor_line_only = true,
   default_config = {
     min_distance = 10,
