@@ -171,7 +171,7 @@ local plugins = {
   },
   {
     "cbochs/portal.nvim",
-    cmd = { "Portal" },
+    keys = { "<leader>pj", "<leader>ph" },
   },
   {
     "gbprod/cutlass.nvim",
@@ -189,7 +189,7 @@ local plugins = {
   },
   {
     "smoka7/multicursors.nvim",
-    event = "VeryLazy",
+    cmd = { 'MCstart', 'MCvisual', 'MCclear', 'MCpattern', 'MCvisualPattern', 'MCunderCursor' },
     config = true,
     dependencies = {
       "smoka7/hydra.nvim",
