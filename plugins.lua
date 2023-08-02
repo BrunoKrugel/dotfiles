@@ -13,7 +13,7 @@ local plugins = {
         end,
       },
       { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
-      { "folke/neodev.nvim", opts = { experimental = { pathStrict = true } } },
+      { "folke/neodev.nvim", ft= "lua", opts = { experimental = { pathStrict = true } } },
     },
     config = function()
       require "plugins.configs.lspconfig"
@@ -87,18 +87,11 @@ local plugins = {
     "hrsh7th/nvim-cmp",
     opts = overrides.cmp,
     dependencies = {
-      -- "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp",
-      "f3fora/cmp-spell",
-      "hrsh7th/cmp-vsnip",
-      "delphinus/cmp-ctags",
+      -- "delphinus/cmp-ctags",
       "hrsh7th/cmp-nvim-lsp-document-symbol",
       "hrsh7th/cmp-copilot",
       "ray-x/cmp-treesitter",
-      {
-        "hrsh7th/cmp-cmdline",
-        event = "CmdLineEnter",
-      },
       { "jcdickinson/codeium.nvim", config = true },
       {
         "tzachar/cmp-tabnine",
@@ -178,7 +171,7 @@ local plugins = {
   },
   {
     "gbprod/cutlass.nvim",
-    event = "BufReadPost",
+    keys = { "x", "d" },
     opts = {
       cut_key = "x",
       override_del = true,
@@ -513,7 +506,7 @@ local plugins = {
   },
   {
     "smjonas/inc-rename.nvim",
-    event = "LspAttach",
+    cmd = "IncRename",
     config = true,
   },
   {
@@ -530,12 +523,6 @@ local plugins = {
     event = "BufReadPre",
     dependencies = {
       "kevinhwang91/promise-async",
-      {
-        "jghauser/fold-cycle.nvim",
-        config = function()
-          require("fold-cycle").setup()
-        end,
-      },
       {
         "luukvbaal/statuscol.nvim",
         event = "BufReadPost",
@@ -604,33 +591,10 @@ local plugins = {
     end,
   },
   {
-    "samodostal/image.nvim",
-    event = "VeryLazy",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      {
-        "m00qek/baleia.nvim",
-        tag = "v1.3.0",
-      },
-    },
+    "adelarsq/image_preview.nvim",
+    keys = { "<leader>p" },
     config = function()
-      require("image").setup {
-        render = {
-          min_padding = 5,
-          show_label = true,
-          use_dither = true,
-          foreground_color = true,
-          background_color = true,
-        },
-        events = {
-          update_on_nvim_resize = true,
-        },
-      }
-    end,
-    init = function()
-      if not vim.fn.executable "ascii-image-converter" then
-        vim.api.nvim_command 'echo "Command is not executable. snap install ascii-image-converter"'
-      end
+      require("image_preview").setup()
     end,
   },
   {
@@ -675,6 +639,13 @@ local plugins = {
     keys = { "<leader>a" },
     config = function()
       require "custom.configs.pretty-fold"
+    end,
+  },
+  {
+    "jghauser/fold-cycle.nvim",
+    keys = { "<leader>a" },
+    config = function()
+      require("fold-cycle").setup()
     end,
   },
   {
@@ -729,7 +700,6 @@ local plugins = {
       }
     end,
   },
-  { "lewis6991/whatthejump.nvim", event = "VeryLazy" },
   {
     "Zeioth/compiler.nvim",
     cmd = { "CompilerOpen", "CompilerToggleResults" },
