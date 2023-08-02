@@ -38,6 +38,7 @@ local plugins = {
     opts = overrides.telescope,
     dependencies = {
       "debugloop/telescope-undo.nvim",
+      "gnfisher/nvim-telescope-ctags-plus",
       "tom-anders/telescope-vim-bookmarks.nvim",
       "tsakirist/telescope-lazy.nvim",
       "Marskey/telescope-sg",
@@ -665,7 +666,7 @@ local plugins = {
   },
   {
     "Fildo7525/pretty_hover",
-    event = "LspAttach",
+    keys = { "<leader>k" },
     config = true,
   },
   -- {

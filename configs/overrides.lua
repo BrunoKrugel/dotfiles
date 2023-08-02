@@ -251,6 +251,7 @@ M.telescope = {
     "harpoon",
     "noice",
     "ast_grep",
+    "ctags_plus",
   },
   extensions = {
     fzf = {
@@ -377,7 +378,6 @@ M.cmp = {
     --     trigger_characters = { "." },
     --   },
     -- },
-    { name = "path" },
     { name = "treesitter" },
     { name = "nvim_lsp_document_symbol" },
     { name = "luasnip" },
