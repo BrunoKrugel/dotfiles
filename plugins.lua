@@ -13,13 +13,8 @@ local plugins = {
         end,
       },
       "ray-x/lsp_signature.nvim",
-      {
-        "folke/neodev.nvim",
-        opts = {},
-        config = function()
-          require("neodev").setup {}
-        end,
-      },
+      { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
+      { "folke/neodev.nvim", opts = { experimental = { pathStrict = true } } },
     },
     config = function()
       require "plugins.configs.lspconfig"
@@ -127,9 +122,9 @@ local plugins = {
         "L3MON4D3/LuaSnip",
         config = function(_, opts)
           require("plugins.configs.others").luasnip(opts) -- from default luasnip conf
-      
+
           local luasnip = require "luasnip"
-      
+
           luasnip.filetype_extend("javascriptreact", { "html" })
           require("luasnip/loaders/from_vscode").lazy_load() -- from default luasnip conf
         end,
@@ -208,11 +203,11 @@ local plugins = {
   },
   {
     "smoka7/multicursors.nvim",
+    event = "VeryLazy",
+    config = true,
     dependencies = {
       "smoka7/hydra.nvim",
     },
-    event = "VeryLazy",
-    config = true,
   },
   {
     "max397574/better-escape.nvim",
@@ -246,13 +241,13 @@ local plugins = {
     config = function()
       require("hbac").setup {
         autoclose = true,
-        threshold = 5,
+        threshold = 3,
       }
     end,
   },
   {
     "code-biscuits/nvim-biscuits",
-    event = "BufRead",
+    event = "BufReadPost",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
       require "custom.configs.biscuits"
@@ -287,8 +282,8 @@ local plugins = {
   {
     "phaazon/hop.nvim",
     cmd = { "HopWord", "HopLine", "HopLineStart", "HopWordCurrentLine" },
-    dependencies = "mfussenegger/nvim-treehopper",
     branch = "v2",
+    dependencies = "mfussenegger/nvim-treehopper",
     config = function()
       require("hop").setup { keys = "etovxqpdygfblzhckisuran" }
     end,
@@ -406,31 +401,6 @@ local plugins = {
       }
     end,
   },
-  -- {
-  --   "nvim-zh/colorful-winsep.nvim",
-  --   event = { "WinNew" },
-  --   config = function()
-  --     require("colorful-winsep").setup {
-  --       -- highlight for Window separator
-  --       highlight = {
-  --         bg = "#16161E",
-  --         fg = "#1F3442",
-  --       },
-  --       -- timer refresh rate
-  --       interval = 30,
-  --       -- This plugin will not be activated for filetype in the following table.
-  --       no_exec_files = { "packer", "TelescopePrompt", "mason", "CompetiTest", "NvimTree" },
-  --       -- Symbols for separator lines, the order: horizontal, vertical, top left, top right, bottom left, bottom right.
-  --       symbols = { "━", "┃", "┏", "┓", "┗", "┛" },
-  --       close_event = function()
-  --         -- Executed after closing the window separator
-  --       end,
-  --       create_event = function()
-  --         -- Executed after creating the window separator
-  --       end,
-  --     }
-  --   end,
-  -- },
   ----------------------------------------- ui plugins ------------------------------------------
   {
     "folke/noice.nvim",
@@ -477,7 +447,6 @@ local plugins = {
   },
   {
     "chikko80/error-lens.nvim",
-    -- event = "BufRead",
     ft = "go",
     config = true,
   },
@@ -591,6 +560,8 @@ local plugins = {
           local builtin = require "statuscol.builtin"
           require("statuscol").setup {
             relculright = true,
+            bt_ignore = { "nofile", "prompt", "terminal", "packer" },
+            -- ft_ignore = { "NvimTree", "dashboard", "nvcheatsheet" },
             segments = {
               -- Segment 1: Add padding
               {
@@ -818,14 +789,13 @@ local plugins = {
     end,
     build = ':lua require("go.install").update_all_sync()',
   },
-  -- {
-  --   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-  --   -- ft = { "go", "gomod" },
-  --   keys = { "<leader>ls" },
-  --   config = function()
-  --     require("lsp_lines").setup()
-  --   end,
-  -- },
+  {
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    event = "LspAttach",
+    config = function()
+      require("lsp_lines").setup()
+    end,
+  },
   {
     "galooshi/vim-import-js",
     ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
