@@ -14,8 +14,8 @@
     <a href="https://github.com/BrunoKrugek/dotfiles">
       <img alt="Repo Size" src="https://img.shields.io/github/repo-size/BrunoKrugel/dotfiles?color=%23DDB6F2&label=SIZE&logo=codesandbox&style=for-the-badge&logoColor=D9E0EE&labelColor=302D41" />
     </a>
-</div>    
-    
+</div>
+
 ![prv-min](./img/prv.png)
 </div>
 
@@ -82,9 +82,11 @@ TreeSitter is enabled and will automatically install parsers for you.
 
 </div>
 
-Cmp will not open automatically, to trigger it, press `<C-Space>`.
+Cmp has some custom configs for performance, and it will open automatically.
 
-You can navigate between the options with `<Up>` and `<Down>` and select with `<CR>`.
+You can disable cmp auto complete with cmd `CmpToggle`.
+
+To trigger it, press `<C-Space>`, you can navigate between the options with `<Up>` and `<Down>` and select with `<CR`>`.
 
 If Cmp is visible, you can use `<Esc>` to close it without leaving `Insert` mode.
 
@@ -100,7 +102,7 @@ _With [UFO](https://github.com/kevinhwang91/nvim-ufo), [Pretty Fold](https://git
 
 </div>
 
-These plugins are currently disabled, because a custom fold plugin is active in `status.lua`, but fell free to activate again.
+There is also a custom fold code in `status.` `lua`, you can disable ufo and enable the custom code.
 
 ## Diagnostics in a VSCode style
 
@@ -134,7 +136,7 @@ _With [lsp-lines](https://github.com/ErichDonGubler/lsp_lines.nvim)_
 
 </div>
 
-LSP Lines is only enabled for Go, so it may need some tweaking for other languages.
+LSP Lines is only configured for Go, so it may need some tweaking for other languages.
 
 ### Diagnostics in scrollbar
 
@@ -240,20 +242,12 @@ _With [Bookmark](https://github.com/MattesGroeger/vim-bookmarks)_
 - Telescope undo tree `<leader>fu` (with [telescope-undo](https://github.com/debugloop/telescope-undo.nvim))
 - Telescope fuzzy native (with [telescope-fzf-native](https://github.com/nvim-telescope/telescope-fzf-native.nvim))
 
-## Custom Statusline icons
+## Custom Statusline tweaks
 
-<div align="center">
-
-![status](./img/Statusline.png)
-
-</div>
-
-From left to right:
-
-1. Github copilot status (it shows if copilot is active or not)
-2. Harpoon file navigation (it shows if harpoon is harpooned or not)
-3. Battery status (usefull when using in fullscreen)
-4. Session status (icon for Possession plugin)
+1. It will show when it's recording a macro.
+2. It will show a custom icon when the file is hooked by Harpoon.
+3. It will show colored icons for file icon.
+4. It will show a Git icon with the status of the copilot
 
 ## Custom Tabufline icons
 
