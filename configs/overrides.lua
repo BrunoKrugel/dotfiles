@@ -329,10 +329,16 @@ M.blankline = {
 }
 
 M.colorizer = {
+  filetypes = {
+    "*",
+    cmp_docs = { always_update = true },
+    cmp_menu = { always_update = true },
+  },
   user_default_options = {
     names = false,
     RRGGBBAA = true,
     rgb_fn = true,
+    tailwind = true,
   },
 }
 
