@@ -16,6 +16,19 @@ function Get_marked()
   end
 end
 
+function Get_record()
+  local ok, recorder = pcall(require, "recorder")
+  if ok then
+    local status = recorder.recordingStatus()
+    if status ~= "" then
+      return " " .. status .. " "
+    end
+    return ""
+  else
+    return ""
+  end
+end
+
 M.dapui = {
   icons = { expanded = "▾", collapsed = "▸" },
   mappings = {
@@ -110,7 +123,7 @@ M.statusline = {
       modules,
       4,
       (function()
-        return "%#HarpoonHl#" .. Get_marked()
+        return "%#HarpoonHl#" .. Get_marked() .. Get_record()
       end)()
     )
 
@@ -141,7 +154,7 @@ M.statusline = {
       modules,
       15,
       (function()
-        return " %#NotificationHl#%@v:lua.ClickMe@  "
+        return " %#NotificationHl#%@v:lua.ClickMe@  " .. require("recorder").recordingStatus()
       end)()
     )
   end,
@@ -173,6 +186,16 @@ M.nvdash = {
     [[  .. . ."'                                         ]],
     [[ .                                                 ]],
     [[                                                   ]],
+    -- "  NvChad                     ",
+    -- "     ▄▄         ▄ ▄▄▄▄▄▄▄    ",
+    -- "   ▄▀███▄     ▄██ █████▀     ",
+    -- "   ██▄▀███▄   ███            ",
+    -- "   ███  ▀███▄ ███            ",
+    -- "   ███    ▀██ ███            ",
+    -- "   ███      ▀ ███            ",
+    -- "   ▀██ █████▄▀█▀▄██████▄     ",
+    -- "     ▀ ▀▀▀▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀    ",
+    -- "        Powered by Neovim    ",
     -- [[                @@@%%%%%%%%%@@                ]],
     -- [[              @@@%%%%%%%%%#######%@@          ]],
     -- [[            @@@@%%%%%%%######?######%@        ]],

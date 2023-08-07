@@ -813,6 +813,14 @@ local plugins = {
     end,
   },
   {
+    "chrisgrieser/nvim-recorder",
+    keys = { "q", "Q" },
+    opts = {
+      lessNotifications = true,
+      clear = true,
+    },
+  },
+  {
     "javiorfo/nvim-soil",
     ft = "plantuml",
     dependencies = { "javiorfo/nvim-nyctophilia" },
