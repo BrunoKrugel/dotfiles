@@ -94,6 +94,7 @@ M.development = {
       end,
       " Lsp formatting",
     },
+    ["<leader>fp"] = { "<cmd>FormatWrite<CR>", " Formatter" },
     ["<leader>bi"] = {
       function()
         require("nvim-biscuits").toggle_biscuits()
