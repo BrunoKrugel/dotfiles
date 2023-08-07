@@ -324,9 +324,8 @@ M.blankline = {
   show_first_indent_level = true,
   show_current_context = true,
   show_current_context_start = true,
+  -- Uncomment this line to enable rainbown identation
   -- char_highlight_list = hl_list,
-  vim.api.nvim_set_hl(0, "IndentBlanklineContextChar", { nocombine = true, fg = "none" }),
-  vim.api.nvim_set_hl(0, "IndentBlanklineContextStart", { nocombine = false, underline = false, special = "none" }),
 }
 
 M.colorizer = {
