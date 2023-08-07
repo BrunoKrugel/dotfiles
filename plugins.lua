@@ -537,7 +537,7 @@ local plugins = {
   },
   {
     "kevinhwang91/nvim-ufo",
-    event = "BufReadPre",
+    event = "VeryLazy",
     dependencies = {
       "kevinhwang91/promise-async",
       {
@@ -548,7 +548,6 @@ local plugins = {
           require("statuscol").setup {
             relculright = true,
             bt_ignore = { "nofile", "prompt", "terminal", "packer" },
-            -- ft_ignore = { "NvimTree", "dashboard", "nvcheatsheet" },
             segments = {
               -- Segment 1: Add padding
               {

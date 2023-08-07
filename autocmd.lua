@@ -97,6 +97,7 @@ autocmd({ "FileType", "BufWinEnter" }, {
       "TelescopePrompt",
       "Trouble",
       "NvimTree",
+      "nvcheatsheet",
     }
 
     local b = vim.api.nvim_get_current_buf()
