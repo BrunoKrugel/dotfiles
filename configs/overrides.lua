@@ -92,9 +92,6 @@ M.treesitter = {
   },
   indent = {
     enable = true,
-    disable = {
-      "python",
-    },
   },
   playground = {
     enable = true,
@@ -102,11 +99,19 @@ M.treesitter = {
   textsubjects = {
     enable = true,
     keymaps = {
-        ['.'] = 'textsubjects-smart',
-        [';'] = 'textsubjects-container-outer',
-        ['i;'] = 'textsubjects-container-inner',
+      ["."] = "textsubjects-smart",
+      [";"] = "textsubjects-container-outer",
+      ["i;"] = "textsubjects-container-inner",
     },
-},
+  },
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true,
+      include_surrounding_whitespace = true,
+    },
+  },
+
   rainbow = {
     enable = true,
     extended_mode = false,
