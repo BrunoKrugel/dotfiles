@@ -68,16 +68,13 @@ noice.setup {
     progress = {
       enabled = false,
     },
-    hover = {
-      enabled = true,
-    },
     signature = {
       enabled = true,
       auto_open = {
         enabled = true,
-        trigger = true, -- Automatically show signature help when typing a trigger character from the LSP
-        luasnip = true, -- Will open signature help when jumping to Luasnip insert nodes
-        throttle = 50, -- Debounce lsp signature help request by 50ms
+        trigger = true,
+        luasnip = true,
+        throttle = 50,
       },
       view = nil, -- when nil, use defaults from documentation
       ---@type NoiceViewOptions
@@ -90,7 +87,7 @@ noice.setup {
         win_options = {
           wrap = false,
         },
-      }, -- merged with defaults from documentation
+      },
     },
     documentation = {
       opts = {
@@ -106,45 +103,6 @@ noice.setup {
       ["vim.lsp.util.stylize_markdown"] = true,
       -- override cmp documentation with Noice (needs the other options to work)
       ["cmp.entry.get_documentation"] = true,
-    },
-  },
-  notify = {
-    enabled = true,
-    view = "notify",
-  },
-  commands = {
-    history = {
-      view = "split",
-      opts = { enter = true, format = "details" },
-      filter = {
-        any = {
-          { event = "notify" },
-          { error = true },
-          { warning = true },
-          { event = "msg_show", kind = { "" } },
-          { event = "lsp", kind = "message" },
-        },
-      },
-    },
-    last = {
-      view = "popup",
-      opts = { enter = true, format = "details" },
-      filter = {
-        any = {
-          { event = "notify" },
-          { error = true },
-          { warning = true },
-          { event = "msg_show", kind = { "" } },
-          { event = "lsp", kind = "message" },
-        },
-      },
-      filter_opts = { count = 1 },
-    },
-    errors = {
-      view = "popup",
-      opts = { enter = true, format = "details" },
-      filter = { error = true },
-      filter_opts = { reverse = true },
     },
   },
   ---@type NoiceConfigViews
