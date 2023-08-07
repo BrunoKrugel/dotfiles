@@ -539,6 +539,13 @@ local plugins = {
     cmd = "GitBlameToggle",
   },
   {
+		"akinsho/git-conflict.nvim",
+		ft = "gitcommit",
+    config = function()
+      require("git-conflict").setup()
+    end,
+  },
+  {
     "kevinhwang91/nvim-ufo",
     event = "VeryLazy",
     dependencies = {

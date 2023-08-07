@@ -86,6 +86,31 @@ autocmd("BufReadPost", {
   end,
 })
 
+autocmd('User', {
+  pattern = 'GitConflictDetected',
+  callback = function()
+    vim.notify('Conflict detected in ' .. vim.fn.expand('<afile>'))
+    vim.keymap.set('n', 'cww', function()
+      engage.conflict_buster()
+      create_buffer_local_mappings()
+    end)
+  end
+})
+
+-- load git-conflict only when a git file is opened
+autocmd({ "BufRead" }, {
+  group = vim.api.nvim_create_augroup("GitConflictLazyLoad", { clear = true }),
+  callback = function()
+    vim.fn.system("git -C " .. '"' .. vim.fn.expand("%:p:h") .. '"' .. " rev-parse")
+    if vim.v.shell_error == 0 then
+      vim.api.nvim_del_augroup_by_name("GitConflictLazyLoad")
+      vim.schedule(function()
+        require("lazy").load { plugins = { "git-conflict.nvim" } }
+      end)
+    end
+  end,
+})
+
 -- Disable status column in the following files
 autocmd({ "FileType", "BufWinEnter" }, {
   callback = function()
@@ -155,7 +180,7 @@ autocmd({ "BufEnter" }, {
 autocmd({ "BufReadPost" }, {
   pattern = { "*" },
   callback = function()
-      vim.api.nvim_exec('silent! normal! g`"zv', false)
+    vim.api.nvim_exec('silent! normal! g`"zv', false)
   end,
 })
 
