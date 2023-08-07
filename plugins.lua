@@ -2,7 +2,7 @@ local overrides = require "custom.configs.overrides"
 
 ---@type NvPluginSpec[]
 local plugins = {
-  ----------------------------------------- default plugins ------------------------------------------
+  ----------------------------------------- override plugins ------------------------------------------
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -24,7 +24,17 @@ local plugins = {
     "folke/which-key.nvim",
     enabled = true,
   },
-  ----------------------------------------- override plugins ------------------------------------------
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = function()
+      return require("plugins.configs.others").gitsigns
+    end,
+    config = function(_, opts)
+      dofile(vim.g.base46_cache .. "git")
+      require("scrollbar.handlers.gitsigns").setup()
+      require("gitsigns").setup(opts)
+    end,
+  },
   {
     "williamboman/mason.nvim",
     opts = overrides.mason,
