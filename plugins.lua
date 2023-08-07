@@ -583,11 +583,13 @@ local plugins = {
       },
     },
     config = function()
+      local ftMap = {
+        go = "lsp",
+      }
       require("ufo").setup {
-        close_fold_kinds = { "imports", "import" },
-        provider_selector = function(_, filetype, buftype)
-          return (filetype == "" or buftype == "nofile") and "indent" -- only use indent until a file is opened
-            or { "treesitter", "indent" } -- if file opened, try to use treesitter if available
+        close_fold_kinds = { "imports" },
+        provider_selector = function(bufnr, filetype, buftype)
+          return ftMap[filetype] or { "treesitter", "indent" }
         end,
       }
     end,
