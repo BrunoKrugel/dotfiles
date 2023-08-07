@@ -2,6 +2,8 @@ local opt = vim.opt
 local g = vim.g
 local o = vim.o
 
+vim.wo.statuscolumn = ""
+
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 opt.backup = false
