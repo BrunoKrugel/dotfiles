@@ -99,6 +99,14 @@ M.treesitter = {
   playground = {
     enable = true,
   },
+  textsubjects = {
+    enable = true,
+    keymaps = {
+        ['.'] = 'textsubjects-smart',
+        [';'] = 'textsubjects-container-outer',
+        ['i;'] = 'textsubjects-container-inner',
+    },
+},
   rainbow = {
     enable = true,
     extended_mode = false,

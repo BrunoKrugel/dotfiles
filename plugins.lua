@@ -65,6 +65,7 @@ local plugins = {
     dependencies = {
       "windwp/nvim-ts-autotag",
       "chrisgrieser/nvim-various-textobjs",
+      "RRethy/nvim-treesitter-textsubjects",
       {
         "JoosepAlviste/nvim-ts-context-commentstring",
         config = function()
