@@ -20,12 +20,8 @@ local function setAutoCmp(mode)
 end
 
 --Open Peek
-create_cmd("PeekOpen", function()
+create_cmd("TPeek", function()
   require("peek").open()
-end, {})
-
-create_cmd("PeekClose", function()
-  require("peek").close()
 end, {})
 
 -- Toggle colorcolumn
