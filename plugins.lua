@@ -296,7 +296,7 @@ local plugins = {
     config = true,
   },
   {
-    "tpope/vim-surround",
+    "kylechui/nvim-surround",
     keys = { "ys", "ds", "cs" },
   },
   {
