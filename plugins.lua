@@ -188,7 +188,7 @@ local plugins = {
   },
   {
     "gbprod/cutlass.nvim",
-    keys = { "x", "d" },
+    event = "BufReadPost",
     opts = {
       cut_key = "x",
       override_del = true,
