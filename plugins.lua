@@ -295,7 +295,10 @@ local plugins = {
     build = "yarn global add live-server",
     config = true,
   },
-  { "tpope/vim-surround", event = "VeryLazy" },
+  {
+    "tpope/vim-surround",
+    keys = { "ys", "ds", "cs" },
+  },
   {
     "declancm/vim2vscode",
     cmd = "Code",
@@ -396,7 +399,7 @@ local plugins = {
   ----------------------------------------- ui plugins ------------------------------------------
   {
     "folke/noice.nvim",
-    event = "UIEnter",
+    event = "VeryLazy",
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
