@@ -240,7 +240,7 @@ M.diagnostics = {
     ["<leader>t"] = { "<cmd>TroubleToggle<cr>", "󰔫 Toggle warnings" },
     ["<leader>td"] = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME,BUG,TEST,NOTE<cr>", " Todo/Fix/Fixme" },
     ["<leader>el"] = { "<cmd>ErrorLensToggle<cr>", "󱇭 Toggle error lens" },
-    ["<leader>ft"] = { "<cmd>:TodoTelescope<cr>", " Telescope TODO" },
+    ["<leader>ft"] = { "<cmd>TodoTelescope<cr>", " Telescope TODO" },
     ["<Leader>ll"] = {
       function()
         require("lsp_lines").toggle()
@@ -264,37 +264,41 @@ M.minimap = {
 M.node = {
   n = {
     ["<leader>ns"] = {
-      "<cmd> lua require('package-info').show() <CR>",
+      function()
+        require("package-info").show()
+      end,
       "󰎙 Show package info",
     },
     ["<leader>up"] = {
-      "<cmd> lua require('package-info').update() <CR>",
+      function()
+        require("package-info").update()
+      end,
       "󰎙 Update package",
     },
     ["<leader>nd"] = {
-      "<cmd> lua require('package-info').delete() <CR>",
+      function()
+        require("package-info").delete()
+      end,
       "󰎙 Delete package",
     },
     ["<leader>np"] = {
-      "<cmd> lua require('package-info').change_version() <CR>",
+      function()
+        require("package-info").change_version()
+      end,
       "󰎙 Install package",
     },
     ["<leader>jc"] = {
-      "<cmd> lua require('nvim-js-actions').js_arrow_fn.toggle()<CR>",
+      function()
+        require("nvim-js-actions").js_arrow_fn.toggle()
+      end,
       "󰎙 Toggle arrow",
     },
   },
 }
 
--- vim.api.nvim_set_keymap('n', '<leader>im', [[<cmd>lua require'telescope'.extensions.goimpl.goimpl{}<CR>]], {noremap=true, silent=true})
--- :Glance references show references of the word under the cursor from the LSP server
--- :Glance definitions show definitions of the word under the cursor from the LSP server
--- :Glance type_definitions show type definitions of the word under the cursor from the LSP server
--- :Glance implementations show implementations of the word under the cursor from the LSP server
-
 M.treesitter = {
   n = {
-    ["<leader>cu"] = { "<cmd> TSCaptureUnderCursor <CR>", " Find highlight" },
+    ["<leader>cu"] = { "<cmd>TSCaptureUnderCursor <CR>", " Find highlight" },
     ["<leader>to"] = {
       function()
         require("treesj").toggle()
@@ -306,11 +310,11 @@ M.treesitter = {
 
 M.debug = {
   n = {
-    ["<leader>tt"] = { "<cmd> :GoBreakToggle<CR>", " Toggle breakpoint" },
-    ["<F5>"] = { "<cmd> :DapContinue <CR>", " Continue" },
-    ["<F10>"] = { "<cmd> :DapStepOver <CR>", " Step over" },
-    ["<F11>"] = { "<cmd> :DapStepInto <CR>", " Step into" },
-    ["<F9>"] = { "<cmd> :DapStepOut <CR>", " Step out" },
+    ["<leader>tt"] = { "<cmd>GoBreakToggle<CR>", " Toggle breakpoint" },
+    ["<F5>"] = { "<cmd>DapContinue <CR>", " Continue" },
+    ["<F10>"] = { "<cmd>DapStepOver <CR>", " Step over" },
+    ["<F11>"] = { "<cmd>DapStepInto <CR>", " Step into" },
+    ["<F9>"] = { "<cmd>DapStepOut <CR>", " Step out" },
     ["<leader><leader>p"] = {
       function()
         require("debugprint").debugprint()
