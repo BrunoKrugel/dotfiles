@@ -117,12 +117,29 @@ local plugins = {
       {
         "L3MON4D3/LuaSnip",
         config = function(_, opts)
-          require("plugins.configs.others").luasnip(opts) -- from default luasnip conf
+          require("plugins.configs.others").luasnip(opts)
 
           local luasnip = require "luasnip"
+          local types = require "luasnip.util.types"
 
           luasnip.filetype_extend("javascriptreact", { "html" })
-          require("luasnip/loaders/from_vscode").lazy_load() -- from default luasnip conf
+          require("luasnip/loaders/from_vscode").lazy_load()
+          luasnip.setup {
+            ext_opts = {
+              [types.insertNode] = {
+                unvisited = {
+                  virt_text = { { "|", "Conceal" } },
+                  virt_text_pos = "inline",
+                },
+              },
+              [types.exitNode] = {
+                unvisited = {
+                  virt_text = { { "|", "Conceal" } },
+                  virt_text_pos = "inline",
+                },
+              },
+            },
+          }
         end,
       },
     },
@@ -539,8 +556,8 @@ local plugins = {
     cmd = "GitBlameToggle",
   },
   {
-		"akinsho/git-conflict.nvim",
-		ft = "gitcommit",
+    "akinsho/git-conflict.nvim",
+    ft = "gitcommit",
     config = function()
       require("git-conflict").setup()
     end,

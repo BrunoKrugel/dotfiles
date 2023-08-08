@@ -385,6 +385,11 @@ M.cmp = {
     max_view_entries = 10,
     fetching_timeout = 200,
   },
+  snippet = {
+    expand = function(args)
+      require("luasnip").lsp_expand(args.body)
+    end,
+  },
   sources = {
     { name = "copilot" },
     { name = "codeium" },
