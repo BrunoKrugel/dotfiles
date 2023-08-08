@@ -169,11 +169,6 @@ M.text = {
       " Clear highlights",
       opts = { silent = true },
     },
-
-    ["<Leader>bb"] = {
-      "<cmd>:Bionic<CR>",
-      "󱄽 Toggle Bionic",
-    },
   },
 
   v = {

@@ -360,7 +360,6 @@ local plugins = {
       require("modicator").setup()
     end,
   },
-  { "HampusHauffman/bionic.nvim", cmd = { "Bionic" } },
   {
     "lukas-reineke/virt-column.nvim",
     event = "BufReadPost",
