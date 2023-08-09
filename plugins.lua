@@ -103,7 +103,7 @@ local plugins = {
     opts = cmp_opt.cmp,
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
-      -- "delphinus/cmp-ctags",
+      "delphinus/cmp-ctags",
       "hrsh7th/cmp-nvim-lsp-document-symbol",
       "hrsh7th/cmp-copilot",
       "ray-x/cmp-treesitter",
