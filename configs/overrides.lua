@@ -111,7 +111,9 @@ M.treesitter = {
       include_surrounding_whitespace = true,
     },
   },
-
+  tree_setter = {
+    enable = true,
+  },
   rainbow = {
     enable = true,
     extended_mode = false,

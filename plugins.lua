@@ -75,6 +75,7 @@ local plugins = {
     dependencies = {
       "windwp/nvim-ts-autotag",
       "chrisgrieser/nvim-various-textobjs",
+      "filNaj/tree-setter",
       "RRethy/nvim-treesitter-textsubjects",
       {
         "JoosepAlviste/nvim-ts-context-commentstring",
@@ -575,6 +576,7 @@ local plugins = {
           require("statuscol").setup {
             relculright = true,
             bt_ignore = { "nofile", "prompt", "terminal", "packer" },
+            ft_ignore = { "NvimTree", "dashboard", "nvcheatsheet" },
             segments = {
               -- Segment 1: Add padding
               {
@@ -806,8 +808,6 @@ local plugins = {
     "nvim-neotest/neotest",
     ft = { "go" },
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
       "antoinemadec/FixCursorHold.nvim",
       "nvim-neotest/neotest-go",
     },
