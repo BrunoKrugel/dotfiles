@@ -128,29 +128,7 @@ local plugins = {
         "L3MON4D3/LuaSnip",
         config = function(_, opts)
           require("plugins.configs.others").luasnip(opts)
-
-          local luasnip = require "luasnip"
-          local types = require "luasnip.util.types"
-
-          luasnip.filetype_extend("javascriptreact", { "html" })
-          luasnip.filetype_extend("vue", { "html" })
-          require("luasnip/loaders/from_vscode").lazy_load()
-          -- luasnip.setup {
-          --   ext_opts = {
-          --     [types.insertNode] = {
-          --       unvisited = {
-          --         virt_text = { { "|", "Conceal" } },
-          --         virt_text_pos = "inline",
-          --       },
-          --     },
-          --     [types.exitNode] = {
-          --       unvisited = {
-          --         virt_text = { { "|", "Conceal" } },
-          --         virt_text_pos = "inline",
-          --       },
-          --     },
-          --   },
-          -- }
+          require "custom.configs.luasnip"
         end,
       },
     },
