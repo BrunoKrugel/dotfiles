@@ -86,6 +86,7 @@ autocmd("BufReadPost", {
   end,
 })
 
+-- Git conflict popup
 autocmd("User", {
   pattern = "GitConflictDetected",
   callback = function()
@@ -97,7 +98,7 @@ autocmd("User", {
   end,
 })
 
--- load git-conflict only when a git file is opened
+-- Load git-conflict only when a git file is opened
 autocmd({ "BufRead" }, {
   group = vim.api.nvim_create_augroup("GitConflictLazyLoad", { clear = true }),
   callback = function()
@@ -198,6 +199,24 @@ autocmd("FileType", {
             nnoremap <buffer><silent> q :close<CR>
             set nobuflisted
         ]],
+})
+
+-- Disable diagnostics in node_modules (0 is current buffer only)
+autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*/node_modules/*",
+  command = "lua vim.diagnostic.disable(0)",
+})
+
+-- Enable spell checking for certain file types
+autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.txt", "*.md", "*.tex" },
+  command = "setlocal spell",
+})
+
+-- Show `` in specific files
+autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.txt", "*.md", "*.json" },
+  command = "setlocal conceallevel=0",
 })
 
 -- vim.api.nvim_create_autocmd({ "ModeChanged" }, {
