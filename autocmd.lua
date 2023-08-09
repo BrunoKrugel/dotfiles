@@ -86,24 +86,24 @@ autocmd("BufReadPost", {
   end,
 })
 
-autocmd('User', {
-  pattern = 'GitConflictDetected',
+autocmd("User", {
+  pattern = "GitConflictDetected",
   callback = function()
-    vim.notify('Conflict detected in ' .. vim.fn.expand('<afile>'))
-    vim.keymap.set('n', 'cww', function()
+    vim.notify("Conflict detected in " .. vim.fn.expand "<afile>")
+    vim.keymap.set("n", "cww", function()
       engage.conflict_buster()
       create_buffer_local_mappings()
     end)
-  end
+  end,
 })
 
 -- load git-conflict only when a git file is opened
 autocmd({ "BufRead" }, {
   group = vim.api.nvim_create_augroup("GitConflictLazyLoad", { clear = true }),
   callback = function()
-    vim.fn.system("git -C " .. '"' .. vim.fn.expand("%:p:h") .. '"' .. " rev-parse")
+    vim.fn.system("git -C " .. '"' .. vim.fn.expand "%:p:h" .. '"' .. " rev-parse")
     if vim.v.shell_error == 0 then
-      vim.api.nvim_del_augroup_by_name("GitConflictLazyLoad")
+      vim.api.nvim_del_augroup_by_name "GitConflictLazyLoad"
       vim.schedule(function()
         require("lazy").load { plugins = { "git-conflict.nvim" } }
       end)
@@ -184,7 +184,6 @@ autocmd({ "BufReadPost" }, {
   end,
 })
 
-
 -- Windows to close with "q"
 autocmd("FileType", {
   pattern = {
@@ -200,6 +199,18 @@ autocmd("FileType", {
             set nobuflisted
         ]],
 })
+
+-- vim.api.nvim_create_autocmd({ "ModeChanged" }, {
+--   pattern = { "s:n", "i:*" },
+--   callback = function()
+--     if
+--       require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
+--       and not require("luasnip").session.jump_active
+--     then
+--       require("luasnip").unlink_current()
+--     end
+--   end,
+-- })
 
 -- Enable it when changing highlights
 -- autocmd("BufWritePost", {
