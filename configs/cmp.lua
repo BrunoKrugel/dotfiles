@@ -49,16 +49,27 @@ M.cmp = {
     end,
   },
   sources = {
-    { name = "copilot" },
-    { name = "codeium" },
-    { name = "cmp_tabnine" },
-    -- {
-    --   name = "ctags",
-    --   option = {
-    --     executable = "ctags",
-    --     trigger_characters = { "." },
-    --   },
-    -- },
+    {
+      name = "copilot",
+      max_item_count = 2,
+    },
+    {
+      name = "codeium",
+      max_item_count = 2,
+    },
+    {
+      name = "cmp_tabnine",
+      max_item_count = 2,
+    },
+    {
+      name = "ctags",
+      option = {
+        executable = "ctags",
+        trigger_characters = { "." },
+      },
+      keyword_length = 5,
+      max_item_count = 2,
+    },
     { name = "treesitter" },
     { name = "nvim_lsp_document_symbol" },
     { name = "luasnip", max_item_count = 2 },
