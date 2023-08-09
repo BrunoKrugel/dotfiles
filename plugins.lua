@@ -1,7 +1,6 @@
 local overrides = require "custom.configs.overrides"
 local cmp_opt = require "custom.configs.cmp"
 
-
 ---@type NvPluginSpec[]
 local plugins = {
   ----------------------------------------- override plugins ------------------------------------------
@@ -114,7 +113,15 @@ local plugins = {
         build = "./install.sh",
         config = function()
           local tabnine = require "cmp_tabnine.config"
-          tabnine:setup {} -- put your options here
+          tabnine:setup {
+            max_lines = 1000,
+            max_num_results = 3,
+            sort = true,
+            show_prediction_strength = true,
+            run_on_every_keystroke = true,
+            snipper_placeholder = "..",
+            ignored_file_types = {},
+          }
         end,
       },
       {
