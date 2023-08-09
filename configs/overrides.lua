@@ -265,6 +265,7 @@ M.telescope = {
     "noice",
     "ast_grep",
     "ctags_plus",
+    "luasnip",
   },
   extensions = {
     fzf = {
@@ -403,7 +404,7 @@ M.cmp = {
     -- },
     { name = "treesitter" },
     { name = "nvim_lsp_document_symbol" },
-    { name = "luasnip" },
+    { name = "luasnip", max_item_count = 2 },
     { name = "nvim_lua" },
     {
       name = "nvim_lsp",
