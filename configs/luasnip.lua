@@ -9,9 +9,11 @@ luasnip.filetype_extend("vue", { "html" })
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
+local types = require "luasnip.util.types"
+
 luasnip.setup {
   ext_opts = {
-    [luasnip.util.types.insertNode] = {
+    [types.insertNode] = {
       unvisited = {
         virt_text = { { "|", "Conceal" } },
         -- virt_text_pos = "inline",
@@ -20,13 +22,13 @@ luasnip.setup {
         virt_text = { { "󰩫", 'yellow' } },
       },
     },
-    [luasnip.util.types.exitNode] = {
+    [types.exitNode] = {
       unvisited = {
         virt_text = { { "|", "Conceal" } },
         -- virt_text_pos = "inline",
       },
     },
-    [luasnip.util.types.choiceNode] = {
+    [types.choiceNode] = {
         active = {
           virt_text = { { "", 'blue' } },
         },
