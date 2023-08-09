@@ -1,7 +1,7 @@
 ---@type ChadrcConfig
 local M = {}
 
-local core = require "custom.configs.core"
+local core = require "custom.utils.core"
 
 -- Path to overriding theme and highlights files
 local highlights = require "custom.highlights"

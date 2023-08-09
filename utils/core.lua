@@ -1,6 +1,6 @@
 local M = {}
 
-require "custom.configs.mouse"
+require "custom.utils.mouse"
 
 -- 󰞏 on
 -- 󱜞 off
