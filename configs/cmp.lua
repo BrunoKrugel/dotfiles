@@ -14,7 +14,18 @@ M.cmp = {
   mapping = {
     ["<Up>"] = require("cmp").mapping.select_prev_item(),
     ["<Down>"] = require("cmp").mapping.select_next_item(),
-    ["<Tab>"] = {},
+    ["<Tab>"] = require("cmp").mapping(function(fallback)
+      if require("luasnip").expandable() then
+        require("luasnip").expand()
+      elseif require("luasnip").expand_or_jumpable() then
+        require("luasnip").expand_or_jump()
+      else
+        fallback()
+      end
+    end, {
+      "i",
+      "s",
+    }),
     ["<CR>"] = require("cmp").mapping {
       i = function(fallback)
         if require("cmp").visible() and require("cmp").get_active_entry() then
