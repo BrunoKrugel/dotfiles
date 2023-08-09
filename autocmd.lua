@@ -184,6 +184,23 @@ autocmd({ "BufReadPost" }, {
   end,
 })
 
+
+-- Windows to close with "q"
+autocmd("FileType", {
+  pattern = {
+    "help",
+    "startuptime",
+    "qf",
+    "lspinfo",
+    "man",
+    "checkhealth",
+  },
+  command = [[
+            nnoremap <buffer><silent> q :close<CR>
+            set nobuflisted
+        ]],
+})
+
 -- Enable it when changing highlights
 -- autocmd("BufWritePost", {
 --   pattern = "*.lua",
