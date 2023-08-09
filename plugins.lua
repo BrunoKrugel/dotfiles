@@ -1,4 +1,6 @@
 local overrides = require "custom.configs.overrides"
+local cmp_opt = require "custom.configs.cmp"
+
 
 ---@type NvPluginSpec[]
 local plugins = {
@@ -99,7 +101,7 @@ local plugins = {
   },
   {
     "hrsh7th/nvim-cmp",
-    opts = overrides.cmp,
+    opts = cmp_opt.cmp,
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       -- "delphinus/cmp-ctags",
