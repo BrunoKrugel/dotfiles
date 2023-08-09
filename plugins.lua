@@ -143,6 +143,14 @@ local plugins = {
       } }
     end,
   },
+  {
+    "razak17/tailwind-fold.nvim",
+    opts = {
+      min_chars = 50,
+    },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    ft = { "html", "svelte", "astro", "vue", "typescriptreact" },
+  },
   ----------------------------------------- enhance plugins ------------------------------------------
   {
     "okuuva/auto-save.nvim",
@@ -786,7 +794,7 @@ local plugins = {
   },
   {
     "vuki656/package-info.nvim",
-    ft = { "json" },
+    event = "BufEnter package.json",
     config = true,
   },
   {
@@ -848,6 +856,18 @@ local plugins = {
     "javiorfo/nvim-soil",
     ft = "plantuml",
     dependencies = { "javiorfo/nvim-nyctophilia" },
+  },
+  {
+    "dmmulroy/tsc.nvim",
+    cmd = { "TSC" },
+    config = true,
+  },
+  {
+    "antosha417/nvim-lsp-file-operations",
+    event = "LspAttach",
+    config = function()
+      require("lsp-file-operations").setup()
+    end
   },
   ----------------------------------------- completions plugins ------------------------------------------
   {
