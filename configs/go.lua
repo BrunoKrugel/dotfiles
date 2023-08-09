@@ -5,7 +5,7 @@ if not present then
 end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-local core = require "custom.configs.core"
+local core = require "custom.utils.core"
 
 go.setup {
   lsp_cfg = {
