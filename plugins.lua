@@ -50,7 +50,7 @@ local plugins = {
       "debugloop/telescope-undo.nvim",
       "gnfisher/nvim-telescope-ctags-plus",
       "tom-anders/telescope-vim-bookmarks.nvim",
-      "tsakirist/telescope-lazy.nvim",
+      "benfowler/telescope-luasnip.nvim",
       "Marskey/telescope-sg",
       {
         "ThePrimeagen/harpoon",
@@ -123,23 +123,24 @@ local plugins = {
           local types = require "luasnip.util.types"
 
           luasnip.filetype_extend("javascriptreact", { "html" })
+          luasnip.filetype_extend("vue", { "html" })
           require("luasnip/loaders/from_vscode").lazy_load()
-          luasnip.setup {
-            ext_opts = {
-              [types.insertNode] = {
-                unvisited = {
-                  virt_text = { { "|", "Conceal" } },
-                  virt_text_pos = "inline",
-                },
-              },
-              [types.exitNode] = {
-                unvisited = {
-                  virt_text = { { "|", "Conceal" } },
-                  virt_text_pos = "inline",
-                },
-              },
-            },
-          }
+          -- luasnip.setup {
+          --   ext_opts = {
+          --     [types.insertNode] = {
+          --       unvisited = {
+          --         virt_text = { { "|", "Conceal" } },
+          --         virt_text_pos = "inline",
+          --       },
+          --     },
+          --     [types.exitNode] = {
+          --       unvisited = {
+          --         virt_text = { { "|", "Conceal" } },
+          --         virt_text_pos = "inline",
+          --       },
+          --     },
+          --   },
+          -- }
         end,
       },
     },
@@ -244,16 +245,16 @@ local plugins = {
       }
     end,
   },
-  {
-    "axkirillov/hbac.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("hbac").setup {
-        autoclose = true,
-        threshold = 5,
-      }
-    end,
-  },
+  -- {
+  --   "axkirillov/hbac.nvim",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require("hbac").setup {
+  --       autoclose = true,
+  --       threshold = 5,
+  --     }
+  --   end,
+  -- },
   {
     "code-biscuits/nvim-biscuits",
     event = "BufReadPost",
