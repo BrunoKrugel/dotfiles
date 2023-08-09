@@ -20,8 +20,8 @@ vim.fn.sign_define("DapBreakpoint", {
 
 vim.highlight.priorities.semantic_tokens = 95 -- Or any number lower than 100, treesitter's priority level
 
-require "custom.options.autocmd"
-require "custom.options.usercmd"
-require "custom.options.neovide"
-require "custom.options.options"
+require "custom.utils.autocmd"
+require "custom.utils.usercmd"
+require "custom.utils.neovide"
+require "custom.utils.options"
 -- require "custom.configs.statuscolumn"
