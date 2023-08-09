@@ -261,7 +261,7 @@ local plugins = {
   },
   {
     "rainbowhxch/accelerated-jk.nvim",
-    keys = { "j", "k" },
+    event = "BufReadPost",
     config = function()
       require "custom.configs.accelerated"
     end,
@@ -296,7 +296,7 @@ local plugins = {
   },
   {
     "nguyenvukhang/nvim-toggler",
-    keys = { "<leader>it" },
+    event = "BufReadPost",
     config = function()
       require("nvim-toggler").setup {
         remove_default_keybinds = true,

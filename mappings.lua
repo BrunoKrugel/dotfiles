@@ -139,7 +139,7 @@ M.text = {
     ["<C-x>"] = { "x", "󰆐 Cut" },
     ["<C-v>"] = { "p", "󰆒 Paste" },
     ["<C-c>"] = { "y", " Copy" },
-    -- ["<A-d>"] = { "viw", " Select word" },
+    ["<leader><leader>d"] = { "viw", " Select word" },
     ["<leader>d"] = { 'viw"_di', " Delete word" },
     ["<C-Up>"] = { "<cmd>m .-2<CR>==", "󰜸 Move line up" },
     ["<C-Down>"] = { "<cmd>m .+1<CR>==", "󰜯 Move line down" },
