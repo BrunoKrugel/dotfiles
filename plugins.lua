@@ -78,6 +78,7 @@ local plugins = {
       "chrisgrieser/nvim-various-textobjs",
       "filNaj/tree-setter",
       "RRethy/nvim-treesitter-textsubjects",
+      "David-Kunz/markid",
       {
         "JoosepAlviste/nvim-ts-context-commentstring",
         config = function()

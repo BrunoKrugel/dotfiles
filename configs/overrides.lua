@@ -132,6 +132,7 @@ M.treesitter = {
   autotag = {
     enable = true,
   },
+  markid = { enable = true },
 }
 
 M.mason = {
