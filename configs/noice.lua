@@ -6,6 +6,8 @@ end
 
 noice.setup {
   cmdline = {
+    enabled = true,
+    view = "cmdline_popup",
     format = {
       cmdline = { pattern = "^:", icon = "󰘳 ", lang = "vim" },
       search_down = { kind = "search", pattern = "^/", icon = "󰩊 ", lang = "regex" },
@@ -14,6 +16,10 @@ noice.setup {
       lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "", lang = "lua" },
       help = { pattern = "^:%s*he?l?p?%s+", icon = "󰞋 " },
     },
+  },
+  popupmenu = {
+    enabled = true, -- enables the Noice popupmenu UI
+    backend = "cmp", -- backend to use to show regular cmdline completions
   },
   routes = {
     {

@@ -78,7 +78,6 @@ local plugins = {
       "chrisgrieser/nvim-various-textobjs",
       "filNaj/tree-setter",
       "RRethy/nvim-treesitter-textsubjects",
-      "David-Kunz/markid",
       {
         "JoosepAlviste/nvim-ts-context-commentstring",
         config = function()
@@ -253,9 +252,16 @@ local plugins = {
   --   end,
   -- },
   {
+    "chrisgrieser/nvim-early-retirement",
+    opts = {
+      retirementAgeMins = 5,
+      notificationOnAutoClose = false,
+    },
+    event = "BufReadPost",
+  },
+  {
     "code-biscuits/nvim-biscuits",
     event = "BufReadPost",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
       require "custom.configs.biscuits"
     end,
@@ -348,8 +354,8 @@ local plugins = {
         "LiadOz/nvim-dap-repl-highlights",
         config = true,
         build = function()
-          if not require("nvim-treesitter.parsers").has_parser("dap_repl") then
-            vim.cmd(":TSInstall dap_repl")
+          if not require("nvim-treesitter.parsers").has_parser "dap_repl" then
+            vim.cmd ":TSInstall dap_repl"
           end
         end,
       },
@@ -385,6 +391,13 @@ local plugins = {
         result_split_horizontal = true,
       }
     end,
+  },
+  {
+    "yorickpeterse/nvim-dd",
+    event = "LspAttach",
+    opts = {
+      timeout = 1000,
+    },
   },
   {
     "zbirenbaum/neodim",
@@ -652,9 +665,6 @@ local plugins = {
   {
     "VonHeikemen/searchbox.nvim",
     cmd = { "SearchBoxMatchAll", "SearchBoxReplace", "SearchBoxIncSearch" },
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-    },
     config = true,
   },
   {
@@ -877,7 +887,7 @@ local plugins = {
     event = "LspAttach",
     config = function()
       require("lsp-file-operations").setup()
-    end
+    end,
   },
   ----------------------------------------- completions plugins ------------------------------------------
   {
