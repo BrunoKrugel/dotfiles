@@ -12,6 +12,18 @@ local function deprioritize_snippet(entry1, entry2)
   end
 end
 
+local function under(entry1, entry2)
+  local _, entry1_under = entry1.completion_item.label:find "^_+"
+  local _, entry2_under = entry2.completion_item.label:find "^_+"
+  entry1_under = entry1_under or 0
+  entry2_under = entry2_under or 0
+  if entry1_under > entry2_under then
+    return false
+  elseif entry1_under < entry2_under then
+    return true
+  end
+end
+
 local function limit_lsp_types(entry, ctx)
   local kind = entry:get_kind()
   local line = ctx.cursor.line
@@ -193,6 +205,7 @@ M.cmp = {
       require("cmp").config.compare.locality,
       copilot_cmp_comparators.prioritize or function() end,
       require("cmp").config.compare.recently_used,
+      under,
       require("cmp").config.compare.score,
       require("cmp").config.compare.kind,
       require("cmp").config.compare.length,
