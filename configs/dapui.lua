@@ -1,5 +1,5 @@
 local dap, dapui = require "dap", require "dapui"
-local core = require "custom.configs.core"
+local core = require "custom.utils.core"
 
 dapui.setup(core.dapui)
 
