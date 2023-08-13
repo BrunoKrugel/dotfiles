@@ -73,6 +73,7 @@ M.treesitter = {
     "java",
     "dockerfile",
     "regex",
+    "toml",
 
     -- Markdown
     "markdown",
@@ -89,6 +90,7 @@ M.treesitter = {
     "tsx",
     "html",
     "astro",
+    "css",
   },
   indent = {
     enable = true,

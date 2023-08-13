@@ -161,6 +161,7 @@ M.text = {
       "󰑕 Rename",
       opts = { expr = true },
     },
+    -- Quit
     ["<Esc>"] = {
       function()
         vim.cmd "noh"

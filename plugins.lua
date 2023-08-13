@@ -318,6 +318,7 @@ local plugins = {
   {
     "kylechui/nvim-surround",
     keys = { "ys", "ds", "cs" },
+    config = true,
   },
   {
     "declancm/vim2vscode",
@@ -845,7 +846,7 @@ local plugins = {
   {
     "toppair/peek.nvim",
     build = "deno task --quiet build:fast",
-    cmd = { "PeekOpen", "PeekClose" },
+    ft = { "markdown", "vimwiki" },
     config = function()
       require("peek").setup {
         app = "webview",
@@ -854,6 +855,14 @@ local plugins = {
       }
     end,
   },
+  {
+    "sustech-data/wildfire.nvim",
+    event = "VeryLazy",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+        require("wildfire").setup()
+    end,
+},
   {
     "TobinPalmer/rayso.nvim",
     cmd = { "Rayso" },
