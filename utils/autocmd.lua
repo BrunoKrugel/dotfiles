@@ -194,6 +194,7 @@ autocmd("FileType", {
     "lspinfo",
     "man",
     "checkhealth",
+    "tsplayground",
   },
   command = [[
             nnoremap <buffer><silent> q :close<CR>

@@ -642,13 +642,6 @@ local plugins = {
     end,
   },
   {
-    "jinzhongjia/LspUI.nvim",
-    event = "LspAttach",
-    config = function()
-      require("LspUI").setup()
-    end,
-  },
-  {
     "lvimuser/lsp-inlayhints.nvim",
     event = "LspAttach",
     config = function()
