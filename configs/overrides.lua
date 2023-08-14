@@ -256,7 +256,17 @@ M.nvimtree = {
 
 M.telescope = {
   defaults = {
-    file_ignore_patterns = { "node_modules", ".docker", ".git", "yarn.lock", "go.sum", "go.mod", "tags", "mocks" },
+    file_ignore_patterns = {
+      "node_modules",
+      ".docker",
+      ".git",
+      "yarn.lock",
+      "go.sum",
+      "go.mod",
+      "tags",
+      "mocks",
+      "refactoring",
+    },
   },
   extensions_list = {
     "themes",

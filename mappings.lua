@@ -180,6 +180,9 @@ M.text = {
     -- Indent backward/forward:
     ["<"] = { "<gv", " Ident backward", opts = { silent = false } },
     [">"] = { ">gv", " Ident forward", opts = { silent = false } },
+
+    ["<C-Left>"] = { "<ESC>_", "󰜲 Move to beginning of line" },
+    ["<C-Right>"] = { "<ESC>$", "󰜵 Move to end of line" },
   },
 
   c = {
@@ -337,6 +340,11 @@ M.git = {
     ["<leader>gvp"] = { "<cmd> DiffviewOpen --cached<CR>", "  Show staged diffs" },
     ["<leader>gvr"] = { "<cmd> DiffviewRefresh<CR>", "  Refresh diff view" },
     ["<leader>gvc"] = { "<cmd> DiffviewClose<CR>", "  Close diff view" },
+    ["<Leader>gcb"] = { "<cmd>GitConflictChooseBoth<CR>", "Choose both" },
+    ["<Leader>gcn"] = { "<cmd>GitConflictNextConflict<CR>", "Move to next conflict" },
+    ["<Leader>gco"] = { "<cmd>GitConflictChooseOurs<CR>", "Choose ours" },
+    ["<Leader>gcp"] = { "<cmd>GitConflictPrevConflict<CR>", "Move to prev conflict" },
+    ["<Leader>gct"] = { "<cmd>GitConflictChooseTheirs<CR>", "Choose theirs" },
   },
 }
 
@@ -348,6 +356,12 @@ M.telescope = {
     ["<leader>fr"] = { "<cmd>Telescope frecency<CR>", " Recent files" },
     ["<leader>fu"] = { "<cmd>Telescope undo<CR>", " Undo tree" },
     ["<leader>fg"] = { "<cmd>Telescope ast_grep<CR>", " Structural Search" },
+    ["<leader>fre"] = {
+      function()
+        require("telescope").extensions.refactoring.refactors()
+      end,
+      " Structural Search",
+    },
     ["<leader>fz"] = {
       "<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<CR>",
       " Find current file",
