@@ -635,15 +635,7 @@ local plugins = {
       },
     },
     config = function()
-      local ftMap = {
-        go = "lsp",
-      }
-      require("ufo").setup {
-        close_fold_kinds = { "imports" },
-        provider_selector = function(bufnr, filetype, buftype)
-          return ftMap[filetype] or { "treesitter", "indent" }
-        end,
-      }
+      require "custom.configs.ufo"
     end,
   },
   {
