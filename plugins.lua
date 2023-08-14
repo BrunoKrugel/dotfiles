@@ -131,6 +131,26 @@ local plugins = {
         end,
       },
     },
+    config = function(_, opts)
+      require("cmp").setup.cmdline({ "/", "?" }, {
+        mapping = require("cmp").mapping.preset.cmdline(),
+        require("cmp").mapping.confirm { select = true },
+        sources = {
+          { name = "buffer" },
+        },
+      })
+
+      require("cmp").setup.cmdline(":", {
+        mapping = require("cmp").mapping.preset.cmdline(),
+        sources = require("cmp").config.sources({
+          { name = "cmdline" },
+        }, {
+          { name = "path" },
+        }),
+      })
+
+      require("cmp").setup(opts)
+    end,
   },
   {
     "karb94/neoscroll.nvim",
