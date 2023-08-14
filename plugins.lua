@@ -167,7 +167,6 @@ local plugins = {
     opts = {
       min_chars = 50,
     },
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
     ft = { "html", "svelte", "astro", "vue", "typescriptreact" },
   },
   ----------------------------------------- enhance plugins ------------------------------------------
@@ -306,7 +305,6 @@ local plugins = {
   {
     "RRethy/vim-illuminate",
     event = { "CursorHold", "CursorHoldI" },
-    dependencies = "nvim-treesitter",
     config = function()
       require "custom.configs.illuminate"
     end,
@@ -638,6 +636,16 @@ local plugins = {
       require "custom.configs.ufo"
     end,
   },
+  --  {
+  -- 	"Snyssfx/goerr-nvim",
+  -- 	ft = "go",
+  -- 	config = function()
+  -- 		vim.g.goerr_indent_error = 1
+  -- 		vim.g.goerr_nvim_indent_level = 4
+  -- 		vim.g.goerr_nvim_max_width = 1000
+  -- 		vim.g.goerr_nvim_sign = " "
+  -- 	end
+  -- },
   {
     "lvimuser/lsp-inlayhints.nvim",
     event = "LspAttach",
@@ -676,7 +684,37 @@ local plugins = {
     "kevinhwang91/nvim-hlslens",
     event = "BufReadPost",
     config = function()
-      require("scrollbar.handlers.search").setup {}
+      require("scrollbar.handlers.search").setup {
+        {
+          nearest_float_when = false,
+          override_lens = function(render, posList, nearest, idx, relIdx)
+            local sfw = vim.v.searchforward == 1
+            local indicator, text, chunks
+            local absRelIdx = math.abs(relIdx)
+            if absRelIdx > 1 then
+              indicator = ("%d%s"):format(absRelIdx, sfw ~= (relIdx > 1) and icons.misc.up or icons.misc.down)
+            elseif absRelIdx == 1 then
+              indicator = sfw ~= (relIdx == 1) and icons.misc.up or icons.misc.down
+            else
+              indicator = icons.misc.dot
+            end
+            local lnum, col = unpack(posList[idx])
+            if nearest then
+              local cnt = #posList
+              if indicator ~= "" then
+                text = ("[%s %d/%d]"):format(indicator, idx, cnt)
+              else
+                text = ("[%d/%d]"):format(idx, cnt)
+              end
+              chunks = { { " ", "Ignore" }, { text, "HlSearchLensNear" } }
+            else
+              text = ("[%s %d]"):format(indicator, idx)
+              chunks = { { " ", "Ignore" }, { text, "HlSearchLens" } }
+            end
+            render.setVirt(0, lnum - 1, col - 1, chunks, nearest)
+          end,
+        },
+      }
     end,
   },
   {
@@ -879,6 +917,44 @@ local plugins = {
     config = function()
       require "custom.configs.refactoring"
     end,
+  },
+  {
+    "chrisgrieser/nvim-origami",
+    event = "BufReadPost",
+    opts = {
+      keepFoldsAcrossSessions = true,
+      pauseFoldsOnSearch = true,
+      setupFoldKeymaps = true,
+    },
+  },
+  {
+    "Zeioth/markmap.nvim",
+    build = "yarn global add markmap-cli",
+    cmd = { "MarkmapOpen", "MarkmapSave", "MarkmapWatch", "MarkmapWatchStop" },
+    opts = {
+      html_output = "/tmp/markmap.html", -- (default) Setting a empty string "" here means: [Current buffer path].html
+      hide_toolbar = false, -- (default)
+      grace_period = 3600000, -- (default) Stops markmap watch after 60 minutes. Set it to 0 to disable the grace_period.
+    },
+    config = function(_, opts)
+      require("markmap").setup(opts)
+    end,
+  },
+  {
+    "malbertzard/inline-fold.nvim",
+    opts = {
+      defaultPlaceholder = "…",
+      queries = {
+        html = {
+          { pattern = 'class="([^"]*)"', placeholder = "@" }, -- classes in html
+          { pattern = 'href="(.-)"' }, -- hrefs in html
+          { pattern = 'src="(.-)"' }, -- HTML img src attribute
+        },
+        go = {
+          { pattern = "^%s*if err != nil {", placeholder = "if err != nil .." },
+        },
+      },
+    },
   },
   ----------------------------------------- completions plugins ------------------------------------------
   {
