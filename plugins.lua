@@ -513,23 +513,6 @@ local plugins = {
     end,
   },
   {
-    "jonahgoldwastaken/copilot-status.nvim",
-    dependencies = { "copilot.lua" },
-    event = "BufReadPost",
-    config = function()
-      require("copilot_status").setup {
-        icons = {
-          idle = " ",
-          error = " ",
-          offline = " ",
-          warning = "𥉉 ",
-          loading = " ",
-        },
-        debug = false,
-      }
-    end,
-  },
-  {
     "nvim-telescope/telescope-ui-select.nvim",
     event = "VeryLazy",
     config = function()
@@ -927,6 +910,18 @@ local plugins = {
           require("copilot_cmp").setup()
         end,
       },
+      {
+        "jonahgoldwastaken/copilot-status.nvim",
+        ops = {
+          icons = {
+            idle = " ",
+            error = " ",
+            offline = " ",
+            warning = "𥉉 ",
+            loading = " ",
+          },
+        },
+      },
     },
     config = function()
       require("copilot").setup {
@@ -944,6 +939,10 @@ local plugins = {
         },
         panel = {
           enabled = false,
+        },
+        filetypes = {
+          gitcommit = false,
+          TelescopePrompt = false,
         },
         server_opts_overrides = {
           trace = "verbose",
