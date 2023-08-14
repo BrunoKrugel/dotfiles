@@ -98,6 +98,11 @@ M.treesitter = {
   playground = {
     enable = true,
   },
+  query_linter = {
+    enable = true,
+    use_virtual_text = false,
+    lint_events = { "BufWrite", "CursorHold" },
+  },
   textsubjects = {
     enable = true,
     keymaps = {
@@ -111,6 +116,16 @@ M.treesitter = {
       enable = true,
       lookahead = true,
       include_surrounding_whitespace = true,
+      keymaps = {
+        ["af"] = { query = "@function.outer", desc = "ts: all function" },
+        ["if"] = { query = "@function.inner", desc = "ts: inner function" },
+        ["ac"] = { query = "@class.outer", desc = "ts: all class" },
+        ["ic"] = { query = "@class.inner", desc = "ts: inner class" },
+        ["aC"] = { query = "@conditional.outer", desc = "ts: all conditional" },
+        ["iC"] = { query = "@conditional.inner", desc = "ts: inner conditional" },
+        ["aH"] = { query = "@assignment.lhs", desc = "ts: assignment lhs" },
+        ["aL"] = { query = "@assignment.rhs", desc = "ts: assignment rhs" },
+      },
     },
   },
   tree_setter = {

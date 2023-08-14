@@ -33,7 +33,7 @@ return {
   }),
 
   -- err return
-  s("err", {
+  s("iferr", {
     t "if err != nil {",
     t { "", "\treturn " },
     i(1, "err"),
