@@ -317,7 +317,7 @@ local plugins = {
   },
   {
     "kylechui/nvim-surround",
-    keys = { "ys", "ds", "cs" },
+    event = { "BufReadPost", "BufNewFile" },
     config = true,
   },
   {
