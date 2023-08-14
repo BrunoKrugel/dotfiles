@@ -53,10 +53,16 @@ M.dapui = {
     },
     {
       elements = {
-        -- "console",
-        "repl",
+        {
+          id = "repl",
+          size = 0.5,
+        },
+        {
+          id = "console",
+          size = 0.5,
+        },
       },
-      size = 0.25, -- 25% of total lines
+      size = 10, -- 25% of total lines
       position = "bottom",
     },
   },
