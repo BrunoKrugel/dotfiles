@@ -878,6 +878,13 @@ local plugins = {
       require("lsp-file-operations").setup()
     end,
   },
+  {
+    "ThePrimeagen/refactoring.nvim",
+    event = "BufRead",
+    config = function()
+      require "custom.configs.refactoring"
+    end,
+  },
   ----------------------------------------- completions plugins ------------------------------------------
   {
     "ludovicchabant/vim-gutentags",
