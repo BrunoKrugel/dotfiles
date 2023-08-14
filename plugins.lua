@@ -578,6 +578,10 @@ local plugins = {
     cmd = "GitBlameToggle",
   },
   {
+    "FabijanZulj/blame.nvim",
+    cmd = "ToggleBlame",
+  },
+  {
     "akinsho/git-conflict.nvim",
     ft = "gitcommit",
     config = function()
