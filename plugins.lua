@@ -823,6 +823,24 @@ local plugins = {
         "ray-x/guihua.lua",
         build = "cd lua/fzy && make",
       },
+      {
+        "crusj/hierarchy-tree-go.nvim",
+        config = function()
+          require("hierarchy-tree-go").setup {
+            icon = {
+              fold = "",
+              unfold = "",
+              func = "",
+              last = "☉",
+            },
+            hl = {
+              current_module = "guifg=Green", -- highlight cwd module line
+              others_module = "guifg=White", -- highlight others module line
+              cursorline = "guibg=Gray guifg=White" -- hl  window cursorline
+            },
+          }
+        end,
+      },
     },
     config = function()
       require "custom.configs.go"

@@ -195,6 +195,7 @@ autocmd("FileType", {
     "man",
     "checkhealth",
     "tsplayground",
+    "HIERARCHY-TREE-GO",
   },
   command = [[
             nnoremap <buffer><silent> q :close<CR>

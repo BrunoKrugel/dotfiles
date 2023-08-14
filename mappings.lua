@@ -202,6 +202,25 @@ M.go = {
     ["<leader>gcv"] = { " <cmd>:GoCoverage -p<CR>", " Show coverage", opts = { silent = true } },
     ["<leader>gt"] = { " <cmd>:GoAlt!<CR>", " Go to test", opts = { silent = true } },
     ["<leader>gca"] = { " <cmd>:GoCodeAction<CR>", " Code action", opts = { silent = true } },
+    ["<leader>gca"] = { " <cmd>:GoCodeAction<CR>", " Code action", opts = { silent = true } },
+    ["<leader>ghc"] = {
+      function()
+        require("hierarchy-tree-go").open()
+      end,
+      " Hierarchy Call",
+    },
+    ["<leader>gfo"] = {
+      function()
+        require'hierarchy-tree-go'.incoming()
+      end,
+      " Hierarchy Outgoing",
+    },
+    ["<leader>gfi"] = {
+      function()
+        require'hierarchy-tree-go'.outgoing()
+      end,
+      " Hierarchy Incoming",
+    },
   },
 }
 
