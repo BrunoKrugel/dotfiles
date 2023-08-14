@@ -402,17 +402,19 @@ local plugins = {
   {
     "zbirenbaum/neodim",
     event = "LspAttach",
-    branch = "v2",
-    config = function()
-      require("neodim").setup {
-        refresh_delay = 75,
-        alpha = 0.75,
-        blend_color = "#000000",
-        hide = { underline = true, virtual_text = true, signs = true },
-        priority = 150,
-        disable = {},
-      }
-    end,
+    opts = {
+      alpha = 0.75,
+      blend_color = "#000000",
+      update_in_insert = {
+        enable = true,
+        delay = 100,
+      },
+      hide = {
+        virtual_text = true,
+        signs = true,
+        underline = true,
+      },
+    },
   },
   {
     "TobinPalmer/rayso.nvim",
@@ -853,9 +855,9 @@ local plugins = {
     event = "VeryLazy",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
-        require("wildfire").setup()
+      require("wildfire").setup()
     end,
-},
+  },
   {
     "TobinPalmer/rayso.nvim",
     cmd = { "Rayso" },
