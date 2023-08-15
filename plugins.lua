@@ -840,7 +840,7 @@ local plugins = {
             hl = {
               current_module = "guifg=Green", -- highlight cwd module line
               others_module = "guifg=White", -- highlight others module line
-              cursorline = "guibg=Gray guifg=White" -- hl  window cursorline
+              cursorline = "guibg=Gray guifg=White", -- hl  window cursorline
             },
           }
         end,

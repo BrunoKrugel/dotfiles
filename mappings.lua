@@ -211,13 +211,13 @@ M.go = {
     },
     ["<leader>gfo"] = {
       function()
-        require'hierarchy-tree-go'.incoming()
+        require("hierarchy-tree-go").incoming()
       end,
       " Hierarchy Outgoing",
     },
     ["<leader>gfi"] = {
       function()
-        require'hierarchy-tree-go'.outgoing()
+        require("hierarchy-tree-go").outgoing()
       end,
       " Hierarchy Incoming",
     },

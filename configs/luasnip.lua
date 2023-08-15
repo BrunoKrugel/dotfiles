@@ -8,7 +8,7 @@ luasnip.filetype_extend("javascriptreact", { "html" })
 luasnip.filetype_extend("vue", { "html" })
 
 require("luasnip/loaders/from_vscode").lazy_load()
-require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/lua/custom/luasnip" })
+require("luasnip.loaders.from_lua").load { paths = "~/.config/nvim/lua/custom/luasnip" }
 
 local types = require "luasnip.util.types"
 
@@ -20,7 +20,7 @@ luasnip.setup {
         -- virt_text_pos = "inline",
       },
       active = {
-        virt_text = { { "󰩫", 'yellow' } },
+        virt_text = { { "󰩫", "yellow" } },
       },
     },
     [types.exitNode] = {
@@ -30,9 +30,9 @@ luasnip.setup {
       },
     },
     [types.choiceNode] = {
-        active = {
-          virt_text = { { "", 'blue' } },
-        },
+      active = {
+        virt_text = { { "", "blue" } },
       },
+    },
   },
 }

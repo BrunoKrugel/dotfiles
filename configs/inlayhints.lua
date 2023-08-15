@@ -34,3 +34,4 @@ lspInlayHints.setup {
   enabled_at_startup = true,
   debug_mode = false,
 }
+

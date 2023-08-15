@@ -56,7 +56,7 @@ M.gitsigns = {
     topdelete = { text = " " },
     changedelete = { text = " " },
     untracked = { text = " " },
-  }
+  },
 }
 
 M.plugins = "custom.plugins"

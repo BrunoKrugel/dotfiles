@@ -8,30 +8,30 @@ opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 opt.backup = false
 opt.swapfile = false
-opt.scrolloff = 10         -- always show minimum n lines after current line
+opt.scrolloff = 10 -- always show minimum n lines after current line
 opt.relativenumber = false -- Show relative numberline
 opt.wrap = false
-opt.iskeyword:append("-")
+opt.iskeyword:append "-"
 opt.wildignore = {
   "*node_modules/**",
-  '*.o',
-  '*.obj',
-  '*.dll',
-  '*.jar',
-  '*.pyc',
-  '*.rbc',
-  '*.class',
-  '*.gif',
-  '*.ico',
-  '*.jpg',
-  '*.jpeg',
-  '*.png',
-  '*.avi',
-  '*.wav',
-  '*.swp',
-  '.lock',
-  '.DS_Store',
-  'tags.lock',
+  "*.o",
+  "*.obj",
+  "*.dll",
+  "*.jar",
+  "*.pyc",
+  "*.rbc",
+  "*.class",
+  "*.gif",
+  "*.ico",
+  "*.jpg",
+  "*.jpeg",
+  "*.png",
+  "*.avi",
+  "*.wav",
+  "*.swp",
+  ".lock",
+  ".DS_Store",
+  "tags.lock",
 }
 -- g.highlighturl_enabled = true -- highlight URLs by default
 -- opt.splitkeep = "screen"  -- Maintain code view when splitting

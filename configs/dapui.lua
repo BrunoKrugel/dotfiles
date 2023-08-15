@@ -19,7 +19,6 @@ dap.listeners.before.event_initialized["dapui_config"] = function()
   dapui:open()
 end
 
-
 dap.listeners.before.event_terminated["dapui_config"] = function()
   vim.cmd "stopinsert"
   dapui:close()
