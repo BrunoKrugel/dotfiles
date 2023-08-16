@@ -24,6 +24,11 @@ local function under(entry1, entry2)
   end
 end
 
+local check_backspace = function()
+	local col = vim.fn.col(".") - 1
+	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+end
+
 local function limit_lsp_types(entry, ctx)
   local kind = entry:get_kind()
   local line = ctx.cursor.line
@@ -82,14 +87,18 @@ local function get_lsp_completion_context(completion, source)
 end
 
 local buffer_option = {
-  -- Complete from all visible buffers (splits)
   get_bufnrs = function()
-    local bufs = {}
-    for _, win in ipairs(vim.api.nvim_list_wins()) do
-      bufs[vim.api.nvim_win_get_buf(win)] = true
-    end
-    return vim.tbl_keys(bufs)
-  end,
+  local buf_size_limit = 1024 * 1024
+  local bufs = {}
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+      local buf = vim.api.nvim_win_get_buf(win)
+      local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
+      if byte_size <= buf_size_limit then
+          bufs[buf] = true
+      end
+  end
+  return vim.tbl_keys(bufs)
+end,
 }
 
 M.cmp = {
