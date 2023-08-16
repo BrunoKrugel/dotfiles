@@ -102,6 +102,13 @@ end,
 }
 
 M.cmp = {
+  enabled = function()
+    if require"cmp.config.context".in_treesitter_capture("comment")==true or require"cmp.config.context".in_syntax_group("Comment") then
+      return false
+    else
+      return true
+    end
+  end,
   completion = {
     completeopt = "menu,menuone,noinsert,noselect",
     autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
@@ -120,7 +127,9 @@ M.cmp = {
         require("luasnip").expand()
       elseif require("luasnip").expand_or_jumpable() then
         require("luasnip").expand_or_jump()
-      else
+			elseif check_backspace() then
+				fallback()
+			else
         fallback()
       end
     end, {
