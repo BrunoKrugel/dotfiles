@@ -609,4 +609,15 @@ M.lspconfig = {
   },
 }
 
+-- Disable language specifics mappings
+
+if vim.bo.filetype ~= "go" then
+  M.go = nil
+  M.test = nil
+end
+
+if vim.bo.filetype ~= "javascript" then
+  M.node = nil
+end
+
 return M
