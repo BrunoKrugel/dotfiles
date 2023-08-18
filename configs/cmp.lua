@@ -25,8 +25,8 @@ local function under(entry1, entry2)
 end
 
 local check_backspace = function()
-	local col = vim.fn.col(".") - 1
-	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+  local col = vim.fn.col "." - 1
+  return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 end
 
 local function limit_lsp_types(entry, ctx)
@@ -88,22 +88,30 @@ end
 
 local buffer_option = {
   get_bufnrs = function()
-  local buf_size_limit = 1024 * 1024
-  local bufs = {}
-  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf_size_limit = 1024 * 1024
+    local bufs = {}
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
       local buf = vim.api.nvim_win_get_buf(win)
       local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
       if byte_size <= buf_size_limit then
-          bufs[buf] = true
+        bufs[buf] = true
       end
-  end
-  return vim.tbl_keys(bufs)
-end,
+    end
+    return vim.tbl_keys(bufs)
+  end,
 }
 
 M.cmp = {
   enabled = function()
-    if require"cmp.config.context".in_treesitter_capture("comment")==true or require"cmp.config.context".in_syntax_group("Comment") then
+    local in_prompt = vim.api.nvim_buf_get_option(0, "buftype") == "prompt"
+    if in_prompt then -- this will disable cmp in the Telescope window (taken from the default config)
+      return false
+    end
+
+    if
+      require("cmp.config.context").in_treesitter_capture "comment" == true
+      or require("cmp.config.context").in_syntax_group "Comment"
+    then
       return false
     else
       return true
@@ -127,9 +135,9 @@ M.cmp = {
         require("luasnip").expand()
       elseif require("luasnip").expand_or_jumpable() then
         require("luasnip").expand_or_jump()
-			elseif check_backspace() then
-				fallback()
-			else
+      elseif check_backspace() then
+        fallback()
+      else
         fallback()
       end
     end, {

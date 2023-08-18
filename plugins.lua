@@ -130,25 +130,52 @@ local plugins = {
           require "custom.configs.luasnip"
         end,
       },
+      {
+        "zbirenbaum/copilot.lua",
+        event = "InsertEnter",
+        dependencies = {
+          {
+            "zbirenbaum/copilot-cmp",
+            config = function()
+              require("copilot_cmp").setup()
+            end,
+          },
+        },
+        config = function()
+          require("copilot").setup {
+            suggestion = {
+              enabled = false,
+              auto_trigger = false,
+              keymap = {
+                -- accept = "<Tab>",
+                accept_word = false,
+                accept_line = false,
+                next = "<M-]>",
+                prev = "<M-[>",
+                dismiss = "<C-]>",
+              },
+            },
+            panel = {
+              enabled = false,
+            },
+            filetypes = {
+              gitcommit = false,
+              TelescopePrompt = false,
+            },
+            server_opts_overrides = {
+              trace = "verbose",
+              settings = {
+                advanced = {
+                  listCount = 3,
+                  inlineSuggestCount = 3,
+                },
+              },
+            },
+          }
+        end,
+      },
     },
     config = function(_, opts)
-      require("cmp").setup.cmdline({ "/", "?" }, {
-        mapping = require("cmp").mapping.preset.cmdline(),
-        require("cmp").mapping.confirm { select = true },
-        sources = {
-          { name = "buffer" },
-        },
-      })
-
-      require("cmp").setup.cmdline(":", {
-        mapping = require("cmp").mapping.preset.cmdline(),
-        sources = require("cmp").config.sources({
-          { name = "cmdline" },
-        }, {
-          { name = "path" },
-        }),
-      })
-
       require("cmp").setup(opts)
     end,
   },
@@ -282,6 +309,22 @@ local plugins = {
     event = "BufReadPost",
     config = function()
       require "custom.configs.biscuits"
+    end,
+  },
+  {
+    "jonahgoldwastaken/copilot-status.nvim",
+    event = "BufReadPost",
+    config = function()
+      require("copilot_status").setup {
+        icons = {
+          idle = " ",
+          error = " ",
+          offline = " ",
+          warning = "𥉉 ",
+          loading = " ",
+        },
+        debug = false,
+      }
     end,
   },
   {
@@ -988,62 +1031,6 @@ local plugins = {
     lazy = false,
     config = function()
       require "custom.configs.copilot"
-    end,
-  },
-  {
-    "zbirenbaum/copilot.lua",
-    event = "InsertEnter",
-    dependencies = {
-      {
-        "zbirenbaum/copilot-cmp",
-        config = function()
-          require("copilot_cmp").setup()
-        end,
-      },
-      {
-        "jonahgoldwastaken/copilot-status.nvim",
-        ops = {
-          icons = {
-            idle = " ",
-            error = " ",
-            offline = " ",
-            warning = "𥉉 ",
-            loading = " ",
-          },
-        },
-      },
-    },
-    config = function()
-      require("copilot").setup {
-        suggestion = {
-          enabled = false,
-          auto_trigger = false,
-          keymap = {
-            -- accept = "<Tab>",
-            accept_word = false,
-            accept_line = false,
-            next = "<M-]>",
-            prev = "<M-[>",
-            dismiss = "<C-]>",
-          },
-        },
-        panel = {
-          enabled = false,
-        },
-        filetypes = {
-          gitcommit = false,
-          TelescopePrompt = false,
-        },
-        server_opts_overrides = {
-          trace = "verbose",
-          settings = {
-            advanced = {
-              listCount = 3,
-              inlineSuggestCount = 3,
-            },
-          },
-        },
-      }
     end,
   },
 }
