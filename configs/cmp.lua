@@ -1,8 +1,6 @@
 local M = {}
 local copilot_status_ok, copilot_cmp_comparators = pcall(require, "copilot_cmp.comparators")
 
-dofile(vim.g.base46_cache .. "cmp")
-
 local function deprioritize_snippet(entry1, entry2)
   local types = require "cmp.types"
 
@@ -106,7 +104,7 @@ local buffer_option = {
 M.cmp = {
   enabled = function()
     local in_prompt = vim.api.nvim_buf_get_option(0, "buftype") == "prompt"
-    if in_prompt then -- this will disable cmp in the Telescope window (taken from the default config)
+    if in_prompt then
       return false
     end
 
