@@ -163,8 +163,6 @@ M.mason = {
     "typescript-language-server",
     "prettier",
     "eslint-lsp",
-    "css-lsp",
-    "html-lsp",
     "emmet-ls",
 
     -- Spell
