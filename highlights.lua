@@ -55,18 +55,19 @@ M.add = {
   RainbowDelimiterViolet = { fg = "purple" },
   RainbowDelimiterCyan = { fg = "cyan" },
 
+  -- Diff
   DiffChange = { fg = "yellow" },
   DiffAdd = { fg = "vibrant_green" },
   DiffText = { fg = "white", bg = "red", bold = true },
+
+  -- Deprecated
+  cssDeprecated                = { strikethrough = true },
+  javaScriptDeprecated         = { strikethrough = true },
 
   -- Search highlights
   HlSearchNear = { fg = "#2E3440", bg = "yellow" },
   HlSearchLens = { fg = "#2E3440", bg = "blue" },
   HlSearchLensNear = { fg = "#2E3440", bg = "yellow" },
-
-  GitSignsCurrentLineBlame = {
-    fg = "cyan",
-  },
 
   -- LSP Saga
   SagaBorder = { fg = "blue" },
@@ -85,6 +86,22 @@ M.add = {
   SplitHl = { fg = "white", bg = "statusline_bg" },
   IndentBlanklineContextChar = { fg = "none" },
   IndentBlanklineContextStart = { bg = "none" },
+
+  DiagnosticUnnecessary        = { link = "", fg = "light_grey" },
+  LspInlayHint                 = { link = "", fg = "light_grey" },
+
+  ["@boolean"]                 = { fg = "green" },
+  ["@text.danger"]             = { fg = "red" },
+  ["@text.note"]               = { fg = "blue" },
+  ["@text.header"]             = { bold = true },
+  ["@text.diff.add"]           = { fg = "green" },
+  ["@text.diff.delete"]        = { fg = "red" },
+  ["@text.todo"]               = { fg = "blue" },
+  ["@string.special"]          = { fg = "blue" },
+  ["@class.css"]               = { fg = "green" },
+  ["@class.scss"]              = { link = "@class.css" },
+  ["@property.css"]            = { fg = "teal" },
+  ["@property.scss"]           = { link = "@property.css" },
 }
 
 return M
