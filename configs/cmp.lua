@@ -1,5 +1,7 @@
 local M = {}
 local copilot_status_ok, copilot_cmp_comparators = pcall(require, "copilot_cmp.comparators")
+local list_contains = vim.list_contains or vim.tbl_contains
+pcall(function() dofile(vim.g.base46_cache .. "cmp") end)
 
 local function deprioritize_snippet(entry1, entry2)
   local types = require "cmp.types"
@@ -101,21 +103,36 @@ local buffer_option = {
   end,
 }
 
+local is_dap_buffer = function(bufnr)
+  local filetype = vim.api.nvim_get_option_value("filetype", { buf = bufnr or 0 })
+  if filetype == "dap-repl" or vim.startswith(filetype, "dapui_") then
+    return true
+  end
+  return false
+end
+
+local disabled_buftypes = {
+  "terminal",
+  -- "nofile",
+  "prompt",
+}
+
 M.cmp = {
   enabled = function()
-    local in_prompt = vim.api.nvim_buf_get_option(0, "buftype") == "prompt"
-    if in_prompt then
-      return false
+    local disabled = false
+    disabled = disabled or is_dap_buffer(0)
+
+    disabled = disabled or (list_contains(disabled_buftypes, vim.api.nvim_get_option_value("buftype", { buf = 0 })))
+    disabled = disabled or (vim.fn.reg_recording() ~= "")
+    disabled = disabled or (vim.fn.reg_executing() ~= "")
+    disabled = disabled or (require("cmp.config.context").in_treesitter_capture "comment" == true)
+    disabled = disabled or (require("cmp.config.context").in_syntax_group "Comment" == true)
+
+    if disabled then
+      return not disabled
     end
 
-    if
-      require("cmp.config.context").in_treesitter_capture "comment" == true
-      or require("cmp.config.context").in_syntax_group "Comment"
-    then
-      return false
-    else
-      return true
-    end
+    return true
   end,
   completion = {
     completeopt = "menu,menuone,noinsert,noselect",
