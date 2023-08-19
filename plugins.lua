@@ -13,16 +13,26 @@ local plugins = {
           require "custom.configs.null-ls"
         end,
       },
+      {
+        "williamboman/mason.nvim",
+        opts = overrides.mason,
+        config = function(_, opts)
+          dofile(vim.g.base46_cache .. "mason")
+          require("mason").setup(opts)
+          vim.api.nvim_create_user_command("MasonInstallAll", function()
+            vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
+          end, {})
+          require "plugins.configs.lspconfig"
+          require "custom.configs.lspconfig"
+        end,
+      },
+      "williamboman/mason-lspconfig.nvim"
     },
     config = function()
-      require "plugins.configs.lspconfig"
-      require "custom.configs.lspconfig"
+
     end,
   },
-  {
-    "williamboman/mason.nvim",
-    opts = overrides.mason,
-  },
+
   {
     "folke/which-key.nvim",
     enabled = true,
