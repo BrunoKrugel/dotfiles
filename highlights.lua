@@ -60,9 +60,9 @@ M.add = {
   DiffText = { fg = "white", bg = "red", bold = true },
 
   -- Search highlights
-  HlSearchNear = { fg = "#2E3440", bg = "#EBCB8B" },
-  HlSearchLens = { fg = "#2E3440", bg = "#88bfcf" },
-  HlSearchLensNear = { fg = "#2E3440", bg = "#EBCB8B" },
+  HlSearchNear = { fg = "#2E3440", bg = "yellow" },
+  HlSearchLens = { fg = "#2E3440", bg = "blue" },
+  HlSearchLensNear = { fg = "#2E3440", bg = "yellow" },
 
   GitSignsCurrentLineBlame = {
     fg = "cyan",
