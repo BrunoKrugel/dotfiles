@@ -161,3 +161,5 @@ noice.setup {
     inc_rename = true,
   },
 }
+
+dofile(vim.g.base46_cache .. "notify")
