@@ -384,7 +384,9 @@ local plugins = {
     "m-demare/hlargs.nvim",
     event = "BufWinEnter",
     config = function()
-      require("hlargs").setup()
+      require("hlargs").setup {
+        hl_priority = 200,
+      }
     end,
   },
   {
@@ -507,22 +509,31 @@ local plugins = {
       timeout = 1000,
     },
   },
+  -- {
+  --   "zbirenbaum/neodim",
+  --   event = "LspAttach",
+  --   branch = "v2",
+  --   opts = {
+  --     alpha = 0.75,
+  --     blend_color = "#000000",
+  --     update_in_insert = {
+  --       enable = true,
+  --       delay = 100,
+  --     },
+  --     hide = {
+  --       virtual_text = true,
+  --       signs = true,
+  --       underline = true,
+  --     },
+  --   },
+  -- },
   {
-    "zbirenbaum/neodim",
-    event = "LspAttach",
-    opts = {
-      alpha = 0.75,
-      blend_color = "#000000",
-      update_in_insert = {
-        enable = true,
-        delay = 100,
-      },
-      hide = {
-        virtual_text = true,
-        signs = true,
-        underline = true,
-      },
-    },
+    "narutoxy/dim.lua",
+    event = "BufReadPost",
+    requires = { "nvim-treesitter/nvim-treesitter", "neovim/nvim-lspconfig" },
+    config = function()
+      require("dim").setup {}
+    end,
   },
   {
     "TobinPalmer/rayso.nvim",
