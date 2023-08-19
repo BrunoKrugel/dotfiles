@@ -444,6 +444,7 @@ local plugins = {
   },
   {
     "mfussenegger/nvim-dap",
+    cmd = { "DapContinue", "DapStepOver", "DapStepInto", "DapStepOut", "DapToggleBreakpoint" },
     dependencies = {
       {
         "theHamsta/nvim-dap-virtual-text",
@@ -458,6 +459,15 @@ local plugins = {
         end,
       },
     },
+  },
+  {
+    "Weissle/persistent-breakpoints.nvim",
+    event = "BufReadPost",
+    config = function()
+      require("persistent-breakpoints").setup {
+        load_breakpoints_event = { "BufReadPost" },
+      }
+    end,
   },
   {
     "mawkler/modicator.nvim",

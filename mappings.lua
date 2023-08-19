@@ -333,7 +333,7 @@ M.treesitter = {
 
 M.debug = {
   n = {
-    ["<leader>tt"] = { "<cmd>GoBreakToggle<CR>", " Toggle breakpoint" },
+    ["<leader>tt"] = { "<cmd>PBToggleBreakpoint<CR>", " Toggle breakpoint" },
     ["<F5>"] = { "<cmd>DapContinue <CR>", " Continue" },
     ["<F10>"] = { "<cmd>DapStepOver <CR>", " Step over" },
     ["<F11>"] = { "<cmd>DapStepInto <CR>", " Step into" },
