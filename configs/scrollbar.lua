@@ -99,6 +99,12 @@ scrollbar.setup {
     "noice",
     "alpha",
     "NvimTree",
+    "dapui_watches",
+    "dap-repl",
+    "dapui_console",
+    "dapui_stacks",
+    "dapui_breakpoints",
+    "dapui_scopes",
     "",
   },
   autocmd = {
