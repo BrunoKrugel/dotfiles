@@ -222,7 +222,7 @@ autocmd({ "BufRead", "BufNewFile" }, {
 })
 
 local function open_file_created()
-  require ("nvim-tree.api").events. subscribe("FileCreated", function (file) 
+  require ("nvim-tree.api").events.subscribe("FileCreated", function (file) 
   vim.cmd("edit " .. file.fname)
   end)
 end
