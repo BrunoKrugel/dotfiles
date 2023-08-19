@@ -160,7 +160,7 @@ M.statusline = {
       modules,
       15,
       (function()
-        return " %#NotificationHl#%@v:lua.ClickMe@  " .. require("recorder").recordingStatus()
+        return " %#NotificationHl#%@v:lua.ClickMe@  "
       end)()
     )
   end,
