@@ -1,7 +1,7 @@
 local dap, dapui = require "dap", require "dapui"
 local core = require "custom.utils.core"
 
-dapui.setup(core.dapui)
+-- dapui.setup(core.dapui)
 
 dofile(vim.g.base46_cache .. "dap")
 
@@ -18,15 +18,13 @@ dap.listeners.before.event_initialized["dapui_config"] = function()
       return
     end
   end
-  dapui:open()
+  -- dapui:open()
 end
 
 dap.listeners.before.event_terminated["dapui_config"] = function()
-  vim.cmd "stopinsert"
   dapui:close()
 end
 
 dap.listeners.after.event_exited["dapui_config"] = function()
-  vim.cmd "stopinsert"
   dapui:close()
 end
