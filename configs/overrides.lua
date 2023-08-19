@@ -282,6 +282,11 @@ M.telescope = {
       "mocks",
       "refactoring",
     },
+    layout_config = {
+      horizontal = {
+        prompt_position = "bottom",
+      },
+    },
   },
   extensions_list = {
     "themes",
