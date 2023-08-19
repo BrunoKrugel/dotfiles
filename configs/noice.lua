@@ -34,6 +34,10 @@ noice.setup {
       opts = { skip = true },
     },
     {
+      filter = { event = "msg_show", find = "%d+ less lines" },
+      opts = { skip = true },
+    },
+    {
       filter = { event = "msg_show", find = "%d+ lines yanked" },
       opts = { skip = true },
     },
