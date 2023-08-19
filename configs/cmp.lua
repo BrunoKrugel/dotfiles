@@ -1,6 +1,8 @@
 local M = {}
 local copilot_status_ok, copilot_cmp_comparators = pcall(require, "copilot_cmp.comparators")
 
+dofile(vim.g.base46_cache .. "cmp")
+
 local function deprioritize_snippet(entry1, entry2)
   local types = require "cmp.types"
 
