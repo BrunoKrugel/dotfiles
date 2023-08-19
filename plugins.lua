@@ -86,6 +86,15 @@ local plugins = {
           }
         end,
       },
+      {
+        "LiadOz/nvim-dap-repl-highlights",
+        config = true,
+        build = function()
+          if not require("nvim-treesitter.parsers").has_parser "dap_repl" then
+            vim.cmd ":TSInstall dap_repl"
+          end
+        end,
+      },
     },
     opts = overrides.treesitter,
   },
@@ -297,6 +306,24 @@ local plugins = {
   --   end,
   -- },
   {
+    "epwalsh/obsidian.nvim",
+    ft = "markdown",
+    config = function()
+      require("obsidian").setup {
+        dir = "/users/bruno.krugel/Library/Mobile Documents/iCloud~md~obsidian/Documents/Annotation",
+        disable_frontmatter = true,
+        completion = {
+          nvim_cmp = true, -- if using nvim-cmp, otherwise set to false
+        },
+        -- Optional, key mappings.
+        mappings = {
+          -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
+          ["ogf"] = require("obsidian.mapping").gf_passthrough(),
+        },
+      }
+    end,
+  },
+  {
     "chrisgrieser/nvim-early-retirement",
     opts = {
       retirementAgeMins = 5,
@@ -409,15 +436,6 @@ local plugins = {
         "rcarriga/nvim-dap-ui",
         config = function()
           require "custom.configs.dapui"
-        end,
-      },
-      {
-        "LiadOz/nvim-dap-repl-highlights",
-        config = true,
-        build = function()
-          if not require("nvim-treesitter.parsers").has_parser "dap_repl" then
-            vim.cmd ":TSInstall dap_repl"
-          end
         end,
       },
     },
@@ -937,7 +955,6 @@ local plugins = {
   {
     "sustech-data/wildfire.nvim",
     event = "VeryLazy",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
       require("wildfire").setup()
     end,
