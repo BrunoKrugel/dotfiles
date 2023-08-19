@@ -26,9 +26,21 @@ M.ui = {
   },
 
   telescope = { style = "bordered" },
+  
+  extended_integrations = {
+    "dap",
+  },
 
   hl_override = highlights.override,
   hl_add = highlights.add,
+
+  changed_themes = {
+    vscode_dark = {
+      base_30 = {
+        vibrant_green = "#4ECF94",
+      },
+    },
+  },
 
   nvdash = core.nvdash,
 }
