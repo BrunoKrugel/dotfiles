@@ -13,13 +13,15 @@ local plugins = {
           require "custom.configs.null-ls"
         end,
       },
-      { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
-      { "folke/neodev.nvim", ft = "lua", opts = { experimental = { pathStrict = true } } },
     },
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
     end,
+  },
+  {
+    "williamboman/mason.nvim",
+    opts = overrides.mason,
   },
   {
     "folke/which-key.nvim",
@@ -35,10 +37,6 @@ local plugins = {
       require("scrollbar.handlers.gitsigns").setup()
       require("gitsigns").setup(opts)
     end,
-  },
-  {
-    "williamboman/mason.nvim",
-    opts = overrides.mason,
   },
   {
     "nvim-tree/nvim-web-devicons",
@@ -383,7 +381,7 @@ local plugins = {
   },
   {
     "MattesGroeger/vim-bookmarks",
-    cmd = "BookmarkToggle",
+    cmd = {"BookmarkToggle", "BookmarkClear" },
   },
   {
     "RRethy/vim-illuminate",
@@ -627,6 +625,9 @@ local plugins = {
       vim.g.code_action_menu_show_details = true
       vim.g.code_action_menu_show_diff = true
       vim.g.code_action_menu_show_action_kind = true
+    end,
+    config = function()
+      dofile(vim.g.base46_cache .. "git")
     end,
   },
   {
