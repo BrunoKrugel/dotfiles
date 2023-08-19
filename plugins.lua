@@ -18,19 +18,17 @@ local plugins = {
         opts = overrides.mason,
         config = function(_, opts)
           dofile(vim.g.base46_cache .. "mason")
+          dofile(vim.g.base46_cache .. "lsp")
           require("mason").setup(opts)
           vim.api.nvim_create_user_command("MasonInstallAll", function()
             vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
           end, {})
-          require "plugins.configs.lspconfig"
           require "custom.configs.lspconfig"
         end,
       },
-      "williamboman/mason-lspconfig.nvim"
+      "williamboman/mason-lspconfig.nvim",
     },
-    config = function()
-
-    end,
+    config = function() end,
   },
 
   {
@@ -391,7 +389,7 @@ local plugins = {
   },
   {
     "MattesGroeger/vim-bookmarks",
-    cmd = {"BookmarkToggle", "BookmarkClear" },
+    cmd = { "BookmarkToggle", "BookmarkClear" },
   },
   {
     "RRethy/vim-illuminate",
