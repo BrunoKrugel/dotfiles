@@ -16,6 +16,18 @@ M.override = {
   ["@namespace"] = { fg = "white" },
   ["@function.builtin"] = { fg = "cyan" },
   ["@function.call"] = { fg = "green" },
+  ["@boolean"]                 = { fg = "green" },
+  ["@text.danger"]             = { fg = "red" },
+  ["@text.note"]               = { fg = "blue" },
+  ["@text.header"]             = { bold = true },
+  ["@text.diff.add"]           = { fg = "green" },
+  ["@text.diff.delete"]        = { fg = "red" },
+  ["@text.todo"]               = { fg = "blue" },
+  ["@string.special"]          = { fg = "blue" },
+  ["@class.css"]               = { fg = "green" },
+  ["@class.scss"]              = { link = "@class.css" },
+  ["@property.css"]            = { fg = "teal" },
+  ["@property.scss"]           = { link = "@property.css" },
   -- Copilot
   CopilotSuggestion = { fg = "#83a598" },
   CopilotAnnotation = { fg = "#03a598" },
@@ -89,19 +101,6 @@ M.add = {
 
   DiagnosticUnnecessary        = { link = "", fg = "light_grey" },
   LspInlayHint                 = { link = "", fg = "light_grey" },
-
-  ["@boolean"]                 = { fg = "green" },
-  ["@text.danger"]             = { fg = "red" },
-  ["@text.note"]               = { fg = "blue" },
-  ["@text.header"]             = { bold = true },
-  ["@text.diff.add"]           = { fg = "green" },
-  ["@text.diff.delete"]        = { fg = "red" },
-  ["@text.todo"]               = { fg = "blue" },
-  ["@string.special"]          = { fg = "blue" },
-  ["@class.css"]               = { fg = "green" },
-  ["@class.scss"]              = { link = "@class.css" },
-  ["@property.css"]            = { fg = "teal" },
-  ["@property.scss"]           = { link = "@property.css" },
 }
 
 return M
