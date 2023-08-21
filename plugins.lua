@@ -693,6 +693,11 @@ local plugins = {
     end,
   },
   {
+    "m4xshen/hardtime.nvim",
+    cmd = { "Hardtime" },
+    opts = {},
+  },
+  {
     "kevinhwang91/nvim-ufo",
     event = "VeryLazy",
     dependencies = {
@@ -705,7 +710,17 @@ local plugins = {
           require("statuscol").setup {
             relculright = true,
             bt_ignore = { "nofile", "prompt", "terminal", "packer" },
-            ft_ignore = { "NvimTree", "dashboard", "nvcheatsheet" },
+            ft_ignore = {
+              "NvimTree",
+              "dashboard",
+              "nvcheatsheet",
+              "dapui_watches",
+              "dap-repl",
+              "dapui_console",
+              "dapui_stacks",
+              "dapui_breakpoints",
+              "dapui_scopes",
+            },
             segments = {
               -- Segment 1: Add padding
               {

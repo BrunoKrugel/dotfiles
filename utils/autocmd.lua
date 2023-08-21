@@ -124,6 +124,12 @@ autocmd({ "FileType", "BufWinEnter" }, {
       "Trouble",
       "NvimTree",
       "nvcheatsheet",
+      "dapui_watches",
+      "dap-repl",
+      "dapui_console",
+      "dapui_stacks",
+      "dapui_breakpoints",
+      "dapui_scopes",
     }
 
     local b = vim.api.nvim_get_current_buf()
