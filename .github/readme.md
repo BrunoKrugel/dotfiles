@@ -102,7 +102,7 @@ _With [UFO](https://github.com/kevinhwang91/nvim-ufo), [Pretty Fold](https://git
 
 </div>
 
-There is also a custom fold code in `status.` `lua`, you can disable ufo and enable the custom code.
+There is also a custom fold code in `status.lua`, you can disable ufo and enable the custom code.
 
 ## Diagnostics in a VSCode style
 
