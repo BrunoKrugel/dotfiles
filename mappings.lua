@@ -236,7 +236,7 @@ M.general = {
     [";"] = { ":", "󰘳 Enter command mode", opts = { nowait = true } },
     ["<leader>q"] = { "<cmd>q<CR>", "󰗼 Close" },
     ["<leader>qq"] = { "<cmd>qa!<CR>", "󰗼 Exit" },
-    ["<C-p>"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "󰘳 Find files" },
+    ["<C-p>"] = { "<cmd> Telescope command_center<CR>", "󰘳 Find files" },
 
     -- Keep cursor in the center line when C-D / C-U
     ["<C-d>"] = { "<C-d>zz", " Scroll down", opts = { silent = true } },

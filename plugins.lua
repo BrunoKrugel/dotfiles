@@ -804,6 +804,13 @@ local plugins = {
     end,
   },
   {
+    "FeiyouG/command_center.nvim",
+    event = "VeryLazy",
+    config = function()
+      require "custom.configs.command"
+    end,
+  },
+  {
     "kevinhwang91/nvim-hlslens",
     event = "BufReadPost",
     config = function()
