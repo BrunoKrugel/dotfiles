@@ -6,7 +6,7 @@ end
 
 scrollbar.setup {
   show = true,
-  show_in_active_only = false,
+  show_in_active_only = true,
   set_highlights = true,
   folds = 1000,      -- handle folds, set to number to disable folds if no. of lines in buffer exceeds this
   max_lines = false, -- disables if no. of lines in buffer exceeds this
@@ -15,7 +15,7 @@ scrollbar.setup {
     color = "#2A2C3F",
     cterm = nil,
     -- highlight = "CursorColumn",
-    hide_if_all_visible = false, -- Hides handle if all lines are visible
+    hide_if_all_visible = true, -- Hides handle if all lines are visible
   },
   marks = {
     Cursor = {
@@ -69,21 +69,21 @@ scrollbar.setup {
       highlight = "Normal",
     },
     GitAdd = {
-      text = "┆",
+      text = "•",
       priority = 7,
       color = nil,
       cterm = nil,
       highlight = "GitSignsAdd",
     },
     GitChange = {
-      text = "┆",
+      text = "|",
       priority = 7,
       color = nil,
       cterm = nil,
       highlight = "GitSignsChange",
     },
     GitDelete = {
-      text = "▁",
+      text = "~",
       priority = 7,
       color = nil,
       cterm = nil,
@@ -127,8 +127,8 @@ scrollbar.setup {
   },
   handlers = {
     cursor = true,
-    diagnostic = false,
-    gitsigns = false, -- Requires gitsigns
+    diagnostic = true,
+    gitsigns = true, -- Requires gitsigns
     handle = true,
     search = true,    -- Requires hlslens
   },
