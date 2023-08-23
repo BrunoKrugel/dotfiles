@@ -24,55 +24,85 @@ noice.setup {
   routes = {
     {
       filter = {
-        event = "msg_show",
-        kind = "",
+        event = "lsp",
+        any = {
+          { find = "formatting" },
+          { find = "Diagnosing" },
+          { find = "Diagnostics" },
+          { find = "diagnostics" },
+          { find = "code_action" },
+          { find = "Processing full semantic tokens" },
+          { find = "symbols" },
+          { find = "completion" },
+        },
       },
       opts = { skip = true },
     },
     {
-      filter = { event = "msg_show", find = "%d+ more lines" },
-      opts = { skip = true },
-    },
-    {
-      filter = { event = "msg_show", find = "%d+ less lines" },
-      opts = { skip = true },
-    },
-    {
-      filter = { event = "msg_show", find = "%d+ fewer lines" },
-      opts = { skip = true },
-    },
-    {
-      filter = { event = "msg_show", find = "%d+ lines yanked" },
+      filter = {
+        event = "notify",
+        any = {
+          -- Neo-tree
+          { find = "Toggling hidden files: true" },
+          { find = "Toggling hidden files: false" },
+          { find = "Operation canceled" },
+
+          -- Telescope
+          { find = "Nothing currently selected" },
+          { find = "No information available" },
+          { find = "Highlight group" },
+          { find = "no manual entry for" },
+          { find = "not have parser for" },
+
+          -- ts
+          { find = "_ts_parse_query" },
+        },
+      },
       opts = { skip = true },
     },
     {
       filter = {
+        event = "msg_show",
+        kind = "",
         any = {
-          {
-            event = "msg_show",
-            kind = "",
-            find = "%d+ change;",
-          },
-          {
-            event = "msg_show",
-            kind = "",
-            find = "%d+ line less;",
-          },
-          {
-            event = "msg_show",
-            kind = "",
-            find = "%d+ fewer lines;?",
-          },
-          {
-            event = "msg_show",
-            kind = "",
-            find = "%d+ more lines?;",
-          },
-          {
-            event = "msg_show",
-            kind = "",
-            find = '".+" %d+L, %d+B',
-          },
+
+          -- Edit
+          { find = "%d+ less lines" },
+          { find = "%d+ fewer lines" },
+          { find = "%d+ more lines" },
+          { find = "%d+ change;" },
+          { find = "%d+ line less;" },
+          { find = "%d+ more lines?;" },
+          { find = "%d+ fewer lines;?" },
+          { find = '".+" %d+L, %d+B' },
+          { find = "%d+ lines yanked" },
+
+          -- Save
+          { find = " bytes written" },
+
+          -- Redo/Undo
+          { find = " changes; before #" },
+          { find = " changes; after #" },
+          { find = "1 change; before #" },
+          { find = "1 change; after #" },
+
+          -- Yank
+          { find = " lines yanked" },
+
+          -- Move lines
+          { find = " lines moved" },
+          { find = " lines indented" },
+
+          -- Bulk edit
+          { find = " fewer lines" },
+          { find = " more lines" },
+          { find = "1 more line" },
+          { find = "1 line less" },
+
+          -- General messages
+          { find = "Already at newest change" },
+          { find = "Already at oldest change" },
+          { find = "E21: Cannot make changes, 'modifiable' is off" },
         },
       },
       opts = { skip = true },
