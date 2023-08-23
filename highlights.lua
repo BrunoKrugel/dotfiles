@@ -72,6 +72,11 @@ M.add = {
   DiffAdd = { fg = "vibrant_green" },
   DiffText = { fg = "white", bg = "red", bold = true },
 
+  GitSignsChange = { fg = "green" },
+  GitSignsAdd = { fg = "vibrant_green" },
+  GitSignsDelete = { fg = "red" },
+  GitSignsText = { fg = "white", bg = "red", bold = true },
+
   -- Deprecated
   cssDeprecated                = { strikethrough = true },
   javaScriptDeprecated         = { strikethrough = true },

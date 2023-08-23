@@ -76,7 +76,7 @@ scrollbar.setup {
       highlight = "GitSignsAdd",
     },
     GitChange = {
-      text = "|",
+      text = " ",
       priority = 7,
       color = nil,
       cterm = nil,
