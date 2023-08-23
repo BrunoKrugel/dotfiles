@@ -202,6 +202,9 @@ autocmd("FileType", {
     "checkhealth",
     "tsplayground",
     "HIERARCHY-TREE-GO",
+    "dap-float",
+    "null-ls-info",
+    "empty",
   },
   command = [[
             nnoremap <buffer><silent> q :close<CR>
