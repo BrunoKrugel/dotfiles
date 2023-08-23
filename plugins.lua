@@ -425,7 +425,7 @@ local plugins = {
     config = true,
   },
   {
-    "kylechui/nvim-surround",
+    "echasnovski/mini.surround",
     event = { "BufReadPost", "BufNewFile" },
     config = true,
   },
