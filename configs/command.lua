@@ -17,22 +17,18 @@ require("command_center").add {
     cmd = "<CMD>UFOOpen<CR>",
     category = "text",
   },
-    {
+  {
     desc = " Pick Color",
     cmd = "<CMD>Colortils picker<CR>",
     category = "web",
   },
-
-
-
 }
 
 telescope.setup {
   extensions = {
     command_center = {
       components = {
-        command_center.component.DESColortils picker
-        
+        command_center.component.DES,
       },
       sort_by = {
         command_center.component.DESC,
