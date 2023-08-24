@@ -67,7 +67,7 @@ M.comment = {
 
   v = {
     ["<A-/>"] = {
-      "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+      "<ESC><CMD>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
       "  Toggle comment",
     },
   },
@@ -100,18 +100,18 @@ M.development = {
       end,
       "󰆘 Toggle context",
     },
-    ["<A-p>"] = { "<cmd>Colortils picker<CR>", " Delete word" },
+    ["<A-p>"] = { "<CMD>Colortils picker<CR>", " Delete word" },
   },
 }
 
 M.text = {
   i = {
     -- Move line up and down
-    -- ["<C-Up>"] = { "<cmd> :m-2<CR>", "󰜸 Move line up" },
-    ["<C-Up>"] = { "<cmd>m .-2<CR>==", "󰜸 Move line up" },
+    -- ["<C-Up>"] = { "<CMD> :m-2<CR>", "󰜸 Move line up" },
+    ["<C-Up>"] = { "<CMD>m .-2<CR>==", "󰜸 Move line up" },
 
-    -- ["<C-Down>"] = { "<cmd> :m+<CR>", "󰜯 Move line down" },
-    ["<C-Down>"] = { "<cmd>m .+1<CR>==", "󰜯 Move line down" },
+    -- ["<C-Down>"] = { "<CMD> :m+<CR>", "󰜯 Move line down" },
+    ["<C-Down>"] = { "<CMD>m .+1<CR>==", "󰜯 Move line down" },
 
     -- Navigate
     ["<A-Left>"] = { "<ESC>I", " Move to beginning of line" },
@@ -126,7 +126,7 @@ M.text = {
   },
 
   n = {
-    ["<leader>cc"] = { "<cmd> ColorcolumnToggle <CR>", " Toggle ColorColumn display" },
+    ["<leader>cc"] = { "<CMD> ColorcolumnToggle <CR>", " Toggle ColorColumn display" },
     -- Navigate
     ["<C-Left>"] = { "<ESC>_", "󰜲 Move to beginning of line" },
     ["<C-Right>"] = { "<ESC>$", "󰜵 Move to end of line" },
@@ -134,19 +134,19 @@ M.text = {
     ["<F3>"] = { "n", " Next" },
     ["<S-F3>"] = { "N", " Previous" },
     -- Operations
-    ["<C-z>"] = { "<cmd>u<CR>", "󰕌 Undo" },
-    ["<C-r>"] = { "<cmd>redo<CR>", "󰑎 Redo" },
+    ["<C-z>"] = { "<CMD>u<CR>", "󰕌 Undo" },
+    ["<C-r>"] = { "<CMD>redo<CR>", "󰑎 Redo" },
     ["<C-x>"] = { "x", "󰆐 Cut" },
     ["<C-v>"] = { "p", "󰆒 Paste" },
     ["<C-c>"] = { "y", " Copy" },
     ["<leader><leader>d"] = { "viw", " Select word" },
     ["<leader>d"] = { 'viw"_di', " Delete word" },
-    ["<C-Up>"] = { "<cmd>m .-2<CR>==", "󰜸 Move line up" },
-    ["<C-Down>"] = { "<cmd>m .+1<CR>==", "󰜯 Move line down" },
+    ["<C-Up>"] = { "<CMD>m .-2<CR>==", "󰜸 Move line up" },
+    ["<C-Down>"] = { "<CMD>m .+1<CR>==", "󰜯 Move line down" },
     -- Renamer
-    ["<C-R>"] = { "<cmd>:MurenToggle<CR>", "󱝪 Toggle Search" },
-    ["<leader>sp"] = { "<cmd>:TSJToggle<CR>", "󰯌 Toggle split/join" },
-    ["<A-d>"] = { "<cmd>:MCstart<CR>", "Multi cursor" },
+    ["<C-R>"] = { "<CMD>:MurenToggle<CR>", "󱝪 Toggle Search" },
+    ["<leader>sp"] = { "<CMD>:TSJToggle<CR>", "󰯌 Toggle split/join" },
+    ["<A-d>"] = { "<CMD>:MCstart<CR>", "Multi cursor" },
     ["<leader>ra"] = {
       function()
         require("nvchad.renamer").open()
@@ -196,13 +196,13 @@ M.text = {
 
 M.go = {
   n = {
-    ["<leader>fi"] = { " <cmd>:GoImport<CR>", " Format imports", opts = { silent = true } },
-    ["<leader>gif"] = { " <cmd>:GoIfErr<CR>", " Create If Err", opts = { silent = true } },
-    ["<leader>gfs"] = { " <cmd>:GoFillStruct<CR>", " Fill struct", opts = { silent = true } },
-    ["<leader>gcv"] = { " <cmd>:GoCoverage -p<CR>", " Show coverage", opts = { silent = true } },
-    ["<leader>gt"] = { " <cmd>:GoAlt!<CR>", " Go to test", opts = { silent = true } },
-    ["<leader>gca"] = { " <cmd>:GoCodeAction<CR>", " Code action", opts = { silent = true } },
-    ["<leader>gca"] = { " <cmd>:GoCodeAction<CR>", " Code action", opts = { silent = true } },
+    ["<leader>fi"] = { " <CMD>:GoImport<CR>", " Format imports", opts = { silent = true } },
+    ["<leader>gif"] = { " <CMD>:GoIfErr<CR>", " Create If Err", opts = { silent = true } },
+    ["<leader>gfs"] = { " <CMD>:GoFillStruct<CR>", " Fill struct", opts = { silent = true } },
+    ["<leader>gcv"] = { " <CMD>:GoCoverage -p<CR>", " Show coverage", opts = { silent = true } },
+    ["<leader>gt"] = { " <CMD>:GoAlt!<CR>", " Go to test", opts = { silent = true } },
+    ["<leader>gca"] = { " <CMD>:GoCodeAction<CR>", " Code action", opts = { silent = true } },
+    ["<leader>gca"] = { " <CMD>:GoCodeAction<CR>", " Code action", opts = { silent = true } },
     ["<leader>ghc"] = {
       function()
         require("hierarchy-tree-go").open()
@@ -226,23 +226,23 @@ M.go = {
 
 M.window = {
   n = {
-    ["<leader><leader>h"] = { "<cmd>vs <CR>", "󰤼 Vertical split", opts = { nowait = true } },
-    ["<leader><leader>v"] = { "<cmd>sp <CR>", "󰤻 Horizontal split", opts = { nowait = true } },
+    ["<leader><leader>h"] = { "<CMD>vs <CR>", "󰤼 Vertical split", opts = { nowait = true } },
+    ["<leader><leader>v"] = { "<CMD>sp <CR>", "󰤻 Horizontal split", opts = { nowait = true } },
   },
 }
 
 M.general = {
   n = {
     [";"] = { ":", "󰘳 Enter command mode", opts = { nowait = true } },
-    ["<leader>q"] = { "<cmd>q<CR>", "󰗼 Close" },
-    ["<leader>qq"] = { "<cmd>qa!<CR>", "󰗼 Exit" },
-    ["<C-p>"] = { "<cmd> Telescope command_center<CR>", "󰘳 Find files" },
+    ["<leader>q"] = { "<CMD>q<CR>", "󰗼 Close" },
+    ["<leader>qq"] = { "<CMD>qa!<CR>", "󰗼 Exit" },
+    ["<C-p>"] = { "<CMD> Telescope command_center<CR>", "󰘳 Find files" },
 
     -- Keep cursor in the center line when C-D / C-U
     ["<C-d>"] = { "<C-d>zz", " Scroll down", opts = { silent = true } },
     ["<C-u>"] = { "<C-u>zz", " Scroll up", opts = { silent = true } },
 
-    ["<leader>cs"] = { "<cmd>SymbolsOutline<cr>", " Symbols Outline" },
+    ["<leader>cs"] = { "<CMD>SymbolsOutline<CR>", " Symbols Outline" },
     ["<leader>tr"] = {
       function()
         require("base46").toggle_transparency()
@@ -260,10 +260,10 @@ M.general = {
 
 M.diagnostics = {
   n = {
-    ["<leader>t"] = { "<cmd>TroubleToggle<cr>", "󰔫 Toggle warnings" },
-    ["<leader>td"] = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME,BUG,TEST,NOTE<cr>", " Todo/Fix/Fixme" },
-    ["<leader>el"] = { "<cmd>ErrorLensToggle<cr>", "󱇭 Toggle error lens" },
-    ["<leader>ft"] = { "<cmd>TodoTelescope<cr>", " Telescope TODO" },
+    ["<leader>t"] = { "<CMD>TroubleToggle<CR>", "󰔫 Toggle warnings" },
+    ["<leader>td"] = { "<CMD>TodoTrouble keywords=TODO,FIX,FIXME,BUG,TEST,NOTE<CR>", " Todo/Fix/Fixme" },
+    ["<leader>el"] = { "<CMD>ErrorLensToggle<CR>", "󱇭 Toggle error lens" },
+    ["<leader>ft"] = { "<CMD>TodoTelescope<CR>", " Telescope TODO" },
     ["<Leader>ll"] = {
       function()
         require("lsp_lines").toggle()
@@ -321,7 +321,7 @@ M.node = {
 
 M.treesitter = {
   n = {
-    ["<leader>cu"] = { "<cmd>TSCaptureUnderCursor <CR>", " Find highlight" },
+    ["<leader>cu"] = { "<CMD>TSCaptureUnderCursor <CR>", " Find highlight" },
     ["<leader>to"] = {
       function()
         require("treesj").toggle()
@@ -333,11 +333,11 @@ M.treesitter = {
 
 M.debug = {
   n = {
-    ["<leader>tt"] = { "<cmd>PBToggleBreakpoint<CR>", " Toggle breakpoint" },
-    ["<F5>"] = { "<cmd>DapContinue <CR>", " Continue" },
-    ["<F10>"] = { "<cmd>DapStepOver <CR>", " Step over" },
-    ["<F11>"] = { "<cmd>DapStepInto <CR>", " Step into" },
-    ["<F9>"] = { "<cmd>DapStepOut <CR>", " Step out" },
+    ["<leader>tt"] = { "<CMD>PBToggleBreakpoint<CR>", " Toggle breakpoint" },
+    ["<F5>"] = { "<CMD>DapContinue <CR>", " Continue" },
+    ["<F10>"] = { "<CMD>DapStepOver <CR>", " Step over" },
+    ["<F11>"] = { "<CMD>DapStepInto <CR>", " Step into" },
+    ["<F9>"] = { "<CMD>DapStepOut <CR>", " Step out" },
     ["<leader><leader>p"] = {
       function()
         require("debugprint").debugprint()
@@ -349,33 +349,33 @@ M.debug = {
 
 M.git = {
   n = {
-    ["<leader>gc"] = { "<cmd>Telescope git_commits<CR>", "  Git commits" },
-    ["<leader>gb"] = { "<cmd>Telescope git_branches<CR>", "  Git branches" },
-    ["<leader>gs"] = { "<cmd>Telescope git_status<CR>", "  Git status" },
-    ["<leader>lg"] = { "<cmd>LazyGit<CR>", "  LazyGit" },
-    ["<leader>gl"] = { "<cmd>GitBlameToggle<CR>", "  Blame line" },
-    ["<leader>gtb"] = { "<cmd>ToggleBlame<CR>", "  Blame line" },
-    ["<leader>gvd"] = { "<cmd> DiffviewOpen<CR>", "  Show git diff" },
-    ["<leader>gvf"] = { "<cmd> DiffviewFileHistory %<CR>", "  Show file history" },
-    ["<leader>gvp"] = { "<cmd> DiffviewOpen --cached<CR>", "  Show staged diffs" },
-    ["<leader>gvr"] = { "<cmd> DiffviewRefresh<CR>", "  Refresh diff view" },
-    ["<leader>gvc"] = { "<cmd> DiffviewClose<CR>", "  Close diff view" },
-    ["<Leader>gcb"] = { "<cmd>GitConflictChooseBoth<CR>", "Choose both" },
-    ["<Leader>gcn"] = { "<cmd>GitConflictNextConflict<CR>", "Move to next conflict" },
-    ["<Leader>gco"] = { "<cmd>GitConflictChooseOurs<CR>", "Choose ours" },
-    ["<Leader>gcp"] = { "<cmd>GitConflictPrevConflict<CR>", "Move to prev conflict" },
-    ["<Leader>gct"] = { "<cmd>GitConflictChooseTheirs<CR>", "Choose theirs" },
+    ["<leader>gc"] = { "<CMD>Telescope git_commits<CR>", "  Git commits" },
+    ["<leader>gb"] = { "<CMD>Telescope git_branches<CR>", "  Git branches" },
+    ["<leader>gs"] = { "<CMD>Telescope git_status<CR>", "  Git status" },
+    ["<leader>lg"] = { "<CMD>LazyGit<CR>", "  LazyGit" },
+    ["<leader>gl"] = { "<CMD>GitBlameToggle<CR>", "  Blame line" },
+    ["<leader>gtb"] = { "<CMD>ToggleBlame<CR>", "  Blame line" },
+    ["<leader>gvd"] = { "<CMD> DiffviewOpen<CR>", "  Show git diff" },
+    ["<leader>gvf"] = { "<CMD> DiffviewFileHistory %<CR>", "  Show file history" },
+    ["<leader>gvp"] = { "<CMD> DiffviewOpen --cached<CR>", "  Show staged diffs" },
+    ["<leader>gvr"] = { "<CMD> DiffviewRefresh<CR>", "  Refresh diff view" },
+    ["<leader>gvc"] = { "<CMD> DiffviewClose<CR>", "  Close diff view" },
+    ["<Leader>gcb"] = { "<CMD>GitConflictChooseBoth<CR>", "Choose both" },
+    ["<Leader>gcn"] = { "<CMD>GitConflictNextConflict<CR>", "Move to next conflict" },
+    ["<Leader>gco"] = { "<CMD>GitConflictChooseOurs<CR>", "Choose ours" },
+    ["<Leader>gcp"] = { "<CMD>GitConflictPrevConflict<CR>", "Move to prev conflict" },
+    ["<Leader>gct"] = { "<CMD>GitConflictChooseTheirs<CR>", "Choose theirs" },
   },
 }
 
 M.telescope = {
   n = {
-    ["<leader>li"] = { "<cmd>Telescope highlights<CR>", "Highlights" },
-    ["<leader>fk"] = { "<cmd>Telescope keymaps<CR>", " Find keymaps" },
-    ["<leader>fs"] = { "<cmd>Telescope lsp_document_symbols<CR>", " Find document symbols" },
-    ["<leader>fr"] = { "<cmd>Telescope frecency<CR>", " Recent files" },
-    ["<leader>fu"] = { "<cmd>Telescope undo<CR>", " Undo tree" },
-    ["<leader>fg"] = { "<cmd>Telescope ast_grep<CR>", " Structural Search" },
+    ["<leader>li"] = { "<CMD>Telescope highlights<CR>", "Highlights" },
+    ["<leader>fk"] = { "<CMD>Telescope keymaps<CR>", " Find keymaps" },
+    ["<leader>fs"] = { "<CMD>Telescope lsp_document_symbols<CR>", " Find document symbols" },
+    ["<leader>fr"] = { "<CMD>Telescope frecency<CR>", " Recent files" },
+    ["<leader>fu"] = { "<CMD>Telescope undo<CR>", " Undo tree" },
+    ["<leader>fg"] = { "<CMD>Telescope ast_grep<CR>", " Structural Search" },
     ["<leader>fre"] = {
       function()
         require("telescope").extensions.refactoring.refactors()
@@ -383,7 +383,7 @@ M.telescope = {
       " Structural Search",
     },
     ["<leader>fz"] = {
-      "<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<CR>",
+      "<CMD>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<CR>",
       " Find current file",
     },
   },
@@ -420,7 +420,7 @@ M.tabufline = {
 
 M.docker = {
   n = {
-    ["<leader>ld"] = { "<cmd> LazyDocker <CR>", "󰡨 Open LazyDocker" },
+    ["<leader>ld"] = { "<CMD> LazyDocker <CR>", "󰡨 Open LazyDocker" },
   },
 }
 
@@ -437,10 +437,10 @@ M.test = {
 
 M.nvimtree = {
   n = {
-    ["<C-b>"] = { "<cmd> NvimTreeToggle <CR>", "󰔱 Toggle nvimtree" },
+    ["<C-b>"] = { "<CMD> NvimTreeToggle <CR>", "󰔱 Toggle nvimtree" },
   },
   i = {
-    ["<C-b>"] = { "<cmd> NvimTreeToggle <CR>", "󰔱 Toggle nvimtree" },
+    ["<C-b>"] = { "<CMD> NvimTreeToggle <CR>", "󰔱 Toggle nvimtree" },
   },
 }
 
@@ -452,44 +452,44 @@ M.session = {
       end,
       "󰆓 List session",
     },
-    ["<leader>sd"] = { "<cmd>SessionDelete<CR>", "󱙃 Delete Session" },
+    ["<leader>sd"] = { "<CMD>SessionDelete<CR>", "󱙃 Delete Session" },
   },
 }
 
 M.hop = {
   n = {
-    ["<leader><leader>w"] = { "<cmd> HopWord <CR>", "󰸱 Hint all words" },
+    ["<leader><leader>w"] = { "<CMD> HopWord <CR>", "󰸱 Hint all words" },
     ["<leader><leader>t"] = {
       function()
         require("tsht").move { side = "start" }
       end,
       " Hint Tree",
     },
-    ["<leader><leader>c"] = { "<cmd> HopLineStart<CR>", "󰕭 Hint Columns" },
-    ["<leader><leader>l"] = { "<cmd> HopWordCurrentLine<CR>", "󰗉 Hint Line" },
+    ["<leader><leader>c"] = { "<CMD> HopLineStart<CR>", "󰕭 Hint Columns" },
+    ["<leader><leader>l"] = { "<CMD> HopWordCurrentLine<CR>", "󰗉 Hint Line" },
   },
 }
 
 M.searchbox = {
   n = {
-    ["<C-F>"] = { "<cmd> SearchBoxMatchAll clear_matches=true<CR>", "󱘟 Search matching all" },
-    ["<A-R>"] = { "<cmd> SearchBoxReplace confirm=menu<CR>", " Replace" },
+    ["<C-F>"] = { "<CMD> SearchBoxMatchAll clear_matches=true<CR>", "󱘟 Search matching all" },
+    ["<A-R>"] = { "<CMD> SearchBoxReplace confirm=menu<CR>", " Replace" },
   },
 }
 
 M.bookmark = {
   n = {
-    ["<leader>ba"] = { "<cmd> BookmarkToggle<CR>", "󰃅 Add bookmark" },
-    ["<leader>bn"] = { "<cmd> BookmarkNext<CR>", "󰮰 Next bookmark" },
-    ["<leader>bp"] = { "<cmd> BookmarkPrev<CR>", "󰮲 Prev bookmark" },
-    ["<leader>bc"] = { "<cmd> BookmarkClear<CR>", "󰃢 Clear bookmark" },
-    ["<leader>bm"] = { "<cmd>Telescope vim_bookmarks all<CR>", " Bookmark Menu" },
+    ["<leader>ba"] = { "<CMD> BookmarkToggle<CR>", "󰃅 Add bookmark" },
+    ["<leader>bn"] = { "<CMD> BookmarkNext<CR>", "󰮰 Next bookmark" },
+    ["<leader>bp"] = { "<CMD> BookmarkPrev<CR>", "󰮲 Prev bookmark" },
+    ["<leader>bc"] = { "<CMD> BookmarkClear<CR>", "󰃢 Clear bookmark" },
+    ["<leader>bm"] = { "<CMD>Telescope vim_bookmarks all<CR>", " Bookmark Menu" },
   },
 }
 
 M.lspsaga = {
   n = {
-    ["<leader>."] = { "<cmd>CodeActionMenu<CR>", "󰅱 Code Action" },
+    ["<leader>."] = { "<CMD>CodeActionMenu<CR>", "󰅱 Code Action" },
     ["gf"] = {
       function()
         vim.cmd "Lspsaga lsp_finder"
@@ -497,25 +497,25 @@ M.lspsaga = {
       " Go to definition",
     },
     ["gt"] = {
-      "<cmd>Lspsaga goto_definition<cr>",
+      "<CMD>Lspsaga goto_definition<CR>",
       " Go to definition",
     },
     ["<leader>lp"] = {
-      "<cmd>Lspsaga peek_definition<cr>",
+      "<CMD>Lspsaga peek_definition<CR>",
       " Peek definition",
     },
     ["<leader>k"] = {
-      -- "<Cmd>Lspsaga hover_doc<cr>",
+      -- "<CMD>Lspsaga hover_doc<CR>",
       function()
         require("pretty_hover").hover()
       end,
       "󱙼 Hover lsp",
     },
-    ["<leader>o"] = { "<cmd>Lspsaga outline<CR>", " Show Outline" },
+    ["<leader>o"] = { "<CMD>Lspsaga outline<CR>", " Show Outline" },
     --  LSP
-    ["gr"] = { "<cmd>Telescope lsp_references<CR>", " Lsp references" },
-    ["[d"] = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", " Prev Diagnostic" },
-    ["]d"] = { "<cmd>Lspsaga diagnostic_jump_next<CR>", " Next Diagnostic" },
+    ["gr"] = { "<CMD>Telescope lsp_references<CR>", " Lsp references" },
+    ["[d"] = { "<CMD>Lspsaga diagnostic_jump_prev<CR>", " Prev Diagnostic" },
+    ["]d"] = { "<CMD>Lspsaga diagnostic_jump_next<CR>", " Next Diagnostic" },
     ["<leader>qf"] = {
       function()
         vim.diagnostic.setloclist()
@@ -550,7 +550,7 @@ M.nvterm = {
 
 M.portal = {
   n = {
-    ["<leader>pj"] = { "<cmd>Portal jumplist backward<CR>", "󱡁 Portal Jumplist" },
+    ["<leader>pj"] = { "<CMD>Portal jumplist backward<CR>", "󱡁 Portal Jumplist" },
     ["<leader>ph"] = {
       function()
         require("portal.builtin").harpoon.tunnel()
@@ -568,7 +568,7 @@ M.harpoon = {
       end,
       "󱡁 Harpoon Add file",
     },
-    ["<leader>ta"] = { "<cmd>Telescope harpoon marks<CR>", "󱡀 Toggle quick menu" },
+    ["<leader>ta"] = { "<CMD>Telescope harpoon marks<CR>", "󱡀 Toggle quick menu" },
     ["<leader>hb"] = {
       function()
         require("harpoon.ui").toggle_quick_menu()
@@ -604,8 +604,8 @@ M.harpoon = {
 
 M.lspconfig = {
   n = {
-    ["<leader><leader>n"] = { "<cmd> lua require('tsht').nodes() <CR>", " Select Node" },
-    ["<F12>"] = { "<cmd>Glance references<CR>", "󰘐 References" },
+    ["<leader><leader>n"] = { "<CMD> lua require('tsht').nodes() <CR>", " Select Node" },
+    ["<F12>"] = { "<CMD>Glance references<CR>", "󰘐 References" },
   },
 }
 
