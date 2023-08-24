@@ -19,6 +19,16 @@ local function setAutoCmp(mode)
   end
 end
 
+create_cmd("DapUiOpen", ":lua require'dapui'.open()", {})
+create_cmd("DapUiClose", ":lua require'dapui'.close()", {})
+create_cmd("DapUiToggle", ":lua require'dapui'.toggle()", {})
+create_cmd("DapUiFloatElement", ":lua require'dapui'.float_element()", {})
+create_cmd("DapUiEval", ":lua require'dapui'.eval()", {})
+
+create_cmd("UFOOpen", function()
+  require("ufo").openAllFolds()
+end, {})
+
 --Open Peek
 create_cmd("TPeek", function()
   require("peek").open()
