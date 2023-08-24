@@ -37,13 +37,13 @@ local sources = {
   b.completion.luasnip,
 
   -- Code actions
-  b.code_actions.gitsigns.with {
-    config = {
-      filter_actions = function(title)
-        return title:lower():match "blame" == nil -- filter out blame actions
-      end,
-    },
-  },
+  -- b.code_actions.gitsigns.with {
+  --   config = {
+  --     filter_actions = function(title)
+  --       return title:lower():match "blame" == nil -- filter out blame actions
+  --     end,
+  --   },
+  -- },
   b.code_actions.gomodifytags,
   b.code_actions.impl,
   b.code_actions.eslint,
