@@ -231,13 +231,13 @@ autocmd({ "BufRead", "BufNewFile" }, {
 })
 
 local function open_file_created()
-  require ("nvim-tree.api").events.subscribe("FileCreated", function (file) 
-  vim.cmd("edit " .. file.fname)
+  require("nvim-tree.api").events.subscribe("FileCreated", function(file)
+    vim.cmd("edit " .. file.fname)
   end)
 end
 
-autocmd({ "VimEnter" }, { 
-  callback = open_file_created
+autocmd({ "VimEnter" }, {
+  callback = open_file_created,
 })
 
 -- vim.api.nvim_create_autocmd({ "ModeChanged" }, {
