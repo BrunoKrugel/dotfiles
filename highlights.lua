@@ -126,7 +126,7 @@ M.add = {
   NoiceCmdlinePopupBorder = { fg = "cyan" },
   NoiceCmdlinePopupBorderSearch = { fg = "yellow" },
 
-  HarpoonBorder = { fg = "blue" },
+  HarpoonBorder = { fg = "cyan" },
 
   TroubleText = { fg = "green" },
   TroubleCount = { fg = "pink" },
@@ -136,7 +136,7 @@ M.add = {
   TroubleSignWarning = { fg = "yellow" },
   TroubleTextWarning = { fg = "white" },
   TroublePreview = { fg = "red" },
-  TroubleSource = { fg = "blue" },
+  TroubleSource = { fg = "cyan" },
   TroubleSignHint = { fg = "green" },
   TroubleTextHint = { fg = "white" },
   TroubleHint = { fg = "orange" },
@@ -149,7 +149,7 @@ M.add = {
   TroubleSignError = { fg = "red" }, -- error sign color
   TroubleText = { fg = "white" },
   TroubleFile = { fg = "yellow" }, -- the source file that has error
-  TroubleFoldIcon = { fg = "blue" }, -- fold icon color
+  TroubleFoldIcon = { fg = "cyan" }, -- fold icon color
   TroubleCount = { fg = "red" },
   TroubleNormal = { fg = "white" },
   TroubleLocation = { fg = "white" }, -- location of error
