@@ -125,12 +125,16 @@ M.add = {
   NoiceCursor = { link = "Cursor" },
   NoiceCmdlinePopupBorder = { fg = "cyan" },
   NoiceCmdlinePopupBorderSearch = { fg = "yellow" },
+  NoiceCmdlinePopup = { link = "cyan" },
+  NoiceConfirm = { link = "cyan" },
+  NoiceConfirmBorder = { link = "cyan" },
+  NoicePopup = { link = "cyan" },
+  NoicePopupBorder = { link = "cyan" },
+  NoicePopupmenu = { link = "cyan" },
 
   HarpoonBorder = { fg = "cyan" },
 
-  TroubleText = { fg = "green" },
   TroubleCount = { fg = "pink" },
-
   TroubleCode = { fg = "white" },
   TroubleWarning = { fg = "orange" },
   TroubleSignWarning = { fg = "yellow" },
@@ -150,7 +154,6 @@ M.add = {
   TroubleText = { fg = "white" },
   TroubleFile = { fg = "yellow" }, -- the source file that has error
   TroubleFoldIcon = { fg = "cyan" }, -- fold icon color
-  TroubleCount = { fg = "red" },
   TroubleNormal = { fg = "white" },
   TroubleLocation = { fg = "white" }, -- location of error
   TroubleIndent = { link = "Comment" }, -- indent color
