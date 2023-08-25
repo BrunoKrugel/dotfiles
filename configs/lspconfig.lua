@@ -20,6 +20,7 @@ local servers = {
   "jsonls",
   "dockerls",
   "lua_ls",
+  "vuels",
 }
 
 require("mason-lspconfig").setup {

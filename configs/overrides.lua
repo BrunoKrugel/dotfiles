@@ -164,6 +164,8 @@ M.mason = {
     "prettier",
     "eslint-lsp",
     "emmet-ls",
+    "rustywind",
+    "staticcheck",
 
     -- Spell
     "codespell",
