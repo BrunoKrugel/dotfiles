@@ -165,7 +165,6 @@ M.mason = {
     "eslint-lsp",
     "emmet-ls",
     "rustywind",
-    "staticcheck",
 
     -- Spell
     "codespell",
@@ -186,7 +185,6 @@ M.mason = {
     "gomodifytags",
     "impl",
     "iferr",
-    "staticcheck",
   },
 
   ui = {

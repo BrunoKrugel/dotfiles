@@ -29,8 +29,6 @@ local sources = {
   b.diagnostics.checkmake,
   b.diagnostics.jsonlint,
   b.diagnostics.eslint,
-  b.diagnostics.semgrep,
-  b.diagnostics.staticcheck,
   -- b.diagnostics.luacheck,
   -- b.diagnostics.checkstyle.with {
   --   extra_args = { "-c", "/google_checks.xml" },
