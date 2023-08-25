@@ -121,12 +121,12 @@ M.cmp = {
   enabled = function()
     local disabled = false
     disabled = disabled or is_dap_buffer(0)
-
     disabled = disabled or (list_contains(disabled_buftypes, vim.api.nvim_get_option_value("buftype", { buf = 0 })))
     disabled = disabled or (vim.fn.reg_recording() ~= "")
     disabled = disabled or (vim.fn.reg_executing() ~= "")
     disabled = disabled or (require("cmp.config.context").in_treesitter_capture "comment" == true)
     disabled = disabled or (require("cmp.config.context").in_syntax_group "Comment" == true)
+    disabled = disabled or (vim.api.nvim_get_mode().mode == 'c')
 
     if disabled then
       return not disabled
