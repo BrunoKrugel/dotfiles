@@ -125,12 +125,12 @@ M.add = {
   NoiceCursor = { link = "Cursor" },
   NoiceCmdlinePopupBorder = { fg = "cyan" },
   NoiceCmdlinePopupBorderSearch = { fg = "yellow" },
-  NoiceCmdlinePopup = { link = "cyan" },
-  NoiceConfirm = { link = "cyan" },
-  NoiceConfirmBorder = { link = "cyan" },
-  NoicePopup = { link = "cyan" },
-  NoicePopupBorder = { link = "cyan" },
-  NoicePopupmenu = { link = "cyan" },
+  NoiceCmdlinePopup = { fg = "cyan" },
+  NoiceConfirm = { fg = "cyan" },
+  NoiceConfirmBorder = { fg = "cyan" },
+  NoicePopup = { fg = "cyan" },
+  NoicePopupBorder = { fg = "cyan" },
+  NoicePopupmenu = { fg = "cyan" },
 
   HarpoonBorder = { fg = "cyan" },
 
