@@ -1,7 +1,7 @@
 local telescope = require "telescope"
-local command_center = require "command_center"
+local commander = require "commander"
 
-require("command_center").add {
+require("commander").add {
   {
     desc = " Replace",
     cmd = "<CMD>MurenToggle<CR>",
@@ -24,19 +24,47 @@ require("command_center").add {
   },
 }
 
-telescope.setup {
-  extensions = {
-    command_center = {
-      components = {
-        command_center.component.DES,
-      },
-      sort_by = {
-        command_center.component.DESC,
-        command_center.component.KEYS,
-      },
-      auto_replace_desc_with_cmd = false,
-    },
+commander.setup({
+    -- Specify what components are shown in the prompt;
+  -- Order matters, and components may repeat
+  components = {
+    "DESC",
+    "KEYS",
+    "CMD",
+    "CAT",
   },
-}
 
-telescope.load_extension "command_center"
+  -- Spcify by what components the commands is sorted
+  -- Order does not matter
+  sort_by = {
+    "DESC",
+    "KEYS",
+    "CMD",
+    "CAT",
+  },
+
+  -- Change the separator used to separate each component
+  separator = " ",
+
+  -- When set to true,
+  -- The desc component will be populated with cmd if desc is empty or missing.
+  auto_replace_desc_with_cmd = true,
+
+  -- Default title of the prompt
+  prompt_title = "Commander",
+
+  integration = {
+    telescope = {
+      -- Set to true to use telescope instead of vim.ui.select for the UI
+      enable = false,
+      -- Can be any builtin or custom telescope theme
+      theme = theme,
+    },
+    lazy = {
+      -- Set to true to automatically add all keymaps set through lazy.nvim
+      enable = false,
+    }
+  }
+})
+
+telescope.load_extension "commander"
