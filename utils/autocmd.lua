@@ -259,6 +259,16 @@ autocmd({ "ModeChanged" }, {
   end,
 })
 
+autocmd("FileType", {
+  callback = function()
+    if vim.bo.ft == "go" then
+      require("core.utils").load_mappings "go"
+    else
+      require("custom.utils.core").remove_mappings "go"
+    end
+  end,
+})
+
 -- Enable it when changing highlights
 -- autocmd("BufWritePost", {
 --   pattern = "*.lua",
