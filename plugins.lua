@@ -698,6 +698,14 @@ local plugins = {
     opts = {},
   },
   {
+    "kevinhwang91/nvim-fundo",
+    event = "BufReadPost",
+    opts = {},
+    build = function()
+      require("fundo").install()
+    end,
+  },
+  {
     "kevinhwang91/nvim-ufo",
     event = "VeryLazy",
     dependencies = {
