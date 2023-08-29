@@ -125,6 +125,30 @@ M.add = {
   HopNextKey1 = { fg = "cyan", bold = true },
   HopNextKey2 = { fg = "blue" },
 
+  -- Todo
+  TodoBgFix = { fg = "black2", bg = "red", bold = true },
+  TodoBgHack = { fg = "black2", bg = "orange", bold = true },
+  TodoBgNote = { fg = "black2", bg = "white", bold = true },
+  TodoBgPerf = { fg = "black2", bg = "purple", bold = true },
+  TodoBgTest = { fg = "black2", bg = "purple", bold = true },
+  TodoBgTodo = { fg = "black2", bg = "cyan", bold = true },
+  TodoBgWarn = { fg = "orange", bold = true },
+  TodoFgFix = { fg = "red" },
+  TodoFgHack = { fg = "orange" },
+  TodoFgNote = { fg = "white" },
+  TodoFgPerf = { fg = "purple" },
+  TodoFgTest = { fg = "purple" },
+  TodoFgTodo = { fg = "cyan" },
+  TodoFgWarn = { fg = "orange" },
+  TodoSignFix = { link = "TodoFgFix" },
+  TodoSignHack = { link = "TodoFgHack" },
+  TodoSignNote = { link = "TodoFgNote" },
+  TodoSignPerf = { link = "TodoFgPerf" },
+  TodoSignTest = { link = "TodoFgTest" },
+  TodoSignTodo = { link = "TodoFgTodo" },
+  TodoSignWarn = { link = "TodoFgWarn" },
+
+  -- Noice
   NoiceCursor = { link = "Cursor" },
   NoiceCmdlinePopupBorder = { fg = "cyan" },
   NoiceCmdlinePopupBorderSearch = { fg = "yellow" },
@@ -136,7 +160,7 @@ M.add = {
   NoicePopupmenu = { fg = "cyan" },
 
   HarpoonBorder = { fg = "cyan" },
-
+  -- Trouble
   TroubleCount = { fg = "pink" },
   TroubleCode = { fg = "white" },
   TroubleWarning = { fg = "orange" },
