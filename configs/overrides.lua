@@ -372,6 +372,17 @@ M.colorizer = {
     RRGGBBAA = true,
     rgb_fn = true,
     tailwind = true,
+    RGB = true,
+    RRGGBB = true,
+    AARRGGBB = true,
+    hsl_fn = true,
+    css = true,
+    css_fn = true, 
+    mode = "background",
+    sass = { enable = true, parsers = { "css" } },
+    mode = "background", -- Available methods are false / true / "normal" / "lsp" / "both"
+    virtualtext = "■",
+    always_update = true,
   },
 }
 
