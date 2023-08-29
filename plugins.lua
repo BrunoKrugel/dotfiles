@@ -793,7 +793,7 @@ local plugins = {
   },
   {
     "utilyre/sentiment.nvim",
-    event = "VeryLazy", -- keep for lazy loading
+    event = "VeryLazy",
     opts = {},
     init = function()
       vim.g.loaded_matchparen = 1
@@ -879,19 +879,10 @@ local plugins = {
     keys = { "<leader>k" },
     config = true,
   },
-  -- {
-  --   "VidocqH/lsp-lens.nvim",
-  --   event = "BufReadPost",
-  --   config = true,
-  -- },
   {
-    "ziontee113/icon-picker.nvim",
-    cmd = "IconPickerNormal",
-    config = function()
-      require("icon-picker").setup {
-        disable_legacy_commands = true,
-      }
-    end,
+    "VidocqH/lsp-lens.nvim",
+    event = "BufReadPost",
+    config = true,
   },
   {
     "nvimdev/lspsaga.nvim",
@@ -1000,15 +991,6 @@ local plugins = {
     event = "VeryLazy",
     config = function()
       require("wildfire").setup()
-    end,
-  },
-  {
-    "TobinPalmer/rayso.nvim",
-    cmd = { "Rayso" },
-    config = function()
-      require("rayso").setup {
-        open_cmd = "chrome",
-      }
     end,
   },
   {

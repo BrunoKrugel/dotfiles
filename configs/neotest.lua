@@ -1,5 +1,4 @@
 local neotest_ns = vim.api.nvim_create_namespace "neotest"
-local border = require "custom.utils.border"
 
 vim.diagnostic.config({
   virtual_text = {

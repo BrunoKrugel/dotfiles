@@ -98,7 +98,7 @@ M.add = {
 
   -- LSP Saga
   SagaBorder = { fg = "blue" },
-  SagaWinbarFolder = { fg = "blue" },
+  SagaFolder = { fg = "cyan" },
   HoverNormal = { fg = "white" },
   CodeActionText = { fg = "white" },
   CodeActionNumber = { link = "Number" },
