@@ -1,10 +1,4 @@
--- local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
--- for type, icon in pairs(signs) do
---   local hl = "DiagnosticSign" .. type
---   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
--- end
-
--- disable underline in diagnostics
+-- Disable underline in diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
   underline = false,
   signs = true,
@@ -21,4 +15,3 @@ require "custom.utils.autocmd"
 require "custom.utils.usercmd"
 require "custom.utils.neovide"
 require "custom.utils.options"
--- require "custom.configs.statuscolumn"
