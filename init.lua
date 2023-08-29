@@ -13,5 +13,4 @@ vim.highlight.priorities.semantic_tokens = 95 -- Or any number lower than 100, t
 
 require "custom.utils.autocmd"
 require "custom.utils.usercmd"
-require "custom.utils.neovide"
 require "custom.utils.options"
