@@ -3,7 +3,7 @@ local M = {}
 ---@type Base46HLGroupsList
 M.override = {
   -- Cursor
-  Cursor = { bg = "white" },
+  Cursor = { bg = "white", fg = "black2" },
   CursorLine = { bg = "black2" },
   Comment = { italic = true },
   NvDashAscii = { fg = "none", bg = "none" },
@@ -84,6 +84,26 @@ M.add = {
   DiffChange = { fg = "yellow" },
   DiffAdd = { fg = "vibrant_green" },
   DiffText = { fg = "white", bg = "red", bold = true },
+
+  DiffviewDim1 = { fg = "grey" },
+  DiffviewReference = { fg = "cyan" },
+  DiffviewPrimary = { fg = "cyan" },
+  DiffviewSecondary = { fg = "blue" },
+  DiffviewNonText = { link = "DiffviewDim1" },
+  DiffviewStatusUnmerged = { link = "GitMerge" },
+  DiffviewStatusUntracked = { link = "GitNew" },
+  DiffviewStatusModified = { link = "GitDirty" },
+  DiffviewStatusRenamed = { link = "GitRenamed" },
+  DiffviewStatusDeleted = { link = "GitDeleted" },
+  DiffviewStatusAdded = { link = "GitStaged" },
+  DiffviewFilePanelRootPath = { link = "NvimTreeRootFolder" },
+  DiffviewFilePanelTitle = { link = "Title" },
+  DiffviewFilePanelCounter = { fg = "cyan" },
+  DiffviewFilePanelInsertions = { link = "GitNew" },
+  DiffviewFilePanelDeletions = { link = "GitDeleted" },
+  DiffviewFilePanelConflicts = { link = "GitMerge" },
+  DiffviewFolderSign = { link = "NvimTreeFolderIcon" },
+  DiffviewDiffDelete = { link = "Comment" },
 
   GitSignsChange = { fg = "green" },
   GitSignsAdd = { fg = "vibrant_green" },
