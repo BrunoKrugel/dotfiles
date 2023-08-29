@@ -56,9 +56,6 @@ require("mason-lspconfig").setup_handlers {
           diagnostics = {
             globals = { "use", "vim" },
           },
-          workspace = {
-            library = vim.api.nvim_get_runtime_file("", true),
-          },
           hint = {
             enable = true,
             setType = true,
