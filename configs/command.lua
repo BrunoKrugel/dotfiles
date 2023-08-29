@@ -55,14 +55,11 @@ commander.setup({
 
   integration = {
     telescope = {
-      -- Set to true to use telescope instead of vim.ui.select for the UI
       enable = false,
-      -- Can be any builtin or custom telescope theme
-      theme = theme,
     },
     lazy = {
       -- Set to true to automatically add all keymaps set through lazy.nvim
-      enable = false,
+      enable = true,
     }
   }
 })
