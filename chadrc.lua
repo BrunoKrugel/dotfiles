@@ -29,7 +29,8 @@ M.ui = {
 
   extended_integrations = {
     "dap",
-    "notify"
+    "notify",
+    "navic"
   },
 
   hl_override = highlights.override,

@@ -698,6 +698,54 @@ local plugins = {
     opts = {},
   },
   {
+    "SmiteshP/nvim-navic",
+    config = function()
+      dofile(vim.g.base46_cache .. "navic") -- load its hl groups cache!
+
+      require("nvim-navic").setup {
+        highlight = true,
+        separator = " ",
+        icons = {
+          File = " ",
+          Module = " ",
+          Namespace = " ",
+          Package = " ",
+          Class = " ",
+          Method = " ",
+          Property = " ",
+          Field = " ",
+          Constructor = " ",
+          Enum = " ",
+          Interface = " ",
+          Function = " ",
+          Variable = " ",
+          Constant = " ",
+          String = " ",
+          Number = " ",
+          Boolean = " ",
+          Array = " ",
+          Object = " ",
+          Key = " ",
+          Null = " ",
+          EnumMember = " ",
+          Struct = " ",
+          Event = " ",
+          Operator = " ",
+          TypeParameter = " ",
+        },
+        lsp = { auto_attach = true },
+      }
+    end,
+  },
+  {
+    "gelguy/wilder.nvim",
+    event = "CmdLineEnter",
+    config = function()
+      local wilder = require "wilder"
+      wilder.setup { modes = { ":", "/", "?" } }
+    end,
+  },
+  {
     "kevinhwang91/nvim-fundo",
     event = "BufReadPost",
     opts = {},
