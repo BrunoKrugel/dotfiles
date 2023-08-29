@@ -26,9 +26,9 @@ local M = {}
 M.base_30 = {
   white = "#F8F8F2",
   darker_black = "#12121F",
-  black = "#141423", --  nvim bg
+  black = "#141423",
   black2 = "#1E1E34",
-  one_bg = "#252540", -- real bg of onedark
+  one_bg = "#252540",
   one_bg2 = "#33335A",
   one_bg3 = "#414171",
   grey = "#565697",
@@ -38,7 +38,7 @@ M.base_30 = {
   red = "#FF5555",
   baby_pink = "#FF6E6E",
   pink = "#FF6BCB",
-  line = "#2D2D4E", -- for lines like vertsplit
+  line = "#2D2D4E",
   green = "#50FA7B",
   vibrant_green = "#20E3B2",
   nord_blue = "#05C3FF",
@@ -104,7 +104,6 @@ M.polish_hl = {
   FoldColumn = { fg = pallete.Color13 },
   StatusLine = { fg = pallete.Color13, bg = pallete.Color14 },
   St_cwd = { fg = "white" },
-  -- TSPunctDelimiter = { fg = pallete.Color13 },
 }
 
 M.type = "dark"
