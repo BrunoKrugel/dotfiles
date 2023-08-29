@@ -13,7 +13,7 @@ _G.ClickSplit = function()
 end
 
 _G.ClickGit = function()
-  vim.cmd "LazyGit"
+  vim.cmd "ToggleBlame"
 end
 
 _G.ClickRun = function()
