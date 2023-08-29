@@ -32,16 +32,6 @@ M.remove_mappings = function(section)
   end)
 end
 
-local function navic_statusline()
-  local navic = require "nvim-navic"
-
-  if navic.is_available() then
-    return navic.get_location()
-  else
-    return " "
-  end
-end
-
 function Get_marked()
   local Marked = require "harpoon.mark"
   local filename = vim.api.nvim_buf_get_name(0)
@@ -139,8 +129,6 @@ M.statusline = {
       local m = vim.api.nvim_get_mode().mode
       return "%#" .. modes[m][2] .. "#" .. (modes[m][3] or "  ") .. modes[m][1] .. " "
     end)()
-
-    table.insert(modules, 6, navic_statusline())
 
     modules[2] = (function()
       local icon = " 󰈚 "

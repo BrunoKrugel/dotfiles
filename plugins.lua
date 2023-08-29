@@ -631,16 +631,6 @@ local plugins = {
     end,
   },
   {
-    "gorbit99/codewindow.nvim",
-    keys = { "<leader>mm" },
-    config = function()
-      require("codewindow").setup {
-        show_cursor = false,
-        window_border = "rounded",
-      }
-    end,
-  },
-  {
     "shellRaining/hlchunk.nvim",
     event = "BufReadPost",
     config = function()
@@ -696,54 +686,6 @@ local plugins = {
     "m4xshen/hardtime.nvim",
     cmd = { "Hardtime" },
     opts = {},
-  },
-  {
-    "SmiteshP/nvim-navic",
-    config = function()
-      dofile(vim.g.base46_cache .. "navic") -- load its hl groups cache!
-
-      require("nvim-navic").setup {
-        highlight = true,
-        separator = " ",
-        icons = {
-          File = " ",
-          Module = " ",
-          Namespace = " ",
-          Package = " ",
-          Class = " ",
-          Method = " ",
-          Property = " ",
-          Field = " ",
-          Constructor = " ",
-          Enum = " ",
-          Interface = " ",
-          Function = " ",
-          Variable = " ",
-          Constant = " ",
-          String = " ",
-          Number = " ",
-          Boolean = " ",
-          Array = " ",
-          Object = " ",
-          Key = " ",
-          Null = " ",
-          EnumMember = " ",
-          Struct = " ",
-          Event = " ",
-          Operator = " ",
-          TypeParameter = " ",
-        },
-        lsp = { auto_attach = true },
-      }
-    end,
-  },
-  {
-    "gelguy/wilder.nvim",
-    event = "CmdLineEnter",
-    config = function()
-      local wilder = require "wilder"
-      wilder.setup { modes = { ":", "/", "?" } }
-    end,
   },
   {
     "kevinhwang91/nvim-fundo",
@@ -815,16 +757,6 @@ local plugins = {
       require "custom.configs.ufo"
     end,
   },
-  --  {
-  -- 	"Snyssfx/goerr-nvim",
-  -- 	ft = "go",
-  -- 	config = function()
-  -- 		vim.g.goerr_indent_error = 1
-  -- 		vim.g.goerr_nvim_indent_level = 4
-  -- 		vim.g.goerr_nvim_max_width = 1000
-  -- 		vim.g.goerr_nvim_sign = " "
-  -- 	end
-  -- },
   {
     "lvimuser/lsp-inlayhints.nvim",
     event = "LspAttach",
@@ -1016,24 +948,6 @@ local plugins = {
       {
         "ray-x/guihua.lua",
         build = "cd lua/fzy && make",
-      },
-      {
-        "crusj/hierarchy-tree-go.nvim",
-        config = function()
-          require("hierarchy-tree-go").setup {
-            icon = {
-              fold = "",
-              unfold = "",
-              func = "",
-              last = "☉",
-            },
-            hl = {
-              current_module = "guifg=Green", -- highlight cwd module line
-              others_module = "guifg=White", -- highlight others module line
-              cursorline = "guibg=Gray guifg=White", -- hl  window cursorline
-            },
-          }
-        end,
       },
     },
     config = function()

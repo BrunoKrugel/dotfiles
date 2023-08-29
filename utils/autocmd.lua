@@ -218,18 +218,7 @@ autocmd({ "BufRead", "BufNewFile" }, {
   command = "lua vim.diagnostic.disable(0)",
 })
 
--- Enable spell checking for certain file types
-autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = { "*.txt", "*.md", "*.tex" },
-  command = "setlocal spell",
-})
-
--- Show `` in specific files
-autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = { "*.txt", "*.md", "*.json" },
-  command = "setlocal conceallevel=0",
-})
-
+-- Nvimtree open file on creation
 local function open_file_created()
   require("nvim-tree.api").events.subscribe("FileCreated", function(file)
     vim.cmd("edit " .. file.fname)
@@ -240,12 +229,6 @@ autocmd({ "VimEnter" }, {
   callback = open_file_created,
 })
 
--- Terminal settings.
-autocmd("TermOpen", {
-  callback = function()
-    vim.cmd [[startinsert]]
-  end,
-})
 
 autocmd({ "ModeChanged" }, {
   pattern = { "s:n", "i:*" },
