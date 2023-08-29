@@ -145,7 +145,7 @@ autocmd({ "FileType", "BufWinEnter" }, {
 
 -- Highlight on yank
 autocmd("TextYankPost", {
-  command = "silent! lua vim.highlight.on_yank()",
+  command = "silent! lua vim.highlight.on_yank({higroup='YankVisual', timeout=200})",
   group = augroup("YankHighlight", { clear = true }),
 })
 

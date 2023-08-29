@@ -50,8 +50,11 @@ M.override = {
 
 ---@type HLTable
 M.add = {
-  MultiCursor = { bg = "white" },
-  MultiCursorMain = { bg = "white" },
+
+  YankVisual = { fg = "black2", bg = "orange" },
+
+  MultiCursor = { bg = "white", fg = "black2" },
+  MultiCursorMain = { bg = "white", fg = "black2" },
 
   DapBreakpoint = { fg = "red" },
 
