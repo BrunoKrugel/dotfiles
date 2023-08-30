@@ -129,6 +129,7 @@ M.add = {
   -- Custom highlights
   CopilotHl = { fg = "white", bg = "statusline_bg" },
   HarpoonHl = { fg = "cyan", bg = "statusline_bg" },
+  CmpHl = { fg = "red", bg = "statusline_bg" },
   NotificationHl = { fg = "white", bg = "statusline_bg" },
   TermHl = { fg = "green", bg = "statusline_bg" },
   SplitHl = { fg = "white", bg = "statusline_bg" },

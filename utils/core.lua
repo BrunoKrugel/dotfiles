@@ -32,6 +32,14 @@ M.remove_mappings = function(section)
   end)
 end
 
+function Get_Cmp()
+  if vim.g.cmptoggle == true then
+    return "󰞏  "
+  else
+    return "󱜞  "
+  end
+end
+
 function Get_dap()
   local ok, dap = pcall(require, "dap")
   if ok then
@@ -189,7 +197,7 @@ M.statusline = {
       end)()
     )
 
-    modules[14] = (function()
+    modules[15] = (function()
       if rawget(vim, "lsp") then
         for _, client in ipairs(vim.lsp.get_active_clients()) do
           if
@@ -206,9 +214,9 @@ M.statusline = {
 
     table.insert(
       modules,
-      15,
+      16,
       (function()
-        return " %#NotificationHl#%@v:lua.ClickMe@  "
+        return " %#CmpHl#" .. Get_Cmp() .. "%#NotificationHl#%@v:lua.ClickMe@  "
       end)()
     )
   end,
