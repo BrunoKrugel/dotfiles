@@ -126,7 +126,7 @@ M.text = {
   },
 
   n = {
-    ["i"] = { "a", "Insert after" },
+    -- ["i"] = { "a", "Insert after" },
     ["<leader>cc"] = { "<CMD> ColorcolumnToggle <CR>", " Toggle ColorColumn display" },
     -- Navigate
     ["<C-Left>"] = { "<ESC>_", "󰜲 Move to beginning of line" },
@@ -203,7 +203,7 @@ M.go = {
     ["<leader>gcv"] = { " <CMD>:GoCoverage -p<CR>", " Show coverage", opts = { silent = true } },
     ["<leader>gt"] = { " <CMD>:GoAlt!<CR>", " Go to test", opts = { silent = true } },
     ["<leader>gca"] = { " <CMD>:GoCodeAction<CR>", " Code action", opts = { silent = true } },
-    ["<leader>gca"] = { " <CMD>:GoCodeAction<CR>", " Code action", opts = { silent = true } },
+    ["<leader>gcl"] = { " <CMD>:GoCodeLens<CR>", " Code Lens", opts = { silent = true } },
   },
 }
 
