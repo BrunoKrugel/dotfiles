@@ -150,12 +150,8 @@ local plugins = {
               enabled = false,
               auto_trigger = false,
               keymap = {
-                -- accept = "<Tab>",
                 accept_word = false,
                 accept_line = false,
-                next = "<M-]>",
-                prev = "<M-[>",
-                dismiss = "<C-]>",
               },
             },
             panel = {
@@ -277,7 +273,9 @@ local plugins = {
   {
     "smoka7/multicursors.nvim",
     cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
-    config = true,
+    opts = {
+      updatetime = 10,
+    },
     dependencies = {
       "smoka7/hydra.nvim",
     },
@@ -305,16 +303,6 @@ local plugins = {
     "ThePrimeagen/harpoon",
     cmd = "Harpoon",
   },
-  -- {
-  --   "axkirillov/hbac.nvim",
-  --   event = "VeryLazy",
-  --   config = function()
-  --     require("hbac").setup {
-  --       autoclose = true,
-  --       threshold = 5,
-  --     }
-  --   end,
-  -- },
   {
     "epwalsh/obsidian.nvim",
     ft = "markdown",
@@ -357,7 +345,7 @@ local plugins = {
           idle = " ",
           error = " ",
           offline = " ",
-          warning = "𥉉 ",
+          warning = " ",
           loading = " ",
         },
         debug = false,
@@ -366,7 +354,7 @@ local plugins = {
   },
   {
     "rainbowhxch/accelerated-jk.nvim",
-    event = "BufReadPost",
+    event = "CursorMoved",
     config = function()
       require "custom.configs.accelerated"
     end,
