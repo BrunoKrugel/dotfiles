@@ -13,6 +13,11 @@ require("commander").add {
     category = "ui",
   },
   {
+    desc = "Restart LSP",
+    cmd = "<CMD>LspRestart<CR>",
+    category = "lsp",
+  },
+  {
     desc = " Open Folders",
     cmd = "<CMD>UFOOpen<CR>",
     category = "text",
