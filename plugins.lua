@@ -609,7 +609,12 @@ local plugins = {
       require("telescope").load_extension "ui-select"
     end,
   },
-  { "rainbowhxch/beacon.nvim", event = "BufReadPost" },
+  { "rainbowhxch/beacon.nvim",
+    event = "BufReadPost",
+    cond = function()
+      return not vim.g.neovide
+    end,
+  },
   {
     "echasnovski/mini.nvim",
     event = "VeryLazy",

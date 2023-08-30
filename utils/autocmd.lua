@@ -205,6 +205,9 @@ autocmd("FileType", {
     "dap-float",
     "null-ls-info",
     "empty",
+    "neotest-output",
+    "neotest-summary",
+    "neotest-output-panel",
   },
   command = [[
             nnoremap <buffer><silent> q :close<CR>
@@ -229,7 +232,6 @@ autocmd({ "VimEnter" }, {
   callback = open_file_created,
 })
 
-
 autocmd({ "ModeChanged" }, {
   pattern = { "s:n", "i:*" },
   callback = function()
@@ -242,6 +244,7 @@ autocmd({ "ModeChanged" }, {
   end,
 })
 
+-- Go exclusive mappings
 autocmd("FileType", {
   callback = function()
     if vim.bo.ft == "go" then
