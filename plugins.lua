@@ -597,7 +597,8 @@ local plugins = {
       require("telescope").load_extension "ui-select"
     end,
   },
-  { "rainbowhxch/beacon.nvim",
+  {
+    "rainbowhxch/beacon.nvim",
     event = "BufReadPost",
     cond = function()
       return not vim.g.neovide
@@ -819,7 +820,7 @@ local plugins = {
   },
   {
     "VidocqH/lsp-lens.nvim",
-    event = "BufReadPost",
+    event = "LspAttach",
     config = true,
   },
   {
