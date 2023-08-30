@@ -51,7 +51,7 @@ M.override = {
 ---@type HLTable
 M.add = {
 
-  YankVisual = { fg = "black2", bg = "orange" },
+  YankVisual = { fg = "black2", bg = "cyan" },
 
   MultiCursor = { bg = "white", fg = "black2" },
   MultiCursorMain = { bg = "white", fg = "black2" },
@@ -180,6 +180,7 @@ M.add = {
   NoicePopupmenu = { fg = "cyan" },
 
   HarpoonBorder = { fg = "cyan" },
+
   -- Trouble
   TroubleCount = { fg = "pink" },
   TroubleCode = { fg = "white" },
@@ -189,7 +190,7 @@ M.add = {
   TroublePreview = { fg = "red" },
   TroubleSource = { fg = "cyan" },
   TroubleSignHint = { fg = "green" },
-  TroubleTextHint = { fg = "white" },
+  TroubleTextHint = { fg = "red" },
   TroubleHint = { fg = "orange" },
   TroubleSignOther = { fg = "green" },
   TroubleSignInformation = { fg = "white" },
@@ -202,7 +203,7 @@ M.add = {
   TroubleFile = { fg = "yellow" }, -- the source file that has error
   TroubleFoldIcon = { fg = "cyan" }, -- fold icon color
   TroubleNormal = { fg = "white" },
-  TroubleLocation = { fg = "white" }, -- location of error
+  TroubleLocation = { fg = "red" }, -- location of error
   TroubleIndent = { link = "Comment" }, -- indent color
 
   CodeActionMenuWarningMessageText = { fg = "white" },
