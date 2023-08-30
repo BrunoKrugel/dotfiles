@@ -88,15 +88,6 @@ local plugins = {
           }
         end,
       },
-      {
-        "LiadOz/nvim-dap-repl-highlights",
-        config = true,
-        build = function()
-          if not require("nvim-treesitter.parsers").has_parser "dap_repl" then
-            vim.cmd ":TSInstall dap_repl"
-          end
-        end,
-      },
     },
     opts = overrides.treesitter,
   },
