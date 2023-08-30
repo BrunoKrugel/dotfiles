@@ -12,6 +12,7 @@ opt.scrolloff = 10 -- always show minimum n lines after current line
 opt.relativenumber = false -- Show relative numberline
 opt.wrap = false
 opt.iskeyword:append "-"
+opt.termguicolors = true -- True color support
 
 -- Folding settings
 -- zc fold block
@@ -47,20 +48,14 @@ g.copilot_assume_mapped = true
 
 -- Bookmark
 g.bookmark_sign = ""
-g.bookmark_highlight = "DevIconErb"
+g.bookmark_highlight = "CopilotHl"
 
--- visual-multi
-g.VM_show_warnings = 0
-g.VM_default_mappings = 0
-g.VM_maps = {
-  ["Find Under"] = "gb",
-  ["Find Subword Under"] = "gb",
-}
 
 o.statuscolumn = "%=%l%s%C"
 o.emoji = false
 
 if g.neovide then
+  -- opt.guifont = "Jetbrains Mono:h12"
   opt.guifont = "Hack Nerd Font:h12"
   g.neovide_refresh_rate = 120
   g.neovide_remember_window_size = true
