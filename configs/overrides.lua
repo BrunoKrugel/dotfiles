@@ -234,7 +234,6 @@ M.nvimtree = {
       error = "",
     },
   },
-  system_open = { cmd = "thunar" },
   sync_root_with_cwd = true,
   renderer = {
     highlight_opened_files = "name",
@@ -375,7 +374,7 @@ M.colorizer = {
     AARRGGBB = true,
     hsl_fn = true,
     css = true,
-    css_fn = true, 
+    css_fn = true,
     mode = "background",
     sass = { enable = true, parsers = { "css" } },
     mode = "background", -- Available methods are false / true / "normal" / "lsp" / "both"

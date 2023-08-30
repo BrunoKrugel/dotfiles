@@ -18,6 +18,11 @@ require("commander").add {
     category = "lsp",
   },
   {
+    desc = "Toggle ErrorLens",
+    cmd = "<CMD>ErrorLensToggle<CR>",
+    category = "lsp",
+  },
+  {
     desc = " Open Folders",
     cmd = "<CMD>UFOOpen<CR>",
     category = "text",
