@@ -203,7 +203,7 @@ M.go = {
     ["<leader>gcv"] = { " <CMD>:GoCoverage -p<CR>", " Show coverage", opts = { silent = true } },
     ["<leader>gt"] = { " <CMD>:GoAlt!<CR>", " Go to test", opts = { silent = true } },
     ["<leader>gca"] = { " <CMD>:GoCodeAction<CR>", " Code action", opts = { silent = true } },
-    ["<leader>gcl"] = { " <CMD>:GoCodeLens<CR>", " Code Lens", opts = { silent = true } },
+    ["<leader>cl"] = { " <CMD>:GoCodeLenAct<CR>", " Code Lens", opts = { silent = true } },
   },
 }
 
