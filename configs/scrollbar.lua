@@ -69,7 +69,7 @@ scrollbar.setup {
       highlight = "Normal",
     },
     GitAdd = {
-      text = "•",
+      text = "│",
       priority = 7,
       color = nil,
       cterm = nil,

@@ -60,10 +60,6 @@ local plugins = {
       "benfowler/telescope-luasnip.nvim",
       "Marskey/telescope-sg",
       {
-        "ThePrimeagen/harpoon",
-        cmd = "Harpoon",
-      },
-      {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
       },
@@ -314,6 +310,10 @@ local plugins = {
       }
     end,
   },
+  {
+    "ThePrimeagen/harpoon",
+    cmd = "Harpoon",
+  },
   -- {
   --   "axkirillov/hbac.nvim",
   --   event = "VeryLazy",
@@ -426,7 +426,7 @@ local plugins = {
   },
   {
     "echasnovski/mini.surround",
-    event = { "BufReadPost", "BufNewFile" },
+    event = { "ModeChanged" },
     config = true,
   },
   {
@@ -697,59 +697,13 @@ local plugins = {
   },
   {
     "kevinhwang91/nvim-ufo",
-    event = "VeryLazy",
+    event = "VimEnter",
     dependencies = {
       "kevinhwang91/promise-async",
       {
         "luukvbaal/statuscol.nvim",
-        event = "BufReadPost",
         config = function()
-          local builtin = require "statuscol.builtin"
-          require("statuscol").setup {
-            relculright = true,
-            bt_ignore = { "nofile", "prompt", "terminal", "packer" },
-            ft_ignore = {
-              "NvimTree",
-              "dashboard",
-              "nvcheatsheet",
-              "dapui_watches",
-              "dap-repl",
-              "dapui_console",
-              "dapui_stacks",
-              "dapui_breakpoints",
-              "dapui_scopes",
-            },
-            segments = {
-              -- Segment 1: Add padding
-              {
-                text = { " " },
-              },
-              -- Segment 2: Fold Column
-              { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-              -- Segment 3: Add padding
-              {
-                text = { " " },
-              },
-              -- Segment 4: Show signs with one character width
-              {
-                sign = { name = { ".*" }, maxwidth = 1, colwidth = 1 },
-                auto = true,
-                click = "v:lua.ScSa",
-              },
-              -- Segment 5: Show line number
-              {
-                text = { " ", " ", builtin.lnumfunc, " " },
-                click = "v:lua.ScLa",
-                condition = { true, builtin.not_empty },
-              },
-              -- Segment 6: Add padding
-              {
-                text = { " " },
-                hl = "Normal",
-                condition = { true, builtin.not_empty },
-              },
-            },
-          }
+          require "custom.configs.statuscol"
         end,
       },
     },
