@@ -32,6 +32,19 @@ M.remove_mappings = function(section)
   end)
 end
 
+function Get_dap()
+  local ok, dap = pcall(require, "dap")
+  if ok then
+    local status = dap.status()
+    if status ~= "" then
+      return "   " .. status .. " "
+    end
+    return ""
+  else
+    return ""
+  end
+end
+
 function Get_marked()
   local Marked = require "harpoon.mark"
   local filename = vim.api.nvim_buf_get_name(0)
@@ -157,6 +170,14 @@ M.statusline = {
       4,
       (function()
         return "%#HarpoonHl#" .. Get_marked() .. Get_record()
+      end)()
+    )
+
+    table.insert(
+      modules,
+      7,
+      (function()
+        return Get_dap()
       end)()
     )
 
