@@ -13,6 +13,15 @@ require("statuscol").setup {
     "dapui_stacks",
     "dapui_breakpoints",
     "dapui_scopes",
+    "help",
+    "vim",
+    "alpha",
+    "dashboard",
+    "neo-tree",
+    "Trouble",
+    "noice",
+    "lazy",
+    "toggleterm",
   },
   segments = {
     -- Segment: Add padding
