@@ -55,8 +55,8 @@ o.statuscolumn = "%=%l%s%C"
 o.emoji = false
 
 if g.neovide then
-  -- opt.guifont = "Jetbrains Mono:h12"
-  opt.guifont = "Hack Nerd Font:h12"
+  -- opt.guifont = "Hack Nerd Font:h12"
+  opt.guifont = "JetbrainsMono Nerd Font:h12"
   g.neovide_refresh_rate = 120
   g.neovide_remember_window_size = true
   g.neovide_cursor_antialiasing = true
