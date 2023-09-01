@@ -144,7 +144,7 @@ M.add = {
   -- Hop
   HopNextKey = { fg = "red", bold = true },
   HopNextKey1 = { fg = "cyan", bold = true },
-  HopNextKey2 = { fg = "blue" },
+  HopNextKey2 = { fg = "blue", bold = true},
 
   -- Todo
   TodoBgFix = { fg = "black2", bg = "red", bold = true },
@@ -152,14 +152,14 @@ M.add = {
   TodoBgNote = { fg = "black2", bg = "white", bold = true },
   TodoBgPerf = { fg = "black2", bg = "purple", bold = true },
   TodoBgTest = { fg = "black2", bg = "purple", bold = true },
-  TodoBgTodo = { fg = "black2", bg = "cyan", bold = true },
+  TodoBgTodo = { fg = "black2", bg = "yellow", bold = true },
   TodoBgWarn = { fg = "orange", bold = true },
   TodoFgFix = { fg = "red" },
   TodoFgHack = { fg = "orange" },
   TodoFgNote = { fg = "white" },
   TodoFgPerf = { fg = "purple" },
   TodoFgTest = { fg = "purple" },
-  TodoFgTodo = { fg = "cyan" },
+  TodoFgTodo = { fg = "yellow" },
   TodoFgWarn = { fg = "orange" },
   TodoSignFix = { link = "TodoFgFix" },
   TodoSignHack = { link = "TodoFgHack" },
