@@ -178,6 +178,7 @@ M.text = {
     ["<C-Down>"] = { ":m'>+1<CR>gv=gv", "󰜯 Move selection down", opts = { silent = true } },
     ["<Home>"] = { "gg", "Home" },
     ["<End>"] = { "G", "End" },
+    ["y"] = { "y`]", "Yank and move to end" },
     -- Indent backward/forward:
     ["<"] = { "<gv", " Ident backward", opts = { silent = false } },
     [">"] = { ">gv", " Ident forward", opts = { silent = false } },
