@@ -398,12 +398,6 @@ local plugins = {
     end,
   },
   {
-    "barrett-ruth/live-server.nvim",
-    cmd = "LiveServerStart",
-    build = "yarn global add live-server",
-    config = true,
-  },
-  {
     "echasnovski/mini.surround",
     event = { "ModeChanged" },
     config = true,
@@ -512,15 +506,6 @@ local plugins = {
     requires = { "nvim-treesitter/nvim-treesitter", "neovim/nvim-lspconfig" },
     config = function()
       require("dim").setup {}
-    end,
-  },
-  {
-    "TobinPalmer/rayso.nvim",
-    cmd = { "Rayso" },
-    config = function()
-      require("rayso").setup {
-        open_cmd = "chrome",
-      }
     end,
   },
   {
