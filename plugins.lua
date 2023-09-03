@@ -724,6 +724,13 @@ local plugins = {
     end,
   },
   {
+    "0xAdk/full_visual_line.nvim",
+    event = "BufReadPost",
+    config = function()
+      require("full_visual_line").setup {}
+    end,
+  },
+  {
     "FeiyouG/command_center.nvim",
     event = "VeryLazy",
     config = function()
