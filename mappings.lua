@@ -12,6 +12,25 @@ local M = {}
 -- <kPlus> -> Keypad Plus (+)
 -- <kMinus> -> Keypad Minus (-)
 
+local function backspace()
+  local npairs = require "nvim-autopairs"
+  local col = vim.api.nvim_win_get_cursor(0)[2]
+  local char = vim.api.nvim_get_current_line():sub(col, col)
+  if char == " " then
+    -- expression from a deleted reddit user
+    vim.cmd [[
+            let g:exprvalue =
+            \ (&indentexpr isnot '' ? &indentkeys : &cinkeys) =~? '!\^F' &&
+            \ &backspace =~? '.*eol\&.*start\&.*indent\&' &&
+            \ !search('\S','nbW',line('.')) ? (col('.') != 1 ? "\<C-U>" : "") .
+            \ "\<bs>" . (getline(line('.')-1) =~ '\S' ? "" : "\<C-F>") : "\<bs>"
+        ]]
+    return vim.g.exprvalue
+  else
+    return npairs.autopairs_bs()
+  end
+end
+
 M.disabled = {
   n = {
     ["<leader>b"] = "",
@@ -113,6 +132,14 @@ M.text = {
     -- ["<C-Down>"] = { "<CMD> :m+<CR>", "󰜯 Move line down" },
     ["<C-Down>"] = { "<CMD>m .+1<CR>==", "󰜯 Move line down" },
 
+    ["<BS>"] = {
+      function()
+        backspace()
+      end,
+      "Smart backspace",
+      opts = { expr = true, noremap = true, replace_keycodes = false },
+    },
+
     -- Navigate
     ["<A-Left>"] = { "<ESC>I", " Move to beginning of line" },
     ["<A-Right>"] = { "<ESC>A", " Move to end of line" },
@@ -126,7 +153,7 @@ M.text = {
   },
 
   n = {
-    -- ["i"] = { "a", "Insert after" },
+    ["i"] = { "a", "Insert after" },
     ["<leader>cc"] = { "<CMD> ColorcolumnToggle <CR>", " Toggle ColorColumn display" },
     -- Navigate
     ["<C-Left>"] = { "<ESC>_", "󰜲 Move to beginning of line" },
@@ -140,6 +167,7 @@ M.text = {
     ["<C-x>"] = { "x", "󰆐 Cut" },
     ["<C-v>"] = { "p", "󰆒 Paste" },
     ["<C-c>"] = { "y", " Copy" },
+    ["p"] = { "p`[v`]=", "󰆒 Paste" },
     ["<leader><leader>d"] = { "viw", " Select word" },
     ["<leader>d"] = { 'viw"_di', " Delete word" },
     ["<C-Up>"] = { "<CMD>m .-2<CR>==", "󰜸 Move line up" },
@@ -217,7 +245,7 @@ M.window = {
 
 M.general = {
   n = {
-    [";"] = { ":", "󰘳 Enter command mode", opts = { nowait = true } },
+    [";"] = { "<CMD>lua require('telescope.builtin').resume(require('telescope.themes').get_ivy({}))<CR>", "Resume telescope", opts = { nowait = true } },
     ["<leader>q"] = { "<CMD>q<CR>", "󰗼 Close" },
     ["<leader>qq"] = { "<CMD>qa!<CR>", "󰗼 Exit" },
     ["<C-p>"] = { "<CMD> Telescope commander<CR>", "󰘳 Find files" },
