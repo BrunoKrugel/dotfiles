@@ -143,6 +143,31 @@ autocmd({ "FileType", "BufWinEnter" }, {
   end,
 })
 
+autocmd({ "BufEnter", "BufNew" }, {
+  callback = function(ev)
+    local ft_ignore = {
+      "man",
+      "help",
+      "neo-tree",
+      "starter",
+      "TelescopePrompt",
+      "Trouble",
+      "NvimTree",
+      "nvcheatsheet",
+      "dapui_watches",
+      "dap-repl",
+      "dapui_console",
+      "dapui_stacks",
+      "dapui_breakpoints",
+      "dapui_scopes",
+    }
+
+    if vim.tbl_contains(ft_ignore, vim.bo.filetype) then
+      vim.cmd "setlocal statuscolumn="
+    end
+  end,
+})
+
 -- Highlight on yank
 autocmd("TextYankPost", {
   command = "silent! lua vim.highlight.on_yank({higroup='YankVisual', timeout=200})",
@@ -252,6 +277,42 @@ autocmd("FileType", {
     else
       require("custom.utils.core").remove_mappings "go"
     end
+  end,
+})
+
+-- Unlink the snippet and restore completion
+-- https://github.com/L3MON4D3/LuaSnip/issues/258#issuecomment-1011938524
+vim.api.nvim_create_autocmd("ModeChanged", {
+  pattern = "*",
+  callback = function()
+    if
+      ((vim.v.event.old_mode == "s" and vim.v.event.new_mode == "n") or vim.v.event.old_mode == "i")
+      and require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
+      and not require("luasnip").session.jump_active
+    then
+      require("luasnip").unlink_current()
+      require("cmp.config").set_global {
+        completion = { autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged } },
+      }
+    end
+  end,
+})
+
+-- Do not automatically trigger completion if we are in a snippet
+vim.api.nvim_create_autocmd("User", {
+  pattern = "LuaSnipInsertNodeEnter",
+  callback = function()
+    require("cmp.config").set_global { completion = { autocomplete = false } }
+  end,
+})
+
+-- But restore it when we leave.
+vim.api.nvim_create_autocmd("User", {
+  pattern = "LuaSnipInsertNodeLeave",
+  callback = function()
+    require("cmp.config").set_global {
+      completion = { autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged } },
+    }
   end,
 })
 
