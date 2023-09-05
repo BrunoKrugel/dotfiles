@@ -51,6 +51,11 @@ M.override = {
 ---@type HLTable
 M.add = {
 
+
+  EdgyWinBar = { bg = "black", fg = "white" },
+  EdgyWinBarInactive = { bg = "black", fg = "white" },
+  EdgyNormal = { bg = "black", fg = "white" },
+
   YankVisual = { fg = "black2", bg = "cyan" },
 
   MultiCursor = { bg = "white", fg = "black2" },
@@ -141,34 +146,6 @@ M.add = {
   DiagnosticUnnecessary = { link = "", fg = "light_grey" },
   LspInlayHint = { link = "", fg = "light_grey" },
 
-  -- Hop
-  HopNextKey = { fg = "red", bold = true },
-  HopNextKey1 = { fg = "cyan", bold = true },
-  HopNextKey2 = { fg = "blue", bold = true},
-
-  -- Todo
-  TodoBgFix = { fg = "black2", bg = "red", bold = true },
-  TodoBgHack = { fg = "black2", bg = "orange", bold = true },
-  TodoBgNote = { fg = "black2", bg = "white", bold = true },
-  TodoBgPerf = { fg = "black2", bg = "purple", bold = true },
-  TodoBgTest = { fg = "black2", bg = "purple", bold = true },
-  TodoBgTodo = { fg = "black2", bg = "yellow", bold = true },
-  TodoBgWarn = { fg = "orange", bold = true },
-  TodoFgFix = { fg = "red" },
-  TodoFgHack = { fg = "orange" },
-  TodoFgNote = { fg = "white" },
-  TodoFgPerf = { fg = "purple" },
-  TodoFgTest = { fg = "purple" },
-  TodoFgTodo = { fg = "yellow" },
-  TodoFgWarn = { fg = "orange" },
-  TodoSignFix = { link = "TodoFgFix" },
-  TodoSignHack = { link = "TodoFgHack" },
-  TodoSignNote = { link = "TodoFgNote" },
-  TodoSignPerf = { link = "TodoFgPerf" },
-  TodoSignTest = { link = "TodoFgTest" },
-  TodoSignTodo = { link = "TodoFgTodo" },
-  TodoSignWarn = { link = "TodoFgWarn" },
-
   -- Noice
   NoiceCursor = { link = "Cursor" },
   NoiceCmdlinePopupBorder = { fg = "cyan" },
@@ -182,43 +159,6 @@ M.add = {
 
   HarpoonBorder = { fg = "cyan" },
 
-  -- Trouble
-  TroubleCount = { fg = "pink" },
-  TroubleCode = { fg = "white" },
-  TroubleWarning = { fg = "orange" },
-  TroubleSignWarning = { fg = "yellow" },
-  TroubleTextWarning = { fg = "white" },
-  TroublePreview = { fg = "red" },
-  TroubleSource = { fg = "cyan" },
-  TroubleSignHint = { fg = "green" },
-  TroubleTextHint = { fg = "red" },
-  TroubleHint = { fg = "orange" },
-  TroubleSignOther = { fg = "green" },
-  TroubleSignInformation = { fg = "white" },
-  TroubleTextInformation = { fg = "blue" },
-  TroubleInformation = { fg = "white" },
-  TroubleError = { fg = "red" },
-  TroubleTextError = { fg = "red" }, -- error info text
-  TroubleSignError = { fg = "red" }, -- error sign color
-  TroubleText = { fg = "white" },
-  TroubleFile = { fg = "yellow" }, -- the source file that has error
-  TroubleFoldIcon = { fg = "cyan" }, -- fold icon color
-  TroubleNormal = { fg = "white" },
-  TroubleLocation = { fg = "red" }, -- location of error
-  TroubleIndent = { link = "Comment" }, -- indent color
-
-  CodeActionMenuWarningMessageText = { fg = "white" },
-  CodeActionMenuWarningMessageBorder = { fg = "red" },
-  CodeActionMenuMenuIndex = { fg = "blue" },
-  CodeActionMenuMenuKind = { fg = "green" },
-  CodeActionMenuMenuTitle = { fg = "white" },
-  CodeActionMenuMenuDisabled = { link = "Comment" },
-  CodeActionMenuMenuSelection = { fg = "blue" },
-  CodeActionMenuDetailsTitle = { fg = "white" },
-  CodeActionMenuDetailsLabel = { fg = "yellow" },
-  CodeActionMenuDetailsPreferred = { fg = "green" },
-  CodeActionMenuDetailsDisabled = { link = "Comment" },
-  CodeActionMenuDetailsUndefined = { link = "Comment" },
 }
 
 return M

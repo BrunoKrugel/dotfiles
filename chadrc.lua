@@ -31,6 +31,7 @@ M.ui = {
     "dap",
     "hop",
     "rainbowdelimiters",
+    "codeactionmenu",
     "todo",
     "trouble",
     "notify",
