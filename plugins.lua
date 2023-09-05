@@ -413,9 +413,17 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter-context",
     event = "BufWinEnter",
-    config = function()
-      require "custom.configs.context"
-    end,
+    opts = {
+      throttle = true,
+      max_lines = 0,
+      patterns = {
+        default = {
+          "class",
+          "function",
+          "method",
+        },
+      },
+    },
   },
   {
     "mfussenegger/nvim-dap",
