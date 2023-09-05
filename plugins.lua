@@ -27,6 +27,7 @@ local plugins = {
         end,
       },
       "williamboman/mason-lspconfig.nvim",
+      { "folke/neodev.nvim", opts = {} },
     },
     config = function() end,
   },
@@ -697,13 +698,6 @@ local plugins = {
     end,
   },
   {
-    "adelarsq/image_preview.nvim",
-    keys = { "<leader>p" },
-    config = function()
-      require("image_preview").setup()
-    end,
-  },
-  {
     "VonHeikemen/searchbox.nvim",
     cmd = { "SearchBoxMatchAll", "SearchBoxReplace", "SearchBoxIncSearch" },
     config = true,
@@ -785,9 +779,7 @@ local plugins = {
   {
     "tzachar/highlight-undo.nvim",
     event = "BufReadPost",
-    config = function()
-      require("highlight-undo").setup {}
-    end,
+    opts = {},
   },
   {
     "anuvyklack/pretty-fold.nvim",
@@ -799,9 +791,7 @@ local plugins = {
   {
     "jghauser/fold-cycle.nvim",
     keys = { "<leader>a" },
-    config = function()
-      require("fold-cycle").setup()
-    end,
+    opts = {},
   },
   {
     "anuvyklack/fold-preview.nvim",
@@ -1005,7 +995,7 @@ local plugins = {
   ----------------------------------------- completions plugins ------------------------------------------
   {
     "ludovicchabant/vim-gutentags",
-    event = "BufReadPost",
+    ft = "go",
   },
   {
     "github/copilot.vim",
