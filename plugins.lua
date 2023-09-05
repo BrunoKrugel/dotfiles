@@ -814,6 +814,63 @@ local plugins = {
     config = true,
   },
   {
+    "akinsho/toggleterm.nvim",
+    dependencies = {
+      {
+        "folke/edgy.nvim",
+        init = function()
+          vim.opt.laststatus = 3
+          vim.opt.splitkeep = "screen"
+        end,
+        opts = {
+          bottom = {
+            {
+              ft = "toggleterm",
+              size = { height = 0.2 },
+            },
+          },
+          wo = {
+            winbar = false,
+          },
+        },
+      },
+    },
+    keys = { [[<C-\>]] },
+    cmd = { "ToggleTerm", "ToggleTermOpenAll", "ToggleTermCloseAll" },
+    opts = {
+      size = function(term)
+        if term.direction == "horizontal" then
+          return 15
+        elseif term.direction == "vertical" then
+          return vim.o.columns * 0.4
+        else
+          return 5
+        end
+      end,
+      open_mapping = [[<C-\>]],
+      hide_numbers = true,
+      shade_terminals = false,
+      insert_mappings = true,
+      persist_size = true,
+      direction = "horizontal",
+      close_on_exit = true,
+      shell = vim.o.shell,
+      autochdir = true,
+      highlights = {
+        NormalFloat = {
+          link = "Normal",
+        },
+        FloatBorder = {
+          link = "FloatBorder",
+        },
+      },
+      float_opts = {
+        border = "rounded",
+        winblend = 0,
+      },
+    },
+  },
+  {
     "nvimdev/lspsaga.nvim",
     event = "LspAttach",
     config = function()
