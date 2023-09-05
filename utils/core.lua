@@ -166,6 +166,10 @@ M.statusline = {
           local hl_fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(icon_hl)), "fg")
           local hl_bg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID "StText"), "bg")
           vim.api.nvim_set_hl(0, "St_" .. icon_hl, { fg = hl_fg, bg = hl_bg })
+
+          if string.find(filename, "toggleterm") then
+            filename = '%{&ft == "toggleterm" ? "Terminal (".b:toggle_number.")" : ""}'
+          end
           icon_text = "%#St_" .. icon_hl .. "# " .. icon .. "%#StText# " .. filename .. " "
         end
       end
