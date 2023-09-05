@@ -29,6 +29,10 @@ M.ui = {
 
   extended_integrations = {
     "dap",
+    "hop",
+    "rainbowdelimiters",
+    "todo",
+    "trouble",
     "notify",
   },
 
