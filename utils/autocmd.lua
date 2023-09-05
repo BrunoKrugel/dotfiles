@@ -280,6 +280,16 @@ autocmd("FileType", {
   end,
 })
 
+autocmd("TermOpen", {
+  callback = function()
+    vim.opt_local.relativenumber = false
+    vim.opt_local.number = false
+    vim.cmd "startinsert!"
+  end,
+  group = general,
+  desc = "Terminal Options",
+})
+
 -- Unlink the snippet and restore completion
 -- https://github.com/L3MON4D3/LuaSnip/issues/258#issuecomment-1011938524
 vim.api.nvim_create_autocmd("ModeChanged", {
