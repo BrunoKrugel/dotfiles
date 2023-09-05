@@ -52,6 +52,10 @@ local plugins = {
     opts = overrides.devicons,
   },
   {
+    "NvChad/nvterm",
+    opts = overrides.nvterm,
+  },
+  {
     "nvim-telescope/telescope.nvim",
     opts = overrides.telescope,
     dependencies = {
