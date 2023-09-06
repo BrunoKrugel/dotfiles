@@ -21,6 +21,7 @@ require("statuscol").setup {
     "Trouble",
     "noice",
     "lazy",
+    "nvdash",
     "toggleterm",
   },
   segments = {

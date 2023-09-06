@@ -6,7 +6,7 @@ M.override = {
   Cursor = { bg = "white", fg = "black2" },
   CursorLine = { bg = "black2" },
   Comment = { italic = true },
-  NvDashAscii = { fg = "none", bg = "none" },
+  NvDashAscii = { fg = "purple", bg = "none" },
   IndentBlanklineContextStart = { bg = "none" },
 
   -- TreeSitter highlights
