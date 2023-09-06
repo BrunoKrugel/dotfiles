@@ -16,18 +16,6 @@ autocmd("LspAttach", {
   end,
 })
 
--- Fix NvimTree not opening on startup when using session restore plugin
--- autocmd({ "BufEnter" }, {
---   pattern = "NvimTree*",
---   callback = function()
---     local api = require "nvim-tree.api"
---     local view = require "nvim-tree.view"
---     if not view.is_visible() then
---       api.tree.open()
---     end
---   end,
--- })
-
 -- Close Nvimtree before quit nvim
 autocmd("FileType", {
   pattern = { "NvimTree" },
@@ -130,6 +118,7 @@ autocmd({ "FileType", "BufWinEnter" }, {
       "dapui_stacks",
       "dapui_breakpoints",
       "dapui_scopes",
+      "nvdash",
     }
 
     local b = vim.api.nvim_get_current_buf()
@@ -280,19 +269,8 @@ autocmd("FileType", {
   end,
 })
 
-autocmd("TermOpen", {
-  callback = function()
-    vim.opt_local.relativenumber = false
-    vim.opt_local.number = false
-    vim.cmd "startinsert!"
-  end,
-  group = general,
-  desc = "Terminal Options",
-})
-
 -- Unlink the snippet and restore completion
--- https://github.com/L3MON4D3/LuaSnip/issues/258#issuecomment-1011938524
-vim.api.nvim_create_autocmd("ModeChanged", {
+autocmd("ModeChanged", {
   pattern = "*",
   callback = function()
     if
@@ -309,7 +287,7 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 })
 
 -- Do not automatically trigger completion if we are in a snippet
-vim.api.nvim_create_autocmd("User", {
+autocmd("User", {
   pattern = "LuaSnipInsertNodeEnter",
   callback = function()
     require("cmp.config").set_global { completion = { autocomplete = false } }
@@ -326,13 +304,42 @@ vim.api.nvim_create_autocmd("User", {
   end,
 })
 
--- Enable it when changing highlights
--- autocmd("BufWritePost", {
---   pattern = "*.lua",
---   callback = function()
---     require("base46").load_all_highlights()
---   end,
--- })
+-- {{{ Terminal autocmd
+-- Switch to insert mode when terminal is open
+local term_augroup = vim.api.nvim_create_augroup("Terminal", { clear = true })
+autocmd({ "TermOpen", "BufEnter" }, {
+  -- TermOpen: for when terminal is opened for the first time
+  -- BufEnter: when you navigate to an existing terminal buffer
+  group = term_augroup,
+  pattern = "term://*", --> only applicable for "BufEnter", an ignored Lua table key when evaluating TermOpen
+  callback = function()
+    vim.cmd "startinsert"
+  end,
+})
+
+-- Automatically close terminal unless exit code isn't 0
+autocmd("TermClose", {
+  group = term_augroup,
+  callback = function()
+    if vim.v.event.status == 0 then
+      vim.api.nvim_buf_delete(0, {})
+      vim.notify_once "Previous terminal job was successful!"
+    else
+      vim.notify_once "Error code detected in the current terminal job!"
+    end
+  end,
+})
+
+--Delete [No Name] buffers,
+autocmd("BufHidden", {
+  callback = function(event)
+    if event.file == "" and vim.bo[event.buf].buftype == "" and not vim.bo[event.buf].modified then
+      vim.schedule(function()
+        pcall(vim.api.nvim_buf_delete, event.buf, {})
+      end)
+    end
+  end,
+})
 
 -- Open NvimTree on startup
 -- autocmd("VimEnter", {
@@ -341,9 +348,21 @@ vim.api.nvim_create_autocmd("User", {
 --   end,
 -- })
 
+-- Fix NvimTree not opening on startup when using session restore plugin
+-- autocmd({ "BufEnter" }, {
+--   pattern = "NvimTree*",
+--   callback = function()
+--     local api = require "nvim-tree.api"
+--     local view = require "nvim-tree.view"
+--     if not view.is_visible() then
+--       api.tree.open()
+--     end
+--   end,
+-- })
+
 -- Auto format on save, but it will mess with undo history
 -- autocmd("BufWritePre", {
---   pattern = { "*.js", "*.java", "*.lua" },
+--   pattern = { "*" },
 --   callback = function()
 --     vim.lsp.buf.format { async = false }
 --   end,
