@@ -72,6 +72,9 @@ M.add = {
   CmpItemKindCodeium = { fg = "#51BDAC" },
   CmpItemKindTabNine = { fg = "#C73BE3" },
 
+  PackageInfoOutdatedVersion = { fg = "red" },
+  PackageInfoUpToDateVersion = { fg = "green" },
+
   VirtColumn = { fg = "black2" },
   FoldColumn = { bg = "black", fg = "white" },
   Folded = { bg = "black", fg = "white" },
