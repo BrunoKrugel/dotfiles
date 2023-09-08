@@ -1,4 +1,4 @@
----@type ChadrcConfig
+---@class ChadrcConfig
 local M = {}
 
 local core = require "custom.utils.core"
