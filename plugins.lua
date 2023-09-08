@@ -523,7 +523,7 @@ local plugins = {
   },
   {
     "Wansmer/treesj",
-    keys = { "<leader>to" },
+    cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
     config = function()
       require("treesj").setup {
         use_default_keymaps = true,

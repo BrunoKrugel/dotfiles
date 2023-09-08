@@ -98,7 +98,7 @@ M.accelerated_jk = {
 
 M.development = {
   n = {
-    ["<leader>it"] = {
+    ["<leader>i"] = {
       function()
         require("nvim-toggler").toggle()
       end,
@@ -172,7 +172,7 @@ M.text = {
 
   n = {
     ["i"] = { "a", "Insert after" },
-    ["<leader>cc"] = { "<CMD> ColorcolumnToggle <CR>", " Toggle ColorColumn display" },
+    ["<leader>cc"] = { "<CMD>CCToggle <CR>", " Toggle ColorColumn display" },
     -- Navigate
     ["<C-Left>"] = { "<ESC>_", "󰜲 Move to beginning of line" },
     ["<C-Right>"] = { "<ESC>$", "󰜵 Move to end of line" },
@@ -345,12 +345,7 @@ M.node = {
 M.treesitter = {
   n = {
     ["<leader>cu"] = { "<CMD>TSCaptureUnderCursor <CR>", " Find highlight" },
-    ["<leader>to"] = {
-      function()
-        require("treesj").toggle()
-      end,
-      "󱓡 Toggle split/join",
-    },
+    ["<leader>to"] = { "<CMD>TSJToggle<CR>", "󱓡 Toggle split/join" },
   },
 }
 
