@@ -328,22 +328,22 @@ local plugins = {
   },
   {
     "chrisgrieser/nvim-early-retirement",
+    event = "VeryLazy",
     opts = {
       retirementAgeMins = 5,
       notificationOnAutoClose = false,
     },
-    event = "BufReadPost",
   },
   {
     "code-biscuits/nvim-biscuits",
-    event = "BufReadPost",
+    event = "LspAttach",
     config = function()
       require "custom.configs.biscuits"
     end,
   },
   {
     "jonahgoldwastaken/copilot-status.nvim",
-    event = "BufReadPost",
+    event = "LspAttach",
     config = function()
       require("copilot_status").setup {
         icons = {
@@ -597,7 +597,7 @@ local plugins = {
   },
   {
     "rainbowhxch/beacon.nvim",
-    event = "BufReadPost",
+    event = "CursorMoved",
     cond = function()
       return not vim.g.neovide
     end,
@@ -723,7 +723,7 @@ local plugins = {
   },
   {
     "utilyre/sentiment.nvim",
-    event = "VeryLazy",
+    event = "LspAttach",
     opts = {},
     init = function()
       vim.g.loaded_matchparen = 1
@@ -731,7 +731,7 @@ local plugins = {
   },
   {
     "0xAdk/full_visual_line.nvim",
-    event = "BufReadPost",
+    keys = { "V" },
     config = function()
       require("full_visual_line").setup {}
     end,
@@ -819,6 +819,8 @@ local plugins = {
   },
   {
     "akinsho/toggleterm.nvim",
+    keys = { [[<C-\>]] },
+    cmd = { "ToggleTerm", "ToggleTermOpenAll", "ToggleTermCloseAll" },
     dependencies = {
       {
         "folke/edgy.nvim",
@@ -839,8 +841,6 @@ local plugins = {
         },
       },
     },
-    keys = { [[<C-\>]] },
-    cmd = { "ToggleTerm", "ToggleTermOpenAll", "ToggleTermCloseAll" },
     opts = {
       size = function(term)
         if term.direction == "horizontal" then
@@ -855,6 +855,7 @@ local plugins = {
       hide_numbers = true,
       shade_terminals = false,
       insert_mappings = true,
+      start_in_insert = true,
       persist_size = true,
       direction = "horizontal",
       close_on_exit = true,
@@ -954,8 +955,8 @@ local plugins = {
       icons = {
         enable = true, 
         style = {
-          up_to_date = icons.checkSquare,
-          outdated = icons.gitRemove, 
+          up_to_date = "  ",
+          outdated = "  ", 
         },
       },
       autostart = true, 
@@ -1011,7 +1012,18 @@ local plugins = {
   {
     "dmmulroy/tsc.nvim",
     cmd = { "TSC" },
-    config = true,
+    opts = {},
+  },
+  {
+    "axelvc/template-string.nvim",
+    event = "InsertEnter",
+    ft = {
+      "javascript",
+      "typescript",
+      "javascriptreact",
+      "typescriptreact",
+    },
+    opts = {},
   },
   {
     "antosha417/nvim-lsp-file-operations",

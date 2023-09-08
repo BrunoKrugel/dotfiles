@@ -133,7 +133,7 @@ autocmd({ "FileType", "BufWinEnter" }, {
 })
 
 autocmd({ "BufEnter", "BufNew" }, {
-  callback = function(ev)
+  callback = function()
     local ft_ignore = {
       "man",
       "help",
