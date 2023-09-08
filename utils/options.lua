@@ -14,6 +14,10 @@ opt.wrap = false
 opt.iskeyword:append "-"
 opt.termguicolors = true -- True color support
 
+-- Map in dotyfile
+g.mapleader = ' '
+g.maplocalleader = ' '
+
 -- Folding settings
 -- zc fold block
 -- zo unfold block
@@ -36,8 +40,8 @@ opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 -- vim.o.signcolumn = "yes"
 -- vim.o.foldcolumn = "2"
 -- vim.o.signcolumn = "number"
-vim.o.number = true
-vim.o.numberwidth = 2
+o.number = true
+o.numberwidth = 2
 
 -- Spell
 -- opt.spell = true
