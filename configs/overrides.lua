@@ -285,6 +285,12 @@ M.nvimtree = {
       },
     },
   },
+  actions = {
+		open_file = {
+			quit_on_open = true,
+			resize_window = false,
+		},
+	},
   tab = {
     sync = {
       open = true,
