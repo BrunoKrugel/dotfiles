@@ -265,7 +265,16 @@ M.nvimtree = {
   renderer = {
     highlight_opened_files = "name",
     highlight_git = true,
+    -- root_folder_label = ":~",
     group_empty = true,
+    indent_markers = {
+			enable = false,
+			icons = {
+				corner = "└ ",
+				edge = "│ ",
+				none = "  ",
+			},
+		},
     icons = {
       show = {
         git = true,
