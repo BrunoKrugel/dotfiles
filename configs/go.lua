@@ -12,22 +12,21 @@ go.setup {
     capabilities = capabilities,
     -- other setups
   },
-  lsp_document_formatting = true,
-  -- null_ls_document_formatting_disable = true,
   max_line_len = 300,
   lsp_inlay_hints = {
     enable = true,
     only_current_line = true,
-    other_hints_prefix = "• ",
+    other_hints_prefix = "•",
   },
   trouble = true,
-  lsp_keymaps = false,
+  lsp_keymaps = true,
   icons = { breakpoint = "", currentpos = "" },
   lsp_diag_virtual_text = false,
   gocoverage_sign = "│",
   -- lsp_diag_virtual_text = { space = 0, prefix = "" },
   --  cat
   dap_debug_gui = core.dapui,
+  luasnip = true,
 }
 
 vim.api.nvim_set_hl(0, "goCoverageUncover", { fg = "#F1FA8C" })
