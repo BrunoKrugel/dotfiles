@@ -951,18 +951,18 @@ local plugins = {
   {
     "vuki656/package-info.nvim",
     event = "BufEnter package.json",
-    opts =    {
+    opts = {
       icons = {
-        enable = true, 
+        enable = true,
         style = {
           up_to_date = "  ",
-          outdated = "  ", 
+          outdated = "  ",
         },
       },
-      autostart = true, 
-      hide_up_to_date = true, 
+      autostart = true,
+      hide_up_to_date = true,
       hide_unstable_versions = true,
-      package_manager = 'yarn'
+      package_manager = "yarn",
     },
   },
   {
