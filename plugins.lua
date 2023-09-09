@@ -459,7 +459,7 @@ local plugins = {
   },
   {
     "mawkler/modicator.nvim",
-    event = "BufWinEnter",
+    event = "CursorMoved",
     init = function()
       vim.o.cursorline = true
       vim.o.number = true
@@ -471,7 +471,7 @@ local plugins = {
   },
   {
     "lukas-reineke/virt-column.nvim",
-    event = "BufReadPost",
+    cmd = "CCToggle",
     config = function()
       require("virt-column").setup {
         char = "┃",
@@ -809,8 +809,8 @@ local plugins = {
   },
   {
     "Fildo7525/pretty_hover",
-    keys = { "<leader>k" },
-    config = true,
+    event = "LspAttach",
+    opts = {},
   },
   {
     "VidocqH/lsp-lens.nvim",
@@ -967,9 +967,8 @@ local plugins = {
   },
   {
     "nvim-neotest/neotest",
-    ft = { "go" },
+    event = "LspAttach",
     dependencies = {
-      "antoinemadec/FixCursorHold.nvim",
       "nvim-neotest/neotest-go",
       "haydenmeade/neotest-jest",
     },
