@@ -168,7 +168,7 @@ M.statusline = {
           vim.api.nvim_set_hl(0, "St_" .. icon_hl, { fg = hl_fg, bg = hl_bg })
 
           if string.find(filename, "toggleterm") then
-            filename = '%{&ft == "toggleterm" ? "Terminal (".b:toggle_number.")" : ""}'
+            filename = '%{&ft == "toggleterm" ? " Terminal (".b:toggle_number.") " : ""}'
           end
           icon_text = "%#St_" .. icon_hl .. "# " .. icon .. "%#StText# " .. filename .. " "
         end
