@@ -134,6 +134,13 @@ M.cmp = {
 
     return true
   end,
+  window = {
+    completion = {
+      scrolloff = 0,
+      col_offset = 0,
+      scrollbar = false,
+    },
+  },
   completion = {
     completeopt = "menu,menuone,noinsert,noselect",
     autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
