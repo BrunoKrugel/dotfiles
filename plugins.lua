@@ -378,11 +378,11 @@ local plugins = {
     cmd = { "BookmarkToggle", "BookmarkClear" },
   },
   {
-    "RRethy/vim-illuminate",
+    "tzachar/local-highlight.nvim",
     event = { "CursorHold", "CursorHoldI" },
-    config = function()
-      require "custom.configs.illuminate"
-    end,
+    opts = {
+      hlgroup = "Visual",
+    },
   },
   {
     "phaazon/hop.nvim",
