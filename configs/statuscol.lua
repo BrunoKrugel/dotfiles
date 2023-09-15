@@ -38,7 +38,12 @@ require("statuscol").setup {
     -- Segment : Show signs with one character width
     {
       sign = {
-        name = { ".*" },
+        -- name = { ".*" },
+        name = {
+          "Dap",
+          "neotest", 
+          "Diagnostic",
+        },
         maxwidth = 1,
         colwidth = 1,
       },

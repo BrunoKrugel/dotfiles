@@ -8,7 +8,7 @@ local function close_all_floating_wins()
 end
 
 require("auto-session").setup {
-  log_level = "info",
+  log_level = "error",
   auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
   auto_session_enabled = true,
   auto_save_enabled = true,
