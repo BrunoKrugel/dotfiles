@@ -477,12 +477,7 @@ M.session = {
 M.hop = {
   n = {
     ["<leader><leader>w"] = { "<CMD> HopWord <CR>", "󰸱 Hint all words" },
-    ["<leader><leader>t"] = {
-      function()
-        require("tsht").move { side = "start" }
-      end,
-      " Hint Tree",
-    },
+    ["<leader><leader>t"] = { "<CMD> HopNodes <CR>", " Hint Tree" },
     ["<leader><leader>c"] = { "<CMD> HopLineStart<CR>", "󰕭 Hint Columns" },
     ["<leader><leader>l"] = { "<CMD> HopWordCurrentLine<CR>", "󰗉 Hint Line" },
   },
