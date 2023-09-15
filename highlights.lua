@@ -69,8 +69,8 @@ M.add = {
   NvimTreeOpenedFile = { fg = "green", bold = true },
 
   -- Cmp Highlights
-  CmpItemKindCodeium = { fg = "#51BDAC" },
-  CmpItemKindTabNine = { fg = "#C73BE3" },
+  CmpItemKindCodeium = { fg = "green" },
+  CmpItemKindTabNine = { fg = "pink" },
 
   PackageInfoOutdatedVersion = { fg = "red" },
   PackageInfoUpToDateVersion = { fg = "green" },
@@ -78,6 +78,15 @@ M.add = {
   VirtColumn = { fg = "black2" },
   FoldColumn = { bg = "black", fg = "white" },
   Folded = { bg = "black", fg = "white" },
+
+
+  -- SpectreHeader
+  -- SpectreBody
+  -- SpectreFile
+  -- SpectreDir
+  -- SpectreSearch = { fg = "green" },
+  -- SpectreBorder
+  -- SpectreReplace
 
   -- Tree Sitter Rainbow
   RainbowDelimiterRed = { fg = "red" },
