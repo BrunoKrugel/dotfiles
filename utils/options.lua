@@ -15,8 +15,8 @@ opt.iskeyword:append "-"
 opt.termguicolors = true -- True color support
 
 -- Map in dotyfile
-g.mapleader = ' '
-g.maplocalleader = ' '
+g.mapleader = " "
+g.maplocalleader = " "
 
 -- Folding settings
 -- zc fold block
@@ -54,9 +54,10 @@ g.copilot_assume_mapped = true
 g.bookmark_sign = ""
 g.bookmark_highlight = "CopilotHl"
 
-
 o.statuscolumn = "%=%l%s%C"
 o.emoji = false
+o.cursorline = true
+o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 if g.neovide then
   -- opt.guifont = "Hack Nerd Font:h12"
