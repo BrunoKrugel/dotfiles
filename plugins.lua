@@ -3,6 +3,8 @@ local cmp_opt = require "custom.configs.cmp"
 
 ---@type NvPluginSpec[]
 local plugins = {
+  --------------------------------------------- community ---------------------------------------------
+  { "BrunoKrugel/nvcommunity" },
   ----------------------------------------- override plugins ------------------------------------------
   {
     "neovim/nvim-lspconfig",
@@ -63,6 +65,7 @@ local plugins = {
       "gnfisher/nvim-telescope-ctags-plus",
       "tom-anders/telescope-vim-bookmarks.nvim",
       "benfowler/telescope-luasnip.nvim",
+      "nvim-telescope/telescope-dap.nvim",
       "Marskey/telescope-sg",
       {
         "nvim-telescope/telescope-fzf-native.nvim",
@@ -84,6 +87,9 @@ local plugins = {
       "windwp/nvim-ts-autotag",
       "chrisgrieser/nvim-various-textobjs",
       "filNaj/tree-setter",
+      "echasnovski/mini.ai",
+      "piersolenski/telescope-import.nvim",
+      "LiadOz/nvim-dap-repl-highlights",
       "RRethy/nvim-treesitter-textsubjects",
       {
         "JoosepAlviste/nvim-ts-context-commentstring",
@@ -385,12 +391,11 @@ local plugins = {
     },
   },
   {
-    "phaazon/hop.nvim",
-    cmd = { "HopWord", "HopLine", "HopLineStart", "HopWordCurrentLine" },
-    branch = "v2",
-    dependencies = "mfussenegger/nvim-treehopper",
+    "smoka7/hop.nvim",
+    cmd = { "HopWord", "HopLine", "HopLineStart", "HopWordCurrentLine", "HopNodes" },
     config = function()
       require("hop").setup { keys = "etovxqpdygfblzhckisuran" }
+      dofile(vim.g.base46_cache .. "hop")
     end,
   },
   {
@@ -459,7 +464,7 @@ local plugins = {
   },
   {
     "mawkler/modicator.nvim",
-    event = "CursorMoved",
+    event = "VeryLazy",
     init = function()
       vim.o.cursorline = true
       vim.o.number = true
@@ -515,8 +520,7 @@ local plugins = {
   -- },
   {
     "narutoxy/dim.lua",
-    event = "BufReadPost",
-    requires = { "nvim-treesitter/nvim-treesitter", "neovim/nvim-lspconfig" },
+    event = "LspAttach",
     config = function()
       require("dim").setup {}
     end,
@@ -574,6 +578,7 @@ local plugins = {
     event = "BufReadPost",
     config = function()
       require "custom.configs.todo"
+      dofile(vim.g.base46_cache .. "todo")
     end,
   },
   {
@@ -586,6 +591,7 @@ local plugins = {
     cmd = { "TroubleToggle", "Trouble" },
     config = function()
       require "custom.configs.trouble"
+      dofile(vim.g.base46_cache .. "trouble")
     end,
   },
   {
@@ -1072,6 +1078,7 @@ local plugins = {
   },
   {
     "malbertzard/inline-fold.nvim",
+    event = "BufReadPost",
     opts = {
       defaultPlaceholder = "…",
       queries = {

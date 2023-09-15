@@ -337,6 +337,8 @@ M.telescope = {
     "ast_grep",
     "ctags_plus",
     "luasnip",
+    "import",
+    "dap",
   },
   extensions = {
     fzf = {
@@ -353,6 +355,9 @@ M.telescope = {
       },
       grep_open_files = false,
       lang = nil,
+    },
+    import = {
+      insert_at_top = true,
     },
   },
 }
