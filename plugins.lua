@@ -624,6 +624,7 @@ local plugins = {
     end,
     config = function()
       dofile(vim.g.base46_cache .. "git")
+      dofile(vim.g.base46_cache .. "codeactionmenu")
     end,
   },
   {
@@ -1150,7 +1151,11 @@ local plugins = {
   ----------------------------------------- completions plugins ------------------------------------------
   {
     "ludovicchabant/vim-gutentags",
-    ft = "go",
+    -- lazy = false,
+    event = { 'BufNewFile', 'BufReadPost' },
+    config = function()
+      require "custom.configs.tags"
+    end,
   },
   {
     "github/copilot.vim",
