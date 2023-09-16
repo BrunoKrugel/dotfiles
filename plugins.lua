@@ -333,6 +333,25 @@ local plugins = {
       require "custom.configs.session"
     end,
   },
+  { "b0o/schemastore.nvim" },
+  {
+    "ahmedkhalf/project.nvim",
+    opts = {
+      manual_mode = false,
+      detection_methods = { "pattern", "lsp" },
+      patterns = { ".git", ".vscode", ".svn", "Makefile", "package.json" },
+      ignore_lsp = {},
+      exclude_dirs = {},
+      show_hidden = false,
+      silent_chdir = true,
+      scope_chdir = "global",
+      datapath = vim.fn.stdpath "data",
+    },
+    event = "VeryLazy",
+    config = function(_, opts)
+      require("project_nvim").setup(opts)
+    end,
+  },
   {
     "ThePrimeagen/harpoon",
     cmd = "Harpoon",
@@ -1187,7 +1206,7 @@ local plugins = {
   {
     "ludovicchabant/vim-gutentags",
     -- lazy = false,
-    event = { 'BufNewFile', 'BufReadPost' },
+    event = { "BufNewFile", "BufReadPost" },
     config = function()
       require "custom.configs.tags"
     end,
