@@ -96,11 +96,8 @@ local plugins = {
         config = function()
           local conceal = require "conceal"
           conceal.setup {
-            ["typescript"] = {
-              enabled = true,
-            },
             ["lua"] = {
-              enabled = true,
+              enabled = false,
             },
           }
           conceal.generate_conceals()
@@ -254,20 +251,11 @@ local plugins = {
         }),
       })
 
-      cmp.setup.filetype("gitcommit", {
-        mapping = opts.mapping,
-        sources = {
-          { name = "git" },
-        },
-      })
-
       cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
         sources = {
           { name = "dap" },
         },
       })
-
-      require("cmp_git").setup()
     end,
   },
   {
@@ -1174,10 +1162,9 @@ local plugins = {
   {
     "chrisgrieser/nvim-recorder",
     keys = { "q", "Q" },
-    opts = {
-      lessNotifications = true,
-      clear = true,
-    },
+    config = function()
+      require "custom.configs.recorder"
+    end,
   },
   {
     "javiorfo/nvim-soil",
