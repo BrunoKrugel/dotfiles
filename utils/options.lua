@@ -33,10 +33,11 @@ opt.conceallevel = 2
 opt.foldnestmax = 1
 opt.foldlevelstart = 99
 opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+opt.foldmethod = "expr"
 
 -- CUSTOM
 -- vim.o.foldmethod = "expr"
--- vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- vim.o.signcolumn = "yes"
 -- vim.o.foldcolumn = "2"
 -- vim.o.signcolumn = "number"
@@ -57,7 +58,7 @@ g.bookmark_highlight = "CopilotHl"
 o.statuscolumn = "%=%l%s%C"
 o.emoji = false
 o.cursorline = true
-o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+o.sessionoptions = "blank,buffers,curdir,help,tabpages,winsize,winpos,terminal,localoptions"
 
 if g.neovide then
   -- opt.guifont = "Hack Nerd Font:h12"
