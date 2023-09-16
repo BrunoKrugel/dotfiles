@@ -16,6 +16,9 @@ require("luasnip.loaders.from_lua").load { paths = "~/.config/nvim/lua/custom/lu
 local types = require "luasnip.util.types"
 
 luasnip.setup {
+  history = true,
+  delete_check_events = "TextChanged",
+  region_check_events = "CursorMoved",
   ext_opts = {
     [types.insertNode] = {
       unvisited = {
