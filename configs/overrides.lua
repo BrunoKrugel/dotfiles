@@ -268,13 +268,13 @@ M.nvimtree = {
     -- root_folder_label = ":~",
     group_empty = true,
     indent_markers = {
-			enable = false,
-			icons = {
-				corner = "└ ",
-				edge = "│ ",
-				none = "  ",
-			},
-		},
+      enable = false,
+      icons = {
+        corner = "└ ",
+        edge = "│ ",
+        none = "  ",
+      },
+    },
     icons = {
       show = {
         git = true,
@@ -295,11 +295,11 @@ M.nvimtree = {
     },
   },
   actions = {
-		open_file = {
-			quit_on_open = true,
-			resize_window = false,
-		},
-	},
+    open_file = {
+      quit_on_open = true,
+      resize_window = false,
+    },
+  },
   tab = {
     sync = {
       open = true,
@@ -339,6 +339,7 @@ M.telescope = {
     "luasnip",
     "import",
     "dap",
+    "projects",
   },
   extensions = {
     fzf = {
@@ -380,6 +381,8 @@ M.blankline = {
     "lsp-installer",
     "norg",
     "Empty",
+    "Trouble",
+    "lazy",
     "",
   },
   buftype_exclude = { "terminal", "nofile" },
