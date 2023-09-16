@@ -119,6 +119,9 @@ local plugins = {
       "hrsh7th/cmp-nvim-lsp-document-symbol",
       "hrsh7th/cmp-copilot",
       "ray-x/cmp-treesitter",
+      "hrsh7th/cmp-cmdline",
+      "rcarriga/cmp-dap",
+      "petertriho/cmp-git",
       "js-everts/cmp-tailwind-colors",
       { "jcdickinson/codeium.nvim", config = true },
       {
@@ -198,7 +201,39 @@ local plugins = {
         end
         return format_kinds(entry, item)
       end
-      require("cmp").setup(opts)
+      local cmp = require "cmp"
+
+      cmp.setup(opts)
+
+      cmp.setup.cmdline({ "/", "?" }, {
+        mapping = opts.mapping,
+        sources = {
+          { name = "buffer" },
+        },
+      })
+      cmp.setup.cmdline(":", {
+        mapping = opts.mapping,
+        sources = cmp.config.sources({
+          { name = "cmdline" },
+        }, {
+          { name = "path" },
+        }),
+      })
+
+      cmp.setup.filetype("gitcommit", {
+        mapping = opts.mapping,
+        sources = {
+          { name = "git" },
+        },
+      })
+
+      cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+        sources = {
+          { name = "dap" },
+        },
+      })
+
+      require("cmp_git").setup()
     end,
   },
   {
