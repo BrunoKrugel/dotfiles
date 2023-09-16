@@ -1,7 +1,9 @@
 local M = {}
 local copilot_status_ok, copilot_cmp_comparators = pcall(require, "copilot_cmp.comparators")
 local list_contains = vim.list_contains or vim.tbl_contains
-pcall(function() dofile(vim.g.base46_cache .. "cmp") end)
+pcall(function()
+  dofile(vim.g.base46_cache .. "cmp")
+end)
 
 local function deprioritize_snippet(entry1, entry2)
   local types = require "cmp.types"
@@ -40,51 +42,40 @@ local function limit_lsp_types(entry, ctx)
   local types = require "cmp.types"
 
   if char_before_cursor == "." and char_after_dot:match "[a-zA-Z]" then
-    if
-      kind == types.lsp.CompletionItemKind.Method
+    return kind == types.lsp.CompletionItemKind.Method
       or kind == types.lsp.CompletionItemKind.Field
       or kind == types.lsp.CompletionItemKind.Property
-    then
-      return true
-    else
-      return false
-    end
   elseif string.match(line, "^%s+%w+$") then
-    if kind == types.lsp.CompletionItemKind.Function or kind == types.lsp.CompletionItemKind.Variable then
-      return true
-    else
-      return false
-    end
-  end
-
-  if kind == require("cmp").lsp.CompletionItemKind.Text then
+    return kind == types.lsp.CompletionItemKind.Function or kind == types.lsp.CompletionItemKind.Variable
+  elseif kind == require("cmp").lsp.CompletionItemKind.Text then
     return false
   end
 
   return true
 end
 
-local has_words_before = function()
-  if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+local function has_words_before()
+  local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+  if buftype == "prompt" then
     return false
   end
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match "^%s*$" == nil
+
+  local _, col = unpack(vim.api.nvim_win_get_cursor(0))
+  if col == 0 then
+    return false
+  end
+
+  local line = vim.api.nvim_buf_get_lines(0, line - 1, line - 1, true)[1]
+  return not line:match "^%s*$"
 end
 
 local function get_lsp_completion_context(completion, source)
-  local ok, source_name = pcall(function()
-    return source.source.client.config.name
-  end)
-  if not ok then
-    return nil
-  end
+  local source_name = source.source.client.config.name
+
   if source_name == "tsserver" or source_name == "typescript-tools" then
     return completion.detail
-  elseif source_name == "pyright" then
-    if completion.labelDetails ~= nil then
-      return completion.labelDetails.description
-    end
+  elseif source_name == "pyright" and completion.labelDetails ~= nil then
+    return completion.labelDetails.description
   end
 end
 
@@ -126,7 +117,7 @@ M.cmp = {
     disabled = disabled or (vim.fn.reg_executing() ~= "")
     disabled = disabled or (require("cmp.config.context").in_treesitter_capture "comment" == true)
     disabled = disabled or (require("cmp.config.context").in_syntax_group "Comment" == true)
-    disabled = disabled or (vim.api.nvim_get_mode().mode == 'c')
+    disabled = disabled or (vim.api.nvim_get_mode().mode == "c")
 
     if disabled then
       return not disabled
