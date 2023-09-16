@@ -157,6 +157,7 @@ local plugins = {
       },
       {
         "L3MON4D3/LuaSnip",
+        build = "make install_jsregexp",
         config = function(_, opts)
           require("plugins.configs.others").luasnip(opts)
           require "custom.configs.luasnip"
