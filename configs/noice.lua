@@ -46,10 +46,11 @@ noice.setup {
           { find = "Toggling hidden files: true" },
           { find = "Toggling hidden files: false" },
           { find = "Operation canceled" },
+          { find = "^No code actions available$" },
 
           -- Telescope
           { find = "Nothing currently selected" },
-          { find = "No information available" },
+          { find = "^No information available$" },
           { find = "Highlight group" },
           { find = "no manual entry for" },
           { find = "not have parser for" },
@@ -76,6 +77,8 @@ noice.setup {
           { find = "%d+ fewer lines;?" },
           { find = '".+" %d+L, %d+B' },
           { find = "%d+ lines yanked" },
+          { find = "^Hunk %d+ of %d+$" },
+          { find = "%d+L, %d+B$" },
 
           -- Save
           { find = " bytes written" },
