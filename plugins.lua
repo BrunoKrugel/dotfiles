@@ -761,6 +761,7 @@ local plugins = {
   },
   {
     "lvimuser/lsp-inlayhints.nvim",
+    branch = 'anticonceal',
     event = "LspAttach",
     config = function()
       require "custom.configs.inlayhints"
