@@ -51,7 +51,6 @@ M.override = {
 ---@type HLTable
 M.add = {
 
-
   EdgyWinBar = { bg = "black", fg = "white" },
   EdgyWinBarInactive = { bg = "black", fg = "white" },
   EdgyNormal = { bg = "black", fg = "white" },
@@ -78,7 +77,6 @@ M.add = {
   VirtColumn = { fg = "black2" },
   FoldColumn = { bg = "black", fg = "white" },
   Folded = { bg = "black", fg = "white" },
-
 
   -- SpectreHeader
   -- SpectreBody
@@ -170,7 +168,6 @@ M.add = {
   NoicePopupmenu = { fg = "cyan" },
 
   HarpoonBorder = { fg = "cyan" },
-
 }
 
 return M

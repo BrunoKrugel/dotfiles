@@ -339,7 +339,7 @@ M.telescope = {
     "luasnip",
     "import",
     "dap",
-    "projects",
+    -- "projects",
   },
   extensions = {
     fzf = {

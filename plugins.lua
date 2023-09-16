@@ -368,24 +368,24 @@ local plugins = {
     end,
   },
   { "b0o/schemastore.nvim" },
-  {
-    "ahmedkhalf/project.nvim",
-    opts = {
-      manual_mode = false,
-      detection_methods = { "pattern", "lsp" },
-      patterns = { ".git", ".vscode", ".svn", "Makefile", "package.json" },
-      ignore_lsp = {},
-      exclude_dirs = {},
-      show_hidden = false,
-      silent_chdir = true,
-      scope_chdir = "global",
-      datapath = vim.fn.stdpath "data",
-    },
-    event = "VeryLazy",
-    config = function(_, opts)
-      require("project_nvim").setup(opts)
-    end,
-  },
+  -- {
+  --   "ahmedkhalf/project.nvim",
+  --   opts = {
+  --     manual_mode = false,
+  --     detection_methods = { "pattern", "lsp" },
+  --     patterns = { ".git", ".vscode", ".svn", "Makefile", "package.json" },
+  --     ignore_lsp = {},
+  --     exclude_dirs = {},
+  --     show_hidden = false,
+  --     silent_chdir = true,
+  --     scope_chdir = "global",
+  --     datapath = vim.fn.stdpath "data",
+  --   },
+  --   event = "VeryLazy",
+  --   config = function(_, opts)
+  --     require("project_nvim").setup(opts)
+  --   end,
+  -- },
   {
     "ThePrimeagen/harpoon",
     cmd = "Harpoon",
@@ -726,7 +726,22 @@ local plugins = {
   {
     "smjonas/inc-rename.nvim",
     cmd = "IncRename",
-    config = true,
+    opts = {
+      post_hook = function(results)
+        if not results.changes then
+          return
+        end
+
+        -- if more than one file is changed, save all buffers
+        local filesChang = #vim.tbl_keys(results.changes)
+        if filesChang > 1 then
+          vim.cmd.wall()
+        end
+
+        -- FIX making the cmdline-history not navigable, pending: https://github.com/smjonas/inc-rename.nvim/issues/40
+        vim.fn.histdel("cmd", "^IncRename ")
+      end,
+    },
   },
   {
     "AckslD/muren.nvim",
@@ -779,7 +794,7 @@ local plugins = {
   },
   {
     "lvimuser/lsp-inlayhints.nvim",
-    branch = 'anticonceal',
+    branch = "anticonceal",
     event = "LspAttach",
     config = function()
       require "custom.configs.inlayhints"
@@ -909,6 +924,7 @@ local plugins = {
       vim.opt.splitkeep = "screen"
     end,
     opts = {
+      fix_win_height = vim.fn.has "nvim-0.10.0" == 0,
       bottom = {
         {
           ft = "toggleterm",
