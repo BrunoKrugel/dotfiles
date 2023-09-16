@@ -135,8 +135,26 @@ local plugins = {
       "hrsh7th/cmp-copilot",
       "ray-x/cmp-treesitter",
       "hrsh7th/cmp-cmdline",
+      "tzachar/cmp-fuzzy-buffer",
+      "tzachar/fuzzy.nvim",
       "rcarriga/cmp-dap",
-      "petertriho/cmp-git",
+      {
+        "petertriho/cmp-git",
+        opts = {},
+        config = function()
+          local cmp = require "cmp"
+          ---@diagnostic disable-next-line: missing-fields
+          cmp.setup.filetype("gitcommit", {
+            sources = cmp.config.sources({
+              { name = "git", priority = 50 },
+              { name = "path", priority = 40 },
+            }, {
+              { name = "buffer", priority = 50 },
+              { name = "emoji", insert = true, priority = 20 },
+            }),
+          })
+        end,
+      },
       "js-everts/cmp-tailwind-colors",
       { "jcdickinson/codeium.nvim", config = true },
       {

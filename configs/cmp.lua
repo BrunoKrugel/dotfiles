@@ -181,11 +181,13 @@ M.cmp = {
       "s",
     }),
   },
+  -- explanations: https://github.com/hrsh7th/nvim-cmp/blob/main/doc/cmp.txt#L425
   performance = {
-    debounce = 300,
-    throttle = 60,
+    debounce = 30,
+    throttle = 20,
+    async_budget = 0.8,
     max_view_entries = 10,
-    fetching_timeout = 200,
+    fetching_timeout = 250,
   },
   snippet = {
     expand = function(args)
@@ -231,6 +233,11 @@ M.cmp = {
       keyword_length = 5,
       option = buffer_option,
     },
+    {
+      name = "fuzzy_buffer",
+      keyword_length = 5,
+      option = buffer_option,
+    },
   },
   matching = {
     disallow_fuzzy_matching = true,
@@ -241,6 +248,7 @@ M.cmp = {
   },
   sorting = {
     comparators = {
+      -- Definitions of compare function https://github.com/hrsh7th/nvim-cmp/blob/main/lua/cmp/config/compare.lua
       deprioritize_snippet,
       require("cmp").config.compare.exact,
       require("cmp").config.compare.locality,
