@@ -92,6 +92,21 @@ local plugins = {
       "LiadOz/nvim-dap-repl-highlights",
       "RRethy/nvim-treesitter-textsubjects",
       {
+        "Jxstxs/conceal.nvim",
+        config = function()
+          local conceal = require "conceal"
+          conceal.setup {
+            ["typescript"] = {
+              enabled = true,
+            },
+            ["lua"] = {
+              enabled = true,
+            },
+          }
+          conceal.generate_conceals()
+        end,
+      },
+      {
         "JoosepAlviste/nvim-ts-context-commentstring",
         config = function()
           require("Comment").setup {
