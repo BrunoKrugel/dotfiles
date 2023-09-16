@@ -363,6 +363,66 @@ autocmd("BufEnter", {
   end,
 })
 
+-- Automatically update changed file in Vim
+-- Triger `autoread` when files changes on disk
+-- https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
+-- https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  group = group,
+  command = [[silent! if mode() != 'c' && !bufexists("[Command Line]") | checktime | endif]],
+})
+
+-- Notification after file change
+-- https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+  group = group,
+  command = [[echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None]],
+})
+
+-- Hide cursorline in insert mode
+vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, { command = "set cursorline", group = group })
+vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, { command = "set nocursorline", group = group })
+
+-- local lazy_did_show_install_view = false
+
+-- local function auto_session_restore()
+--   -- important! without vim.schedule other necessary plugins might not load (eg treesitter) after restoring the session
+--   vim.schedule(function()
+--     require("auto-session").AutoRestoreSession()
+--   end)
+-- end
+
+-- autocmd("User", {
+--   pattern = "VeryLazy",
+--   callback = function()
+--     local lazy_view = require "lazy.view"
+
+--     if lazy_view.visible() then
+--       -- if lazy view is visible do nothing with auto-session
+--       lazy_did_show_install_view = true
+--     else
+--       -- otherwise load (by require'ing) and restore session
+--       auto_session_restore()
+--     end
+--   end,
+-- })
+
+-- autocmd("WinClosed", {
+--   pattern = "*",
+--   callback = function(ev)
+--     local lazy_view = require "lazy.view"
+
+--     -- if lazy view is currently visible and was shown at startup
+--     if lazy_view.visible() and lazy_did_show_install_view then
+--       -- if the window to be closed is actually the lazy view window
+--       if ev.match == tostring(lazy_view.view.win) then
+--         lazy_did_show_install_view = false
+--         auto_session_restore()
+--       end
+--     end
+--   end,
+-- })
+
 -- Open NvimTree on startup
 -- autocmd("VimEnter", {
 --   callback = function()
