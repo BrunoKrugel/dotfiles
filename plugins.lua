@@ -554,6 +554,22 @@ local plugins = {
     config = function()
       require("rest-nvim").setup {
         result_split_horizontal = true,
+        encode_url = true, -- Encode URL before making request
+        result = {
+          show_url = false,
+          show_http_info = true,
+          show_headers = false,
+          formatters = {
+            json = function(body)
+              -- stylua: ignore
+              return vim.fn.system { "biome", "format", "--stdin", "--stdin-file-path", "foo.json", body }
+            end,
+            -- prettier already needed since it's the only proper yaml formatter
+            html = function(body)
+              return vim.fn.system { "prettier", "--parser=html", body }
+            end,
+          },
+        },
       }
     end,
   },
