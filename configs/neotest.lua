@@ -12,6 +12,9 @@ vim.diagnostic.config({
 require("neotest").setup {
   adapters = {
     require "neotest-go" {
+      experimental = {
+        test_table = true,
+      },
       args = { "-count=1", "-coverprofile coverage.out", "-covermode=count" },
     },
     require "neotest-jest" {
@@ -21,6 +24,11 @@ require("neotest").setup {
         return vim.fn.getcwd()
       end,
     },
+  },
+  quickfix = {
+    open = function()
+      vim.cmd('Trouble quickfix')
+    end,
   },
   diagnostic = {
     enabled = false,
@@ -53,6 +61,8 @@ require("neotest").setup {
   },
   status = {
     enabled = true,
+    signs = true, -- Sign after function signature
+    virtual_text = true
   },
   strategies = {
     integrated = {
