@@ -62,7 +62,7 @@ require("neotest").setup {
   status = {
     enabled = true,
     signs = true, -- Sign after function signature
-    virtual_text = true
+    virtual_text = false
   },
   strategies = {
     integrated = {
