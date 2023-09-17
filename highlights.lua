@@ -70,6 +70,7 @@ M.add = {
   -- Cmp Highlights
   CmpItemKindCodeium = { fg = "green" },
   CmpItemKindTabNine = { fg = "pink" },
+  CmpItemKindCopilot = { fg = "cyan" },
 
   PackageInfoOutdatedVersion = { fg = "red" },
   PackageInfoUpToDateVersion = { fg = "green" },
