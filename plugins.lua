@@ -1132,6 +1132,12 @@ local plugins = {
   {
     "vuki656/package-info.nvim",
     event = "BufEnter package.json",
+    dependencies = {
+      {
+        "David-Kunz/cmp-npm",
+        opts = {},
+      },
+    },
     opts = {
       icons = {
         enable = true,
