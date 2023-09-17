@@ -27,7 +27,7 @@ g.maplocalleader = " "
 opt.foldenable = true
 
 -- UFO
--- opt.foldcolumn = "1" -- show foldcolumn in nvim 0.9
+opt.foldcolumn = "1" -- show foldcolumn in nvim 0.9
 -- opt.foldlevel = 1
 opt.conceallevel = 2
 -- opt.foldnestmax = 1
