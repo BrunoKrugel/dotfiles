@@ -2,6 +2,7 @@
 local create_cmd = vim.api.nvim_create_user_command
 local settings = require("custom.chadrc").settings
 local g = vim.g
+local fn = vim.fn
 
 local function setAutoCmp(mode)
   if mode then
@@ -18,6 +19,19 @@ local function setAutoCmp(mode)
     }
   end
 end
+
+local function yank_file_path(expr)
+  fn.setreg("+", fn.expand(expr))
+  vim.notify("Yanked file path: " .. fn.getreg "+")
+end
+
+create_cmd("YankPath", function()
+  yank_file_path "%"
+end, { desc = "Yank current file's path relative to cwd" })
+
+create_cmd("YankPathFull", function()
+  yank_file_path "%:~"
+end, { desc = "Yank current file's absolute path" })
 
 create_cmd("DapUiOpen", ":lua require'dapui'.open()", {})
 create_cmd("DapUiClose", ":lua require'dapui'.close()", {})
