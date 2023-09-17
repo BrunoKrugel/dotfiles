@@ -208,6 +208,14 @@ M.cmp = {
       max_item_count = 2,
     },
     {
+      name = "nvim_lsp",
+      keyword_length = 5,
+      -- entry_filter = function(entry, ctx)
+      --   return require("cmp").lsp.CompletionItemKind.Text ~= entry:get_kind()
+      -- end,
+      entry_filter = limit_lsp_types,
+    },
+    {
       name = "ctags",
       option = {
         executable = "ctags",
@@ -221,18 +229,11 @@ M.cmp = {
     { name = "luasnip", max_item_count = 2 },
     { name = "nvim_lua" },
     {
-      name = "nvim_lsp",
-      keyword_length = 5,
-      -- entry_filter = function(entry, ctx)
-      --   return require("cmp").lsp.CompletionItemKind.Text ~= entry:get_kind()
-      -- end,
-      entry_filter = limit_lsp_types,
-    },
-    {
       name = "buffer",
       keyword_length = 5,
       option = buffer_option,
     },
+    { name = 'npm', keyword_length = 4 },
     {
       name = "fuzzy_buffer",
       keyword_length = 5,
