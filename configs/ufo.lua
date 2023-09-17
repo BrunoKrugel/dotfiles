@@ -34,14 +34,15 @@ local handler = function(virtText, lnum, endLnum, width, truncate)
   return newVirtText
 end
 
-local ftMap = {
-  go = "lsp",
-}
+-- local ftMap = {
+--   go = "lsp",
+-- }
 
 require("ufo").setup {
   close_fold_kinds = { "imports" },
   fold_virt_text_handler = handler,
   provider_selector = function(bufnr, filetype, buftype)
-    return ftMap[filetype] or { "treesitter", "indent" }
+    -- return ftMap[filetype] or { "treesitter", "indent" }
+    return { "treesitter", "indent" }
   end,
 }
