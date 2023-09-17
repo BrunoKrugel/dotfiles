@@ -58,7 +58,7 @@ g.bookmark_highlight = "CopilotHl"
 o.statuscolumn = "%=%l%s%C"
 o.emoji = false
 o.cursorline = true
-o.sessionoptions = "blank,buffers,curdir,help,tabpages,winsize,winpos,terminal,localoptions"
+o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 if g.neovide then
   -- opt.guifont = "Hack Nerd Font:h12"
