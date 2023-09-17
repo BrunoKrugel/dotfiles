@@ -344,7 +344,7 @@ M.node = {
 
 M.treesitter = {
   n = {
-    ["<leader>cu"] = { "<CMD>TSCaptureUnderCursor <CR>", " Find highlight" },
+    ["<leader>cu"] = { "<CMD>InspectTree <CR>", " Find highlight" },
     ["<leader>to"] = { "<CMD>TSJToggle<CR>", "󱓡 Toggle split/join" },
   },
 }

@@ -483,12 +483,8 @@ local plugins = {
     cmd = "Code",
   },
   {
-    "nvim-treesitter/playground",
-    cmd = "TSCaptureUnderCursor",
-  },
-  {
     "nvim-treesitter/nvim-treesitter-context",
-    event = "BufWinEnter",
+    event = "LspAttach",
     opts = {
       throttle = true,
       max_lines = 0,
