@@ -38,25 +38,21 @@ M.devicons = {
       ["sum"] = {
         icon = "󰟓",
         color = "#cbcb40",
-        cterm_color = "185",
         name = "Sum",
       },
       [".gitignore"] = {
         icon = "",
         color = "#e24329",
-        cterm_color = "196",
         name = "GitIgnore",
       },
       ["js"] = {
         icon = "",
         color = "#cbcb41",
-        cterm_color = "185",
         name = "Js",
       },
       ["lock"] = {
         icon = "",
         color = "#bbbbbb",
-        cterm_color = "250",
         name = "Lock",
       },
       ["package.json"] = {
@@ -72,7 +68,6 @@ M.devicons = {
       ["tags"] = {
         icon = "",
         color = "#bbbbbb",
-        cterm_color = "250",
         name = "Tags",
       },
       ["http"] = {
@@ -140,7 +135,7 @@ M.treesitter = {
   },
   query_linter = {
     enable = true,
-    use_virtual_text = false,
+    use_virtual_text = true,
     lint_events = { "BufWrite", "CursorHold" },
   },
   textsubjects = {
