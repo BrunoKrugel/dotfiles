@@ -1,63 +1,103 @@
 local M = {}
 
+local function icon_multiple_filenames(filenames, opts)
+  local overrides = {}
+  for _, file in ipairs(filenames) do
+    overrides[file] = opts
+  end
+  return overrides
+end
+
+local function filenames_list(filename, extensions)
+  local filenames = {}
+  for _, ext in ipairs(extensions) do
+    table.insert(filenames, filename .. "." .. ext)
+  end
+  return filenames
+end
+
 M.devicons = {
-  override_by_filename = {
-    ["makefile"] = {
-      icon = "",
-      color = "#f1502f",
-      name = "Makefile",
+  override_by_filename = vim.tbl_extend(
+    "force",
+    {
+      ["makefile"] = {
+        icon = "",
+        color = "#f1502f",
+        name = "Makefile",
+      },
+      ["mod"] = {
+        icon = "󰟓",
+        color = "#519aba",
+        name = "Mod",
+      },
+      ["yarn.lock"] = {
+        icon = "",
+        color = "#0288D1",
+        name = "Yarn",
+      },
+      ["sum"] = {
+        icon = "󰟓",
+        color = "#cbcb40",
+        cterm_color = "185",
+        name = "Sum",
+      },
+      [".gitignore"] = {
+        icon = "",
+        color = "#e24329",
+        cterm_color = "196",
+        name = "GitIgnore",
+      },
+      ["js"] = {
+        icon = "",
+        color = "#cbcb41",
+        cterm_color = "185",
+        name = "Js",
+      },
+      ["lock"] = {
+        icon = "",
+        color = "#bbbbbb",
+        cterm_color = "250",
+        name = "Lock",
+      },
+      ["package.json"] = {
+        icon = "",
+        color = "#e8274b",
+        name = "PackageJson",
+      },
+      [".eslintignore"] = {
+        icon = "󰱺",
+        color = "#e8274b",
+        name = "EslintIgnore",
+      },
+      ["tags"] = {
+        icon = "",
+        color = "#bbbbbb",
+        cterm_color = "250",
+        name = "Tags",
+      },
+      ["http"] = {
+        icon = "󰖟",
+        color = "#519aba",
+        name = "Http",
+      },
     },
-    ["mod"] = {
-      icon = "󰟓",
-      color = "#519aba",
-      name = "Mod",
-    },
-    ["sum"] = {
-      icon = "󰟓",
-      color = "#cbcb40",
-      cterm_color = "185",
-      name = "Sum",
-    },
-    [".gitignore"] = {
-      icon = "",
-      color = "#e24329",
-      cterm_color = "196",
-      name = "GitIgnore",
-    },
-    ["js"] = {
-      icon = "",
-      color = "#cbcb41",
-      cterm_color = "185",
-      name = "Js",
-    },
-    ["lock"] = {
-      icon = "",
-      color = "#bbbbbb",
-      cterm_color = "250",
-      name = "Lock",
-    },
-    ["package.json"] = {
-      icon = "",
-      color = "#e8274b",
-      name = "PackageJson",
-    },
-    [".eslintignore"] = {
-      icon = "󰱺",
-      color = "#e8274b",
-      name = "EslintIgnore",
-    },
-    ["tags"] = {
-      icon = "",
-      color = "#bbbbbb",
-      cterm_color = "250",
-      name = "Tags",
-    },
-    ["http"] = {
-      icon = "󰖟",
-      color = "#519aba",
-      name = "Http",
-    },
-  },
+    icon_multiple_filenames(filenames_list("tailwind.config", { "js", "cjs", "ts", "cts" }), {
+      icon = "󱏿",
+      color = "#4DB6AC",
+      name = "tailwind",
+    }),
+    icon_multiple_filenames(filenames_list("vite.config", { "js", "cjs", "ts", "cts" }), {
+      icon = "󱐋",
+      color = "#FFAB00",
+      name = "ViteJS",
+    }),
+    icon_multiple_filenames(filenames_list(".eslintrc", { "js", "cjs", "yaml", "yml", "json" }), {
+      icon = "",
+      color = "#4b32c3",
+      cterm_color = "56",
+      name = "Eslintrc",
+    })
+  ),
 }
 
 M.treesitter = {
