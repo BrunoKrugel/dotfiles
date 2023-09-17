@@ -54,6 +54,10 @@ autocmd("BufRead", {
   group = augroup("prefetch", { clear = true }),
   pattern = "*",
   callback = function()
+    local ok, _ = pcall(require, "cmp_tabnine")
+    if not ok then
+      return
+    end
     require("cmp_tabnine"):prefetch(vim.fn.expand "%:p")
   end,
 })
