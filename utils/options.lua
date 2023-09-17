@@ -27,17 +27,17 @@ g.maplocalleader = " "
 opt.foldenable = true
 
 -- UFO
-opt.foldcolumn = "1" -- show foldcolumn in nvim 0.9
-opt.foldlevel = 1
+-- opt.foldcolumn = "1" -- show foldcolumn in nvim 0.9
+-- opt.foldlevel = 1
 opt.conceallevel = 2
-opt.foldnestmax = 1
-opt.foldlevelstart = 99
+-- opt.foldnestmax = 1
+-- opt.foldlevelstart = 99
 opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-opt.foldmethod = "expr"
+-- opt.foldmethod = "expr"
 
 -- CUSTOM
 -- vim.o.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- vim.o.signcolumn = "yes"
 -- vim.o.foldcolumn = "2"
 -- vim.o.signcolumn = "number"
@@ -72,4 +72,6 @@ if g.neovide then
   g.neovide_padding_bottom = 0
   g.neovide_padding_right = 0
   g.neovide_padding_left = 0
+  g.neovide_floating_blur_amount_x = 3.0
+  g.neovide_floating_blur_amount_y = 3.0
 end
