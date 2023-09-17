@@ -133,6 +133,7 @@ local plugins = {
       "ray-x/cmp-treesitter",
       "hrsh7th/cmp-cmdline",
       "tzachar/cmp-fuzzy-buffer",
+      "roobert/tailwindcss-colorizer-cmp.nvim",
       "tzachar/fuzzy.nvim",
       "rcarriga/cmp-dap",
       {
@@ -343,6 +344,7 @@ local plugins = {
     cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
     opts = {
       updatetime = 10,
+      hint_config = false,
     },
     dependencies = {
       "smoka7/hydra.nvim",
@@ -528,15 +530,18 @@ local plugins = {
   },
   {
     "mawkler/modicator.nvim",
-    event = "VeryLazy",
+    event = "ModeChanged",
     init = function()
       vim.o.cursorline = true
       vim.o.number = true
       vim.o.termguicolors = true
     end,
-    config = function()
-      require("modicator").setup()
-    end,
+    opts = {
+      show_warnings = false,
+      highlights = {
+        defaults = { bold = true },
+      },
+    },
   },
   {
     "lukas-reineke/virt-column.nvim",
@@ -648,7 +653,7 @@ local plugins = {
   },
   {
     "petertriho/nvim-scrollbar",
-    event = "BufReadPost",
+    event = "WinScrolled",
     config = function()
       require "custom.configs.scrollbar"
     end,
@@ -1190,7 +1195,10 @@ local plugins = {
   {
     "dmmulroy/tsc.nvim",
     cmd = { "TSC" },
-    opts = {},
+    opts = {
+      auto_open_qflist = true,
+      spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
+    },
   },
   {
     "axelvc/template-string.nvim",
@@ -1223,7 +1231,7 @@ local plugins = {
     opts = {
       keepFoldsAcrossSessions = true,
       pauseFoldsOnSearch = true,
-      setupFoldKeymaps = true,
+      setupFoldKeymaps = false,
     },
   },
   {
