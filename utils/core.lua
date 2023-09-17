@@ -192,6 +192,10 @@ M.statusline = {
           if string.find(filename, "toggleterm") then
             filename = '%{&ft == "toggleterm" ? " Terminal (".b:toggle_number.") " : ""}'
           end
+          if string.find(filename, "NvimTree") then
+            filename = '%{&ft == "NvimTree" ? " File Explorer " : ""}'
+          end
+
           icon_text = "%#St_" .. icon_hl .. "# " .. icon .. "%#StText# " .. filename .. " "
         end
       end
