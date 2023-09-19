@@ -40,6 +40,19 @@ function Get_Cmp()
   end
 end
 
+function Get_npm()
+  local ok, package = pcall(require, "package-info")
+  if ok then
+    local status = package.get_status()
+    if status ~= "" then
+      return "  " .. status .. " "
+    end
+    return ""
+  else
+    return ""
+  end
+end
+
 function Get_dap()
   local ok, dap = pcall(require, "dap")
   if ok then
@@ -210,7 +223,7 @@ M.statusline = {
       modules,
       7,
       (function()
-        return Get_dap()
+        return Get_dap() .. Get_npm()
       end)()
     )
 
