@@ -19,7 +19,7 @@ noice.setup {
   },
   popupmenu = {
     enabled = true, -- enables the Noice popupmenu UI
-    backend = "cmp", -- backend to use to show regular cmdline completions
+    backend = "nui", -- backend to use to show regular cmdline completions
   },
   routes = {
     {
@@ -156,7 +156,7 @@ noice.setup {
   views = {
     cmdline_popup = {
       position = {
-        row = 5,
+        row = 3,
         col = "50%",
       },
       size = {
