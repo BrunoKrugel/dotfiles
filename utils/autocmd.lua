@@ -2,6 +2,15 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 local settings = require("custom.chadrc").settings
 
+local function close_all_floating_wins()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local config = vim.api.nvim_win_get_config(win)
+    if config.relative ~= "" then
+      vim.api.nvim_win_close(win, false)
+    end
+  end
+end
+
 -- Auto resize panes when resizing nvim window
 autocmd("VimResized", {
   pattern = "*",
@@ -105,61 +114,76 @@ autocmd({ "BufRead" }, {
 })
 
 -- Disable status column in the following files
-autocmd({ "FileType", "BufWinEnter" }, {
+-- autocmd({ "FileType", "BufWinEnter" }, {
+--   callback = function()
+--     local ft_ignore = {
+--       "man",
+--       "help",
+--       "neo-tree",
+--       "starter",
+--       "TelescopePrompt",
+--       "Trouble",
+--       "NvimTree",
+--       "nvcheatsheet",
+--       "dapui_watches",
+--       "dap-repl",
+--       "dapui_console",
+--       "dapui_stacks",
+--       "spectre_panel",
+--       "dapui_breakpoints",
+--       "dapui_scopes",
+--       "nvdash",
+--     }
+
+--     local b = vim.api.nvim_get_current_buf()
+--     local f = vim.api.nvim_buf_get_option(b, "filetype")
+--     for _, e in ipairs(ft_ignore) do
+--       if f == e then
+--         vim.api.nvim_win_set_option(0, "statuscolumn", "")
+--         return
+--       end
+--     end
+--   end,
+-- })
+
+-- autocmd({ "BufEnter", "BufNew" }, {
+--   callback = function()
+--     local ft_ignore = {
+--       "man",
+--       "help",
+--       "neo-tree",
+--       "starter",
+--       "TelescopePrompt",
+--       "Trouble",
+--       "NvimTree",
+--       "nvcheatsheet",
+--       "dapui_watches",
+--       "dap-repl",
+--       "dapui_console",
+--       "spectre_panel",
+--       "dapui_stacks",
+--       "dapui_breakpoints",
+--       "dapui_scopes",
+--     }
+
+--     if vim.tbl_contains(ft_ignore, vim.bo.filetype) then
+--       vim.cmd "setlocal statuscolumn="
+--     end
+--   end,
+-- })
+
+vim.api.nvim_create_autocmd({ "User" }, {
+  pattern = "PersistedSavePre",
+  group = vim.api.nvim_create_augroup("PersistedHooks", {}),
   callback = function()
-    local ft_ignore = {
-      "man",
-      "help",
-      "neo-tree",
-      "starter",
-      "TelescopePrompt",
-      "Trouble",
-      "NvimTree",
-      "nvcheatsheet",
-      "dapui_watches",
-      "dap-repl",
-      "dapui_console",
-      "dapui_stacks",
-      "spectre_panel",
-      "dapui_breakpoints",
-      "dapui_scopes",
-      "nvdash",
-    }
+    pcall(vim.cmd, "bw minimap")
+    pcall(vim.cmd, "cclose")
 
-    local b = vim.api.nvim_get_current_buf()
-    local f = vim.api.nvim_buf_get_option(b, "filetype")
-    for _, e in ipairs(ft_ignore) do
-      if f == e then
-        vim.api.nvim_win_set_option(0, "statuscolumn", "")
-        return
-      end
+    local lazy_view = require "lazy.view"
+    if lazy_view.visible() then
+    lazy_view.close()
     end
-  end,
-})
-
-autocmd({ "BufEnter", "BufNew" }, {
-  callback = function()
-    local ft_ignore = {
-      "man",
-      "help",
-      "neo-tree",
-      "starter",
-      "TelescopePrompt",
-      "Trouble",
-      "NvimTree",
-      "nvcheatsheet",
-      "dapui_watches",
-      "dap-repl",
-      "dapui_console",
-      "spectre_panel",
-      "dapui_stacks",
-      "dapui_breakpoints",
-      "dapui_scopes",
-    }
-
-    if vim.tbl_contains(ft_ignore, vim.bo.filetype) then
-      vim.cmd "setlocal statuscolumn="
-    end
+    close_all_floating_wins()
   end,
 })
 
@@ -292,6 +316,10 @@ autocmd("ModeChanged", {
     end
   end,
 })
+
+-- Show `` in specific files
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = { "*.txt", "*.md", "*.json" },
+  command = "setlocal conceallevel=0" })
 
 -- Do not automatically trigger completion if we are in a snippet
 autocmd("User", {
