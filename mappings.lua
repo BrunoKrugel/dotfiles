@@ -171,8 +171,6 @@ M.text = {
   },
 
   n = {
-    ["i"] = { "a", "Insert after" },
-    ["<leader>cc"] = { "<CMD>CCToggle <CR>", " Toggle ColorColumn display" },
     -- Navigate
     ["<C-Left>"] = { "<ESC>_", "󰜲 Move to beginning of line" },
     ["<C-Right>"] = { "<ESC>$", "󰜵 Move to end of line" },
