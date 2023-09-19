@@ -248,12 +248,13 @@ M.cmp = {
     disallow_prefix_unmatching = true,
   },
   sorting = {
+    priority_weight = 2,
     comparators = {
       -- Definitions of compare function https://github.com/hrsh7th/nvim-cmp/blob/main/lua/cmp/config/compare.lua
+      copilot_cmp_comparators.prioritize or function() end,
       deprioritize_snippet,
       require("cmp").config.compare.exact,
       require("cmp").config.compare.locality,
-      copilot_cmp_comparators.prioritize or function() end,
       require("cmp").config.compare.recently_used,
       under,
       require("cmp").config.compare.score,
