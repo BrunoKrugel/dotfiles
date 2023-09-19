@@ -1,11 +1,11 @@
 local handler = function(virtText, lnum, endLnum, width, truncate)
-  local line = vim.fn.getline(lnum)
-  if line:find "if%s+err%s*!= nil" then
-    print(virtText)
-    virtText = { { "errreturn                 ", "Comment" } }
-    virtText = virtText .. "      "
-    return
-  end
+  -- local line = vim.fn.getline(lnum)
+  -- if line:find "if%s+err%s*!= nil" then
+  --   print(virtText)
+  --   virtText = { { "errreturn                 ", "Comment" } }
+  --   virtText = virtText .. "      "
+  --   return
+  -- end
 
   local newVirtText = {}
   local suffix = (" ↙ %d "):format(endLnum - lnum)
