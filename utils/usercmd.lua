@@ -49,7 +49,7 @@ create_cmd("TPeek", function()
 end, {})
 
 -- Toggle colorcolumn
-create_cmd("CCToggle", function()
+create_cmd("TCC", function()
   vim.g.ccenable = not vim.g.ccenable
 
   if vim.g.ccenable then
