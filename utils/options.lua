@@ -21,6 +21,7 @@ g.mapleader = " "
 g.maplocalleader = " "
 
 opt.conceallevel = 2
+opt.concealcursor = "" --- Set to an empty string to expand tailwind class when on cursorline
 
 -- Folds
 opt.foldenable = true
@@ -30,8 +31,8 @@ opt.foldlevel = 99
 opt.foldlevelstart = 99
 -- opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 opt.fillchars = [[stl: ,eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
--- opt.foldmethod = "expr"
--- opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- Copilot
 g.copilot_assume_mapped = true
@@ -42,7 +43,6 @@ g.bookmark_highlight = "CopilotHl"
 
 opt.emoji = false
 opt.cursorline = true
-opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 if g.neovide then
   -- opt.guifont = "Hack Nerd Font:h12"
