@@ -138,7 +138,6 @@ local plugins = {
       "hrsh7th/cmp-nvim-lsp-document-symbol",
       "hrsh7th/cmp-copilot",
       "ray-x/cmp-treesitter",
-      "hrsh7th/cmp-cmdline",
       "tzachar/cmp-fuzzy-buffer",
       "roobert/tailwindcss-colorizer-cmp.nvim",
       "tzachar/fuzzy.nvim",
@@ -232,11 +231,9 @@ local plugins = {
       local format_kinds = opts.formatting.format
       opts.formatting.format = function(entry, item)
         if item.kind == "Color" then
-          item = require("cmp-tailwind-colors").format(entry, item)
-          if item.kind == "Color" then
-            return format_kinds(entry, item)
-          end
-          return item
+          item.kind = "⬤"
+          format_kinds(entry, item)
+          return require("tailwindcss-colorizer-cmp").formatter(entry, item)
         end
         return format_kinds(entry, item)
       end
@@ -249,14 +246,6 @@ local plugins = {
         sources = {
           { name = "buffer" },
         },
-      })
-      cmp.setup.cmdline(":", {
-        mapping = opts.mapping,
-        sources = cmp.config.sources({
-          { name = "cmdline" },
-        }, {
-          { name = "path" },
-        }),
       })
 
       cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
