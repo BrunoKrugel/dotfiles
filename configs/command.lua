@@ -18,6 +18,11 @@ require("commander").add {
     category = "lsp",
   },
   {
+    desc = "Toggle References",
+    cmd = "<CMD>LspLensToggle<CR>",
+    category = "lsp",
+  },
+  {
     desc = "Toggle ErrorLens",
     cmd = "<CMD>ErrorLensToggle<CR>",
     category = "lsp",
