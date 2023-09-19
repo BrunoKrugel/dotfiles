@@ -904,7 +904,9 @@ local plugins = {
   {
     "VidocqH/lsp-lens.nvim",
     event = "LspAttach",
-    config = true,
+    opts = {
+      enable = false,
+    },
   },
   {
     "folke/edgy.nvim",
@@ -1115,7 +1117,7 @@ local plugins = {
     keys = { "<leader>jc" },
   },
   {
-    "vuki656/package-info.nvim",
+    "BrunoKrugel/package-info.nvim",
     event = "BufEnter package.json",
     dependencies = {
       {
@@ -1134,7 +1136,6 @@ local plugins = {
       autostart = true,
       hide_up_to_date = true,
       hide_unstable_versions = true,
-      package_manager = "yarn",
     },
   },
   {
