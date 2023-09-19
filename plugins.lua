@@ -91,6 +91,13 @@ local plugins = {
       "piersolenski/telescope-import.nvim",
       "LiadOz/nvim-dap-repl-highlights",
       "RRethy/nvim-treesitter-textsubjects",
+      "kevinhwang91/promise-async",
+      {
+        "kevinhwang91/nvim-ufo",
+        config = function()
+          require "custom.configs.ufo"
+        end,
+      },
       {
         "Jxstxs/conceal.nvim",
         config = function()
@@ -354,7 +361,7 @@ local plugins = {
     "olimorris/persisted.nvim",
     event = "VimEnter",
     opts = {
-      save_dir = vim.fn.expand(vim.fn.stdpath("data") .. "/sessions/"), -- directory where session files are saved
+      save_dir = vim.fn.expand(vim.fn.stdpath "data" .. "/sessions/"), -- directory where session files are saved
       silent = true, -- silent nvim message when sourcing session file
       use_git_branch = true, -- create session files based on the branch of the git enabled repository
       autosave = true, -- automatically save session files when exiting Neovim
@@ -370,7 +377,7 @@ local plugins = {
       config = function()
         vim.o.sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize"
         require("persisted").setup(opts)
-        require("telescope").load_extension("persisted")
+        require("telescope").load_extension "persisted"
       end,
     },
   },
@@ -780,19 +787,10 @@ local plugins = {
     end,
   },
   {
-    "kevinhwang91/nvim-ufo",
-    event = "VimEnter",
-    dependencies = {
-      "kevinhwang91/promise-async",
-      {
-        "luukvbaal/statuscol.nvim",
-        config = function()
-          require "custom.configs.statuscol"
-        end,
-      },
-    },
+    "luukvbaal/statuscol.nvim",
+    lazy = false,
     config = function()
-      require "custom.configs.ufo"
+      require "custom.configs.statuscol"
     end,
   },
   {
