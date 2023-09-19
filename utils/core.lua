@@ -32,6 +32,14 @@ M.remove_mappings = function(section)
   end)
 end
 
+function Get_Version()
+  if vim.g.status_version ~= nil then
+    return vim.g.status_version
+  else
+    return ""
+  end
+end
+
 function Get_Cmp()
   if vim.g.cmptoggle == true then
     return "󰞏  "
@@ -254,7 +262,7 @@ M.statusline = {
       modules,
       16,
       (function()
-        return " %#CmpHl#" .. Get_Cmp() .. "%#NotificationHl#%@v:lua.ClickMe@  "
+        return "%#NotificationHl# " .. Get_Version() .. "%@v:lua.ClickMe@ " .. " %#CmpHl#" .. Get_Cmp()
       end)()
     )
   end,

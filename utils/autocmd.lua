@@ -58,6 +58,40 @@ autocmd("BufEnter", {
   command = [[if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]],
 })
 
+-- Define the VimEnter autocmd
+autocmd("VimEnter", {
+  callback = function()
+    vim.g.status_version = ""
+    local cwd = vim.fn.getcwd()
+
+    -- Check if it's a Go workspace
+    local go_mod_filepath = cwd .. "/go.mod"
+    local go_mod_exists = vim.fn.filereadable(go_mod_filepath) == 1
+
+    if go_mod_exists then
+      local command = "go version"
+      local handle = io.popen(command)
+      local result = handle:read "*a"
+      handle:close()
+      local version = string.match(result, "go(%d+%.%d+%.%d+)")
+      vim.g.status_version = "Go " .. version .. " 󱐋 "
+    else
+      -- Check if it's a Node.js workspace
+      local package_json_filepath = cwd .. "/package.json"
+      local package_json_exists = vim.fn.filereadable(package_json_filepath) == 1
+
+      if package_json_exists then
+        local command = "node --version"
+        local handle = io.popen(command)
+        local result = handle:read "*a"
+        handle:close()
+        local version = string.match(result, "v([%d.]+)")
+        vim.g.status_version = "Node " .. version .. " 󱐋 "
+      end
+    end
+  end,
+})
+
 -- Prefetch tabnine
 autocmd("BufRead", {
   group = augroup("prefetch", { clear = true }),
@@ -181,7 +215,7 @@ vim.api.nvim_create_autocmd({ "User" }, {
 
     local lazy_view = require "lazy.view"
     if lazy_view.visible() then
-    lazy_view.close()
+      lazy_view.close()
     end
     close_all_floating_wins()
   end,
@@ -318,8 +352,10 @@ autocmd("ModeChanged", {
 })
 
 -- Show `` in specific files
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = { "*.txt", "*.md", "*.json" },
-  command = "setlocal conceallevel=0" })
+vim.api.nvim_create_autocmd(
+  { "BufRead", "BufNewFile" },
+  { pattern = { "*.txt", "*.md", "*.json" }, command = "setlocal conceallevel=0" }
+)
 
 -- Do not automatically trigger completion if we are in a snippet
 autocmd("User", {
