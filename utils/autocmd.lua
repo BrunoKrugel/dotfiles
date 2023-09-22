@@ -206,21 +206,6 @@ autocmd({ "BufRead" }, {
 --   end,
 -- })
 
-vim.api.nvim_create_autocmd({ "User" }, {
-  pattern = "PersistedSavePre",
-  group = vim.api.nvim_create_augroup("PersistedHooks", {}),
-  callback = function()
-    pcall(vim.cmd, "bw minimap")
-    pcall(vim.cmd, "cclose")
-
-    local lazy_view = require "lazy.view"
-    if lazy_view.visible() then
-      lazy_view.close()
-    end
-    close_all_floating_wins()
-  end,
-})
-
 -- Highlight on yank
 autocmd("TextYankPost", {
   command = "silent! lua vim.highlight.on_yank({higroup='YankVisual', timeout=200})",
