@@ -3,6 +3,20 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
 
+local present, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if present then
+  capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+end
+
+local present, ufo = pcall(require, "ufo")
+if present then
+  capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true,
+  }
+end
+
+
 -- if you just want default config for the servers then put them in a table
 local servers = {
   "html",
