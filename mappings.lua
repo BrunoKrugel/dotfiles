@@ -462,12 +462,7 @@ M.nvimtree = {
 
 M.session = {
   n = {
-    ["<leader>ss"] = {
-      function()
-        require("auto-session.session-lens").search_session()
-      end,
-      "󰆓 List session",
-    },
+    ["<leader>ss"] = { "<CMD>Telescope persisted<CR>", "󰆓 List session" },
     ["<leader>sd"] = { "<CMD>SessionDelete<CR>", "󱙃 Delete Session" },
   },
 }
