@@ -345,6 +345,16 @@ M.nvimtree = {
 
 M.telescope = {
   defaults = {
+    preview = {
+      filetype_hook = function(_, bufnr, opts)
+        -- don't display jank pdf previews
+        if opts.ft == "pdf" then
+          require("telescope.previewers.utils").set_preview_message(bufnr, opts.winid, "Not displaying " .. opts.ft)
+          return false
+        end
+        return true
+      end,
+    },
     file_ignore_patterns = {
       "node_modules",
       ".docker",
