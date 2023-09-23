@@ -411,6 +411,45 @@ M.telescope = {
       "<CMD>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<CR>",
       " Find current file",
     },
+    ["<leader>ff"] = {
+      function()
+        local builtin = require "telescope.builtin"
+        -- ignore opened buffers if not in dashboard or directory
+        if vim.fn.isdirectory(vim.fn.expand "%") == 1 or vim.bo.filetype == "alpha" then
+          builtin.find_files()
+        else
+          local function literalize(str)
+            return str:gsub("[%(%)%.%%%+%-%*%?%[%]%^%$]", function(c)
+              return "%" .. c
+            end)
+          end
+
+          local function get_open_buffers()
+            local buffers = {}
+            local len = 0
+            local vim_fn = vim.fn
+            local buflisted = vim_fn.buflisted
+
+            for buffer = 1, vim_fn.bufnr "$" do
+              if buflisted(buffer) == 1 then
+                len = len + 1
+                -- get relative name of buffer without leading slash
+                buffers[len] = "^"
+                  .. literalize(string.gsub(vim.api.nvim_buf_get_name(buffer), literalize(vim.loop.cwd()), ""):sub(2))
+                  .. "$"
+              end
+            end
+
+            return buffers
+          end
+
+          builtin.find_files {
+            file_ignore_patterns = get_open_buffers(),
+          }
+        end
+      end,
+      "Find files",
+    },
   },
 }
 
@@ -439,6 +478,21 @@ M.tabufline = {
         require("nvchad.tabufline").close_buffer()
       end,
       " Close buffer",
+    },
+
+    -- close all buffers
+    ["<leader>bx"] = {
+      function()
+        local current_buf = vim.api.nvim_get_current_buf()
+        local all_bufs = vim.api.nvim_list_bufs()
+
+        for _, buf in ipairs(all_bufs) do
+          if buf ~= current_buf and vim.fn.getbufinfo(buf)[1].changed ~= 1 then
+            vim.api.nvim_buf_delete(buf, { force = true })
+          end
+        end
+      end,
+      " Close all but current buffer",
     },
   },
 }
