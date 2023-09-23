@@ -117,6 +117,18 @@ M.development = {
       "󰆘 Toggle context",
     },
     ["<A-p>"] = { "<CMD>Colortils picker<CR>", " Delete word" },
+    ["gd"] = {
+      function()
+        vim.lsp.buf.definition()
+      end,
+      "󰑊 Go to definition",
+    },
+    ["gi"] = {
+      function()
+        vim.lsp.buf.implementation()
+      end,
+      "󰑊 Go to implementation",
+    },
   },
 }
 
@@ -152,10 +164,7 @@ M.split = {
 M.text = {
   i = {
     -- Move line up and down
-    -- ["<C-Up>"] = { "<CMD> :m-2<CR>", "󰜸 Move line up" },
     ["<C-Up>"] = { "<CMD>m .-2<CR>==", "󰜸 Move line up" },
-
-    -- ["<C-Down>"] = { "<CMD> :m+<CR>", "󰜯 Move line down" },
     ["<C-Down>"] = { "<CMD>m .+1<CR>==", "󰜯 Move line down" },
 
     -- Navigate
