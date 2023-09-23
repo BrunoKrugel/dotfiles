@@ -224,6 +224,9 @@ local plugins = {
 
       cmp.setup(opts)
 
+      local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+
       cmp.setup.cmdline({ "/", "?" }, {
         mapping = opts.mapping,
         sources = {
@@ -558,24 +561,6 @@ local plugins = {
       timeout = 1000,
     },
   },
-  -- {
-  --   "zbirenbaum/neodim",
-  --   event = "LspAttach",
-  --   branch = "v2",
-  --   opts = {
-  --     alpha = 0.75,
-  --     blend_color = "#000000",
-  --     update_in_insert = {
-  --       enable = true,
-  --       delay = 100,
-  --     },
-  --     hide = {
-  --       virtual_text = true,
-  --       signs = true,
-  --       underline = true,
-  --     },
-  --   },
-  -- },
   {
     "narutoxy/dim.lua",
     event = "LspAttach",

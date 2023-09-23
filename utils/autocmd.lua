@@ -148,36 +148,36 @@ autocmd({ "BufRead" }, {
 })
 
 -- Disable status column in the following files
--- autocmd({ "FileType", "BufWinEnter" }, {
---   callback = function()
---     local ft_ignore = {
---       "man",
---       "help",
---       "neo-tree",
---       "starter",
---       "TelescopePrompt",
---       "Trouble",
---       "NvimTree",
---       "nvcheatsheet",
---       "dapui_watches",
---       "dap-repl",
---       "dapui_console",
---       "dapui_stacks",
---       "spectre_panel",
---       "dapui_breakpoints",
---       "dapui_scopes",
---       "nvdash",
---     }
---     local b = vim.api.nvim_get_current_buf()
---     local f = vim.api.nvim_buf_get_option(b, "filetype")
---     for _, e in ipairs(ft_ignore) do
---       if f == e then
---         vim.api.nvim_win_set_option(0, "statuscolumn", "")
---         return
---       end
---     end
---   end,
--- })
+autocmd({ "FileType", "BufWinEnter" }, {
+  callback = function()
+    local ft_ignore = {
+      "man",
+      "help",
+      "neo-tree",
+      "starter",
+      "TelescopePrompt",
+      "Trouble",
+      "NvimTree",
+      "nvcheatsheet",
+      "dapui_watches",
+      "dap-repl",
+      "dapui_console",
+      "dapui_stacks",
+      "spectre_panel",
+      "dapui_breakpoints",
+      "dapui_scopes",
+      "nvdash",
+    }
+    local b = vim.api.nvim_get_current_buf()
+    local f = vim.api.nvim_buf_get_option(b, "filetype")
+    for _, e in ipairs(ft_ignore) do
+      if f == e then
+        vim.api.nvim_win_set_option(0, "statuscolumn", "")
+        return
+      end
+    end
+  end,
+})
 
 autocmd({ "BufEnter", "BufNew" }, {
   callback = function()
@@ -339,14 +339,14 @@ autocmd({ "ModeChanged" }, {
 })
 
 -- prevent comment from being inserted when entering new line in existing comment
-vim.api.nvim_create_autocmd('BufEnter', {
+vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     -- allow <CR> to continue block comments only
     -- https://stackoverflow.com/questions/10726373/auto-comment-new-line-in-vim-only-for-block-comments
-    vim.opt.comments:remove('://')
-    vim.opt.comments:remove(':--')
-    vim.opt.comments:remove(':#')
-    vim.opt.comments:remove(':%')
+    vim.opt.comments:remove "://"
+    vim.opt.comments:remove ":--"
+    vim.opt.comments:remove ":#"
+    vim.opt.comments:remove ":%"
   end,
 })
 
@@ -438,14 +438,14 @@ autocmd("BufHidden", {
   end,
 })
 
-vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
+vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
   callback = function()
-    if vim.bo.filetype == 'markdown' then
+    if vim.bo.filetype == "markdown" then
       -- override ufo method
-      vim.opt_local.foldexpr = 'NestedMarkdownFolds()'
+      vim.opt_local.foldexpr = "NestedMarkdownFolds()"
     else
       -- revert to ufo method
-      vim.opt_local.foldexpr = 'nvim_treesitter#foldexpr()'
+      vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
     end
   end,
 })
