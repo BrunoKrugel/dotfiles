@@ -49,7 +49,6 @@ local sources = {
   b.code_actions.impl,
   b.code_actions.eslint,
   b.code_actions.refactoring,
-  b.code_actions.xo,
 }
 
 -- From go.nvim
