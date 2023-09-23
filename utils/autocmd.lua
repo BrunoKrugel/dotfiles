@@ -229,14 +229,18 @@ autocmd("TextYankPost", {
 autocmd("InsertEnter", {
   pattern = "*",
   callback = function()
-    vim.diagnostic.disable()
+    if buftype ~= "prompt" then
+      vim.diagnostic.disable()
+    end
   end,
 })
 
 autocmd("InsertLeave", {
   pattern = "*",
   callback = function()
-    vim.diagnostic.enable()
+    if buftype ~= "prompt" then
+      vim.diagnostic.enable()
+    end
   end,
 })
 
