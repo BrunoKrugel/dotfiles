@@ -385,22 +385,22 @@ vim.api.nvim_create_autocmd(
 )
 
 -- Do not automatically trigger completion if we are in a snippet
-autocmd("User", {
-  pattern = "LuaSnipInsertNodeEnter",
-  callback = function()
-    require("cmp.config").set_global { completion = { autocomplete = false } }
-  end,
-})
+-- autocmd("User", {
+--   pattern = "LuaSnipInsertNodeEnter",
+--   callback = function()
+--     require("cmp.config").set_global { completion = { autocomplete = false } }
+--   end,
+-- })
 
 -- But restore it when we leave.
-vim.api.nvim_create_autocmd("User", {
-  pattern = "LuaSnipInsertNodeLeave",
-  callback = function()
-    require("cmp.config").set_global {
-      completion = { autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged } },
-    }
-  end,
-})
+-- vim.api.nvim_create_autocmd("User", {
+--   pattern = "LuaSnipInsertNodeLeave",
+--   callback = function()
+--     require("cmp.config").set_global {
+--       completion = { autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged } },
+--     }
+--   end,
+-- })
 
 -- Switch to insert mode when terminal is open
 local term_augroup = vim.api.nvim_create_augroup("Terminal", { clear = true })
