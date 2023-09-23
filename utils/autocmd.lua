@@ -449,7 +449,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
       vim.opt_local.foldexpr = "NestedMarkdownFolds()"
     else
       -- revert to ufo method
-      vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
+      vim.opt_local.foldexpr = ""
     end
   end,
 })
