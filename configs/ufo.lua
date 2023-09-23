@@ -1,11 +1,4 @@
 local handler = function(virtText, lnum, endLnum, width, truncate)
-  -- local line = vim.fn.getline(lnum)
-  -- if line:find "if%s+err%s*!= nil" then
-  --   print(virtText)
-  --   virtText = { { "errreturn                 ", "Comment" } }
-  --   virtText = virtText .. "      "
-  --   return
-  -- end
 
   local newVirtText = {}
   local suffix = (" ↙ %d "):format(endLnum - lnum)
@@ -42,6 +35,11 @@ require("ufo").setup {
   close_fold_kinds = { "imports" },
   fold_virt_text_handler = handler,
   provider_selector = function(_, filetype, buftype)
+    -- use nested markdown folding
+    if filetype == "markdown" then
+      return ""
+    end
+
     -- return ftMap[filetype] or { "treesitter", "indent" }
     -- return { "treesitter", "indent" }
     local function handleFallbackException(bufnr, err, providerName)

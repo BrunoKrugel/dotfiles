@@ -397,6 +397,18 @@ autocmd("BufHidden", {
   end,
 })
 
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
+  callback = function()
+    if vim.bo.filetype == 'markdown' then
+      -- override ufo method
+      vim.opt_local.foldexpr = 'NestedMarkdownFolds()'
+    else
+      -- revert to ufo method
+      vim.opt_local.foldexpr = 'nvim_treesitter#foldexpr()'
+    end
+  end,
+})
+
 autocmd("BufEnter", {
   nested = true,
   callback = function()
