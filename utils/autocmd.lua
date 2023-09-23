@@ -450,6 +450,14 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "User" }, {
+  pattern = "PersistedSavePre",
+  group = group,
+  callback = function()
+    pcall(vim.cmd, "NvimTreeClose")
+  end,
+})
+
 autocmd("BufEnter", {
   nested = true,
   callback = function()
