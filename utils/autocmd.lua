@@ -168,7 +168,6 @@ autocmd({ "BufRead" }, {
 --       "dapui_scopes",
 --       "nvdash",
 --     }
-
 --     local b = vim.api.nvim_get_current_buf()
 --     local f = vim.api.nvim_buf_get_option(b, "filetype")
 --     for _, e in ipairs(ft_ignore) do
@@ -180,29 +179,43 @@ autocmd({ "BufRead" }, {
 --   end,
 -- })
 
--- autocmd({ "BufEnter", "BufNew" }, {
---   callback = function()
---     local ft_ignore = {
---       "man",
---       "help",
---       "neo-tree",
---       "starter",
---       "TelescopePrompt",
---       "Trouble",
---       "NvimTree",
---       "nvcheatsheet",
---       "dapui_watches",
---       "dap-repl",
---       "dapui_console",
---       "spectre_panel",
---       "dapui_stacks",
---       "dapui_breakpoints",
---       "dapui_scopes",
---     }
+autocmd({ "BufEnter", "BufNew" }, {
+  callback = function()
+    local ft_ignore = {
+      "man",
+      "help",
+      "neo-tree",
+      "starter",
+      "TelescopePrompt",
+      "Trouble",
+      "NvimTree",
+      "nvcheatsheet",
+      "dapui_watches",
+      "dap-repl",
+      "dapui_console",
+      "spectre_panel",
+      "dapui_stacks",
+      "dapui_breakpoints",
+      "dapui_scopes",
+    }
+    if vim.tbl_contains(ft_ignore, vim.bo.filetype) then
+      vim.cmd "setlocal statuscolumn="
+    end
+  end,
+})
 
---     if vim.tbl_contains(ft_ignore, vim.bo.filetype) then
---       vim.cmd "setlocal statuscolumn="
+-- vim.api.nvim_create_autocmd({ "User" }, {
+--   pattern = "PersistedSavePre",
+--   group = vim.api.nvim_create_augroup("PersistedHooks", {}),
+--   callback = function()
+--     pcall(vim.cmd, "bw minimap")
+--     pcall(vim.cmd, "cclose")
+
+--     local lazy_view = require "lazy.view"
+--     if lazy_view.visible() then
+--       lazy_view.close()
 --     end
+--     close_all_floating_wins()
 --   end,
 -- })
 
@@ -296,6 +309,8 @@ autocmd({ "VimEnter" }, {
   callback = open_file_created,
 })
 
+-- prevent weird snippet jumping behavior
+-- https://github.com/L3MON4D3/LuaSnip/issues/258
 autocmd({ "ModeChanged" }, {
   pattern = { "s:n", "i:*" },
   callback = function()
@@ -305,6 +320,18 @@ autocmd({ "ModeChanged" }, {
     then
       require("luasnip").unlink_current()
     end
+  end,
+})
+
+-- prevent comment from being inserted when entering new line in existing comment
+vim.api.nvim_create_autocmd('BufEnter', {
+  callback = function()
+    -- allow <CR> to continue block comments only
+    -- https://stackoverflow.com/questions/10726373/auto-comment-new-line-in-vim-only-for-block-comments
+    vim.opt.comments:remove('://')
+    vim.opt.comments:remove(':--')
+    vim.opt.comments:remove(':#')
+    vim.opt.comments:remove(':%')
   end,
 })
 
@@ -360,7 +387,6 @@ vim.api.nvim_create_autocmd("User", {
   end,
 })
 
--- {{{ Terminal autocmd
 -- Switch to insert mode when terminal is open
 local term_augroup = vim.api.nvim_create_augroup("Terminal", { clear = true })
 autocmd({ "TermOpen", "BufEnter" }, {
@@ -433,20 +459,23 @@ autocmd("BufEnter", {
 -- https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
 -- https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
 autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
-  group = group,
   command = [[silent! if mode() != 'c' && !bufexists("[Command Line]") | checktime | endif]],
 })
 
 -- Notification after file change
 -- https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
 autocmd("FileChangedShellPost", {
-  group = group,
   command = [[echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None]],
 })
 
 -- Hide cursorline in insert mode
-autocmd({ "InsertLeave", "WinEnter" }, { command = "set cursorline", group = group })
-autocmd({ "InsertEnter", "WinLeave" }, { command = "set nocursorline", group = group })
+autocmd({ "InsertLeave", "WinEnter" }, {
+  command = "set cursorline",
+})
+
+autocmd({ "InsertEnter", "WinLeave" }, {
+  command = "set nocursorline",
+})
 
 -- local lazy_did_show_install_view = false
 
