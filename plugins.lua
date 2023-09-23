@@ -142,23 +142,6 @@ local plugins = {
       "roobert/tailwindcss-colorizer-cmp.nvim",
       "tzachar/fuzzy.nvim",
       "rcarriga/cmp-dap",
-      {
-        "petertriho/cmp-git",
-        opts = {},
-        config = function()
-          local cmp = require "cmp"
-          ---@diagnostic disable-next-line: missing-fields
-          cmp.setup.filetype("gitcommit", {
-            sources = cmp.config.sources({
-              { name = "git", priority = 50 },
-              { name = "path", priority = 40 },
-            }, {
-              { name = "buffer", priority = 50 },
-              { name = "emoji", insert = true, priority = 20 },
-            }),
-          })
-        end,
-      },
       "js-everts/cmp-tailwind-colors",
       { "jcdickinson/codeium.nvim", config = true },
       {
@@ -356,10 +339,12 @@ local plugins = {
       autosave = true, -- automatically save session files when exiting Neovim
       should_autosave = nil, -- function to determine if a session should be autosaved
       autoload = true, -- automatically load the session for the cwd on Neovim startup
-      on_autoload_no_session = nil, -- function to run when `autoload = true` but there is no session to load
-      follow_cwd = true, -- change session file name to match current working directory if it changes
-      allowed_dirs = nil, -- table of dirs that the plugin will auto-save and auto-load from
-      ignored_dirs = nil, -- table of dirs that are ignored when auto-saving and auto-loading
+      on_autoload_no_session = nil,
+      follow_cwd = true,
+      -- ignored_dirs = {
+      --   "~/.config",
+      --   "~/.local/nvim",
+      -- },
       telescope = { -- options for the telescope extension
         reset_prompt_after_deletion = true, -- whether to reset prompt after session deleted
       },
@@ -383,11 +368,9 @@ local plugins = {
         dir = "/users/bruno.krugel/Library/Mobile Documents/iCloud~md~obsidian/Documents/Annotation",
         disable_frontmatter = true,
         completion = {
-          nvim_cmp = true, -- if using nvim-cmp, otherwise set to false
+          nvim_cmp = true,
         },
-        -- Optional, key mappings.
         mappings = {
-          -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
           ["ogf"] = require("obsidian.mapping").gf_passthrough(),
         },
       }
