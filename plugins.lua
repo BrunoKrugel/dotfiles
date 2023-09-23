@@ -502,7 +502,7 @@ local plugins = {
   },
   {
     "Weissle/persistent-breakpoints.nvim",
-    event = "BufReadPost",
+    ft = "go",
     config = function()
       require("persistent-breakpoints").setup {
         load_breakpoints_event = { "BufReadPost" },
@@ -900,6 +900,7 @@ local plugins = {
         { ft = "dap-repl", title = "Debug REPL" },
         { ft = "dapui_console", title = "Debug Console" },
         "Trouble",
+        "Noice",
         {
           ft = "help",
           size = { height = 20 },

@@ -231,7 +231,8 @@ M.statusline = {
       modules,
       7,
       (function()
-        return Get_dap() .. Get_npm()
+        return Get_dap() 
+        -- .. Get_npm()
       end)()
     )
 
