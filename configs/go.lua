@@ -20,6 +20,13 @@ go.setup {
   },
   trouble = true,
   lsp_keymaps = false,
+  diagnostic = {
+    hdlr = true, 
+    underline = true,
+    virtual_text = false,
+    signs = true,
+    update_in_insert = false,
+  },
   icons = { breakpoint = "", currentpos = "" },
   lsp_diag_virtual_text = false,
   gocoverage_sign = "│",
