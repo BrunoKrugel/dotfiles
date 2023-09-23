@@ -26,6 +26,19 @@ return {
     i(3, "else"),
   }),
 
+  s("testfunc", {
+    t "func Test_",
+    i(1, "FunctionName"),
+    t "(t *testing.T) {",
+    t "\tt.Run(",
+    i(2, "Text"),
+    t ", func(t *testing.T) {",
+    t "\n\t\t",
+    i(0),
+    t "\n\t})",
+    t "\n}",
+  }),
+
   s("trigger", {
     t { "if err != nil {", "\treturn " },
     i(1, "err"),
