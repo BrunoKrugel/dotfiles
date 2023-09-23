@@ -10,7 +10,7 @@ local plugins = {
     "neovim/nvim-lspconfig",
     dependencies = {
       {
-        "jose-elias-alvarez/null-ls.nvim",
+        "nvimtools/none-ls.nvim",
         config = function()
           require "custom.configs.null-ls"
         end,
@@ -34,6 +34,10 @@ local plugins = {
     config = function() end,
   },
 
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    enabled = false,
+  },
   {
     "folke/which-key.nvim",
     enabled = true,
