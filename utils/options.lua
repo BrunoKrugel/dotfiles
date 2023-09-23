@@ -32,7 +32,8 @@ opt.foldlevelstart = 99
 -- opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 opt.fillchars = [[stl: ,eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldexpr = ""
 
 -- Copilot
 g.copilot_assume_mapped = true
