@@ -366,21 +366,21 @@ autocmd("FileType", {
 })
 
 -- Unlink the snippet and restore completion
-autocmd("ModeChanged", {
-  pattern = "*",
-  callback = function()
-    if
-      ((vim.v.event.old_mode == "s" and vim.v.event.new_mode == "n") or vim.v.event.old_mode == "i")
-      and require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
-      and not require("luasnip").session.jump_active
-    then
-      require("luasnip").unlink_current()
-      require("cmp.config").set_global {
-        completion = { autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged } },
-      }
-    end
-  end,
-})
+-- autocmd("ModeChanged", {
+--   pattern = "*",
+--   callback = function()
+--     if
+--       ((vim.v.event.old_mode == "s" and vim.v.event.new_mode == "n") or vim.v.event.old_mode == "i")
+--       and require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
+--       and not require("luasnip").session.jump_active
+--     then
+--       require("luasnip").unlink_current()
+--       require("cmp.config").set_global {
+--         completion = { autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged } },
+--       }
+--     end
+--   end,
+-- })
 
 -- Show `` in specific files
 vim.api.nvim_create_autocmd(
