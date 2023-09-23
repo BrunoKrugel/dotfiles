@@ -28,7 +28,6 @@ go.setup {
     update_in_insert = false,
   },
   icons = { breakpoint = "", currentpos = "" },
-  lsp_diag_virtual_text = false,
   gocoverage_sign = "│",
   -- lsp_diag_virtual_text = { space = 0, prefix = "" },
   --  cat
