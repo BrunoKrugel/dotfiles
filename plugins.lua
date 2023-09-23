@@ -1078,6 +1078,29 @@ local plugins = {
     build = ':lua require("go.install").update_all_sync()',
   },
   {
+    "pmizio/typescript-tools.nvim",
+    ft = {
+      "javascript",
+      "typescript",
+      "javascriptreact",
+      "typescriptreact",
+    },
+    config = function()
+      require "custom.configs.ts"
+    end,
+  },
+  {
+    "axelvc/template-string.nvim",
+    event = "InsertEnter",
+    ft = {
+      "javascript",
+      "typescript",
+      "javascriptreact",
+      "typescriptreact",
+    },
+    opts = {},
+  },
+  {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     event = "LspAttach",
     config = function()

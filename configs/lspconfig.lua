@@ -92,51 +92,6 @@ require("mason-lspconfig").setup_handlers {
     }
   end,
 
-  ["tsserver"] = function()
-    lspconfig["tsserver"].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      single_file_support = true,
-      init_options = {
-        preferences = {
-          includeCompletionsWithSnippetText = true,
-          includeCompletionsWithInsertText = true,
-        },
-      },
-      settings = {
-        completions = {
-          completeFunctionCalls = true,
-        },
-        typescript = {
-          inlayHints = {
-            includeInlayParameterNameHints = "all",
-            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-            includeInlayFunctionParameterTypeHints = true,
-            includeInlayVariableTypeHints = true,
-            includeInlayPropertyDeclarationTypeHints = true,
-            includeInlayFunctionLikeReturnTypeHints = true,
-            includeInlayEnumMemberValueHints = true,
-          },
-        },
-        javascript = {
-          inlayHints = {
-            includeInlayParameterNameHints = "all",
-            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-            includeInlayFunctionParameterTypeHints = true,
-            includeInlayVariableTypeHints = true,
-            includeInlayPropertyDeclarationTypeHints = true,
-            includeInlayFunctionLikeReturnTypeHints = true,
-            includeInlayEnumMemberValueHints = true,
-          },
-        },
-        preferences = {
-          importModuleSpecifierPreference = "non-relative",
-          upddateImportsOnFileMove = "always",
-        },
-      },
-    }
-  end,
-
   ["gopls"] = function()
     lspconfig["gopls"].setup {
       on_attach = on_attach,
