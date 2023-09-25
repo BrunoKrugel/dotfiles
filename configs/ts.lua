@@ -25,7 +25,6 @@ end
 
 local handlers = {
   ["textDocument/definition"] = function(err, result, method, ...)
-    P(result)
     if vim.tbl_islist(result) and #result > 1 then
       local filtered_result = filter(result, filterReactDTS)
       return baseDefinitionHandler(err, filtered_result, method, ...)
