@@ -599,7 +599,7 @@ M.nvterm = {
     -- toggle in terminal mode
     ["<leader>h"] = {
       function()
-        require("nvterm.terminal").toggle "horizontal"
+        require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm", size = 0.2 }
       end,
       " Toggle horizontal term",
     },
@@ -610,7 +610,7 @@ M.nvterm = {
     -- toggle in normal mode
     ["<leader>h"] = {
       function()
-        require("nvterm.terminal").toggle "horizontal"
+        require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm", size = 0.2 }
       end,
       " Toggle horizontal term",
     },
