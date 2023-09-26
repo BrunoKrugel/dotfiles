@@ -847,20 +847,13 @@ local plugins = {
     opts = {},
   },
   {
-    "anuvyklack/pretty-fold.nvim",
-    keys = { "<leader>a" },
-    config = function()
-      require "custom.configs.pretty-fold"
-    end,
-  },
-  {
     "jghauser/fold-cycle.nvim",
-    keys = { "<leader>a" },
+    event = "VeryLazy",
     opts = {},
   },
   {
     "anuvyklack/fold-preview.nvim",
-    keys = { "<leader>p" },
+    event = "VeryLazy",
     dependencies = {
       "anuvyklack/keymap-amend.nvim",
     },
