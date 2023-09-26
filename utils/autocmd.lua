@@ -226,23 +226,23 @@ autocmd("TextYankPost", {
 })
 
 -- Display diagnostics as virtual text only if not in insert mode
-autocmd("InsertEnter", {
-  pattern = "*",
-  callback = function()
-    if buftype ~= "prompt" then
-      vim.diagnostic.disable()
-    end
-  end,
-})
+-- autocmd("InsertEnter", {
+--   pattern = "*",
+--   callback = function()
+--     if buftype ~= "prompt" then
+--       vim.diagnostic.disable()
+--     end
+--   end,
+-- })
 
-autocmd("InsertLeave", {
-  pattern = "*",
-  callback = function()
-    if buftype ~= "prompt" then
-      vim.diagnostic.enable()
-    end
-  end,
-})
+-- autocmd("InsertLeave", {
+--   pattern = "*",
+--   callback = function()
+--     if buftype ~= "prompt" then
+--       vim.diagnostic.enable()
+--     end
+--   end,
+-- })
 
 -- Show cursor line only in active window
 autocmd({ "InsertLeave", "WinEnter" }, {

@@ -228,17 +228,17 @@ M.cmp = {
     { name = "nvim_lsp_document_symbol" },
     { name = "luasnip", max_item_count = 2 },
     { name = "nvim_lua" },
-    {
-      name = "buffer",
-      keyword_length = 5,
-      option = buffer_option,
-    },
+    -- {
+    --   name = "buffer",
+    --   keyword_length = 5,
+    --   option = buffer_option,
+    -- },
     { name = 'npm', keyword_length = 4 },
-    {
-      name = "fuzzy_buffer",
-      keyword_length = 5,
-      option = buffer_option,
-    },
+    -- {
+    --   name = "fuzzy_buffer",
+    --   keyword_length = 5,
+    --   option = buffer_option,
+    -- },
   },
   matching = {
     disallow_fuzzy_matching = true,
