@@ -21,10 +21,7 @@ M.ui = {
   },
 
   lsp = {
-    signature = {
-      disabled = true,
-      silent = true,
-    },
+    signature = false,
   },
 
   telescope = { style = "bordered" },
