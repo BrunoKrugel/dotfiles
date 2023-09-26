@@ -848,12 +848,10 @@ local plugins = {
   },
   {
     "jghauser/fold-cycle.nvim",
-    event = "VeryLazy",
     opts = {},
   },
   {
     "anuvyklack/fold-preview.nvim",
-    event = "VeryLazy",
     dependencies = {
       "anuvyklack/keymap-amend.nvim",
     },
@@ -863,7 +861,6 @@ local plugins = {
   },
   {
     "Fildo7525/pretty_hover",
-    event = "LspAttach",
     opts = {},
   },
   {
