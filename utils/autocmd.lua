@@ -225,24 +225,17 @@ autocmd("TextYankPost", {
   group = augroup("YankHighlight", { clear = true }),
 })
 
--- Display diagnostics as virtual text only if not in insert mode
--- autocmd("InsertEnter", {
---   pattern = "*",
---   callback = function()
---     if buftype ~= "prompt" then
---       vim.diagnostic.disable()
---     end
---   end,
--- })
+autocmd('ModeChanged', {
+  group = vim.api.nvim_create_augroup('user_diagnostic', {clear = true}),
+  pattern = {'n:i', 'n:v', 'i:v'},
+  command = 'lua vim.diagnostic.disable(0)'
+})
 
--- autocmd("InsertLeave", {
---   pattern = "*",
---   callback = function()
---     if buftype ~= "prompt" then
---       vim.diagnostic.enable()
---     end
---   end,
--- })
+autocmd('ModeChanged', {
+  group = vim.api.nvim_create_augroup('user_diagnostic', {clear = true}),
+  pattern = 'i:n',
+  command = 'lua vim.diagnostic.enable(0)'
+})
 
 -- Show cursor line only in active window
 autocmd({ "InsertLeave", "WinEnter" }, {
