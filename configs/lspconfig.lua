@@ -1,3 +1,6 @@
+-- Load defaults from NvChad
+require("plugins.configs.lspconfig").defaults()
+
 local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
