@@ -105,6 +105,10 @@ create_cmd("CmpToggle", function()
   end
 end, {})
 
+create_cmd("Healthcheck", function()
+  vim.cmd 'checkhealth'
+end, {})
+
 -- Update nvim
 create_cmd("TUpdate", function()
   require("lazy").load { plugins = { "mason.nvim", "nvim-treesitter" } }
