@@ -1053,6 +1053,18 @@ local plugins = {
       require("compiler").setup(opts)
     end,
   },
+  {
+    "topaxi/gh-actions.nvim",
+    cmd = "GhActions",
+    opts = {},
+  },
+  {
+    "danymat/neogen",
+    cmd = "Neogen",
+    opts = {
+      snippet_engine = "luasnip",
+    },
+  },
   ----------------------------------------- language plugins ------------------------------------------
   {
     "ray-x/go.nvim",
