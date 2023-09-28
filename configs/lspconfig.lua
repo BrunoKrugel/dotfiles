@@ -16,6 +16,28 @@ if present then
   }
 end
 
+local custom_on_attach = function(client, bufnr)
+  on_attach(client, bufnr)
+
+  if client.server_capabilities.inlayHintProvider then
+    vim.lsp.inlay_hint(bufnr, true)
+  end
+end
+
+local filter_list = function(list, predicate)
+  local res_len = #list
+  local move_item_by = 0
+
+  for i = 1, res_len do
+    local item = list[i]
+    list[i] = nil
+    if not predicate(item) then
+      move_item_by = move_item_by - 1
+    else
+      list[i + move_item_by] = item
+    end
+  end
+end
 
 -- if you just want default config for the servers then put them in a table
 local servers = {
@@ -51,16 +73,14 @@ require("mason-lspconfig").setup {
 require("mason-lspconfig").setup_handlers {
   function(server_name)
     lspconfig[server_name].setup {
-      on_attach = function(client, bufnr)
-        on_attach(client, bufnr)
-      end,
+      on_attach = custom_on_attach,
       capabilities = capabilities,
     }
   end,
 
   ["lua_ls"] = function()
     lspconfig["lua_ls"].setup {
-      on_attach = on_attach,
+      on_attach = custom_on_attach,
       capabilities = capabilities,
       settings = {
         Lua = {
@@ -94,9 +114,9 @@ require("mason-lspconfig").setup_handlers {
 
   ["gopls"] = function()
     lspconfig["gopls"].setup {
-      on_attach = on_attach,
-      filetypes = { "go", "gomod", "gowork", "gosum", "goimpl" },
+      on_attach = custom_on_attach,
       capabilities = capabilities,
+      filetypes = { "go", "gomod", "gowork", "gosum", "goimpl" },
       settings = {
         gopls = {
           buildFlags = { "-tags=wireinject" },
@@ -138,7 +158,7 @@ require("mason-lspconfig").setup_handlers {
 
   ["eslint"] = function()
     lspconfig["eslint"].setup {
-      on_attach = on_attach,
+      on_attach = custom_on_attach,
       capabilities = capabilities,
       filetypes = {
         "javascript",
@@ -191,7 +211,6 @@ require("mason-lspconfig").setup_handlers {
         ".eslintrc.yaml",
         ".eslintrc.yml",
         ".eslintrc.json",
-        -- Disabled to prevent "No ESLint configuration found" exceptions
         "package.json"
       ),
       settings = {
@@ -227,6 +246,33 @@ require("mason-lspconfig").setup_handlers {
 
 vim.lsp.handlers["textDocument/hover"] = require("noice").hover
 vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
+
+vim.lsp.handlers["textDocument/inlayHint"] = function(result)
+  filter_list(result, function(item)
+    if
+      item.label == "x:"
+      or item.label == "y:"
+      or item.label == "z:"
+      or item.label == "a:"
+      or item.label == "b:"
+      or item.label == "v:"
+      or item.label == "m:"
+      or item.label == "s:"
+      or item.label == "nptr:"
+      or item.label == "scalar:"
+      or item.lable == "argv0"
+    then
+      return false
+    end
+    -- local line = item.position.line
+    -- local col = item.position.character
+    -- local node = vim.treesitter.get_node({pos = {line,col}})
+    -- I(vim.treesitter.get_node_text(node:parent(), 0))
+    return true
+  end)
+  -- accept request.
+  return true
+end
 
 vim.diagnostic.config {
   virtual_lines = false,
