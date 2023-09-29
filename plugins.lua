@@ -88,7 +88,11 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
-      "windwp/nvim-ts-autotag",
+      -- "windwp/nvim-ts-autotag",
+      {
+        "windwp/nvim-ts-autotag",
+        opts = { enable_close_on_slash = false },
+      },
       "chrisgrieser/nvim-various-textobjs",
       "filNaj/tree-setter",
       "echasnovski/mini.ai",
@@ -170,6 +174,13 @@ local plugins = {
         config = function(_, opts)
           require("plugins.configs.others").luasnip(opts)
           require "custom.configs.luasnip"
+          require "custom.configs.autotag"
+        end,
+      },
+      {
+        "windwp/nvim-autopairs",
+        config = function()
+          require "custom.configs.autopair"
         end,
       },
       {
@@ -529,7 +540,6 @@ local plugins = {
     config = function()
       require("virt-column").setup {
         char = "┃",
-        -- virtcolumn = "120",
       }
     end,
   },
