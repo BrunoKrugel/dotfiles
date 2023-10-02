@@ -46,7 +46,7 @@ end
 local servers = {
   "html",
   "cssls",
-  "tsserver",
+  -- "tsserver",
   "clangd",
   "eslint",
   "jdtls",
