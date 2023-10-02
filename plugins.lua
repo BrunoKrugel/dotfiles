@@ -33,7 +33,6 @@ local plugins = {
     },
     config = function() end,
   },
-
   {
     "jose-elias-alvarez/null-ls.nvim",
     enabled = false,
@@ -80,10 +79,6 @@ local plugins = {
         dependencies = { "kkharji/sqlite.lua" },
       },
     },
-  },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    opts = overrides.blankline,
   },
   {
     "nvim-treesitter/nvim-treesitter",
