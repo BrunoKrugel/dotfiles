@@ -471,21 +471,6 @@ local plugins = {
     cmd = "Code",
   },
   {
-    "nvim-treesitter/nvim-treesitter-context",
-    event = "LspAttach",
-    opts = {
-      throttle = true,
-      max_lines = 0,
-      patterns = {
-        default = {
-          "class",
-          "function",
-          "method",
-        },
-      },
-    },
-  },
-  {
     "mfussenegger/nvim-dap",
     cmd = { "DapContinue", "DapStepOver", "DapStepInto", "DapStepOut", "DapToggleBreakpoint" },
     dependencies = {

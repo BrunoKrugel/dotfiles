@@ -25,10 +25,8 @@ local sources = {
   -- b.formatting.lua_format,
 
   -- Diagnostics
-  b.diagnostics.fish,
   b.diagnostics.checkmake,
   b.diagnostics.jsonlint,
-  b.diagnostics.eslint,
   -- b.diagnostics.luacheck,
   -- b.diagnostics.checkstyle.with {
   --   extra_args = { "-c", "/google_checks.xml" },
