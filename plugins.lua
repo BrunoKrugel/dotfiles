@@ -70,14 +70,11 @@ local plugins = {
       "benfowler/telescope-luasnip.nvim",
       "nvim-telescope/telescope-dap.nvim",
       "Marskey/telescope-sg",
+      "nvim-telescope/telescope-frecency.nvim",
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
-      },
-      {
-        "nvim-telescope/telescope-frecency.nvim",
-        dependencies = { "kkharji/sqlite.lua" },
-      },
+      }, 
     },
   },
   {
