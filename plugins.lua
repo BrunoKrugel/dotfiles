@@ -1269,9 +1269,9 @@ local plugins = {
   },
   ----------------------------------------- completions plugins ------------------------------------------
   {
-    "ludovicchabant/vim-gutentags",
-    -- lazy = false,
-    event = { "BufNewFile", "BufReadPost" },
+    "skywind3000/gutentags_plus",
+    event = "VeryLazy",
+    dependencies = { "ludovicchabant/vim-gutentags" },
     config = function()
       require "custom.configs.tags"
     end,
