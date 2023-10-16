@@ -376,7 +376,7 @@ M.telescope = {
     "themes",
     "terms",
     "notify",
-    "frecency",
+    -- "frecency",
     "undo",
     "vim_bookmarks",
     "ast_grep",

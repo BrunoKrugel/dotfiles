@@ -70,7 +70,7 @@ local plugins = {
       "benfowler/telescope-luasnip.nvim",
       "nvim-telescope/telescope-dap.nvim",
       "Marskey/telescope-sg",
-      "nvim-telescope/telescope-frecency.nvim",
+      -- "nvim-telescope/telescope-frecency.nvim",
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
@@ -1010,13 +1010,6 @@ local plugins = {
     event = "LspAttach",
     config = function()
       require "custom.configs.lspsaga"
-    end,
-  },
-  {
-    "max397574/colortils.nvim",
-    cmd = "Colortils",
-    config = function()
-      require("colortils").setup()
     end,
   },
   {
