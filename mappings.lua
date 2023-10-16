@@ -116,7 +116,6 @@ M.development = {
       end,
       "󰆘 Toggle context",
     },
-    ["<A-p>"] = { "<CMD>Colortils picker<CR>", " Delete word" },
     ["gd"] = {
       function()
         vim.lsp.buf.definition()
