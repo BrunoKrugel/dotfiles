@@ -17,6 +17,13 @@ autocmd("VimResized", {
   command = "tabdo wincmd =",
 })
 
+      autocmd({ "LspAttach" }, {
+        desc = "Start null-ls when starting a lsp client",
+        callback = function()
+          pcall(function() require("null-ls").enable({}) end)
+        end,
+      })
+
 -- Fix semantic tokens for lsp
 autocmd("LspAttach", {
   callback = function(args)
