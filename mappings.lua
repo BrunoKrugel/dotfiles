@@ -276,7 +276,38 @@ M.general = {
     },
     ["<leader>q"] = { "<CMD>q<CR>", "󰗼 Close" },
     ["<leader>qq"] = { "<CMD>qa!<CR>", "󰗼 Exit" },
-    ["<C-p>"] = { "<CMD> Telescope commander<CR>", "󰘳 Find files" },
+    ["<C-P>"] = { "<CMD> Telescope commander<CR>", "󰘳 Find files" },
+    ["<C-p>"] = {
+      function()
+        local entry_maker = require("custom.configs.entry").find_files_entry_maker
+        local opts = {
+          entry_maker = entry_maker(),
+          sorting_strategy = "ascending",
+          layout_strategy = "center",
+          border = true,
+          borderchars = {
+            prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
+            results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
+            preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+          },
+          layout_config = {
+            width = 0.8,
+            height = 0.6,
+          },
+          results_title = false,
+          previewer = false,
+        }
+
+        opts.show_untracked = true
+
+        local succ = pcall(require("telescope.builtin").git_files, opts)
+
+        if not succ then
+          require("telescope.builtin").find_files(opts)
+        end
+      end,
+      "󰘳 Find files",
+    },
 
     -- Keep cursor in the center line when C-D / C-U
     ["<C-d>"] = { "<C-d>zz", " Scroll down", opts = { silent = true } },
@@ -491,7 +522,7 @@ M.tabufline = {
           end
         end
       end,
-      " Close all but current buffer",
+      " Close all but current buffer",
     },
   },
 }
