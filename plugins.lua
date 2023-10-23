@@ -558,9 +558,9 @@ local plugins = {
       vim.g["lsp-timeout-config"] = {
         -- When focus is lost
         -- wait 5 minutes before stopping all LSP servers
-        stopTimeout=1000 * 60 * 5,
-        startTimeout=1000 * 10,
-        silent = true
+        stopTimeout = 1000 * 60 * 5,
+        startTimeout = 1000 * 10,
+        silent = true,
       }
     end,
   },
@@ -863,11 +863,11 @@ local plugins = {
     opts = {},
   },
   {
-    "VidocqH/lsp-lens.nvim",
-    event = "LspAttach",
-    opts = {
-      enable = false,
-    },
+    "Wansmer/symbol-usage.nvim",
+    event = "BufReadPre",
+    config = function()
+      require "custom.configs.symbol"
+    end,
   },
   {
     "folke/edgy.nvim",
