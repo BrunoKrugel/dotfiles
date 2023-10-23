@@ -154,10 +154,10 @@ M.lazy = {
     enabled = true,
     notify = false,
   },
-  concurrency = 10,
+  concurrency = 15,
   git = {
-    log = { "-8" }, -- show commits from the last 3 days
-    timeout = 30, -- kill processes that take more than 2 minutes
+    log = { "-8" },
+    timeout = 15,
     url_format = "https://github.com/%s.git",
     filter = true,
   },
