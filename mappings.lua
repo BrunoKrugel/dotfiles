@@ -276,7 +276,7 @@ M.general = {
     },
     ["<leader>q"] = { "<CMD>q<CR>", "󰗼 Close" },
     ["<leader>qq"] = { "<CMD>qa!<CR>", "󰗼 Exit" },
-    ["<C-P>"] = { "<CMD> Telescope commander<CR>", "󰘳 Find files" },
+    ["<A-p>"] = { "<CMD> Telescope commander<CR>", "󰘳 Find files" },
     ["<C-p>"] = {
       function()
         local entry_maker = require("custom.configs.entry").find_files_entry_maker
