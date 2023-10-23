@@ -11,29 +11,31 @@ local function close_all_floating_wins()
   end
 end
 
--- Auto resize panes when resizing nvim window
 autocmd("VimResized", {
+  desc = "Auto resize panes when resizing nvim window",
   pattern = "*",
   command = "tabdo wincmd =",
 })
 
-      autocmd({ "LspAttach" }, {
-        desc = "Start null-ls when starting a lsp client",
-        callback = function()
-          pcall(function() require("null-ls").enable({}) end)
-        end,
-      })
+autocmd({ "LspAttach" }, {
+  desc = "Start null-ls when starting a lsp client",
+  callback = function()
+    pcall(function()
+      require("null-ls").enable {}
+    end)
+  end,
+})
 
--- Fix semantic tokens for lsp
 autocmd("LspAttach", {
+  desc = "Fix semantic tokens for lsp",
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     client.server_capabilities.semanticTokensProvider = nil
   end,
 })
 
--- Close Nvimtree before quit nvim
 autocmd("FileType", {
+  desc = "Close NvimTree before quit nvim",
   pattern = { "NvimTree" },
   callback = function(args)
     autocmd("VimLeavePre", {
@@ -45,8 +47,8 @@ autocmd("FileType", {
   end,
 })
 
--- Open new buffer if only Nvimtree is open
 autocmd("BufEnter", {
+  desc = "Open new buffer if only Nvimtree is open",
   nested = true,
   callback = function()
     local api = require "nvim-tree.api"
@@ -60,8 +62,8 @@ autocmd("BufEnter", {
   end,
 })
 
--- Close nvim if NvimTree is only running buffer
 autocmd("BufEnter", {
+  desc = "Close nvim if NvimTree is only running buffer",
   command = [[if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]],
 })
 
@@ -99,8 +101,8 @@ autocmd("VimEnter", {
   end,
 })
 
--- Prefetch tabnine
 autocmd("BufRead", {
+  desc = "Prefetch tabnine",
   group = augroup("prefetch", { clear = true }),
   pattern = "*",
   callback = function()
@@ -112,13 +114,13 @@ autocmd("BufRead", {
   end,
 })
 
--- Don't auto comment new line
 autocmd("BufEnter", {
+  desc = "Prevent auto comment new line",
   command = [[set formatoptions-=cro]],
 })
 
--- Go to last loc when opening a buffer
 autocmd("BufReadPost", {
+  desc = "Go to last loc when opening a buffer",
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
     local lcount = vim.api.nvim_buf_line_count(0)
@@ -128,8 +130,8 @@ autocmd("BufReadPost", {
   end,
 })
 
--- Git conflict popup
 autocmd("User", {
+  desc = "Git conflict popup",
   pattern = "GitConflictDetected",
   callback = function()
     vim.notify("Conflict detected in " .. vim.fn.expand "<afile>")
@@ -140,8 +142,8 @@ autocmd("User", {
   end,
 })
 
--- Load git-conflict only when a git file is opened
 autocmd({ "BufRead" }, {
+  desc = "Load git-conflict.nvim only when a git file is opened",
   group = vim.api.nvim_create_augroup("GitConflictLazyLoad", { clear = true }),
   callback = function()
     vim.fn.system("git -C " .. '"' .. vim.fn.expand "%:p:h" .. '"' .. " rev-parse")
@@ -154,8 +156,8 @@ autocmd({ "BufRead" }, {
   end,
 })
 
--- Disable status column in the following files
 autocmd({ "FileType", "BufWinEnter" }, {
+  desc = "Disable status column in the following files",
   callback = function()
     local ft_ignore = {
       "man",
@@ -226,22 +228,22 @@ autocmd({ "BufEnter", "BufNew" }, {
 --   end,
 -- })
 
--- Highlight on yank
 autocmd("TextYankPost", {
+  desc = "Highlight on yank",
   command = "silent! lua vim.highlight.on_yank({higroup='YankVisual', timeout=200})",
   group = augroup("YankHighlight", { clear = true }),
 })
 
-autocmd('ModeChanged', {
-  group = vim.api.nvim_create_augroup('user_diagnostic', {clear = true}),
-  pattern = {'n:i', 'n:v', 'i:v'},
-  command = 'lua vim.diagnostic.disable(0)'
+autocmd("ModeChanged", {
+  group = vim.api.nvim_create_augroup("user_diagnostic", { clear = true }),
+  pattern = { "n:i", "n:v", "i:v" },
+  command = "lua vim.diagnostic.disable(0)",
 })
 
-autocmd('ModeChanged', {
-  group = vim.api.nvim_create_augroup('user_diagnostic', {clear = true}),
-  pattern = 'i:n',
-  command = 'lua vim.diagnostic.enable(0)'
+autocmd("ModeChanged", {
+  group = vim.api.nvim_create_augroup("user_diagnostic", { clear = true }),
+  pattern = "i:n",
+  command = "lua vim.diagnostic.enable(0)",
 })
 
 -- Show cursor line only in active window
