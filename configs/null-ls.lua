@@ -7,17 +7,22 @@ end
 local b = null_ls.builtins
 
 local sources = {
+  -- Formatting
+  b.formatting.prettier,
+  b.formatting.rustywind,
+  b.formatting.yamlfmt,
+  b.formatting.stylua.with {
+    extra_args = { "--config-path", vim.fn.expand "~/.config/stylua.toml" },
+  },
+  b.formatting.gofumpt,
+  b.formatting.tidy,
+  b.formatting.goimports,
+  
+  
   -- Completion
   b.completion.luasnip,
 
   -- Code actions
-  b.code_actions.gitsigns.with {
-    config = {
-      filter_actions = function(title)
-        return title:lower():match "blame" == nil -- filter out blame actions
-      end,
-    },
-  },
   b.code_actions.gomodifytags,
   b.code_actions.impl,
   b.code_actions.eslint,
