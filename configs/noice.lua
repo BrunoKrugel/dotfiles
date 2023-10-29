@@ -136,6 +136,9 @@ noice.setup {
         },
       },
     },
+    hover = {
+      silent = true,
+    },
     documentation = {
       opts = {
         border = {

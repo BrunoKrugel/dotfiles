@@ -11,8 +11,8 @@ if present then
   capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 end
 
-local present, ufo = pcall(require, "ufo")
-if present then
+local ok, _ = pcall(require, "ufo")
+if ok then
   capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
     lineFoldingOnly = true,
@@ -48,7 +48,7 @@ local servers = {
   "cssls",
   -- "tsserver",
   "clangd",
-  "eslint",
+  -- "eslint",
   "jdtls",
   "astro",
   "gopls",
