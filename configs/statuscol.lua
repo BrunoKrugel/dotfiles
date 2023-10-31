@@ -30,7 +30,13 @@ require("statuscol").setup {
       text = { " " },
     },
     -- Segment: Fold Column
-    { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+    {
+      text = { builtin.foldfunc },
+      click = "v:lua.ScFa",
+      maxwidth = 1,
+      colwidth = 1,
+      auto = false,
+    },
     -- Segment: Add padding
     {
       text = { " " },
@@ -41,7 +47,7 @@ require("statuscol").setup {
         name = { ".*" },
         -- name = {
         --   "Dap",
-        --   "neotest", 
+        --   "neotest",
         --   "Diagnostic",
         -- },
         maxwidth = 1,
@@ -59,11 +65,10 @@ require("statuscol").setup {
     -- Segment: GitSigns exclusive
     {
       sign = {
-        name = { "GitSigns" },
+        namespace = { "gitsign.*" },
         maxwidth = 1,
         colwidth = 1,
         auto = false,
-        fillchar = " ",
       },
       click = "v:lua.ScSa",
     },
