@@ -32,6 +32,19 @@ M.remove_mappings = function(section)
   end)
 end
 
+function hasLspErrors()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local diagnostics = vim.lsp.diagnostic.get(bufnr)
+
+  for _, diagnostic in pairs(diagnostics) do
+      if diagnostic.severity == vim.lsp.protocol.DiagnosticSeverity.Error then
+          return true
+      end
+  end
+
+  return false
+end
+
 function Get_Version()
   if vim.g.status_version ~= nil then
     return vim.g.status_version
