@@ -1181,6 +1181,9 @@ local plugins = {
         ["handlebars"] = { "prettier" },
       },
     },
+    init = function()
+      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    end,
   },
   {
     "sustech-data/wildfire.nvim",
