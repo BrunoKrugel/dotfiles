@@ -9,12 +9,12 @@ local plugins = {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      {
-        "nvimtools/none-ls.nvim",
-        config = function()
-          require "custom.configs.null-ls"
-        end,
-      },
+      -- {
+      --   "nvimtools/none-ls.nvim",
+      --   config = function()
+      --     require "custom.configs.null-ls"
+      --   end,
+      -- },
       {
         "williamboman/mason.nvim",
         opts = overrides.mason,
@@ -1151,32 +1151,37 @@ local plugins = {
       }
     end,
   },
-  -- {
-  --   "stevearc/conform.nvim",
-  --   event = "BufReadPost",
-  --   opts = {
-  --     formatters_by_ft = {
-  --       ["javascript"] = { "prettier" },
-  --       ["javascriptreact"] = { "prettier" },
-  --       ["typescript"] = { "prettier" },
-  --       ["typescriptreact"] = { "prettier" },
-  --       ["vue"] = { "prettier" },
-  --       ["css"] = { "prettier" },
-  --       ["scss"] = { "prettier" },
-  --       ["less"] = { "prettier" },
-  --       ["html"] = { "prettier" },
-  --       ["json"] = { "prettier" },
-  --       ["jsonc"] = { "prettier" },
-  --       ["yaml"] = { "prettier" },
-  --       ["markdown"] = { "prettier" },
-  --       ["markdown.mdx"] = { "prettier" },
-  --       ["graphql"] = { "prettier" },
-  --       ["handlebars"] = { "prettier" },
-  --       ["lua"] = { 'stylua' },
-  --       go = { 'goimports', "gofmt" },
-  --     },
-  --   },
-  -- },
+  {
+    "mfussenegger/nvim-lint",
+    event = "BufWritePre",
+    config = function()
+      require "custom.configs.linter"
+    end,
+  },
+  {
+    "stevearc/conform.nvim",
+    event = "BufReadPost",
+    opts = {
+      formatters_by_ft = {
+        typescript = { "prettierd" },
+        typescriptreact = { "prettierd" },
+        css = { "prettierd" },
+        html = { "prettierd" },
+        json = { "prettierd" },
+        jsonc = { "prettierd" },
+        lua = { "stylua" },
+        go = { "goimports", "gofumpt" },
+        ["vue"] = { "prettier" },
+        ["scss"] = { "prettier" },
+        ["less"] = { "prettier" },
+        ["yaml"] = { "prettier" },
+        ["markdown"] = { "prettier" },
+        ["markdown.mdx"] = { "prettier" },
+        ["graphql"] = { "prettier" },
+        ["handlebars"] = { "prettier" },
+      },
+    },
+  },
   {
     "sustech-data/wildfire.nvim",
     event = "VeryLazy",

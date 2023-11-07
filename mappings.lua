@@ -105,9 +105,10 @@ M.development = {
       "󰌁 Invert text",
     },
     ["<leader>fm"] = {
-      function()
-        vim.lsp.buf.format { async = true }
-      end,
+      -- function()
+      --   vim.lsp.buf.format { async = true }
+      -- end,
+      "<CMD>Format<CR>",
       " Lsp formatting",
     },
     ["<leader>bi"] = {
@@ -183,8 +184,8 @@ M.text = {
     ["<C-Left>"] = { "<ESC>_", "󰜲 Move to beginning of line" },
     ["<C-Right>"] = { "<ESC>$", "󰜵 Move to end of line" },
     ["<C-a>"] = { "gg0vG", " Select all" },
-    ["<F3>"] = { "n", " Next" },
-    ["<S-F3>"] = { "N", " Previous" },
+    ["<F3>"] = { "nzzzv", " Next" },
+    ["<S-F3>"] = { "Nzzzv", " Previous" },
     -- Operations
     ["<C-z>"] = { "<CMD>u<CR>", "󰕌 Undo" },
     ["<C-r>"] = { "<CMD>redo<CR>", "󰑎 Redo" },
