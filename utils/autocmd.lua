@@ -34,6 +34,13 @@ autocmd("LspAttach", {
   end,
 })
 
+autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = { "**/node_modules/**", "node_modules", "/node_modules/*" },
+  callback = function()
+    vim.diagnostic.disable(0)
+  end,
+})
+
 autocmd("FileType", {
   desc = "Close NvimTree before quit nvim",
   pattern = { "NvimTree" },
