@@ -34,7 +34,11 @@ glance.setup {
         jump(results[1])
       elseif method == "definitions" then
         results = filter(results, filterReactDTS)
-        open(results)
+        if #results == 1 then
+          jump(results[1])
+        else
+          open(results)
+        end
       else
         open(results)
       end
