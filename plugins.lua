@@ -764,7 +764,7 @@ local plugins = {
   },
   {
     "FeiyouG/command_center.nvim",
-    event = "VeryLazy",
+    cmd = "Commandcenter",
     config = function()
       require "custom.configs.command"
     end,
@@ -1096,7 +1096,7 @@ local plugins = {
   },
   {
     "nvim-neotest/neotest",
-    event = "LspAttach",
+    ft = { "go", "javascript", "typescript", "javascriptreact", "typescriptreact" },
     dependencies = {
       "nvim-neotest/neotest-go",
       "haydenmeade/neotest-jest",

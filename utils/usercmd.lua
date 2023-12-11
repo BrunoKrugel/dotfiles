@@ -121,6 +121,10 @@ create_cmd("Healthcheck", function()
   vim.cmd 'checkhealth'
 end, {})
 
+create_cmd("Commandcenter", function()
+  vim.cmd 'Telescope commander'
+end, {})
+
 -- Update nvim
 create_cmd("TUpdate", function()
   require("lazy").load { plugins = { "mason.nvim", "nvim-treesitter" } }
