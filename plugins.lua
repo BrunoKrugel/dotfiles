@@ -4,7 +4,8 @@ local cmp_opt = require "custom.configs.cmp"
 ---@type NvPluginSpec[]
 local plugins = {
   --------------------------------------------- community ---------------------------------------------
-  { "BrunoKrugel/nvcommunity" },
+  -- { "BrunoKrugel/nvcommunity" },
+  -- { import = "nvcommunity.editor.telescope-undo"},
   ----------------------------------------- override plugins ------------------------------------------
   {
     "neovim/nvim-lspconfig",
@@ -120,18 +121,6 @@ local plugins = {
         "kevinhwang91/nvim-ufo",
         config = function()
           require "custom.configs.ufo"
-        end,
-      },
-      {
-        "Jxstxs/conceal.nvim",
-        config = function()
-          local conceal = require "conceal"
-          conceal.setup {
-            ["lua"] = {
-              enabled = false,
-            },
-          }
-          conceal.generate_conceals()
         end,
       },
       {
@@ -797,6 +786,22 @@ local plugins = {
             disable_diagnostics = true,
           },
         },
+        hooks = {
+          diff_buf_win_enter = function(bufnr, winid, ctx)
+            if ctx.layout_name:match "^diff2" then
+              if ctx.symbol == "a" then
+                vim.opt_local.winhl = table.concat({
+                  "DiffAdd:DiffviewDiffAddAsDelete",
+                  "DiffDelete:DiffviewDiffDelete",
+                }, ",")
+              elseif ctx.symbol == "b" then
+                vim.opt_local.winhl = table.concat({
+                  "DiffDelete:DiffviewDiffDelete",
+                }, ",")
+              end
+            end
+          end,
+        },
       }
     end,
   },
@@ -1038,32 +1043,32 @@ local plugins = {
       require "custom.configs.glance"
     end,
   },
-  {
-    "Zeioth/compiler.nvim",
-    cmd = { "CompilerOpen", "CompilerToggleResults" },
-    dependencies = {
-      {
-        "stevearc/overseer.nvim",
-        commit = "3047ede61cc1308069ad1184c0d447ebee92d749",
-        opts = {
-          task_list = {
-            direction = "bottom",
-            min_height = 25,
-            max_height = 25,
-            default_detail = 1,
-            bindings = {
-              ["q"] = function()
-                vim.cmd "OverseerClose"
-              end,
-            },
-          },
-        },
-      },
-    },
-    config = function(_, opts)
-      require("compiler").setup(opts)
-    end,
-  },
+  -- {
+  --   "Zeioth/compiler.nvim",
+  --   cmd = { "CompilerOpen", "CompilerToggleResults" },
+  --   dependencies = {
+  --     {
+  --       "stevearc/overseer.nvim",
+  --       commit = "3047ede61cc1308069ad1184c0d447ebee92d749",
+  --       opts = {
+  --         task_list = {
+  --           direction = "bottom",
+  --           min_height = 25,
+  --           max_height = 25,
+  --           default_detail = 1,
+  --           bindings = {
+  --             ["q"] = function()
+  --               vim.cmd "OverseerClose"
+  --             end,
+  --           },
+  --         },
+  --       },
+  --     },
+  --   },
+  --   config = function(_, opts)
+  --     require("compiler").setup(opts)
+  --   end,
+  -- },
   {
     "topaxi/gh-actions.nvim",
     cmd = "GhActions",
