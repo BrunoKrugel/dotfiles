@@ -145,6 +145,14 @@ M.cmp = {
   mapping = {
     ["<Up>"] = require("cmp").mapping.select_prev_item(),
     ["<Down>"] = require("cmp").mapping.select_next_item(),
+     ["<Left>"] = function(fallback)
+      require("cmp").abort()
+      fallback()
+    end,
+    ["<Right>"] = function(fallback)
+      require("cmp").abort()
+      fallback()
+    end,
     ["<Tab>"] = require("cmp").mapping(function(fallback)
       if require("luasnip").expandable() then
         require("luasnip").expand()
