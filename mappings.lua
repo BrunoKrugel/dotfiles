@@ -606,17 +606,7 @@ M.searchbox = {
 
 M.lspsaga = {
   n = {
-    ["<leader>."] = { function()
-      require('fzf-lua').lsp_code_actions {
-        winopts = {
-            relative = 'cursor',
-            width = 0.6,
-            height = 0.6,
-            row = 1,
-            preview = { vertical = 'up:70%' },
-        },
-    }
-    end, "󰅱 Code Action" },
+    ["<leader>."] = { "<CMD>Lspsaga code_action<CR>", "󰅱 Code Action" },
     ["gf"] = {
       function()
         vim.cmd "Lspsaga lsp_finder"

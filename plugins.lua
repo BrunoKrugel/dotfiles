@@ -77,34 +77,6 @@ local plugins = {
     },
   },
   {
-    'ibhagwan/fzf-lua',
-    cmd = 'FzfLua',
-    opts = function()
-      local actions = require 'fzf-lua.actions'
-
-      return {
-          -- Make stuff better combine with the editor.
-          fzf_colors = {
-              bg = { 'bg', 'Normal' },
-              gutter = { 'bg', 'Normal' },
-              info = { 'fg', 'Conditional' },
-              scrollbar = { 'bg', 'Normal' },
-              separator = { 'fg', 'Comment' },
-          },
-          fzf_opts = {
-              ['--info'] = 'default',
-              ['--layout'] = 'reverse-list',
-          },
-          lsp = {
-              code_actions = {
-                  previewer = 'codeaction_native',
-                  preview_pager = "delta --side-by-side --width=$FZF_PREVIEW_COLUMNS --hunk-header-style='omit' --file-style='omit'",
-              },
-          },
-      }
-  end,
-  },
-  {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       -- "windwp/nvim-ts-autotag",
@@ -129,7 +101,7 @@ local plugins = {
           vim.g.skip_ts_context_commentstring_module = true
         end,
         config = function()
-          require('ts_context_commentstring').setup {
+          require("ts_context_commentstring").setup {
             enable_autocmd = false,
           }
         end,
