@@ -292,6 +292,11 @@ local plugins = {
     },
     ft = { "html", "svelte", "astro", "vue", "typescriptreact" },
   },
+  {
+    "boltlessengineer/smart-tab.nvim",
+    event = "InsertEnter",
+    opts = {},
+  },
   ----------------------------------------- enhance plugins ------------------------------------------
   {
     "okuuva/auto-save.nvim",
