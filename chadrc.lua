@@ -26,11 +26,33 @@ M.ui = {
 
   telescope = { style = "bordered" },
 
-  extended_integrations = {
+  hl_override = highlights.override,
+  hl_add = highlights.add,
+
+  nvdash = core.nvdash,
+}
+
+M.base46 = {
+  integrations = {
+    "blankline",
+    "cmp",
+    "defaults",
+    "devicons",
+    "git",
+    "lsp",
+    "mason",
+    "nvchad_updater",
+    "nvcheatsheet",
+    "nvdash",
+    "nvimtree",
+    "statusline",
+    "syntax",
+    "tbline",
+    "telescope",
+    "whichkey",
     "dap",
     "hop",
     "rainbowdelimiters",
-    "codeactionmenu",
     "todo",
     "trouble",
     "notify",
