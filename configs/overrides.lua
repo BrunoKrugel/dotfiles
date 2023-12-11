@@ -369,6 +369,7 @@ M.telescope = {
     "ctags_plus",
     "luasnip",
     "import",
+    "fzf",
   },
   extensions = {
     fzf = {
