@@ -1,6 +1,8 @@
 local autocmd = vim.api.nvim_create_autocmd
+local cmd = vim.api.nvim_command
 local augroup = vim.api.nvim_create_augroup
 local settings = require("custom.chadrc").settings
+local fn = vim.fn
 
 local function close_all_floating_wins()
   for _, win in ipairs(vim.api.nvim_list_wins()) do
@@ -233,7 +235,7 @@ autocmd({ "BufEnter", "BufNew" }, {
   end,
 })
 
--- vim.api.nvim_create_autocmd({ "User" }, {
+-- autocmd({ "User" }, {
 --   pattern = "PersistedSavePre",
 --   group = vim.api.nvim_create_augroup("PersistedHooks", {}),
 --   callback = function()
@@ -365,7 +367,7 @@ autocmd({ "ModeChanged" }, {
 })
 
 -- prevent comment from being inserted when entering new line in existing comment
-vim.api.nvim_create_autocmd("BufEnter", {
+autocmd("BufEnter", {
   callback = function()
     -- allow <CR> to continue block comments only
     -- https://stackoverflow.com/questions/10726373/auto-comment-new-line-in-vim-only-for-block-comments
@@ -405,10 +407,7 @@ autocmd("FileType", {
 -- })
 
 -- Show `` in specific files
-vim.api.nvim_create_autocmd(
-  { "BufRead", "BufNewFile" },
-  { pattern = { "*.txt", "*.md", "*.json" }, command = "setlocal conceallevel=0" }
-)
+autocmd({ "BufRead", "BufNewFile" }, { pattern = { "*.txt", "*.md", "*.json" }, command = "setlocal conceallevel=0" })
 
 -- Do not automatically trigger completion if we are in a snippet
 -- autocmd("User", {
@@ -419,7 +418,7 @@ vim.api.nvim_create_autocmd(
 -- })
 
 -- But restore it when we leave.
--- vim.api.nvim_create_autocmd("User", {
+-- autocmd("User", {
 --   pattern = "LuaSnipInsertNodeLeave",
 --   callback = function()
 --     require("cmp.config").set_global {
@@ -464,7 +463,7 @@ autocmd("BufHidden", {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
+autocmd({ "BufEnter", "BufNewFile" }, {
   callback = function()
     if vim.bo.filetype == "markdown" then
       -- override ufo method
