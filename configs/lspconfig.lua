@@ -293,3 +293,21 @@ vim.diagnostic.config {
   update_in_insert = false,
   severity_sort = true,
 }
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+  callback = function(event)
+    -- Set up keymaps
+    local opts = { buffer = event.buf, silent = true }
+    local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+    vim.keymap.set("n", "<c-}>", function()
+      definitions()
+    end, opts)
+
+    -- Mouse mappings for easily navigating code
+    if client.supports_method "definitionProvider" then
+      vim.keymap.set("n", "<RightMouse>", "<LeftMouse><cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    end
+  end,
+})

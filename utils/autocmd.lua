@@ -19,17 +19,6 @@ autocmd("VimResized", {
   command = "tabdo wincmd =",
 })
 
-autocmd({ "LspAttach" }, {
-  desc = "Mouse mappings for easily navigating code",
-  callback = function(event)
-    local client = vim.lsp.get_client_by_id(event.data.client_id)
-
-    -- Mouse mappings for easily navigating code
-    if client.supports_method "definitionProvider" then
-      vim.keymap.set("n", "<RightMouse>", "<LeftMouse><cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    end
-  end,
-})
 
 autocmd("VimEnter", {
   group = group,
