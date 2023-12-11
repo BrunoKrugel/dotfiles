@@ -61,6 +61,7 @@ M.add = {
   MultiCursorMain = { bg = "white", fg = "black2" },
 
   DapBreakpoint = { fg = "red" },
+  NvimDapVirtualText = { fg = "#6272A4" },
 
   LightBulbSign = { bg = "black", fg = "yellow" },
 
