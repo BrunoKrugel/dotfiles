@@ -67,9 +67,7 @@ local plugins = {
       "debugloop/telescope-undo.nvim",
       "gnfisher/nvim-telescope-ctags-plus",
       "benfowler/telescope-luasnip.nvim",
-      "nvim-telescope/telescope-dap.nvim",
       "Marskey/telescope-sg",
-      -- "nvim-telescope/telescope-frecency.nvim",
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
@@ -79,7 +77,6 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
-      -- "windwp/nvim-ts-autotag",
       {
         "windwp/nvim-ts-autotag",
         opts = { enable_close_on_slash = false },
@@ -229,7 +226,7 @@ local plugins = {
         },
       })
 
-      cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+      cmp.setup.filetype({ "dapui_watches", "dapui_hover" }, {
         sources = {
           { name = "dap" },
         },
@@ -358,7 +355,6 @@ local plugins = {
       end,
     },
   },
-  { "b0o/schemastore.nvim" },
   {
     "ThePrimeagen/harpoon",
     cmd = "Harpoon",
@@ -386,13 +382,6 @@ local plugins = {
       retirementAgeMins = 5,
       notificationOnAutoClose = false,
     },
-  },
-  {
-    "code-biscuits/nvim-biscuits",
-    event = "LspAttach",
-    config = function()
-      require "custom.configs.biscuits"
-    end,
   },
   {
     "jonahgoldwastaken/copilot-status.nvim",
@@ -568,25 +557,7 @@ local plugins = {
     event = "VeryLazy",
     dependencies = {
       "MunifTanjim/nui.nvim",
-      {
         "rcarriga/nvim-notify",
-        config = function(_, opts)
-          local job = require "plenary.job"
-          job
-            :new({
-              command = "curl",
-              args = { "https://vtip.43z.one" },
-              on_exit = function(j, exit_code)
-                local res = table.concat(j:result())
-                if exit_code ~= 0 then
-                  res = "Error fetching tip: " .. res
-                end
-                require "notify"(res)
-              end,
-            })
-            :start()
-        end,
-      },
     },
     config = function()
       require "custom.configs.noice"
