@@ -21,16 +21,6 @@ lspsaga.setup {
     quit = "q",
     close = "<Esc>",
   },
-  code_action = {
-    extend_gitsigns = false,
-    show_server_name = false,
-    num_shortcut = false,
-    keys = {
-      -- string |table type
-      quit = "<ESC>",
-      exec = "<CR>",
-    },
-  },
   request_timeout = 2000,
   finder = {
     edit = { "o", "<CR>" },
@@ -41,10 +31,6 @@ lspsaga.setup {
   },
   lightbulb = {
     enable = false,
-    enable_in_insert = true,
-    sign = true,
-    sign_priority = 40,
-    virtual_text = true,
   },
   diagnostic = {
     show_code_action = true,
