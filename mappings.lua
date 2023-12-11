@@ -31,7 +31,7 @@ end
 
 ---@param direction 'up'|'down'
 local function duplicate_lines(direction)
-  local startline = vim.fn.line("v")
+  local startline = vim.fn.line "v"
   local endline = vim.fn.getcurpos()[2]
 
   -- swap
@@ -47,7 +47,6 @@ local function duplicate_lines(direction)
     vim.api.nvim_buf_set_lines(0, startline, startline + 1, true, texts)
   end
 end
-
 
 M.disabled = {
   n = {
@@ -241,7 +240,7 @@ M.text = {
 
     ["i"] = {
       function()
-        if #vim.fn.getline(".") == 0 then
+        if #vim.fn.getline "." == 0 then
           return [["_cc]]
         else
           return "i"
@@ -606,7 +605,12 @@ M.searchbox = {
 
 M.lspsaga = {
   n = {
-    ["<leader>."] = { "<CMD>Lspsaga code_action<CR>", "󰅱 Code Action" },
+    ["<leader>."] = {
+      function()
+        require("actions-preview").code_actions()
+      end,
+      "󰅱 Code Action",
+    },
     ["gf"] = {
       function()
         vim.cmd "Lspsaga lsp_finder"
