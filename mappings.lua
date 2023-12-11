@@ -110,13 +110,6 @@ M.comment = {
   },
 }
 
-M.accelerated_jk = {
-  n = {
-    k = { "<Plug>(accelerated_jk_gk)", " Accelerated up movement" },
-    j = { "<Plug>(accelerated_jk_gj)", " Accelerated down movement" },
-  },
-}
-
 M.development = {
   n = {
     ["<leader>i"] = {
@@ -596,16 +589,6 @@ M.searchbox = {
   n = {
     ["<C-F>"] = { "<CMD> SearchBoxMatchAll clear_matches=true<CR>", "󱘟 Search matching all" },
     ["<A-R>"] = { "<CMD> SearchBoxReplace confirm=menu<CR>", " Replace" },
-  },
-}
-
-M.bookmark = {
-  n = {
-    ["<leader>ba"] = { "<CMD> BookmarkToggle<CR>", "󰃅 Add bookmark" },
-    ["<leader>bn"] = { "<CMD> BookmarkNext<CR>", "󰮰 Next bookmark" },
-    ["<leader>bp"] = { "<CMD> BookmarkPrev<CR>", "󰮲 Prev bookmark" },
-    ["<leader>bc"] = { "<CMD> BookmarkClear<CR>", "󰃢 Clear bookmark" },
-    ["<leader>bm"] = { "<CMD>Telescope vim_bookmarks all<CR>", " Bookmark Menu" },
   },
 }
 
