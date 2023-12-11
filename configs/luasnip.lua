@@ -17,27 +17,33 @@ local types = require "luasnip.util.types"
 
 luasnip.setup {
   history = true,
+  enable_autosnippets = true,
+  update_events = { "TextChanged", "TextChangedI" },
   delete_check_events = "TextChanged",
   region_check_events = "CursorMoved",
   ext_opts = {
     [types.insertNode] = {
       unvisited = {
         virt_text = { { "|", "Conceal" } },
+        hl_mode = "combine",
         -- virt_text_pos = "inline",
       },
       active = {
         virt_text = { { "●", "yellow" } },
+        hl_mode = "combine",
       },
     },
     [types.exitNode] = {
       unvisited = {
         virt_text = { { "|", "Conceal" } },
+        hl_mode = "combine",
         -- virt_text_pos = "inline",
       },
     },
     [types.choiceNode] = {
       active = {
         virt_text = { { "●", "blue" } },
+        hl_mode = "combine",
       },
     },
   },
