@@ -75,16 +75,17 @@ function Get_npm()
 end
 
 function Get_dap()
-  local ok, dap = pcall(require, "dap")
-  if ok then
-    local status = dap.status()
-    if status ~= "" then
-      return "   " .. status .. " "
-    end
-    return ""
-  else
-    return ""
-  end
+  -- local ok, dap = pcall(require, "dap")
+  -- if ok then
+  --   local status = dap.status()
+  --   if status ~= "" then
+  --     return "   " .. status .. " "
+  --   end
+  --   return ""
+  -- else
+  --   return ""
+  -- end
+  return ""
 end
 
 function Get_marked()
@@ -244,7 +245,7 @@ M.statusline = {
       modules,
       7,
       (function()
-        return Get_dap() 
+        return Get_dap()
         -- .. Get_npm()
       end)()
     )
