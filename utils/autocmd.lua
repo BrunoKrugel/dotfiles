@@ -149,6 +149,19 @@ autocmd("User", {
   end,
 })
 
+autocmd("BufWritePost", {
+  desc = "Reload NvimTree after writing the buffer",
+  callback = function()
+    local bufs = fn.getbufinfo()
+    for _, buf in ipairs(bufs) do
+      if buf.name:find "NvimTree_" then
+        cmd "NvimTreeRefresh"
+        break
+      end
+    end
+  end,
+})
+
 autocmd({ "BufRead" }, {
   desc = "Load git-conflict.nvim only when a git file is opened",
   group = vim.api.nvim_create_augroup("GitConflictLazyLoad", { clear = true }),
