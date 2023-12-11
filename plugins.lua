@@ -1139,26 +1139,9 @@ local plugins = {
   {
     "stevearc/conform.nvim",
     event = "BufReadPost",
-    opts = {
-      formatters_by_ft = {
-        typescript = { "prettierd" },
-        typescriptreact = { "prettierd" },
-        css = { "prettierd" },
-        html = { "prettierd" },
-        json = { "prettierd" },
-        jsonc = { "prettierd" },
-        lua = { "stylua" },
-        go = { "goimports", "gofumpt" },
-        ["vue"] = { "prettier" },
-        ["scss"] = { "prettier" },
-        ["less"] = { "prettier" },
-        ["yaml"] = { "prettier" },
-        ["markdown"] = { "prettier" },
-        ["markdown.mdx"] = { "prettier" },
-        ["graphql"] = { "prettier" },
-        ["handlebars"] = { "prettier" },
-      },
-    },
+    config = function()
+      require "custom.configs.conform"
+    end,
     init = function()
       vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
     end,
