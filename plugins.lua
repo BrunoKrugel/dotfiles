@@ -29,7 +29,6 @@ local plugins = {
         end,
       },
       "williamboman/mason-lspconfig.nvim",
-      { "folke/neodev.nvim", opts = {} },
     },
     config = function() end,
   },
@@ -66,7 +65,6 @@ local plugins = {
     dependencies = {
       "debugloop/telescope-undo.nvim",
       "gnfisher/nvim-telescope-ctags-plus",
-      "tom-anders/telescope-vim-bookmarks.nvim",
       "benfowler/telescope-luasnip.nvim",
       "nvim-telescope/telescope-dap.nvim",
       "Marskey/telescope-sg",
@@ -85,11 +83,9 @@ local plugins = {
         "windwp/nvim-ts-autotag",
         opts = { enable_close_on_slash = false },
       },
-      "chrisgrieser/nvim-various-textobjs",
       "filNaj/tree-setter",
       "echasnovski/mini.ai",
       "piersolenski/telescope-import.nvim",
-      "LiadOz/nvim-dap-repl-highlights",
       "RRethy/nvim-treesitter-textsubjects",
       "kevinhwang91/promise-async",
       {
@@ -418,13 +414,6 @@ local plugins = {
     end,
   },
   {
-    "rainbowhxch/accelerated-jk.nvim",
-    event = "CursorMoved",
-    config = function()
-      require "custom.configs.accelerated"
-    end,
-  },
-  {
     "m-demare/hlargs.nvim",
     event = "BufWinEnter",
     config = function()
@@ -432,10 +421,6 @@ local plugins = {
         hl_priority = 200,
       }
     end,
-  },
-  {
-    "MattesGroeger/vim-bookmarks",
-    cmd = { "BookmarkToggle", "BookmarkClear" },
   },
   {
     "tzachar/local-highlight.nvim",
@@ -645,13 +630,6 @@ local plugins = {
     event = "VeryLazy",
     config = function()
       require("telescope").load_extension "ui-select"
-    end,
-  },
-  {
-    "rainbowhxch/beacon.nvim",
-    event = "CursorMoved",
-    cond = function()
-      return not vim.g.neovide
     end,
   },
   {
@@ -1198,11 +1176,6 @@ local plugins = {
     config = function()
       require "custom.configs.recorder"
     end,
-  },
-  {
-    "javiorfo/nvim-soil",
-    ft = "plantuml",
-    dependencies = { "javiorfo/nvim-nyctophilia" },
   },
   {
     "dmmulroy/tsc.nvim",

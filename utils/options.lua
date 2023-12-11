@@ -51,10 +51,6 @@ opt.foldexpr = ""
 -- Copilot
 g.copilot_assume_mapped = true
 
--- Bookmark
-g.bookmark_sign = ""
-g.bookmark_highlight = "CopilotHl"
-
 opt.emoji = false
 opt.cursorline = true
 
