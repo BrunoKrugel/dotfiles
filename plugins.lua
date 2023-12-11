@@ -274,6 +274,10 @@ local plugins = {
     end,
   },
   {
+    "aznhe21/actions-preview.nvim",
+    event = "LspAttach",
+  },
+  {
     "hiphish/rainbow-delimiters.nvim",
     event = "BufReadPost",
     config = function()
@@ -683,11 +687,6 @@ local plugins = {
     config = function()
       require("git-conflict").setup()
     end,
-  },
-  {
-    "m4xshen/hardtime.nvim",
-    cmd = { "Hardtime" },
-    opts = {},
   },
   {
     "kevinhwang91/nvim-fundo",
