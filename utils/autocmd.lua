@@ -20,11 +20,26 @@ autocmd("VimResized", {
 })
 
 autocmd({ "LspAttach" }, {
-  desc = "Start null-ls when starting a lsp client",
+  desc = "Mouse mappings for easily navigating code",
+  callback = function(event)
+    local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+    -- Mouse mappings for easily navigating code
+    if client.supports_method "definitionProvider" then
+      vim.keymap.set("n", "<RightMouse>", "<LeftMouse><cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    end
+  end,
+})
+
+autocmd("VimEnter", {
+  group = group,
+  desc = "Customize right click contextual menu.",
   callback = function()
-    pcall(function()
-      require("null-ls").enable {}
-    end)
+    -- Disable right click message
+    cmd [[aunmenu PopUp.How-to\ disable\ mouse]]
+    -- cmd [[aunmenu PopUp.-1-]] -- You can remode a separator like this.
+    cmd [[menu PopUp.Toggle\ \Breakpoint <cmd>:lua require('dap').toggle_breakpoint()<CR>]]
+    cmd [[menu PopUp.Start\ \Debugger <cmd>:DapContinue<CR>]]
   end,
 })
 
@@ -235,21 +250,6 @@ autocmd({ "BufEnter", "BufNew" }, {
   end,
 })
 
--- autocmd({ "User" }, {
---   pattern = "PersistedSavePre",
---   group = vim.api.nvim_create_augroup("PersistedHooks", {}),
---   callback = function()
---     pcall(vim.cmd, "bw minimap")
---     pcall(vim.cmd, "cclose")
-
---     local lazy_view = require "lazy.view"
---     if lazy_view.visible() then
---       lazy_view.close()
---     end
---     close_all_floating_wins()
---   end,
--- })
-
 autocmd("TextYankPost", {
   desc = "Highlight on yank",
   command = "silent! lua vim.highlight.on_yank({higroup='YankVisual', timeout=200})",
@@ -389,43 +389,8 @@ autocmd("FileType", {
   end,
 })
 
--- Unlink the snippet and restore completion
--- autocmd("ModeChanged", {
---   pattern = "*",
---   callback = function()
---     if
---       ((vim.v.event.old_mode == "s" and vim.v.event.new_mode == "n") or vim.v.event.old_mode == "i")
---       and require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
---       and not require("luasnip").session.jump_active
---     then
---       require("luasnip").unlink_current()
---       require("cmp.config").set_global {
---         completion = { autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged } },
---       }
---     end
---   end,
--- })
-
 -- Show `` in specific files
 autocmd({ "BufRead", "BufNewFile" }, { pattern = { "*.txt", "*.md", "*.json" }, command = "setlocal conceallevel=0" })
-
--- Do not automatically trigger completion if we are in a snippet
--- autocmd("User", {
---   pattern = "LuaSnipInsertNodeEnter",
---   callback = function()
---     require("cmp.config").set_global { completion = { autocomplete = false } }
---   end,
--- })
-
--- But restore it when we leave.
--- autocmd("User", {
---   pattern = "LuaSnipInsertNodeLeave",
---   callback = function()
---     require("cmp.config").set_global {
---       completion = { autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged } },
---     }
---   end,
--- })
 
 -- Switch to insert mode when terminal is open
 local term_augroup = vim.api.nvim_create_augroup("Terminal", { clear = true })
@@ -475,7 +440,17 @@ autocmd({ "BufEnter", "BufNewFile" }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "User" }, {
+autocmd({ "tabnew" }, {
+  callback = function(args)
+    vim.schedule(function()
+      if vim.t.bufs == nil then
+        vim.t.bufs = vim.api.nvim_get_current_buf() == args.buf and {} or { args.buf }
+      end
+    end)
+  end,
+})
+
+autocmd({ "User" }, {
   pattern = "PersistedSavePre",
   group = group,
   callback = function()
