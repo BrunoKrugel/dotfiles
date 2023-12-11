@@ -238,6 +238,18 @@ M.text = {
       " Clear highlights",
       opts = { silent = true },
     },
+
+    ["i"] = {
+      function()
+        if #vim.fn.getline(".") == 0 then
+          return [["_cc]]
+        else
+          return "i"
+        end
+      end,
+      "Properly indent on empty line when insert",
+      opts = { expr = true },
+    },
   },
 
   v = {
