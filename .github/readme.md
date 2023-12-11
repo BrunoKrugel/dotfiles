@@ -17,6 +17,7 @@
 </div>
 
 ![prv-min](./img/prv.png)
+
 </div>
 
 </h3>
@@ -226,16 +227,6 @@ _With [Muren](https://github.com/AckslD/muren.nvim)_
 
 </div>
 
-## Bookmarks
-
-<div align="center">
-
-![bookmark](./img/bookmark.png)
-
-_With [Bookmark](https://github.com/MattesGroeger/vim-bookmarks)_
-
-</div>
-
 ## Telescope Integrations
 
 - Telescope frequent files `<leader>fr` (with [telescope-frecency](https://github.com/nvim-telescope/telescope-frecency.nvim))
@@ -340,7 +331,6 @@ Config ready for neovide, options are available in the `neovide.lua` file.
 - Arguments highlights with [hlargs](https://github.com/m-demare/hlargs.nvim)
 - Quick file navigation with [Harpoon](https://github.com/ThePrimeagen/harpoon)
 - Minimap with [Codewindow](https://github.com/gorbit99/codewindow.nvim)
-
 
 ## Plugins
 
