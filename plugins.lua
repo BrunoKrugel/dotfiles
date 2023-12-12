@@ -373,9 +373,6 @@ local plugins = {
         completion = {
           nvim_cmp = true,
         },
-        mappings = {
-          ["ogf"] = require("obsidian.mapping").gf_passthrough(),
-        },
       }
     end,
   },
@@ -847,7 +844,7 @@ local plugins = {
       bottom = {
         {
           ft = "toggleterm",
-          size = { height = 0.2 },
+          size = { height = 0.1 },
         },
         { ft = "spectre_panel", size = { height = 0.4 } },
         { ft = "qf", title = "QuickFix" },
