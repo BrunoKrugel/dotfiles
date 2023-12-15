@@ -32,14 +32,14 @@ M.remove_mappings = function(section)
   end)
 end
 
-function hasLspErrors()
+local function hasLspErrors()
   local bufnr = vim.api.nvim_get_current_buf()
   local diagnostics = vim.lsp.diagnostic.get(bufnr)
 
   for _, diagnostic in pairs(diagnostics) do
-      if diagnostic.severity == vim.lsp.protocol.DiagnosticSeverity.Error then
-          return true
-      end
+    if diagnostic.severity == vim.lsp.protocol.DiagnosticSeverity.Error then
+      return true
+    end
   end
 
   return false
@@ -75,31 +75,39 @@ function Get_npm()
 end
 
 function Get_dap()
-  -- local ok, dap = pcall(require, "dap")
-  -- if ok then
-  --   local status = dap.status()
-  --   if status ~= "" then
-  --     return "   " .. status .. " "
-  --   end
-  --   return ""
-  -- else
-  --   return ""
-  -- end
-  return ""
+  if package.loaded["dap"] then
+    local ok, dap = pcall(require, "dap")
+    if ok then
+      local status = dap.status()
+      if status ~= "" then
+        return "   " .. status .. " "
+      end
+      return ""
+    else
+      return ""
+    end
+  else
+    return ""
+  end
 end
 
 function Get_marked()
-  local Marked = require "harpoon.mark"
-  local filename = vim.api.nvim_buf_get_name(0)
-  local success, index = pcall(Marked.get_index_of, filename)
-  if success and index and index ~= nil then
-    return "󱡀 " .. index .. " "
+  if package.loaded["harpoon.mark"] then
+    local Marked = require "harpoon.mark"
+    local filename = vim.api.nvim_buf_get_name(0)
+    local success, index = pcall(Marked.get_index_of, filename)
+    if success and index and index ~= nil then
+      return "󱡀 " .. index .. " "
+    else
+      return ""
+    end
   else
     return ""
   end
 end
 
 function Get_record()
+  if package.loaded["recorder"] then
   local ok, recorder = pcall(require, "recorder")
   if ok then
     local status = recorder.recordingStatus()
@@ -107,6 +115,9 @@ function Get_record()
       return " " .. status .. " "
     end
     return ""
+  else
+    return ""
+  end
   else
     return ""
   end
