@@ -250,11 +250,6 @@ local plugins = {
     },
     ft = { "html", "svelte", "astro", "vue", "typescriptreact" },
   },
-  {
-    "boltlessengineer/smart-tab.nvim",
-    event = "InsertEnter",
-    opts = {},
-  },
   ----------------------------------------- enhance plugins ------------------------------------------
   {
     "okuuva/auto-save.nvim",
@@ -558,7 +553,7 @@ local plugins = {
     event = "VeryLazy",
     dependencies = {
       "MunifTanjim/nui.nvim",
-        "rcarriga/nvim-notify",
+      "rcarriga/nvim-notify",
     },
     config = function()
       require "custom.configs.noice"
