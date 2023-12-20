@@ -20,6 +20,12 @@ M.devicons = {
   override_by_filename = vim.tbl_extend(
     "force",
     {
+      ["scm"] = {
+        icon = "",
+        color = "#90a850",
+        cterm_color = "107",
+        name = "Query",
+      },
       ["makefile"] = {
         icon = "",
         color = "#f1502f",
