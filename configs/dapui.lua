@@ -1,14 +1,19 @@
 local has_dap, dap = pcall(require, "dap")
-if not has_dap then return end
+if not has_dap then
+  return
+end
 
 local has_dapui, dapui = pcall(require, "dapui")
-if not has_dapui then return end
+if not has_dapui then
+  return
+end
 
 local has_dap_virtual_text, dap_virtual_text = pcall(require, "nvim-dap-virtual-text")
-if not has_dap_virtual_text then return end
+if not has_dap_virtual_text then
+  return
+end
 
-local core = require "custom.utils.core"
-
+-- local core = require "custom.utils.core"
 -- dapui.setup(core.dapui)
 
 dofile(vim.g.base46_cache .. "dap")
@@ -30,20 +35,20 @@ dap.listeners.before.event_initialized["dapui_config"] = function()
 end
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
-	dapui.open()
-	dap_virtual_text.refresh()
+  dapui.open()
+  dap_virtual_text.refresh()
 end
 
 dap.listeners.after.disconnect["dapui_config"] = function()
-	require("dap.repl").close()
-	dapui.close()
-	dap_virtual_text.refresh()
+  require("dap.repl").close()
+  dapui.close()
+  dap_virtual_text.refresh()
 end
 dap.listeners.before.event_terminated["dapui_config"] = function()
-	dapui.close()
-	dap_virtual_text.refresh()
+  dapui.close()
+  dap_virtual_text.refresh()
 end
 dap.listeners.before.event_exited["dapui_config"] = function()
-	dapui.close()
-	dap_virtual_text.refresh()
+  dapui.close()
+  dap_virtual_text.refresh()
 end

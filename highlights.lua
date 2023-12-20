@@ -51,6 +51,8 @@ M.override = {
 ---@type HLTable
 M.add = {
 
+  DapStoppedLine = { link = "Visual" },
+
   EdgyWinBar = { bg = "black", fg = "white" },
   EdgyWinBarInactive = { bg = "black", fg = "white" },
   EdgyNormal = { bg = "black", fg = "white" },
