@@ -685,38 +685,44 @@ M.harpoon = {
   n = {
     ["<leader>ha"] = {
       function()
-        require("harpoon.mark").add_file()
+        local harpoon = require "harpoon"
+        harpoon:list():append()
       end,
       "󱡁 Harpoon Add file",
     },
     ["<leader>ta"] = { "<CMD>Telescope harpoon marks<CR>", "󱡀 Toggle quick menu" },
     ["<leader>hb"] = {
       function()
-        require("harpoon.ui").toggle_quick_menu()
+        local harpoon = require "harpoon"
+        harpoon.ui:toggle_quick_menu(harpoon:list())
       end,
       "󱠿 Harpoon Menu",
     },
     ["<leader>1"] = {
       function()
-        require("harpoon.ui").nav_file(1)
+        local harpoon = require "harpoon"
+        harpoon:list():select(1)
       end,
       "󱪼 Navigate to file 1",
     },
     ["<leader>2"] = {
       function()
-        require("harpoon.ui").nav_file(2)
+        local harpoon = require "harpoon"
+        harpoon:list():select(2)
       end,
       "󱪽 Navigate to file 2",
     },
     ["<leader>3"] = {
       function()
-        require("harpoon.ui").nav_file(3)
+        local harpoon = require "harpoon"
+        harpoon:list():select(3)
       end,
       "󱪾 Navigate to file 3",
     },
     ["<leader>4"] = {
       function()
-        require("harpoon.ui").nav_file(4)
+        local harpoon = require "harpoon"
+        harpoon:list():select(4)
       end,
       "󱪿 Navigate to file 4",
     },

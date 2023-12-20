@@ -356,7 +356,9 @@ local plugins = {
   },
   {
     "ThePrimeagen/harpoon",
-    cmd = "Harpoon",
+    branch = "harpoon2",
+    event = "VeryLazy",
+    opts = {},
   },
   {
     "epwalsh/obsidian.nvim",

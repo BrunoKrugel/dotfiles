@@ -91,21 +91,6 @@ function Get_dap()
   end
 end
 
-function Get_marked()
-  if package.loaded["harpoon.mark"] then
-    local Marked = require "harpoon.mark"
-    local filename = vim.api.nvim_buf_get_name(0)
-    local success, index = pcall(Marked.get_index_of, filename)
-    if success and index and index ~= nil then
-      return "󱡀 " .. index .. " "
-    else
-      return ""
-    end
-  else
-    return ""
-  end
-end
-
 function Get_record()
   if package.loaded["recorder"] then
   local ok, recorder = pcall(require, "recorder")
@@ -248,7 +233,7 @@ M.statusline = {
       modules,
       4,
       (function()
-        return "%#HarpoonHl#" .. Get_marked() .. Get_record()
+        return "%#RecordHl#" ..  Get_record()
       end)()
     )
 
