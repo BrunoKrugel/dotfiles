@@ -860,7 +860,6 @@ local plugins = {
         },
         { ft = "spectre_panel", size = { height = 0.4 } },
         { ft = "qf", title = "QuickFix" },
-        { ft = "dapui_watches", title = "Watches" },
         { ft = "dap-repl", title = "Debug REPL" },
         { ft = "dapui_console", title = "Debug Console" },
         "Trouble",
@@ -896,6 +895,7 @@ local plugins = {
       left = {
         { ft = "undotree", title = "Undo Tree" },
         { ft = "dapui_scopes", title = "Scopes" },
+        { ft = "dapui_watches", title = "Watches" },
         { ft = "dapui_breakpoints", title = "Breakpoints" },
         { ft = "dapui_stacks", title = "Stacks" },
         {
@@ -932,7 +932,7 @@ local plugins = {
         top = { size = 10 },
       },
       wo = {
-        winbar = false,
+        winbar = true,
         signcolumn = "no",
       },
     },
