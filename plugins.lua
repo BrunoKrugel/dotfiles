@@ -537,6 +537,7 @@ local plugins = {
   },
   {
     "hinell/lsp-timeout.nvim",
+    event = "LspAttach",
     config = function()
       vim.g["lsp-timeout-config"] = {
         -- When focus is lost
