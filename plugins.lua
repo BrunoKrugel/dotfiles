@@ -459,9 +459,17 @@ local plugins = {
     dependencies = {
       {
         "theHamsta/nvim-dap-virtual-text",
-        config = function()
-          require "custom.configs.virtual-text"
-        end,
+        opts= {
+          highlight_changed_variables = true,
+          highlight_new_as_changed = true,
+          show_stop_reason = true,
+          commented = true,
+        },
+      },
+      {
+        "LiadOz/nvim-dap-repl-highlights",
+        build = ":TSInstall dap_repl",
+        opts = {},
       },
       {
         "rcarriga/nvim-dap-ui",
