@@ -658,26 +658,6 @@ local plugins = {
     cmd = "LazyDocker",
   },
   {
-    "smjonas/inc-rename.nvim",
-    cmd = "IncRename",
-    opts = {
-      post_hook = function(results)
-        if not results.changes then
-          return
-        end
-
-        -- if more than one file is changed, save all buffers
-        local filesChang = #vim.tbl_keys(results.changes)
-        if filesChang > 1 then
-          vim.cmd.wall()
-        end
-
-        -- FIX making the cmdline-history not navigable, pending: https://github.com/smjonas/inc-rename.nvim/issues/40
-        vim.fn.histdel("cmd", "^IncRename ")
-      end,
-    },
-  },
-  {
     "AckslD/muren.nvim",
     cmd = "MurenToggle",
     config = true,
