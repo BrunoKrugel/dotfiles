@@ -229,6 +229,8 @@ require("mason-lspconfig").setup_handlers {
           usePlaceholders = true,
           completeUnimported = true,
           vulncheck = "Imports",
+          gofumpt = true,
+          staticcheck = true,
           analyses = {
             nilness = true,
             shadow = true,
@@ -237,7 +239,6 @@ require("mason-lspconfig").setup_handlers {
             fieldalignment = true,
             useany = true,
           },
-          staticcheck = true,
           codelenses = {
             references = true,
             test = true,
@@ -245,6 +246,9 @@ require("mason-lspconfig").setup_handlers {
             upgrade_dependency = true,
             regenerate_cgo = true,
             generate = true,
+            gc_details = false,
+            run_govulncheck = true,
+            vendor = true,
           },
           hints = {
             assignVariableTypes = true,
@@ -255,7 +259,6 @@ require("mason-lspconfig").setup_handlers {
             parameterNames = true,
             rangeVariableTypes = true,
           },
-          gofumpt = true,
         },
       },
     }
