@@ -310,6 +310,7 @@ M.general = {
           entry_maker = entry_maker(),
           sorting_strategy = "ascending",
           layout_strategy = "center",
+          prompt_title = "Find Files",
           border = true,
           borderchars = {
             prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
