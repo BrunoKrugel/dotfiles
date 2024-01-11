@@ -49,7 +49,7 @@ create_cmd("TPeek", function()
 end, {})
 
 -- Command to toggle inline diagnostics
-vim.api.nvim_create_user_command("DiagnosticsToggleVirtualText", function()
+create_cmd("DiagnosticsToggleVirtualText", function()
   local current_value = vim.diagnostic.config().virtual_text
   if current_value then
     vim.diagnostic.config { virtual_text = false }
@@ -59,7 +59,7 @@ vim.api.nvim_create_user_command("DiagnosticsToggleVirtualText", function()
 end, {})
 
 -- Command to toggle diagnostics
-vim.api.nvim_create_user_command("DiagnosticsToggle", function()
+create_cmd("DiagnosticsToggle", function()
   local current_value = vim.diagnostic.is_disabled()
   if current_value then
     vim.diagnostic.enable()
@@ -68,7 +68,7 @@ vim.api.nvim_create_user_command("DiagnosticsToggle", function()
   end
 end, {})
 
-vim.api.nvim_create_user_command("Format", function(args)
+create_cmd("Format", function(args)
   local range = nil
   if args.count ~= -1 then
     local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
@@ -142,7 +142,7 @@ create_cmd("CodeiumToggle", function()
   })
 end, {})
 
-vim.api.nvim_create_user_command("GitOpen", function()
+create_cmd("GitOpen", function()
   -- Current file
   local git_root = vim.fn.system("git rev-parse --show-toplevel"):gsub("\n", "")
   local file = vim.fn.expand("%:p"):gsub(vim.pesc(git_root .. "/"), "")

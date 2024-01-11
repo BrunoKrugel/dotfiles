@@ -19,7 +19,6 @@ autocmd("VimResized", {
   command = "tabdo wincmd =",
 })
 
-
 autocmd("VimEnter", {
   group = group,
   desc = "Customize right click contextual menu.",
@@ -111,19 +110,6 @@ autocmd("VimEnter", {
         vim.g.status_version = "Node " .. version .. " 󱐋 "
       end
     end
-  end,
-})
-
-autocmd("BufRead", {
-  desc = "Prefetch tabnine",
-  group = augroup("prefetch", { clear = true }),
-  pattern = "*",
-  callback = function()
-    local ok, _ = pcall(require, "cmp_tabnine")
-    if not ok then
-      return
-    end
-    require("cmp_tabnine"):prefetch(vim.fn.expand "%:p")
   end,
 })
 
