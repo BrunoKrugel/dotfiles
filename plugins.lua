@@ -454,6 +454,14 @@ local plugins = {
     cmd = "Code",
   },
   {
+    "jubnzv/virtual-types.nvim",
+    event = "LspAttach",
+  },
+  {
+    "wakatime/vim-wakatime",
+    event = "BufReadPost",
+  },
+  {
     "mfussenegger/nvim-dap",
     cmd = { "DapContinue", "DapStepOver", "DapStepInto", "DapStepOut", "DapToggleBreakpoint" },
     dependencies = {

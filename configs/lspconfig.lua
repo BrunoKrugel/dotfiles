@@ -31,6 +31,11 @@ local custom_on_attach = function(client, bufnr)
   if client.server_capabilities.inlayHintProvider then
     vim.lsp.inlay_hint(bufnr, true)
   end
+
+  if client.supports_method("textDocument/codeLens") then
+    require("virtualtypes").on_attach(client, bufnr)
+  end
+
 end
 
 local filter_list = function(list, predicate)
