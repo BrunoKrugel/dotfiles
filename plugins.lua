@@ -517,7 +517,17 @@ local plugins = {
     config = function()
       require("rest-nvim").setup {
         result_split_horizontal = true,
-        encode_url = true, -- Encode URL before making request
+        result_split_in_place = true,
+        skip_ssl_verification = false,
+        encode_url = true,
+        jump_to_request = false,
+        env_file = ".env",
+        custom_dynamic_variables = {},
+        yank_dry_run = true,
+        highlight = {
+          enabled = true,
+          timeout = 150,
+        },
         result = {
           show_url = false,
           show_http_info = true,
