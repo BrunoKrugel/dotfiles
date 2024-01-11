@@ -81,6 +81,11 @@ M.devicons = {
         color = "#519aba",
         name = "Http",
       },
+      ["astro"] = {
+        icon = "",
+        color = "#db7235",
+        name = "Astro",
+      },
     },
     icon_multiple_filenames(filenames_list("tailwind.config", { "js", "cjs", "ts", "cts" }), {
       icon = "󱏿",
