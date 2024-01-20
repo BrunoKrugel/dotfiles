@@ -145,7 +145,7 @@ M.cmp = {
   mapping = {
     ["<Up>"] = require("cmp").mapping.select_prev_item(),
     ["<Down>"] = require("cmp").mapping.select_next_item(),
-     ["<Left>"] = function(fallback)
+    ["<Left>"] = function(fallback)
       require("cmp").abort()
       fallback()
     end,
@@ -158,8 +158,20 @@ M.cmp = {
         require("luasnip").expand()
       elseif require("luasnip").expand_or_jumpable() then
         require("luasnip").expand_or_jump()
+      elseif require("neogen").jumpable() then
+        require("neogen").jump()
       elseif check_backspace() then
         fallback()
+      else
+        fallback()
+      end
+    end, {
+      "i",
+      "s",
+    }),
+    ["<S-tab>"] = require("cmp").mapping(function(fallback)
+      if require("neogen").jumpable(true) then
+        require("neogen").jump_prev()
       else
         fallback()
       end
@@ -217,7 +229,8 @@ M.cmp = {
     },
     {
       name = "nvim_lsp",
-      keyword_length = 5,
+      keyword_length = 2,
+      max_item_count = 10,
       -- entry_filter = function(entry, ctx)
       --   return require("cmp").lsp.CompletionItemKind.Text ~= entry:get_kind()
       -- end,
@@ -241,7 +254,7 @@ M.cmp = {
     --   keyword_length = 5,
     --   option = buffer_option,
     -- },
-    { name = 'npm', keyword_length = 4 },
+    { name = "npm", keyword_length = 4 },
     -- {
     --   name = "fuzzy_buffer",
     --   keyword_length = 5,
