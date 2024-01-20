@@ -13,11 +13,19 @@ M.override = {
   Repeat = { fg = "pink" },
   Include = { fg = "pink" },
   ["@definition"] = { underline = false },
-  ["@variable"] = { fg = "white" },
-  ["@namespace"] = { fg = "white" },
-  ["@function.builtin"] = { fg = "cyan" },
-  ["@function.call"] = { fg = "green" },
   ["@boolean"] = { fg = "green" },
+  ["@comment"] = { link = "Comment" },
+  ["@operator"] = { link = "Operator" },
+  ["@constant"] = { link = "Constant" },
+  ["@number.float"] = { link = "Float" },
+  ["@modules"] = { fg = "white" },
+  ["@type"] = { link = "Type" },
+  ["@attribute"] = { link = "Constant" },
+  ["@function.builtin"] = { fg = "cyan" },
+  ["@function.method"] = { link = "Function" },
+  ["@function.method.call"] = { link = "Function" },
+  ["@function.call"] = { fg = "green" },
+  ["@keyword.import"] = { link = "Include" },
   ["@text.danger"] = { fg = "red" },
   ["@text.note"] = { fg = "blue" },
   ["@text.header"] = { bold = true },
@@ -31,7 +39,7 @@ M.override = {
   ["@property.scss"] = { link = "@property.css" },
   ["@lsp.type.keyword"] = { link = "Keyword" },
   ["@lsp.type.operator"] = { link = "Operator" },
-  ["@lsp.type.parameter"] = { link = "@parameter" },
+  ["@lsp.type.parameter"] = { link = "@variable.parameter" },
   ["@lsp.type.property"] = { link = "@property" },
   ["@lsp.typemod.method.reference"] = { link = "Function" },
   ["@lsp.typemod.method.trait"] = { link = "Function" },
@@ -51,6 +59,9 @@ M.override = {
 ---@type HLTable
 M.add = {
 
+  ["@variable"] = { fg = "white" },
+  ["@variable.member"] = { fg = "purple" },
+
   DapStoppedLine = { link = "Visual" },
 
   EdgyWinBar = { bg = "black", fg = "white" },
@@ -69,6 +80,7 @@ M.add = {
 
   NvimTreeOpenedFolderName = { fg = "purple", bold = true },
   NvimTreeOpenedFile = { fg = "green", bold = true },
+  NvimTreeFileIcon = { fg = "purple" },
 
   -- Cmp Highlights
   CmpItemKindCodeium = { fg = "green" },
