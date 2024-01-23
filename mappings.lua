@@ -206,6 +206,7 @@ M.text = {
     ["<C-v>"] = { "p", "󰆒 Paste" },
     ["<C-c>"] = { "y", " Copy" },
     ["p"] = { "p`[v`]=", "󰆒 Paste" },
+    ["<leader><leader>p"] = { "printf('`[%s`]', getregtype()[0])", "Reselect last pasted area", expr = true },
     ["<leader><leader>d"] = { "viw", " Select word" },
     ["<leader>d"] = { 'viw"_di', " Delete word" },
     ["<C-Up>"] = { "<CMD>m .-2<CR>==", "󰜸 Move line up" },
@@ -656,6 +657,7 @@ M.nvterm = {
       end,
       " Toggle horizontal term",
     },
+    ["<Esc>"] = { [[<C-\><C-c>]], "󰜺 Send SigInt" },
     ["C-c"] = { [[<C-\><C-c>]], "󰜺 Send SigInt" },
   },
 
