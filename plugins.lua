@@ -467,7 +467,7 @@ local plugins = {
     dependencies = {
       {
         "theHamsta/nvim-dap-virtual-text",
-        opts= {
+        opts = {
           highlight_changed_variables = true,
           highlight_new_as_changed = true,
           show_stop_reason = true,
@@ -571,6 +571,9 @@ local plugins = {
         stopTimeout = 1000 * 60 * 5,
         startTimeout = 1000 * 10,
         silent = true,
+        filetypes = { -- Exclude servers that miss behave on LSP stop/start.
+          ignore = { "markdown", "java" },
+        },
       }
     end,
   },
