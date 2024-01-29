@@ -93,16 +93,16 @@ end
 
 function Get_record()
   if package.loaded["recorder"] then
-  local ok, recorder = pcall(require, "recorder")
-  if ok then
-    local status = recorder.recordingStatus()
-    if status ~= "" then
-      return " " .. status .. " "
+    local ok, recorder = pcall(require, "recorder")
+    if ok then
+      local status = recorder.recordingStatus()
+      if status ~= "" then
+        return " " .. status .. " "
+      end
+      return ""
+    else
+      return ""
     end
-    return ""
-  else
-    return ""
-  end
   else
     return ""
   end
@@ -132,10 +132,10 @@ M.dapui = {
     },
     {
       elements = {
-        {
-          id = "repl",
-          size = 0.5,
-        },
+        -- {
+        --   id = "repl",
+        --   size = 0.5,
+        -- },
         {
           id = "console",
           size = 0.5,
@@ -233,7 +233,7 @@ M.statusline = {
       modules,
       4,
       (function()
-        return "%#RecordHl#" ..  Get_record()
+        return "%#RecordHl#" .. Get_record()
       end)()
     )
 

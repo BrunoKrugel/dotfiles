@@ -416,16 +416,22 @@ M.treesitter = {
 
 M.debug = {
   n = {
-    ["<leader>tt"] = { "<CMD>PBToggleBreakpoint<CR>", " Toggle breakpoint" },
-    ["<F5>"] = { "<CMD>DapContinue <CR>", " Continue" },
-    ["<F10>"] = { "<CMD>DapStepOver <CR>", " Step over" },
-    ["<F11>"] = { "<CMD>DapStepInto <CR>", " Step into" },
-    ["<F9>"] = { "<CMD>DapStepOut <CR>", " Step out" },
+    ["<leader>tt"] = { "<CMD>PBToggleBreakpoint<CR>", " Debug: Toggle breakpoint" },
+    ["<F5>"] = { "<CMD>DapContinue <CR>", " Debug: Continue" },
+    ["<F10>"] = { "<CMD>DapStepOver <CR>", " Debug: Step over" },
+    ["<F11>"] = { "<CMD>DapStepInto <CR>", " Debug: Step into" },
+    ["<F9>"] = { "<CMD>DapStepOut <CR>", " Debug: Step out" },
+    ["<leader><leader>dr"] = {
+      function()
+        require("dap").repl.toggle()
+      end,
+      "Debug: Open REPL",
+    },
     ["<leader><leader>p"] = {
       function()
         require("debugprint").debugprint()
       end,
-      " Step out",
+      "Debug Print",
     },
   },
 }
