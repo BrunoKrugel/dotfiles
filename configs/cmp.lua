@@ -16,6 +16,23 @@ local function deprioritize_snippet(entry1, entry2)
   end
 end
 
+--- Select item next/prev, taking into account whether the cmp window is
+--- top-down or bottoom-up so that the movement is always in the same direction.
+local select_item_smart = function(dir, opts)
+  return function(fallback)
+    if require("cmp").visible() then
+      opts = opts or { behavior = require("cmp").SelectBehavior.Select }
+      if require("cmp").core.view.custom_entries_view:is_direction_top_down() then
+        ({ next = require("cmp").select_next_item, prev = require("cmp").select_prev_item })[dir](opts)
+      else
+        ({ prev = require("cmp").select_next_item, next = require("cmp").select_prev_item })[dir](opts)
+      end
+    else
+      fallback()
+    end
+  end
+end
+
 local function under(entry1, entry2)
   local _, entry1_under = entry1.completion_item.label:find "^_+"
   local _, entry2_under = entry2.completion_item.label:find "^_+"
@@ -143,8 +160,8 @@ M.cmp = {
     },
   },
   mapping = {
-    ["<Up>"] = require("cmp").mapping.select_prev_item(),
-    ["<Down>"] = require("cmp").mapping.select_next_item(),
+    ["<Up>"] = select_item_smart("prev"),
+    ["<Down>"] = select_item_smart("next"),
     ["<Left>"] = function(fallback)
       require("cmp").abort()
       fallback()
