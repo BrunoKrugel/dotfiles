@@ -20,10 +20,19 @@ M.devicons = {
   override_by_filename = vim.tbl_extend(
     "force",
     {
+      ["yml"] = {
+        icon = "",
+        color = "#bbbbbb",
+        name = "Yml",
+      },
+      ["yaml"] = {
+        icon = "",
+        color = "#bbbbbb",
+        name = "Yaml",
+      },
       ["scm"] = {
         icon = "",
         color = "#90a850",
-        cterm_color = "107",
         name = "Query",
       },
       ["makefile"] = {
@@ -192,9 +201,7 @@ M.mason = {
     "rustywind",
 
     -- Spell
-    "codespell",
     "marksman",
-    "grammarly-languageserver",
 
     -- Json
     "jsonlint",

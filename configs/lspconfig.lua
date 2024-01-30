@@ -32,7 +32,7 @@ local custom_on_attach = function(client, bufnr)
     vim.lsp.inlay_hint(bufnr, true)
   end
 
-  if client.supports_method("textDocument/codeLens") then
+  if client.supports_method "textDocument/codeLens" then
     require("virtualtypes").on_attach(client, bufnr)
   end
 
@@ -160,7 +160,6 @@ local servers = {
   "jdtls",
   "astro",
   "gopls",
-  "grammarly",
   "marksman",
   "emmet_ls",
   "yamlls",
@@ -267,6 +266,18 @@ require("mason-lspconfig").setup_handlers {
             parameterNames = true,
             rangeVariableTypes = true,
           },
+        },
+      },
+    }
+  end,
+
+  ["astro"] = function()
+    return {
+      on_attach = custom_on_attach,
+      capabilities = capabilities,
+      init_options = {
+        typescript = {
+          tsdk = "node_modules/typescript/lib",
         },
       },
     }
