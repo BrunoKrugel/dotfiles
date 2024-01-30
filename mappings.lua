@@ -224,6 +224,16 @@ M.text = {
       end,
       "󰑕 LSP rename",
     },
+    ["dd"] = {
+      function()
+        if vim.api.nvim_get_current_line():match "^%s*$" then
+          return '"_dd'
+        else
+          return "dd"
+        end
+      end,
+      "Smart dd",
+    },
     ["<leader>rn"] = {
       function()
         return ":IncRename " .. vim.fn.expand "<cword>"
