@@ -870,7 +870,7 @@ local plugins = {
         { ft = "spectre_panel", size = { height = 0.4 } },
         { ft = "qf", title = "QuickFix" },
         { ft = "dap-repl", title = "Debug REPL" },
-        { ft = "dapui_console", title = "Debug Console" },
+        { ft = "dapui_console", size = { height = 0.1 }, title = "Debug Console" },
         "Trouble",
         "Noice",
         {
@@ -936,7 +936,7 @@ local plugins = {
       },
       options = {
         left = { size = 40 },
-        bottom = { size = 20 },
+        bottom = { size = 10 },
         right = { size = 30 },
         top = { size = 10 },
       },
