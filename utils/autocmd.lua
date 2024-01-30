@@ -357,8 +357,8 @@ autocmd("FileType", {
         ]],
 })
 
--- Disable diagnostics in node_modules (0 is current buffer only)
 autocmd({ "BufRead", "BufNewFile" }, {
+  desc = "Disable diagnostics in node_modules",
   pattern = "*/node_modules/*",
   command = "lua vim.diagnostic.disable(0)",
 })

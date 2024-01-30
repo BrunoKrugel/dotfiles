@@ -92,7 +92,7 @@ M.devicons = {
       },
       ["astro"] = {
         icon = "",
-        color = "#db7235",
+        color = "#f1502f",
         name = "Astro",
       },
     },
