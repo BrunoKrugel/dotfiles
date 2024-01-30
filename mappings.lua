@@ -267,6 +267,17 @@ M.text = {
 
     ["<C-Left>"] = { "<ESC>_", "󰜲 Move to beginning of line" },
     ["<C-Right>"] = { "<ESC>$", "󰜵 Move to end of line" },
+    ["$"] = {
+      function()
+        if vim.fn.mode() == "v" then
+          return "$h"
+        else
+          return "$"
+        end
+      end,
+      "End of line",
+      opts = { expr = true },
+    },
   },
 
   c = {
