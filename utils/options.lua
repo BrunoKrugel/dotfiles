@@ -68,4 +68,11 @@ if g.neovide then
   g.neovide_padding_left = 0
   g.neovide_floating_blur_amount_x = 3.0
   g.neovide_floating_blur_amount_y = 3.0
+  g.neovide_floating_shadow = true
+  g.neovide_floating_z_height = 40
+  g.neovide_light_angle_degrees = 45
+  g.neovide_light_radius = 10
+  g.neovide_scroll_animation_length = 0.5
+  g.neovide_scroll_animation_far_lines = 1
+  vim.g.neovide_hide_mouse_when_typing = true
 end
