@@ -199,9 +199,12 @@ M.text = {
     ["<C-a>"] = { "gg0vG", " Select all" },
     ["<F3>"] = { "nzzzv", " Next" },
     ["<S-F3>"] = { "Nzzzv", " Previous" },
+    ["<N>"] = { "nzzzv", " Next" },
+    ["<n>"] = { "Nzzzv", " Previous" },
     -- Operations
     ["<C-z>"] = { "<CMD>u<CR>", "󰕌 Undo" },
     ["<C-r>"] = { "<CMD>redo<CR>", "󰑎 Redo" },
+    ["<BS>"] = { "<C-o>", "Return" },
     ["<C-x>"] = { "x", "󰆐 Cut" },
     ["<C-v>"] = { "p", "󰆒 Paste" },
     ["<C-c>"] = { "y", " Copy" },
