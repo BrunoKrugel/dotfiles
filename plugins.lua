@@ -606,26 +606,6 @@ local plugins = {
     end,
   },
   {
-    "folke/zen-mode.nvim",
-    cmd = "ZenMode",
-    config = function()
-      require("zen-mode").setup {
-        window = {
-          backdrop = 0.93,
-          width = 150,
-          height = 1,
-        },
-        plugins = {
-          options = {
-            showcmd = true,
-          },
-          twilight = { enabled = false },
-          gitsigns = { enabled = true },
-        },
-      }
-    end,
-  },
-  {
     "petertriho/nvim-scrollbar",
     event = "WinScrolled",
     config = function()
@@ -1029,18 +1009,6 @@ local plugins = {
   --     require("compiler").setup(opts)
   --   end,
   -- },
-  {
-    "topaxi/gh-actions.nvim",
-    cmd = "GhActions",
-    opts = {},
-  },
-  {
-    "danymat/neogen",
-    cmd = "Neogen",
-    opts = {
-      snippet_engine = "luasnip",
-    },
-  },
   ----------------------------------------- language plugins ------------------------------------------
   {
     "ray-x/go.nvim",
@@ -1067,17 +1035,6 @@ local plugins = {
     config = function()
       require "custom.configs.ts"
     end,
-  },
-  {
-    "axelvc/template-string.nvim",
-    event = "InsertEnter",
-    ft = {
-      "javascript",
-      "typescript",
-      "javascriptreact",
-      "typescriptreact",
-    },
-    opts = {},
   },
   {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
@@ -1173,17 +1130,6 @@ local plugins = {
       auto_open_qflist = true,
       spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
     },
-  },
-  {
-    "axelvc/template-string.nvim",
-    event = "InsertEnter",
-    ft = {
-      "javascript",
-      "typescript",
-      "javascriptreact",
-      "typescriptreact",
-    },
-    opts = {},
   },
   {
     "antosha417/nvim-lsp-file-operations",
