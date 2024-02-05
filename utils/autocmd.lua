@@ -20,7 +20,6 @@ autocmd("VimResized", {
 })
 
 autocmd("VimEnter", {
-  group = group,
   desc = "Customize right click contextual menu.",
   callback = function()
     -- Disable right click message
@@ -28,6 +27,13 @@ autocmd("VimEnter", {
     -- cmd [[aunmenu PopUp.-1-]] -- You can remode a separator like this.
     cmd [[menu PopUp.Toggle\ \Breakpoint <cmd>:lua require('dap').toggle_breakpoint()<CR>]]
     cmd [[menu PopUp.Start\ \Debugger <cmd>:DapContinue<CR>]]
+  end,
+})
+
+autocmd("BufWritePre", {
+  desc = "Close all notifications on BufWritePre",
+  callback = function()
+    require("notify").dismiss({pending = true, silent = true})
   end,
 })
 
