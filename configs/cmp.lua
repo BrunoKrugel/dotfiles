@@ -271,7 +271,6 @@ M.cmp = {
     --   keyword_length = 5,
     --   option = buffer_option,
     -- },
-    { name = "npm", keyword_length = 4 },
     -- {
     --   name = "fuzzy_buffer",
     --   keyword_length = 5,

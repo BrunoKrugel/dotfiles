@@ -361,7 +361,7 @@ local plugins = {
       telescope = { -- options for the telescope extension
         reset_prompt_after_deletion = true, -- whether to reset prompt after session deleted
       },
-      config = function()
+      config = function(_, opts)
         vim.o.sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize"
         require("persisted").setup(opts)
         require("telescope").load_extension "persisted"
@@ -403,10 +403,10 @@ local plugins = {
     config = function()
       require("copilot_status").setup {
         icons = {
-          idle = " ",
+          idle = " ",
           error = " ",
-          offline = " ",
-          warning = " ",
+          offline = " ",
+          warning = " ",
           loading = " ",
         },
         debug = false,
@@ -729,7 +729,7 @@ local plugins = {
           },
         },
         hooks = {
-          diff_buf_win_enter = function(bufnr, winid, ctx)
+          diff_buf_win_enter = function(_, _, ctx)
             if ctx.layout_name:match "^diff2" then
               if ctx.symbol == "a" then
                 vim.opt_local.winhl = table.concat({
@@ -773,37 +773,18 @@ local plugins = {
     "kevinhwang91/nvim-hlslens",
     event = "BufReadPost",
     config = function()
-      require("scrollbar.handlers.search").setup {
-        {
-          nearest_float_when = false,
-          override_lens = function(render, posList, nearest, idx, relIdx)
-            local sfw = vim.v.searchforward == 1
-            local indicator, text, chunks
-            local absRelIdx = math.abs(relIdx)
-            if absRelIdx > 1 then
-              indicator = ("%d%s"):format(absRelIdx, sfw ~= (relIdx > 1) and icons.misc.up or icons.misc.down)
-            elseif absRelIdx == 1 then
-              indicator = sfw ~= (relIdx == 1) and icons.misc.up or icons.misc.down
-            else
-              indicator = icons.misc.dot
-            end
-            local lnum, col = unpack(posList[idx])
-            if nearest then
-              local cnt = #posList
-              if indicator ~= "" then
-                text = ("[%s %d/%d]"):format(indicator, idx, cnt)
-              else
-                text = ("[%d/%d]"):format(idx, cnt)
-              end
-              chunks = { { " ", "Ignore" }, { text, "HlSearchLensNear" } }
-            else
-              text = ("[%s %d]"):format(indicator, idx)
-              chunks = { { " ", "Ignore" }, { text, "HlSearchLens" } }
-            end
-            render.setVirt(0, lnum - 1, col - 1, chunks, nearest)
-          end,
-        },
-      }
+      require("hlslens").setup({
+         build_position_cb = function(plist, _, _, _)
+              require("scrollbar.handlers.search").handler.show(plist.start_pos)
+         end,
+      })
+
+      vim.cmd([[
+          augroup scrollbar_search_hide
+              autocmd!
+              autocmd CmdlineLeave : lua require('scrollbar.handlers.search').handler.hide()
+          augroup END
+      ]])
     end,
   },
   {
@@ -867,7 +848,7 @@ local plugins = {
           ft = "NoiceHistory",
           title = " Log",
           open = function()
-            toggle_noice()
+            require("noice").cmd "history"
           end,
         },
         {
@@ -1052,12 +1033,6 @@ local plugins = {
   {
     "BrunoKrugel/package-info.nvim",
     event = "BufEnter package.json",
-    dependencies = {
-      {
-        "David-Kunz/cmp-npm",
-        opts = {},
-      },
-    },
     opts = {
       icons = {
         enable = true,

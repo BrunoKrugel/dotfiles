@@ -262,7 +262,11 @@ M.statusline = {
             and (client.name ~= "null-ls" and client.name ~= "copilot")
           then
             local copilot = "%#CopilotHl#" .. require("copilot_status").status_string() .. " "
-            return (vim.o.columns > 100 and copilot .. "%#St_LspStatus# " .. client.name) or copilot .. "  LSP"
+            local lsp_name = client.name
+            if client.name == "typescript-tools" then
+              lsp_name = "typescript"
+            end
+            return (vim.o.columns > 100 and copilot .. "%#St_LspStatus# " .. lsp_name) or copilot .. "  LSP"
           end
         end
       end
