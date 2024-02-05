@@ -21,7 +21,7 @@ go.setup {
   trouble = true,
   lsp_keymaps = false,
   diagnostic = {
-    hdlr = true, 
+    hdlr = true,
     underline = true,
     virtual_text = false,
     signs = true,
@@ -36,5 +36,5 @@ go.setup {
 }
 
 vim.api.nvim_set_hl(0, "goCoverageUncover", { fg = "#F1FA8C" })
-vim.api.nvim_set_hl(0, "goCoverageUncovered", { fg = "#e8274b" })
+vim.api.nvim_set_hl(0, "goCoverageUncovered", { fg = "#ff7070" })
 vim.api.nvim_set_hl(0, "goCoverageCovered", { fg = "#50fa7b" })
