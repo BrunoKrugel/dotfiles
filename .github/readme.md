@@ -42,8 +42,7 @@ I have been a VSCode user for years and I am slowly moving forward to `NVIM`, so
 3. Download and install [CTAGS](https://github.com/universal-ctags/ctags) (for a better Go To Definition)
 4. I am using `Hack Nerd Font`
 5. My terminal is `WezTerm`
-6. My neovim version is `Nightly`
-7. I am using a M1, so, some things may not work out of the box for you
+6. I am using a M1, so, some things may not work out of the box for you
 
 ## Help
 
@@ -103,8 +102,6 @@ _With [UFO](https://github.com/kevinhwang91/nvim-ufo), [Pretty Fold](https://git
 
 </div>
 
-There is also a custom fold code in `status.lua`, you can disable ufo and enable the custom code.
-
 ## Diagnostics in a VSCode style
 
 ### Diagnostics Tab
@@ -137,7 +134,7 @@ _With [lsp-lines](https://github.com/ErichDonGubler/lsp_lines.nvim)_
 
 </div>
 
-LSP Lines is only configured for Go, so it may need some tweaking for other languages.
+LSP Lines is only configured for `Go`, so it may need some tweaking for other languages.
 
 ### Diagnostics in scrollbar
 
@@ -155,11 +152,9 @@ _With [nvim-scrollbar](https://github.com/petertriho/nvim-scrollbar)_
 
 ![navic](./img/navic.png)
 
-_With [LSPSaga](https://github.com/nvimdev/lspsaga.nvim) or [Dropbar](https://github.com/Bekaboo/dropbar.nvim)_
+_With [LSPSaga](https://github.com/nvimdev/lspsaga.nvim)
 
 </div>
-
-Dropbar currently only work in neovim `nightly` and is disabled by default, if you want to use it, enable the plugin `dropbar.lua` and then disable the lspsaga winbar in `lspsaga.lua`.
 
 ## Word highlight
 
@@ -178,20 +173,6 @@ _With [Illuminate](https://github.com/RRethy/vim-illuminate)_
 ![todo](./img/todo.png)
 
 _With [Todo-comments](https://github.com/folke/todo-comments.nvim)_
-
-</div>
-
-## Context
-
-<div align="center">
-
-![context](./img/context.png)
-
-_With [Biscuits](https://github.com/code-biscuits/nvim-biscuits)_
-
-![fcontext](./img/fcontext.png)
-
-_With [ts-context](https://github.com/nvim-treesitter/nvim-treesitter-context)_
 
 </div>
 
@@ -307,21 +288,9 @@ _With [Colortils](https://github.com/nvim-colortils/colortils.nvim)_
 
 </div>
 
-## Theme
-
-I have adapted the [Evondev Dracula](https://github.com/evondev/evondev-dracula) theme from VSCode to Neovim, you can find it in the `theme` folder.
-
-<div align="center">
-
-![theme](./img/theme.png)
-
-![theme2](./img/theme2.png)
-
-</div>
-
 ## Neovide
 
-Config ready for neovide, options are available in the `neovide.lua` file.
+Config ready for neovide, options are available in the `options.lua` file.
 
 ## Other plugins
 
