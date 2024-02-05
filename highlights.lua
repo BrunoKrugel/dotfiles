@@ -102,6 +102,16 @@ M.add = {
   -- SpectreBorder
   -- SpectreReplace
 
+  ObsidianTodo = { fg = "red" },
+  ObsidianDone = { fg = "green" },
+  ObsidianRightArrow = { fg = "cyan" },
+  ObsidianTilde = { fg = "cyan" },
+  ObsidianBullet = { fg = "yellow" },
+  ObsidianExtLinkIcon = { fg = "purple" },
+  ObsidianRefText = { fg = "pink" },
+  ObsidianHighlightText = { fg = "cyan" },
+  ObsidianTag = { fg = "cyan" },
+
   -- Tree Sitter Rainbow
   RainbowDelimiterRed = { fg = "red" },
   RainbowDelimiterYellow = { fg = "yellow" },
