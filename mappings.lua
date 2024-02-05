@@ -206,7 +206,7 @@ M.text = {
     ["<C-r>"] = { "<CMD>redo<CR>", "󰑎 Redo" },
     ["<BS>"] = { "<C-o>", "Return" },
     ["<C-x>"] = { "x", "󰆐 Cut" },
-    ["<C-v>"] = { "p", "󰆒 Paste" },
+    ["<C-v>"] = { "p`[v`]=", "󰆒 Paste" },
     ["<C-c>"] = { "y", " Copy" },
     ["p"] = { "p`[v`]=", "󰆒 Paste" },
     ["<leader><leader>p"] = { "printf('`[%s`]', getregtype()[0])", "Reselect last pasted area", expr = true },

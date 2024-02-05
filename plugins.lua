@@ -376,7 +376,9 @@ local plugins = {
   },
   {
     "epwalsh/obsidian.nvim",
-    ft = "markdown",
+    event = {
+      "BufReadPre /users/bruno.krugel/Library/Mobile Documents/iCloud~md~obsidian/Documents/Annotation/**.md",
+    },
     config = function()
       require("obsidian").setup {
         dir = "/users/bruno.krugel/Library/Mobile Documents/iCloud~md~obsidian/Documents/Annotation",
@@ -1012,7 +1014,7 @@ local plugins = {
   ----------------------------------------- language plugins ------------------------------------------
   {
     "ray-x/go.nvim",
-    ft = { "go", "gomod", "gosum", "gowork" },
+    ft = { "go", "gomod", "gosum", "gowork", "gotmpl" },
     dependencies = {
       {
         "ray-x/guihua.lua",
