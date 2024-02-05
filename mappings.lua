@@ -29,6 +29,71 @@ local function move_or_create_win(key)
   end
 end
 
+-- Check if there is a code action available at the cursor position
+local function isCodeActionAvailable()
+  local current_bufnr = vim.fn.bufnr()
+  local params = {
+    textDocument = vim.lsp.util.make_text_document_params(),
+    context = { diagnostics = vim.lsp.diagnostic.get_line_diagnostics() },
+  }
+
+  local actions = vim.lsp.buf_request_sync(current_bufnr, "textDocument/codeAction", params, 1000)
+
+  return actions and next(actions) ~= nil
+end
+
+-- local end_strings = {
+--   ";",
+--   ",",
+--   ":",
+--   ".",
+--   ")",
+--   "}",
+--   "]",
+--   "\\",
+-- }
+-- for _, char in ipairs(end_strings) do
+--   vim.keymap.set("n", "<leader>" .. char, function()
+--     func.put_at_end(char)
+--   end, { desc = "Put " .. char .. " at the end of the line" })
+-- end
+local function put_at_beginning(chars)
+  ---@diagnostic disable-next-line: param-type-mismatch
+  local cline = vim.fn.getline "."
+  ---@diagnostic disable-next-line: param-type-mismatch
+  -- vim.api.nvim_set_current_line(cline:sub(1, cline:len()-1))
+  local pos = vim.api.nvim_win_get_cursor(0)
+  local row = pos[1] - 1
+  local col = 0
+  local entry_length = string.len(chars)
+  ---@diagnostic disable-next-line: param-type-mismatch
+  local start_chars = string.sub(vim.fn.getline ".", 0, entry_length)
+  if start_chars == chars then
+    ---@diagnostic disable-next-line: param-type-mismatch
+    vim.api.nvim_set_current_line(cline:sub((entry_length + 1), cline:len()))
+  else
+    vim.api.nvim_buf_set_text(0, row, col, row, col, { chars })
+  end
+end
+
+local function put_at_end(chars)
+  local pos = vim.api.nvim_win_get_cursor(0)
+  local row = pos[1] - 1
+  local current_line = vim.api.nvim_get_current_line()
+  local col = #current_line
+  local entry_length = string.len(chars)
+  ---@diagnostic disable-next-line: param-type-mismatch
+  local cline = vim.fn.getline "."
+  ---@diagnostic disable-next-line: param-type-mismatch
+  local endchar = vim.fn.getline("."):sub(cline:len() - (entry_length - 1))
+  if endchar == chars then
+    ---@diagnostic disable-next-line: param-type-mismatch
+    vim.api.nvim_set_current_line(cline:sub(1, cline:len() - entry_length))
+  else
+    vim.api.nvim_buf_set_text(0, row, col, row, col, { chars })
+  end
+end
+
 ---@param direction 'up'|'down'
 local function duplicate_lines(direction)
   local startline = vim.fn.line "v"
@@ -374,7 +439,11 @@ M.general = {
     },
     ["<leader>w"] = {
       function()
-        require("nvchad.tabufline").close_buffer()
+        if vim.bo.buftype == "terminal" then
+          vim.cmd ":q"
+        else
+          require("nvchad.tabufline").close_buffer()
+        end
       end,
       " Close buffer",
     },
@@ -766,6 +835,16 @@ M.lspconfig = {
   n = {
     ["<leader><leader>n"] = { "<CMD> lua require('tsht').nodes() <CR>", " Select Node" },
     ["<F12>"] = { "<CMD>Glance references<CR>", "󰘐 References" },
+    ["<leader><leader>a"] = {
+      function()
+        if isCodeActionAvailable() then
+          vim.lsp.buf.code_action()
+        else
+          print "No code actions available"
+        end
+      end,
+      "Go: Code Action",
+    },
   },
 }
 
