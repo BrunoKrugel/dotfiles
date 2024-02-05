@@ -4,14 +4,9 @@ if not present then
   return
 end
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local core = require "custom.utils.core"
 
 go.setup {
-  lsp_cfg = {
-    capabilities = capabilities,
-    -- other setups
-  },
   max_line_len = 300,
   lsp_inlay_hints = {
     enable = true,
@@ -27,12 +22,17 @@ go.setup {
     signs = true,
     update_in_insert = false,
   },
+  floaterm = {
+    posititon = 'auto',
+    width = 0.45,
+    height = 0.98,
+    title_colors = 'dracula',
+  },
   icons = { breakpoint = "", currentpos = "" },
   gocoverage_sign = "│",
   -- lsp_diag_virtual_text = { space = 0, prefix = "" },
   --  cat
   dap_debug_gui = core.dapui,
-  -- luasnip = true,
 }
 
 vim.api.nvim_set_hl(0, "goCoverageUncover", { fg = "#F1FA8C" })
