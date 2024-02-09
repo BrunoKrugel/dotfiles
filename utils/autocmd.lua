@@ -33,7 +33,7 @@ autocmd("VimEnter", {
 autocmd("BufWritePre", {
   desc = "Close all notifications on BufWritePre",
   callback = function()
-    require("notify").dismiss({pending = true, silent = true})
+    require("notify").dismiss { pending = true, silent = true }
   end,
 })
 
@@ -367,6 +367,18 @@ autocmd({ "BufRead", "BufNewFile" }, {
   desc = "Disable diagnostics in node_modules",
   pattern = "*/node_modules/*",
   command = "lua vim.diagnostic.disable(0)",
+})
+
+autocmd("BufWritePre", {
+  callback = function(event)
+    local client = vim.lsp.get_clients({ bufnr = event.buf, name = "eslint" })[1]
+    if client then
+      local diag = vim.diagnostic.get(event.buf, { namespace = vim.lsp.diagnostic.get_namespace(client.id) })
+      if #diag > 0 then
+        vim.cmd "EslintFixAll"
+      end
+    end
+  end,
 })
 
 -- Nvimtree open file on creation
