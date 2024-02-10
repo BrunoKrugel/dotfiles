@@ -36,6 +36,7 @@ local custom_on_attach = function(client, bufnr)
     require("virtualtypes").on_attach(client, bufnr)
   end
 
+  require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
 end
 
 local filter_list = function(list, predicate)
@@ -98,7 +99,7 @@ local function list_or_jump(action, title, opts)
   opts = opts or {}
 
   local params = vim.lsp.util.make_position_params()
-  vim.lsp.buf_request(0, action, params, function(err, result, ctx, _config)
+  vim.lsp.buf_request(0, action, params, function(err, result, ctx, _)
     if err then
       vim.api.nvim_err_writeln("Error when executing " .. action .. " : " .. err.message)
       return

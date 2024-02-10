@@ -773,18 +773,18 @@ local plugins = {
     "kevinhwang91/nvim-hlslens",
     event = "BufReadPost",
     config = function()
-      require("hlslens").setup({
-         build_position_cb = function(plist, _, _, _)
-              require("scrollbar.handlers.search").handler.show(plist.start_pos)
-         end,
-      })
+      require("hlslens").setup {
+        build_position_cb = function(plist, _, _, _)
+          require("scrollbar.handlers.search").handler.show(plist.start_pos)
+        end,
+      }
 
-      vim.cmd([[
+      vim.cmd [[
           augroup scrollbar_search_hide
               autocmd!
               autocmd CmdlineLeave : lua require('scrollbar.handlers.search').handler.hide()
           augroup END
-      ]])
+      ]]
     end,
   },
   {
@@ -958,6 +958,11 @@ local plugins = {
     config = function()
       require "custom.configs.lspsaga"
     end,
+  },
+  {
+    "artemave/workspace-diagnostics.nvim",
+    event = "LspAttach",
+    opts = {},
   },
   {
     "dnlhc/glance.nvim",
