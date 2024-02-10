@@ -258,6 +258,8 @@ M.text = {
   },
 
   n = {
+    ["J"] = {"mzJ`z", "Join line while keeping the cursor in the same position"},
+    -- ["<LeftRelease>"] = {"*ygv","Yank on mouse selection"},
     -- Navigate
     ["<C-Left>"] = { "<ESC>_", "󰜲 Move to beginning of line" },
     ["<C-Right>"] = { "<ESC>$", "󰜵 Move to end of line" },
