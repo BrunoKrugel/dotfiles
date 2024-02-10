@@ -210,6 +210,7 @@ M.cmp = {
     ["<ESC>"] = require("cmp").mapping(function(fallback)
       if require("cmp").visible() then
         require("cmp").abort()
+        require("cmp").close()
       else
         fallback()
       end
