@@ -504,7 +504,7 @@ M.node = {
 
 M.treesitter = {
   n = {
-    ["<leader>cu"] = { "<CMD>InspectTree <CR>", " Find highlight" },
+    ["<leader>cu"] = { "<CMD>Inspect <CR>", " Find highlight" },
     ["<leader>to"] = { "<CMD>TSJToggle<CR>", "󱓡 Toggle split/join" },
   },
 }
@@ -848,6 +848,9 @@ M.lspconfig = {
           vim.lsp.buf.code_action()
         else
           print "No code actions available"
+          if vim.bo.ft == "go" then
+            print "Try running :GoCodeAction"
+          end
         end
       end,
       "Go: Code Action",
