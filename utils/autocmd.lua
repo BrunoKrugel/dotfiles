@@ -296,6 +296,7 @@ autocmd("FileType", {
     "spectre_panel",
     "null-ls-info",
     "empty",
+    "noice",
     "neotest-output",
     "neotest-summary",
     "neotest-output-panel",
