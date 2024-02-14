@@ -24,7 +24,12 @@ M.override = {
   ["@function.builtin"] = { fg = "cyan" },
   ["@function.method"] = { link = "Function" },
   ["@function.method.call"] = { link = "Function" },
-  ["@function.call"] = { fg = "green" },
+  ["@function.call"] = { link = "green" },
+
+  ["Function"] = { fg = "green" },
+  ["@function"] = { fg = "green" },
+  ["@property"] = { fg = "purple" },
+
   ["@keyword.import"] = { link = "Include" },
   ["@text.danger"] = { fg = "red" },
   ["@text.note"] = { fg = "blue" },
@@ -60,7 +65,8 @@ M.override = {
 M.add = {
 
   ["@variable"] = { fg = "white" },
-  ["@variable.member"] = { fg = "purple" },
+  ["@variable.member"] = { fg = "white" },
+  ["@constructor"] = { fg = "green" },
 
   DapStoppedLine = { link = "Visual" },
 

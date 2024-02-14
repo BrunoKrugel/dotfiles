@@ -52,6 +52,7 @@ M.base46 = {
     "whichkey",
     "dap",
     "hop",
+    "treesitter",
     "rainbowdelimiters",
     "todo",
     "trouble",
