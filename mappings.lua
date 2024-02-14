@@ -258,7 +258,7 @@ M.text = {
   },
 
   n = {
-    ["J"] = {"mzJ`z", "Join line while keeping the cursor in the same position"},
+    ["J"] = { "mzJ`z", "Join line while keeping the cursor in the same position" },
     -- ["<LeftRelease>"] = {"*ygv","Yank on mouse selection"},
     -- Navigate
     ["<C-Left>"] = { "<ESC>_", "󰜲 Move to beginning of line" },
@@ -557,14 +557,19 @@ M.telescope = {
     ["<leader>li"] = { "<CMD>Telescope highlights<CR>", "Highlights" },
     ["<leader>fk"] = { "<CMD>Telescope keymaps<CR>", " Find keymaps" },
     ["<leader>fs"] = { "<CMD>Telescope lsp_document_symbols<CR>", " Find document symbols" },
-    ["<leader>fr"] = { "<CMD>Telescope frecency<CR>", " Recent files" },
+    ["<leader>fa"] = {
+      function()
+        require("search").open()
+      end,
+      " Find",
+    },
     ["<leader>fu"] = { "<CMD>Telescope undo<CR>", " Undo tree" },
     ["<leader>fg"] = { "<CMD>Telescope ast_grep<CR>", " Structural Search" },
     ["<leader>fre"] = {
       function()
         require("telescope").extensions.refactoring.refactors()
       end,
-      " Structural Search",
+      "Refactor",
     },
     ["<leader>fz"] = {
       "<CMD>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<CR>",
