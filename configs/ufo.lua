@@ -1,5 +1,4 @@
 local handler = function(virtText, lnum, endLnum, width, truncate)
-
   local newVirtText = {}
   local suffix = (" ↙ %d "):format(endLnum - lnum)
   local sufWidth = vim.fn.strdisplaywidth(suffix)
@@ -34,6 +33,13 @@ end
 require("ufo").setup {
   close_fold_kinds = { "imports" },
   fold_virt_text_handler = handler,
+  open_fold_hl_timeout = 0,
+  preview = {
+    win_config = {
+      border = "rounded",
+      winblend = 0,
+    },
+  },
   provider_selector = function(_, filetype, buftype)
     -- use nested markdown folding
     if filetype == "markdown" then

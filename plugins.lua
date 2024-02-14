@@ -5,7 +5,6 @@ local cmp_opt = require "custom.configs.cmp"
 local plugins = {
   --------------------------------------------- community ---------------------------------------------
   -- { "BrunoKrugel/nvcommunity" },
-  -- { import = "nvcommunity.editor.telescope-undo"},
   ----------------------------------------- override plugins ------------------------------------------
   {
     "neovim/nvim-lspconfig",
@@ -67,6 +66,7 @@ local plugins = {
       "debugloop/telescope-undo.nvim",
       "gnfisher/nvim-telescope-ctags-plus",
       "benfowler/telescope-luasnip.nvim",
+      "FabianWirth/search.nvim",
       "Marskey/telescope-sg",
       {
         "nvim-telescope/telescope-fzf-native.nvim",
@@ -1020,6 +1020,9 @@ local plugins = {
       "javascriptreact",
       "typescriptreact",
     },
+    dependencies = {
+      "OlegGulevskyy/better-ts-errors.nvim",
+    },
     config = function()
       require "custom.configs.ts"
     end,
@@ -1135,19 +1138,6 @@ local plugins = {
       pauseFoldsOnSearch = true,
       setupFoldKeymaps = false,
     },
-  },
-  {
-    "Zeioth/markmap.nvim",
-    build = "yarn global add markmap-cli",
-    cmd = { "MarkmapOpen", "MarkmapSave", "MarkmapWatch", "MarkmapWatchStop" },
-    opts = {
-      html_output = "/tmp/markmap.html", -- (default) Setting a empty string "" here means: [Current buffer path].html
-      hide_toolbar = false, -- (default)
-      grace_period = 3600000, -- (default) Stops markmap watch after 60 minutes. Set it to 0 to disable the grace_period.
-    },
-    config = function(_, opts)
-      require("markmap").setup(opts)
-    end,
   },
   {
     "malbertzard/inline-fold.nvim",
