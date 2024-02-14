@@ -221,63 +221,6 @@ autocmd({ "BufRead" }, {
   end,
 })
 
-autocmd({ "FileType", "BufWinEnter" }, {
-  desc = "Disable status column in the following files",
-  callback = function()
-    local ft_ignore = {
-      "man",
-      "help",
-      "neo-tree",
-      "starter",
-      "TelescopePrompt",
-      "Trouble",
-      "NvimTree",
-      "nvcheatsheet",
-      "dapui_watches",
-      "dap-repl",
-      "dapui_console",
-      "dapui_stacks",
-      "spectre_panel",
-      "dapui_breakpoints",
-      "dapui_scopes",
-      "nvdash",
-    }
-    local b = vim.api.nvim_get_current_buf()
-    local f = vim.api.nvim_buf_get_option(b, "filetype")
-    for _, e in ipairs(ft_ignore) do
-      if f == e then
-        vim.api.nvim_win_set_option(0, "statuscolumn", "")
-        return
-      end
-    end
-  end,
-})
-
-autocmd({ "BufEnter", "BufNew" }, {
-  callback = function()
-    local ft_ignore = {
-      "man",
-      "help",
-      "neo-tree",
-      "starter",
-      "TelescopePrompt",
-      "Trouble",
-      "NvimTree",
-      "nvcheatsheet",
-      "dapui_watches",
-      "dap-repl",
-      "dapui_console",
-      "spectre_panel",
-      "dapui_stacks",
-      "dapui_breakpoints",
-      "dapui_scopes",
-    }
-    if vim.tbl_contains(ft_ignore, vim.bo.filetype) then
-      vim.cmd "setlocal statuscolumn="
-    end
-  end,
-})
-
 autocmd("TextYankPost", {
   desc = "Highlight on yank",
   command = "silent! lua vim.highlight.on_yank({higroup='YankVisual', timeout=200})",
@@ -596,13 +539,5 @@ autocmd({ "InsertEnter", "WinLeave" }, {
 --     if not view.is_visible() then
 --       api.tree.open()
 --     end
---   end,
--- })
-
--- Auto format on save, but it will mess with undo history
--- autocmd("BufWritePre", {
---   pattern = { "*" },
---   callback = function()
---     vim.lsp.buf.format { async = false }
 --   end,
 -- })
