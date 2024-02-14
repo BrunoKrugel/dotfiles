@@ -30,29 +30,33 @@ opt.foldnestmax = 0
 opt.foldlevel = 99
 opt.foldlevelstart = 99
 vim.opt.fillchars = {
-  -- horiz     = '━',
-  -- horizup   = '┻',
-  -- horizdown = '┳',
-  -- vert      = '┃',
-  -- vertleft  = '┫',
-  -- vertright = '┣',
-  -- verthoriz = '╋',
-  fold      = ' ',
-  foldopen  = '',
-  foldsep   = ' ',
-  foldclose = '',
-  stl       = ' ',
-  eob       = ' ',
+  fold = " ",
+  foldopen = "",
+  -- foldopen = '◡',
+  foldsep = " ",
+  foldclose = "",
+  -- foldclose = '▹',
+  -- foldclose = '◠',
+  stl = " ",
+  eob = " ",
 }
-opt.foldmethod = "expr"
+-- opt.foldmethod = "expr"
 -- opt.foldexpr = "nvim_treesitter#foldexpr()"
-opt.foldexpr = ""
+-- opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- opt.foldexpr = ""
+
+-- go to previous/next line with h,l,left arrow and right arrow when cursor reaches end/beginning of line
+opt.whichwrap:append "<>[]hl"
 
 -- Copilot
 g.copilot_assume_mapped = true
 
 opt.emoji = false
 opt.cursorline = true
+
+if vim.fn.has "nvim-0.10" == 1 then
+  opt.smoothscroll = true
+end
 
 if g.neovide then
   -- opt.guifont = "Hack Nerd Font:h12"
