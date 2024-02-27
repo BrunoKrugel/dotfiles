@@ -322,6 +322,13 @@ M.nvimtree = {
       show = {
         git = true,
       },
+      web_devicons = {
+        folder = {
+          enable = true, -- Special folder devicon icons
+          color = true,
+        },
+      },
+      -- git_placement = 'signcolumn',
       glyphs = {
         git = {
           unstaged = "",
