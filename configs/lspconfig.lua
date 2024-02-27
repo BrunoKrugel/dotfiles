@@ -72,6 +72,16 @@ local custom_on_attach = function(client, bufnr)
   end
 
   require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
+
+  -- Go
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    buffer = bufnr,
+    pattern = "*.go",
+    callback = function()
+      organize_imports(client, bufnr)
+      vim.lsp.buf.format { async = false }
+    end,
+  })
 end
 
 local filter_list = function(list, predicate)
