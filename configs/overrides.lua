@@ -169,6 +169,17 @@ M.treesitter = {
   tree_setter = {
     enable = true,
   },
+  textobjects = {
+    swap = {
+      enable = true,
+      swap_next = {
+        ["sa"] = "@parameter.inner",
+      },
+      swap_previous = {
+        ["sA"] = "@parameter.inner",
+      },
+    },
+  },
   rainbow = {
     enable = true,
     extended_mode = false,
