@@ -31,6 +31,8 @@ lspsaga.setup {
   },
   lightbulb = {
     enable = false,
+    sign = false,
+    virtual_text = false,
   },
   diagnostic = {
     show_code_action = true,

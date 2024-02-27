@@ -285,6 +285,35 @@ local plugins = {
   {
     "aznhe21/actions-preview.nvim",
     event = "LspAttach",
+    config = function()
+      require("actions-preview").setup {
+        diff = {
+          algorithm = "patience",
+          ignore_whitespace = true,
+        },
+        telescope = require("telescope.themes").get_dropdown { winblend = 10 },
+      }
+    end,
+  },
+  {
+    "luckasRanarison/clear-action.nvim",
+    event = "LspAttach",
+    opts = {
+      mappings = {
+        code_action = "<leader>A",
+      },
+      signs = {
+        icons = {
+          quickfix = "襁",
+          refactor = "",
+          source = "",
+          combined = "",
+        },
+      },
+      popup = {
+        hide_cursor = true,
+      },
+    },
   },
   {
     "hiphish/rainbow-delimiters.nvim",
