@@ -42,6 +42,34 @@ local function isCodeActionAvailable()
   return actions and next(actions) ~= nil
 end
 
+local diagnostic_ns = vim.api.nvim_create_namespace "hlyank"
+local diagnostic_timer
+local hl_cancel
+
+local function goto_diagnostic_hl(dir)
+  assert(dir == "prev" or dir == "next")
+  local pos = vim.diagnostic["get_" .. dir]()
+  if not pos then
+    return
+  end
+  if diagnostic_timer then
+    diagnostic_timer:close()
+    hl_cancel()
+  end
+  vim.api.nvim_buf_set_extmark(0, diagnostic_ns, pos.lnum, pos.col, {
+    end_row = pos.end_lnum,
+    end_col = pos.end_col,
+    hl_group = "Visual",
+  })
+  hl_cancel = function()
+    diagnostic_timer = nil
+    hl_cancel = nil
+    pcall(vim.api.nvim_buf_clear_namespace, 0, diagnostic_ns, 0, -1)
+  end
+  diagnostic_timer = vim.defer_fn(hl_cancel, 500)
+  vim.diagnostic["goto_" .. dir]()
+end
+
 -- local end_strings = {
 --   ";",
 --   ",",
@@ -266,8 +294,8 @@ M.text = {
     ["<C-a>"] = { "gg0vG", " Select all" },
     ["<F3>"] = { "nzzzv", " Next" },
     ["<S-F3>"] = { "Nzzzv", " Previous" },
-    ["<N>"] = { "nzzzv", " Next" },
-    ["<n>"] = { "Nzzzv", " Previous" },
+    ["<N>"] = { "nzzzv", " Next" }, -- goto_diagnostic_hl('next')
+    ["<n>"] = { "Nzzzv", " Previous" }, -- goto_diagnostic_hl('prev')
     -- Operations
     ["<C-z>"] = { "<CMD>u<CR>", "󰕌 Undo" },
     ["<C-r>"] = { "<CMD>redo<CR>", "󰑎 Redo" },
@@ -509,6 +537,10 @@ M.treesitter = {
   },
 }
 
+
+    -- Go to breakpoints
+    -- map('n', ']b', breakpoint.next, 'Go to next breakpoint')
+    -- map('n', '[b', breakpoint.prev, 'Go to previous breakpoint')
 M.debug = {
   n = {
     ["<leader>tt"] = { "<CMD>PBToggleBreakpoint<CR>", " Debug: Toggle breakpoint" },
