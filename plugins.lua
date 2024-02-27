@@ -571,6 +571,11 @@ local plugins = {
           show_url = false,
           show_http_info = true,
           show_headers = false,
+          show_statistics = {
+            "time_total",
+            "remote_ip",
+            "response_code",
+          },
           formatters = {
             json = function(body)
               -- stylua: ignore
