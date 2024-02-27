@@ -37,6 +37,7 @@ vim.opt.fillchars = {
   foldclose = "",
   -- foldclose = '▹',
   -- foldclose = '◠',
+  -- [eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
   stl = " ",
   eob = " ",
 }
