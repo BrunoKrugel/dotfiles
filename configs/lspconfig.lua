@@ -25,6 +25,31 @@ if ok then
   }
 end
 
+local function organize_imports(client, bufnr)
+  local params = vim.lsp.util.make_range_params(nil, vim.lsp.util._get_offset_encoding())
+  params.context = { only = { "source.organizeImports" } }
+
+  local resp = client.request_sync("textDocument/codeAction", params, 3000, bufnr)
+  for _, r in pairs(resp and resp.result or {}) do
+    if r.edit then
+      vim.lsp.util.apply_workspace_edit(r.edit, vim.lsp.util._get_offset_encoding())
+    else
+      vim.lsp.buf.execute_command(r.command)
+    end
+  end
+end
+
+local function attach_codelens(bufnr)
+  local augroup = api.nvim_create_augroup("Lsp", {})
+  api.nvim_create_autocmd({ "BufReadPost", "CursorHold", "InsertLeave" }, {
+    group = augroup,
+    buffer = bufnr,
+    callback = function()
+      vim.lsp.codelens.refresh { bufnr = bufnr }
+    end,
+  })
+end
+
 local custom_on_attach = function(client, bufnr)
   on_attach(client, bufnr)
 
@@ -39,6 +64,11 @@ local custom_on_attach = function(client, bufnr)
 
   if client.supports_method "textDocument/codeLens" then
     require("virtualtypes").on_attach(client, bufnr)
+  end
+
+  -- Code lens
+  if client.server_capabilities.codeLensProvider then
+    attach_codelens(bufnr)
   end
 
   require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
