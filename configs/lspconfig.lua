@@ -28,6 +28,11 @@ end
 local custom_on_attach = function(client, bufnr)
   on_attach(client, bufnr)
 
+  -- Enable inlay hints
+  if vim.fn.has "nvim-0.10" then
+    vim.lsp.inlay_hint.enable(bufnr, true)
+  end
+
   if client.server_capabilities.inlayHintProvider then
     vim.lsp.inlay_hint(bufnr, true)
   end
