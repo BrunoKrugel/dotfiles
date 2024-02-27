@@ -85,6 +85,7 @@ local plugins = {
       "echasnovski/mini.ai",
       "piersolenski/telescope-import.nvim",
       "RRethy/nvim-treesitter-textsubjects",
+      "danymat/neogen",
       "kevinhwang91/promise-async",
       {
         "kevinhwang91/nvim-ufo",
@@ -505,6 +506,7 @@ local plugins = {
           commented = true,
         },
       },
+      'ofirgall/goto-breakpoints.nvim',
       {
         "LiadOz/nvim-dap-repl-highlights",
         build = ":TSInstall dap_repl",

@@ -528,6 +528,24 @@ M.debug = {
       end,
       "Debug Print",
     },
+    ["]b"] = {
+      function()
+        require('goto-breakpoints').next()
+      end,
+      "Debug: Next Breakpoint",
+    },
+    ["[b"] = {
+      function()
+        require('goto-breakpoints').prev()
+      end,
+      "Debug: Previous Breakpoint",
+    },
+    ["]s"] = {
+      function()
+        require('goto-breakpoints').stopped()
+      end,
+      "Debug: Current Breakpoint",
+    },
   },
 }
 
