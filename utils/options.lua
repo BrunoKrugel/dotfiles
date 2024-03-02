@@ -59,9 +59,15 @@ if vim.fn.has "nvim-0.10" == 1 then
   opt.smoothscroll = true
 end
 
+if vim.env.TMUX then
+  vim.opt.laststatus = 0
+else
+  vim.opt.laststatus = 3
+end
+
 if g.neovide then
-  -- opt.guifont = "Hack Nerd Font:h12"
-  opt.guifont = "JetbrainsMono Nerd Font:h12"
+  opt.guifont = "Hack Nerd Font:h12"
+  -- opt.guifont = "JetbrainsMono Nerd Font:h12"
   g.neovide_refresh_rate = 120
   g.neovide_remember_window_size = true
   g.neovide_cursor_antialiasing = true
@@ -80,4 +86,5 @@ if g.neovide then
   g.neovide_scroll_animation_length = 0.5
   g.neovide_scroll_animation_far_lines = 1
   vim.g.neovide_hide_mouse_when_typing = true
+  vim.cmd("NeovideFocus")
 end
