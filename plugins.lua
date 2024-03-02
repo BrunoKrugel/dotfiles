@@ -43,7 +43,7 @@ local plugins = {
   {
     "lewis6991/gitsigns.nvim",
     opts = function()
-      return require("plugins.configs.others").gitsigns
+      require "plugins.configs.gitsigns"
     end,
     config = function(_, opts)
       dofile(vim.g.base46_cache .. "git")
@@ -150,7 +150,8 @@ local plugins = {
         "L3MON4D3/LuaSnip",
         build = "make install_jsregexp",
         config = function(_, opts)
-          require("plugins.configs.others").luasnip(opts)
+          require("luasnip").config.set_config(opts)
+          require "plugins.configs.luasnip"
           require "custom.configs.luasnip"
           require "custom.configs.autotag"
         end,
@@ -658,11 +659,11 @@ local plugins = {
       dofile(vim.g.base46_cache .. "todo")
     end,
   },
-  {
-    "chikko80/error-lens.nvim",
-    ft = "go",
-    config = true,
-  },
+  -- {
+  --   "chikko80/error-lens.nvim",
+  --   ft = "go",
+  --   config = true,
+  -- },
   {
     "folke/trouble.nvim",
     cmd = { "TroubleToggle", "Trouble" },
