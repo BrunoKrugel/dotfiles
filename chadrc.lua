@@ -15,8 +15,8 @@ M.ui = {
   cmp = {
     icons = true,
     lspkind_text = true,
-    style = "default", -- default/flat_light/flat_dark/atom/atom_colored
-    border_color = "grey_fg", -- only applicable for "default" style, use color names from base30 variables
+    style = "default",            -- default/flat_light/flat_dark/atom/atom_colored
+    border_color = "grey_fg",     -- only applicable for "default" style, use color names from base30 variables
     selected_item_bg = "colored", -- colored / simple
   },
 
@@ -96,7 +96,7 @@ M.gitsigns = {
 M.plugins = "custom.plugins"
 
 -- TODO: Temporary fix for NvChad Mapping changes (I dont wanna edit all my mappings)
-M.mappings = require "custom.mappings"
+M.mappings = require "custom.old_mappings"
 core.load_mappings("rest")
 core.load_mappings("folder")
 core.load_mappings("comment")
