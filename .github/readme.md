@@ -1,5 +1,5 @@
 <h1 align="center">Nvim(Chad) configuration</h1>
-<p align="center">Custom config for <a href="https://github.com/NvChad/NvChad">NvChad</a><p>
+<p align="center">Custom config for <a href="https://github.com/NvChad/NvChad">NvChad</a> v3.0<p>
 
 <div align="center"><p>
     <a href="https://github.com/BrunoKrugel/dotfiles/pulse">
@@ -37,7 +37,7 @@ I have been a VSCode user for years and I am slowly moving forward to `NVIM`, so
 
 ## Installation guide
 
-1. Same as [NvChad](https://nvchad.com/docs/quickstart/install)
+1. Same as [NvChad](https://nvchad.com/docs/quickstart/install) (I am using the WIP 3.0 version of NvChad)
 2. After installing NvChad, clone this repo inside your custom NvChad folder.
 3. Download and install [CTAGS](https://github.com/universal-ctags/ctags) (for a better Go To Definition)
 4. I am using `Hack Nerd Font`
