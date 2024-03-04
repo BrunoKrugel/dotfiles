@@ -362,17 +362,6 @@ autocmd("BufEnter", {
   end,
 })
 
--- Go exclusive mappings
-autocmd("FileType", {
-  callback = function()
-    if vim.bo.ft == "go" then
-      require("core.utils").load_mappings "go"
-    else
-      require("custom.utils.core").remove_mappings "go"
-    end
-  end,
-})
-
 -- Show `` in specific files
 autocmd({ "BufRead", "BufNewFile" }, { pattern = { "*.txt", "*.md", "*.json" }, command = "setlocal conceallevel=2" })
 
