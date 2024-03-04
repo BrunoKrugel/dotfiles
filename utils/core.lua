@@ -159,10 +159,10 @@ M.dapui = {
   layouts = {
     {
       elements = {
-        { id = "scopes", size = 0.40 },
+        { id = "scopes",      size = 0.40 },
         { id = "breakpoints", size = 0.20 },
-        { id = "stacks", size = 0.20 },
-        { id = "watches", size = 0.20 },
+        { id = "stacks",      size = 0.20 },
+        { id = "watches",     size = 0.20 },
       },
       size = 40, -- 40 columns
       position = "left",
@@ -216,7 +216,8 @@ M.tabufline = {
   lazyload = true,
   overriden_modules = function(modules)
     modules[4] = (function()
-      return "%#SplitHl#%@v:lua.ClickUpdate@  %#SplitHl#%@v:lua.ClickGit@  %#SplitHl#%@v:lua.ClickRun@  %#SplitHl#%@v:lua.ClickSplit@ "
+      return
+      "%#SplitHl#%@v:lua.ClickUpdate@  %#SplitHl#%@v:lua.ClickGit@  %#SplitHl#%@v:lua.ClickRun@  %#SplitHl#%@v:lua.ClickSplit@ "
     end)()
   end,
 }
@@ -295,8 +296,8 @@ M.statusline = {
       if rawget(vim, "lsp") then
         for _, client in ipairs(vim.lsp.get_active_clients()) do
           if
-            client.attached_buffers[vim.api.nvim_get_current_buf()]
-            and (client.name ~= "null-ls" and client.name ~= "copilot")
+              client.attached_buffers[vim.api.nvim_get_current_buf()]
+              and (client.name ~= "null-ls" and client.name ~= "copilot")
           then
             local copilot = "%#CopilotHl#" .. require("copilot_status").status_string() .. " "
             local lsp_name = client.name
