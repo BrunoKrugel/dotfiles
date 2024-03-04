@@ -1,5 +1,8 @@
 local M = {}
 local merge_tb = vim.tbl_deep_extend
+local function stbufnr()
+  return vim.api.nvim_win_get_buf(vim.g.statusline_winid)
+end
 
 require "custom.utils.mouse"
 
@@ -225,20 +228,9 @@ M.tabufline = {
 
 M.statusline = {
   theme = "vscode_colored",
-
-  overriden_modules = function(modules)
-    modules[1] = (function()
-      local st_modules = require "nvchad.statusline.vscode_colored"
-      local modes = st_modules.modes
-      modes["n"][3] = "  "
-      modes["v"][3] = "  "
-      modes["i"][3] = "  "
-      modes["t"][3] = "  "
-      local m = vim.api.nvim_get_mode().mode
-      return "%#" .. modes[m][2] .. "#" .. (modes[m][3] or "  ") .. modes[m][1] .. " "
-    end)()
-
-    modules[2] = (function()
+  order = { "modes", "old_git", "diagnostics", "record", "term", "%=", "lsp_msg", "dap","%=", "git_changed", "cursor", "lsp_status", "filetype", "encoding", "notification", "cwd" },
+  modules = {
+    icons = function()
       local icon = " 󰈚 "
       local filename = vim.fn.expand "%:t"
       local icon_text
@@ -266,34 +258,50 @@ M.statusline = {
       end
 
       return icon_text or ("%#StText# " .. icon .. filename)
-    end)()
+    end,
 
-    table.insert(
-      modules,
-      4,
-      (function()
-        return "%#RecordHl#" .. Get_record()
-      end)()
-    )
+    old_git = function()
+      if not vim.b[stbufnr()].gitsigns_head or vim.b[stbufnr()].gitsigns_git_status then
+        return ""
+      end
 
-    table.insert(
-      modules,
-      7,
-      (function()
-        return Get_dap()
-        -- .. Get_npm()
-      end)()
-    )
+      return "%#StGit#  " .. vim.b[stbufnr()].gitsigns_status_dict.head .. ""
+    end,
 
-    table.insert(
-      modules,
-      6,
-      (function()
-        return "%#TermHl#%@v:lua.ClickTerm@  "
-      end)()
-    )
+    git_changed = function()
+      if not vim.b[stbufnr()].gitsigns_head or vim.b[stbufnr()].gitsigns_git_status or vim.o.columns < 120 then
+        return ""
+      end
 
-    modules[15] = (function()
+      local git_status = vim.b[stbufnr()].gitsigns_status_dict
+
+      local added = (git_status.added and git_status.added ~= 0) and ("%#St_lspInfo#  " .. git_status.added .. " ") or
+      ""
+      local changed = (git_status.changed and git_status.changed ~= 0)
+          and ("%#St_lspWarning#  " .. git_status.changed .. " ")
+          or ""
+      local removed = (git_status.removed and git_status.removed ~= 0)
+          and ("%#St_lspError#  " .. git_status.removed .. " ")
+          or ""
+
+      return (added .. changed .. removed) ~= "" and (added .. changed .. removed .. " | ") or ""
+    end,
+
+    encoding = function()
+      local encode = vim.bo[stbufnr()].fileencoding
+      return string.upper(encode) == "" and "" or "%#St_encode#" .. string.upper(encode) .. " "
+    end,
+
+    record = function()
+      return "%#RecordHl#" .. Get_record()
+    end,
+
+    filetype = function()
+      local ft = vim.bo[stbufnr()].ft
+      return ft == " " and " %#St_ft# {} plain text  " or " %#St_ft#{} " .. ft .. " "
+    end,
+
+    lsp_status = function()
       if rawget(vim, "lsp") then
         for _, client in ipairs(vim.lsp.get_active_clients()) do
           if
@@ -305,21 +313,42 @@ M.statusline = {
             if client.name == "typescript-tools" then
               lsp_name = "typescript"
             end
-            return (vim.o.columns > 100 and copilot .. "%#St_LspStatus# " .. lsp_name) or copilot .. "  LSP"
+            return (vim.o.columns > 100 and copilot .. "%#St_Lsp# " .. lsp_name) or copilot .. "  LSP"
           end
         end
       end
       return ""
-    end)()
+    end,
 
-    table.insert(
-      modules,
-      16,
-      (function()
-        return "%#NotificationHl# " .. Get_Version() .. "%@v:lua.ClickMe@ " .. " %#CmpHl#" .. Get_Cmp()
-      end)()
-    )
-  end,
+    term = function()
+      return "%#TermHl#%@v:lua.ClickTerm@  "
+    end,
+
+    modes = function()
+      local utils = require "nvchad.stl.utils"
+      if not utils.is_activewin() then
+        return ""
+      end
+
+      local modes = utils.modes
+
+      modes["n"][3] = "  "
+      modes["v"][3] = "  "
+      modes["i"][3] = "  "
+      modes["t"][3] = "  "
+
+      local m = vim.api.nvim_get_mode().mode
+      return "%#St_" .. modes[m][2] .. "mode#" .. (modes[m][3] or "  ") .. modes[m][1] .. " "
+    end,
+
+    notification = function()
+      return "%#NotificationHl# " .. Get_Version() .. "%@v:lua.ClickMe@ " .. " %#CmpHl#" .. Get_Cmp()
+    end,
+
+    dap = function()
+      return "%#DapHl#" .. Get_dap()
+    end,
+  },
 }
 
 M.nvdash = {
