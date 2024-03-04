@@ -214,12 +214,13 @@ M.tabufline = {
   show_numbers = false,
   enabled = true,
   lazyload = true,
-  overriden_modules = function(modules)
-    modules[4] = (function()
+  modules = {
+    buttons = function()
       return
       "%#SplitHl#%@v:lua.ClickUpdate@  %#SplitHl#%@v:lua.ClickGit@  %#SplitHl#%@v:lua.ClickRun@  %#SplitHl#%@v:lua.ClickSplit@ "
-    end)()
-  end,
+    end,
+  },
+  order = { "buffers", "tabs", "buttons" },
 }
 
 M.statusline = {
