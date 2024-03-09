@@ -262,7 +262,7 @@ M.statusline = {
 
     old_git = function()
       if not vim.b[stbufnr()].gitsigns_head or vim.b[stbufnr()].gitsigns_git_status then
-        return ""
+        return "%##"
       end
 
       return "%#StGit#  " .. vim.b[stbufnr()].gitsigns_status_dict.head .. ""

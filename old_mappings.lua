@@ -16,7 +16,7 @@ local M = {}
 local function move_or_create_win(key)
   local fn = vim.fn
   local curr_win = fn.winnr()
-  vim.cmd("wincmd " .. key) --> attempt to move
+  vim.cmd("wincmd " .. key)      --> attempt to move
 
   if curr_win == fn.winnr() then --> didn't move, so create a split
     if key == "h" or key == "l" then
@@ -28,6 +28,14 @@ local function move_or_create_win(key)
     vim.cmd("wincmd " .. key)
   end
 end
+
+
+local function plugin_is_loaded(plugin)
+  -- Checking with `require` and `pcall` will cause Lazy to load the plugin
+  local plugins = require('lazy.core.config').plugins
+  return not not plugins[plugin] and plugins[plugin]._.loaded
+end
+
 
 -- Check if there is a code action available at the cursor position
 local function isCodeActionAvailable()
@@ -537,9 +545,9 @@ M.treesitter = {
 }
 
 
-    -- Go to breakpoints
-    -- map('n', ']b', breakpoint.next, 'Go to next breakpoint')
-    -- map('n', '[b', breakpoint.prev, 'Go to previous breakpoint')
+-- Go to breakpoints
+-- map('n', ']b', breakpoint.next, 'Go to next breakpoint')
+-- map('n', '[b', breakpoint.prev, 'Go to previous breakpoint')
 M.debug = {
   n = {
     ["<leader>tt"] = { "<CMD>PBToggleBreakpoint<CR>", " Debug: Toggle breakpoint" },
@@ -648,8 +656,8 @@ M.telescope = {
                 len = len + 1
                 -- get relative name of buffer without leading slash
                 buffers[len] = "^"
-                  .. literalize(string.gsub(vim.api.nvim_buf_get_name(buffer), literalize(vim.loop.cwd()), ""):sub(2))
-                  .. "$"
+                    .. literalize(string.gsub(vim.api.nvim_buf_get_name(buffer), literalize(vim.loop.cwd()), ""):sub(2))
+                    .. "$"
               end
             end
 
@@ -896,10 +904,7 @@ M.lspconfig = {
         if isCodeActionAvailable() then
           vim.lsp.buf.code_action()
         else
-          print "No code actions available"
-          if vim.bo.ft == "go" then
-            print "Try running :GoCodeAction"
-          end
+          vim.cmd "GoCodeAction"
         end
       end,
       "Go: Code Action",
