@@ -379,8 +379,12 @@ local plugins = {
       autosave = true,                                                 -- automatically save session files when exiting Neovim
       should_autosave = nil,                                           -- function to determine if a session should be autosaved
       autoload = true,                                                 -- automatically load the session for the cwd on Neovim startup
+      default_branch = "main",
       on_autoload_no_session = nil,
       follow_cwd = true,
+      on_autoload_no_session = function()
+        vim.notify("No existing session to load.")
+      end,
       ignored_dirs = {
         { "~/.config", exact = true },
       },
