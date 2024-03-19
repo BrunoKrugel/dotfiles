@@ -162,10 +162,10 @@ M.dapui = {
   layouts = {
     {
       elements = {
-        { id = "scopes",      size = 0.40 },
+        { id = "scopes", size = 0.40 },
         { id = "breakpoints", size = 0.20 },
-        { id = "stacks",      size = 0.20 },
-        { id = "watches",     size = 0.20 },
+        { id = "stacks", size = 0.20 },
+        { id = "watches", size = 0.20 },
       },
       size = 40, -- 40 columns
       position = "left",
@@ -210,6 +210,7 @@ M.lazy = {
     timeout = 35,
     url_format = "https://github.com/%s.git",
     filter = true,
+
   },
 }
 
@@ -219,8 +220,7 @@ M.tabufline = {
   lazyload = true,
   modules = {
     buttons = function()
-      return
-      "%#SplitHl#%@v:lua.ClickUpdate@  %#SplitHl#%@v:lua.ClickGit@  %#SplitHl#%@v:lua.ClickRun@  %#SplitHl#%@v:lua.ClickSplit@ "
+      return "%#SplitHl#%@v:lua.ClickUpdate@  %#SplitHl#%@v:lua.ClickGit@  %#SplitHl#%@v:lua.ClickRun@  %#SplitHl#%@v:lua.ClickSplit@ "
     end,
   },
   order = { "buffers", "tabs", "buttons" },
@@ -228,7 +228,23 @@ M.tabufline = {
 
 M.statusline = {
   theme = "vscode_colored",
-  order = { "modes", "old_git", "diagnostics", "record", "term", "%=", "lsp_msg", "dap","%=", "git_changed", "cursor", "lsp_status", "filetype", "encoding", "notification", "cwd" },
+  order = {
+    "modes",
+    "old_git",
+    "diagnostics",
+    "record",
+    "%=",
+    "lsp_msg",
+    "dap",
+    "%=",
+    "git_changed",
+    "cursor",
+    "lsp_status",
+    "filetype",
+    "encoding",
+    "notification",
+    "cwd",
+  },
   modules = {
     icons = function()
       local icon = " 󰈚 "
@@ -275,14 +291,14 @@ M.statusline = {
 
       local git_status = vim.b[stbufnr()].gitsigns_status_dict
 
-      local added = (git_status.added and git_status.added ~= 0) and ("%#St_lspInfo#  " .. git_status.added .. " ") or
-      ""
+      local added = (git_status.added and git_status.added ~= 0) and ("%#St_lspInfo#  " .. git_status.added .. " ")
+        or ""
       local changed = (git_status.changed and git_status.changed ~= 0)
           and ("%#St_lspWarning#  " .. git_status.changed .. " ")
-          or ""
+        or ""
       local removed = (git_status.removed and git_status.removed ~= 0)
           and ("%#St_lspError#  " .. git_status.removed .. " ")
-          or ""
+        or ""
 
       return (added .. changed .. removed) ~= "" and (added .. changed .. removed .. " | ") or ""
     end,
@@ -305,8 +321,8 @@ M.statusline = {
       if rawget(vim, "lsp") then
         for _, client in ipairs(vim.lsp.get_active_clients()) do
           if
-              client.attached_buffers[vim.api.nvim_get_current_buf()]
-              and (client.name ~= "null-ls" and client.name ~= "copilot")
+            client.attached_buffers[vim.api.nvim_get_current_buf()]
+            and (client.name ~= "null-ls" and client.name ~= "copilot")
           then
             local copilot = "%#CopilotHl#" .. require("copilot_status").status_string() .. " "
             local lsp_name = client.name
@@ -318,10 +334,6 @@ M.statusline = {
         end
       end
       return ""
-    end,
-
-    term = function()
-      return "%#TermHl#%@v:lua.ClickTerm@  "
     end,
 
     modes = function()

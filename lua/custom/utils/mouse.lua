@@ -4,10 +4,6 @@ _G.ClickMe = function()
   require("noice").cmd "history"
 end
 
-_G.ClickTerm = function()
-  require("nvterm.terminal").toggle "horizontal"
-end
-
 _G.ClickSplit = function()
   vim.cmd "vs"
 end

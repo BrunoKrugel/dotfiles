@@ -1,20 +1,10 @@
-local overrides = require "custom.configs.overrides"
-local cmp_opt = require "custom.configs.cmp"
+local overrides = require "configs.overrides"
+local cmp_opt = require "configs.cmp"
 
----@type NvPluginSpec[]
-local plugins = {
-  --------------------------------------------- community ---------------------------------------------
-  -- { "BrunoKrugel/nvcommunity" },
-  ----------------------------------------- override plugins ------------------------------------------
+return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      -- {
-      --   "nvimtools/none-ls.nvim",
-      --   config = function()
-      --     require "custom.configs.null-ls"
-      --   end,
-      -- },
       {
         "williamboman/mason.nvim",
         opts = overrides.mason,
@@ -25,16 +15,12 @@ local plugins = {
           vim.api.nvim_create_user_command("MasonInstallAll", function()
             vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
           end, {})
-          require "custom.configs.lspconfig"
+          require "configs.lspconfig"
         end,
       },
       "williamboman/mason-lspconfig.nvim",
     },
     config = function() end,
-  },
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    enabled = false,
   },
   {
     "folke/which-key.nvim",
@@ -43,7 +29,7 @@ local plugins = {
   {
     "lewis6991/gitsigns.nvim",
     opts = function()
-      require "plugins.configs.gitsigns"
+      require "nvchad.configs.gitsigns"
     end,
     config = function(_, opts)
       dofile(vim.g.base46_cache .. "git")
@@ -86,7 +72,7 @@ local plugins = {
       {
         "kevinhwang91/nvim-ufo",
         config = function()
-          require "custom.configs.ufo"
+          require "configs.ufo"
         end,
       },
       {
@@ -141,21 +127,22 @@ local plugins = {
             ignored_file_types = {},
           }
         end,
+
       },
       {
         "L3MON4D3/LuaSnip",
         build = "make install_jsregexp",
         config = function(_, opts)
           require("luasnip").config.set_config(opts)
-          require "plugins.configs.luasnip"
-          require "custom.configs.luasnip"
-          require "custom.configs.autotag"
+          require "nvchad.configs.luasnip"
+          require "configs.luasnip"
+          require "configs.autotag"
         end,
       },
       {
         "windwp/nvim-autopairs",
         config = function()
-          require "custom.configs.autopair"
+          require "configs.autopair"
         end,
       },
       {
@@ -168,6 +155,7 @@ local plugins = {
               require("copilot_cmp").setup()
             end,
           },
+
         },
         config = function()
           require("copilot").setup {
@@ -192,6 +180,7 @@ local plugins = {
                 advanced = {
                   listCount = 3,
                   inlineSuggestCount = 3,
+
                 },
               },
             },
@@ -253,7 +242,7 @@ local plugins = {
     "okuuva/auto-save.nvim",
     event = { "InsertLeave", "TextChanged" },
     config = function()
-      require "custom.configs.autosave"
+      require "configs.autosave"
     end,
   },
   {
@@ -374,21 +363,21 @@ local plugins = {
     event = "VimEnter",
     opts = {
       save_dir = vim.fn.expand(vim.fn.stdpath "data" .. "/sessions/"), -- directory where session files are saved
-      silent = true,                                                   -- silent nvim message when sourcing session file
-      use_git_branch = true,                                           -- create session files based on the branch of the git enabled repository
-      autosave = true,                                                 -- automatically save session files when exiting Neovim
-      should_autosave = nil,                                           -- function to determine if a session should be autosaved
-      autoload = true,                                                 -- automatically load the session for the cwd on Neovim startup
+      silent = true, -- silent nvim message when sourcing session file
+      use_git_branch = true, -- create session files based on the branch of the git enabled repository
+      autosave = true, -- automatically save session files when exiting Neovim
+      should_autosave = nil, -- function to determine if a session should be autosaved
+      autoload = true, -- automatically load the session for the cwd on Neovim startup
       default_branch = "main",
       on_autoload_no_session = nil,
       follow_cwd = true,
       on_autoload_no_session = function()
-        vim.notify("No existing session to load.")
+        vim.notify "No existing session to load."
       end,
       ignored_dirs = {
         { "~/.config", exact = true },
       },
-      telescope = {                         -- options for the telescope extension
+      telescope = { -- options for the telescope extension
         reset_prompt_after_deletion = true, -- whether to reset prompt after session deleted
       },
       config = function(_, opts)
@@ -506,7 +495,7 @@ local plugins = {
           commented = true,
         },
       },
-      'ofirgall/goto-breakpoints.nvim',
+      "ofirgall/goto-breakpoints.nvim",
       {
         "LiadOz/nvim-dap-repl-highlights",
         build = ":TSInstall dap_repl",
@@ -515,7 +504,7 @@ local plugins = {
       {
         "rcarriga/nvim-dap-ui",
         config = function()
-          require "custom.configs.dapui"
+          require "configs.dapui"
         end,
       },
     },
@@ -554,6 +543,7 @@ local plugins = {
   },
   {
     "rest-nvim/rest.nvim",
+    dependencies = { "vhyrro/luarocks.nvim" },
     ft = { "http" },
     config = function()
       require("rest-nvim").setup {
@@ -640,21 +630,21 @@ local plugins = {
       "rcarriga/nvim-notify",
     },
     config = function()
-      require "custom.configs.noice"
+      require "configs.noice"
     end,
   },
   {
     "petertriho/nvim-scrollbar",
     event = "WinScrolled",
     config = function()
-      require "custom.configs.scrollbar"
+      require "configs.scrollbar"
     end,
   },
   {
     "folke/todo-comments.nvim",
     event = "BufReadPost",
     config = function()
-      require "custom.configs.todo"
+      require "configs.todo"
       dofile(vim.g.base46_cache .. "todo")
     end,
   },
@@ -667,7 +657,7 @@ local plugins = {
     "folke/trouble.nvim",
     cmd = { "TroubleToggle", "Trouble" },
     config = function()
-      require "custom.configs.trouble"
+      require "configs.trouble"
       dofile(vim.g.base46_cache .. "trouble")
     end,
   },
@@ -693,7 +683,7 @@ local plugins = {
     "shellRaining/hlchunk.nvim",
     event = "BufReadPost",
     config = function()
-      require "custom.configs.hlchunk"
+      require "configs.hlchunk"
     end,
   },
   {
@@ -736,7 +726,7 @@ local plugins = {
     "luukvbaal/statuscol.nvim",
     lazy = false,
     config = function()
-      require "custom.configs.statuscol"
+      require "configs.statuscol"
     end,
   },
   {
@@ -744,7 +734,7 @@ local plugins = {
     branch = "anticonceal",
     event = "LspAttach",
     config = function()
-      require "custom.configs.inlayhints"
+      require "configs.inlayhints"
     end,
   },
   {
@@ -802,7 +792,7 @@ local plugins = {
     "FeiyouG/command_center.nvim",
     cmd = "Commandcenter",
     config = function()
-      require "custom.configs.command"
+      require "configs.command"
     end,
   },
   {
@@ -849,7 +839,7 @@ local plugins = {
     "Wansmer/symbol-usage.nvim",
     event = "BufReadPre",
     config = function()
-      require "custom.configs.symbol"
+      require "configs.symbol"
     end,
   },
   {
@@ -992,7 +982,7 @@ local plugins = {
     "nvimdev/lspsaga.nvim",
     event = "LspAttach",
     config = function()
-      require "custom.configs.lspsaga"
+      require "configs.lspsaga"
     end,
   },
   {
@@ -1004,7 +994,7 @@ local plugins = {
     "dnlhc/glance.nvim",
     cmd = "Glance",
     config = function()
-      require "custom.configs.glance"
+      require "configs.glance"
     end,
   },
   -- {
@@ -1044,7 +1034,7 @@ local plugins = {
       },
     },
     config = function()
-      require "custom.configs.go"
+      require "configs.go"
     end,
     build = ':lua require("go.install").update_all_sync()',
   },
@@ -1060,7 +1050,7 @@ local plugins = {
       "OlegGulevskyy/better-ts-errors.nvim",
     },
     config = function()
-      require "custom.configs.ts"
+      require "configs.ts"
     end,
   },
   {
@@ -1096,9 +1086,10 @@ local plugins = {
     dependencies = {
       "nvim-neotest/neotest-go",
       "haydenmeade/neotest-jest",
+      "nvim-neotest/nvim-nio",
     },
     config = function()
-      require "custom.configs.neotest"
+      require "configs.neotest"
     end,
   },
   {
@@ -1117,14 +1108,14 @@ local plugins = {
     "mfussenegger/nvim-lint",
     event = "BufWritePre",
     config = function()
-      require "custom.configs.linter"
+      require "configs.linter"
     end,
   },
   {
     "stevearc/conform.nvim",
     event = "BufReadPost",
     config = function()
-      require "custom.configs.conform"
+      require "configs.conform"
     end,
     init = function()
       vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
@@ -1141,7 +1132,7 @@ local plugins = {
     "chrisgrieser/nvim-recorder",
     keys = { "q", "Q" },
     config = function()
-      require "custom.configs.recorder"
+      require "configs.recorder"
     end,
   },
   {
@@ -1163,7 +1154,7 @@ local plugins = {
     "ThePrimeagen/refactoring.nvim",
     event = "BufRead",
     config = function()
-      require "custom.configs.refactoring"
+      require "configs.refactoring"
     end,
   },
   {
@@ -1183,8 +1174,8 @@ local plugins = {
       queries = {
         html = {
           { pattern = 'class="([^"]*)"', placeholder = "@" }, -- classes in html
-          { pattern = 'href="(.-)"' },                        -- hrefs in html
-          { pattern = 'src="(.-)"' },                         -- HTML img src attribute
+          { pattern = 'href="(.-)"' }, -- hrefs in html
+          { pattern = 'src="(.-)"' }, -- HTML img src attribute
         },
         go = {
           { pattern = "^%s*if err != nil {", placeholder = "if err != nil .." },
@@ -1198,16 +1189,14 @@ local plugins = {
     event = "VeryLazy",
     dependencies = { "ludovicchabant/vim-gutentags" },
     config = function()
-      require "custom.configs.tags"
+      require "configs.tags"
     end,
   },
   {
     "github/copilot.vim",
     lazy = false,
     config = function()
-      require "custom.configs.copilot"
+      require "configs.copilot"
     end,
   },
 }
-
-return plugins

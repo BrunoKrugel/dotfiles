@@ -7,7 +7,6 @@ end
 local core = require "custom.utils.core"
 
 go.setup {
-  max_line_len = 300,
   lsp_inlay_hints = {
     enable = true,
     only_current_line = true,

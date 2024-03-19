@@ -1,7 +1,6 @@
 local autocmd = vim.api.nvim_create_autocmd
 local cmd = vim.api.nvim_command
 local augroup = vim.api.nvim_create_augroup
-local settings = require("custom.chadrc").settings
 local fn = vim.fn
 
 local function close_all_floating_wins()
@@ -255,22 +254,6 @@ autocmd({ "InsertEnter", "WinLeave" }, {
 autocmd("BufWritePre", {
   command = [[:%s/\s\+$//e]],
   group = augroup("TrimWhiteSpaceGrp", { clear = true }),
-})
-
--- Disable colorcolumn in blacklisted filetypes
-autocmd({ "FileType" }, {
-  callback = function()
-    if vim.g.ccenable then
-      vim.opt_local.cc = (vim.tbl_contains(settings.blacklist, vim.bo.ft) and "0" or settings.cc_size)
-    end
-  end,
-})
-
--- Disable scrolloff in blacklisted filetypes
-autocmd({ "BufEnter" }, {
-  callback = function()
-    vim.o.scrolloff = (vim.tbl_contains(settings.blacklist, vim.bo.ft) and 0 or settings.so_size)
-  end,
 })
 
 -- Restore cursor

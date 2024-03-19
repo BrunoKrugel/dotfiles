@@ -16,7 +16,7 @@ local M = {}
 local function move_or_create_win(key)
   local fn = vim.fn
   local curr_win = fn.winnr()
-  vim.cmd("wincmd " .. key)      --> attempt to move
+  vim.cmd("wincmd " .. key) --> attempt to move
 
   if curr_win == fn.winnr() then --> didn't move, so create a split
     if key == "h" or key == "l" then
@@ -29,13 +29,11 @@ local function move_or_create_win(key)
   end
 end
 
-
 local function plugin_is_loaded(plugin)
   -- Checking with `require` and `pcall` will cause Lazy to load the plugin
-  local plugins = require('lazy.core.config').plugins
+  local plugins = require("lazy.core.config").plugins
   return not not plugins[plugin] and plugins[plugin]._.loaded
 end
-
 
 -- Check if there is a code action available at the cursor position
 local function isCodeActionAvailable()
@@ -350,23 +348,22 @@ M.text = {
       function()
         vim.cmd "noh"
         vim.cmd "Noice dismiss"
-        echo "hello"
       end,
       " Clear highlights",
       opts = { silent = true, expr = true },
     },
 
-    ["i"] = {
-      function()
-        if #vim.fn.getline "." == 0 then
-          return [["_cc]]
-        else
-          return "i"
-        end
-      end,
-      "Properly indent on empty line when insert",
-      opts = { expr = true },
-    },
+    -- ["i"] = {
+    --   function()
+    --     if #vim.fn.getline "." == 0 then
+    --       return [["_cc]]
+    --     else
+    --       return "i"
+    --     end
+    --   end,
+    --   "Properly indent on empty line when insert",
+    --   opts = { expr = true },
+    -- },
   },
 
   v = {
@@ -544,7 +541,6 @@ M.treesitter = {
   },
 }
 
-
 -- Go to breakpoints
 -- map('n', ']b', breakpoint.next, 'Go to next breakpoint')
 -- map('n', '[b', breakpoint.prev, 'Go to previous breakpoint')
@@ -569,19 +565,19 @@ M.debug = {
     },
     ["]b"] = {
       function()
-        require('goto-breakpoints').next()
+        require("goto-breakpoints").next()
       end,
       "Debug: Next Breakpoint",
     },
     ["[b"] = {
       function()
-        require('goto-breakpoints').prev()
+        require("goto-breakpoints").prev()
       end,
       "Debug: Previous Breakpoint",
     },
     ["]s"] = {
       function()
-        require('goto-breakpoints').stopped()
+        require("goto-breakpoints").stopped()
       end,
       "Debug: Current Breakpoint",
     },
@@ -656,8 +652,8 @@ M.telescope = {
                 len = len + 1
                 -- get relative name of buffer without leading slash
                 buffers[len] = "^"
-                    .. literalize(string.gsub(vim.api.nvim_buf_get_name(buffer), literalize(vim.loop.cwd()), ""):sub(2))
-                    .. "$"
+                  .. literalize(string.gsub(vim.api.nvim_buf_get_name(buffer), literalize(vim.loop.cwd()), ""):sub(2))
+                  .. "$"
               end
             end
 
