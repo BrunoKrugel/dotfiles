@@ -40,8 +40,8 @@ vim.schedule(function()
 end)
 
 -- @Custom
--- require "custom.utils.usercmd"
--- require "custom.utils.autocmd"
+require "custom.utils.usercmd"
+require "custom.utils.autocmd"
 
 -- Disable underline in diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {

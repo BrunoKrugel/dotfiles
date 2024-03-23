@@ -219,7 +219,6 @@ M.mason = {
     "json-lsp",
 
     "dockerfile-language-server",
-    "yaml-language-server",
 
     -- golang
     "gopls",

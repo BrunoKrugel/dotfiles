@@ -1,5 +1,5 @@
 -- Load defaults from NvChad
-require('nvchad.configs.lspconfig').defaults()
+require("nvchad.configs.lspconfig").defaults()
 
 local finders = require "telescope.finders"
 local pickers = require "telescope.pickers"
@@ -53,23 +53,18 @@ end
 local custom_on_attach = function(client, bufnr)
   on_attach(client, bufnr)
 
-  -- Enable inlay hints
-  if vim.fn.has "nvim-0.10" then
-    vim.lsp.inlay_hint.enable(bufnr, true)
-  end
-
   if client.server_capabilities.inlayHintProvider then
     vim.lsp.inlay_hint(bufnr, true)
   end
 
   if client.supports_method "textDocument/codeLens" then
     require("virtualtypes").on_attach(client, bufnr)
+    attach_codelens(bufnr)
   end
 
   -- Code lens
-  if client.server_capabilities.codeLensProvider then
-    attach_codelens(bufnr)
-  end
+  -- if client.server_capabilities.codeLensProvider then
+  -- end
 
   require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
 
@@ -208,7 +203,6 @@ local servers = {
   "gopls",
   "marksman",
   "emmet_ls",
-  "yamlls",
   "jsonls",
   "dockerls",
   "lua_ls",
@@ -217,6 +211,7 @@ local servers = {
 
 require("mason-lspconfig").setup {
   ensure_installed = servers,
+  automatic_installation = true,
 }
 
 -- for _, lsp in ipairs(servers) do

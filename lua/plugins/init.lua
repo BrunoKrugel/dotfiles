@@ -23,6 +23,17 @@ return {
     config = function() end,
   },
   {
+    "nvchad/ui",
+    dependencies = {
+      "abeldekat/harpoonline",
+      config = function()
+        require("harpoonline").setup {
+          on_update = function() vim.cmd.redrawstatus() end,
+        }
+      end,
+    },
+  },
+  {
     "folke/which-key.nvim",
     enabled = true,
   },
@@ -127,7 +138,6 @@ return {
             ignored_file_types = {},
           }
         end,
-
       },
       {
         "L3MON4D3/LuaSnip",
@@ -155,7 +165,6 @@ return {
               require("copilot_cmp").setup()
             end,
           },
-
         },
         config = function()
           require("copilot").setup {
@@ -180,7 +189,6 @@ return {
                 advanced = {
                   listCount = 3,
                   inlineSuggestCount = 3,
-
                 },
               },
             },
@@ -219,6 +227,21 @@ return {
         },
       })
     end,
+  },
+  {
+    "mcauley-penney/visual-whitespace.nvim",
+    event = "ModeChanged",
+    opts = {
+      highlight = { link = "Visual" },
+      space_char = "·",
+      tab_char = "→",
+      nl_char = "↲",
+    },
+  },
+  {
+    "epwalsh/pomo.nvim",
+    cmd = { "TimerStart", "TimerRepeat" },
+    opts = {},
   },
   {
     "karb94/neoscroll.nvim",
