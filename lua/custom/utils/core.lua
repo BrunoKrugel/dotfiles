@@ -210,7 +210,6 @@ M.lazy = {
     timeout = 35,
     url_format = "https://github.com/%s.git",
     filter = true,
-
   },
 }
 
@@ -222,14 +221,23 @@ M.tabufline = {
     buttons = function()
       return "%#SplitHl#%@v:lua.ClickUpdate@  %#SplitHl#%@v:lua.ClickGit@  %#SplitHl#%@v:lua.ClickRun@  %#SplitHl#%@v:lua.ClickSplit@ "
     end,
+    harpoon = function()
+      return "%#HarpoonHl# " .. require("harpoonline").format() .. " | "
+    end,
   },
-  order = { "buffers", "tabs", "buttons" },
+  order = {
+    "buffers",
+    "tabs",
+    "harpoon",
+    "buttons"
+  },
 }
 
 M.statusline = {
   theme = "vscode_colored",
   order = {
     "modes",
+    "icons",
     "old_git",
     "diagnostics",
     "record",
@@ -365,6 +373,20 @@ M.statusline = {
 
 M.nvdash = {
   load_on_startup = true,
+  buttons = {
+    { "  Find File", "Spc f f", "Telescope find_files" },
+    { "󰈚  Recent Files", "Spc f o", "Telescope oldfiles" },
+    { "󰈭  Find Word", "Spc f w", "Telescope live_grep" },
+    { "  Themes", "Spc t h", "Telescope themes" },
+    { "  Mappings", "Spc c h", "NvCheatsheet" },
+
+    function()
+      local stats = require("lazy").stats()
+      local plugins = "  Loaded " .. stats.count .. " plugins in "
+      local time = math.floor(stats.startuptime) .. " ms  "
+      return plugins .. time
+    end,
+  },
   header = {
     -- [[                                                   ]],
     -- [[                                              ___  ]],

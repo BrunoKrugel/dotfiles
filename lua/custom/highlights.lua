@@ -180,6 +180,8 @@ M.add = {
   NotificationHl = { fg = "white", bg = "statusline_bg" },
   TermHl = { fg = "green", bg = "statusline_bg" },
   SplitHl = { fg = "white", bg = "statusline_bg" },
+  HarpoonHl = { fg = "white", bg = "statusline_bg" },
+
 
   -- Blankline
   IndentBlanklineContextChar = { fg = "none" },
