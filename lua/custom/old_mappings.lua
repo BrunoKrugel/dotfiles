@@ -12,23 +12,6 @@ local M = {}
 -- <kPlus> -> Keypad Plus (+)
 -- <kMinus> -> Keypad Minus (-)
 
----@param key 'h'|'j'|'k'|'l'
-local function move_or_create_win(key)
-  local fn = vim.fn
-  local curr_win = fn.winnr()
-  vim.cmd("wincmd " .. key) --> attempt to move
-
-  if curr_win == fn.winnr() then --> didn't move, so create a split
-    if key == "h" or key == "l" then
-      vim.cmd "wincmd v"
-    else
-      vim.cmd "wincmd s"
-    end
-
-    vim.cmd("wincmd " .. key)
-  end
-end
-
 local function plugin_is_loaded(plugin)
   -- Checking with `require` and `pcall` will cause Lazy to load the plugin
   local plugins = require("lazy.core.config").plugins
@@ -240,35 +223,6 @@ M.development = {
         vim.lsp.buf.implementation()
       end,
       "󰑊 Go to implementation",
-    },
-  },
-}
-
-M.split = {
-  n = {
-    ["<C-h>"] = {
-      function()
-        move_or_create_win "h"
-      end,
-      "[h]: Move to window on the left or create a split",
-    },
-    ["<C-j>"] = {
-      function()
-        move_or_create_win "j"
-      end,
-      "[j]: Move to window below or create a vertical split",
-    },
-    ["<C-k>"] = {
-      function()
-        move_or_create_win "k"
-      end,
-      "[k]: Move to window above or create a vertical split",
-    },
-    ["<C-l>"] = {
-      function()
-        move_or_create_win "l"
-      end,
-      "[l]: Move to window on the right or create a split",
     },
   },
 }
