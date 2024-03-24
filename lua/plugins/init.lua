@@ -101,6 +101,11 @@ return {
     opts = overrides.treesitter,
   },
   {
+    "doxnit/cmp-luasnip-choice",
+    event = "InsertEnter",
+    opts = { auto_open = true },
+  },
+  {
     "nvim-tree/nvim-tree.lua",
     dependencies = { "antosha417/nvim-lsp-file-operations" },
     opts = overrides.nvimtree,

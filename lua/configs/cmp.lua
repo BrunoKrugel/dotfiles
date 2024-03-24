@@ -267,6 +267,7 @@ M.cmp = {
     { name = "nvim_lsp_document_symbol" },
     { name = "luasnip", max_item_count = 2 },
     { name = "nvim_lua" },
+    { name = "luasnip_choice" },
     -- {
     --   name = "buffer",
     --   keyword_length = 5,
