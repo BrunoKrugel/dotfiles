@@ -40,6 +40,16 @@ noice.setup {
     },
     {
       filter = {
+        any = {
+          { find = "No information available" },
+          { find = "No references found" },
+          { find = "No lines in buffer" },
+        },
+      },
+      opts = { skip = true },
+    },
+    {
+      filter = {
         event = "notify",
         any = {
           -- Neo-tree
