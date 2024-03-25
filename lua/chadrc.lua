@@ -21,6 +21,7 @@ M.ui = {
   },
 
   lsp = {
+    semantic_tokens = false,
     signature = false,
   },
 
@@ -100,7 +101,6 @@ core.load_mappings "rest"
 core.load_mappings "folder"
 core.load_mappings "comment"
 core.load_mappings "development"
-core.load_mappings "split"
 core.load_mappings "text"
 core.load_mappings "go"
 core.load_mappings "window"
