@@ -1,10 +1,10 @@
-local present, trouble = pcall(require, "trouble")
+local present, tb = pcall(require, "trouble")
 
 if not present then
   return
 end
 
-trouble.setup {
+tb.setup {
   position = "bottom", -- position of the list can be: bottom, top, left, right
   height = 10, -- height of the trouble list when position is top or bottom
   width = 50, -- width of the list when position is left or right
@@ -44,3 +44,26 @@ trouble.setup {
   auto_jump = { "lsp_definitions" }, -- for the given modes, automatically jump if there is only a single result
   use_diagnostic_signs = true, -- enabling this will use the signs defined in your lsp client
 }
+
+-- hijack other windows with trouble https://github.com/folke/trouble.nvim/issues/70#issuecomment-1528094026
+local function use_trouble()
+  local trouble = require "trouble"
+  -- Check whether we deal with a quickfix or location list buffer, close the window and open the
+  -- corresponding Trouble window instead.
+  if vim.fn.getloclist(0, { filewinid = 1 }).filewinid ~= 0 then
+    vim.schedule(function()
+      vim.cmd.lclose()
+      trouble.open "loclist"
+    end)
+  else
+    vim.schedule(function()
+      vim.cmd.cclose()
+      trouble.open "quickfix"
+    end)
+  end
+end
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "qf" },
+  callback = use_trouble,
+})
