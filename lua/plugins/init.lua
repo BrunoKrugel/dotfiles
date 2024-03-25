@@ -690,6 +690,10 @@ return {
     end,
   },
   {
+    "b0o/schemastore.nvim",
+    event = "VeryLazy",
+  },
+  {
     "nvim-telescope/telescope-ui-select.nvim",
     event = "VeryLazy",
     config = function()
