@@ -229,7 +229,7 @@ M.tabufline = {
     "buffers",
     "tabs",
     "harpoon",
-    "buttons"
+    "buttons",
   },
 }
 
@@ -243,7 +243,7 @@ M.statusline = {
     "record",
     "%=",
     "lsp_msg",
-    "noice",
+    -- "noice",
     "dap",
     "%=",
     "git_changed",
