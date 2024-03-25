@@ -115,6 +115,11 @@ return {
     opts = overrides.colorizer,
   },
   {
+    "NStefan002/visual-surround.nvim",
+    event = "BufEnter",
+    opts = true,
+  },
+  {
     "hrsh7th/nvim-cmp",
     opts = cmp_opt.cmp,
     dependencies = {
@@ -683,7 +688,8 @@ return {
   -- },
   {
     "folke/trouble.nvim",
-    cmd = { "TroubleToggle", "Trouble" },
+    ft = { "qf" },
+    cmd = { "TroubleToggle", "Trouble", "TodoTroube" },
     config = function()
       require "configs.trouble"
       dofile(vim.g.base46_cache .. "trouble")
