@@ -23,7 +23,7 @@ return {
     config = function() end,
   },
   {
-    "nvchad/ui",
+    "NvChad/ui",
     dependencies = {
       "abeldekat/harpoonline",
       config = function()
@@ -584,10 +584,8 @@ return {
         result_split_in_place = true,
         skip_ssl_verification = false,
         encode_url = true,
-        jump_to_request = false,
         env_file = ".env",
         custom_dynamic_variables = {},
-        yank_dry_run = true,
         highlight = {
           enabled = true,
           timeout = 150,
