@@ -149,6 +149,11 @@ M.cmp = {
       scrollbar = false,
     },
   },
+  view = {
+    entries = {
+      follow_cursor = true
+    }
+  },
   completion = {
     completeopt = "menu,menuone,noinsert,noselect",
     autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
