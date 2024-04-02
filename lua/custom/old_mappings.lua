@@ -237,12 +237,6 @@ M.text = {
     ["<A-Left>"] = { "<ESC>I", " Move to beginning of line" },
     ["<A-Right>"] = { "<ESC>A", " Move to end of line" },
     ["<A-d>"] = { "<ESC>diw", " Delete word" },
-    ["<S-CR>"] = {
-      function()
-        vim.cmd "normal o"
-      end,
-      " New line",
-    },
   },
 
   n = {
@@ -356,7 +350,7 @@ M.text = {
 
 M.go = {
   n = {
-    ["<leader>fi"] = { " <CMD>:GoImport<CR>", " Format imports", opts = { silent = true } },
+    ["<leader>fi"] = { " <CMD>:GoImports<CR>", " Format imports", opts = { silent = true } },
     ["<leader>gif"] = { " <CMD>:GoIfErr<CR>", " Create If Err", opts = { silent = true } },
     ["<leader>gfs"] = { " <CMD>:GoFillStruct<CR>", " Fill struct", opts = { silent = true } },
     ["<leader>gcv"] = { " <CMD>:GoCoverage -p<CR>", " Show coverage", opts = { silent = true } },

@@ -19,6 +19,12 @@ map({ "n" }, "<leader>e", "<cmd> NvimTreeToggle <CR>", { desc = "󰔱 Toggle nvi
 map({ "n", "i" }, "<C-b>", "<cmd> NvimTreeToggle <CR>", { desc = "Toggle nvimtree" })
 
 
+-- Text
+map("n", "<S-CR>", "o<ESC>", { desc = " New line" })
+
+map("i", "<S-CR>", function()
+  vim.cmd ("normal o")
+end, { desc = " New line"})
 
 -- Move or create
 ---@param key 'h'|'j'|'k'|'l'
