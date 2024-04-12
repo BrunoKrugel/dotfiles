@@ -27,7 +27,7 @@ M.base_30 = {
   teal = "#B5E8E0",
   orange = "#F8BD96",
   cyan = "#89DCEB",
-  statusline_bg = "#232232",
+  statusline_bg = "#313346",
   lightbg = "#2f2e3e",
   pmenu_bg = "#a6e3a1",
   folder_bg = "#74c7ec",
@@ -55,8 +55,6 @@ M.base_16 = {
 
 M.polish_hl = {
   ["@variable"] = { fg = M.base_30.lavender },
-  ["@property"] = { fg = M.base_30.teal },
-  ["@function"] = { fg = M.base_30.green },
   ["@variable.builtin"] = { fg = M.base_30.red },
   ["Function"] = { fg = "blue" },
   ["@function"] = { fg = "blue" },
