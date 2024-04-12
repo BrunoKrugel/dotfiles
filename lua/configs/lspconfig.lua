@@ -610,19 +610,22 @@ vim.diagnostic.handlers.current_line_virt = {
   end,
 }
 
+local signs = { Error = "", Warn = "", Hint = "󰌵", Info = "" }
+for type, icon in pairs(signs) do
+  local hl = "Diagnostic" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
 vim.diagnostic.config {
   float = { source = "always" },
-  signs = { severity = vim.diagnostic.severity.ERROR },
-  virtual_text = false,
-  virtual_lines = true,
+  signs = {
+    active = signs,
+  },
+  virtual_text = true,
+  virtual_lines = false,
   severity_sort = true,
   current_line_virt = false,
 }
-
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
 
 -- vim.api.nvim_create_augroup("lsp_diagnostic_current_line", {
 --   clear = true,
