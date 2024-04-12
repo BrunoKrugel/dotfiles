@@ -377,7 +377,7 @@ M.general = {
     ["<A-p>"] = { "<CMD> Telescope commander<CR>", "󰘳 Find files" },
     ["<C-p>"] = {
       function()
-        local entry_maker = require("custom.configs.entry").find_files_entry_maker
+        local entry_maker = require("configs.entry").find_files_entry_maker
         local opts = {
           entry_maker = entry_maker(),
           sorting_strategy = "ascending",
