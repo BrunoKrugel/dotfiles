@@ -151,22 +151,22 @@ M.cmp = {
   },
   view = {
     entries = {
-      follow_cursor = true
-    }
+      follow_cursor = true,
+    },
   },
   completion = {
     completeopt = "menu,menuone,noinsert,noselect",
     autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
     keyword_length = 2,
   },
-  experimental = {
-    ghost_text = {
-      hl_group = "Comment",
-    },
-  },
+  -- experimental = {
+  --   ghost_text = {
+  --     hl_group = "Comment",
+  --   },
+  -- },
   mapping = {
-    ["<Up>"] = select_item_smart("prev"),
-    ["<Down>"] = select_item_smart("next"),
+    ["<Up>"] = select_item_smart "prev",
+    ["<Down>"] = select_item_smart "next",
     ["<Left>"] = function(fallback)
       require("cmp").abort()
       fallback()
