@@ -5,10 +5,17 @@ M.override = {
   -- Cursor
   Cursor = { bg = "white", fg = "black2" },
   CursorLine = { bg = "black2" },
+  Visual = { bg = "black2" },
   Comment = { italic = true },
   NvDashAscii = { fg = "purple", bg = "none" },
   IndentBlanklineContextStart = { bg = "none" },
 
+  -- DiagnosticError = { bg = "#4B252C", fg = "#FF6363" },
+  -- DiagnosticWarn =  { bg = "#403733", fg = "#FA973A" },
+  -- DiagnosticInfo = { bg = "#20355A", fg = "#387EFF" },
+  -- DiagnosticHint = { bg = "#254435", fg = "#16C53B" },
+
+  TelescopePromptNormal = { blend = 100 },
   -- TreeSitter highlights
   Repeat = { fg = "pink" },
   Include = { fg = "pink" },
@@ -179,8 +186,8 @@ M.add = {
   CmpHl = { fg = "red", bg = "statusline_bg" },
   NotificationHl = { fg = "white", bg = "statusline_bg" },
   TermHl = { fg = "green", bg = "statusline_bg" },
-  SplitHl = { fg = "white", bg = "statusline_bg" },
-  HarpoonHl = { fg = "white", bg = "statusline_bg" },
+  SplitHl = { fg = "white", bg = "black2" },
+  HarpoonHl = { fg = "white", bg = "black2" },
 
 
   -- Blankline
