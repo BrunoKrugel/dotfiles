@@ -81,6 +81,9 @@ M.add = {
   EdgyWinBarInactive = { bg = "black", fg = "white" },
   EdgyNormal = { bg = "black", fg = "white" },
 
+  WinBar = { link = "Normal" },
+  WinBarNC = { link = "Normal" },
+
   YankVisual = { fg = "black2", bg = "cyan" },
 
   MultiCursor = { bg = "white", fg = "black2" },
