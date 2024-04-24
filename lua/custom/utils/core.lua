@@ -1,5 +1,7 @@
 local M = {}
 local merge_tb = vim.tbl_deep_extend
+local breakpoint = 100
+
 local function stbufnr()
   return vim.api.nvim_win_get_buf(vim.g.statusline_winid)
 end
@@ -222,10 +224,44 @@ M.tabufline = {
       return "%#SplitHl#%@v:lua.ClickUpdate@  %#SplitHl#%@v:lua.ClickGit@  %#SplitHl#%@v:lua.ClickRun@  %#SplitHl#%@v:lua.ClickSplit@ "
     end,
     harpoon = function()
-      return "%#HarpoonHl# " .. require("harpoonline").format() .. " | "
+      local options = {
+        icon = "󰀱 ",
+        indicators = { "1", "2", "3", "4" },
+        active_indicators = { "[1]", "[2]", "[3]", "[4]" },
+        separator = " ",
+      }
+      local list = require("harpoon"):list()
+      local root_dir = list.config:get_root_dir()
+      local current_file_path = vim.api.nvim_buf_get_name(0)
+
+      local length = math.min(list:length(), #options.indicators)
+
+      local status = {}
+      local get_full_path = function(root, value)
+        if vim.loop.os_uname().sysname == "Windows_NT" then
+          return root .. "\\" .. value
+        end
+
+        return root .. "/" .. value
+      end
+
+      for i = 1, length do
+        local value = list:get(i).value
+        local full_path = get_full_path(root_dir, value)
+
+        if full_path == current_file_path then
+          table.insert(status, options.active_indicators[i])
+        else
+          table.insert(status, options.indicators[i])
+        end
+      end
+
+      -- TODO: Only show if Harpoon is open
+      return "%#HarpoonHl# 󰀱 " ..  table.concat(status, options.separator) .. " | "
     end,
   },
   order = {
+    "treeOffset",
     "buffers",
     "tabs",
     "harpoon",
@@ -331,6 +367,11 @@ M.statusline = {
     end,
 
     filetype = function()
+
+      if vim.o.columns < breakpoint then
+        return ""
+      end
+
       local ft = vim.bo[stbufnr()].ft
       return ft == " " and " %#St_ft# {} plain text  " or " %#St_ft#{} " .. ft .. " "
     end,

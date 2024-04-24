@@ -23,17 +23,6 @@ return {
     config = function() end,
   },
   {
-    "NvChad/ui",
-    dependencies = {
-      "abeldekat/harpoonline",
-      config = function()
-        require("harpoonline").setup {
-          on_update = function() vim.cmd.redrawstatus() end,
-        }
-      end,
-    },
-  },
-  {
     "folke/which-key.nvim",
     enabled = true,
   },
@@ -577,11 +566,11 @@ return {
   {
     "rest-nvim/rest.nvim",
     dependencies = { "vhyrro/luarocks.nvim" },
+    cmd = { "Rest", "Http" },
     ft = { "http" },
+    event = "BufRead *.http",
     config = function()
       require("rest-nvim").setup {
-        result_split_horizontal = true,
-        result_split_in_place = true,
         skip_ssl_verification = false,
         encode_url = true,
         env_file = ".env",
@@ -591,6 +580,11 @@ return {
           timeout = 150,
         },
         result = {
+          split = {
+            horizontal = true,
+            in_place = true,
+            stay_in_current_window_after_split = false,
+          },
           show_url = false,
           show_http_info = true,
           show_headers = false,
@@ -765,6 +759,11 @@ return {
       require "configs.statuscol"
     end,
   },
+  -- {
+  --   "chikko80/error-lens.nvim",
+  --   event = "LspAttach",
+  --   opts = {},
+  -- },
   {
     "lvimuser/lsp-inlayhints.nvim",
     branch = "anticonceal",
