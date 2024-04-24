@@ -16,6 +16,19 @@ local function deprioritize_snippet(entry1, entry2)
   end
 end
 
+local async_cmp_close = function()
+  local cmp = require "cmp"
+  vim.schedule(function()
+    -- HACK: we don't use cmp.close because that is a sync operation
+    if cmp.core.view:visible() then
+      local release = cmp.core:suspend()
+      cmp.core.view:close()
+      vim.schedule(release)
+    end
+  end)
+end
+-- https://github.com/wochap/nvim/blob/458e8145e77795f3cb5a6a69a507418e7c8bcab2/lua/custom/utils/defer.lua
+
 --- Select item next/prev, taking into account whether the cmp window is
 --- top-down or bottoom-up so that the movement is always in the same direction.
 local select_item_smart = function(dir, opts)
