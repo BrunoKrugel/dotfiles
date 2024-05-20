@@ -93,10 +93,7 @@ g.copilot_assume_mapped = true
 
 opt.emoji = false
 opt.cursorline = true
-
-if vim.fn.has "nvim-0.10" == 1 then
-  opt.smoothscroll = true
-end
+opt.smoothscroll = true
 
 if vim.env.TMUX then
   vim.opt.laststatus = 0
@@ -116,9 +113,9 @@ if g.neovide then
   g.neovide_padding_bottom = 0
   g.neovide_padding_right = 0
   g.neovide_padding_left = 0
-  g.neovide_floating_blur_amount_x = 3.0
-  g.neovide_floating_blur_amount_y = 3.0
-  g.neovide_floating_shadow = true
+  g.neovide_floating_blur_amount_x = 0.0
+  g.neovide_floating_blur_amount_y = 0.0
+  g.neovide_floating_shadow = false
   g.neovide_floating_z_height = 40
   g.neovide_light_angle_degrees = 45
   g.neovide_light_radius = 10
