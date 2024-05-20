@@ -2,7 +2,7 @@ local M = {}
 
 M.base_30 = {
   white = "#D9E0EE",
-  darker_black = "#2a2b3c",
+  darker_black = "#313346",
   black = "#313346", --  nvim bg
   black2 = "#3b3d54",
   one_bg = "#2d2c3c", -- real bg of onedark
@@ -54,12 +54,19 @@ M.base_16 = {
 }
 
 M.polish_hl = {
+
   ["@variable"] = { fg = M.base_30.lavender },
   ["@variable.builtin"] = { fg = M.base_30.red },
+
+  ["@function.builtin"] = { fg = M.base_30.cyan },
   ["Function"] = { fg = "blue" },
+
   ["@function"] = { fg = "blue" },
-  ["@property"] = { fg = "purple" },
   ["@keyword"] = { fg = "pink" },
+
+  -- Go
+  ["@property.go"] = { fg = "cyan" },
+  ["@variable.go"] = { fg = M.base_30.sun },
 }
 
 M.type = "dark"
