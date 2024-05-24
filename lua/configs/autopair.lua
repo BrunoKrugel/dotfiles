@@ -1,5 +1,13 @@
 local npairs = require "nvim-autopairs"
-npairs.setup {}
+
+npairs.setup {
+  fast_wrap = {},
+  disable_filetype = { "TelescopePrompt", "spectre_panel", "vim" },
+  check_ts = true,
+  -- Don't add pairs if the next char is alphanumeric
+  ignored_next_char = '[%w%.<"(]',
+}
+
 local Rule = require "nvim-autopairs.rule"
 local cond = require "nvim-autopairs.conds"
 local ts_conds = require "nvim-autopairs.ts-conds"
