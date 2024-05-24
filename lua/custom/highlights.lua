@@ -10,6 +10,13 @@ M.override = {
   NvDashAscii = { fg = "purple", bg = "none" },
   IndentBlanklineContextStart = { bg = "none" },
 
+  LspInlayHint = { fg = "#4e5665", bg = "NONE" },
+  FloatBorder = { link = "TelescopeBorder" },
+
+
+  CmpDoc = { bg = "black" },
+  CmpDocBorder = { fg = "black", bg = "black" },
+
   -- DiagnosticError = { bg = "#4B252C", fg = "#FF6363" },
   -- DiagnosticWarn =  { bg = "#403733", fg = "#FA973A" },
   -- DiagnosticInfo = { bg = "#20355A", fg = "#387EFF" },
@@ -27,14 +34,21 @@ M.override = {
   ["@number.float"] = { link = "Float" },
   ["@modules"] = { fg = "white" },
   ["@type"] = { link = "Type" },
+  -- ["@variable.go"] = { fg = "green" },
+  -- ["@variable"] = { fg = "white" },
   ["@attribute"] = { link = "Constant" },
   ["@function.builtin"] = { fg = "cyan" },
   ["@function.method"] = { link = "Function" },
   ["@function.method.call"] = { link = "Function" },
-  ["@function.call"] = { link = "green" },
+  ["@function.call"] = { link = "Function" },
 
-  ["Function"] = { fg = "green" },
-  ["@function"] = { fg = "green" },
+  ["@variable"] = { fg = "white" },
+  ["@function.call.go"] = { fg = "green" },
+  ["@variable.member"] = { fg = "white" },
+  ["@constructor"] = { fg = "green" },
+
+  -- ["Function"] = { fg = "green" },
+  -- ["@function"] = { fg = "green" },
   ["@property"] = { fg = "purple" },
 
   ["@keyword.import"] = { link = "Include" },
@@ -71,11 +85,9 @@ M.override = {
 ---@type HLTable
 M.add = {
 
-  ["@variable"] = { fg = "white" },
-  ["@variable.member"] = { fg = "white" },
-  ["@constructor"] = { fg = "green" },
-
   DapStoppedLine = { link = "Visual" },
+
+  -- LazyDimmed = { fg = colors.grey },
 
   EdgyWinBar = { bg = "black", fg = "white" },
   EdgyWinBarInactive = { bg = "black", fg = "white" },
@@ -191,7 +203,6 @@ M.add = {
   TermHl = { fg = "green", bg = "statusline_bg" },
   SplitHl = { fg = "white", bg = "black2" },
   HarpoonHl = { fg = "white", bg = "black2" },
-
 
   -- Blankline
   IndentBlanklineContextChar = { fg = "none" },
