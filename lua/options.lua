@@ -58,6 +58,9 @@ opt.whichwrap:append "<>[]hl"
 -- Map in dotyfile
 g.mapleader = " "
 g.maplocalleader = " "
+g.dap_virtual_text = true
+g.bookmark_sign = ""
+g.skip_ts_context_commentstring_module = true
 
 opt.conceallevel = 2
 opt.concealcursor = "" --- Set to an empty string to expand tailwind class when on cursorline
