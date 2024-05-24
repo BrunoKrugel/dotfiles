@@ -8,8 +8,8 @@ local core = require "custom.utils.core"
 
 go.setup {
   lsp_inlay_hints = {
-    enable = true,
-    only_current_line = true,
+    enable = false,
+    -- only_current_line = true,
     other_hints_prefix = "•",
   },
   trouble = true,

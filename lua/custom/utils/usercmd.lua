@@ -58,6 +58,7 @@ create_cmd("DapUiOpen", ":lua require'dapui'.open()", {})
 create_cmd("DapUiClose", ":lua require'dapui'.close()", {})
 create_cmd("DapUiToggle", ":lua require'dapui'.toggle()", {})
 create_cmd("DapUiFloatElement", ":lua require'dapui'.float_element()", {})
+create_cmd("DapUiWidget", ":lua require'dap.ui.widgets'.hover()", {})
 create_cmd("DapUiEval", ":lua require'dapui'.eval()", {})
 
 create_cmd("UFOOpen", function()
@@ -69,8 +70,13 @@ create_cmd("TPeek", function()
   require("peek").open()
 end, {})
 
+create_cmd("ToggleInlayHints", function()
+  ---@diagnostic disable-next-line
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "Toogle inlay hints in current buffer" })
+
 -- Command to toggle inline diagnostics
-create_cmd("DiagnosticsToggleVirtualText", function()
+create_cmd("ToggleVirtualText", function()
   local current_value = vim.diagnostic.config().virtual_text
   if current_value then
     vim.diagnostic.config { virtual_text = false }
