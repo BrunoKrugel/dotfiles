@@ -59,10 +59,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
-      {
-        "windwp/nvim-ts-autotag",
-        opts = { enable_close_on_slash = false },
-      },
+      "windwp/nvim-ts-autotag",
       "filNaj/tree-setter",
       "echasnovski/mini.ai",
       "piersolenski/telescope-import.nvim",
@@ -76,15 +73,22 @@ return {
         end,
       },
       {
-        "JoosepAlviste/nvim-ts-context-commentstring",
-        config = function()
-          require("ts_context_commentstring").setup {
-            enable_autocmd = false,
-          }
-        end,
+        "folke/ts-comments.nvim",
+        opts = {},
       },
     },
     opts = overrides.treesitter,
+    build = ":TSUpdate",
+    init = function(plugin)
+      -- perf: make treesitter queries available at startup.
+      require("lazy.core.loader").add_to_rtp(plugin)
+      require "nvim-treesitter.query_predicates"
+    end,
+    config = function(_, opts)
+      dofile(vim.g.base46_cache .. "syntax")
+      dofile(vim.g.base46_cache .. "treesitter")
+      require("nvim-treesitter.configs").setup(opts)
+    end,
   },
   {
     "doxnit/cmp-luasnip-choice",
@@ -670,6 +674,32 @@ return {
       dofile(vim.g.base46_cache .. "todo")
     end,
   },
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    event = "BufReadPost",
+    init = function()
+      if vim.fn.has "nvim-0.10" == 1 then
+        -- HACK: add workaround for native comments: https://github.com/JoosepAlviste/nvim-ts-context-commentstring/issues/109
+        --       You can remove this plugin entirely once nvim 0.11 is out.
+        vim.schedule(function()
+          local get_option = vim.filetype.get_option
+          local context_commentstring
+          vim.filetype.get_option = function(filetype, option)
+            if option ~= "commentstring" then
+              return get_option(filetype, option)
+            end
+            if context_commentstring == nil then
+              local ts_context_avail, ts_context = pcall(require, "ts_context_commentstring.internal")
+              context_commentstring = ts_context_avail and ts_context
+            end
+            return context_commentstring and context_commentstring.calculate_commentstring()
+              or get_option(filetype, option)
+          end
+        end)
+      end
+    end,
+    opts = { enable_autocmd = false },
+  },
   -- {
   --   "chikko80/error-lens.nvim",
   --   ft = "go",
@@ -761,14 +791,14 @@ return {
   --   event = "LspAttach",
   --   opts = {},
   -- },
-  {
-    "lvimuser/lsp-inlayhints.nvim",
-    branch = "anticonceal",
-    event = "LspAttach",
-    config = function()
-      require "configs.inlayhints"
-    end,
-  },
+  -- {
+  --   "lvimuser/lsp-inlayhints.nvim",
+  --   branch = "anticonceal",
+  --   event = "LspAttach",
+  --   config = function()
+  --     require "configs.inlayhints"
+  --   end,
+  -- },
   {
     "VonHeikemen/searchbox.nvim",
     cmd = { "SearchBoxMatchAll", "SearchBoxReplace", "SearchBoxIncSearch" },
@@ -1145,6 +1175,7 @@ return {
   },
   {
     "stevearc/conform.nvim",
+    dependencies = { "zapling/mason-conform.nvim" },
     event = "BufReadPost",
     config = function()
       require "configs.conform"
