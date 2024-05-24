@@ -147,12 +147,6 @@ M.treesitter = {
     "astro",
     "css",
   },
-  indent = {
-    enable = true,
-  },
-  playground = {
-    enable = true,
-  },
   query_linter = {
     enable = true,
     use_virtual_text = true,
@@ -165,9 +159,6 @@ M.treesitter = {
       [";"] = "textsubjects-container-outer",
       ["i;"] = "textsubjects-container-inner",
     },
-  },
-  tree_setter = {
-    enable = true,
   },
   textobjects = {
     swap = {
@@ -192,6 +183,15 @@ M.treesitter = {
     },
   },
   autotag = {
+    enable = true,
+  },
+  tree_setter = {
+    enable = true,
+  },
+  indent = {
+    enable = true,
+  },
+  playground = {
     enable = true,
   },
 }
@@ -261,6 +261,8 @@ M.nvimtree = {
   git = {
     enable = true,
     ignore = false,
+    show_on_dirs = true,
+    show_on_open_dirs = false,
   },
   hijack_unnamed_buffer_when_opening = true,
   hijack_cursor = true,
@@ -274,6 +276,14 @@ M.nvimtree = {
       warning = "",
       error = "",
     },
+  },
+  view = {
+    preserve_window_proportions = true,
+    width = {
+      min = 40,
+      padding = 2,
+    },
+    signcolumn = "no",
   },
   sync_root_with_cwd = true,
   renderer = {
@@ -290,8 +300,16 @@ M.nvimtree = {
       },
     },
     icons = {
+      git_placement = "after",
       show = {
         git = true,
+        bookmarks = false,
+        diagnostics = false,
+        file = true,
+        folder = true,
+        folder_arrow = true,
+        git = true,
+        modified = true,
       },
       web_devicons = {
         folder = {
@@ -301,6 +319,19 @@ M.nvimtree = {
       },
       -- git_placement = 'signcolumn',
       glyphs = {
+        default = "󰈚",
+        symlink = "",
+        modified = "",
+        folder = {
+          default = "",
+          empty = "",
+          empty_open = "",
+          open = "",
+          symlink = "",
+          symlink_open = "",
+          arrow_open = " ",
+          arrow_closed = " ",
+        },
         git = {
           unstaged = "",
           -- unstaged = "",
@@ -331,6 +362,8 @@ M.nvimtree = {
 
 M.telescope = {
   defaults = {
+    prompt_prefix = "󰼛 ",
+    selection_caret = "󱞩 ",
     preview = {
       filetype_hook = function(_, bufnr, opts)
         -- don't display jank pdf previews
