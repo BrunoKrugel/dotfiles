@@ -1,6 +1,11 @@
 local ls = require "luasnip"
 -- allow ts-autotag to coexist with luasnip
 local autotag = require "nvim-ts-autotag.internal"
+
+require("nvim-ts-autotag").setup {
+  enable_close_on_slash = false,
+}
+
 vim.keymap.set("i", ">", function()
   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
   vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { ">" })
