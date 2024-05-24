@@ -1,13 +1,18 @@
-((function_call
-  name: [
-    (identifier) @_cdef_identifier
-    (_ _ (identifier) @_cdef_identifier)
-  ]
-  arguments:
-    (arguments
-      (string content: _ @injection.content)))
-  (#set! injection.language "c")
-  (#eq? @_cdef_identifier "cdef"))
+(function_call
+  name: (_) @_vimcmd_identifier
+  arguments: (arguments
+    .
+    (_)
+    .
+    (table_constructor
+      (field
+        name: (identifier) @_command
+        value: (string
+          content: (_) @injection.content))) .)
+  ; limit so only 2-argument functions get matched before pred handle
+  (#eq? @_vimcmd_identifier "autocmd")
+  (#eq? @_command "command")
+  (#set! injection.language "vim"))
 
 ;; highlight string as query if starts with `;; query`
 (string content: _ @injection.content
