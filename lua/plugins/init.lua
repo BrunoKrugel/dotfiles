@@ -566,7 +566,12 @@ return {
   },
   {
     "rest-nvim/rest.nvim",
-    dependencies = { "vhyrro/luarocks.nvim" },
+    dependencies = {
+      "vhyrro/luarocks.nvim",
+      opts = {
+        rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" }, -- Specify LuaRocks packages to install
+      },
+    },
     cmd = { "Rest", "Http" },
     ft = { "http" },
     event = "BufRead *.http",
