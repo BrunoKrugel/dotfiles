@@ -12,6 +12,12 @@ local M = {}
 -- <kPlus> -> Keypad Plus (+)
 -- <kMinus> -> Keypad Minus (-)
 
+
+-- Launch with the current word under the cursor as the search string
+-- require('grug-far').grug_far({ prefills = { search = vim.fn.expand("<cword>") } })
+-- Launch with the current file as a flag, which limits search/replace to it
+-- require('grug-far').grug_far({ prefills = { flags = vim.fn.expand("%") } })
+
 local function plugin_is_loaded(plugin)
   -- Checking with `require` and `pcall` will cause Lazy to load the plugin
   local plugins = require("lazy.core.config").plugins
