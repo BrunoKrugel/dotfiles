@@ -264,8 +264,8 @@ autocmd({ "BufReadPost" }, {
   end,
 })
 
--- Windows to close with "q"
 autocmd("FileType", {
+  desc = "Define windows to close with 'q'",
   pattern = {
     "help",
     "startuptime",
@@ -283,7 +283,10 @@ autocmd("FileType", {
     "neotest-output",
     "neotest-summary",
     "neotest-output-panel",
+    "nvcheatsheet",
+    "grug-far",
   },
+  group = augroup("WinCloseOnQDefinition", { clear = true }),
   command = [[
             nnoremap <buffer><silent> q :close<CR>
             set nobuflisted
