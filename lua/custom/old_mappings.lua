@@ -440,8 +440,8 @@ M.general = {
 
 M.diagnostics = {
   n = {
-    ["<leader>t"] = { "<CMD>TroubleToggle<CR>", "󰔫 Toggle warnings" },
-    ["<leader>td"] = { "<CMD>TodoTrouble keywords=TODO,FIX,FIXME,BUG,TEST,NOTE<CR>", " Todo/Fix/Fixme" },
+    ["<leader>t"] = { "<CMD>Trouble diagnostics toggle<CR>", "󰔫 Toggle warnings" },
+    ["<leader>td"] = { "<CMD>Trouble qflist toggle<CR>", " Todo/Fix/Fixme" },
     ["<leader>el"] = { "<CMD>ErrorLensToggle<CR>", "󱇭 Toggle error lens" },
     ["<leader>ft"] = { "<CMD>TodoTelescope<CR>", " Telescope TODO" },
     ["<Leader>ll"] = {

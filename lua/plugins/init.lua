@@ -39,6 +39,9 @@ return {
   },
   {
     "nvim-tree/nvim-web-devicons",
+    dependencies = {
+      "rachartier/tiny-devicons-auto-colors.nvim",
+    },
     opts = overrides.devicons,
   },
   {
@@ -746,9 +749,9 @@ return {
   {
     "folke/trouble.nvim",
     ft = { "qf" },
-    cmd = { "TroubleToggle", "Trouble", "TodoTroube" },
+    cmd = "Trouble",
     config = function()
-      require "configs.trouble"
+      require("trouble").setup {}
       dofile(vim.g.base46_cache .. "trouble")
     end,
   },

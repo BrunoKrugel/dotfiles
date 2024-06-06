@@ -27,7 +27,7 @@ require("neotest").setup {
   },
   quickfix = {
     open = function()
-      vim.cmd('Trouble quickfix')
+      vim.cmd('Trouble qflist toggle')
     end,
   },
   diagnostic = {

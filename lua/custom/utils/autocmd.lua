@@ -12,6 +12,29 @@ local function close_all_floating_wins()
   end
 end
 
+local function use_trouble()
+  local trouble = require "trouble"
+  -- Check whether we deal with a quickfix or location list buffer, close the window and open the
+  -- corresponding Trouble window instead.
+  if vim.fn.getloclist(0, { filewinid = 1 }).filewinid ~= 0 then
+    vim.schedule(function()
+      vim.cmd.lclose()
+      trouble.toggle("loclist")
+    end)
+  else
+    vim.schedule(function()
+      vim.cmd.cclose()
+      trouble.toggle("quickfix")
+    end)
+  end
+end
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "qf" },
+  callback = use_trouble,
+})
+
+
 autocmd("VimResized", {
   desc = "Auto resize panes when resizing nvim window",
   pattern = "*",

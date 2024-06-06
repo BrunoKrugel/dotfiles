@@ -12,7 +12,6 @@ go.setup {
     -- only_current_line = true,
     other_hints_prefix = "•",
   },
-  trouble = true,
   lsp_keymaps = false,
   diagnostic = {
     hdlr = true,
