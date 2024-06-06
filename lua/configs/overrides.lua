@@ -130,6 +130,10 @@ M.treesitter = {
     "regex",
     "toml",
 
+    "gitcommit",
+    "git_config",
+    "diff",
+
     -- Markdown
     "markdown",
     "markdown_inline",

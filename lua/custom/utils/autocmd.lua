@@ -287,9 +287,20 @@ autocmd({ "BufReadPost" }, {
   end,
 })
 
+autocmd({ "FileType" }, {
+  desc = "enable_editorconfig_syntax",
+  pattern = { "editorconfig" },
+  callback = function()
+    vim.opt_local.syntax = "editorconfig"
+  end,
+})
+
 autocmd("FileType", {
   desc = "Define windows to close with 'q'",
   pattern = {
+    "gitcommit",
+    "gitrebase",
+    "gitconfig",
     "help",
     "startuptime",
     "qf",
