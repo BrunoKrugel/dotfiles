@@ -518,6 +518,7 @@ return {
         "theHamsta/nvim-dap-virtual-text",
         opts = {
           highlight_changed_variables = true,
+          virt_text_pos = "eol",
           highlight_new_as_changed = true,
           show_stop_reason = true,
           commented = true,
