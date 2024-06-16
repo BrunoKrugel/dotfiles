@@ -312,7 +312,6 @@ M.nvimtree = {
         file = true,
         folder = true,
         folder_arrow = true,
-        git = true,
         modified = true,
       },
       web_devicons = {
@@ -379,9 +378,9 @@ M.telescope = {
       end,
     },
     file_ignore_patterns = {
-      "node_modules",
       ".docker",
-      ".git",
+      ".git/",
+      ".git\\",
       "yarn.lock",
       "go.sum",
       "go.mod",
@@ -391,6 +390,7 @@ M.telescope = {
       "^.git/",
       "^./.git/",
       "^node_modules/",
+      "node_modules\\",
       "^build/",
       "^dist/",
       "^target/",
@@ -454,7 +454,6 @@ M.colorizer = {
     hsl_fn = true,
     css = true,
     css_fn = true,
-    mode = "background",
     sass = { enable = true, parsers = { "css" } },
     mode = "background", -- Available methods are false / true / "normal" / "lsp" / "both"
     virtualtext = "■",
