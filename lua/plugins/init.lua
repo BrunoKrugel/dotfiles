@@ -1251,13 +1251,6 @@ return {
     },
   },
   {
-    "antosha417/nvim-lsp-file-operations",
-    event = "LspAttach",
-    config = function()
-      require("lsp-file-operations").setup()
-    end,
-  },
-  {
     "ThePrimeagen/refactoring.nvim",
     event = "BufRead",
     config = function()
