@@ -40,8 +40,8 @@ local function organize_imports(client, bufnr)
 end
 
 local function attach_codelens(bufnr)
-  local augroup = api.nvim_create_augroup("Lsp", {})
-  api.nvim_create_autocmd({ "BufReadPost", "CursorHold", "InsertLeave" }, {
+  local augroup = vim.api.nvim_create_augroup("Lsp", {})
+  vim.api.nvim_create_autocmd({ "BufReadPost", "CursorHold", "InsertLeave" }, {
     group = augroup,
     buffer = bufnr,
     callback = function()
@@ -53,9 +53,9 @@ end
 local custom_on_attach = function(client, bufnr)
   on_attach(client, bufnr)
 
-  if client.server_capabilities.inlayHintProvider then
-    vim.lsp.inlay_hint(bufnr, true)
-  end
+  -- if client.server_capabilities.inlayHintProvider then
+  --   vim.lsp.inlay_hint(bufnr, true)
+  -- end
 
   if client.supports_method "textDocument/codeLens" then
     require("virtualtypes").on_attach(client, bufnr)
@@ -70,7 +70,6 @@ local custom_on_attach = function(client, bufnr)
 
   -- Go
   vim.api.nvim_create_autocmd("BufWritePre", {
-    buffer = bufnr,
     pattern = "*.go",
     callback = function()
       organize_imports(client, bufnr)
@@ -80,6 +79,7 @@ local custom_on_attach = function(client, bufnr)
 end
 
 local filter_list = function(list, predicate)
+  -- empty list
   local res_len = #list
   local move_item_by = 0
 
@@ -446,32 +446,32 @@ vim.lsp.handlers["textDocument/formatting"] = function(err, result, ctx, _)
   end
 end
 
-vim.lsp.handlers["textDocument/inlayHint"] = function(result)
-  filter_list(result, function(item)
-    if
-      item.label == "x:"
-      or item.label == "y:"
-      or item.label == "z:"
-      or item.label == "a:"
-      or item.label == "b:"
-      or item.label == "v:"
-      or item.label == "m:"
-      or item.label == "s:"
-      or item.label == "nptr:"
-      or item.label == "scalar:"
-      or item.lable == "argv0"
-    then
-      return false
-    end
-    -- local line = item.position.line
-    -- local col = item.position.character
-    -- local node = vim.treesitter.get_node({pos = {line,col}})
-    -- I(vim.treesitter.get_node_text(node:parent(), 0))
-    return true
-  end)
-  -- accept request.
-  return true
-end
+-- vim.lsp.handlers["textDocument/inlayHint"] = function(result)
+--   filter_list(result, function(item)
+--     if
+--       item.label == "x:"
+--       or item.label == "y:"
+--       or item.label == "z:"
+--       or item.label == "a:"
+--       or item.label == "b:"
+--       or item.label == "v:"
+--       or item.label == "m:"
+--       or item.label == "s:"
+--       or item.label == "nptr:"
+--       or item.label == "scalar:"
+--       or item.lable == "argv0"
+--     then
+--       return false
+--     end
+--     -- local line = item.position.line
+--     -- local col = item.position.character
+--     -- local node = vim.treesitter.get_node({pos = {line,col}})
+--     -- I(vim.treesitter.get_node_text(node:parent(), 0))
+--     return true
+--   end)
+--   -- accept request.
+--   return true
+-- end
 
 require("lspconfig.ui.windows").default_options.border = "single"
 
