@@ -18,13 +18,13 @@ map("n", "<leader>qq", "<<CMD>qa!<CR>", { desc = "󰗼 Exit" })
 map({ "n" }, "<leader>e", "<cmd> NvimTreeToggle <CR>", { desc = "󰔱 Toggle nvimtree" })
 map({ "n", "i" }, "<C-b>", "<cmd> NvimTreeToggle <CR>", { desc = "Toggle nvimtree" })
 
-
 -- Text
 map("n", "<S-CR>", "o<ESC>", { desc = " New line" })
+map("s", "<BS>", "<C-o>c", { desc = "Better backspace in select mode" })
 
 map("i", "<S-CR>", function()
-  vim.cmd ("normal o")
-end, { desc = " New line"})
+  vim.cmd "normal o"
+end, { desc = " New line" })
 
 -- Move or create
 ---@param key 'h'|'j'|'k'|'l'
