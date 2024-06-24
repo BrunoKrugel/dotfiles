@@ -395,7 +395,6 @@ return {
       should_autosave = nil, -- function to determine if a session should be autosaved
       autoload = true, -- automatically load the session for the cwd on Neovim startup
       default_branch = "main",
-      on_autoload_no_session = nil,
       follow_cwd = true,
       on_autoload_no_session = function()
         vim.notify "No existing session to load."
@@ -467,7 +466,7 @@ return {
       -- },
       hl_priority = 200,
       extras = { named_parameters = true },
-    }
+    },
   },
   {
     "tzachar/local-highlight.nvim",
@@ -660,20 +659,13 @@ return {
     },
   },
   {
-    "hinell/lsp-timeout.nvim",
-    event = "LspAttach",
-    config = function()
-      vim.g["lsp-timeout-config"] = {
-        -- When focus is lost
-        -- wait 5 minutes before stopping all LSP servers
-        stopTimeout = 1000 * 60 * 5,
-        startTimeout = 1000 * 10,
-        silent = true,
-        filetypes = { -- Exclude servers that miss behave on LSP stop/start.
-          ignore = { "markdown", "java" },
-        },
-      }
-    end,
+    "zeioth/garbage-day.nvim",
+    dependencies = "neovim/nvim-lspconfig",
+    event = "VeryLazy",
+    opts = {
+      notifications = true,
+      aggressive_mode = true,
+    },
   },
   {
     "0oAstro/dim.lua",
@@ -1280,7 +1272,7 @@ return {
     "chrisgrieser/nvim-origami",
     event = "BufReadPost",
     opts = {
-      keepFoldsAcrossSessions = true,
+      -- keepFoldsAcrossSessions = true,
       pauseFoldsOnSearch = true,
       setupFoldKeymaps = false,
     },
