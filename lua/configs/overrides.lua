@@ -406,14 +406,12 @@ M.telescope = {
   },
   extensions_list = {
     "themes",
-    "terms",
-    "notify",
     "undo",
     "ast_grep",
     "ctags_plus",
     "luasnip",
-    "import",
     "fzf",
+    "import"
   },
   extensions = {
     fzf = {
