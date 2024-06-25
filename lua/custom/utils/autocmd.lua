@@ -77,16 +77,6 @@ autocmd({ "BufNewFile", "BufRead" }, {
   end,
 })
 
-autocmd({ "BufWritePre" }, {
-  desc = "Auto create dir when saving a file",
-  pattern = "*",
-  group = augroup("auto_create_dir", { clear = true }),
-  callback = function(ctx)
-    local dir = fn.fnamemodify(ctx.file, ":p:h")
-    utils.may_create_dir(dir)
-  end,
-})
-
 -- autocmd({ "BufRead" }, {
 --   desc = "Display a message when the current file is not in utf-8 format",
 --   pattern = "*",
@@ -471,7 +461,6 @@ autocmd({ "tabnew" }, {
 
 autocmd({ "User" }, {
   pattern = "PersistedSavePre",
-  group = group,
   callback = function()
     pcall(vim.cmd, "NvimTreeClose")
   end,
