@@ -5,7 +5,6 @@ local o = vim.o
 -- vim.wo.statuscolumn = ""
 
 opt.encoding = "utf-8"
-opt.fileencoding = "utf-8"
 opt.backup = false --- Recommended by coc
 opt.swapfile = false
 opt.scrolloff = 10 -- always show minimum n lines after current line
