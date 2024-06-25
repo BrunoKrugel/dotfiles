@@ -242,11 +242,6 @@ return {
     },
   },
   {
-    "epwalsh/pomo.nvim",
-    cmd = { "TimerStart", "TimerRepeat" },
-    opts = {},
-  },
-  {
     "karb94/neoscroll.nvim",
     keys = { "<C-d>", "<C-u>" },
     config = function()
@@ -664,7 +659,7 @@ return {
     event = "VeryLazy",
     opts = {
       notifications = true,
-      aggressive_mode = true,
+      -- aggressive_mode = true,
     },
   },
   {
