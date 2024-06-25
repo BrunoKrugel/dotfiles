@@ -32,9 +32,8 @@ end
 
 require("ufo").setup {
   close_fold_kinds_for_ft = {
-    default = {'imports'},
-    c = {'comment', 'region'}
-},
+    default = { "imports" },
+  },
   fold_virt_text_handler = handler,
   open_fold_hl_timeout = 0,
   preview = {

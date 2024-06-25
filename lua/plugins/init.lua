@@ -304,26 +304,6 @@ return {
     end,
   },
   {
-    "luckasRanarison/clear-action.nvim",
-    event = "LspAttach",
-    opts = {
-      mappings = {
-        code_action = "<leader>A",
-      },
-      signs = {
-        icons = {
-          quickfix = "襁",
-          refactor = "",
-          source = "",
-          combined = "",
-        },
-      },
-      popup = {
-        hide_cursor = true,
-      },
-    },
-  },
-  {
     "hiphish/rainbow-delimiters.nvim",
     event = "BufReadPost",
     config = function()
@@ -595,55 +575,6 @@ return {
       map("n", "<leader>gr", function()
         toggle_grugfar()
       end, { desc = "Toggle GrugFar" })
-    end,
-  },
-  {
-    "rest-nvim/rest.nvim",
-    dependencies = {
-      "vhyrro/luarocks.nvim",
-      opts = {
-        rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" }, -- Specify LuaRocks packages to install
-      },
-    },
-    cmd = { "Rest", "Http" },
-    ft = { "http" },
-    event = "BufRead *.http",
-    config = function()
-      require("rest-nvim").setup {
-        skip_ssl_verification = false,
-        encode_url = true,
-        env_file = ".env",
-        custom_dynamic_variables = {},
-        highlight = {
-          enabled = true,
-          timeout = 150,
-        },
-        result = {
-          split = {
-            horizontal = true,
-            in_place = true,
-            stay_in_current_window_after_split = false,
-          },
-          show_url = false,
-          show_http_info = true,
-          show_headers = false,
-          show_statistics = {
-            "time_total",
-            "remote_ip",
-            "response_code",
-          },
-          formatters = {
-            json = function(body)
-              -- stylua: ignore
-              return vim.fn.system { "biome", "format", "--stdin", "--stdin-file-path", "foo.json", body }
-            end,
-            -- prettier already needed since it's the only proper yaml formatter
-            html = function(body)
-              return vim.fn.system { "prettier", "--parser=html", body }
-            end,
-          },
-        },
-      }
     end,
   },
   {
