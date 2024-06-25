@@ -1,6 +1,5 @@
 local M = {}
 
----@type Base46HLGroupsList
 M.override = {
   -- Cursor
   Cursor = { bg = "white", fg = "black2" },
@@ -82,7 +81,6 @@ M.override = {
   NvimTreeCursorLine = { bg = "one_bg3" },
 }
 
----@type HLTable
 M.add = {
 
   DapStoppedLine = { link = "Visual" },

@@ -142,7 +142,6 @@ noice.setup {
         throttle = 50,
       },
       view = nil, -- when nil, use defaults from documentation
-      ---@type NoiceViewOptions
       opts = {
         focusable = false,
         size = {
@@ -173,7 +172,6 @@ noice.setup {
       ["cmp.entry.get_documentation"] = true,
     },
   },
-  ---@type NoiceConfigViews
   views = {
     cmdline_popup = {
       position = {
