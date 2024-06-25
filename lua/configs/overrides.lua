@@ -363,8 +363,53 @@ M.nvimtree = {
   },
 }
 
+local telescope = require "telescope"
+local actions = require "telescope.actions"
+
+local select_one_or_multi = function(prompt_bufnr)
+  local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+  local multi = picker:get_multi_selection()
+  if not vim.tbl_isempty(multi) then
+    require("telescope.actions").close(prompt_bufnr)
+    for _, j in pairs(multi) do
+      if j.path ~= nil then
+        vim.cmd(string.format("%s %s", "edit", j.path))
+      end
+    end
+  else
+    require("telescope.actions").select_default(prompt_bufnr)
+  end
+end
+
 M.telescope = {
+  pickers = {
+    find_files = {
+      find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+    },
+    buffers = {
+      theme = "dropdown",
+      previewer = false,
+      mappings = {
+        i = {
+          ["<c-d>"] = "delete_buffer",
+        },
+      },
+    },
+  },
   defaults = {
+    mappings = {
+      i = {
+        ["<C-k>"] = actions.move_selection_previous, -- move to prev result
+        ["<C-j>"] = actions.move_selection_next, -- move to next result
+        ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+        ["<cr>"] = select_one_or_multi,
+      },
+    },
+    path_display = {
+      filename_first = {
+          reverse_directories = true,
+      },
+  },
     prompt_prefix = "󰼛 ",
     selection_caret = "󱞩 ",
     preview = {
