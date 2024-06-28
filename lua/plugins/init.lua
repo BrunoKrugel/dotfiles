@@ -418,13 +418,17 @@ return {
       extras = { named_parameters = true },
     },
   },
-  -- {
-  --   "tzachar/local-highlight.nvim",
-  --   event = { "CursorHold", "CursorHoldI" },
-  --   opts = {
-  --     hlgroup = "Search",
-  --   },
-  -- },
+  {
+    "tzachar/local-highlight.nvim",
+    event = { "CursorHold", "CursorHoldI" },
+    opts = {
+      hlgroup = "Search",
+    },
+  },
+  {
+    'mistweaverco/kulala.nvim',
+    ft = { "http" },
+  },
   {
     "smoka7/hop.nvim",
     cmd = { "HopWord", "HopLine", "HopLineStart", "HopWordCurrentLine", "HopNodes" },

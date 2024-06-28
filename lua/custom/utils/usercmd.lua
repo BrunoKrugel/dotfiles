@@ -65,6 +65,10 @@ create_cmd("UFOOpen", function()
   require("ufo").openAllFolds()
 end, {})
 
+create_cmd("Http", function()
+  require('kulala').run()
+end, {})
+
 --Open Peek
 create_cmd("TPeek", function()
   require("peek").open()
@@ -158,7 +162,6 @@ create_cmd("TUpdate", function()
   require("lazy").load { plugins = { "mason.nvim", "nvim-treesitter" } }
   vim.cmd "MasonUpdate"
   vim.cmd "TSUpdate"
-  vim.cmd "NvChadUpdate"
 end, {})
 
 -- Toggle Codeium

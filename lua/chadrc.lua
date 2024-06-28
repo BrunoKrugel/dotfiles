@@ -97,7 +97,6 @@ M.plugins = "custom.plugins"
 
 -- TODO: Temporary fix for NvChad Mapping changes (I dont wanna edit all my mappings)
 M.mappings = require "custom.old_mappings"
-core.load_mappings "rest"
 core.load_mappings "folder"
 core.load_mappings "comment"
 core.load_mappings "development"

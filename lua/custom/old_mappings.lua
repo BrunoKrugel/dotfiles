@@ -140,17 +140,6 @@ M.disabled = {
   },
 }
 
-M.rest = {
-  n = {
-    ["<leader>rs"] = {
-      function()
-        require("rest-nvim").run()
-      end,
-      "󰖟 RestNvim Run",
-    },
-  },
-}
-
 M.folder = {
   n = {
     ["<leader>a"] = {
