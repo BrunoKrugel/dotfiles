@@ -325,6 +325,26 @@ require("mason-lspconfig").setup_handlers {
     }
   end,
 
+  ["yamlls"] = function()
+    return {
+      on_attach = custom_on_attach,
+      capabilities = capabilities,
+      settings = {
+        yaml = {
+          schemaStore = {
+            url = vim.env.SCHEMA_NEXUS,
+            enable = true,
+          },
+          schemas = {
+            [vim.env.SCHEMA_BACKEND] = ".gitlab-ci.yml",
+            [vim.env.SCHEMA_DOCKER] = ".gitlab-ci.yml",
+            [vim.env.SCHEMA_HELM] = ".gitlab-ci.yml",
+          },
+        },
+      },
+    }
+  end,
+
   ["astro"] = function()
     return {
       on_attach = custom_on_attach,
@@ -424,9 +444,6 @@ require("mason-lspconfig").setup_handlers {
     }
   end,
 }
-
-vim.lsp.handlers["textDocument/hover"] = require("noice").hover
-vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
 
 -- If the buffer has been edited before formatting has completed, do not try to apply the changes
 vim.lsp.handlers["textDocument/formatting"] = function(err, result, ctx, _)

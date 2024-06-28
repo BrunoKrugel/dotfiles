@@ -586,6 +586,8 @@ return {
     config = function()
       require "configs.noice"
       dofile(vim.g.base46_cache .. "notify")
+      vim.lsp.handlers["textDocument/hover"] = require("noice").hover
+      vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
     end,
   },
   {
