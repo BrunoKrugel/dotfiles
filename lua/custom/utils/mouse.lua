@@ -12,10 +12,6 @@ _G.ClickGit = function()
   vim.cmd "ToggleBlame"
 end
 
-_G.ClickRun = function()
-  vim.cmd "CompilerOpen"
-end
-
 _G.ClickUpdate = function()
   require("base46").load_all_highlights()
   vim.notify "Highlights reloaded!"

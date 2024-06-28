@@ -39,8 +39,8 @@ require("commander").add {
   },
 }
 
-commander.setup({
-    -- Specify what components are shown in the prompt;
+commander.setup {
+  -- Specify what components are shown in the prompt;
   -- Order matters, and components may repeat
   components = {
     "DESC",
@@ -75,8 +75,8 @@ commander.setup({
     lazy = {
       -- Set to true to automatically add all keymaps set through lazy.nvim
       enable = true,
-    }
-  }
-})
+    },
+  },
+}
 
 telescope.load_extension "commander"

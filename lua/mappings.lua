@@ -2,6 +2,44 @@ require "nvchad.mappings"
 
 local map = vim.keymap.set
 
+-- Buffer-local mapping options
+local opts = { noremap = true, silent = true, buffer = 0 }
+
+local function md_url_paste()
+  -- Get clipboard
+  local clip = vim.fn.getreg "+"
+  -- 0-indexed locations
+  local start_line = vim.fn.getpos("v")[2] - 1
+  local start_col = vim.fn.getpos("v")[3] - 1
+  local stop_line = vim.fn.getcurpos("")[2] - 1
+  local stop_col = vim.fn.getcurpos("")[3] - 1
+  -- Check start and stop aren't reversed, and swap if necessary
+  if stop_line < start_line or (stop_line == start_line and stop_col < start_col) then
+    start_line, start_col, stop_line, stop_col = stop_line, stop_col, start_line, start_col
+  end
+  -- Paste clipboard contents as md link.
+  vim.api.nvim_buf_set_text(0, stop_line, stop_col + 1, stop_line, stop_col + 1, { "](" .. clip .. ")" })
+  vim.api.nvim_buf_set_text(0, start_line, start_col, start_line, start_col, { "[" })
+end
+vim.keymap.set("v", "<leader>p", md_url_paste, opts)
+
+map("n", "<leader>pp", function()
+  md_url_paste()
+end, { desc = "Paste in URL" })
+
+map({ "n", "t" }, "<M-g>", function()
+  require("nvchad.term").toggle {
+    cmd = "lazygit",
+    pos = "float",
+    id = "gitToggleTerm",
+    float_opts = {
+      width = 1,
+      height = 1,
+    },
+    clear_cmd = true,
+  }
+end, { desc = "Toggle Lazygit" })
+
 -- GitSigns
 map("n", "]c", "<cmd>Gitsigns next_hunk<CR>", { desc = "Next hunk" })
 map("n", "[c", "<cmd>Gitsigns prev_hunk<CR>", { desc = "Previous hunk" })
@@ -44,6 +82,7 @@ local function move_or_create_win(key)
   end
 end
 
+-- Movements
 map({ "n", "i" }, "<C-h>", function()
   move_or_create_win "h"
 end, { desc = "Split left" })
@@ -56,3 +95,9 @@ end, { desc = "Split up" })
 map({ "n", "i" }, "<C-j>", function()
   move_or_create_win "j"
 end, { desc = "Split down" })
+
+-- Better Down
+vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Better Down", expr = true, silent = true })
+
+-- Better Up
+vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Better Up", expr = true, silent = true })

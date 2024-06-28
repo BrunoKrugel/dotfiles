@@ -17,8 +17,7 @@ local sources = {
   b.formatting.gofumpt,
   b.formatting.tidy,
   b.formatting.goimports,
-  
-  
+
   -- Completion
   b.completion.luasnip,
 

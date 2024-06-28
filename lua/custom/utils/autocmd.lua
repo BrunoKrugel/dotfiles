@@ -14,7 +14,7 @@ end
 
 vim.api.nvim_create_autocmd("QuickFixCmdPost", {
   callback = function()
-    vim.cmd([[Trouble qflist open]])
+    vim.cmd [[Trouble qflist open]]
   end,
 })
 
@@ -22,8 +22,8 @@ vim.api.nvim_create_autocmd("BufRead", {
   callback = function(ev)
     if vim.bo[ev.buf].buftype == "quickfix" then
       vim.schedule(function()
-        vim.cmd([[cclose]])
-        vim.cmd([[Trouble qflist open]])
+        vim.cmd [[cclose]]
+        vim.cmd [[Trouble qflist open]]
       end)
     end
   end,
@@ -88,18 +88,18 @@ autocmd({ "BufNewFile", "BufRead" }, {
 --   end,
 -- })
 
-autocmd("FileType", {
-  desc = "Close NvimTree before quit nvim",
-  pattern = { "NvimTree" },
-  callback = function(args)
-    autocmd("VimLeavePre", {
-      callback = function()
-        vim.api.nvim_buf_delete(args.buf, { force = true })
-        return true
-      end,
-    })
-  end,
-})
+-- autocmd("FileType", {
+--   desc = "Close NvimTree before quit nvim",
+--   pattern = { "NvimTree" },
+--   callback = function(args)
+--     autocmd("VimLeavePre", {
+--       callback = function()
+--         vim.api.nvim_buf_delete(args.buf, { force = true })
+--         return true
+--       end,
+--     })
+--   end,
+-- })
 
 autocmd("BufEnter", {
   desc = "Open new buffer if only Nvimtree is open",

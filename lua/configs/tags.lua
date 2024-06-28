@@ -8,9 +8,9 @@ vim.g.gutentags_generate_on_empty_buffer = true
 vim.g.gutentags_resolve_symlinks = true
 vim.g.gutentags_ctags_tagfile = ".git/tags"
 vim.g.gutentags_project_root = { ".git", "package.json", "go.mod" }
-vim.g.gutentags_ctags_extra_args = {'--tag-relative=yes', '--fields=+ailmnS', }
+vim.g.gutentags_ctags_extra_args = { "--tag-relative=yes", "--fields=+ailmnS" }
 vim.g.gutentags_add_default_project_roots = false
-vim.g.gutentags_cache_dir = vim.fn.expand('~/.cache/nvim/ctags/')
+vim.g.gutentags_cache_dir = vim.fn.expand "~/.cache/nvim/ctags/"
 vim.g.gutentags_file_list_command = "fd --type file --hidden --exclude .git"
 vim.g.gutentags_ctags_exclude = {
   "*.git",

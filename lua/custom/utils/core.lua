@@ -104,8 +104,8 @@ function Get_Cmp()
 end
 
 function GetTrouble()
-  local trouble = require("trouble")
-  local symbols = trouble.statusline({
+  local trouble = require "trouble"
+  local symbols = trouble.statusline {
     mode = "lsp_document_symbols",
     groups = {},
     title = false,
@@ -114,7 +114,7 @@ function GetTrouble()
     -- The following line is needed to fix the background color
     -- Set it to the lualine section you want to use
     hl_group = "lualine_c_normal",
-  })
+  }
 
   return symbols.get
 end
@@ -237,7 +237,7 @@ M.tabufline = {
   lazyload = true,
   modules = {
     buttons = function()
-      return "%#SplitHl#%@v:lua.ClickUpdate@  %#SplitHl#%@v:lua.ClickGit@  %#SplitHl#%@v:lua.ClickRun@  %#SplitHl#%@v:lua.ClickSplit@ "
+      return "%#SplitHl#%@v:lua.ClickUpdate@  %#SplitHl#%@v:lua.ClickGit@  %#SplitHl#%@v:lua.ClickSplit@ "
     end,
     harpoon = function()
       local options = {
@@ -273,7 +273,7 @@ M.tabufline = {
       end
 
       -- TODO: Only show if Harpoon is open
-      return "%#HarpoonHl# 󰀱 " ..  table.concat(status, options.separator) .. " | "
+      return "%#HarpoonHl# 󰀱 " .. table.concat(status, options.separator) .. " | "
     end,
   },
   order = {
@@ -383,7 +383,6 @@ M.statusline = {
     end,
 
     filetype = function()
-
       if vim.o.columns < breakpoint then
         return ""
       end

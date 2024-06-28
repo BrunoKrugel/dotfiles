@@ -149,7 +149,6 @@ return {
           require("luasnip").config.set_config(opts)
           require "nvchad.configs.luasnip"
           require "configs.luasnip"
-          require "configs.autotag"
         end,
       },
       {
@@ -232,16 +231,6 @@ return {
     end,
   },
   {
-    "mcauley-penney/visual-whitespace.nvim",
-    event = "ModeChanged",
-    opts = {
-      highlight = { link = "Visual" },
-      space_char = "·",
-      tab_char = "→",
-      nl_char = "↲",
-    },
-  },
-  {
     "karb94/neoscroll.nvim",
     keys = { "<C-d>", "<C-u>" },
     config = function()
@@ -250,13 +239,6 @@ return {
         "<C-d>",
       } }
     end,
-  },
-  {
-    "razak17/tailwind-fold.nvim",
-    opts = {
-      min_chars = 50,
-    },
-    ft = { "html", "svelte", "astro", "vue", "typescriptreact" },
   },
   ----------------------------------------- enhance plugins ------------------------------------------
   {
@@ -377,13 +359,9 @@ return {
       ignored_dirs = {
         { "~/.config", exact = true },
       },
-      telescope = { -- options for the telescope extension
-        reset_prompt_after_deletion = true, -- whether to reset prompt after session deleted
-      },
       config = function(_, opts)
         vim.o.sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize"
         require("persisted").setup(opts)
-        require("telescope").load_extension "persisted"
       end,
     },
   },
@@ -436,20 +414,17 @@ return {
     "m-demare/hlargs.nvim",
     event = "BufWinEnter",
     opts = {
-      -- highlight = {
-      --   link = "@number.float",
-      -- },
       hl_priority = 200,
       extras = { named_parameters = true },
     },
   },
-  {
-    "tzachar/local-highlight.nvim",
-    event = { "CursorHold", "CursorHoldI" },
-    opts = {
-      hlgroup = "Visual",
-    },
-  },
+  -- {
+  --   "tzachar/local-highlight.nvim",
+  --   event = { "CursorHold", "CursorHoldI" },
+  --   opts = {
+  --     hlgroup = "Search",
+  --   },
+  -- },
   {
     "smoka7/hop.nvim",
     cmd = { "HopWord", "HopLine", "HopLineStart", "HopWordCurrentLine", "HopNodes" },
@@ -537,14 +512,6 @@ return {
     },
   },
   {
-    "lukas-reineke/virt-column.nvim",
-    config = function()
-      require("virt-column").setup {
-        char = "┃",
-      }
-    end,
-  },
-  {
     "MagicDuck/grug-far.nvim",
     event = "VeryLazy",
     config = function()
@@ -590,7 +557,6 @@ return {
     event = "VeryLazy",
     opts = {
       notifications = true,
-      -- aggressive_mode = true,
     },
   },
   {
@@ -619,6 +585,7 @@ return {
     },
     config = function()
       require "configs.noice"
+      dofile(vim.g.base46_cache .. "notify")
     end,
   },
   {
@@ -642,7 +609,7 @@ return {
     init = function()
       if vim.fn.has "nvim-0.10" == 1 then
         -- HACK: add workaround for native comments: https://github.com/JoosepAlviste/nvim-ts-context-commentstring/issues/109
-        --       You can remove this plugin entirely once nvim 0.11 is out.
+        -- You can remove this plugin entirely once nvim 0.11 is out.
         vim.schedule(function()
           local get_option = vim.filetype.get_option
           local context_commentstring
@@ -662,11 +629,6 @@ return {
     end,
     opts = { enable_autocmd = false },
   },
-  -- {
-  --   "chikko80/error-lens.nvim",
-  --   ft = "go",
-  --   config = true,
-  -- },
   {
     "folke/trouble.nvim",
     ft = { "qf" },
@@ -680,8 +642,7 @@ return {
               any = {
                 buf = 0, -- current buffer
                 {
-                  severity = vim.diagnostic.severity.ERROR, -- errors only
-                  -- limit to files in the current project
+                  severity = vim.diagnostic.severity.ERROR,
                   function(item)
                     return item.filename:find((vim.loop or vim.uv).cwd(), 1, true)
                   end,
@@ -772,14 +733,6 @@ return {
   --   event = "LspAttach",
   --   opts = {},
   -- },
-  -- {
-  --   "lvimuser/lsp-inlayhints.nvim",
-  --   branch = "anticonceal",
-  --   event = "LspAttach",
-  --   config = function()
-  --     require "configs.inlayhints"
-  --   end,
-  -- },
   {
     "VonHeikemen/searchbox.nvim",
     cmd = { "SearchBoxMatchAll", "SearchBoxReplace", "SearchBoxIncSearch" },
@@ -816,14 +769,14 @@ return {
       }
     end,
   },
-  {
-    "utilyre/sentiment.nvim",
-    event = "LspAttach",
-    opts = {},
-    init = function()
-      vim.g.loaded_matchparen = 1
-    end,
-  },
+  -- {
+  --   "utilyre/sentiment.nvim",
+  --   event = "LspAttach",
+  --   opts = {},
+  --   init = function()
+  --     vim.g.loaded_matchparen = 1
+  --   end,
+  -- },
   {
     "0xAdk/full_visual_line.nvim",
     keys = { "V" },
@@ -1040,32 +993,6 @@ return {
       require "configs.glance"
     end,
   },
-  -- {
-  --   "Zeioth/compiler.nvim",
-  --   cmd = { "CompilerOpen", "CompilerToggleResults" },
-  --   dependencies = {
-  --     {
-  --       "stevearc/overseer.nvim",
-  --       commit = "3047ede61cc1308069ad1184c0d447ebee92d749",
-  --       opts = {
-  --         task_list = {
-  --           direction = "bottom",
-  --           min_height = 25,
-  --           max_height = 25,
-  --           default_detail = 1,
-  --           bindings = {
-  --             ["q"] = function()
-  --               vim.cmd "OverseerClose"
-  --             end,
-  --           },
-  --         },
-  --       },
-  --     },
-  --   },
-  --   config = function(_, opts)
-  --     require("compiler").setup(opts)
-  --   end,
-  -- },
   ----------------------------------------- language plugins ------------------------------------------
   {
     "ray-x/go.nvim",
@@ -1128,7 +1055,6 @@ return {
     ft = { "go", "javascript", "typescript", "javascriptreact", "typescriptreact" },
     dependencies = {
       "nvim-neotest/neotest-go",
-      "haydenmeade/neotest-jest",
       "nvim-neotest/nvim-nio",
     },
     config = function()
@@ -1190,33 +1116,12 @@ return {
   {
     "ThePrimeagen/refactoring.nvim",
     event = "BufRead",
-    config = function()
-      require "configs.refactoring"
-    end,
-  },
-  {
-    "chrisgrieser/nvim-origami",
-    event = "BufReadPost",
     opts = {
-      -- keepFoldsAcrossSessions = true,
-      pauseFoldsOnSearch = true,
-      setupFoldKeymaps = false,
-    },
-  },
-  {
-    "malbertzard/inline-fold.nvim",
-    event = "BufReadPost",
-    opts = {
-      defaultPlaceholder = "…",
-      queries = {
-        html = {
-          { pattern = 'class="([^"]*)"', placeholder = "@" }, -- classes in html
-          { pattern = 'href="(.-)"' }, -- hrefs in html
-          { pattern = 'src="(.-)"' }, -- HTML img src attribute
-        },
-        go = {
-          { pattern = "^%s*if err != nil {", placeholder = "if err != nil .." },
-        },
+      prompt_func_return_type = {
+        go = true,
+      },
+      prompt_func_param_type = {
+        go = true,
       },
     },
   },

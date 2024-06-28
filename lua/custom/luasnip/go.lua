@@ -29,12 +29,12 @@ return {
   s("testfunc", {
     t "func Test_",
     i(1, "FunctionName"),
-    t ({"(t *testing.T) {", "\tt.Run("}),
+    t { "(t *testing.T) {", "\tt.Run(" },
     i(2, "Text"),
     t ", func(t *testing.T) {",
     t "\t",
     i(0),
-    t {"","\t})"},
+    t { "", "\t})" },
     t { "", "}" },
   }),
 

@@ -23,10 +23,10 @@ go.setup {
   },
   lsp_codelens = true,
   floaterm = {
-    posititon = 'auto',
+    posititon = "auto",
     width = 0.45,
     height = 0.98,
-    title_colors = 'dracula',
+    title_colors = "dracula",
   },
   icons = { breakpoint = "", currentpos = "" },
   gocoverage_sign = "│",

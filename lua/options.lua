@@ -109,7 +109,7 @@ if g.neovide then
   g.neovide_refresh_rate = 120
   g.neovide_remember_window_size = true
   g.neovide_cursor_antialiasing = true
-  g.neovide_input_macos_alt_is_meta = true
+  g.neovide_input_macos_option_key_is_meta = "both"
   g.neovide_input_use_logo = false
   g.neovide_padding_top = 0
   g.neovide_padding_bottom = 0
@@ -131,21 +131,20 @@ if g.neovide then
     vim.cmd "NeovideFocus"
   end)
 
+  -- https://github.com/neovide/neovide/issues/1771
+  vim.api.nvim_create_autocmd({ "BufLeave", "BufNew" }, {
+    callback = function()
+      vim.g.neovide_scroll_animation_length = 0
+      vim.g.neovide_cursor_animation_length = 0
+    end,
+  })
 
-    -- https://github.com/neovide/neovide/issues/1771
-    vim.api.nvim_create_autocmd({ "BufLeave", "BufNew" }, {
-      callback = function()
-        vim.g.neovide_scroll_animation_length = 0
-        vim.g.neovide_cursor_animation_length = 0
-      end,
-    })
-
-    vim.api.nvim_create_autocmd({ "BufEnter", "BufNew" }, {
-      callback = function()
-        vim.fn.timer_start(32, function()
-          vim.g.neovide_scroll_animation_length = 0.3
-          vim.g.neovide_cursor_animation_length = 0.08
-        end)
-      end,
-    })
+  vim.api.nvim_create_autocmd({ "BufEnter", "BufNew" }, {
+    callback = function()
+      vim.fn.timer_start(32, function()
+        vim.g.neovide_scroll_animation_length = 0.3
+        vim.g.neovide_cursor_animation_length = 0.08
+      end)
+    end,
+  })
 end

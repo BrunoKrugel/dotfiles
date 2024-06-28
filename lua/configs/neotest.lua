@@ -17,17 +17,10 @@ require("neotest").setup {
       },
       args = { "-count=1", "-coverprofile coverage.out", "-covermode=count" },
     },
-    require "neotest-jest" {
-      jestCommand = "npm test --",
-      env = { CI = true },
-      cwd = function(path)
-        return vim.fn.getcwd()
-      end,
-    },
   },
   quickfix = {
     open = function()
-      vim.cmd('Trouble qflist toggle')
+      vim.cmd "Trouble qflist toggle"
     end,
   },
   diagnostic = {
@@ -62,7 +55,7 @@ require("neotest").setup {
   status = {
     enabled = true,
     signs = true, -- Sign after function signature
-    virtual_text = false
+    virtual_text = false,
   },
   strategies = {
     integrated = {

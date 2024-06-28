@@ -214,4 +214,3 @@ noice.setup {
   },
 }
 
-dofile(vim.g.base46_cache .. "notify")

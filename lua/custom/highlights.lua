@@ -12,7 +12,6 @@ M.override = {
   LspInlayHint = { fg = "#4e5665", bg = "NONE" },
   FloatBorder = { link = "TelescopeBorder" },
 
-
   CmpDoc = { bg = "black" },
   CmpDocBorder = { fg = "black", bg = "black" },
 

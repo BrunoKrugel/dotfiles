@@ -11,7 +11,6 @@ local M = {}
 -- <kPlus> -> Keypad Plus (+)
 -- <kMinus> -> Keypad Minus (-)
 
-
 -- Launch with the current word under the cursor as the search string
 -- require('grug-far').grug_far({ prefills = { search = vim.fn.expand("<cword>") } })
 -- Launch with the current file as a flag, which limits search/replace to it

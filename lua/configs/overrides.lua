@@ -22,12 +22,12 @@ M.devicons = {
     {
       ["yml"] = {
         icon = "",
-        color = "#bbbbbb",
+        color = "#EF9C66",
         name = "Yml",
       },
       ["yaml"] = {
         icon = "",
-        color = "#bbbbbb",
+        color = "#EF9C66",
         name = "Yaml",
       },
       ["scm"] = {
@@ -185,9 +185,6 @@ M.treesitter = {
       javascript = "rainbow-tags-react",
       tsx = "rainbow-tags",
     },
-  },
-  autotag = {
-    enable = true,
   },
   tree_setter = {
     enable = true,
@@ -407,9 +404,9 @@ M.telescope = {
     },
     path_display = {
       filename_first = {
-          reverse_directories = true,
+        reverse_directories = true,
       },
-  },
+    },
     prompt_prefix = "󰼛 ",
     selection_caret = "󱞩 ",
     preview = {
@@ -456,7 +453,7 @@ M.telescope = {
     "ctags_plus",
     "luasnip",
     "fzf",
-    "import"
+    "import",
   },
   extensions = {
     fzf = {
