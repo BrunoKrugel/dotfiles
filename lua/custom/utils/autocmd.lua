@@ -326,29 +326,6 @@ autocmd({ "BufRead", "BufNewFile" }, {
   command = "lua vim.diagnostic.disable(0)",
 })
 
-vim.api.nvim_create_user_command("Http", function()
-  if vim.api.nvim_win_get_width(vim.api.nvim_get_current_win()) < 80 then
-    vim.cmd.wincmd "s"
-  else
-    vim.cmd.wincmd "v"
-  end
-  vim.cmd.edit "~/.local/share/nvim/rest.http"
-end, { desc = "Send HTTP request" })
-
-vim.api.nvim_create_augroup("RestNvim", {})
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "http",
-  callback = function()
-    vim.o.wrap = false
-
-    -- local opts = { buffer = true }
-    -- map('n', '<CR>',       '<cmd>Rest run<CR>',      opts)
-    -- map('n', '<leader>lr', '<cmd>Rest run last<CR>', opts)
-    -- map('n', '<leader>ly', '<Plug>RestNvimPreview',  opts)
-  end,
-  group = "RestNvim",
-})
-
 autocmd("BufWritePre", {
   callback = function(event)
     local client = vim.lsp.get_clients({ bufnr = event.buf, name = "eslint" })[1]
