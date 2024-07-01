@@ -27,6 +27,11 @@ return {
     enabled = true,
   },
   {
+    "BrunoKrugel/ui",
+    branch = "v2.5",
+    lazy = false,
+  },
+  {
     "lewis6991/gitsigns.nvim",
     opts = function()
       require "nvchad.configs.gitsigns"
