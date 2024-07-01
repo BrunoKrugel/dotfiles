@@ -64,8 +64,6 @@ return {
     dependencies = {
       "windwp/nvim-ts-autotag",
       "filNaj/tree-setter",
-      "echasnovski/mini.ai",
-      "piersolenski/telescope-import.nvim",
       "RRethy/nvim-treesitter-textsubjects",
       "danymat/neogen",
       "kevinhwang91/promise-async",
@@ -422,11 +420,11 @@ return {
     "tzachar/local-highlight.nvim",
     event = { "CursorHold", "CursorHoldI" },
     opts = {
-      hlgroup = "Search",
+      hlgroup = "Visual",
     },
   },
   {
-    'mistweaverco/kulala.nvim',
+    "mistweaverco/kulala.nvim",
     ft = { "http" },
   },
   {
@@ -684,13 +682,13 @@ return {
       }
     end,
   },
-  {
-    "shellRaining/hlchunk.nvim",
-    event = "BufReadPost",
-    config = function()
-      require "configs.hlchunk"
-    end,
-  },
+  -- {
+  --   "shellRaining/hlchunk.nvim",
+  --   event = "BufReadPost",
+  --   config = function()
+  --     require "configs.hlchunk"
+  --   end,
+  -- },
   {
     "kdheepak/lazygit.nvim",
     cmd = "LazyGit",
@@ -714,10 +712,18 @@ return {
   },
   {
     "akinsho/git-conflict.nvim",
-    ft = "gitcommit",
-    config = function()
-      require("git-conflict").setup()
-    end,
+    event = "VeryLazy",
+    opts = {
+      default_mappings = {
+        ours = "<leader>gco",
+        theirs = "<leader>gct",
+        none = "<leader>gc0",
+        both = "<leader>gcb",
+        next = "]c",
+        prev = "[c",
+      },
+      disable_diagnostics = true,
+    },
   },
   {
     "kevinhwang91/nvim-fundo",
@@ -834,8 +840,26 @@ return {
     },
   },
   {
-    "Fildo7525/pretty_hover",
-    opts = {},
+    "lewis6991/hover.nvim",
+    config = function()
+      require("hover").setup {
+        init = function()
+          require "hover.providers.lsp"
+          require "hover.providers.dap"
+          require "hover.providers.fold_preview"
+          require "hover.providers.diagnostic"
+        end,
+        preview_opts = {
+          border = "single",
+        },
+        preview_window = false,
+        title = true,
+        mouse_providers = {
+          "LSP",
+        },
+        mouse_delay = 1000,
+      }
+    end,
   },
   {
     "Wansmer/symbol-usage.nvim",
@@ -981,11 +1005,11 @@ return {
     },
   },
   {
-    "nvimdev/lspsaga.nvim",
+    "utilyre/barbecue.nvim",
     event = "LspAttach",
-    config = function()
-      require "configs.lspsaga"
-    end,
+    version = "*",
+    dependencies = {"SmiteshP/nvim-navic"},
+    opts = { },
   },
   {
     "artemave/workspace-diagnostics.nvim",

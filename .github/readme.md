@@ -116,16 +116,6 @@ _With [nvim-scrollbar](https://github.com/petertriho/nvim-scrollbar)_
 
 </div>
 
-## Winbar
-
-<div align="center">
-
-![navic](./img/navic.png)
-
-_With [LSPSaga](https://github.com/nvimdev/lspsaga.nvim)
-
-</div>
-
 ## Word highlight
 
 <div align="center">

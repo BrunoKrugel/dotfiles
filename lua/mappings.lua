@@ -5,6 +5,10 @@ local map = vim.keymap.set
 -- Buffer-local mapping options
 local opts = { noremap = true, silent = true, buffer = 0 }
 
+map("n", "<A-R>", function()
+  vim.cmd "GrugFar"
+end, { desc = "Toggle GrugFar" })
+
 local function md_url_paste()
   -- Get clipboard
   local clip = vim.fn.getreg "+"
@@ -101,3 +105,12 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Better Down", ex
 
 -- Better Up
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Better Up", expr = true, silent = true })
+
+map("i", "<A-BS>", "<C-w>", { desc = "Remove word" })
+
+-- LSP
+-- vim.keymap.set('n', '<MouseMove>', require("hover").hover, { desc = "Hover" })
+vim.keymap.set("n", "K", require("hover").hover, {desc = "hover.nvim"})
+vim.keymap.set("n", "gK", require("hover").hover_select, {desc = "hover.nvim (select)"})
+vim.keymap.set("n", "<C-p>", function() require("hover").hover_switch("previous") end, {desc = "hover.nvim (previous source)"})
+vim.keymap.set("n", "<C-n>", function() require("hover").hover_switch("next") end, {desc = "hover.nvim (next source)"})

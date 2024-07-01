@@ -199,11 +199,11 @@ M.development = {
       "<CMD>Format<CR>",
       " Lsp formatting",
     },
-    ["<leader>bi"] = {
+    ["K"] = {
       function()
-        require("nvim-biscuits").toggle_biscuits()
+        vim.lsp.buf.hover()
       end,
-      "󰆘 Toggle context",
+      "Hover",
     },
     ["gd"] = {
       function()
@@ -257,7 +257,7 @@ M.text = {
     ["<C-Up>"] = { "<CMD>m .-2<CR>==", "󰜸 Move line up" },
     ["<C-Down>"] = { "<CMD>m .+1<CR>==", "󰜯 Move line down" },
     -- Renamer
-    ["<C-R>"] = { "<CMD>:MurenToggle<CR>", "󱝪 Toggle Search" },
+    -- ["<C-R>"] = { "<CMD>:MurenToggle<CR>", "󱝪 Toggle Search" },
     ["<leader>sp"] = { "<CMD>:TSJToggle<CR>", "󰯌 Toggle split/join" },
     ["<A-d>"] = { "<CMD>:MCstart<CR>", "Multi cursor" },
     ["<leader>ra"] = {
@@ -701,7 +701,7 @@ M.hop = {
 M.searchbox = {
   n = {
     ["<C-F>"] = { "<CMD> SearchBoxMatchAll clear_matches=true<CR>", "󱘟 Search matching all" },
-    ["<A-R>"] = { "<CMD> SearchBoxReplace confirm=menu<CR>", " Replace" },
+    -- ["<A-R>"] = { "<CMD> SearchBoxReplace confirm=menu<CR>", " Replace" },
   },
 }
 
@@ -713,32 +713,12 @@ M.lspsaga = {
       end,
       "󰅱 Code Action",
     },
-    ["gf"] = {
-      function()
-        vim.cmd "Lspsaga lsp_finder"
-      end,
-      " Go to definition",
-    },
-    ["gt"] = {
-      "<CMD>Lspsaga goto_definition<CR>",
-      " Go to definition",
-    },
-    ["<leader>lp"] = {
-      "<CMD>Lspsaga peek_definition<CR>",
-      " Peek definition",
-    },
     ["<leader>k"] = {
-      -- "<CMD>Lspsaga hover_doc<CR>",
-      function()
-        require("pretty_hover").hover()
-      end,
+      require("hover").hover,
       "󱙼 Hover lsp",
     },
-    ["<leader>o"] = { "<CMD>Lspsaga outline<CR>", " Show Outline" },
     --  LSP
     ["gr"] = { "<CMD>Telescope lsp_references<CR>", " Lsp references" },
-    ["[d"] = { "<CMD>Lspsaga diagnostic_jump_prev<CR>", " Prev Diagnostic" },
-    ["]d"] = { "<CMD>Lspsaga diagnostic_jump_next<CR>", " Next Diagnostic" },
     ["<leader>qf"] = {
       function()
         vim.diagnostic.setloclist()

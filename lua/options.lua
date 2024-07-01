@@ -17,6 +17,8 @@ opt.backspace = "indent,eol,start" --- Making sure backspace works
 opt.laststatus = 3 -- global statusline
 opt.showmode = false
 
+o.mousemoveevent = true
+
 opt.clipboard = "unnamedplus"
 opt.cursorline = true
 opt.cursorlineopt = "number"
