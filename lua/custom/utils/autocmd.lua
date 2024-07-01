@@ -414,6 +414,22 @@ autocmd("BufHidden", {
   end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "nvcheatsheet",
+    "dapui_watches",
+    "dap-repl",
+    "dapui_console",
+    "dapui_stacks",
+    "dapui_breakpoints",
+    "dapui_scopes",
+  },
+  callback = function()
+    require("ufo").detach()
+    vim.opt_local.foldenable = false
+  end
+})
+
 autocmd({ "BufEnter", "BufNewFile" }, {
   callback = function()
     if vim.bo.filetype == "markdown" then
