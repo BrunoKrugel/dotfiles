@@ -396,7 +396,7 @@ M.statusline = {
         for _, client in ipairs(vim.lsp.get_clients()) do
           if
             client.attached_buffers[vim.api.nvim_get_current_buf()]
-            and (client.name ~= "null-ls" and client.name ~= "copilot")
+            and (client.name ~= "null-ls" and client.name ~= "copilot" and client.name ~= "GitHub Copilot")
           then
             local copilot = "%#CopilotHl#" .. require("copilot_status").status_string() .. " "
             local lsp_name = client.name

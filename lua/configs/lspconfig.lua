@@ -25,14 +25,22 @@ if ok then
   }
 end
 
+---gopls_organize_imports will organize imports for the provided buffer
+---@param client vim.lsp.Client gopls instance
+---@param bufnr number buffer to organize imports for
 local function organize_imports(client, bufnr)
-  local params = vim.lsp.util.make_range_params(nil, vim.lsp.util._get_offset_encoding())
+
+  if client.name ~= "gopls" then
+    return
+  end
+
+  local params = vim.lsp.util.make_range_params()
   params.context = { only = { "source.organizeImports" } }
 
   local resp = client.request_sync("textDocument/codeAction", params, 3000, bufnr)
   for _, r in pairs(resp and resp.result or {}) do
     if r.edit then
-      vim.lsp.util.apply_workspace_edit(r.edit, vim.lsp.util._get_offset_encoding())
+      vim.lsp.util.apply_workspace_edit(r.edit, client.offset_encoding or "utf-16")
     else
       vim.lsp.buf.execute_command(r.command)
     end
@@ -69,13 +77,13 @@ local custom_on_attach = function(client, bufnr)
   require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
 
   -- Go
-  vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = "*.go",
-    callback = function()
-      organize_imports(client, bufnr)
-      vim.lsp.buf.format { async = false }
-    end,
-  })
+  -- vim.api.nvim_create_autocmd("BufWritePre", {
+  --   pattern = "*.go",
+  --   callback = function()
+  --     organize_imports(client, bufnr)
+  --     vim.lsp.buf.format { async = false }
+  --   end,
+  -- })
 end
 
 local filter_list = function(list, predicate)
