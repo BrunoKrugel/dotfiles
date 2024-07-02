@@ -19,6 +19,19 @@ return {
         end,
       },
       "williamboman/mason-lspconfig.nvim",
+      {
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        opts = {
+          auto_update = true,
+          run_on_start = true,
+          ensure_installed = {
+            "impl",
+          },
+        },
+        cmd = "MasonToolsUpdate",
+        event = "BufReadPre",
+        dependencies = "williamboman/mason.nvim",
+      },
     },
     config = function() end,
   },
@@ -1103,6 +1116,9 @@ return {
   },
   {
     "mfussenegger/nvim-lint",
+    dependencies = {
+      "rshkarin/mason-nvim-lint",
+    },
     event = "BufWritePre",
     config = function()
       require "configs.linter"
