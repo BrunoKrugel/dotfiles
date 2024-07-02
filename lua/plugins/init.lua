@@ -1026,7 +1026,7 @@ return {
       "typescriptreact",
     },
     dependencies = {
-      "OlegGulevskyy/better-ts-errors.nvim",
+      "dmmulroy/ts-error-translator.nvim",
     },
     config = function()
       require "configs.ts"
@@ -1069,6 +1069,25 @@ return {
     config = function()
       require "configs.neotest"
     end,
+  },
+  {
+    "andythigpen/nvim-coverage",
+    keys = {
+      { "<leader>tc", "<cmd>CoverageToggle<cr>", desc = "Coverage in gutter" },
+      { "<leader>tC", "<cmd>CoverageLoad<cr><cmd>CoverageSummary<cr>", desc = "Coverage summary" },
+    },
+    opts = {
+      auto_reload = true,
+      lang = {
+        go = {
+          coverage_file = vim.fn.getcwd() .. "/coverage.out",
+        },
+      },
+      signs = {
+        covered = { hl = "CoverageCovered", text = "▎" },
+        uncovered = { hl = "CoverageUncovered", text = "▎" },
+      },
+    },
   },
   {
     "toppair/peek.nvim",

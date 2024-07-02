@@ -8,7 +8,13 @@ local conf = require("telescope.config").values
 local builtin = require "telescope.builtin"
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
-local capabilities = require("nvchad.configs.lspconfig").capabilities
+
+local capabilities = vim.tbl_deep_extend(
+  "force",
+  vim.lsp.protocol.make_client_capabilities(),
+  require("cmp_nvim_lsp").default_capabilities(),
+  require("nvchad.configs.lspconfig").capabilities
+)
 
 local lspconfig = require "lspconfig"
 
@@ -65,9 +71,15 @@ local custom_on_attach = function(client, bufnr)
   --   vim.lsp.inlay_hint(bufnr, true)
   -- end
 
-  if client.supports_method "textDocument/codeLens" then
-    require("virtualtypes").on_attach(client, bufnr)
-    attach_codelens(bufnr)
+  if client.server_capabilities.textDocument then
+    if client.server_capabilities.textDocument.codeLens then
+      require("virtualtypes").on_attach(client, bufnr)
+      attach_codelens(client,bufnr)
+    end
+  end
+
+  if client.server_capabilities.signatureHelpProvider then
+    vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
   end
 
   -- Code lens
@@ -217,6 +229,21 @@ local servers = {
   "vuels",
 }
 
+vim.lsp.handlers["textDocument/hover"] = require("noice").hover
+vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
+  local ts_lsp = { "tsserver", "angularls", "volar" }
+  local clients = vim.lsp.get_clients({ id = ctx.client_id })
+  if vim.tbl_contains(ts_lsp, clients[1].name) then
+    local filtered_result = {
+      diagnostics = vim.tbl_filter(function(d)
+        return d.severity == 1
+      end, result.diagnostics),
+    }
+    require("ts-error-translator").translate_diagnostics(err, filtered_result, ctx, config)
+  end
+  vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx, config)
+end
+
 require("mason-lspconfig").setup {
   ensure_installed = servers,
   automatic_installation = true,
@@ -296,6 +323,7 @@ require("mason-lspconfig").setup_handlers {
         gopls = {
           buildFlags = { "-tags=wireinject" },
           usePlaceholders = true,
+          directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
           completeUnimported = true,
           vulncheck = "Imports",
           gofumpt = true,
