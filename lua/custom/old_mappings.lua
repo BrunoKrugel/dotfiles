@@ -260,12 +260,6 @@ M.text = {
     -- ["<C-R>"] = { "<CMD>:MurenToggle<CR>", "󱝪 Toggle Search" },
     ["<leader>sp"] = { "<CMD>:TSJToggle<CR>", "󰯌 Toggle split/join" },
     ["<A-d>"] = { "<CMD>:MCstart<CR>", "Multi cursor" },
-    ["<leader>ra"] = {
-      function()
-        require("nvchad.renamer").open()
-      end,
-      "󰑕 LSP rename",
-    },
     ["dd"] = {
       function()
         if vim.api.nvim_get_current_line():match "^%s*$" then
