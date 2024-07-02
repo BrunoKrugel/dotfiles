@@ -268,8 +268,8 @@ M.nvimtree = {
   hijack_unnamed_buffer_when_opening = true,
   hijack_cursor = true,
   diagnostics = {
-    enable = false,
-    show_on_dirs = false,
+    enable = true,
+    show_on_dirs = true,
     debounce_delay = 50,
     icons = {
       hint = "",
@@ -363,6 +363,20 @@ M.nvimtree = {
 local telescope = require "telescope"
 local actions = require "telescope.actions"
 
+local focus_preview = function(prompt_bufnr)
+  local action_state = require "telescope.actions.state"
+  local picker = action_state.get_current_picker(prompt_bufnr)
+  local prompt_win = picker.prompt_win
+  local previewer = picker.previewer
+  local winid = previewer.state.winid
+  local bufnr = previewer.state.bufnr
+  vim.keymap.set("n", "<Tab>", function()
+    vim.cmd(string.format("noautocmd lua vim.api.nvim_set_current_win(%s)", prompt_win))
+  end, { buffer = bufnr })
+  vim.cmd(string.format("noautocmd lua vim.api.nvim_set_current_win(%s)", winid))
+  -- api.nvim_set_current_win(winid)
+end
+
 local select_one_or_multi = function(prompt_bufnr)
   local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
   local multi = picker:get_multi_selection()
@@ -399,7 +413,8 @@ M.telescope = {
         ["<C-k>"] = actions.move_selection_previous, -- move to prev result
         ["<C-j>"] = actions.move_selection_next, -- move to next result
         ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-        ["<cr>"] = select_one_or_multi,
+        ["<CR>"] = select_one_or_multi,
+        ["<Tab>"] = focus_preview,
       },
     },
     path_display = {
