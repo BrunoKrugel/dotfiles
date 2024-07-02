@@ -144,15 +144,14 @@ M.folder = {
   n = {
     ["<leader>a"] = {
       function()
-        require("fold-cycle").toggle_all()
+        local foldclosed = vim.fn.foldclosed(vim.fn.line("."))
+        if foldclosed == -1 then
+          vim.cmd("silent! normal! zc")
+        else
+          vim.cmd("silent! normal! zo")
+        end
       end,
       "󰴋 Toggle folder",
-    },
-    ["<leader>p"] = {
-      function()
-        require("fold-preview").toggle_preview()
-      end,
-      "󱞊 Fold preview",
     },
   },
 }

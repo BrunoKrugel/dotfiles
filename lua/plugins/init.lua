@@ -819,19 +819,6 @@ return {
     opts = {},
   },
   {
-    "jghauser/fold-cycle.nvim",
-    opts = {},
-  },
-  {
-    "anuvyklack/fold-preview.nvim",
-    dependencies = {
-      "anuvyklack/keymap-amend.nvim",
-    },
-    opts = {
-      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-    },
-  },
-  {
     "lewis6991/hover.nvim",
     config = function()
       require("hover").setup {
