@@ -59,10 +59,4 @@ vim.fn.sign_define(
   { text = "", numhl = "DapBreakpointRejected", texthl = "DapBreakpointRejected" }
 )
 
-vim.filetype.add({
-  extension = {
-    ['http'] = 'http',
-  },
-})
-
 vim.highlight.priorities.semantic_tokens = 95 -- Or any number lower than 100, treesitter's priority level
