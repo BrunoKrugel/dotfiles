@@ -706,7 +706,7 @@ return {
   },
   {
     "b0o/schemastore.nvim",
-    event = "VeryLazy",
+    ft = { "json", "yaml", "yml" },
   },
   {
     "nvim-telescope/telescope-ui-select.nvim",
@@ -726,13 +726,13 @@ return {
       }
     end,
   },
-  -- {
-  --   "shellRaining/hlchunk.nvim",
-  --   event = "BufReadPost",
-  --   config = function()
-  --     require "configs.hlchunk"
-  --   end,
-  -- },
+  {
+    "shellRaining/hlchunk.nvim",
+    event = "BufReadPost",
+    config = function()
+      require "configs.hlchunk"
+    end,
+  },
   {
     "kdheepak/lazygit.nvim",
     cmd = "LazyGit",
@@ -1124,10 +1124,7 @@ return {
   },
   {
     "andythigpen/nvim-coverage",
-    keys = {
-      { "<leader>tc", "<cmd>CoverageToggle<cr>", desc = "Coverage in gutter" },
-      { "<leader>tC", "<cmd>CoverageLoad<cr><cmd>CoverageSummary<cr>", desc = "Coverage summary" },
-    },
+    ft = { "go", "javascript", "typescript", "javascriptreact", "typescriptreact" },
     opts = {
       auto_reload = true,
       lang = {
@@ -1136,8 +1133,8 @@ return {
         },
       },
       signs = {
-        covered = { hl = "CoverageCovered", text = "▎" },
-        uncovered = { hl = "CoverageUncovered", text = "▎" },
+        covered = { hl = "CoverageCovered", text = "│" },
+        uncovered = { hl = "CoverageUncovered", text = "│" },
       },
     },
   },
