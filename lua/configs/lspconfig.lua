@@ -35,7 +35,6 @@ end
 ---@param client vim.lsp.Client gopls instance
 ---@param bufnr number buffer to organize imports for
 local function organize_imports(client, bufnr)
-
   if client.name ~= "gopls" then
     return
   end
@@ -74,7 +73,7 @@ local custom_on_attach = function(client, bufnr)
   if client.server_capabilities.textDocument then
     if client.server_capabilities.textDocument.codeLens then
       require("virtualtypes").on_attach(client, bufnr)
-      attach_codelens(client,bufnr)
+      attach_codelens(client, bufnr)
     end
   end
 
@@ -227,12 +226,13 @@ local servers = {
   "dockerls",
   "lua_ls",
   "vuels",
+  "yamlls",
 }
 
 vim.lsp.handlers["textDocument/hover"] = require("noice").hover
 vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
   local ts_lsp = { "tsserver", "angularls", "volar" }
-  local clients = vim.lsp.get_clients({ id = ctx.client_id })
+  local clients = vim.lsp.get_clients { id = ctx.client_id }
   if vim.tbl_contains(ts_lsp, clients[1].name) then
     local filtered_result = {
       diagnostics = vim.tbl_filter(function(d)
@@ -363,18 +363,39 @@ require("mason-lspconfig").setup_handlers {
 
   ["yamlls"] = function()
     return {
-      on_attach = custom_on_attach,
-      capabilities = capabilities,
-      settings = {
-        yaml = {
-          schemaStore = {
-            url = vim.env.SCHEMA_NEXUS,
-            enable = true,
-          },
-          schemas = {
-            [vim.env.SCHEMA_BACKEND] = ".gitlab-ci.yml",
-            [vim.env.SCHEMA_DOCKER] = ".gitlab-ci.yml",
-            [vim.env.SCHEMA_HELM] = ".gitlab-ci.yml",
+      lspconfig["yamlls"].setup {
+        on_attach = custom_on_attach,
+        capabilities = capabilities,
+        settings = {
+          yaml = {
+            schemaStore = {
+              url = vim.env.SCHEMA_NEXUS,
+              enable = true,
+            },
+            schemas = {
+              [vim.env.SCHEMA_BACKEND] = ".gitlab-ci.yml",
+              [vim.env.SCHEMA_DOCKER] = ".gitlab-ci.yml",
+              [vim.env.SCHEMA_HELM] = ".gitlab-ci.yml",
+            },
+            -- schemas = require("schemastore").yaml.schemas {
+            --   extra = {
+            --     {
+            --       description = "My custom backend JSON schema",
+            --       fileMatch = ".gitlab-ci.yml",
+            --       url = vim.env.SCHEMA_BACKEND,
+            --     },
+            --     {
+            --       description = "My custom docker JSON schema",
+            --       fileMatch = ".gitlab-ci.yml",
+            --       url = vim.env.SCHEMA_DOCKER,
+            --     },
+            --     {
+            --       description = "My custom helm JSON schema",
+            --       fileMatch = ".gitlab-ci.yml",
+            --       url = vim.env.SCHEMA_HELM,
+            --     },
+            --   },
+            -- },
           },
         },
       },
@@ -383,11 +404,13 @@ require("mason-lspconfig").setup_handlers {
 
   ["astro"] = function()
     return {
-      on_attach = custom_on_attach,
-      capabilities = capabilities,
-      init_options = {
-        typescript = {
-          tsdk = "node_modules/typescript/lib",
+      lspconfig["astro"].setup {
+        on_attach = custom_on_attach,
+        capabilities = capabilities,
+        init_options = {
+          typescript = {
+            tsdk = "node_modules/typescript/lib",
+          },
         },
       },
     }
