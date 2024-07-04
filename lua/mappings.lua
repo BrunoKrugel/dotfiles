@@ -25,7 +25,7 @@ local function md_url_paste()
   vim.api.nvim_buf_set_text(0, stop_line, stop_col + 1, stop_line, stop_col + 1, { "](" .. clip .. ")" })
   vim.api.nvim_buf_set_text(0, start_line, start_col, start_line, start_col, { "[" })
 end
-vim.keymap.set("v", "<leader>p", md_url_paste, opts)
+map("v", "<leader>p", md_url_paste, opts)
 
 map("n", "<leader>pp", function()
   md_url_paste()
@@ -101,10 +101,10 @@ map({ "n", "i" }, "<C-j>", function()
 end, { desc = "Split down" })
 
 -- Better Down
-vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Better Down", expr = true, silent = true })
+map("n", "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Better Down", expr = true, silent = true })
 
 -- Better Up
-vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Better Up", expr = true, silent = true })
+map("n", "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Better Up", expr = true, silent = true })
 
 map("i", "<A-BS>", "<C-w>", { desc = "Remove word" })
 
