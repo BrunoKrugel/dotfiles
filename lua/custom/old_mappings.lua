@@ -144,11 +144,11 @@ M.folder = {
   n = {
     ["<leader>a"] = {
       function()
-        local foldclosed = vim.fn.foldclosed(vim.fn.line("."))
+        local foldclosed = vim.fn.foldclosed(vim.fn.line ".")
         if foldclosed == -1 then
-          vim.cmd("silent! normal! zc")
+          vim.cmd "silent! normal! zc"
         else
-          vim.cmd("silent! normal! zo")
+          vim.cmd "silent! normal! zo"
         end
       end,
       "󰴋 Toggle folder",
@@ -686,7 +686,7 @@ M.hop = {
   n = {
     ["<leader><leader>w"] = { "<CMD> HopWord <CR>", "󰸱 Hint all words" },
     ["<leader><leader>t"] = { "<CMD> HopNodes <CR>", " Hint Tree" },
-    ["<leader><leader>c"] = { "<CMD> HopLineStart<CR>", "󰕭 Hint Columns" },
+    ["<leader><leader>o"] = { "<CMD> HopLineStart<CR>", "󰕭 Hint Columns" },
     ["<leader><leader>l"] = { "<CMD> HopWordCurrentLine<CR>", "󰗉 Hint Line" },
   },
 }
