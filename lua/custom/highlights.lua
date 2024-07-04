@@ -107,6 +107,9 @@ M.add = {
   NvimTreeOpenedFile = { fg = "green", bold = true },
   NvimTreeFileIcon = { fg = "purple" },
 
+  CoverageCovered = { fg = "green" },
+  CoverageUncovered = { fg = "red" },
+
   -- Cmp Highlights
   CmpItemKindCodeium = { fg = "green" },
   CmpItemKindTabNine = { fg = "pink" },
