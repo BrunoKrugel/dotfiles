@@ -444,6 +444,58 @@ return {
   {
     "mistweaverco/kulala.nvim",
     ft = { "http" },
+    opts = {
+      inlay = {
+        loading_icon = "",
+        done_icon = "",
+      },
+    },
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    opts = {
+      scope = { enabled = false },
+    },
+  },
+  {
+    "lukas-reineke/headlines.nvim",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = function()
+      -- -- Define custom highlight groups using Vimscript
+      -- -- Theme below is Eldritch
+      vim.cmd [[highlight Headline1 guibg=#f1fc79  guifg=#323449]]
+      vim.cmd [[highlight Headline2 guibg=#37f499 guifg=#323449]]
+      vim.cmd [[highlight Headline3 guibg=#04d1f9 guifg=#323449]]
+      vim.cmd [[highlight Headline4 guibg=#f16c75 guifg=#323449]]
+      vim.cmd [[highlight Headline5 guibg=#7081d0 guifg=#323449]]
+      vim.cmd [[highlight Headline6 guibg=#f265b5 guifg=#323449]]
+
+      -- Defines the codeblock background color to something darker
+      vim.cmd [[highlight CodeBlock guibg=#09090d]]
+      -- When you add a line of dashes with --- this specifies the color, I'm not
+      -- adding a "guibg" but you can do so if you want to add a background color
+      vim.cmd [[highlight Dash guifg=white]]
+      require("headlines").setup {
+        markdown = {
+          fat_headlines = false,
+          fat_headline_upper_string = "▄",
+          fat_headline_lower_string = "▀",
+          headline_highlights = {
+            "Headline1",
+            "Headline2",
+            "Headline3",
+            "Headline4",
+            "Headline5",
+            "Headline6",
+          },
+
+          bullets = { "󰎤", "󰎧", "󰎪", "󰎭", "󰎱", "󰎳" },
+          -- bullets = { "󰎤", "󰎧", "󰎪", "󰎮", "󰎰", "󰎵" },
+          -- bullets = { "◉", "○", "✸", "✿" },
+        },
+      }
+    end,
   },
   {
     "smoka7/hop.nvim",
