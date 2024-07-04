@@ -114,7 +114,7 @@ create_cmd("Format", function(args)
     timeout_ms = 1000,
     async = false,
     quiet = false,
-    lsp_fallback = true,
+    lsp_format = "fallback",
     range = range,
   }
   require("conform").format(opts)
