@@ -6,6 +6,8 @@ end
 
 hlchunk.setup {
   chunk = {
+    duration = 20,
+    delay = 10,
     enable = true,
     notify = false,
     support_filetypes = {
@@ -56,7 +58,7 @@ hlchunk.setup {
   },
 
   line_num = {
-    enable = true,
+    enable = false,
     support_filetypes = {
       "...",
     },
