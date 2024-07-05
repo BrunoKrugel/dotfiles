@@ -123,6 +123,18 @@ map("n", "<C-n>", function()
   require("hover").hover_switch "next"
 end, { desc = "hover.nvim (next source)" })
 
+vim.api.nvim_set_keymap("n", "<C-ScrollWheelUp>", "<C-i>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-ScrollWheelDown>", "<C-o>", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap(
+  "n",
+  "<2-LeftMouse>",
+  '<LeftMouse><cmd>lua vim.lsp.buf.hover({border = "single"})<CR>',
+  { noremap = true, silent = true }
+)
+
+-- vim.api.nvim_set_keymap('n', '<RightMouse>', '<LeftMouse><cmd>lua vim.lsp.buf.definition()<CR>', { noremap=true, silent=true })
+
 -- use gh to move to the beginning of the line in normal mode
 -- use gl to move to the end of the line in normal mode
 map({ "n", "v" }, "gh", "^", { desc = "[P]Go to the beginning line" })
