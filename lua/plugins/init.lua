@@ -374,14 +374,12 @@ return {
       autoload = true, -- automatically load the session for the cwd on Neovim startup
       default_branch = "main",
       follow_cwd = true,
-      on_autoload_no_session = function()
-        vim.notify "No existing session to load."
-      end,
+      on_autoload_no_session = nil,
       ignored_dirs = {
         { "~/.config", exact = true },
       },
       config = function(_, opts)
-        vim.o.sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize"
+        vim.o.sessionoptions = "buffers,curdir,globals,tabpages,winpos,winsize"
         require("persisted").setup(opts)
       end,
     },
@@ -649,7 +647,7 @@ return {
     dependencies = "neovim/nvim-lspconfig",
     event = "VeryLazy",
     opts = {
-      notifications = true,
+      notifications = false,
     },
   },
   {
