@@ -703,6 +703,18 @@ return {
     config = function()
       require("trouble").setup {
         modes = {
+          project_diagnostics = {
+            mode = "diagnostics",
+            filter = {
+              any = {
+                {
+                  function(item)
+                    return item.filename:find(vim.fn.getcwd(), 1, true)
+                  end,
+                },
+              },
+            },
+          },
           mydiags = {
             mode = "diagnostics", -- inherit from diagnostics mode
             filter = {

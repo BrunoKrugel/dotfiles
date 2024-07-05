@@ -66,6 +66,22 @@ end
 local custom_on_attach = function(client, bufnr)
   on_attach(client, bufnr)
 
+  -- if client.name == "gopls" then
+  --   -- workaround for gopls not supporting semanticTokensProvider
+  --   -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
+  --   if not client.server_capabilities.semanticTokensProvider then
+  --     local semantic = client.config.capabilities.textDocument.semanticTokens
+  --     client.server_capabilities.semanticTokensProvider = {
+  --       full = true,
+  --       legend = {
+  --         tokenTypes = semantic.tokenTypes,
+  --         tokenModifiers = semantic.tokenModifiers,
+  --       },
+  --       range = true,
+  --     }
+  --   end
+  -- end
+
   -- if client.server_capabilities.inlayHintProvider then
   --   vim.lsp.inlay_hint(bufnr, true)
   -- end
