@@ -227,6 +227,7 @@ local servers = {
   "lua_ls",
   "vuels",
   "yamlls",
+  "terraformls",
 }
 
 vim.lsp.handlers["textDocument/hover"] = require("noice").hover
@@ -274,6 +275,13 @@ require("mason-lspconfig").setup_handlers {
           validate = { enable = true },
         },
       },
+    }
+  end,
+
+  ["terraformls"] = function()
+    lspconfig["terraformls"].setup {
+      on_attach = custom_on_attach,
+      capabilities = capabilities,
     }
   end,
 

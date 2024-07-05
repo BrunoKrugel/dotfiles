@@ -21,7 +21,6 @@ M.ui = {
   },
 
   lsp = {
-    semantic_tokens = false,
     signature = false,
   },
 

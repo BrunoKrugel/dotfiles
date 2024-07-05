@@ -31,7 +31,7 @@ map("n", "<leader>pp", function()
   md_url_paste()
 end, { desc = "Paste in URL" })
 
-map({ "n", "t" }, "<M-g>", function()
+map({ "n", "t" }, "<A-g>", function()
   require("nvchad.term").toggle {
     cmd = "lazygit",
     pos = "float",
@@ -43,6 +43,9 @@ map({ "n", "t" }, "<M-g>", function()
     clear_cmd = true,
   }
 end, { desc = "Toggle Lazygit" })
+
+map("n", "<leader>tc", "<cmd>CoverageToggle<cr>", { desc = "Coverage in gutter" })
+map("n", "<leader><leader>c", "<cmd>CoverageLoad<cr><cmd>CoverageSummary<cr>", { desc = "Coverage summary" })
 
 -- GitSigns
 map("n", "]c", "<cmd>Gitsigns next_hunk<CR>", { desc = "Next hunk" })
@@ -109,8 +112,36 @@ map("n", "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Better Up", expr = true, si
 map("i", "<A-BS>", "<C-w>", { desc = "Remove word" })
 
 -- LSP
--- vim.keymap.set('n', '<MouseMove>', require("hover").hover, { desc = "Hover" })
-vim.keymap.set("n", "K", require("hover").hover, {desc = "hover.nvim"})
-vim.keymap.set("n", "gK", require("hover").hover_select, {desc = "hover.nvim (select)"})
-vim.keymap.set("n", "<C-p>", function() require("hover").hover_switch("previous") end, {desc = "hover.nvim (previous source)"})
-vim.keymap.set("n", "<C-n>", function() require("hover").hover_switch("next") end, {desc = "hover.nvim (next source)"})
+-- map('n', '<MouseMove>', require("hover").hover, { desc = "Hover" })
+map("n", "K", require("hover").hover, { desc = "hover.nvim" })
+map("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
+map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+map("n", "<C-p>", function()
+  require("hover").hover_switch "previous"
+end, { desc = "hover.nvim (previous source)" })
+map("n", "<C-n>", function()
+  require("hover").hover_switch "next"
+end, { desc = "hover.nvim (next source)" })
+
+-- use gh to move to the beginning of the line in normal mode
+-- use gl to move to the end of the line in normal mode
+map({ "n", "v" }, "gh", "^", { desc = "[P]Go to the beginning line" })
+map({ "n", "v" }, "gl", "$", { desc = "[P]go to the end of the line" })
+-- In visual mode, after going to the end of the line, come back 1 character
+map("v", "gl", "$h", { desc = "[P]Go to the end of the line" })
+
+-- Replaces the current word with the same word in uppercase, globally
+vim.keymap.set(
+  "n",
+  "<leader>sU",
+  [[:%s/\<<C-r><C-w>\>/<C-r>=toupper(expand('<cword>'))<CR>/gI<Left><Left><Left>]],
+  { desc = "[P]GLOBALLY replace word I'm on with UPPERCASE" }
+)
+
+-- Replaces the current word with the same word in lowercase, globally
+vim.keymap.set(
+  "n",
+  "<leader>sL",
+  [[:%s/\<<C-r><C-w>\>/<C-r>=tolower(expand('<cword>'))<CR>/gI<Left><Left><Left>]],
+  { desc = "[P]GLOBALLY replace word I'm on with lowercase" }
+)

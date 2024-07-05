@@ -78,6 +78,13 @@ return {
     },
   },
   {
+    "kevinhwang91/nvim-ufo",
+    event = "VeryLazy",
+    config = function()
+      require "configs.ufo"
+    end,
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       "windwp/nvim-ts-autotag",
@@ -85,12 +92,6 @@ return {
       "RRethy/nvim-treesitter-textsubjects",
       "danymat/neogen",
       "kevinhwang91/promise-async",
-      {
-        "kevinhwang91/nvim-ufo",
-        config = function()
-          require "configs.ufo"
-        end,
-      },
       {
         "folke/ts-comments.nvim",
         opts = {},
@@ -537,13 +538,29 @@ return {
     dependencies = {
       {
         "theHamsta/nvim-dap-virtual-text",
-        opts = {
-          highlight_changed_variables = true,
-          virt_text_pos = "eol",
-          highlight_new_as_changed = true,
-          show_stop_reason = true,
-          commented = true,
-        },
+        config = function()
+          require("nvim-dap-virtual-text").setup {
+            highlight_changed_variables = true,
+            virt_text_pos = "eol",
+            highlight_new_as_changed = true,
+            show_stop_reason = true,
+            commented = true,
+            -- Hides tokens, secrets, and other sensitive information
+            -- display_callback = function(variable)
+            --   local name = string.lower(variable.name)
+            --   local value = string.lower(variable.value)
+            --   if name:match "secret" or name:match "api" or value:match "secret" or value:match "api" then
+            --     return "*****"
+            --   end
+
+            --   if #variable.value > 15 then
+            --     return " " .. string.sub(variable.value, 1, 15) .. "... "
+            --   end
+
+            --   return " " .. variable.value
+            -- end,
+          }
+        end,
       },
       "ofirgall/goto-breakpoints.nvim",
       {
