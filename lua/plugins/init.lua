@@ -78,13 +78,6 @@ return {
     },
   },
   {
-    "kevinhwang91/nvim-ufo",
-    event = "VeryLazy",
-    config = function()
-      require "configs.ufo"
-    end,
-  },
-  {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       "windwp/nvim-ts-autotag",
@@ -92,6 +85,12 @@ return {
       "RRethy/nvim-treesitter-textsubjects",
       "danymat/neogen",
       "kevinhwang91/promise-async",
+      {
+        "kevinhwang91/nvim-ufo",
+        config = function()
+          require "configs.ufo"
+        end,
+      },
       {
         "folke/ts-comments.nvim",
         opts = {},
@@ -363,26 +362,34 @@ return {
     },
   },
   {
-    "olimorris/persisted.nvim",
-    event = "VimEnter",
-    opts = {
-      save_dir = vim.fn.expand(vim.fn.stdpath "data" .. "/sessions/"), -- directory where session files are saved
-      silent = true, -- silent nvim message when sourcing session file
-      use_git_branch = true, -- create session files based on the branch of the git enabled repository
-      autosave = true, -- automatically save session files when exiting Neovim
-      should_autosave = nil, -- function to determine if a session should be autosaved
-      autoload = true, -- automatically load the session for the cwd on Neovim startup
-      default_branch = "main",
-      follow_cwd = true,
-      on_autoload_no_session = nil,
-      ignored_dirs = {
-        { "~/.config", exact = true },
-      },
-      config = function(_, opts)
-        vim.o.sessionoptions = "buffers,curdir,globals,tabpages,winpos,winsize"
-        require("persisted").setup(opts)
-      end,
-    },
+    "stevearc/resession.nvim",
+    lazy = false,
+    config = function()
+      local resession = require "resession"
+      resession.setup {}
+      local function get_session_name()
+        local name = vim.fn.getcwd()
+        local branch = vim.trim(vim.fn.system "git branch --show-current")
+        if vim.v.shell_error == 0 then
+          return name .. branch
+        else
+          return name
+        end
+      end
+      vim.api.nvim_create_autocmd("VimEnter", {
+        callback = function()
+          -- Only load the session if nvim was started with no args
+          if vim.fn.argc(-1) == 0 then
+            resession.load(get_session_name(), { dir = "dirsession", silence_errors = true })
+          end
+        end,
+      })
+      vim.api.nvim_create_autocmd("VimLeavePre", {
+        callback = function()
+          resession.save(get_session_name(), { dir = "dirsession", notify = false })
+        end,
+      })
+    end,
   },
   {
     "ThePrimeagen/harpoon",
@@ -395,6 +402,7 @@ return {
     event = {
       "BufReadPre /users/bruno.krugel/Library/Mobile Documents/iCloud~md~obsidian/Documents/Annotation/**.md",
     },
+    dependencies = "OXY2DEV/markview.nvim",
     config = function()
       require("obsidian").setup {
         dir = "/users/bruno.krugel/Library/Mobile Documents/iCloud~md~obsidian/Documents/Annotation",
@@ -982,8 +990,8 @@ return {
         { ft = "undotree", title = "Undo Tree" },
         { ft = "dapui_scopes", title = " Scopes" },
         { ft = "dapui_watches", title = " Watches" },
-        { ft = "dapui_breakpoints", title = " Breakpoints" },
         { ft = "dapui_stacks", title = " Stacks" },
+        { ft = "dapui_breakpoints", title = " Breakpoints" },
         {
           ft = "diff",
           title = " Diffs",

@@ -52,7 +52,7 @@ local function organize_imports(client, bufnr)
   end
 end
 
-local function attach_codelens(bufnr)
+local function attach_codelens(client, bufnr)
   local augroup = vim.api.nvim_create_augroup("Lsp", {})
   vim.api.nvim_create_autocmd({ "BufReadPost", "CursorHold", "InsertLeave" }, {
     group = augroup,
@@ -89,13 +89,13 @@ local custom_on_attach = function(client, bufnr)
   if client.server_capabilities.textDocument then
     if client.server_capabilities.textDocument.codeLens then
       require("virtualtypes").on_attach(client, bufnr)
-      attach_codelens(client, bufnr)
+      -- attach_codelens(client, bufnr)
     end
   end
 
-  if client.server_capabilities.signatureHelpProvider then
-    vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
-  end
+  -- if client.server_capabilities.signatureHelpProvider then
+  --   vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
+  -- end
 
   -- Code lens
   -- if client.server_capabilities.codeLensProvider then

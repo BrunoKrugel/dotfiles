@@ -77,17 +77,6 @@ autocmd({ "BufNewFile", "BufRead" }, {
   end,
 })
 
--- autocmd({ "BufRead" }, {
---   desc = "Display a message when the current file is not in utf-8 format",
---   pattern = "*",
---   group = augroup("non_utf8_file", { clear = true }),
---   callback = function()
---     if vim.bo.fileencoding ~= "utf-8" then
---       vim.notify("File not in UTF-8 format!", vim.log.levels.WARN, { title = "nvim-config" })
---     end
---   end,
--- })
-
 -- autocmd("FileType", {
 --   desc = "Close NvimTree before quit nvim",
 --   pattern = { "NvimTree" },
@@ -293,6 +282,7 @@ autocmd("FileType", {
   pattern = {
     "gitcommit",
     "gitrebase",
+    "dap-float",
     "gitconfig",
     "help",
     "startuptime",
