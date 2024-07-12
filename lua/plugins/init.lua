@@ -362,33 +362,15 @@ return {
     },
   },
   {
-    "stevearc/resession.nvim",
-    lazy = false,
+    "rmagatti/auto-session",
+    event = "VimEnter",
     config = function()
-      local resession = require "resession"
-      resession.setup {}
-      local function get_session_name()
-        local name = vim.fn.getcwd()
-        local branch = vim.trim(vim.fn.system "git branch --show-current")
-        if vim.v.shell_error == 0 then
-          return name .. branch
-        else
-          return name
-        end
-      end
-      vim.api.nvim_create_autocmd("VimEnter", {
-        callback = function()
-          -- Only load the session if nvim was started with no args
-          if vim.fn.argc(-1) == 0 then
-            resession.load(get_session_name(), { dir = "dirsession", silence_errors = true })
-          end
-        end,
-      })
-      vim.api.nvim_create_autocmd("VimLeavePre", {
-        callback = function()
-          resession.save(get_session_name(), { dir = "dirsession", notify = false })
-        end,
-      })
+      require("auto-session").setup {
+        auto_session_enabled = true,
+        auto_save_enabled = true,
+        auto_restore_enabled = true,
+        auto_session_use_git_branch = true,
+      }
     end,
   },
   {
@@ -468,45 +450,6 @@ return {
     opts = {
       scope = { enabled = false },
     },
-  },
-  {
-    "lukas-reineke/headlines.nvim",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    config = function()
-      -- -- Define custom highlight groups using Vimscript
-      -- -- Theme below is Eldritch
-      vim.cmd [[highlight Headline1 guibg=#f1fc79  guifg=#323449]]
-      vim.cmd [[highlight Headline2 guibg=#37f499 guifg=#323449]]
-      vim.cmd [[highlight Headline3 guibg=#04d1f9 guifg=#323449]]
-      vim.cmd [[highlight Headline4 guibg=#f16c75 guifg=#323449]]
-      vim.cmd [[highlight Headline5 guibg=#7081d0 guifg=#323449]]
-      vim.cmd [[highlight Headline6 guibg=#f265b5 guifg=#323449]]
-
-      -- Defines the codeblock background color to something darker
-      vim.cmd [[highlight CodeBlock guibg=#09090d]]
-      -- When you add a line of dashes with --- this specifies the color, I'm not
-      -- adding a "guibg" but you can do so if you want to add a background color
-      vim.cmd [[highlight Dash guifg=white]]
-      require("headlines").setup {
-        markdown = {
-          fat_headlines = false,
-          fat_headline_upper_string = "▄",
-          fat_headline_lower_string = "▀",
-          headline_highlights = {
-            "Headline1",
-            "Headline2",
-            "Headline3",
-            "Headline4",
-            "Headline5",
-            "Headline6",
-          },
-
-          bullets = { "󰎤", "󰎧", "󰎪", "󰎭", "󰎱", "󰎳" },
-          -- bullets = { "󰎤", "󰎧", "󰎪", "󰎮", "󰎰", "󰎵" },
-          -- bullets = { "◉", "○", "✸", "✿" },
-        },
-      }
-    end,
   },
   {
     "smoka7/hop.nvim",

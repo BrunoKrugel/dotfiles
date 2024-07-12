@@ -71,6 +71,43 @@ map("i", "<S-CR>", function()
   vim.cmd "normal o"
 end, { desc = " New line" })
 
+map("i", "<A-BS>", "<C-w>", { desc = "Remove word in insert mode" })
+
+-- Surround
+map("x", "'", [[:s/\%V\(.*\)\%V/'\1'/ <CR>]], { desc = "Surround selection with '" })
+map("x", '"', [[:s/\%V\(.*\)\%V/"\1"/ <CR>]], { desc = 'Surround selection with "' })
+map("x", "*", [[:s/\%V\(.*\)\%V/*\1*/ <CR>]], { desc = "Surround selection with *" })
+
+map("n", "<leader>s*", [[:s/\<<C-r><C-w>\>/*<C-r><C-w>\*/ <CR>]], { desc = "Surround word with *" })
+map("n", '<leader>s"', [[:s/\<<C-r><C-w>\>/"<C-r><C-w>\"/ <CR>]], { desc = 'Surround word with "' })
+map("n", "<leader>s'", [[:s/\<<C-r><C-w>\>/'<C-r><C-w>\'/ <CR>]], { desc = "Surround word with '" })
+
+-- In visual mode, surround the selected text with markdown link syntax
+map("v", "<leader>mll", function()
+  -- delete selected text
+  vim.cmd "normal d"
+  -- Insert the following in insert mode
+  vim.cmd "startinsert"
+  vim.api.nvim_put({ "[]() " }, "c", true, true)
+  -- Move to the left, paste, and then move to the right
+  vim.cmd "normal F[pf)"
+  -- vim.cmd("normal 2hpF[l")
+  -- Leave me in insert mode to start typing
+  vim.cmd "startinsert"
+end, { desc = "[P]Convert to link" })
+
+-- In visual mode, surround the selected text with markdown link syntax
+map("v", "<leader>mlt", function()
+  -- delete selected text
+  vim.cmd "normal d"
+  -- Insert the following in insert mode
+  vim.cmd "startinsert"
+  vim.api.nvim_put({ '[](){:target="_blank"} ' }, "c", true, true)
+  vim.cmd "normal F[pf)"
+  -- Leave me in insert mode to start typing
+  vim.cmd "startinsert"
+end, { desc = "[P]Convert to link (new tab)" })
+
 -- Move or create
 ---@param key 'h'|'j'|'k'|'l'
 local function move_or_create_win(key)
@@ -109,8 +146,6 @@ map("n", "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Better Down", expr = true, 
 -- Better Up
 map("n", "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Better Up", expr = true, silent = true })
 
-map("i", "<A-BS>", "<C-w>", { desc = "Remove word" })
-
 -- LSP
 -- map('n', '<MouseMove>', require("hover").hover, { desc = "Hover" })
 map("n", "K", require("hover").hover, { desc = "hover.nvim" })
@@ -123,10 +158,10 @@ map("n", "<C-n>", function()
   require("hover").hover_switch "next"
 end, { desc = "hover.nvim (next source)" })
 
-vim.api.nvim_set_keymap("n", "<C-ScrollWheelUp>", "<C-i>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-ScrollWheelDown>", "<C-o>", { noremap = true, silent = true })
+map("n", "<C-ScrollWheelUp>", "<C-i>", { noremap = true, silent = true })
+map("n", "<C-ScrollWheelDown>", "<C-o>", { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap(
+map(
   "n",
   "<2-LeftMouse>",
   '<LeftMouse><cmd>lua vim.lsp.buf.hover({border = "single"})<CR>',
@@ -143,7 +178,7 @@ map({ "n", "v" }, "gl", "$", { desc = "[P]go to the end of the line" })
 map("v", "gl", "$h", { desc = "[P]Go to the end of the line" })
 
 -- Replaces the current word with the same word in uppercase, globally
-vim.keymap.set(
+map(
   "n",
   "<leader>sU",
   [[:%s/\<<C-r><C-w>\>/<C-r>=toupper(expand('<cword>'))<CR>/gI<Left><Left><Left>]],
@@ -151,7 +186,7 @@ vim.keymap.set(
 )
 
 -- Replaces the current word with the same word in lowercase, globally
-vim.keymap.set(
+map(
   "n",
   "<leader>sL",
   [[:%s/\<<C-r><C-w>\>/<C-r>=tolower(expand('<cword>'))<CR>/gI<Left><Left><Left>]],
