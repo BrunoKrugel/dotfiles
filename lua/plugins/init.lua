@@ -902,14 +902,6 @@ return {
         "Trouble",
         "Noice",
         {
-          ft = "help",
-          size = { height = 20 },
-          -- only show help buffers
-          filter = function(buf)
-            return vim.bo[buf].buftype == "help"
-          end,
-        },
-        {
           ft = "NoiceHistory",
           title = " Log",
           open = function()
