@@ -573,17 +573,24 @@ end
 --   return true
 -- end
 
-require("lspconfig.ui.windows").default_options.border = "single"
+require("lspconfig.ui.windows").default_options.border = "rounded"
 
+local signs = { Error = "", Warn = "", Hint = "󰌵", Info = "" }
+
+for type, icon in pairs(signs) do
+  local hl = "Diagnostic" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+local x = vim.diagnostic.severity
 vim.diagnostic.config {
+
   virtual_lines = false,
   virtual_text = {
-    source = "always",
     prefix = "■",
   },
-  -- virtual_text = false,
+  -- virtual_text = true,
   float = {
-    source = "always",
     border = "rounded",
     format = function(diagnostic)
       if diagnostic.source == "" then
@@ -605,8 +612,8 @@ vim.diagnostic.config {
     severity_sort = true,
     close_events = { "CursorMoved", "InsertEnter" },
   },
-  signs = true,
-  underline = false,
+  signs = { text = { [x.ERROR] = "󰅙", [x.WARN] = "", [x.INFO] = "󰋼", [x.HINT] = "󰌵" } },
+  underline = true,
   update_in_insert = false,
   severity_sort = true,
 }
@@ -663,13 +670,6 @@ local function current_line_diagnostics()
   return vim.diagnostic.get(bufnr, opts)
 end
 
-local signs = {
-  Error = " ",
-  Warn = " ",
-  Hint = " ",
-  Info = " ",
-}
-
 local virt_handler = vim.diagnostic.handlers.virtual_text
 local ns = vim.api.nvim_create_namespace "current_line_virt"
 local severity = vim.diagnostic.severity
@@ -708,23 +708,6 @@ vim.diagnostic.handlers.current_line_virt = {
     bufnr = bufnr or vim.api.nvim_get_current_buf()
     virt_handler.hide(ns, bufnr)
   end,
-}
-
-local signs = { Error = "", Warn = "", Hint = "󰌵", Info = "" }
-for type, icon in pairs(signs) do
-  local hl = "Diagnostic" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
-vim.diagnostic.config {
-  float = { source = "always" },
-  signs = {
-    active = signs,
-  },
-  virtual_text = true,
-  virtual_lines = false,
-  severity_sort = true,
-  current_line_virt = false,
 }
 
 -- vim.api.nvim_create_augroup("lsp_diagnostic_current_line", {

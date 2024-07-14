@@ -14,13 +14,7 @@ go.setup {
   },
   trouble = true,
   lsp_keymaps = false,
-  diagnostic = {
-    hdlr = true,
-    underline = true,
-    virtual_text = false,
-    signs = true,
-    update_in_insert = false,
-  },
+  diagnostic = false,
   lsp_codelens = true,
   floaterm = {
     posititon = "auto",
