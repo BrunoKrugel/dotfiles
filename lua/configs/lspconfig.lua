@@ -89,13 +89,13 @@ local custom_on_attach = function(client, bufnr)
   if client.server_capabilities.textDocument then
     if client.server_capabilities.textDocument.codeLens then
       require("virtualtypes").on_attach(client, bufnr)
-      -- attach_codelens(client, bufnr)
+      attach_codelens(client, bufnr)
     end
   end
 
-  -- if client.server_capabilities.signatureHelpProvider then
-  --   vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
-  -- end
+  if client.server_capabilities.signatureHelpProvider then
+    vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
+  end
 
   -- Code lens
   -- if client.server_capabilities.codeLensProvider then
