@@ -428,7 +428,7 @@ M.statusline = {
     end,
 
     notification = function()
-      return "%#NotificationHl# " .. Get_Version() .. "%@v:lua.ClickMe@ " .. " %#CmpHl#" .. Get_Cmp()
+      return "%#NotificationHl# " .. "%@v:lua.ClickMe@ " .. " %#CmpHl#" .. Get_Cmp()
     end,
 
     dap = function()
