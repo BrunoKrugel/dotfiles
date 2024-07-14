@@ -18,6 +18,8 @@ return {
           require "configs.lspconfig"
         end,
       },
+      "artemave/workspace-diagnostics.nvim",
+      "jubnzv/virtual-types.nvim",
       "williamboman/mason-lspconfig.nvim",
       {
         "WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -37,7 +39,7 @@ return {
   },
   {
     "folke/which-key.nvim",
-    enabled = true,
+    enabled = false,
   },
   {
     "BrunoKrugel/ui",
@@ -333,10 +335,6 @@ return {
     end,
   },
   {
-    "cbochs/portal.nvim",
-    keys = { "<leader>pj", "<leader>ph" },
-  },
-  {
     "gbprod/cutlass.nvim",
     event = "BufReadPost",
     opts = {
@@ -476,10 +474,6 @@ return {
   {
     "declancm/vim2vscode",
     cmd = "Code",
-  },
-  {
-    "jubnzv/virtual-types.nvim",
-    event = "LspAttach",
   },
   {
     "wakatime/vim-wakatime",
@@ -1012,13 +1006,7 @@ return {
   {
     "utilyre/barbecue.nvim",
     event = "LspAttach",
-    version = "*",
     dependencies = { "SmiteshP/nvim-navic" },
-    opts = {},
-  },
-  {
-    "artemave/workspace-diagnostics.nvim",
-    event = "LspAttach",
     opts = {},
   },
   {
@@ -1066,10 +1054,6 @@ return {
     end,
   },
   {
-    "llllvvuu/nvim-js-actions",
-    keys = { "<leader>jc" },
-  },
-  {
     "BrunoKrugel/package-info.nvim",
     event = "BufEnter package.json",
     opts = {
@@ -1113,22 +1097,8 @@ return {
     },
   },
   {
-    "toppair/peek.nvim",
-    build = "deno task --quiet build:fast",
-    ft = { "markdown", "vimwiki" },
-    config = function()
-      require("peek").setup {
-        app = "webview",
-        theme = "dark",
-        filetype = { "markdown", "vimwiki" },
-      }
-    end,
-  },
-  {
     "mfussenegger/nvim-lint",
-    dependencies = {
-      "rshkarin/mason-nvim-lint",
-    },
+    dependencies = { "rshkarin/mason-nvim-lint" },
     event = "BufWritePre",
     config = function()
       require "configs.linter"
@@ -1136,8 +1106,8 @@ return {
   },
   {
     "stevearc/conform.nvim",
-    dependencies = { "zapling/mason-conform.nvim" },
     event = "BufReadPre",
+    dependencies = { "zapling/mason-conform.nvim" },
     config = function()
       require "configs.conform"
     end,
@@ -1148,9 +1118,7 @@ return {
   {
     "sustech-data/wildfire.nvim",
     event = "VeryLazy",
-    config = function()
-      require("wildfire").setup()
-    end,
+    opts = {},
   },
   {
     "chrisgrieser/nvim-recorder",
@@ -1158,14 +1126,6 @@ return {
     config = function()
       require "configs.recorder"
     end,
-  },
-  {
-    "dmmulroy/tsc.nvim",
-    cmd = { "TSC" },
-    opts = {
-      auto_open_qflist = true,
-      spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
-    },
   },
   {
     "ThePrimeagen/refactoring.nvim",
@@ -1192,7 +1152,9 @@ return {
     "github/copilot.vim",
     lazy = false,
     config = function()
-      require "configs.copilot"
+      require("copilot").setup()
+      vim.api.nvim_set_hl(0, "CopilotSuggestion", { fg = "#83a598" })
+      vim.api.nvim_set_hl(0, "CopilotAnnotation", { fg = "#03a598" })
     end,
   },
 }

@@ -118,7 +118,6 @@ core.load_mappings "hop"
 core.load_mappings "searchbox"
 core.load_mappings "lspsaga"
 core.load_mappings "nvterm"
-core.load_mappings "portal"
 core.load_mappings "harpoon"
 core.load_mappings "lspconfig"
 

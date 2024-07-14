@@ -745,18 +745,6 @@ M.nvterm = {
   },
 }
 
-M.portal = {
-  n = {
-    ["<leader>pj"] = { "<CMD>Portal jumplist backward<CR>", "󱡁 Portal Jumplist" },
-    ["<leader>ph"] = {
-      function()
-        require("portal.builtin").harpoon.tunnel()
-      end,
-      "󱡁 Portal Harpoon",
-    },
-  },
-}
-
 M.harpoon = {
   n = {
     ["<leader>ha"] = {
