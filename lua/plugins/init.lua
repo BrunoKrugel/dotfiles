@@ -1123,9 +1123,19 @@ return {
   {
     "chrisgrieser/nvim-recorder",
     keys = { "q", "Q" },
-    config = function()
-      require "configs.recorder"
-    end,
+    opts = {
+      slots = { "a", "b", "c", "d", "e", "f", "g" },
+      mapping = {
+        startStopRecording = "q",
+        playMacro = "Q",
+        editMacro = "<leader>qe",
+        switchSlot = "<leader>qt",
+      },
+      lessNotifications = true,
+      clear = false,
+      logLevel = vim.log.levels.INFO,
+      dapSharedKeymaps = false,
+    },
   },
   {
     "ThePrimeagen/refactoring.nvim",
