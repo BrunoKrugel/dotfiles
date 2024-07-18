@@ -801,7 +801,6 @@ M.harpoon = {
 M.lspconfig = {
   n = {
     ["<leader><leader>n"] = { "<CMD> lua require('tsht').nodes() <CR>", " Select Node" },
-    ["<F12>"] = { "<CMD>Glance references<CR>", "󰘐 References" },
     ["<leader><leader>a"] = {
       function()
         if isCodeActionAvailable() then

@@ -148,7 +148,13 @@ map("n", "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Better Up", expr = true, si
 
 -- LSP
 -- map('n', '<MouseMove>', require("hover").hover, { desc = "Hover" })
-map("n", "K", require("hover").hover, { desc = "hover.nvim" })
+map("n", "K", function()
+	local winid = require("ufo").peekFoldedLinesUnderCursor()
+	if not winid then
+		require("hover").hover()
+	end
+end,{ desc = "hover.nvim" })
+
 map("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
 map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 map("n", "<C-p>", function()
@@ -157,6 +163,8 @@ end, { desc = "hover.nvim (previous source)" })
 map("n", "<C-n>", function()
   require("hover").hover_switch "next"
 end, { desc = "hover.nvim (next source)" })
+
+map("n", "<F12>", "<CMD>Glance references<CR>", { desc = "󰘐 References" })
 
 map("n", "<C-ScrollWheelUp>", "<C-i>", { noremap = true, silent = true })
 map("n", "<C-ScrollWheelDown>", "<C-o>", { noremap = true, silent = true })
