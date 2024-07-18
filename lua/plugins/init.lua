@@ -86,13 +86,6 @@ return {
       "filNaj/tree-setter",
       "RRethy/nvim-treesitter-textsubjects",
       "danymat/neogen",
-      "kevinhwang91/promise-async",
-      {
-        "kevinhwang91/nvim-ufo",
-        config = function()
-          require "configs.ufo"
-        end,
-      },
       {
         "folke/ts-comments.nvim",
         opts = {},
@@ -758,6 +751,14 @@ return {
     lazy = false,
     config = function()
       require "configs.statuscol"
+    end,
+  },
+  {
+    "kevinhwang91/nvim-ufo",
+    lazy = false,
+    dependencies = "kevinhwang91/promise-async",
+    config = function()
+      require "configs.ufo"
     end,
   },
   -- {
