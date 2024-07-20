@@ -9,8 +9,6 @@ return {
         "williamboman/mason.nvim",
         opts = overrides.mason,
         config = function(_, opts)
-          dofile(vim.g.base46_cache .. "mason")
-          dofile(vim.g.base46_cache .. "lsp")
           require("mason").setup(opts)
           vim.api.nvim_create_user_command("MasonInstallAll", function()
             vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
@@ -47,7 +45,6 @@ return {
       require "nvchad.configs.gitsigns"
     end,
     config = function(_, opts)
-      dofile(vim.g.base46_cache .. "git")
       require("scrollbar.handlers.gitsigns").setup()
       require("gitsigns").setup(opts)
     end,
@@ -94,8 +91,6 @@ return {
       require "nvim-treesitter.query_predicates"
     end,
     config = function(_, opts)
-      dofile(vim.g.base46_cache .. "syntax")
-      dofile(vim.g.base46_cache .. "treesitter")
       require("nvim-treesitter.configs").setup(opts)
     end,
   },
@@ -209,7 +204,6 @@ return {
       },
     },
     config = function(_, opts)
-      dofile(vim.g.base46_cache .. "cmp")
       local format_kinds = opts.formatting.format
       opts.formatting.format = function(entry, item)
         if item.kind == "Color" then
@@ -442,7 +436,6 @@ return {
     cmd = { "HopWord", "HopLine", "HopLineStart", "HopWordCurrentLine", "HopNodes" },
     config = function()
       require("hop").setup { keys = "etovxqpdygfblzhckisuran" }
-      dofile(vim.g.base46_cache .. "hop")
     end,
   },
   {
@@ -457,7 +450,7 @@ return {
   {
     "echasnovski/mini.surround",
     event = { "ModeChanged" },
-    config = true,
+    ops = {},
   },
   {
     "declancm/vim2vscode",
@@ -577,7 +570,6 @@ return {
   },
   {
     "zeioth/garbage-day.nvim",
-    dependencies = "neovim/nvim-lspconfig",
     event = "VeryLazy",
     opts = {
       notifications = false,
@@ -609,7 +601,6 @@ return {
     },
     config = function()
       require "configs.noice"
-      dofile(vim.g.base46_cache .. "notify")
       vim.lsp.handlers["textDocument/hover"] = require("noice").hover
       vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
     end,
@@ -626,7 +617,6 @@ return {
     event = "BufReadPost",
     config = function()
       require "configs.todo"
-      dofile(vim.g.base46_cache .. "todo")
     end,
   },
   {
@@ -649,10 +639,10 @@ return {
             },
           },
           mydiags = {
-            mode = "diagnostics", -- inherit from diagnostics mode
+            mode = "diagnostics",
             filter = {
               any = {
-                buf = 0, -- current buffer
+                buf = 0,
                 {
                   severity = vim.diagnostic.severity.ERROR,
                   function(item)
@@ -665,7 +655,6 @@ return {
         },
         auto_close = true,
       }
-      dofile(vim.g.base46_cache .. "trouble")
     end,
   },
   {
@@ -768,6 +757,7 @@ return {
     "VonHeikemen/searchbox.nvim",
     cmd = { "SearchBoxMatchAll", "SearchBoxReplace", "SearchBoxIncSearch" },
     config = true,
+    opts = {},
   },
   {
     "sindrets/diffview.nvim",

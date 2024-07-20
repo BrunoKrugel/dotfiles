@@ -1,9 +1,6 @@
 local M = {}
 local copilot_status_ok, copilot_cmp_comparators = pcall(require, "copilot_cmp.comparators")
 local list_contains = vim.list_contains or vim.tbl_contains
-pcall(function()
-  dofile(vim.g.base46_cache .. "cmp")
-end)
 
 local function deprioritize_snippet(entry1, entry2)
   local types = require "cmp.types"
