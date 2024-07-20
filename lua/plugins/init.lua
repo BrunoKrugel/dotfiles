@@ -39,12 +39,7 @@ return {
   },
   {
     "folke/which-key.nvim",
-    enabled = false,
-  },
-  {
-    "BrunoKrugel/ui",
-    branch = "v2.5",
-    lazy = false,
+    enabled = true,
   },
   {
     "lewis6991/gitsigns.nvim",
