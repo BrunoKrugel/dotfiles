@@ -94,9 +94,9 @@ local function on_attach(bufnr)
   end
 
   map("n", ".", api.tree.toggle_hidden_filter, opts "Toggle Dotfiles")
-  map("n", "n", api.fs.create, opts "Create")
+  map("n", "a", api.fs.create, opts "Create")
   map("n", "r", api.fs.rename_sub, opts "Rename: Omit Filename")
-  map("n", "a", api.tree.change_root_to_node, opts "CD")
+  map("n", "cd", api.tree.change_root_to_node, opts "CD")
   map("n", "<C-r>", api.tree.reload, opts "Refresh")
   map("n", "<Tab>", tab_with_close, opts "Open: New Tab")
   map("n", "d", api.fs.trash, opts "Trash")
