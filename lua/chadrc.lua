@@ -20,10 +20,6 @@ M.ui = {
     selected_item_bg = "colored", -- colored / simple
   },
 
-  lsp = {
-    signature = false,
-  },
-
   telescope = { style = "bordered" },
 
   hl_override = highlights.override,
@@ -31,6 +27,8 @@ M.ui = {
 
   nvdash = core.nvdash,
 }
+
+M.lsp = { signature = false }
 
 M.base46 = {
   integrations = {
