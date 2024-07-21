@@ -120,6 +120,7 @@ M.treesitter = {
   ensure_installed = {
     "vim",
     "lua",
+    "luadoc",
     "bash",
     "json",
     "json5",
@@ -137,6 +138,7 @@ M.treesitter = {
     -- Markdown
     "markdown",
     "markdown_inline",
+
     -- Go Lang
     "go",
     "gomod",
@@ -505,30 +507,6 @@ M.telescope = {
     import = {
       insert_at_top = true,
     },
-  },
-}
-
-M.colorizer = {
-  filetypes = {
-    "*",
-    cmp_docs = { always_update = true },
-    cmp_menu = { always_update = true },
-  },
-  user_default_options = {
-    names = false,
-    RRGGBBAA = true,
-    rgb_fn = true,
-    tailwind = true,
-    RGB = true,
-    RRGGBB = true,
-    AARRGGBB = true,
-    hsl_fn = true,
-    css = true,
-    css_fn = true,
-    sass = { enable = true, parsers = { "css" } },
-    mode = "background", -- Available methods are false / true / "normal" / "lsp" / "both"
-    virtualtext = "■",
-    always_update = true,
   },
 }
 

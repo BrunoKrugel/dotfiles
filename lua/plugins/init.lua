@@ -110,7 +110,15 @@ return {
   },
   {
     "NvChad/nvim-colorizer.lua",
-    opts = overrides.colorizer,
+    enabled = false,
+  },
+  {
+    "brenoprata10/nvim-highlight-colors",
+    event = "BufReadPre",
+    opts = {
+      render = "virtual",
+      virtual_symbol = "",
+    },
   },
   {
     "NStefan002/visual-surround.nvim",
@@ -166,6 +174,7 @@ return {
         config = function(_, opts)
           require("luasnip").config.set_config(opts)
           require "nvchad.configs.luasnip"
+          ---@diagnostic disable-next-line: different-requires
           require "configs.luasnip"
         end,
       },
@@ -226,6 +235,7 @@ return {
         end
         return format_kinds(entry, item)
       end
+      ---@diagnostic disable-next-line: different-requires
       local cmp = require "cmp"
 
       cmp.setup(opts)
@@ -614,7 +624,9 @@ return {
     },
     config = function()
       require "configs.noice"
+      ---@diagnostic disable-next-line: different-requires
       vim.lsp.handlers["textDocument/hover"] = require("noice").hover
+      ---@diagnostic disable-next-line: different-requires
       vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
     end,
   },
@@ -890,7 +902,6 @@ return {
           ft = "toggleterm",
           size = { height = 0.1 },
         },
-        { ft = "spectre_panel", size = { height = 0.4 } },
         { ft = "qf", title = "QuickFix" },
         { ft = "dap-repl", title = " Debug REPL" },
         { ft = "dapui_console", size = { height = 0.1 }, title = "Debug Console" },
@@ -900,6 +911,7 @@ return {
           ft = "NoiceHistory",
           title = " Log",
           open = function()
+            ---@diagnostic disable-next-line: different-requires
             require("noice").cmd "history"
           end,
         },
@@ -1078,6 +1090,7 @@ return {
       "nvim-neotest/nvim-nio",
     },
     config = function()
+      ---@diagnostic disable-next-line: different-requires
       require "configs.neotest"
     end,
   },
