@@ -589,7 +589,7 @@ vim.diagnostic.config {
   virtual_text = {
     prefix = "■",
   },
-  -- virtual_text = true,
+  -- virtual_text = false,
   float = {
     border = "rounded",
     format = function(diagnostic)

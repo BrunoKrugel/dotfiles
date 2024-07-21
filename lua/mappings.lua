@@ -66,6 +66,7 @@ map({ "n", "i" }, "<C-b>", "<cmd> NvimTreeToggle <CR>", { desc = "Toggle nvimtre
 -- Text
 map("n", "<S-CR>", "o<ESC>", { desc = " New line" })
 map("s", "<BS>", "<C-o>c", { desc = "Better backspace in select mode" })
+map({ "n", "i", "v" }, "<C-a>", "<cmd>normal! ggVG<cr>", { desc = "Select all" })
 
 map("i", "<S-CR>", function()
   vim.cmd "normal o"
@@ -149,11 +150,11 @@ map("n", "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Better Up", expr = true, si
 -- LSP
 -- map('n', '<MouseMove>', require("hover").hover, { desc = "Hover" })
 map("n", "K", function()
-	local winid = require("ufo").peekFoldedLinesUnderCursor()
-	if not winid then
-		require("hover").hover()
-	end
-end,{ desc = "hover.nvim" })
+  local winid = require("ufo").peekFoldedLinesUnderCursor()
+  if not winid then
+    require("hover").hover()
+  end
+end, { desc = "hover.nvim" })
 
 map("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
 map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })

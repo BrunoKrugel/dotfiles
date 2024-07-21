@@ -114,10 +114,13 @@ return {
   },
   {
     "brenoprata10/nvim-highlight-colors",
-    event = "BufReadPre",
+    event = { "CursorHold", "CursorMoved" },
     opts = {
       render = "virtual",
-      virtual_symbol = "",
+      virtual_symbol = "󰏘",
+      enable_named_colors = false,
+      enable_tailwind = true,
+      exclude_filetypes = { "lazy" },
     },
   },
   {

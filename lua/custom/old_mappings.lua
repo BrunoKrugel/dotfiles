@@ -237,7 +237,6 @@ M.text = {
     -- Navigate
     ["<C-Left>"] = { "<ESC>_", "󰜲 Move to beginning of line" },
     ["<C-Right>"] = { "<ESC>$", "󰜵 Move to end of line" },
-    ["<C-a>"] = { "gg0vG", " Select all" },
     ["<F3>"] = { "nzzzv", " Next" },
     ["<S-F3>"] = { "Nzzzv", " Previous" },
     ["<N>"] = { "nzzzv", " Next" }, -- goto_diagnostic_hl('next')
