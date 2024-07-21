@@ -348,7 +348,6 @@ autocmd("FileType", {
     "tsplayground",
     "HIERARCHY-TREE-GO",
     "dap-float",
-    "spectre_panel",
     "null-ls-info",
     "empty",
     "noice",

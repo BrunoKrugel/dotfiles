@@ -120,7 +120,6 @@ return {
         use_default_keymaps = false,
         exit_visual_mode = false,
       }
-      local preffered_mapping_prefix = "s"
       local surround_chars = { "{", "[", "(", "'", '"', "<" }
       local surround = require("visual-surround").surround
 
@@ -937,6 +936,11 @@ return {
           title = " Diffs",
         },
         {
+          ft = "grug-far",
+          title = "Replace",
+          size = { width = 0.2 },
+        },
+        {
           ft = "neotest-summary",
           title = "  Tests",
           open = function()
@@ -961,11 +965,6 @@ return {
         signcolumn = "no",
       },
     },
-  },
-  {
-    "nvim-pack/nvim-spectre",
-    cmd = { "Spectre", "SpectreOpen", "SpectreClose" },
-    opts = { is_block_ui_break = true },
   },
   {
     "akinsho/toggleterm.nvim",
