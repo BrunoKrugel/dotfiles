@@ -12,6 +12,23 @@ local function close_all_floating_wins()
   end
 end
 
+autocmd("ModeChanged", {
+  desc = "Move to relative line number when in visual mode",
+  callback = function(args)
+    local newmode = args.match:match ":(.*)"
+    local visual_modes = {
+      ["v"] = true,
+      ["V"] = true,
+      [""] = true,
+    }
+    if visual_modes[newmode] then
+      cmd "set relativenumber"
+    else
+      cmd "set norelativenumber"
+    end
+  end,
+})
+
 --- Create a centered floating window of a given width and height, relative to the size of the screen.
 --- @param width number width of the window where 1 is 100% of the screen
 --- @param height number height of the window - between 0 and 1
@@ -59,6 +76,22 @@ local function open_help(buf)
   end
 end
 
+-- Function to get the folder name
+local function get_folder_name()
+  local path = vim.fn.expand "%:p:h"
+  return vim.fn.fnamemodify(path, ":t")
+end
+
+-- Autocmd for new Go files
+-- vim.api.nvim_create_autocmd('BufNewFile', {
+--   pattern = '*.go',
+--   callback = function()
+--     local folder_name = get_folder_name()
+--     local package_line = 'package ' .. folder_name .. '\n\n'
+--     vim.api.nvim_buf_set_lines(0, 0, 0, false, {package_line})
+--   end,
+-- })
+
 autocmd("BufWinEnter", {
   callback = function(data)
     open_help(data.buf)
@@ -104,6 +137,7 @@ autocmd("VimEnter", {
   callback = function()
     -- Disable right click message
     cmd [[aunmenu PopUp.How-to\ disable\ mouse]]
+    cmd [[menu PopUp.󰏘\ Inspect\ Color <cmd>:Inspect<CR>]]
     -- cmd [[aunmenu PopUp.-1-]] -- You can remode a separator like this.
     cmd [[menu PopUp.Toggle\ \Breakpoint <cmd>:lua require('dap').toggle_breakpoint()<CR>]]
     cmd [[menu PopUp.Start\ \Debugger <cmd>:DapContinue<CR>]]
