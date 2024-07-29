@@ -624,6 +624,25 @@ return {
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
+      {
+        "rcarriga/nvim-notify",
+        opts = {
+          top_down = false,
+        },
+        init = function()
+          local banned_messages = {
+            "No information available",
+          }
+          vim.notify = function(msg, ...)
+            for _, banned in ipairs(banned_messages) do
+              if msg == banned then
+                return
+              end
+            end
+            return require "notify"(msg, ...)
+          end
+        end,
+      },
     },
     config = function()
       require "configs.noice"
@@ -674,7 +693,7 @@ return {
                 {
                   severity = vim.diagnostic.severity.ERROR,
                   function(item)
-                    return item.filename:find((vim.loop or vim.uv).cwd(), 1, true)
+                    return item.filename:find(true, 1, (vim.loop or vim.uv).cwd())
                   end,
                 },
               },
@@ -1116,7 +1135,10 @@ return {
   {
     "mfussenegger/nvim-lint",
     dependencies = { "rshkarin/mason-nvim-lint" },
-    event = "BufWritePre",
+    event = {
+      "BufReadPre",
+      "BufNewFile",
+    },
     config = function()
       require "configs.linter"
     end,
