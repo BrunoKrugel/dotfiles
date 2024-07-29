@@ -68,6 +68,7 @@ local custom_on_attach = function(client, bufnr)
 
   if client.server_capabilities.workspace.didChangeWatchedFiles then
     client.server_capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
+    client.server_capabilities.workspace.didChangeWatchedFiles.relativePatternSupport = true
   end
 
 
@@ -637,7 +638,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     -- Mouse mappings for easily navigating code
     if client.supports_method "definitionProvider" then
-      vim.keymap.set("n", "<RightMouse>", "<LeftMouse><cmd>lua vim.lsp.buf.definition()<CR>", opts)
+      vim.keymap.set("n", "<2-LeftMouse>", "<LeftMouse><cmd>lua vim.lsp.buf.definition()<CR>", opts)
+      vim.keymap.set("n", "<RightMouse>", '<LeftMouse><cmd>lua vim.lsp.buf.hover({border = "single"})<CR>', opts)
     end
   end,
 })
