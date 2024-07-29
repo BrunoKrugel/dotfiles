@@ -493,6 +493,13 @@ autocmd("BufHidden", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "query" },
+  callback = function()
+    vim.bo.formatexpr = "v:lua.require('nvim-ts-format').formatexpr()"
+  end
+})
+
+vim.api.nvim_create_autocmd("FileType", {
   pattern = {
     "nvcheatsheet",
     "dapui_watches",
