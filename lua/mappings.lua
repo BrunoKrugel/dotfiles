@@ -1,13 +1,6 @@
 require "nvchad.mappings"
-
 local map = vim.keymap.set
-
--- Buffer-local mapping options
 local opts = { noremap = true, silent = true, buffer = 0 }
-
-map("n", "<A-R>", function()
-  vim.cmd "GrugFar"
-end, { desc = "Toggle GrugFar" })
 
 local function md_url_paste()
   -- Get clipboard
@@ -25,7 +18,30 @@ local function md_url_paste()
   vim.api.nvim_buf_set_text(0, stop_line, stop_col + 1, stop_line, stop_col + 1, { "](" .. clip .. ")" })
   vim.api.nvim_buf_set_text(0, start_line, start_col, start_line, start_col, { "[" })
 end
-map("v", "<leader>p", md_url_paste, opts)
+
+-- Move or create
+---@param key 'h'|'j'|'k'|'l'
+local function move_or_create_win(key)
+  local fn = vim.fn
+  local curr_win = fn.winnr()
+  vim.cmd("wincmd " .. key) --> attempt to move
+
+  if curr_win == fn.winnr() then --> didn't move, so create a split
+    if key == "h" or key == "l" then
+      vim.cmd "wincmd v"
+    else
+      vim.cmd "wincmd s"
+    end
+
+    vim.cmd("wincmd " .. key)
+  end
+end
+
+--------------------------------------------------- Editor ---------------------------------------------------
+
+map("v", "<leader>p", function()
+  md_url_paste()
+end, opts)
 
 map("n", "<leader>pp", function()
   md_url_paste()
@@ -44,8 +60,9 @@ map({ "n", "t" }, "<A-g>", function()
   }
 end, { desc = "Toggle Lazygit" })
 
-map("n", "<leader>tc", "<cmd>CoverageToggle<cr>", { desc = "Coverage in gutter" })
-map("n", "<leader><leader>c", "<cmd>CoverageLoad<cr><cmd>CoverageSummary<cr>", { desc = "Coverage summary" })
+map("n", "<A-R>", function()
+  vim.cmd "GrugFar"
+end, { desc = "Toggle GrugFar" })
 
 -- GitSigns
 map("n", "]c", "<cmd>Gitsigns next_hunk<CR>", { desc = "Next hunk" })
@@ -63,7 +80,7 @@ map("n", "<leader>qq", "<<CMD>qa!<CR>", { desc = "󰗼 Exit" })
 map({ "n" }, "<leader>e", "<cmd> NvimTreeToggle <CR>", { desc = "󰔱 Toggle nvimtree" })
 map({ "n", "i" }, "<C-b>", "<cmd> NvimTreeToggle <CR>", { desc = "Toggle nvimtree" })
 
--- Text
+--------------------------------------------------- Text ---------------------------------------------------
 map("n", "<S-CR>", "o<ESC>", { desc = " New line" })
 map("s", "<BS>", "<C-o>c", { desc = "Better backspace in select mode" })
 map({ "n", "i", "v" }, "<C-a>", "<cmd>normal! ggVG<cr>", { desc = "Select all" })
@@ -73,6 +90,22 @@ map("i", "<S-CR>", function()
 end, { desc = " New line" })
 
 map("i", "<A-BS>", "<C-w>", { desc = "Remove word in insert mode" })
+
+-- Replaces the current word with the same word in uppercase, globally
+map(
+  "n",
+  "<leader>sU",
+  [[:%s/\<<C-r><C-w>\>/<C-r>=toupper(expand('<cword>'))<CR>/gI<Left><Left><Left>]],
+  { desc = "Replace current word with UPPERCASE" }
+)
+
+-- Replaces the current word with the same word in lowercase, globally
+map(
+  "n",
+  "<leader>sL",
+  [[:%s/\<<C-r><C-w>\>/<C-r>=tolower(expand('<cword>'))<CR>/gI<Left><Left><Left>]],
+  { desc = "Replace current word lowercase" }
+)
 
 -- Surround
 map("x", "'", [[:s/\%V\(.*\)\%V/'\1'/ <CR>]], { desc = "Surround selection with '" })
@@ -109,25 +142,7 @@ map("v", "<leader>mlt", function()
   vim.cmd "startinsert"
 end, { desc = "[P]Convert to link (new tab)" })
 
--- Move or create
----@param key 'h'|'j'|'k'|'l'
-local function move_or_create_win(key)
-  local fn = vim.fn
-  local curr_win = fn.winnr()
-  vim.cmd("wincmd " .. key) --> attempt to move
-
-  if curr_win == fn.winnr() then --> didn't move, so create a split
-    if key == "h" or key == "l" then
-      vim.cmd "wincmd v"
-    else
-      vim.cmd "wincmd s"
-    end
-
-    vim.cmd("wincmd " .. key)
-  end
-end
-
--- Movements
+--------------------------------------------------- Movements ---------------------------------------------------
 map({ "n", "i" }, "<C-h>", function()
   move_or_create_win "h"
 end, { desc = "Split left" })
@@ -147,7 +162,24 @@ map("n", "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Better Down", expr = true, 
 -- Better Up
 map("n", "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Better Up", expr = true, silent = true })
 
--- LSP
+-- Hop
+map("n", "<leader><leader>w", "<CMD> HopWord <CR>", { desc = "󰸱 Hint all words" })
+map("n", "<leader><leader>t", "<CMD> HopNodes <CR>", { desc = " Hint Tree" })
+map("n", "<leader><leader>o", "<CMD> HopLineStart<CR>", { desc = "󰕭 Hint Columns" })
+map("n", "<leader><leader>l", "<CMD> HopWordCurrentLine<CR>", { desc = "󰗉 Hint Line" })
+
+-- Navigation
+map("n", "<C-ScrollWheelUp>", "<C-i>", { noremap = true, silent = true })
+map("n", "<C-ScrollWheelDown>", "<C-o>", { noremap = true, silent = true })
+
+--------------------------------------------------- Testing ---------------------------------------------------
+map("n", "<leader>nt", function()
+  require("neotest").run.run(vim.fn.expand "%")
+end, { desc = "󰤑 Run neotest" })
+
+map("n", "<leader>tc", "<cmd>CoverageToggle<cr>", { desc = "Coverage in gutter" })
+map("n", "<leader><leader>c", "<cmd>CoverageLoad<cr><cmd>CoverageSummary<cr>", { desc = "Coverage summary" })
+--------------------------------------------------- LSP ---------------------------------------------------
 -- map('n', '<MouseMove>', require("hover").hover, { desc = "Hover" })
 map("n", "K", function()
   local winid = require("ufo").peekFoldedLinesUnderCursor()
@@ -167,9 +199,6 @@ end, { desc = "hover.nvim (next source)" })
 
 map("n", "<F12>", "<CMD>Glance references<CR>", { desc = "󰘐 References" })
 
-map("n", "<C-ScrollWheelUp>", "<C-i>", { noremap = true, silent = true })
-map("n", "<C-ScrollWheelDown>", "<C-o>", { noremap = true, silent = true })
-
 -- vim.api.nvim_set_keymap('n', '<RightMouse>', '<LeftMouse><cmd>lua vim.lsp.buf.definition()<CR>', { noremap=true, silent=true })
 
 -- use gh to move to the beginning of the line in normal mode
@@ -178,19 +207,3 @@ map({ "n", "v" }, "gh", "^", { desc = "[P]Go to the beginning line" })
 map({ "n", "v" }, "gl", "$", { desc = "[P]go to the end of the line" })
 -- In visual mode, after going to the end of the line, come back 1 character
 map("v", "gl", "$h", { desc = "[P]Go to the end of the line" })
-
--- Replaces the current word with the same word in uppercase, globally
-map(
-  "n",
-  "<leader>sU",
-  [[:%s/\<<C-r><C-w>\>/<C-r>=toupper(expand('<cword>'))<CR>/gI<Left><Left><Left>]],
-  { desc = "[P]GLOBALLY replace word I'm on with UPPERCASE" }
-)
-
--- Replaces the current word with the same word in lowercase, globally
-map(
-  "n",
-  "<leader>sL",
-  [[:%s/\<<C-r><C-w>\>/<C-r>=tolower(expand('<cword>'))<CR>/gI<Left><Left><Left>]],
-  { desc = "[P]GLOBALLY replace word I'm on with lowercase" }
-)

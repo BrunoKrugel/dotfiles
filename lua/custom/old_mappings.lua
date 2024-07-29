@@ -653,16 +653,6 @@ M.docker = {
   },
 }
 
-M.test = {
-  n = {
-    ["<leader>nt"] = {
-      function()
-        require("neotest").run.run(vim.fn.expand "%")
-      end,
-      "󰤑 Run neotest",
-    },
-  },
-}
 
 M.nvimtree = {
   n = {
@@ -671,22 +661,6 @@ M.nvimtree = {
   },
   i = {
     ["<C-b>"] = { "<CMD> NvimTreeToggle <CR>", "󰔱 Toggle nvimtree" },
-  },
-}
-
-M.session = {
-  n = {
-    ["<leader>ss"] = { "<CMD>Telescope persisted<CR>", "󰆓 List session" },
-    ["<leader>sd"] = { "<CMD>SessionDelete<CR>", "󱙃 Delete Session" },
-  },
-}
-
-M.hop = {
-  n = {
-    ["<leader><leader>w"] = { "<CMD> HopWord <CR>", "󰸱 Hint all words" },
-    ["<leader><leader>t"] = { "<CMD> HopNodes <CR>", " Hint Tree" },
-    ["<leader><leader>o"] = { "<CMD> HopLineStart<CR>", "󰕭 Hint Columns" },
-    ["<leader><leader>l"] = { "<CMD> HopWordCurrentLine<CR>", "󰗉 Hint Line" },
   },
 }
 
