@@ -30,6 +30,7 @@ conform.setup {
     css = { "prettier" },
     html = { "prettier" },
     markdown = { "prettier" },
+    query = { 'format-queries' },
     lua = { "stylua" },
     http = { "kulala" },
     go = function(bufnr)

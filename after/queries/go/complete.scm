@@ -3,19 +3,17 @@
 ;		(parameter_list
 ;			(parameter_declaration
 ;				(identifier) @complete_item)) @complete_def) @func)
+(function_declaration
+  name: (identifier) @context_name)
 
-((function_declaration
-		name: (identifier) @context_name))
+(method_declaration
+  name: (field_identifier) @context_name)
 
-((method_declaration
-        name: (field_identifier) @context_name))
-
-((type_declaration
+(type_declaration
   (type_spec
-    name: (type_identifier) @context_name)))
+    name: (type_identifier) @context_name))
 
 ;((function_declaration
-
 ;((type_declaration
 ;	(type_spec
 ;		name: (type_identifier) @complete_item))) @complete_global
@@ -40,7 +38,6 @@
 ;(block) @scope
 ;(for_statement) @complete_scope
 ;(method_declaration) @complete_context
-
 ;(
 ;	(function_declaration
 ;		name: (identifier) @decl.function) @decl_scope
@@ -61,8 +58,6 @@
 ;
 ;((var_spec
 ;  name: (identifier) @decl.var))
-
-
 ;(局部变量也会被纳入
 ;	(var_declaration
 ;		(var_spec
@@ -70,7 +65,6 @@
 ;		)
 ;	)
 ;)
-
 ;(
 ;	(short_var_declaration
 ;	  left: (expression_list

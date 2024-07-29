@@ -49,33 +49,38 @@
 ; (((field_identifier) @field (#eq? @field "Error"     )) (#set! conceal "E"))
 ; (((field_identifier) @field (#eq? @field "Equal"     )) (#set! conceal "🟰"))
 ; (((identifier) @field (#eq? @field "fmt"     )) (#set! conceal ""))
-
 ; extends
-;; Forked from tree-sitter-go
-;; Copyright (c) 2014 Max Brunsfeld (The MIT License)
 
-;;
+; Forked from tree-sitter-go
+; Copyright (c) 2014 Max Brunsfeld (The MIT License)
+;
 ; Identifiers
-
 (type_identifier) @type
-(type_spec name: (type_identifier) @type.definition)
+
+(type_spec
+  name: (type_identifier) @type.definition)
+
 (field_identifier) @property
+
 (identifier) @variable
+
 (package_identifier) @namespace
 
-(parameter_declaration (identifier) @parameter)
-(variadic_parameter_declaration (identifier) @parameter)
+(parameter_declaration
+  (identifier) @parameter)
+
+(variadic_parameter_declaration
+  (identifier) @parameter)
 
 (label_name) @label
 
 ((identifier) @constant
- (#eq? @constant "_"))
+  (#eq? @constant "_"))
 
 (const_spec
   name: (identifier) @constant)
 
 ; Function calls
-
 (call_expression
   function: (identifier) @function.call)
 
@@ -84,7 +89,6 @@
     field: (field_identifier) @method.call))
 
 ; Function definitions
-
 (function_declaration
   name: (identifier) @function)
 
@@ -95,7 +99,6 @@
   name: (field_identifier) @method)
 
 ; Operators
-
 [
   "--"
   "-"
@@ -137,7 +140,6 @@
 ] @operator
 
 ; Keywords
-
 [
   "break"
   "chan"
@@ -158,6 +160,7 @@
 ] @keyword
 
 "func" @keyword.function
+
 "return" @keyword.return
 
 "for" @repeat
@@ -172,127 +175,106 @@
   "case"
   "switch"
   "if"
- ] @conditional
+] @conditional
 
-
-;; Builtin types
-
+; Builtin types
 ((type_identifier) @type.builtin
- (#any-of? @type.builtin
-           "any"
-           "bool"
-           "byte"
-           "complex128"
-           "complex64"
-           "error"
-           "float32"
-           "float64"
-           "int"
-           "int16"
-           "int32"
-           "int64"
-           "int8"
-           "rune"
-           "string"
-           "uint"
-           "uint16"
-           "uint32"
-           "uint64"
-           "uint8"
-           "uintptr"))
+  (#any-of? @type.builtin
+    "any" "bool" "byte" "complex128" "complex64" "error" "float32" "float64" "int" "int16" "int32"
+    "int64" "int8" "rune" "string" "uint" "uint16" "uint32" "uint64" "uint8" "uintptr"))
 
-
-;; Builtin functions
-
+; Builtin functions
 ((identifier) @function.builtin
- (#any-of? @function.builtin
-           "append"
-           "cap"
-           "close"
-           "complex"
-           "copy"
-           "delete"
-           "imag"
-           "len"
-           "make"
-           "new"
-           "panic"
-           "print"
-           "println"
-           "real"
-           "recover"))
-
+  (#any-of? @function.builtin
+    "append" "cap" "close" "complex" "copy" "delete" "imag" "len" "make" "new" "panic" "print"
+    "println" "real" "recover"))
 
 ; Delimiters
-
 "." @punctuation.delimiter
+
 "," @punctuation.delimiter
+
 ":" @punctuation.delimiter
+
 ";" @punctuation.delimiter
 
 "(" @punctuation.bracket
+
 ")" @punctuation.bracket
+
 "{" @punctuation.bracket
+
 "}" @punctuation.bracket
+
 "[" @punctuation.bracket
+
 "]" @punctuation.bracket
 
-
 ; Literals
-
 (interpreted_string_literal) @string
+
 (raw_string_literal) @string @spell
+
 (rune_literal) @string
+
 (escape_sequence) @string.escape
 
 (int_literal) @number
+
 (float_literal) @float
+
 (imaginary_literal) @number
 
 [
- (true)
- (false)
+  (true)
+  (false)
 ] @boolean
 
 (nil) @constant.builtin
 
 (keyed_element
-  . (literal_element (identifier) @field))
-(field_declaration name: (field_identifier) @field)
+  .
+  (literal_element
+    (identifier) @field))
+
+(field_declaration
+  name: (field_identifier) @field)
 
 ; Comments
-
 (comment) @comment @spell
 
-;; Doc Comments
-
-(source_file . (comment)+ @comment.documentation)
+; Doc Comments
+(source_file
+  .
+  (comment)+ @comment.documentation)
 
 (source_file
   (comment)+ @comment.documentation
-  . (const_declaration))
+  .
+  (const_declaration))
 
 (source_file
   (comment)+ @comment.documentation
-  . (function_declaration))
+  .
+  (function_declaration))
 
 (source_file
   (comment)+ @comment.documentation
-  . (type_declaration))
+  .
+  (type_declaration))
 
 (source_file
   (comment)+ @comment.documentation
-  . (var_declaration))
+  .
+  (var_declaration))
 
 ; Errors
-
 (ERROR) @error
 
 ; Spell
-
 ((interpreted_string_literal) @spell
   (#not-has-parent? @spell import_spec))
 
-;; ===== CUSTOM =====
+; ===== CUSTOM =====
 (function_declaration
- (identifier) @function_definition)
+  (identifier) @function_definition)

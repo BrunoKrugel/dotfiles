@@ -1,6 +1,2 @@
-(
-  [
-    (list_item)
-  ] @fold
-  (#trim! @fold)
-)
+((list_item) @fold
+  (#trim! @fold))

@@ -1,88 +1,85 @@
-;; extends
-(
- (identifier) @variable.builtin
- (#any-of? @variable.builtin "vim")
- (#set! "priority" 128)
-)
+; extends
 
-;; Keywords
+((identifier) @variable.builtin
+  (#any-of? @variable.builtin "vim")
+  (#set! "priority" 128))
 
+; Keywords
 "return" @keyword.return
 
 [
- "goto"
- "in"
- "local"
+  "goto"
+  "in"
+  "local"
 ] @keyword
 
 (break_statement) @keyword
 
 (do_statement
-[
-  "do"
-  "end"
-] @keyword)
+  [
+    "do"
+    "end"
+  ] @keyword)
 
 (while_statement
-[
-  "while"
-  "do"
-  "end"
-] @repeat)
+  [
+    "while"
+    "do"
+    "end"
+  ] @repeat)
 
 (repeat_statement
-[
-  "repeat"
-  "until"
-] @repeat)
+  [
+    "repeat"
+    "until"
+  ] @repeat)
 
 (if_statement
-[
-  "if"
-  "elseif"
-  "else"
-  "then"
-  "end"
-] @conditional)
+  [
+    "if"
+    "elseif"
+    "else"
+    "then"
+    "end"
+  ] @conditional)
 
 (elseif_statement
-[
-  "elseif"
-  "then"
-  "end"
-] @conditional)
+  [
+    "elseif"
+    "then"
+    "end"
+  ] @conditional)
 
 (else_statement
-[
-  "else"
-  "end"
-] @conditional)
+  [
+    "else"
+    "end"
+  ] @conditional)
 
 (for_statement
-[
-  "for"
-  "do"
-  "end"
-] @repeat)
+  [
+    "for"
+    "do"
+    "end"
+  ] @repeat)
 
 (function_declaration
-[
-  "function"
-  "end"
-] @keyword.function)
+  [
+    "function"
+    "end"
+  ] @keyword.function)
 
 (function_definition
-[
-  "function"
-  "end"
-] @keyword.function)
+  [
+    "function"
+    "end"
+  ] @keyword.function)
 
-;; Operators
-
+; Operators
 [
- "and"
- "not"
- "or"
+  "and"
+  "not"
+  "or"
 ] @keyword.operator
 
 [
@@ -109,8 +106,7 @@
   ".."
 ] @operator
 
-;; Punctuations
-
+; Punctuations
 [
   ";"
   ":"
@@ -119,39 +115,40 @@
   "."
 ] @punctuation.delimiter
 
-;; Brackets
-
+; Brackets
 [
- "("
- ")"
- "["
- "]"
- "{"
- "}"
+  "("
+  ")"
+  "["
+  "]"
+  "{"
+  "}"
 ] @punctuation.bracket
 
-;; Variables
-
+; Variables
 (identifier) @variable
 
 ((identifier) @keyword.coroutine
   (#eq? @keyword.coroutine "coroutine"))
 
 (variable_list
-   attribute: (attribute
-     (["<" ">"] @punctuation.bracket
+  attribute: (attribute
+    ([
+      "<"
+      ">"
+    ] @punctuation.bracket
       (identifier) @attribute)))
 
-;; Labels
+; Labels
+(label_statement
+  (identifier) @label)
 
-(label_statement (identifier) @label)
+(goto_statement
+  (identifier) @label)
 
-(goto_statement (identifier) @label)
-
-;; Constants
-
+; Constants
 ((identifier) @constant
- (#lua-match? @constant "^[A-Z][A-Z_0-9]*$"))
+  (#lua-match? @constant "^[A-Z][A-Z_0-9]*$"))
 
 (vararg_expression) @constant
 
@@ -162,28 +159,28 @@
   (true)
 ] @boolean
 
-;; Tables
+; Tables
+(field
+  name: (identifier) @field)
 
-(field name: (identifier) @field)
-
-(dot_index_expression field: (identifier) @field)
+(dot_index_expression
+  field: (identifier) @field)
 
 (table_constructor
-[
-  "{"
-  "}"
-] @constructor)
+  [
+    "{"
+    "}"
+  ] @constructor)
 
-;; Functions
-
-(parameters (identifier) @parameter)
+; Functions
+(parameters
+  (identifier) @parameter)
 
 ; (function_call name: (identifier) @function.call)
 ; (function_declaration name: (identifier) @function)
 ; (function_call name: (dot_index_expression field: (identifier) @function.call))
 ; (function_declaration name: (dot_index_expression field: (identifier) @function))
 ; (method_index_expression method: (identifier) @method.call)
-
 (function_declaration
   name: [
     (identifier) @function
@@ -196,13 +193,15 @@
     method: (identifier) @method))
 
 (assignment_statement
-  (variable_list .
+  (variable_list
+    .
     name: [
       (identifier) @function
       (dot_index_expression
         field: (identifier) @function)
     ])
-  (expression_list .
+  (expression_list
+    .
     value: (function_definition)))
 
 (table_constructor
@@ -230,9 +229,7 @@
 ;    "__add" "__band" "__bnot" "__bor" "__bxor" "__call" "__concat" "__div" "__eq" "__gc"
 ;    "__idiv" "__index" "__le" "__len" "__lt" "__metatable" "__mod" "__mul" "__name" "__newindex"
 ;    "__pairs" "__pow" "__shl" "__shr" "__sub" "__tostring" "__unm"))
-
-;; Others
-
+; Others
 (comment) @comment @spell
 
 ((comment) @comment.documentation
@@ -249,108 +246,70 @@
 
 (escape_sequence) @string.escape
 
-;; Error
+; Error
 ; (ERROR) @error
-
-;; ===== CUSTOM =====
-
+; ===== CUSTOM =====
 ; (method_index_expression method:
 ;     (identifier) @method.call
 ;     (#set! "priority" 105))
-
 ((identifier) @namespace.builtin
   (#any-of? @namespace.builtin "debug" "io" "jit" "math" "os" "package" "string" "table" "utf8"))
 
 (function_call
   (identifier) @function.builtin
   (#any-of? @function.builtin
-    "collectgarbage" "dofile"   "getfenv" "ipairs"
-    "module"         "next"     "pairs"   "print"
-    "setfenv"
-    "tonumber"       "tostring" "type"    "unpack"))
+    "collectgarbage" "dofile" "getfenv" "ipairs" "module" "next" "pairs" "print" "setfenv"
+    "tonumber" "tostring" "type" "unpack"))
 
 ; "select"
 ; (#set! "priority" 105))
-
 (function_call
   (identifier) @function.meta
   (#any-of? @function.meta
-    "__index"      "__newindex"
-    "__metatable"  "__name"      "__tostring"
-    "__close"      "__gc"
-    "__call"       "__mode"
-    "__pairs"      "__ipairs"
-    "__concat"     "__len"
-    "__add"        "__sub"       "__mul"        "__div"
-    "__idiv"       "__mod"       "__pow"        "__unm"
-    "__band"       "__bor"       "__bxor"       "__bnot"
-    "__shl"        "__shr"
-    "__eq"         "__le"         "__lt"
-  ))
+    "__index" "__newindex" "__metatable" "__name" "__tostring" "__close" "__gc" "__call" "__mode"
+    "__pairs" "__ipairs" "__concat" "__len" "__add" "__sub" "__mul" "__div" "__idiv" "__mod" "__pow"
+    "__unm" "__band" "__bor" "__bxor" "__bnot" "__shl" "__shr" "__eq" "__le" "__lt"))
 
 (function_call
   (identifier) @function.error
-  (#any-of? @function.error
-    "assert" "error" "pcall" "xpcall"))
+  (#any-of? @function.error "assert" "error" "pcall" "xpcall"))
 
 (function_call
   (identifier) @function.table
-  (#any-of? @function.table
-    "rawequal" "rawget" "rawlen" "rawset"
-    "getmetatable" "setmetatable"))
+  (#any-of? @function.table "rawequal" "rawget" "rawlen" "rawset" "getmetatable" "setmetatable"))
 
 (function_call
   (identifier) @function.import
-  (#any-of? @function.import
-    "require" "module" "load" "loadfile" "loadstring"))
+  (#any-of? @function.import "require" "module" "load" "loadfile" "loadstring"))
 
 ; (function_call
 ;   (identifier) @function.iter
 ;   (#any-of? @function.iter
 ;    "ipairs" "pairs" "select" "next"))
-
 ; (function_call
 ;   (identifier) @function.type
 ;   (#any-of? @function.type
 ;     "tonumber" "tostring" "type"))
-
 (dot_index_expression
   field: (identifier) @field.builtin
- (#any-of? @field.builtin
-    "__index"      "__newindex"
-    "__metatable"  "__name"      "__tostring"
-    "__close"      "__gc"
-    "__call"       "__mode"
-    "__pairs"      "__ipairs"
-    "__concat"     "__len"
-    "__add"        "__sub"       "__mul"        "__div"
-    "__idiv"       "__mod"       "__pow"        "__unm"
-    "__band"       "__bor"       "__bxor"       "__bnot"
-    "__shl"        "__shr"
-    "__eq"         "__le"         "__lt"
-  )
- (#set! "priority" 105))
+  (#any-of? @field.builtin
+    "__index" "__newindex" "__metatable" "__name" "__tostring" "__close" "__gc" "__call" "__mode"
+    "__pairs" "__ipairs" "__concat" "__len" "__add" "__sub" "__mul" "__div" "__idiv" "__mod" "__pow"
+    "__unm" "__band" "__bor" "__bxor" "__bnot" "__shl" "__shr" "__eq" "__le" "__lt")
+  (#set! "priority" 105))
 
 (field
   name: (identifier) @field.builtin
- (#any-of? @field.builtin
-    "__index"      "__newindex"
-    "__metatable"  "__name"      "__tostring"
-    "__close"      "__gc"
-    "__call"       "__mode"
-    "__pairs"      "__ipairs"
-    "__concat"     "__len"
-    "__add"        "__sub"       "__mul"        "__div"
-    "__idiv"       "__mod"       "__pow"        "__unm"
-    "__band"       "__bor"       "__bxor"       "__bnot"
-    "__shl"        "__shr"
-    "__eq"         "__le"         "__lt"
-  )
- (#set! "priority" 105))
+  (#any-of? @field.builtin
+    "__index" "__newindex" "__metatable" "__name" "__tostring" "__close" "__gc" "__call" "__mode"
+    "__pairs" "__ipairs" "__concat" "__len" "__add" "__sub" "__mul" "__div" "__idiv" "__mod" "__pow"
+    "__unm" "__band" "__bor" "__bxor" "__bnot" "__shl" "__shr" "__eq" "__le" "__lt")
+  (#set! "priority" 105))
 
-;; Change capital letter field names to be constants
-((dot_index_expression field: (identifier) @constant)
- (#lua-match? @constant "^[A-Z_][A-Z_0-9]*$"))
+; Change capital letter field names to be constants
+((dot_index_expression
+  field: (identifier) @constant)
+  (#lua-match? @constant "^[A-Z_][A-Z_0-9]*$"))
 
 ((identifier) @constant
   (#eq? @constant "_VERSION"))
@@ -363,11 +322,9 @@
 
 ((identifier) @function
   (#eq? @function "utils")
-  (#set! conceal "")
-)
+  (#set! conceal ""))
 
 ((dot_index_expression
-    table: (identifier) @keyword
-    (#eq? @keyword  "utils" ))
-    (#set! conceal "U")
-)
+  table: (identifier) @keyword
+  (#eq? @keyword "utils"))
+  (#set! conceal "U"))

@@ -9,7 +9,9 @@
 ] @punctuation.delimiter
 
 (emphasis) @text.emphasis
+
 (strong_emphasis) @text.strong
+
 (strikethrough) @text.strike
 
 [
@@ -17,7 +19,8 @@
   (uri_autolink)
 ] @text.uri @nospell
 
-(shortcut_link (link_text) @nospell)
+(shortcut_link
+  (link_text) @nospell)
 
 [
   (link_label)
@@ -30,19 +33,38 @@
   (hard_line_break)
 ] @string.escape
 
-(image "!" @punctuation.special)
-(image ["[" "]" "(" ")"] @punctuation.bracket)
-(inline_link ["[" "]" "(" ")"] @punctuation.bracket)
-(shortcut_link ["[" "]"] @punctuation.bracket)
+(image
+  "!" @punctuation.special)
+
+(image
+  [
+    "["
+    "]"
+    "("
+    ")"
+  ] @punctuation.bracket)
+
+(inline_link
+  [
+    "["
+    "]"
+    "("
+    ")"
+  ] @punctuation.bracket)
+
+(shortcut_link
+  [
+    "["
+    "]"
+  ] @punctuation.bracket)
 
 ; ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
 ; Conceal codeblock and text style markers
 ([
   (code_span_delimiter)
   (emphasis_delimiter)
 ] @conceal
-(#set! conceal ""))
+  (#set! conceal ""))
 
 ; Conceal inline links
 (inline_link

@@ -1,13 +1,15 @@
 [
-	(function)
-	(function_declaration)
-	(method_definition)
+  (function)
+  (function_declaration)
+  (method_definition)
 ] @scope
 
 (function
   name: (identifier) @context_name)
+
 (function_declaration
   name: (identifier) @context_name)
+
 (method_definition
   name: (property_identifier) @context_name)
 

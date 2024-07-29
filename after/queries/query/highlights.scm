@@ -1,4 +1,4 @@
-;; extends
+; extends
 
-
-(list (_) @swappable)
+(list
+  (_) @swappable)

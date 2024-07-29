@@ -2,7 +2,7 @@ local npairs = require "nvim-autopairs"
 
 npairs.setup {
   fast_wrap = {},
-  disable_filetype = { "TelescopePrompt", "grug-far", "vim" },
+  disable_filetype = { "TelescopePrompt", "grug-far", "vim", "query" },
   check_ts = true,
   -- Don't add pairs if the next char is alphanumeric
   ignored_next_char = '[%w%.<"(]',

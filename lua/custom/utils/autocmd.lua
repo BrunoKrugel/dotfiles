@@ -492,11 +492,10 @@ autocmd("BufHidden", {
   end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "query" },
+vim.api.nvim_create_autocmd("UIEnter", {
   callback = function()
-    vim.bo.formatexpr = "v:lua.require('nvim-ts-format').formatexpr()"
-  end
+    vim.cmd.clearjumps()
+  end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {

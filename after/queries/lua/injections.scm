@@ -14,10 +14,11 @@
   (#eq? @_command "command")
   (#set! injection.language "vim"))
 
-;; highlight string as query if starts with `;; query`
-(string content: _ @injection.content
- (#lua-match? @injection.content "^%s*;+%s?query")
- (#set! injection.language "query"))
+; highlight string as query if starts with `;; query`
+(string
+  content: _ @injection.content
+  (#lua-match? @injection.content "^%s*;+%s?query")
+  (#set! injection.language "query"))
 
 ((comment) @injection.content
   (#lua-match? @injection.content "^[-][-][-][%s]*@")
