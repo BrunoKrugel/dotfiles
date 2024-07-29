@@ -66,6 +66,12 @@ end
 local custom_on_attach = function(client, bufnr)
   on_attach(client, bufnr)
 
+  if client.server_capabilities.workspace.didChangeWatchedFiles then
+    client.server_capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
+  end
+
+
+
   -- if client.name == "gopls" then
   --   -- workaround for gopls not supporting semanticTokensProvider
   --   -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
