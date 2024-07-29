@@ -14,9 +14,6 @@
    (#make-range! "parameter.outer" @parameter.inner @_end))
 )
 
-
-; extends
-
 (literal_element) @parameter.inner
 
 (keyed_element) @parameter.inner
@@ -34,7 +31,6 @@
 
 (call_expression) @call_expression
 
-; extends
 
 ;; inner function textobject
 (function_declaration

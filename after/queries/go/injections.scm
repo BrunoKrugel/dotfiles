@@ -183,3 +183,12 @@
 ((interpreted_string_literal) @sql
   (#lua-match? @sql "^`%s*[Ee][Xx][Pp][Ll][Ll][Aa][Ii][Nn]%s*")
     (#offset! @sql 0 1 0 -1))
+
+; ----------------------------------------------------------------
+; inject json
+
+(field_declaration
+  tag: (raw_string_literal) @injection.content
+  (#offset! @injection.content 0 1 0 -1)
+  (#set! injection.self)
+)
