@@ -24,6 +24,7 @@ M.override = {
   -- TreeSitter highlights
   Repeat = { fg = "pink" },
   Include = { fg = "pink" },
+
   ["@definition"] = { underline = false },
   ["@boolean"] = { fg = "green" },
   ["@comment"] = { link = "Comment" },
@@ -31,10 +32,10 @@ M.override = {
   ["@constant"] = { link = "Constant" },
   ["@number.float"] = { link = "Float" },
   ["@modules"] = { fg = "white" },
-  ["@type"] = { link = "Type" },
   -- ["@variable.go"] = { fg = "green" },
   -- ["@variable"] = { fg = "white" },
   ["@attribute"] = { link = "Constant" },
+
   ["@function.builtin"] = { fg = "cyan" },
   ["@function.method"] = { link = "Function" },
   ["@function.method.call"] = { link = "Function" },
@@ -58,9 +59,12 @@ M.override = {
   ["@text.todo"] = { fg = "blue" },
   ["@string.special"] = { fg = "blue" },
   ["@class.css"] = { fg = "green" },
+
   ["@class.scss"] = { link = "@class.css" },
   ["@property.css"] = { fg = "teal" },
   ["@property.scss"] = { link = "@property.css" },
+
+  -- Lsp
   ["@lsp.type.keyword"] = { link = "Keyword" },
   ["@lsp.type.operator"] = { link = "Operator" },
   ["@lsp.type.parameter"] = { link = "@variable.parameter" },

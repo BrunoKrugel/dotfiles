@@ -22,8 +22,8 @@ M.base_30 = {
   blue = "#89b4fa",
   yellow = "#f9e2af",
   sun = "#ffe9b6",
-  purple = "#d0a9e5",
-  dark_purple = "#c7a0dc",
+  purple = "#CBA6F7",
+  dark_purple = "#b697e1",
   teal = "#B5E8E0",
   orange = "#F8BD96",
   cyan = "#89DCEB",
@@ -54,19 +54,22 @@ M.base_16 = {
 }
 
 M.polish_hl = {
+  treesitter = {
+    ["@variable"] = { fg = M.base_30.lavender },
+    ["@variable.builtin"] = { fg = M.base_30.red },
 
-  ["@variable"] = { fg = M.base_30.lavender },
-  ["@variable.builtin"] = { fg = M.base_30.red },
+    ["@function.builtin"] = { fg = M.base_30.cyan },
+    ["Function"] = { fg = M.base_30.blue },
 
-  ["@function.builtin"] = { fg = M.base_30.cyan },
-  ["Function"] = { fg = "blue" },
+    ["@function"] = { fg = M.base_30.blue },
+    ["@keyword"] = { fg = M.base_30.pink },
 
-  ["@function"] = { fg = "blue" },
-  ["@keyword"] = { fg = "pink" },
+    ["@property"] = { fg = M.base_30.cyan },
+    -- ["@type"] = { fg = M.base_30.purple },
+    ["@type.builtin"] = { fg = M.base_30.purple },
 
-  -- Go
-  ["@property.go"] = { fg = "cyan" },
-  ["@variable.go"] = { fg = M.base_30.sun },
+    ["@variable"] = { fg = M.base_30.sun },
+  },
 }
 
 M.type = "dark"
