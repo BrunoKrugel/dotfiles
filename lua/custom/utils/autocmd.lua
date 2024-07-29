@@ -501,6 +501,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "dapui_stacks",
     "dapui_breakpoints",
     "dapui_scopes",
+    "lazy",
   },
   callback = function()
     require("ufo").detach()
