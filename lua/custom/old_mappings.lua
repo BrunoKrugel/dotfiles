@@ -134,12 +134,6 @@ local function duplicate_lines(direction)
   end
 end
 
-M.disabled = {
-  n = {
-    ["<leader>b"] = "",
-  },
-}
-
 M.folder = {
   n = {
     ["<leader>a"] = {
@@ -276,27 +270,6 @@ M.text = {
       "󰑕 Rename",
       opts = { expr = true },
     },
-    -- Quit
-    ["<ESC>"] = {
-      function()
-        vim.cmd "noh"
-        vim.cmd "Noice dismiss"
-      end,
-      " Clear highlights",
-      opts = { silent = true, expr = true },
-    },
-
-    -- ["i"] = {
-    --   function()
-    --     if #vim.fn.getline "." == 0 then
-    --       return [["_cc]]
-    --     else
-    --       return "i"
-    --     end
-    --   end,
-    --   "Properly indent on empty line when insert",
-    --   opts = { expr = true },
-    -- },
   },
 
   v = {
@@ -360,38 +333,6 @@ M.general = {
       opts = { nowait = true },
     },
     ["<A-p>"] = { "<CMD> Telescope commander<CR>", "󰘳 Find files" },
-    ["<C-p>"] = {
-      function()
-        local entry_maker = require("configs.entry").find_files_entry_maker
-        local opts = {
-          entry_maker = entry_maker(),
-          sorting_strategy = "ascending",
-          layout_strategy = "center",
-          prompt_title = "Find Files",
-          border = true,
-          borderchars = {
-            prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
-            results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
-            preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-          },
-          layout_config = {
-            width = 0.8,
-            height = 0.6,
-          },
-          results_title = false,
-          previewer = false,
-        }
-
-        opts.show_untracked = true
-
-        local succ = pcall(require("telescope.builtin").git_files, opts)
-
-        if not succ then
-          require("telescope.builtin").find_files(opts)
-        end
-      end,
-      "󰘳 Find files",
-    },
 
     -- Keep cursor in the center line when C-D / C-U
     ["<C-d>"] = { "<C-d>zz", " Scroll down", opts = { silent = true } },
@@ -464,13 +405,6 @@ M.node = {
       end,
       "󰎙 Toggle arrow",
     },
-  },
-}
-
-M.treesitter = {
-  n = {
-    ["<leader>cu"] = { "<CMD>Inspect <CR>", " Find highlight" },
-    ["<leader>to"] = { "<CMD>TSJToggle<CR>", "󱓡 Toggle split/join" },
   },
 }
 
@@ -653,17 +587,6 @@ M.docker = {
   },
 }
 
-
-M.nvimtree = {
-  n = {
-    ["<C-b>"] = { "<CMD> NvimTreeToggle <CR>", "󰔱 Toggle nvimtree" },
-    ["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
-  },
-  i = {
-    ["<C-b>"] = { "<CMD> NvimTreeToggle <CR>", "󰔱 Toggle nvimtree" },
-  },
-}
-
 M.searchbox = {
   n = {
     ["<C-F>"] = { "<CMD> SearchBoxMatchAll clear_matches=true<CR>", "󱘟 Search matching all" },
@@ -676,6 +599,7 @@ M.lspsaga = {
     ["<leader>."] = {
       function()
         require("actions-preview").code_actions()
+        -- require("tiny-code-action").code_action()
       end,
       "󰅱 Code Action",
     },

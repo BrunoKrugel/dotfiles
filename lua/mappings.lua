@@ -37,7 +37,41 @@ local function move_or_create_win(key)
   end
 end
 
+local function find_files()
+  local entry_maker = require("configs.entry").find_files_entry_maker
+  local opts = {
+    entry_maker = entry_maker(),
+    sorting_strategy = "ascending",
+    layout_strategy = "center",
+    prompt_title = "Find Files",
+    border = true,
+    borderchars = {
+      prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
+      results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
+      preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    },
+    layout_config = {
+      width = 0.8,
+      height = 0.6,
+    },
+    results_title = false,
+    previewer = false,
+  }
+
+  opts.show_untracked = true
+
+  local succ = pcall(require("telescope.builtin").git_files, opts)
+
+  if not succ then
+    require("telescope.builtin").find_files(opts)
+  end
+end
+
 --------------------------------------------------- Editor ---------------------------------------------------
+
+map({ "n", "i", "v" }, "<C-p>", function()
+  find_files()
+end, { desc = "󰘳 Find files" })
 
 map("v", "<leader>p", function()
   md_url_paste()
@@ -79,6 +113,8 @@ map("n", "<leader>qq", "<<CMD>qa!<CR>", { desc = "󰗼 Exit" })
 -- NvimTree
 map({ "n" }, "<leader>e", "<cmd> NvimTreeToggle <CR>", { desc = "󰔱 Toggle nvimtree" })
 map({ "n", "i" }, "<C-b>", "<cmd> NvimTreeToggle <CR>", { desc = "Toggle nvimtree" })
+
+map({ "n" }, "<leader>to", "<CMD>TSJToggle<CR>", { desc = "󱓡 Toggle split/join" })
 
 --------------------------------------------------- Text ---------------------------------------------------
 map("n", "<S-CR>", "o<ESC>", { desc = " New line" })
@@ -190,9 +226,6 @@ end, { desc = "hover.nvim" })
 
 map("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
 map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
-map("n", "<C-p>", function()
-  require("hover").hover_switch "previous"
-end, { desc = "hover.nvim (previous source)" })
 map("n", "<C-n>", function()
   require("hover").hover_switch "next"
 end, { desc = "hover.nvim (next source)" })
