@@ -610,12 +610,8 @@ return {
   },
   {
     "Wansmer/treesj",
-    cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
-    config = function()
-      require("treesj").setup {
-        use_default_keymaps = true,
-      }
-    end,
+    cmd = "TSJToggle",
+    opts = {},
   },
   ----------------------------------------- ui plugins ------------------------------------------
   {
