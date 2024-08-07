@@ -6,8 +6,6 @@ local core = require "custom.utils.core"
 -- Path to overriding theme and highlights files
 local highlights = require "custom.highlights"
 M.ui = {
-  theme = "catppucin-frape",
-  theme_toggle = { "catppucin-frape", "one_light" },
   lsp_semantic_tokens = false,
   statusline = core.statusline,
   tabufline = core.tabufline,
@@ -56,10 +54,24 @@ M.base46 = {
     "notify",
   },
 
+  theme = "catppucin-frape",
+  theme_toggle = { "catppucin-frape", "one_light" },
+
   hl_override = highlights.override,
   hl_add = highlights.add,
 
   nvdash = core.nvdash,
+}
+
+M.colorify = {
+    enabled = true,
+    mode = "virtual", -- fg, bg, virtual
+    virt_text = "󱓻 ",
+
+    highlight = {
+      hex = true,
+      lspvars = true,
+    },
 }
 
 M.settings = {
