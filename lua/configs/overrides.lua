@@ -445,6 +445,7 @@ M.telescope = {
       },
     },
     buffer_previewer_maker = new_maker,
+    multi_icon = "",
     prompt_prefix = "󰼛 ",
     selection_caret = "󱞩 ",
     preview = {
