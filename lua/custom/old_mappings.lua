@@ -599,7 +599,6 @@ M.lspsaga = {
     ["<leader>."] = {
       function()
         require("actions-preview").code_actions()
-        -- require("tiny-code-action").code_action()
       end,
       "󰅱 Code Action",
     },

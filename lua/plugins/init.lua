@@ -390,7 +390,27 @@ return {
     event = {
       "BufReadPre /users/bruno.krugel/Library/Mobile Documents/iCloud~md~obsidian/Documents/Annotation/**.md",
     },
-    dependencies = "OXY2DEV/markview.nvim",
+    dependencies = {
+      "MeanderingProgrammer/render-markdown.nvim",
+      opts = {
+        heading = {
+          sign = false,
+          icons = { " ", " ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " },
+          width = 79,
+        },
+        code = {
+          sign = false,
+          width = "block", -- use 'language' if colorcolumn is important for you.
+          right_pad = 1,
+        },
+        dash = {
+          width = 79,
+        },
+        pipe_table = {
+          style = "full", -- use 'normal' if colorcolumn is important for you.
+        },
+      },
+    },
     config = function()
       require("obsidian").setup {
         dir = "/users/bruno.krugel/Library/Mobile Documents/iCloud~md~obsidian/Documents/Annotation",
@@ -424,6 +444,11 @@ return {
         debug = false,
       }
     end,
+  },
+  {
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {},
   },
   {
     "m-demare/hlargs.nvim",
