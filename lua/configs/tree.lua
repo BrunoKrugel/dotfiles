@@ -1,5 +1,6 @@
 local function on_attach(bufnr)
   local api = require "nvim-tree.api"
+  local lib = require("nvim-tree.lib")
 
   local function opts(desc)
     return {
@@ -102,11 +103,47 @@ local function on_attach(bufnr)
   map("n", "d", api.fs.trash, opts "Trash")
   map("n", "D", api.fs.remove, opts "Trash")
   map("n", "<Esc>", smart_close_esc, opts "Close")
-  map("n", "z", api.node.navigate.parent_close, opts "Close Directory")
+  -- map("n", "z", api.node.navigate.parent_close, opts "Close Directory")
   map("n", "t", api.marks.toggle, opts "Toggle Bookmark")
   map("n", "+", api.tree.change_root_to_node, opts "CD")
   map("n", "<leader>dj", api.node.navigate.diagnostics.next, opts "Next Diagnostic")
   map("n", "<leader>dk", api.node.navigate.diagnostics.prev, opts "Prev Diagnostic")
+
+  map("n", "z", function()
+    local node = lib.get_node_at_cursor()
+    local grugFar = require "grug-far"
+    if node then
+      -- get directory of current file if it's a file
+      local path
+      if node.type == "directory" then
+        -- Keep the full path for directories
+        path = node.absolute_path
+      else
+        -- Get the directory of the file
+        path = vim.fn.fnamemodify(node.absolute_path, ":h")
+      end
+
+      -- escape all spaces in the path with "\ "
+      path = path:gsub(" ", "\\ ")
+
+      local prefills = {
+        paths = path,
+      }
+
+      -- instance check
+      if not grugFar.has_instance "tree" then
+        grugFar.grug_far {
+          instanceName = "tree",
+          prefills = prefills,
+          staticTitle = "Find and Replace from Tree",
+        }
+      else
+        grugFar.open_instance "tree"
+        -- updating the prefills without clearing the search and other fields
+        grugFar.update_instance_prefills("tree", prefills, false)
+      end
+    end
+  end, opts "Search in directory")
 end
 
 return {
