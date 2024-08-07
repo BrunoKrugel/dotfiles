@@ -36,6 +36,8 @@ M.override = {
   -- ["@variable"] = { fg = "white" },
   ["@attribute"] = { link = "Constant" },
 
+  ["@keyword"] = { italic = true },
+
   ["@function.builtin"] = { fg = "cyan" },
   ["@function.method"] = { link = "Function" },
   ["@function.method.call"] = { link = "Function" },

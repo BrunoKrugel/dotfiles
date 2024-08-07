@@ -16,6 +16,7 @@ opt.autoindent = true --- Good auto indent
 opt.backspace = "indent,eol,start" --- Making sure backspace works
 opt.laststatus = 3 -- global statusline
 opt.showmode = false
+opt.smoothscroll = true
 
 o.mousemoveevent = true
 
