@@ -279,6 +279,10 @@ return {
     end,
   },
   {
+    "OXY2DEV/helpview.nvim",
+    event = "VeryLazy",
+  },
+  {
     "RRethy/vim-illuminate",
     event = "CursorHold",
     config = function()
@@ -722,6 +726,20 @@ return {
           },
         },
         auto_close = true,
+        keys = {
+          ["<Esc>"] = "close",
+          ["<C-q>"] = "close",
+          ["<C-c>"] = "close",
+          ["R"] = "refresh",
+          ["<space>"] = "preview",
+          ["<cr>"] = "jump_close",
+          ["l"] = "fold_open",
+          ["h"] = "fold_close",
+          ["]"] = "next",
+          ["["] = "prev",
+          ["[["] = false,
+          ["]]"] = false,
+        },
       }
     end,
   },
