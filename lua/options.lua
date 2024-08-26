@@ -19,6 +19,7 @@ opt.showmode = false
 opt.smoothscroll = true
 
 o.mousemoveevent = true
+vim.opt.sessionoptions="blank,buffers,curdir,tabpages,winsize,winpos,terminal,localoptions"
 
 opt.clipboard = "unnamedplus"
 opt.cursorline = true
