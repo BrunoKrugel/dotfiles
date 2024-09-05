@@ -150,10 +150,8 @@ return {
       "hrsh7th/cmp-copilot",
       "ray-x/cmp-treesitter",
       "tzachar/cmp-fuzzy-buffer",
-      "roobert/tailwindcss-colorizer-cmp.nvim",
       "tzachar/fuzzy.nvim",
       "rcarriga/cmp-dap",
-      "js-everts/cmp-tailwind-colors",
       { "jcdickinson/codeium.nvim", config = true },
       {
         "tzachar/cmp-tabnine",
@@ -229,15 +227,6 @@ return {
       },
     },
     config = function(_, opts)
-      local format_kinds = opts.formatting.format
-      opts.formatting.format = function(entry, item)
-        if item.kind == "Color" then
-          item.kind = "⬤"
-          format_kinds(entry, item)
-          return require("tailwindcss-colorizer-cmp").formatter(entry, item)
-        end
-        return format_kinds(entry, item)
-      end
       ---@diagnostic disable-next-line: different-requires
       local cmp = require "cmp"
 
