@@ -517,6 +517,20 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+vim.api.nvim_create_autocmd("OptionSet", {
+  pattern = "diff",
+  callback = function()
+    local ok, ibl = pcall(require, "ibl")
+    if ok then
+      if vim.opt.diff:get() then
+        ibl.update { enabled = false }
+      else
+        ibl.update { enabled = true }
+      end
+    end
+  end,
+})
+
 autocmd({ "BufEnter", "BufNewFile" }, {
   callback = function()
     if vim.bo.filetype == "markdown" then
