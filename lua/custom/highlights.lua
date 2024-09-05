@@ -217,6 +217,10 @@ M.add = {
   DiagnosticUnnecessary = { link = "", fg = "light_grey" },
   LspInlayHint = { link = "", fg = "light_grey" },
 
+  GrugFarResultsMatch = { link = "DiffChange" },
+  GrugFarResultsMatchAdded = { link = "DiffAdd" },
+  GrugFarResultsMatchRemoved = { link = "DiffDelete" },
+
   -- Noice
   NoiceCursor = { link = "Cursor" },
   NoiceCmdlinePopupBorder = { fg = "cyan" },

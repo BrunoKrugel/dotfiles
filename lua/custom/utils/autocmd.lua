@@ -390,6 +390,8 @@ autocmd("FileType", {
     "neotest-output-panel",
     "nvcheatsheet",
     "grug-far",
+    "grug-far-history",
+    "grug-far-help",
   },
   group = augroup("WinCloseOnQDefinition", { clear = true }),
   command = [[
