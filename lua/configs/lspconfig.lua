@@ -255,7 +255,7 @@ local servers = {
 
 vim.lsp.handlers["textDocument/hover"] = require("noice").hover
 vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
-  local ts_lsp = { "tsserver", "angularls", "volar" }
+  local ts_lsp = { "ts_ls", "angularls", "volar" }
   local clients = vim.lsp.get_clients { id = ctx.client_id }
   if vim.tbl_contains(ts_lsp, clients[1].name) then
     local filtered_result = {
