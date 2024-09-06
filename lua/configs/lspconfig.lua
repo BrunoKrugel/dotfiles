@@ -71,8 +71,6 @@ local custom_on_attach = function(client, bufnr)
     client.server_capabilities.workspace.didChangeWatchedFiles.relativePatternSupport = true
   end
 
-
-
   -- if client.name == "gopls" then
   --   -- workaround for gopls not supporting semanticTokensProvider
   --   -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
@@ -282,6 +280,10 @@ require("mason-lspconfig").setup {
 
 require("mason-lspconfig").setup_handlers {
   function(server_name)
+    if server_name == "tsserver" then
+      server_name = "ts_ls"
+    end
+
     lspconfig[server_name].setup {
       on_attach = custom_on_attach,
       capabilities = capabilities,
