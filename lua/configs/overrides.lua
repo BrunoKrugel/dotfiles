@@ -200,38 +200,6 @@ M.treesitter = {
 }
 
 M.mason = {
-  ensure_installed = {
-    -- lua stuff
-    "lua-language-server",
-    "stylua",
-
-    -- web dev stuff
-    "css-lsp",
-    "html-lsp",
-    "typescript-language-server",
-    "prettier",
-    "eslint-lsp",
-    "emmet-ls",
-    "rustywind",
-
-    -- Spell
-    "marksman",
-
-    -- Json
-    "jsonlint",
-    "json-lsp",
-
-    "dockerfile-language-server",
-
-    -- golang
-    "gopls",
-    "goimports",
-    "golines",
-    "gomodifytags",
-    "impl",
-    "iferr",
-  },
-
   ui = {
     icons = {
       package_pending = " ",

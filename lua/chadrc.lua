@@ -28,6 +28,40 @@ M.ui = {
 
 M.lsp = { signature = false }
 
+M.mason = {
+  pkgs = {
+    -- lua stuff
+    "lua-language-server",
+    "stylua",
+
+    -- web dev stuff
+    "css-lsp",
+    "html-lsp",
+    "typescript-language-server",
+    "prettier",
+    "eslint-lsp",
+    "emmet-ls",
+    "rustywind",
+
+    -- Spell
+    "marksman",
+
+    -- Json
+    "jsonlint",
+    "json-lsp",
+
+    "dockerfile-language-server",
+
+    -- golang
+    "gopls",
+    "goimports",
+    "golines",
+    "gomodifytags",
+    "impl",
+    "iferr",
+  },
+}
+
 M.base46 = {
   integrations = {
     "blankline",
@@ -64,14 +98,14 @@ M.base46 = {
 }
 
 M.colorify = {
-    enabled = true,
-    mode = "virtual", -- fg, bg, virtual
-    virt_text = "󱓻 ",
+  enabled = true,
+  mode = "virtual", -- fg, bg, virtual
+  virt_text = "󱓻 ",
 
-    highlight = {
-      hex = true,
-      lspvars = true,
-    },
+  highlight = {
+    hex = true,
+    lspvars = true,
+  },
 }
 
 M.settings = {
