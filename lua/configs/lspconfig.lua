@@ -31,6 +31,15 @@ if ok then
   }
 end
 
+local function get_pkg_path(pkg, path, opts)
+  local root = vim.env.MASON or (vim.fn.stdpath "data" .. "/mason")
+  opts = opts or {}
+  opts.warn = opts.warn == nil and true or opts.warn
+  path = path or ""
+  local ret = root .. "/packages/" .. pkg .. "/" .. path
+  return ret
+end
+
 ---gopls_organize_imports will organize imports for the provided buffer
 ---@param client vim.lsp.Client gopls instance
 ---@param bufnr number buffer to organize imports for
@@ -309,6 +318,64 @@ require("mason-lspconfig").setup_handlers {
       capabilities = capabilities,
     }
   end,
+
+  -- ["vtsls"] = function()
+  --   lspconfig["vtsls"].setup {
+  --     on_attach = custom_on_attach,
+  --     capabilities = capabilities,
+  --     filetypes = {
+  --       "javascript",
+  --       "javascriptreact",
+  --       "javascript.jsx",
+  --       "typescript",
+  --       "typescriptreact",
+  --       "typescript.tsx",
+  --       "vue",
+  --       "astro",
+  --     },
+  --     settings = {
+  --       complete_function_calls = true,
+  --       vtsls = {
+  --         enableMoveToFileCodeAction = true,
+  --         autoUseWorkspaceTsdk = true,
+  --         experimental = {
+  --           completion = {
+  --             enableServerSideFuzzyMatch = true,
+  --           },
+  --         },
+  --         tsserver = {
+  --           globalPlugins = {
+  --             {
+  --               name = "@vue/typescript-plugin",
+  --               location = get_pkg_path("vue-language-server", "/node_modules/@vue/language-server"),
+  --               languages = { "vue" },
+  --               configNamespace = "typescript",
+  --               enableForWorkspaceTypeScriptVersions = true,
+  --             },
+  --           },
+  --         },
+  --       },
+  --       typescript = {
+  --         format = {
+  --           indentSize = vim.o.shiftwidth,
+  --           convertTabsToSpaces = vim.o.expandtab,
+  --           tabSize = vim.o.tabstop,
+  --         },
+  --         preferences = { importModuleSpecifier = "non-relative" },
+  --         updateImportsOnFileMove = { enabled = "always" },
+  --         suggest = { completeFunctionCalls = true },
+  --         inlayHints = {
+  --           enumMemberValues = { enabled = true },
+  --           functionLikeReturnTypes = { enabled = false },
+  --           parameterNames = { enabled = "all" },
+  --           parameterTypes = { enabled = false },
+  --           propertyDeclarationTypes = { enabled = true },
+  --           variableTypes = { enabled = false },
+  --         },
+  --       },
+  --     },
+  --   }
+  -- end,
 
   -- disable tsserver
   ["tsserver"] = function() end,
