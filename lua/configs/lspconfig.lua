@@ -244,9 +244,7 @@ end
 local servers = {
   "html",
   "cssls",
-  -- "tsserver",
   "clangd",
-  -- "eslint",
   "jdtls",
   "astro",
   "gopls",

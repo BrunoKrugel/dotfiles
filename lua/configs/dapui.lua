@@ -15,9 +15,7 @@ end
 
 -- local core = require "custom.utils.core"
 -- dapui.setup(core.dapui)
-require("dap.ext.vscode").load_launchjs "launch.json"
-
-dofile(vim.g.base46_cache .. "dap")
+-- require("dap.ext.vscode").load_launchjs "launch.json"
 
 dap.listeners.before.event_initialized["dapui_config"] = function()
   local api = require "nvim-tree.api"
