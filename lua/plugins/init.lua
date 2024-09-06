@@ -10,6 +10,15 @@ return {
         opts = overrides.mason,
         config = function(_, opts)
           require("mason").setup(opts)
+          local mr = require "mason-registry"
+          mr:on("package:install:success", function()
+            vim.defer_fn(function()
+              require("lazy.core.handler.event").trigger {
+                event = "FileType",
+                buf = vim.api.nvim_get_current_buf(),
+              }
+            end, 100)
+          end)
           vim.api.nvim_create_user_command("MasonInstallAll", function()
             vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
           end, {})
