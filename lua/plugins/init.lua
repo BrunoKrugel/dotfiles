@@ -450,7 +450,17 @@ return {
   {
     "folke/lazydev.nvim",
     ft = "lua", -- only load on lua files
-    opts = {},
+    dependencies = { "justinsgithub/wezterm-types" },
+    cond = function()
+      local term = vim.fn.getenv "TERM_PROGRAM"
+      return term == "WezTerm"
+    end,
+    opts = {
+      library = {
+        { path = vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types", words = { "ChadrcConfig", "NvPluginSpec" } },
+        { path = "wezterm-types", mods = { "wezterm" } },
+      },
+    },
   },
   {
     "m-demare/hlargs.nvim",
