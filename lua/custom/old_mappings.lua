@@ -702,7 +702,9 @@ M.lspconfig = {
         if isCodeActionAvailable() then
           vim.lsp.buf.code_action()
         else
-          vim.cmd "GoCodeAction"
+          if vim.bo.filetype == "go" then
+            vim.cmd "GoCodeAction"
+          end
         end
       end,
       "Go: Code Action",
