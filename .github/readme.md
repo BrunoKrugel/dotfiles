@@ -80,7 +80,7 @@ If the copilot suggestion is active, you can use `<Tab>` to select the copilot o
 
 ![fold](./img/fold.png)
 
-_With [UFO](https://github.com/kevinhwang91/nvim-ufo), [Pretty Fold](https://github.com/anuvyklack/pretty-fold.nvim)_
+_With [UFO](https://github.com/kevinhwang91/nvim-ufo)_
 
 </div>
 
@@ -103,16 +103,6 @@ _With [Trouble](https://github.com/folke/trouble.nvim)_
 ![scrollbar](./img/lsp.png)
 
 _With [lsp-lines](https://github.com/ErichDonGubler/lsp_lines.nvim)_
-
-</div>
-
-### Diagnostics in scrollbar
-
-<div align="center">
-
-![scrollbar](./img/discroll.png)
-
-_With [nvim-scrollbar](https://github.com/petertriho/nvim-scrollbar)_
 
 </div>
 
@@ -164,7 +154,7 @@ _With [IncRename](https://github.com/smjonas/inc-rename.nvim)_
 
 ![muren](./img/muren.png)
 
-_With [Muren](https://github.com/AckslD/muren.nvim)_
+_With [Muren](https://github.com/BrunoKrugel/muren.nvim)_
 
 </div>
 
