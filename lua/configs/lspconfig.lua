@@ -376,7 +376,7 @@ require("mason-lspconfig").setup_handlers {
   -- end,
 
   -- disable tsserver
-  ["tsserver"] = function() end,
+  ["ts_ls"] = function() end,
 
   ["lua_ls"] = function()
     lspconfig["lua_ls"].setup {
