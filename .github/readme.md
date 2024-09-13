@@ -1,5 +1,5 @@
 <h1 align="center">Nvim(Chad) configuration</h1>
-<p align="center">Custom config for <a href="https://github.com/NvChad/NvChad">NvChad</a> v2.5<p>
+<p align="center">Powered by <a href="https://github.com/NvChad/NvChad">NvChad</a> v2.5<p>
 
 <div align="center"><p>
     <a href="https://github.com/BrunoKrugel/dotfiles/pulse">
@@ -40,7 +40,6 @@ I have been a VSCode user for years and I am slowly moving forward to `NVIM`, so
 1. Same as [NvChad](https://nvchad.com/docs/quickstart/install)
 2. I am using `Hack Nerd Font`
 3. My terminal is `WezTerm`
-4. I am using an M1, so, some things may not work out of the box for you
 
 ## Help
 
@@ -138,17 +137,17 @@ _With [SearchBox](https://github.com/VonHeikemen/searchbox.nvim)_
 
 </div>
 
-### Local Rename
+### Global Search and Replace
 
 <div align="center">
 
-![rename](./img/rename.png)
+![rename](./img/replace.png)
 
-_With [IncRename](https://github.com/smjonas/inc-rename.nvim)_
+_With [Grug Far](https://github.com/MagicDuck/grug-far.nvim)_
 
 </div>
 
-### Global rename
+### Local rename
 
 <div align="center">
 
