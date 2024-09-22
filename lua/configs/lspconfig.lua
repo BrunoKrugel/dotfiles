@@ -61,6 +61,24 @@ local function organize_imports(client, bufnr)
   end
 end
 
+capabilities.textDocument.completion.completionItem = {
+  documentationFormat = { "markdown", "plaintext" },
+  snippetSupport = true,
+  preselectSupport = true,
+  insertReplaceSupport = true,
+  labelDetailsSupport = true,
+  deprecatedSupport = true,
+  commitCharactersSupport = true,
+  tagSupport = { valueSet = { 1 } },
+  resolveSupport = {
+    properties = {
+      "documentation",
+      "detail",
+      "additionalTextEdits",
+    },
+  },
+}
+
 local function attach_codelens(client, bufnr)
   local augroup = vim.api.nvim_create_augroup("Lsp", {})
   vim.api.nvim_create_autocmd({ "BufReadPost", "CursorHold", "InsertLeave" }, {
