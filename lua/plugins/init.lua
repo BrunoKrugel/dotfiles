@@ -48,6 +48,8 @@ return {
     "folke/which-key.nvim",
     enabled = true,
   },
+  { "nvchad/volt" },
+  { "nvchad/minty", event = "BufReadPost" },
   {
     "lewis6991/gitsigns.nvim",
     opts = function()
