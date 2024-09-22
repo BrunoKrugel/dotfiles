@@ -92,13 +92,13 @@ end
 --   end,
 -- })
 
-autocmd("BufWinEnter", {
-  callback = function(data)
-    open_help(data.buf)
-  end,
-  group = general,
-  desc = "Redirect help to floating window",
-})
+-- autocmd("BufWinEnter", {
+--   callback = function(data)
+--     open_help(data.buf)
+--   end,
+--   group = general,
+--   desc = "Redirect help to floating window",
+-- })
 
 vim.api.nvim_create_autocmd("QuickFixCmdPost", {
   callback = function()
@@ -163,34 +163,6 @@ autocmd({ "BufNewFile", "BufRead" }, {
   pattern = { "**/node_modules/**", "node_modules", "/node_modules/*" },
   callback = function()
     vim.diagnostic.disable(0)
-  end,
-})
-
--- autocmd("FileType", {
---   desc = "Close NvimTree before quit nvim",
---   pattern = { "NvimTree" },
---   callback = function(args)
---     autocmd("VimLeavePre", {
---       callback = function()
---         vim.api.nvim_buf_delete(args.buf, { force = true })
---         return true
---       end,
---     })
---   end,
--- })
-
-autocmd("BufEnter", {
-  desc = "Open new buffer if only Nvimtree is open",
-  nested = true,
-  callback = function()
-    local api = require "nvim-tree.api"
-    if #vim.api.nvim_list_wins() == 1 and api.tree.is_tree_buf() then
-      vim.defer_fn(function()
-        api.tree.toggle { find_file = true, focus = true }
-        api.tree.toggle { find_file = true, focus = true }
-        vim.cmd "wincmd p"
-      end, 0)
-    end
   end,
 })
 
@@ -553,13 +525,6 @@ autocmd({ "tabnew" }, {
   end,
 })
 
-autocmd({ "User" }, {
-  pattern = "PersistedSavePre",
-  callback = function()
-    pcall(vim.cmd, "NvimTreeClose")
-  end,
-})
-
 autocmd("BufEnter", {
   nested = true,
   callback = function()
@@ -601,62 +566,3 @@ autocmd({ "InsertLeave", "WinEnter" }, {
 autocmd({ "InsertEnter", "WinLeave" }, {
   command = "set nocursorline",
 })
-
--- local lazy_did_show_install_view = false
-
--- local function auto_session_restore()
---   -- important! without vim.schedule other necessary plugins might not load (eg treesitter) after restoring the session
---   vim.schedule(function()
---     require("auto-session").AutoRestoreSession()
---   end)
--- end
-
--- autocmd("User", {
---   pattern = "VeryLazy",
---   callback = function()
---     local lazy_view = require "lazy.view"
-
---     if lazy_view.visible() then
---       -- if lazy view is visible do nothing with auto-session
---       lazy_did_show_install_view = true
---     else
---       -- otherwise load (by require'ing) and restore session
---       auto_session_restore()
---     end
---   end,
--- })
-
--- autocmd("WinClosed", {
---   pattern = "*",
---   callback = function(ev)
---     local lazy_view = require "lazy.view"
-
---     -- if lazy view is currently visible and was shown at startup
---     if lazy_view.visible() and lazy_did_show_install_view then
---       -- if the window to be closed is actually the lazy view window
---       if ev.match == tostring(lazy_view.view.win) then
---         lazy_did_show_install_view = false
---         auto_session_restore()
---       end
---     end
---   end,
--- })
-
--- Open NvimTree on startup
--- autocmd("VimEnter", {
---   callback = function()
---     require("nvim-tree.api").tree.open()
---   end,
--- })
-
--- Fix NvimTree not opening on startup when using session restore plugin
--- autocmd({ "BufEnter" }, {
---   pattern = "NvimTree*",
---   callback = function()
---     local api = require "nvim-tree.api"
---     local view = require "nvim-tree.view"
---     if not view.is_visible() then
---       api.tree.open()
---     end
---   end,
--- })

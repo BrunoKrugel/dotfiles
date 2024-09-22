@@ -241,6 +241,5 @@ map({ "n", "v" }, "gl", "$", { desc = "[P]go to the end of the line" })
 -- In visual mode, after going to the end of the line, come back 1 character
 map("v", "gl", "$h", { desc = "[P]Go to the end of the line" })
 
-
 -- grug far current file
 -- require('grug-far').grug_far({ prefills = { paths = vim.fn.expand("%") } })
