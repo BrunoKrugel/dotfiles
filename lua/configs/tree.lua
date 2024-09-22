@@ -113,13 +113,10 @@ local function on_attach(bufnr)
     local node = lib.get_node_at_cursor()
     local grugFar = require "grug-far"
     if node then
-      -- get directory of current file if it's a file
       local path
       if node.type == "directory" then
-        -- Keep the full path for directories
         path = node.absolute_path
       else
-        -- Get the directory of the file
         path = vim.fn.fnamemodify(node.absolute_path, ":h")
       end
 
@@ -130,7 +127,6 @@ local function on_attach(bufnr)
         paths = path,
       }
 
-      -- instance check
       if not grugFar.has_instance "tree" then
         grugFar.grug_far {
           instanceName = "tree",
@@ -139,7 +135,6 @@ local function on_attach(bufnr)
         }
       else
         grugFar.open_instance "tree"
-        -- updating the prefills without clearing the search and other fields
         grugFar.update_instance_prefills("tree", prefills, false)
       end
     end
