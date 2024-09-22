@@ -92,6 +92,8 @@ M.add = {
 
   -- LazyDimmed = { fg = colors.grey },
 
+  CodeActionSignHl = { fg = "#f9e2af" },
+
   EdgyWinBar = { bg = "black", fg = "white" },
   EdgyWinBarInactive = { bg = "black", fg = "white" },
   EdgyNormal = { bg = "black", fg = "white" },
