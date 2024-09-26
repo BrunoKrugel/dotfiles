@@ -92,8 +92,8 @@ M.base46 = {
     "notify",
   },
 
-  theme = "catppucin-frape",
-  theme_toggle = { "catppucin-frape", "one_light" },
+  theme = "catppucin-frape", ---@diagnostic disable-line
+  theme_toggle = { "catppucin-frape", "one_light" }, ---@diagnostic disable-line
 
   hl_override = highlights.override,
   hl_add = highlights.add,
