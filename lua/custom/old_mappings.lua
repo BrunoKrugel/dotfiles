@@ -519,7 +519,7 @@ M.telescope = {
                 len = len + 1
                 -- get relative name of buffer without leading slash
                 buffers[len] = "^"
-                  .. literalize(string.gsub(vim.api.nvim_buf_get_name(buffer), literalize(vim.loop.cwd()), ""):sub(2))
+                  .. literalize(string.gsub(vim.api.nvim_buf_get_name(buffer), literalize(vim.uv.cwd()), ""):sub(2))
                   .. "$"
               end
             end

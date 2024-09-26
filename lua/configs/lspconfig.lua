@@ -564,7 +564,7 @@ require("mason-lspconfig").setup_handlers {
           if not result then
             return
           end
-          local sysname = vim.loop.os_uname().sysname
+          local sysname = vim.uv.os_uname().sysname
           if sysname:match "Windows_NT" then
             os.execute(string.format("start %q", result.url))
           elseif sysname:match "Linux" then

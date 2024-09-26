@@ -728,7 +728,7 @@ return {
                 {
                   severity = vim.diagnostic.severity.ERROR,
                   function(item)
-                    return item.filename:find(true, 1, (vim.loop or vim.uv).cwd())
+                    return item.filename:find(true, 1, (vim.uv or vim.uv).cwd())
                   end,
                 },
               },
