@@ -1238,14 +1238,14 @@ return {
     },
   },
   ----------------------------------------- completions plugins ------------------------------------------
-  {
-    "skywind3000/gutentags_plus",
-    event = "VeryLazy",
-    dependencies = { "ludovicchabant/vim-gutentags" },
-    config = function()
-      require "configs.tags"
-    end,
-  },
+  -- {
+  --   "skywind3000/gutentags_plus",
+  --   event = "VeryLazy",
+  --   dependencies = { "ludovicchabant/vim-gutentags" },
+  --   config = function()
+  --     require "configs.tags"
+  --   end,
+  -- },
   {
     "github/copilot.vim",
     lazy = false,
