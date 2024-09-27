@@ -239,6 +239,11 @@ autocmd("BufEnter", {
 autocmd("BufReadPost", {
   desc = "Go to last loc when opening a buffer",
   callback = function()
+    local exclude = { "gitcommit", "gitrebase", "Trouble" }
+    local buf = vim.api.nvim_get_current_buf()
+    if vim.tbl_contains(exclude, vim.bo[buf].filetype) then
+      return
+    end
     local mark = vim.api.nvim_buf_get_mark(0, '"')
     local lcount = vim.api.nvim_buf_line_count(0)
     if mark[1] > 0 and mark[1] <= lcount then
