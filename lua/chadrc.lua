@@ -92,8 +92,8 @@ M.base46 = {
     "notify",
   },
 
-  theme = "eldritch", ---@diagnostic disable-line
-  theme_toggle = { "eldritch", "one_light" }, ---@diagnostic disable-line
+  theme = "catppucin-frape", ---@diagnostic disable-line
+  theme_toggle = { "catppucin-frape", "one_light" }, ---@diagnostic disable-line
 
   hl_override = highlights.override,
   hl_add = highlights.add,
