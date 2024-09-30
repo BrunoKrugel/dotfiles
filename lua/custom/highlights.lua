@@ -94,6 +94,9 @@ M.add = {
 
   CodeActionSignHl = { fg = "#f9e2af" },
 
+  ["@number.luadoc"] = { fg = "Comment" },
+  ["@markup.quote.markdown"] = { bg = "NONE" },
+
   EdgyWinBar = { bg = "black", fg = "white" },
   EdgyWinBarInactive = { bg = "black", fg = "white" },
   EdgyNormal = { bg = "black", fg = "white" },
