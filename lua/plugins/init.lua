@@ -1117,19 +1117,13 @@ return {
     build = ':lua require("go.install").update_all_sync()',
   },
   {
-    "pmizio/typescript-tools.nvim",
+    "dmmulroy/ts-error-translator.nvim",
     ft = {
       "javascript",
       "typescript",
       "javascriptreact",
       "typescriptreact",
     },
-    dependencies = {
-      "dmmulroy/ts-error-translator.nvim",
-    },
-    config = function()
-      require "configs.ts"
-    end,
   },
   {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",

@@ -339,72 +339,69 @@ require("mason-lspconfig").setup_handlers {
     }
   end,
 
-  -- ["vtsls"] = function()
-  --   lspconfig["vtsls"].setup {
-  --     on_attach = custom_on_attach,
-  --     capabilities = capabilities,
-  --     on_init = on_init,
-  --     filetypes = {
-  --       "javascript",
-  --       "javascriptreact",
-  --       "javascript.jsx",
-  --       "typescript",
-  --       "typescriptreact",
-  --       "typescript.tsx",
-  --       "vue",
-  --       "astro",
-  --     },
-  --     settings = {
-  --       complete_function_calls = true,
-  --       vtsls = {
-  --         enableMoveToFileCodeAction = true,
-  --         autoUseWorkspaceTsdk = true,
-  --         experimental = {
-  --           completion = {
-  --             enableServerSideFuzzyMatch = true,
-  --             entriesLimit = 50,
-  --           },
-  --         },
-  --         tsserver = {
-  --           globalPlugins = {
-  --             {
-  --               name = "@vue/typescript-plugin",
-  --               location = get_pkg_path("vue-language-server", "/node_modules/@vue/language-server"),
-  --               languages = { "vue" },
-  --               configNamespace = "typescript",
-  --               enableForWorkspaceTypeScriptVersions = true,
-  --             },
-  --           },
-  --         },
-  --       },
-  --       typescript = {
-  --         format = {
-  --           indentSize = vim.o.shiftwidth,
-  --           convertTabsToSpaces = vim.o.expandtab,
-  --           tabSize = vim.o.tabstop,
-  --         },
-  --         preferences = {
-  --           importModuleSpecifier = "non-relative",
-  --           includePackageJsonAutoImports = "off",
-  --           autoImportFileExcludePatterns = { ".git", "node_modules" },
-  --         },
-  --         updateImportsOnFileMove = { enabled = "always" },
-  --         suggest = { completeFunctionCalls = true },
-  --         inlayHints = {
-  --           enumMemberValues = { enabled = true },
-  --           functionLikeReturnTypes = { enabled = false },
-  --           parameterNames = { enabled = "all" },
-  --           parameterTypes = { enabled = false },
-  --           propertyDeclarationTypes = { enabled = true },
-  --           variableTypes = { enabled = false },
-  --         },
-  --       },
-  --     },
-  --   }
-  -- end,
-
-  -- disable tsserver
-  ["ts_ls"] = function() end,
+  ["vtsls"] = function()
+    lspconfig["vtsls"].setup {
+      on_attach = custom_on_attach,
+      capabilities = capabilities,
+      on_init = on_init,
+      filetypes = {
+        "javascript",
+        "javascriptreact",
+        "javascript.jsx",
+        "typescript",
+        "typescriptreact",
+        "typescript.tsx",
+        "vue",
+        "astro",
+      },
+      settings = {
+        complete_function_calls = true,
+        vtsls = {
+          enableMoveToFileCodeAction = true,
+          autoUseWorkspaceTsdk = true,
+          experimental = {
+            completion = {
+              enableServerSideFuzzyMatch = true,
+              entriesLimit = 50,
+            },
+          },
+          tsserver = {
+            globalPlugins = {
+              {
+                name = "@vue/typescript-plugin",
+                location = get_pkg_path("vue-language-server", "/node_modules/@vue/language-server"),
+                languages = { "vue" },
+                configNamespace = "typescript",
+                enableForWorkspaceTypeScriptVersions = true,
+              },
+            },
+          },
+        },
+        typescript = {
+          format = {
+            indentSize = vim.o.shiftwidth,
+            convertTabsToSpaces = vim.o.expandtab,
+            tabSize = vim.o.tabstop,
+          },
+          preferences = {
+            importModuleSpecifier = "non-relative",
+            includePackageJsonAutoImports = "off",
+            autoImportFileExcludePatterns = { ".git", "node_modules" },
+          },
+          updateImportsOnFileMove = { enabled = "always" },
+          suggest = { completeFunctionCalls = true },
+          inlayHints = {
+            enumMemberValues = { enabled = true },
+            functionLikeReturnTypes = { enabled = false },
+            parameterNames = { enabled = "all" },
+            parameterTypes = { enabled = false },
+            propertyDeclarationTypes = { enabled = true },
+            variableTypes = { enabled = false },
+          },
+        },
+      },
+    }
+  end,
 
   ["lua_ls"] = function()
     lspconfig["lua_ls"].setup {
