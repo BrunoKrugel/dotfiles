@@ -145,13 +145,12 @@ M.cmp = {
     disabled = disabled or (require("cmp.config.context").in_treesitter_capture "comment" == true)
     disabled = disabled or (require("cmp.config.context").in_syntax_group "Comment" == true)
     disabled = disabled or (vim.api.nvim_get_mode().mode == "c")
+    disabled = disabled or api.nvim_buf_get_name(0) == "lsp:rename"
+    disabled = disabled or vim.b.rename
 
-    if disabled then
-      return not disabled
-    end
-
-    return true
+    return not disabled
   end,
+  preselect = require("cmp").PreselectMode.None,
   window = {
     completion = {
       scrolloff = 0,
