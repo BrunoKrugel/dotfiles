@@ -50,6 +50,7 @@ return {
   },
   { "nvchad/volt" },
   { "nvchad/minty", event = "BufReadPost" },
+  { "nvchad/menu", event = "BufReadPost" },
   {
     "lewis6991/gitsigns.nvim",
     opts = function()
