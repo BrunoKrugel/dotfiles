@@ -29,6 +29,16 @@ autocmd("ModeChanged", {
   end,
 })
 
+autocmd("FileType", {
+  desc = "Workaround for NvMenu being below NvimTree.",
+  pattern = "NvMenu",
+  callback = function()
+    if vim.bo.ft == "NvMenu" then
+      vim.api.nvim_win_set_config(0, { zindex = 99 })
+    end
+  end,
+})
+
 -- Enable native syntax hl
 autocmd("FileType", {
   pattern = { "gitsendemail", "conf", "editorconfig", "qf", "checkhealth" },
