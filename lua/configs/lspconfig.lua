@@ -8,6 +8,7 @@ local conf = require("telescope.config").values
 local builtin = require "telescope.builtin"
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
+local on_init = require("nvchad.configs.lspconfig").on_init
 
 local capabilities = vim.tbl_deep_extend(
   "force",
@@ -311,6 +312,7 @@ require("mason-lspconfig").setup_handlers {
 
     lspconfig[server_name].setup {
       on_attach = custom_on_attach,
+      on_init = on_init,
       capabilities = capabilities,
     }
   end,
@@ -318,6 +320,7 @@ require("mason-lspconfig").setup_handlers {
   ["jsonls"] = function()
     lspconfig["jsonls"].setup {
       on_attach = custom_on_attach,
+      on_init = on_init,
       capabilities = capabilities,
       settings = {
         json = {
@@ -331,6 +334,7 @@ require("mason-lspconfig").setup_handlers {
   ["terraformls"] = function()
     lspconfig["terraformls"].setup {
       on_attach = custom_on_attach,
+      on_init = on_init,
       capabilities = capabilities,
     }
   end,
@@ -339,6 +343,7 @@ require("mason-lspconfig").setup_handlers {
   --   lspconfig["vtsls"].setup {
   --     on_attach = custom_on_attach,
   --     capabilities = capabilities,
+  --     on_init = on_init,
   --     filetypes = {
   --       "javascript",
   --       "javascriptreact",
@@ -357,6 +362,7 @@ require("mason-lspconfig").setup_handlers {
   --         experimental = {
   --           completion = {
   --             enableServerSideFuzzyMatch = true,
+  --             entriesLimit = 50,
   --           },
   --         },
   --         tsserver = {
@@ -377,7 +383,11 @@ require("mason-lspconfig").setup_handlers {
   --           convertTabsToSpaces = vim.o.expandtab,
   --           tabSize = vim.o.tabstop,
   --         },
-  --         preferences = { importModuleSpecifier = "non-relative" },
+  --         preferences = {
+  --           importModuleSpecifier = "non-relative",
+  --           includePackageJsonAutoImports = "off",
+  --           autoImportFileExcludePatterns = { ".git", "node_modules" },
+  --         },
   --         updateImportsOnFileMove = { enabled = "always" },
   --         suggest = { completeFunctionCalls = true },
   --         inlayHints = {
@@ -399,6 +409,7 @@ require("mason-lspconfig").setup_handlers {
   ["lua_ls"] = function()
     lspconfig["lua_ls"].setup {
       on_attach = custom_on_attach,
+      on_init = on_init,
       capabilities = capabilities,
       settings = {
         Lua = {
@@ -433,6 +444,7 @@ require("mason-lspconfig").setup_handlers {
   ["gopls"] = function()
     lspconfig["gopls"].setup {
       on_attach = custom_on_attach,
+      on_init = on_init,
       capabilities = capabilities,
       filetypes = { "go", "gomod", "gowork", "gosum", "goimpl" },
       settings = {
@@ -481,6 +493,7 @@ require("mason-lspconfig").setup_handlers {
     return {
       lspconfig["yamlls"].setup {
         on_attach = custom_on_attach,
+        on_init = on_init,
         capabilities = capabilities,
         settings = {
           yaml = {
