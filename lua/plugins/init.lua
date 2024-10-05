@@ -164,7 +164,11 @@ return {
       "tzachar/cmp-fuzzy-buffer",
       "tzachar/fuzzy.nvim",
       "rcarriga/cmp-dap",
-      { "jcdickinson/codeium.nvim", config = true },
+      {
+        "Exafunction/codeium.nvim",
+        config = true,
+        commit = "937667b2cadc7905e6b9ba18ecf84694cf227567",
+      },
       {
         "tzachar/cmp-tabnine",
         build = "./install.sh",
