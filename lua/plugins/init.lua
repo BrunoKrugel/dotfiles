@@ -157,12 +157,8 @@ return {
     "hrsh7th/nvim-cmp",
     opts = cmp_opt.cmp,
     dependencies = {
-      "delphinus/cmp-ctags",
-      "hrsh7th/cmp-nvim-lsp-document-symbol",
       "hrsh7th/cmp-copilot",
       "ray-x/cmp-treesitter",
-      "tzachar/cmp-fuzzy-buffer",
-      "tzachar/fuzzy.nvim",
       "rcarriga/cmp-dap",
       {
         "Exafunction/codeium.nvim",

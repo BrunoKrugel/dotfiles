@@ -291,30 +291,10 @@ M.cmp = {
       -- end,
       entry_filter = limit_lsp_types,
     },
-    {
-      name = "ctags",
-      option = {
-        executable = "ctags",
-        trigger_characters = { "." },
-      },
-      keyword_length = 5,
-      max_item_count = 2,
-    },
     { name = "treesitter" },
-    { name = "nvim_lsp_document_symbol" },
     { name = "luasnip", max_item_count = 2 },
     { name = "lazydev" },
     { name = "luasnip_choice" },
-    -- {
-    --   name = "buffer",
-    --   keyword_length = 5,
-    --   option = buffer_option,
-    -- },
-    -- {
-    --   name = "fuzzy_buffer",
-    --   keyword_length = 5,
-    --   option = buffer_option,
-    -- },
   },
   matching = {
     disallow_fuzzy_matching = true,
