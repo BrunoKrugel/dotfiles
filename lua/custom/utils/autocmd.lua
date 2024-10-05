@@ -47,6 +47,13 @@ autocmd("FileType", {
   end,
 })
 
+-- nicer cmp docs highlights for Nvim 0.10
+autocmd('FileType', {
+  pattern = 'cmp_docs',
+  callback = function(ev)
+    vim.treesitter.start(ev.buf, 'markdown')
+  end,
+})
 --- Create a centered floating window of a given width and height, relative to the size of the screen.
 --- @param width number width of the window where 1 is 100% of the screen
 --- @param height number height of the window - between 0 and 1
