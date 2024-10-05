@@ -655,7 +655,7 @@ M.harpoon = {
       function()
         local harpoon = require "harpoon"
         harpoon.ui:toggle_quick_menu(harpoon:list(), {
-          title = "Harpoon btw",
+          title = " Harpoon ",
           title_pos = "center",
           border = "rounded",
           ui_width_ratio = 0.40,
