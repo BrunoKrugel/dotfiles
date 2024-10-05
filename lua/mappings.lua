@@ -29,6 +29,23 @@ local function golang_goto_def()
   end
 end
 
+local function handle_copy()
+  local mode = vim.fn.mode()
+  if mode == "v" or mode == "V" or mode == "" then
+    if vim.fn.line "'<" == vim.fn.line "'>" and vim.fn.col "'<" == vim.fn.col "'>" then
+      vim.cmd.normal '"+yy'
+    else
+      vim.cmd.normal '"+y'
+    end
+  else
+    vim.cmd.normal '"+yy'
+  end
+end
+
+local function handle_paste()
+  vim.cmd.normal '"+p'
+end
+
 local function md_url_paste()
   -- Get clipboard
   local clip = vim.fn.getreg "+"
@@ -94,6 +111,70 @@ local function find_files()
   end
 end
 
+--NvMenu
+local menu = {
+  {
+    name = "Format Buffer",
+    cmd = function()
+      local ok, conform = pcall(require, "conform")
+
+      if ok then
+        conform.format { lsp_fallback = true }
+      else
+        vim.lsp.buf.format()
+      end
+    end,
+    rtxt = "<leader>fm",
+  },
+  {
+    name = "Copy Content",
+    cmd = "%y+",
+    rtxt = "<C-c>",
+  },
+  {
+    name = "Delete Content",
+    cmd = "%d",
+    rtxt = "dc",
+  },
+  {
+    name = "  Copy",
+    cmd = handle_copy,
+  },
+  {
+    name = "  Paste",
+    cmd = handle_paste,
+  },
+  { name = "separator" },
+  {
+    name = " Lsp Actions",
+    hl = "Exblue",
+    items = "lsp",
+  },
+  { name = "separator" },
+  {
+    name = "  Git Actions",
+    hl = "Exgreen",
+    items = "gitsigns",
+  },
+  { name = "separator" },
+  {
+    name = " Color Picker",
+    hl = "Exred",
+    cmd = function()
+      require("minty.huefy").open()
+    end,
+  },
+}
+map("n", "<C-t>", function()
+  require("menu").open(menu)
+end, { desc = "Open NvChad menu" })
+
+map("n", "<RightMouse>", function()
+  vim.cmd.exec '"normal! \\<RightMouse>"'
+  local options = vim.bo.ft == "NvimTree" and "nvimtree" or menu
+  require("menu").open(options, { mouse = true })
+end, { desc = "Open NvChad menu" })
+
 --------------------------------------------------- Editor ---------------------------------------------------
 
 map({ "n", "i", "v" }, "<C-p>", function()
@@ -120,6 +201,10 @@ map({ "n", "t" }, "<A-g>", function()
     clear_cmd = true,
   }
 end, { desc = "Toggle Lazygit" })
+
+map("n", "<leader>th", function()
+  require("nvchad.themes").open { style = "flat" }
+end, { desc = "Open NvChad theme selector" })
 
 map("n", "<A-R>", function()
   vim.cmd "GrugFar"
