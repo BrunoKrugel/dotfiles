@@ -95,6 +95,19 @@ function Get_Version()
   end
 end
 
+function Get_Conflict()
+  local conflict = ""
+
+  if package.loaded["git-conflict"] then
+    local gc = require "git-conflict"
+    local ok, conflict_count = pcall(gc.conflict_count)
+    if ok then
+      conflict = (conflict_count ~= 0) and ("%#StGitConflict#%" .. " " .. conflict_count) or ""
+    end
+  end
+  return conflict
+end
+
 function Get_Cmp()
   if vim.g.cmptoggle == true then
     return "󰞏  "
@@ -342,7 +355,7 @@ M.statusline = {
         return "%##"
       end
 
-      return "%#StGit#  " .. vim.b[stbufnr()].gitsigns_status_dict.head .. ""
+      return "%#StGit#  " .. vim.b[stbufnr()].gitsigns_status_dict.head .. "" .. Get_Conflict()
     end,
 
     noice = function()
@@ -446,12 +459,12 @@ M.nvdash = {
   --   { txt = "  Themes", keys ="Spc t h", cmd ="Telescope themes" },
   --   { txt = "  Mappings",keys = "Spc c h",cmd = "NvCheatsheet" },
 
-    -- function()
-    --   local stats = require("lazy").stats()
-    --   local plugins = "  Loaded " .. stats.count .. " plugins in "
-    --   local time = math.floor(stats.startuptime) .. " ms   "
-    --   return plugins .. time
-    -- end,
+  -- function()
+  --   local stats = require("lazy").stats()
+  --   local plugins = "  Loaded " .. stats.count .. " plugins in "
+  --   local time = math.floor(stats.startuptime) .. " ms   "
+  --   return plugins .. time
+  -- end,
   -- },
   header = {
     -- [[                                                   ]],
