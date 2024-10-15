@@ -23,7 +23,6 @@ autocmd({
     require("barbecue.ui").update()
   end,
 })
-
 autocmd("ModeChanged", {
   desc = "Move to relative line number when in visual mode",
   callback = function(args)
@@ -60,12 +59,20 @@ autocmd("FileType", {
 })
 
 -- nicer cmp docs highlights for Nvim 0.10
-autocmd('FileType', {
-  pattern = 'cmp_docs',
+autocmd("FileType", {
+  pattern = "cmp_docs",
   callback = function(ev)
-    vim.treesitter.start(ev.buf, 'markdown')
+    vim.treesitter.start(ev.buf, "markdown")
   end,
 })
+
+-- allow regular CR function in cmdline windows
+autocmd("CmdwinEnter", {
+  callback = function(ev)
+    vim.keymap.set("n", "<CR>", "<CR>", { remap = false, buffer = ev.buf })
+  end,
+})
+
 --- Create a centered floating window of a given width and height, relative to the size of the screen.
 --- @param width number width of the window where 1 is 100% of the screen
 --- @param height number height of the window - between 0 and 1
