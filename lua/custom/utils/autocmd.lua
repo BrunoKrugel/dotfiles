@@ -12,6 +12,18 @@ local function close_all_floating_wins()
   end
 end
 
+autocmd({
+  "WinResized",
+  "BufWinEnter",
+  "CursorHold",
+  "InsertLeave",
+}, {
+  group = augroup("barbecue.updater", {}),
+  callback = function()
+    require("barbecue.ui").update()
+  end,
+})
+
 autocmd("ModeChanged", {
   desc = "Move to relative line number when in visual mode",
   callback = function(args)
