@@ -155,6 +155,7 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
+    url = "https://github.com/iguanacucumber/magazine.nvim",
     opts = cmp_opt.cmp,
     dependencies = {
       "hrsh7th/cmp-copilot",
