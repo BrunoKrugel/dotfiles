@@ -6,13 +6,6 @@ end
 autoSave.setup {
   -- The name of the augroup.
   augroup_name = "AutoSavePlug",
-  execution_message = {
-    message = function()
-      return ""
-    end,
-    dim = 0.18,
-    cleaning_interval = 1250,
-  },
   events = { "InsertLeave", "TextChanged" },
   silent = true,
   callbacks = {
