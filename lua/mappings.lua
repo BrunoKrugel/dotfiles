@@ -239,6 +239,9 @@ end, { desc = " New line" })
 
 map("i", "<A-BS>", "<C-w>", { desc = "Remove word in insert mode" })
 
+-- Inside a snippet, use backspace to remove the placeholder.
+map("s", "<BS>", "<C-O>s")
+
 -- Replaces the current word with the same word in uppercase, globally
 map(
   "n",
