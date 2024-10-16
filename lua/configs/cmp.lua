@@ -13,7 +13,6 @@ local function deprioritize_snippet(entry1, entry2)
   end
 end
 
-
 --- Select item next/prev, taking into account whether the cmp window is
 --- top-down or bottoom-up so that the movement is always in the same direction.
 local select_item_smart = function(dir, opts)
@@ -221,6 +220,7 @@ M.cmp = {
       "i",
       "s",
     }),
+    ["/"] = require("cmp").mapping.close(),
     ["<CR>"] = require("cmp").mapping {
       i = function(fallback)
         if require("cmp").visible() and require("cmp").get_active_entry() then
@@ -280,7 +280,18 @@ M.cmp = {
       entry_filter = limit_lsp_types,
     },
     { name = "treesitter" },
-    { name = "luasnip", max_item_count = 2 },
+    {
+      name = "luasnip",
+      max_item_count = 2,
+      -- Don't show snippet completions in comments or strings.
+      entry_filter = function()
+        local ctx = require "cmp.config.context"
+        local in_string = ctx.in_syntax_group "String" or ctx.in_treesitter_capture "string"
+        local in_comment = ctx.in_syntax_group "Comment" or ctx.in_treesitter_capture "comment"
+
+        return not in_string and not in_comment
+      end,
+    },
     { name = "lazydev" },
     { name = "luasnip_choice" },
   },
