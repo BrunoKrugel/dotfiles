@@ -106,6 +106,20 @@ local custom_on_attach = function(client, bufnr)
 
   require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
 
+  if client.supports_method(methods.textDocument_documentHighlight) then
+    vim.api.nvim_create_autocmd({ "CursorHold", "InsertLeave" }, {
+      desc = "Highlight references under the cursor",
+      buffer = bufnr,
+      callback = vim.lsp.buf.document_highlight,
+    })
+    vim.api.nvim_create_autocmd({ "CursorMoved", "InsertEnter", "BufLeave" }, {
+      desc = "Clear highlight references",
+      buffer = bufnr,
+      callback = vim.lsp.buf.clear_references,
+    })
+  end
+end
+
 local go_on_attach = function(client, bufnr)
   custom_on_attach(client, bufnr)
   organize_imports(client, bufnr)

@@ -284,20 +284,20 @@ return {
     "OXY2DEV/helpview.nvim",
     event = "VeryLazy",
   },
-  {
-    "RRethy/vim-illuminate",
-    event = "CursorHold",
-    config = function()
-      require("illuminate").configure {
-        providers = {
-          "lsp",
-          "treesitter",
-          "regex",
-        },
-        under_cursor = false,
-      }
-    end,
-  },
+  -- {
+  --   "RRethy/vim-illuminate",
+  --   event = "CursorHold",
+  --   config = function()
+  --     require("illuminate").configure {
+  --       providers = {
+  --         "lsp",
+  --         "treesitter",
+  --         "regex",
+  --       },
+  --       under_cursor = false,
+  --     }
+  --   end,
+  -- },
   {
     "andrewferrier/debugprint.nvim",
     keys = { "<leader><leader>p" },
