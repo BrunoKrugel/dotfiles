@@ -6,6 +6,7 @@ local pickers = require "telescope.pickers"
 local make_entry = require "telescope.make_entry"
 local conf = require("telescope.config").values
 local builtin = require "telescope.builtin"
+local methods = vim.lsp.protocol.Methods
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
@@ -87,8 +88,6 @@ end
 
 local custom_on_attach = function(client, bufnr)
   on_attach(client, bufnr)
-
-  local methods = vim.lsp.protocol.Methods
 
   if client.server_capabilities.textDocument then
     if client.server_capabilities.textDocument.codeLens then
