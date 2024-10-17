@@ -45,10 +45,6 @@ end
 ---@param client vim.lsp.Client gopls instance
 ---@param bufnr number buffer to organize imports for
 local function organize_imports(client, bufnr)
-  if client.name ~= "gopls" then
-    return
-  end
-
   local params = vim.lsp.util.make_range_params()
   params.context = { only = { "source.organizeImports" } }
 
@@ -80,10 +76,8 @@ capabilities.textDocument.completion.completionItem = {
   },
 }
 
-local function attach_codelens(client, bufnr)
-  local augroup = vim.api.nvim_create_augroup("Lsp", {})
+local function attach_codelens(_, bufnr)
   vim.api.nvim_create_autocmd({ "BufReadPost", "CursorHold", "InsertLeave" }, {
-    group = augroup,
     buffer = bufnr,
     callback = function()
       vim.lsp.codelens.refresh { bufnr = bufnr }
@@ -94,25 +88,7 @@ end
 local custom_on_attach = function(client, bufnr)
   on_attach(client, bufnr)
 
-  -- if client.name == "gopls" then
-  --   -- workaround for gopls not supporting semanticTokensProvider
-  --   -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
-  --   if not client.server_capabilities.semanticTokensProvider then
-  --     local semantic = client.config.capabilities.textDocument.semanticTokens
-  --     client.server_capabilities.semanticTokensProvider = {
-  --       full = true,
-  --       legend = {
-  --         tokenTypes = semantic.tokenTypes,
-  --         tokenModifiers = semantic.tokenModifiers,
-  --       },
-  --       range = true,
-  --     }
-  --   end
-  -- end
-
-  -- if client.server_capabilities.inlayHintProvider then
-  --   vim.lsp.inlay_hint(bufnr, true)
-  -- end
+  local methods = vim.lsp.protocol.Methods
 
   if client.server_capabilities.textDocument then
     if client.server_capabilities.textDocument.codeLens then
