@@ -129,10 +129,6 @@ local custom_on_attach = function(client, bufnr)
     vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
   end
 
-  -- Code lens
-  -- if client.server_capabilities.codeLensProvider then
-  -- end
-
   require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
 
   -- Go
@@ -143,22 +139,6 @@ local custom_on_attach = function(client, bufnr)
   --     vim.lsp.buf.format { async = false }
   --   end,
   -- })
-end
-
-local filter_list = function(list, predicate)
-  -- empty list
-  local res_len = #list
-  local move_item_by = 0
-
-  for i = 1, res_len do
-    local item = list[i]
-    list[i] = nil
-    if not predicate(item) then
-      move_item_by = move_item_by - 1
-    else
-      list[i + move_item_by] = item
-    end
-  end
 end
 
 -- If the LSP response includes any `node_modules`, then try to remove them and
@@ -645,33 +625,6 @@ vim.lsp.handlers["textDocument/formatting"] = function(err, result, ctx, _)
     end
   end
 end
-
--- vim.lsp.handlers["textDocument/inlayHint"] = function(result)
---   filter_list(result, function(item)
---     if
---       item.label == "x:"
---       or item.label == "y:"
---       or item.label == "z:"
---       or item.label == "a:"
---       or item.label == "b:"
---       or item.label == "v:"
---       or item.label == "m:"
---       or item.label == "s:"
---       or item.label == "nptr:"
---       or item.label == "scalar:"
---       or item.lable == "argv0"
---     then
---       return false
---     end
---     -- local line = item.position.line
---     -- local col = item.position.character
---     -- local node = vim.treesitter.get_node({pos = {line,col}})
---     -- I(vim.treesitter.get_node_text(node:parent(), 0))
---     return true
---   end)
---   -- accept request.
---   return true
--- end
 
 require("lspconfig.ui.windows").default_options.border = "rounded"
 
