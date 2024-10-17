@@ -243,7 +243,6 @@ return {
       ---@diagnostic disable-next-line: different-requires
       local cmp = require "cmp"
 
-      cmp.setup(opts)
 
       local cmp_autopairs = require "nvim-autopairs.completion.cmp"
       cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
@@ -260,6 +259,7 @@ return {
           { name = "dap" },
         },
       })
+      cmp.setup(opts)
     end,
   },
   {
@@ -1226,7 +1226,7 @@ return {
   },
   {
     "ThePrimeagen/refactoring.nvim",
-    event = "BufRead",
+    cmd = "Refactor",
     opts = {
       prompt_func_return_type = {
         go = true,
@@ -1234,6 +1234,7 @@ return {
       prompt_func_param_type = {
         go = true,
       },
+      show_success_message = true,
     },
   },
   ----------------------------------------- completions plugins ------------------------------------------
