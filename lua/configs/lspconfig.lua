@@ -641,14 +641,12 @@ vim.diagnostic.config {
   virtual_lines = false,
   virtual_text = {
     prefix = "■",
+    spacing = 2,
   },
   -- virtual_text = false,
   float = {
     border = "rounded",
     format = function(diagnostic)
-      if diagnostic.source == "" then
-        return diagnostic.message
-      end
       if diagnostic.source == "eslint" then
         return string.format(
           "%s [%s]",
@@ -657,7 +655,17 @@ vim.diagnostic.config {
           diagnostic.user_data.lsp.code
         )
       end
-      return string.format("%s [%s]", diagnostic.message, diagnostic.source)
+
+      local message = diagnostic.message
+
+      if diagnostic.source then
+        message = string.format("%s %s", diagnostic.message, diagnostic.source)
+      end
+      if diagnostic.code then
+        message = string.format("%s[%s]", diagnostic.message, diagnostic.code)
+      end
+
+      return message
     end,
     suffix = function()
       return ""
