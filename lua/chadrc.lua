@@ -75,6 +75,7 @@ M.base46 = {
     "devicons",
     "git",
     "lsp",
+    "markview",
     "mason",
     "nvcheatsheet",
     "nvdash",
