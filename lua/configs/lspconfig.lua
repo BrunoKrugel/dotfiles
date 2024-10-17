@@ -689,7 +689,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     -- Mouse mappings for easily navigating code
     if client.supports_method "definitionProvider" then
-      vim.keymap.set("n", "<2-LeftMouse>", "<LeftMouse><cmd>lua vim.lsp.buf.definition()<CR>", opts)
+      vim.keymap.set("n", "<2-LeftMouse>", function()
+        vim.lsp.buf.definition()
+      end, opts)
       vim.keymap.set("n", "<RightMouse>", '<LeftMouse><cmd>lua vim.lsp.buf.hover({border = "single"})<CR>', opts)
     end
   end,
