@@ -106,6 +106,24 @@ local custom_on_attach = function(client, bufnr)
 
   require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
 
+local go_on_attach = function(client, bufnr)
+  custom_on_attach(client, bufnr)
+  organize_imports(client, bufnr)
+
+  -- workaround for gopls not supporting semanticTokensProvider
+  -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
+  if not client.server_capabilities.semanticTokensProvider then
+    local semantic = client.config.capabilities.textDocument.semanticTokens
+    client.server_capabilities.semanticTokensProvider = {
+      full = true,
+      legend = {
+        tokenTypes = semantic.tokenTypes,
+        tokenModifiers = semantic.tokenModifiers,
+      },
+      range = true,
+    }
+  end
+
   -- Go
   -- vim.api.nvim_create_autocmd("BufWritePre", {
   --   pattern = "*.go",
@@ -393,7 +411,7 @@ require("mason-lspconfig").setup_handlers {
 
   ["gopls"] = function()
     lspconfig["gopls"].setup {
-      on_attach = custom_on_attach,
+      on_attach = go_on_attach,
       on_init = on_init,
       capabilities = capabilities,
       filetypes = { "go", "gomod", "gowork", "gosum", "goimpl" },
