@@ -48,6 +48,13 @@ return {
     "folke/which-key.nvim",
     enabled = true,
   },
+  {
+    "BrunoKrugel/ui",
+    lazy = false,
+    config = function()
+      require "nvchad"
+    end,
+  },
   { "nvchad/volt" },
   { "nvchad/minty", event = "BufReadPost" },
   { "nvchad/menu", event = "BufReadPost" },
