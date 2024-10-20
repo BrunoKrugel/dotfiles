@@ -138,6 +138,19 @@ local go_on_attach = function(client, bufnr)
   -- })
 end
 
+-- Update mappings when registering dynamic capabilities.
+local register_capability = vim.lsp.handlers[methods.client_registerCapability]
+vim.lsp.handlers[methods.client_registerCapability] = function(err, res, ctx)
+  local client = vim.lsp.get_client_by_id(ctx.client_id)
+  if not client then
+    return
+  end
+
+  custom_on_attach(client, vim.api.nvim_get_current_buf())
+
+  return register_capability(err, res, ctx)
+end
+
 -- If the LSP response includes any `node_modules`, then try to remove them and
 -- see if there are any options left. We probably want to navigate to the code
 -- in OUR codebase, not inside `node_modules`.
