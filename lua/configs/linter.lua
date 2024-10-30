@@ -13,16 +13,12 @@ vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 })
 
 lint.linters_by_ft = {
-  lua = {
-    "luacheck",
-  },
+  lua = { "luacheck" },
   yaml = {
     "yamllint",
     "actionlint",
   },
-  go = {
-    "golangcilint",
-  },
+  go = { "golangcilint" },
   codespell = { "codespell" },
   javascript = { "eslint_d" },
   typescript = { "eslint_d" },
