@@ -235,7 +235,7 @@ M.lazy = {
     enabled = true,
     notify = false,
   },
-  concurrency = 15,
+  concurrency = 5,
   git = {
     log = { "-8" },
     timeout = 35,
@@ -418,7 +418,8 @@ M.statusline = {
             if client.name == "typescript-tools" then
               lsp_name = "typescript"
             end
-            return (vim.o.columns > 100 and copilot .. "%#St_Lsp#  " .. lsp_name .. " (" .. count .. ")") or copilot .. "  LSP (" .. count .. ") "
+            return (vim.o.columns > 100 and copilot .. "%#St_Lsp#  " .. lsp_name .. " (" .. count .. ")")
+              or copilot .. "  LSP (" .. count .. ") "
           end
         end
       end
