@@ -35,6 +35,9 @@ return {
           run_on_start = true,
           ensure_installed = {
             "impl",
+            "gomodifytags",
+            "iferr",
+            "gotests",
           },
         },
         cmd = "MasonToolsUpdate",
@@ -47,13 +50,6 @@ return {
   {
     "folke/which-key.nvim",
     enabled = true,
-  },
-  {
-    "BrunoKrugel/ui",
-    lazy = false,
-    config = function()
-      require "nvchad"
-    end,
   },
   { "nvchad/volt" },
   { "nvchad/minty", event = "BufReadPost" },
@@ -1115,11 +1111,22 @@ return {
   ----------------------------------------- language plugins ------------------------------------------
   {
     "ray-x/go.nvim",
-    ft = { "go", "gomod", "gosum", "gowork", "gotmpl" },
+    ft = { "go", "gomod", "gosum", "gowork", "gotmpl", "templ" },
     dependencies = {
+      "Jay-Madden/auto-fix-return.nvim",
+      "catgoose/templ-goto-definition",
       {
         "ray-x/guihua.lua",
         build = "cd lua/fzy && make",
+      },
+      {
+        "jack-rabe/impl.nvim",
+        opts = {
+          layout_strategy = "vertical",
+          layout_config = {
+            width = 0.5,
+          },
+        },
       },
     },
     config = function()
