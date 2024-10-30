@@ -347,6 +347,10 @@ end, { desc = "hover.nvim (next source)" })
 
 map("n", "<F12>", "<CMD>Glance references<CR>", { desc = "󰘐 References" })
 
+map("n", "<leader>wl", function()
+  print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+end, { desc = "LSP list workspace folders" })
+
 -- vim.api.nvim_set_keymap('n', '<RightMouse>', '<LeftMouse><cmd>lua vim.lsp.buf.definition()<CR>', { noremap=true, silent=true })
 
 -- use gh to move to the beginning of the line in normal mode
