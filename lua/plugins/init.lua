@@ -488,9 +488,13 @@ return {
     "mistweaverco/kulala.nvim",
     ft = { "http" },
     opts = {
-      inlay = {
-        loading_icon = "",
-        done_icon = "",
+      winbar = true,
+      icons = {
+        inlay = {
+          loading = "",
+          done = "",
+          error = "",
+        },
       },
     },
   },
