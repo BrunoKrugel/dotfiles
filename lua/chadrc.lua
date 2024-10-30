@@ -78,7 +78,6 @@ M.base46 = {
     "markview",
     "mason",
     "nvcheatsheet",
-    "nvdash",
     "nvimtree",
     "statusline",
     "syntax",
