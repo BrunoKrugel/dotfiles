@@ -88,6 +88,7 @@ M.base46 = {
     "hop",
     "treesitter",
     "rainbowdelimiters",
+    "diffview",
     "todo",
     "trouble",
     "notify",
