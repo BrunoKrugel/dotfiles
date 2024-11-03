@@ -128,17 +128,6 @@ return {
     enabled = false,
   },
   {
-    "brenoprata10/nvim-highlight-colors",
-    event = { "CursorHold", "CursorMoved" },
-    opts = {
-      render = "virtual",
-      virtual_symbol = "󰏘",
-      enable_named_colors = false,
-      enable_tailwind = true,
-      exclude_filetypes = { "lazy" },
-    },
-  },
-  {
     "NStefan002/visual-surround.nvim",
     event = "BufEnter",
     config = function()
