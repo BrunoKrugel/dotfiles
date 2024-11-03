@@ -235,6 +235,27 @@ return {
       ---@diagnostic disable-next-line: different-requires
       local cmp = require "cmp"
 
+      -- Override the documentation handler to remove the redundant detail section.
+      ---@diagnostic disable-next-line: duplicate-set-field
+      require("cmp.entry").get_documentation = function(self)
+        local item = self.completion_item
+
+        if item.documentation then
+          return vim.lsp.util.convert_input_to_markdown_lines(item.documentation)
+        end
+
+        --   -- Use the item's detail as a fallback if there's no documentation.
+        --   if item.detail then
+        --     local ft = self.context.filetype
+        --     local dot_index = string.find(ft, "%.")
+        --     if dot_index ~= nil then
+        --       ft = string.sub(ft, 0, dot_index - 1)
+        --     end
+        --     return (vim.split(("```%s\n%s```"):format(ft, vim.trim(item.detail)), "\n"))
+        --   end
+
+        --   return {}
+      end
 
       local cmp_autopairs = require "nvim-autopairs.completion.cmp"
       cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
