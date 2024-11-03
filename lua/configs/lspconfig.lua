@@ -106,7 +106,9 @@ local custom_on_attach = function(client, bufnr)
 
   require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
 
-  if client.supports_method(methods.textDocument_documentHighlight) then
+  if client.server_capabilities.documentHighlightProvider then
+    vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+    vim.api.nvim_clear_autocmds({ buffer = bufnr, group = "lsp_document_highlight" })
     vim.api.nvim_create_autocmd({ "CursorHold", "InsertLeave" }, {
       desc = "Highlight references under the cursor",
       buffer = bufnr,
@@ -126,6 +128,18 @@ local go_on_attach = function(client, bufnr)
 
   if client.name ~= "gopls" then
     return
+  end
+
+  if not client.server_capabilities.semanticTokensProvider then
+    local semantic = client.config.capabilities.textDocument.semanticTokens
+    client.server_capabilities.semanticTokensProvider = {
+      full = true,
+      legend = {
+        tokenTypes = semantic.tokenTypes,
+        tokenModifiers = semantic.tokenModifiers,
+      },
+      range = true,
+    }
   end
 
   -- Go
