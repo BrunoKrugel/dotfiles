@@ -237,6 +237,17 @@ map("i", "<S-CR>", function()
   vim.cmd "normal o"
 end, { desc = " New line" })
 
+
+map("n", "u", function()
+  vim.g.hlchunk_disable = true
+  vim.g.type_o = true
+  vim.schedule(function()
+      vim.g.type_o = false
+      vim.g.hlchunk_disable = false
+  end)
+  return "u"
+end, { expr = true })
+
 map("i", "<A-BS>", "<C-w>", { desc = "Remove word in insert mode" })
 
 -- Inside a snippet, use backspace to remove the placeholder.
