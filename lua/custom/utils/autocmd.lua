@@ -337,7 +337,7 @@ autocmd({ "BufRead" }, {
 
 autocmd("TextYankPost", {
   desc = "Highlight on yank",
-  command = "silent! lua vim.highlight.on_yank({higroup='YankVisual', timeout=200})",
+  command = "silent! lua vim.hl.on_yank({higroup='YankVisual', timeout=200})",
   group = augroup("YankHighlight", { clear = true }),
 })
 
