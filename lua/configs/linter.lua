@@ -19,6 +19,8 @@ lint.linters_by_ft = {
     "actionlint",
   },
   go = { "golangcilint" },
+  gomod = { "golangcilint" },
+  gowork = { "golangcilint" },
   codespell = { "codespell" },
   javascript = { "eslint_d" },
   typescript = { "eslint_d" },
