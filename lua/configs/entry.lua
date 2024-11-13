@@ -20,7 +20,7 @@ function my_make_entry.find_files_entry_maker(opts)
     return displayer {
       { entry.devicons, entry.devicons_highlight },
       entry.file_name,
-      { entry.grayed_out, "@ibl.indent.char.1" },
+      { entry.grayed_out, "Comment" },
     }
   end
 
