@@ -95,6 +95,20 @@ function Get_Version()
   end
 end
 
+function PomoTimer()
+  local ok, pomo = pcall(require, "pomo")
+  if not ok then
+    return ""
+  end
+
+  local timer = pomo.get_first_to_finish()
+  if timer == nil then
+    return ""
+  end
+
+  return "󰄉 " .. tostring(timer)
+end
+
 function Get_Conflict()
   local conflict = ""
 
