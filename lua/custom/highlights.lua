@@ -226,6 +226,18 @@ M.add = {
   GrugFarResultsMatchAdded = { link = "DiffAdd" },
   GrugFarResultsMatchRemoved = { link = "DiffDelete" },
 
+  -- Glance
+  -- GlancePreviewNormal = { link = 'Pmenu' },
+  -- GlancePreviewMatch = { link = 'Comment' },
+  -- GlanceListMatch = { link = 'Search' },
+  GlancePreviewMatch = { fg = "#ffffff", bg = "#304E75" },
+  GlanceWinbarFileName = { link = "NvimTreeRootFolder" },
+  GlanceListMatch = { fg = "#8AADF4" },
+  GlanceWinbarFolderName = { link = "Comment" },
+  GlanceListCursorLine = { bg = "#212635" },
+  GlanceListNormal = { fg = "#8F98B8", bg = "#15182A" },
+  GlancePreviewNormal = { bg = "#1A1E30" },
+
   -- Noice
   NoiceCursor = { link = "Cursor" },
   NoiceCmdlinePopupBorder = { fg = "cyan" },
