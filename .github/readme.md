@@ -105,16 +105,6 @@ _With [lsp-lines](https://github.com/ErichDonGubler/lsp_lines.nvim)_
 
 </div>
 
-## Word highlight
-
-<div align="center">
-
-![word](./img/word.png)
-
-_With [Illuminate](https://github.com/RRethy/vim-illuminate)_
-
-</div>
-
 ## TODO Tracking
 
 <div align="center">
