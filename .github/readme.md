@@ -193,11 +193,6 @@ I do not like the format on save, so my config is set to format on `<leader>fm` 
 
 For `.go` files, you can use `<leader>fi` to complete imports.
 
-## Improved GoToDefinition
-
-I am using universal CTAGS to have a better GoToDefinition, the tags are generated automatically with [guttentags](https://github.com/ludovicchabant/vim-gutentags).
-Keybind to use is `<C-]>`.
-
 ## Github
 
 <div align="center">
