@@ -481,14 +481,6 @@ require("mason-lspconfig").setup_handlers {
           vulncheck = "Imports",
           gofumpt = true,
           staticcheck = true,
-          analyses = {
-            nilness = true,
-            shadow = true,
-            unusedparams = true,
-            unusewrites = true,
-            fieldalignment = true,
-            useany = true,
-          },
           codelenses = {
             references = true,
             test = true,
