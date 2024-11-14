@@ -9,7 +9,7 @@ _G.ClickSplit = function()
 end
 
 _G.ClickGit = function()
-  vim.cmd "ToggleBlame"
+  vim.cmd "LazyGit"
 end
 
 _G.ClickUpdate = function()
