@@ -75,9 +75,6 @@ return {
     "nvim-telescope/telescope.nvim",
     opts = overrides.telescope,
     dependencies = {
-      "debugloop/telescope-undo.nvim",
-      "gnfisher/nvim-telescope-ctags-plus",
-      "benfowler/telescope-luasnip.nvim",
       "FabianWirth/search.nvim",
       "Marskey/telescope-sg",
       {
@@ -108,11 +105,6 @@ return {
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
     end,
-  },
-  {
-    "doxnit/cmp-luasnip-choice",
-    event = "InsertEnter",
-    opts = { auto_open = true },
   },
   {
     "nvim-tree/nvim-tree.lua",
@@ -537,13 +529,6 @@ return {
     },
   },
   {
-    "tzachar/local-highlight.nvim",
-    event = { "CursorHold", "CursorHoldI" },
-    opts = {
-      hlgroup = "Visual",
-    },
-  },
-  {
     "mistweaverco/kulala.nvim",
     ft = { "http" },
     opts = {
@@ -606,20 +591,6 @@ return {
             highlight_new_as_changed = true,
             show_stop_reason = true,
             commented = true,
-            -- Hides tokens, secrets, and other sensitive information
-            -- display_callback = function(variable)
-            --   local name = string.lower(variable.name)
-            --   local value = string.lower(variable.value)
-            --   if name:match "secret" or name:match "api" or value:match "secret" or value:match "api" then
-            --     return "*****"
-            --   end
-
-            --   if #variable.value > 15 then
-            --     return " " .. string.sub(variable.value, 1, 15) .. "... "
-            --   end
-
-            --   return " " .. variable.value
-            -- end,
           }
         end,
       },
@@ -706,6 +677,9 @@ return {
     event = "VeryLazy",
     opts = {
       notifications = false,
+      excluded_lsp_clients = {
+        "copilot",
+      },
     },
   },
   {
@@ -714,11 +688,6 @@ return {
     config = function()
       require("dim").setup {}
     end,
-  },
-  {
-    "Wansmer/treesj",
-    cmd = "TSJToggle",
-    opts = {},
   },
   ----------------------------------------- ui plugins ------------------------------------------
   {
@@ -953,14 +922,6 @@ return {
       }
     end,
   },
-  -- {
-  --   "utilyre/sentiment.nvim",
-  --   event = "LspAttach",
-  --   opts = {},
-  --   init = function()
-  --     vim.g.loaded_matchparen = 1
-  --   end,
-  -- },
   {
     "0xAdk/full_visual_line.nvim",
     keys = { "V" },
