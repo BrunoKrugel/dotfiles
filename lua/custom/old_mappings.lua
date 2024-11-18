@@ -424,12 +424,6 @@ M.debug = {
       end,
       "Debug: Open REPL",
     },
-    ["<leader><leader>p"] = {
-      function()
-        require("debugprint").debugprint()
-      end,
-      "Debug Print",
-    },
     ["]b"] = {
       function()
         require("goto-breakpoints").next()

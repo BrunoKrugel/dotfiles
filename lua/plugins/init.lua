@@ -285,34 +285,6 @@ return {
     end,
   },
   {
-    "OXY2DEV/helpview.nvim",
-    event = "VeryLazy",
-  },
-  -- {
-  --   "RRethy/vim-illuminate",
-  --   event = "CursorHold",
-  --   config = function()
-  --     require("illuminate").configure {
-  --       providers = {
-  --         "lsp",
-  --         "treesitter",
-  --         "regex",
-  --       },
-  --       under_cursor = false,
-  --     }
-  --   end,
-  -- },
-  {
-    "andrewferrier/debugprint.nvim",
-    keys = { "<leader><leader>p" },
-    config = function()
-      require("debugprint").setup {
-        create_keymaps = false,
-        create_commands = false,
-      }
-    end,
-  },
-  {
     "aznhe21/actions-preview.nvim",
     event = "LspAttach",
     config = function()
