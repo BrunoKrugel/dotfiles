@@ -51,9 +51,14 @@ return {
     "folke/which-key.nvim",
     enabled = true,
   },
-  { "nvchad/volt" },
-  { "nvchad/minty", event = "BufReadPost" },
-  { "nvchad/menu", event = "BufReadPost" },
+  {
+    "nvzone/volt",
+    event = "BufReadPost",
+    dependencies = {
+      "nvzone/minty",
+      "nvzone/menu",
+    },
+  },
   {
     "lewis6991/gitsigns.nvim",
     opts = function()
@@ -760,13 +765,13 @@ return {
       }
     end,
   },
---   {
---     "shellRaining/hlchunk.nvim",
---     event = "BufReadPost",
---     config = function()
---       require "configs.hlchunk"
---     end,
---   },
+  --   {
+  --     "shellRaining/hlchunk.nvim",
+  --     event = "BufReadPost",
+  --     config = function()
+  --       require "configs.hlchunk"
+  --     end,
+  --   },
   {
     "kdheepak/lazygit.nvim",
     cmd = "LazyGit",
