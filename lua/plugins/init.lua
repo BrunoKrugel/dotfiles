@@ -144,7 +144,6 @@ return {
     dependencies = {
       "hrsh7th/cmp-copilot",
       "ray-x/cmp-treesitter",
-      "rcarriga/cmp-dap",
       {
         "Exafunction/codeium.nvim",
         opts = {},
@@ -258,11 +257,6 @@ return {
         },
       })
 
-      cmp.setup.filetype({ "dapui_watches", "dapui_hover" }, {
-        sources = {
-          { name = "dap" },
-        },
-      })
       cmp.setup(opts)
     end,
   },
@@ -336,17 +330,6 @@ return {
         delete = "_",
         change = "_",
       },
-    },
-  },
-  {
-    "smoka7/multicursors.nvim",
-    cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
-    opts = {
-      updatetime = 10,
-      hint_config = false,
-    },
-    dependencies = {
-      "smoka7/hydra.nvim",
     },
   },
   {
@@ -806,14 +789,6 @@ return {
     config = true,
   },
   {
-    "f-person/git-blame.nvim",
-    cmd = "GitBlameToggle",
-  },
-  {
-    "FabijanZulj/blame.nvim",
-    cmd = "ToggleBlame",
-  },
-  {
     "akinsho/git-conflict.nvim",
     event = "VeryLazy",
     opts = {
@@ -854,11 +829,6 @@ return {
       require "configs.ufo"
     end,
   },
-  -- {
-  --   "chikko80/error-lens.nvim",
-  --   event = "LspAttach",
-  --   opts = {},
-  -- },
   {
     "VonHeikemen/searchbox.nvim",
     cmd = { "SearchBoxMatchAll", "SearchBoxReplace", "SearchBoxIncSearch" },
@@ -1263,14 +1233,6 @@ return {
     },
   },
   ----------------------------------------- completions plugins ------------------------------------------
-  -- {
-  --   "skywind3000/gutentags_plus",
-  --   event = "VeryLazy",
-  --   dependencies = { "ludovicchabant/vim-gutentags" },
-  --   config = function()
-  --     require "configs.tags"
-  --   end,
-  -- },
   {
     "github/copilot.vim",
     lazy = false,
