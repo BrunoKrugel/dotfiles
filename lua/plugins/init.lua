@@ -437,14 +437,6 @@ return {
     end,
   },
   {
-    "chrisgrieser/nvim-early-retirement",
-    event = "VeryLazy",
-    opts = {
-      retirementAgeMins = 5,
-      notificationOnAutoClose = false,
-    },
-  },
-  {
     "jonahgoldwastaken/copilot-status.nvim",
     event = "LspAttach",
     config = function()
