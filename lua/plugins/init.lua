@@ -651,6 +651,7 @@ return {
       notifications = false,
       excluded_lsp_clients = {
         "copilot",
+        "GitHub Copilot",
       },
     },
   },
@@ -784,13 +785,13 @@ return {
       }
     end,
   },
-  {
-    "shellRaining/hlchunk.nvim",
-    event = "BufReadPost",
-    config = function()
-      require "configs.hlchunk"
-    end,
-  },
+--   {
+--     "shellRaining/hlchunk.nvim",
+--     event = "BufReadPost",
+--     config = function()
+--       require "configs.hlchunk"
+--     end,
+--   },
   {
     "kdheepak/lazygit.nvim",
     cmd = "LazyGit",
