@@ -126,7 +126,10 @@ return {
   },
   {
     "sphamba/smear-cursor.nvim",
-    lazy = false,
+    event = "VeryLazy",
+    cond = function()
+      return not vim.g.neovide
+    end,
     opts = {
       stiffness = 0.8,
       trailing_stiffness = 0.6,
