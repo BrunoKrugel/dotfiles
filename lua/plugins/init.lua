@@ -117,7 +117,7 @@ return {
     opts = require "configs.tree",
     config = function(_, opts)
       require("nvim-tree").setup(opts)
-      require("nvim-tree.diagnostics").update()
+      require("nvim-tree.diagnostics").update_lsp()
     end,
   },
   {
