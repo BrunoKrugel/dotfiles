@@ -841,6 +841,7 @@ return {
           merge_tool = {
             layout = "diff3_mixed",
             disable_diagnostics = true,
+            diff_binaries = false,
           },
         },
         hooks = {
