@@ -353,13 +353,13 @@ return {
   },
   {
     "rmagatti/auto-session",
-    event = "VimEnter",
+    lazy = false,
     config = function()
       require("auto-session").setup {
-        auto_session_enabled = true,
-        auto_save_enabled = true,
-        auto_restore_enabled = true,
-        auto_session_use_git_branch = true,
+        enabled = true,
+        auto_save = true,
+        auto_restore = true,
+        use_git_branch = true,
       }
     end,
   },
