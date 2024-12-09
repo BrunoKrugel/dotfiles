@@ -195,14 +195,6 @@ autocmd("BufWritePre", {
   end,
 })
 
-autocmd("LspAttach", {
-  desc = "Fix semantic tokens for lsp",
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    client.server_capabilities.semanticTokensProvider = nil
-  end,
-})
-
 autocmd({ "BufNewFile", "BufRead" }, {
   pattern = { "**/node_modules/**", "node_modules", "/node_modules/*" },
   callback = function()
