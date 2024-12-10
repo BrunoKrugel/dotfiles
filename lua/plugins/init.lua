@@ -779,20 +779,9 @@ return {
       }
     end,
   },
-  --   {
-  --     "shellRaining/hlchunk.nvim",
-  --     event = "BufReadPost",
-  --     config = function()
-  --       require "configs.hlchunk"
-  --     end,
-  --   },
   {
     "kdheepak/lazygit.nvim",
     cmd = "LazyGit",
-  },
-  {
-    "BrunoKrugel/lazydocker.nvim",
-    cmd = "LazyDocker",
   },
   {
     "BrunoKrugel/muren.nvim",
