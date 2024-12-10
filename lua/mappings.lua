@@ -175,6 +175,72 @@ map("n", "<RightMouse>", function()
   require("menu").open(options, { mouse = true })
 end, { desc = "Open NvChad menu" })
 
+vim.keymap.set({ "n" }, "<leader>m", function()
+  local dap = require("dap")
+  require("menu").open({
+    -- {
+    --   name = "󰤑 Run Tests",
+    --   hl = "@conditional",
+    --   cmd = function()
+    --     dap.run({
+    --       type = 'python', -- Ajusta el tipo según tu entorno
+    --       request = 'launch',
+    --       name = "Run Tests",
+    --       program = "${file}", -- Ajusta según sea necesario
+    --     })
+    --   end,
+    --   rtxt = "t",
+    -- },
+    -- { name = "separator" },
+    {
+      name = " Continue",
+      hl = "Exgreen",
+      cmd = function()
+        dap.continue()
+      end,
+      rtxt = "c",
+    },
+    {
+      name = " Toggle Breakpoint",
+      cmd = function()
+        dap.toggle_breakpoint()
+      end,
+      rtxt = "b",
+    },
+    {
+      name = " Step Over",
+      cmd = function()
+        dap.step_over()
+      end,
+      rtxt = "o",
+    },
+    {
+      name = " Step Into",
+      cmd = function()
+        dap.step_into()
+      end,
+      rtxt = "i",
+    },
+    { name = "separator" },
+    {
+      name = " Step Out",
+      hl = "@comment.error",
+      cmd = function()
+        dap.step_out()
+      end,
+      rtxt = "u",
+    },
+    {
+      name = " Stop",
+      hl = "@comment.error",
+      cmd = function()
+        dap.terminate()
+      end,
+      rtxt = "s",
+    },
+  })
+end)
+
 --------------------------------------------------- Editor ---------------------------------------------------
 
 map({ "n", "i", "v" }, "<C-p>", function()
@@ -188,19 +254,6 @@ end, opts)
 map("n", "<leader>pp", function()
   md_url_paste()
 end, { desc = "Paste in URL" })
-
-map({ "n", "t" }, "<A-g>", function()
-  require("nvchad.term").toggle {
-    cmd = "lazygit",
-    pos = "float",
-    id = "gitToggleTerm",
-    float_opts = {
-      width = 1,
-      height = 1,
-    },
-    clear_cmd = true,
-  }
-end, { desc = "Toggle Lazygit" })
 
 map("n", "<leader>th", function()
   require("nvchad.themes").open { style = "flat" }
