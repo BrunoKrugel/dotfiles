@@ -530,6 +530,15 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- https://github.com/mfussenegger/nvim-dap/issues/786
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("PromptBufferCtrlwFix", {}),
+  pattern = {"dap-repl"},
+  callback = function()
+    vim.keymap.set("i", "<C-w>", function() vim.cmd("normal! bcw") end, {buffer = true})
+  end
+})
+
 vim.api.nvim_create_autocmd("OptionSet", {
   pattern = "diff",
   callback = function()
