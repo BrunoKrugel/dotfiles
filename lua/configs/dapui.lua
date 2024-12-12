@@ -1,21 +1,31 @@
-local has_dap, dap = pcall(require, "dap")
-if not has_dap then
-  return
+local dap, dapui, mason, dap_virtual_text =
+  require "dap", require "dapui", require "mason-registry", pcall(require, "nvim-dap-virtual-text")
+local function get_install_path(package)
+  return mason.get_package(package):get_install_path()
 end
 
-local has_dapui, dapui = pcall(require, "dapui")
-if not has_dapui then
-  return
-end
-
-local has_dap_virtual_text, dap_virtual_text = pcall(require, "nvim-dap-virtual-text")
-if not has_dap_virtual_text then
-  return
-end
-
--- local core = require "custom.utils.core"
--- dapui.setup(core.dapui)
+local core = require "custom.utils.core"
+dapui.setup(core.dapui)
 -- require("dap.ext.vscode").load_launchjs "launch.json"
+
+if not dap.adapters.go then
+  dap.adapters.go = {
+    type = "executable",
+    command = "node",
+    args = { get_install_path "go-debug-adapter" .. "/extension/dist/debugAdapter.js" },
+  }
+
+  dap.configurations.go = {
+    {
+      type = "go",
+      name = "Debug: Go",
+      request = "launch",
+      showLog = false,
+      program = "${workspaceFolder}/cmd/${workspaceFolderBasename}",
+      dlvToolPath = vim.fn.exepath "dlv",
+    },
+  }
+end
 
 dap.listeners.before.event_initialized["dapui_config"] = function()
   local api = require "nvim-tree.api"

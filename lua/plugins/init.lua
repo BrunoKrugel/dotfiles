@@ -36,6 +36,7 @@ return {
           ensure_installed = {
             "impl",
             "gomodifytags",
+            "go-debug-adapter",
             "iferr",
             "gotests",
           },
