@@ -66,7 +66,7 @@ create_cmd("UFOOpen", function()
 end, {})
 
 create_cmd("Http", function()
-  require('kulala').run()
+  require("kulala").run()
 end, {})
 
 --Open Peek
@@ -151,6 +151,14 @@ end, {})
 
 create_cmd("Debug", function()
   require("dapui").toggle()
+  require("dap").run {
+    type = "go",
+    name = "Debug: Go",
+    request = "launch",
+    showLog = false,
+    program = "${workspaceFolder}/cmd/${workspaceFolderBasename}",
+    dlvToolPath = vim.fn.exepath "dlv",
+  }
 end, {})
 
 create_cmd("Healthcheck", function()

@@ -1117,6 +1117,7 @@ return {
       gocoverage_sign = "│",
       -- dap_debug_gui = core.dapui,
       dap_debug_gui = false,
+      dap_debug = false,
     },
     config = function(_, opts)
       require("go").setup(ops)
