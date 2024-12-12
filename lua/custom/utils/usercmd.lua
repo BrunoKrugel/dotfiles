@@ -157,13 +157,6 @@ create_cmd("Commandcenter", function()
   vim.cmd "Telescope commander"
 end, {})
 
--- Update nvim
-create_cmd("TUpdate", function()
-  require("lazy").load { plugins = { "mason.nvim", "nvim-treesitter" } }
-  vim.cmd "MasonUpdate"
-  vim.cmd "TSUpdate"
-end, {})
-
 -- Toggle Codeium
 g.codeium = false
 create_cmd("CodeiumToggle", function()
