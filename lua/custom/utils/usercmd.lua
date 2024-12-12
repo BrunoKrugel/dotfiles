@@ -149,6 +149,10 @@ create_cmd("CmpToggle", function()
   end
 end, {})
 
+create_cmd("Debug", function()
+  require("dapui").toggle()
+end, {})
+
 create_cmd("Healthcheck", function()
   vim.cmd "checkhealth"
 end, {})

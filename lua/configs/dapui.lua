@@ -30,24 +30,22 @@ dap.listeners.before.event_initialized["dapui_config"] = function()
       return
     end
   end
-  -- dapui:open()
 end
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
   dapui.open()
-  dap_virtual_text.refresh()
 end
 
 dap.listeners.after.disconnect["dapui_config"] = function()
   require("dap.repl").close()
   dapui.close()
-  dap_virtual_text.refresh()
+  require("nvim-dap-virtual-text.virtual_text").clear_virtual_text()
 end
 dap.listeners.before.event_terminated["dapui_config"] = function()
   dapui.close()
-  dap_virtual_text.refresh()
+  require("nvim-dap-virtual-text.virtual_text").clear_virtual_text()
 end
 dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
-  dap_virtual_text.refresh()
+  require("nvim-dap-virtual-text.virtual_text").clear_virtual_text()
 end
