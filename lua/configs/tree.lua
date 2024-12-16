@@ -228,21 +228,21 @@ return {
   },
   sync_root_with_cwd = true,
   renderer = {
-    decorators = {
-      {
-        {
-          "Git",
-          "Open",
-          "Hidden",
-          "Modified",
-          "Bookmark",
-          "Diagnostics",
-          "Copied",
-          UserDecoratorExample,
-          "Cut",
-        },
-      },
-    },
+    -- decorators = {
+    --   {
+    --     {
+    --       UserDecoratorExample,
+    --       "Open",
+    --       "Hidden",
+    --       "Modified",
+    --       "Bookmark",
+    --       "Diagnostics",
+    --       "Copied",
+    --       "Cut",
+    --       "Git",
+    --     },
+    --   },
+    -- },
     highlight_opened_files = "name",
     highlight_git = true,
     -- root_folder_label = ":~",
