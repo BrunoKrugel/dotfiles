@@ -176,8 +176,8 @@ map("n", "<RightMouse>", function()
 end, { desc = "Open NvChad menu" })
 
 vim.keymap.set({ "n" }, "<leader>m", function()
-  local dap = require("dap")
-  require("menu").open({
+  local dap = require "dap"
+  require("menu").open {
     -- {
     --   name = "󰤑 Run Tests",
     --   hl = "@conditional",
@@ -238,7 +238,7 @@ vim.keymap.set({ "n" }, "<leader>m", function()
       end,
       rtxt = "s",
     },
-  })
+  }
 end)
 
 --------------------------------------------------- Editor ---------------------------------------------------
@@ -289,7 +289,6 @@ map({ "n", "i", "v" }, "<C-a>", "<cmd>normal! ggVG<cr>", { desc = "Select all" }
 map("i", "<S-CR>", function()
   vim.cmd "normal o"
 end, { desc = " New line" })
-
 
 map("i", "<A-BS>", "<C-w>", { desc = "Remove word in insert mode" })
 
