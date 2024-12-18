@@ -442,20 +442,6 @@ autocmd({ "VimEnter" }, {
   callback = open_file_created,
 })
 
--- prevent weird snippet jumping behavior
--- https://github.com/L3MON4D3/LuaSnip/issues/258
-autocmd({ "ModeChanged" }, {
-  pattern = { "s:n", "i:*" },
-  callback = function()
-    if
-      require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
-      and not require("luasnip").session.jump_active
-    then
-      require("luasnip").unlink_current()
-    end
-  end,
-})
-
 -- prevent comment from being inserted when entering new line in existing comment
 autocmd("BufEnter", {
   callback = function()
@@ -533,10 +519,12 @@ vim.api.nvim_create_autocmd("FileType", {
 -- https://github.com/mfussenegger/nvim-dap/issues/786
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("PromptBufferCtrlwFix", {}),
-  pattern = {"dap-repl"},
+  pattern = { "dap-repl" },
   callback = function()
-    vim.keymap.set("i", "<C-w>", function() vim.cmd("normal! bcw") end, {buffer = true})
-  end
+    vim.keymap.set("i", "<C-w>", function()
+      vim.cmd "normal! bcw"
+    end, { buffer = true })
+  end,
 })
 
 vim.api.nvim_create_autocmd("OptionSet", {

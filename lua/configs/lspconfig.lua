@@ -108,7 +108,7 @@ local custom_on_attach = function(client, bufnr)
 
   if client.server_capabilities.documentHighlightProvider then
     vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
-    vim.api.nvim_clear_autocmds({ buffer = bufnr, group = "lsp_document_highlight" })
+    vim.api.nvim_clear_autocmds { buffer = bufnr, group = "lsp_document_highlight" }
     vim.api.nvim_create_autocmd({ "CursorHold", "InsertLeave" }, {
       desc = "Highlight references under the cursor",
       buffer = bufnr,
