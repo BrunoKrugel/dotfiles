@@ -431,7 +431,7 @@ M.statusline = {
             if client.name == "typescript-tools" then
               lsp_name = "typescript"
             end
-            return (vim.o.columns > 100 .. "%#St_Lsp#  " .. lsp_name .. " (" .. count .. ")")
+            return (vim.o.columns > 100 and ("%#St_Lsp#  " .. lsp_name .. " (" .. count .. ")"))
               or "  LSP (" .. count .. ") "
           end
         end
