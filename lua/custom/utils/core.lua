@@ -424,16 +424,15 @@ M.statusline = {
         for _, client in ipairs(vim.lsp.get_clients()) do
           if
             client.attached_buffers[vim.api.nvim_get_current_buf()]
-            and (client.name ~= "null-ls" and client.name ~= "copilot" and client.name ~= "GitHub Copilot" and client.name ~= "golangci_lint_ls")
+            and (client.name ~= "null-ls" and client.name ~= "golangci_lint_ls")
           then
             count = count + 1
-            local copilot = "%#CopilotHl# " .. require("copilot_status").status_string() .. " "
             local lsp_name = client.name
             if client.name == "typescript-tools" then
               lsp_name = "typescript"
             end
-            return (vim.o.columns > 100 and copilot .. "%#St_Lsp#  " .. lsp_name .. " (" .. count .. ")")
-              or copilot .. "  LSP (" .. count .. ") "
+            return (vim.o.columns > 100 .. "%#St_Lsp#  " .. lsp_name .. " (" .. count .. ")")
+              or "  LSP (" .. count .. ") "
           end
         end
       end

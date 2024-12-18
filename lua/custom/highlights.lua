@@ -75,10 +75,6 @@ M.override = {
   ["@lsp.typemod.method.trait"] = { link = "Function" },
   ["@lsp.typemod.selfKeyword.defaultLibrary"] = { link = "Keyword" },
 
-  -- Copilot
-  CopilotSuggestion = { fg = "#83a598" },
-  CopilotAnnotation = { fg = "#03a598" },
-
   -- NvimTree
   NvimTreeGitNew = { fg = "green" },
   NvimTreeGitDirty = { fg = "yellow" },
@@ -124,7 +120,7 @@ M.add = {
   -- Cmp Highlights
   CmpItemKindCodeium = { fg = "green" },
   CmpItemKindTabNine = { fg = "pink" },
-  CmpItemKindCopilot = { fg = "cyan" },
+  CmpItemKindSupermaven = {fg ="cyan"},
 
   PackageInfoOutdatedVersion = { fg = "red" },
   PackageInfoUpToDateVersion = { fg = "green" },
@@ -207,7 +203,6 @@ M.add = {
   CodeActionNumber = { link = "Number" },
 
   -- Custom highlights
-  CopilotHl = { fg = "white", bg = "statusline_bg" },
   RecordHl = { fg = "red", bg = "statusline_bg" },
   CmpHl = { fg = "red", bg = "statusline_bg" },
   NotificationHl = { fg = "white", bg = "statusline_bg" },

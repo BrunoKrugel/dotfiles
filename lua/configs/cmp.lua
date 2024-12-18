@@ -1,5 +1,4 @@
 local M = {}
-local copilot_status_ok, copilot_cmp_comparators = pcall(require, "copilot_cmp.comparators")
 local list_contains = vim.list_contains or vim.tbl_contains
 
 local function deprioritize_snippet(entry1, entry2)
@@ -261,10 +260,6 @@ M.cmp = {
   },
   sources = {
     {
-      name = "copilot",
-      max_item_count = 2,
-    },
-    {
       name = "codeium",
       max_item_count = 2,
     },
@@ -308,7 +303,6 @@ M.cmp = {
     priority_weight = 2,
     comparators = {
       -- Definitions of compare function https://github.com/hrsh7th/nvim-cmp/blob/main/lua/cmp/config/compare.lua
-      copilot_cmp_comparators.prioritize or function() end,
       deprioritize_snippet,
       require("cmp").config.compare.exact,
       require("cmp").config.compare.locality,

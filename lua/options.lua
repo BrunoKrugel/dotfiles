@@ -94,9 +94,6 @@ vim.opt.fillchars = {
 -- go to previous/next line with h,l,left arrow and right arrow when cursor reaches end/beginning of line
 opt.whichwrap:append "<>[]hl"
 
--- Copilot
-g.copilot_assume_mapped = true
-
 opt.emoji = false
 opt.cursorline = true
 opt.smoothscroll = true

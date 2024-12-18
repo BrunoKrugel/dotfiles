@@ -162,7 +162,6 @@ return {
     url = "https://github.com/iguanacucumber/magazine.nvim",
     opts = cmp_opt.cmp,
     dependencies = {
-      "hrsh7th/cmp-copilot",
       "ray-x/cmp-treesitter",
       {
         "Exafunction/codeium.nvim",
@@ -201,42 +200,10 @@ return {
         end,
       },
       {
-        "zbirenbaum/copilot.lua",
-        event = "InsertEnter",
-        dependencies = {
-          {
-            "zbirenbaum/copilot-cmp",
-            config = function()
-              require("copilot_cmp").setup()
-            end,
-          },
-        },
+        "supermaven-inc/supermaven-nvim",
         config = function()
-          require("copilot").setup {
-            suggestion = {
-              enabled = false,
-              auto_trigger = false,
-              keymap = {
-                accept_word = false,
-                accept_line = false,
-              },
-            },
-            panel = {
-              enabled = false,
-            },
-            filetypes = {
-              gitcommit = false,
-              TelescopePrompt = false,
-            },
-            server_opts_overrides = {
-              trace = "verbose",
-              settings = {
-                advanced = {
-                  listCount = 3,
-                  inlineSuggestCount = 3,
-                },
-              },
-            },
+          require("supermaven-nvim").setup {
+            disable_keymaps = true,
           }
         end,
       },
@@ -457,22 +424,6 @@ return {
     end,
   },
   {
-    "jonahgoldwastaken/copilot-status.nvim",
-    event = "LspAttach",
-    config = function()
-      require("copilot_status").setup {
-        icons = {
-          idle = " ",
-          error = " ",
-          offline = " ",
-          warning = " ",
-          loading = " ",
-        },
-        debug = false,
-      }
-    end,
-  },
-  {
     "folke/lazydev.nvim",
     ft = "lua", -- only load on lua files
     dependencies = { "justinsgithub/wezterm-types" },
@@ -644,10 +595,6 @@ return {
     event = "VeryLazy",
     opts = {
       notifications = false,
-      excluded_lsp_clients = {
-        "copilot",
-        "GitHub Copilot",
-      },
     },
   },
   {
@@ -1257,15 +1204,5 @@ return {
       },
       show_success_message = true,
     },
-  },
-  ----------------------------------------- completions plugins ------------------------------------------
-  {
-    "github/copilot.vim",
-    lazy = false,
-    config = function()
-      require("copilot").setup()
-      vim.api.nvim_set_hl(0, "CopilotSuggestion", { fg = "#83a598" })
-      vim.api.nvim_set_hl(0, "CopilotAnnotation", { fg = "#03a598" })
-    end,
   },
 }
