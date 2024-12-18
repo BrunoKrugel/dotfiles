@@ -196,10 +196,12 @@ M.cmp = {
       fallback()
     end,
     ["<Tab>"] = require("cmp").mapping(function(fallback)
-      if require("luasnip").expandable() then
-        require("luasnip").expand()
-      elseif require("luasnip").expand_or_jumpable() then
+      local suggestion = require "supermaven-nvim.completion_preview"
+
+      if require("luasnip").expand_or_jumpable() then
         require("luasnip").expand_or_jump()
+      elseif suggestion.has_suggestion() then
+        suggestion.on_accept_suggestion()
       elseif require("neogen").jumpable() then
         require("neogen").jump()
       elseif check_backspace() then
@@ -259,6 +261,7 @@ M.cmp = {
     end,
   },
   sources = {
+    { name = "supermaven", max_item_count = 2 },
     {
       name = "codeium",
       max_item_count = 2,
