@@ -15,10 +15,12 @@ end
 
 conform.setup {
   notify_on_error = false,
-  kulala = {
-    command = "kulala-fmt",
-    args = { "$FILENAME" },
-    stdin = false,
+  formatters = {
+    kulala = {
+      command = "kulala-fmt",
+      args = { "$FILENAME" },
+      stdin = false,
+    },
   },
   formatters_by_ft = {
     javascript = { "prettier" },

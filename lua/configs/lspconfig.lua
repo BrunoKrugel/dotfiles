@@ -277,7 +277,6 @@ local servers = {
   "vuels",
   "yamlls",
   "terraformls",
-  "golangci_lint_ls",
 }
 
 vim.lsp.handlers["textDocument/hover"] = require("noice").hover
