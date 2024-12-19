@@ -379,6 +379,7 @@ map("n", "<C-ScrollWheelDown>", "<C-o>", { noremap = true, silent = true })
 --------------------------------------------------- Testing ---------------------------------------------------
 map("n", "<leader>nt", function()
   require("neotest").run.run(vim.fn.expand "%")
+  require("coverage").load(true)
 end, { desc = "󰤑 Run neotest" })
 
 map("n", "<leader>tc", "<cmd>CoverageToggle<cr>", { desc = "Coverage in gutter" })
