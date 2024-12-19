@@ -18,10 +18,6 @@ require("neotest").setup {
       -- args = { "-count=1", "-coverprofile coverage.out", "-covermode=count" },
       args = { "-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out" },
     },
-    ["neotest-golang"] = {
-      -- go_test_args = { "-v", "-race", "-count=1", "-timeout=60s" },
-      dap_go_enabled = true,
-    },
   },
   quickfix = {
     open = function()

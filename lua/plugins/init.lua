@@ -512,6 +512,7 @@ return {
           }
         end,
       },
+      "jay-babu/mason-nvim-dap.nvim",
       "ofirgall/goto-breakpoints.nvim",
       {
         "LiadOz/nvim-dap-repl-highlights",

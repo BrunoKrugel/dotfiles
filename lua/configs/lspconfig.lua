@@ -586,7 +586,6 @@ require("mason-lspconfig").setup_handlers {
         end,
 
         ["eslint/noLibrary"] = function()
-          vim.notify("[lspconfig] Unable to find ESLint library.", vim.log.levels.WARN)
           return {}
         end,
 
