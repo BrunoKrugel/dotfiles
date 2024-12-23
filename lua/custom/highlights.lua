@@ -46,7 +46,7 @@ M.override = {
   ["@variable"] = { fg = "white" },
   ["@function.call.go"] = { fg = "green" },
   ["@variable.member"] = { fg = "white" },
-  ["@constructor"] = { fg = "green" },
+  ["@constructor"] = { fg = "blue" },
 
   -- ["Function"] = { fg = "green" },
   -- ["@function"] = { fg = "green" },
@@ -112,6 +112,7 @@ M.add = {
 
   NvimTreeOpenedFolderName = { fg = "purple", bold = true },
   NvimTreeOpenedFile = { fg = "green", bold = true },
+  NvimTreeOpenedHL = { fg = "green", bold = true },
   NvimTreeFileIcon = { fg = "purple" },
 
   CoverageCovered = { fg = "green" },
