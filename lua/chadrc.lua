@@ -103,6 +103,10 @@ M.base46 = {
   nvdash = core.nvdash,
 }
 
+M.term = {
+  winopts = { winfixbuf = true },
+}
+
 M.colorify = {
   enabled = true,
   mode = "virtual", -- fg, bg, virtual
