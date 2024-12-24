@@ -116,7 +116,7 @@ function Get_Conflict()
     local gc = require "git-conflict"
     local ok, conflict_count = pcall(gc.conflict_count)
     if ok then
-      conflict = (conflict_count ~= 0) and ("%#StGitConflict#%" .. " " .. conflict_count) or ""
+      conflict = (conflict_count ~= 0) and ("%#St_lspError#%" .. " " .. conflict_count) or ""
     end
   end
   return conflict
@@ -299,7 +299,7 @@ M.tabufline = {
         end
       end
 
-      -- TODO: Only show if Harpoon is open
+      -- TODO: Only show if Harpoon is open with package.loaded
       return "%#HarpoonHl# 󰀱 " .. table.concat(status, options.separator) .. " | "
     end,
   },
@@ -317,8 +317,7 @@ M.statusline = {
   order = {
     "modes",
     "icons",
-    -- "old_git",
-    "git",
+    "old_git",
     "diagnostics",
     "record",
     "%=",
@@ -366,7 +365,7 @@ M.statusline = {
 
     old_git = function()
       if not vim.b[stbufnr()].gitsigns_head or vim.b[stbufnr()].gitsigns_git_status then
-        return "%##"
+        return ""
       end
 
       return "%#StGit#  " .. vim.b[stbufnr()].gitsigns_status_dict.head .. "" .. Get_Conflict()
