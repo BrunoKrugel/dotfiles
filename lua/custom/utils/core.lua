@@ -317,7 +317,8 @@ M.statusline = {
   order = {
     "modes",
     "icons",
-    "old_git",
+    -- "old_git",
+    "git",
     "diagnostics",
     "record",
     "%=",
@@ -392,11 +393,11 @@ M.statusline = {
 
     encoding = function()
       local encode = vim.bo[stbufnr()].fileencoding
-      return string.upper(encode) == "" and "" or "%#St_encode#" .. string.upper(encode) .. " "
+      return string.upper(encode) == "" and "" or "%#StText#" .. string.upper(encode) .. " "
     end,
 
     record = function()
-      return "%#RecordHl#" .. Get_record()
+      return "%#St_lspError#" .. Get_record()
     end,
 
     filetype = function()
@@ -447,11 +448,11 @@ M.statusline = {
     end,
 
     notification = function()
-      return "%#NotificationHl# " .. "%@v:lua.ClickMe@ " .. " %#CmpHl#" .. Get_Cmp()
+      return "%#StText#" .. "%@v:lua.ClickMe@ " .. " %#St_lspError#" .. Get_Cmp()
     end,
 
     dap = function()
-      return "%#DapHl#" .. Get_dap()
+      return "%#St_lspError#" .. Get_dap()
     end,
   },
 }

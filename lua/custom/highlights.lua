@@ -203,11 +203,6 @@ M.add = {
   CodeActionText = { fg = "white" },
   CodeActionNumber = { link = "Number" },
 
-  -- Custom highlights
-  RecordHl = { fg = "red", bg = "statusline_bg" },
-  CmpHl = { fg = "red", bg = "statusline_bg" },
-  NotificationHl = { fg = "white", bg = "statusline_bg" },
-  TermHl = { fg = "green", bg = "statusline_bg" },
   SplitHl = { fg = "white", bg = "black2" },
   HarpoonHl = { fg = "white", bg = "black2" },
 
