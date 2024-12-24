@@ -322,7 +322,6 @@ M.statusline = {
     "record",
     "%=",
     "lsp_msg",
-    -- "noice",
     "dap",
     "%=",
     "git_changed",
@@ -370,15 +369,6 @@ M.statusline = {
       end
 
       return "%#StGit#  " .. vim.b[stbufnr()].gitsigns_status_dict.head .. "" .. Get_Conflict()
-    end,
-
-    noice = function()
-      local status = require("noice").api.status.mode.get()
-      if status then
-        return "%#NoiceVirtualText#" .. status
-      end
-
-      return "%##"
     end,
 
     git_changed = function()
