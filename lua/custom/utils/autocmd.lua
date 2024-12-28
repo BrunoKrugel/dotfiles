@@ -345,8 +345,8 @@ autocmd("ModeChanged", {
   command = "lua vim.diagnostic.enable(0)",
 })
 
--- Show cursor line only in active window
 autocmd({ "InsertLeave", "WinEnter" }, {
+  desc = "Show cursor line only in active window",
   pattern = "*",
   command = "set cursorline",
   group = augroup("CursorLine", { clear = true }),
@@ -357,14 +357,14 @@ autocmd({ "InsertEnter", "WinLeave" }, {
   group = augroup("CursorLine", { clear = true }),
 })
 
---- Remove all trailing whitespace on save
 autocmd("BufWritePre", {
+  desc = "Remove all trailing whitespace on save",
   command = [[:%s/\s\+$//e]],
   group = augroup("TrimWhiteSpaceGrp", { clear = true }),
 })
 
--- Restore cursor
 autocmd({ "BufReadPost" }, {
+  desc = "Open file at the last position it was edited earlier",
   pattern = { "*" },
   callback = function()
     vim.api.nvim_exec('silent! normal! g`"zv', false)
