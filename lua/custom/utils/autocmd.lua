@@ -186,7 +186,7 @@ autocmd("BufWritePre", {
 autocmd({ "BufNewFile", "BufRead" }, {
   pattern = { "**/node_modules/**", "node_modules", "/node_modules/*" },
   callback = function()
-    vim.diagnostic.disable(0)
+    vim.diagnostic.enabled(false)
   end,
 })
 
@@ -354,9 +354,7 @@ autocmd("BufWritePre", {
 autocmd({ "BufReadPost" }, {
   desc = "Open file at the last position it was edited earlier",
   pattern = { "*" },
-  callback = function()
-    vim.api.nvim_exec('silent! normal! g`"zv', false)
-  end,
+  command = 'silent! normal! g`"zv',
 })
 
 autocmd({ "FileType" }, {
