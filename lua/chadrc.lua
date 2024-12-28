@@ -30,7 +30,6 @@ M.ui = {
 
 M.nvdash = core.nvdash
 
-
 M.lsp = { signature = false }
 
 M.mason = {
@@ -104,7 +103,20 @@ M.base46 = {
 }
 
 M.term = {
-  winopts = { winfixbuf = true },
+  winopts = {
+    winfixbuf = true,
+    number = false,
+    relativenumber = false,
+  },
+  sizes = { sp = 0.3, vsp = 0.2, ["bo sp"] = 0.3, ["bo vsp"] = 0.2 },
+  float = {
+    relative = "editor",
+    row = 0.3,
+    col = 0.25,
+    width = 0.5,
+    height = 0.4,
+    border = "single",
+  },
 }
 
 M.colorify = {
