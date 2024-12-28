@@ -176,18 +176,6 @@ autocmd({ "BufNewFile", "BufRead" }, {
   end,
 })
 
-autocmd("VimEnter", {
-  desc = "Customize right click contextual menu.",
-  callback = function()
-    -- Disable right click message
-    cmd [[aunmenu PopUp.How-to\ disable\ mouse]]
-    cmd [[menu PopUp.󰏘\ Inspect\ Color <cmd>:Inspect<CR>]]
-    -- cmd [[aunmenu PopUp.-1-]] -- You can remode a separator like this.
-    cmd [[menu PopUp.Toggle\ \Breakpoint <cmd>:lua require('dap').toggle_breakpoint()<CR>]]
-    cmd [[menu PopUp.Start\ \Debugger <cmd>:DapContinue<CR>]]
-  end,
-})
-
 autocmd("BufWritePre", {
   desc = "Close all notifications on BufWritePre",
   callback = function()
@@ -411,12 +399,6 @@ autocmd("FileType", {
             nnoremap <buffer><silent> q :close<CR>
             set nobuflisted
         ]],
-})
-
-autocmd({ "BufRead", "BufNewFile" }, {
-  desc = "Disable diagnostics in node_modules",
-  pattern = "*/node_modules/*",
-  command = "lua vim.diagnostic.disable(0)",
 })
 
 autocmd("BufWritePre", {
