@@ -209,6 +209,7 @@ return {
     enable = true,
     show_on_dirs = true,
     debounce_delay = 50,
+    show_on_open_dirs = false,
     icons = {
       hint = "",
       info = "",
@@ -226,23 +227,19 @@ return {
   },
   sync_root_with_cwd = true,
   renderer = {
-    -- decorators = {
-    --   {
-    --     {
-    --       UserDecoratorExample,
-    --       "Open",
-    --       "Hidden",
-    --       "Modified",
-    --       "Bookmark",
-    --       "Diagnostics",
-    --       "Copied",
-    --       "Cut",
-    --       "Git",
-    --     },
-    --   },
-    -- },
+    decorators = {
+      "Diagnostics",
+      "Git",
+      "Open",
+      "Hidden",
+      "Modified",
+      "Bookmark",
+      "Copied",
+      "Cut",
+    },
     highlight_opened_files = "name",
     highlight_git = true,
+    highlight_diagnostics = true,
     -- root_folder_label = ":~",
     group_empty = true,
     indent_markers = {
@@ -255,10 +252,12 @@ return {
     },
     icons = {
       git_placement = "after",
+      diagnostics_placement = "before", -- right_align
+      padding = " ",
       show = {
         git = true,
         bookmarks = false,
-        diagnostics = false,
+        diagnostics = true,
         file = true,
         folder = true,
         folder_arrow = true,
