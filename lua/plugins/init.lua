@@ -407,18 +407,6 @@ return {
           reference_text = { hl_group = "ObsidianRefText" },
           highlight_text = { hl_group = "ObsidianHighlightText" },
           tags = { hl_group = "ObsidianTag" },
-          hl_groups = {
-            -- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
-            ObsidianTodo = { bold = true, fg = "#f78c6c" },
-            ObsidianDone = { bold = true, fg = "#89ddff" },
-            ObsidianRightArrow = { bold = true, fg = "#f78c6c" },
-            ObsidianTilde = { bold = true, fg = "#ff5370" },
-            ObsidianBullet = { bold = true, fg = "#89ddff" },
-            ObsidianRefText = { underline = true, fg = "#c792ea" },
-            ObsidianExtLinkIcon = { fg = "#c792ea" },
-            ObsidianTag = { italic = true, fg = "#89ddff" },
-            ObsidianHighlightText = { bg = "#75662e" },
-          },
         },
       }
     end,
@@ -426,11 +414,7 @@ return {
   {
     "folke/lazydev.nvim",
     ft = "lua", -- only load on lua files
-    dependencies = { "justinsgithub/wezterm-types" },
-    cond = function()
-      local term = vim.fn.getenv "TERM_PROGRAM"
-      return term == "WezTerm"
-    end,
+    dependencies = { "gonstoll/wezterm-types" },
     opts = {
       library = {
         { path = vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types", words = { "ChadrcConfig", "NvPluginSpec" } },
