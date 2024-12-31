@@ -214,7 +214,7 @@ return {
       hint = "",
       info = "",
       warning = "",
-      error = "",
+      error = "",
     },
   },
   view = {
@@ -238,7 +238,7 @@ return {
       "Cut",
     },
     highlight_opened_files = "name",
-    highlight_git = true,
+    highlight_git = false,
     highlight_diagnostics = true,
     -- root_folder_label = ":~",
     group_empty = true,
@@ -252,7 +252,7 @@ return {
     },
     icons = {
       git_placement = "after",
-      diagnostics_placement = "before", -- right_align
+      diagnostics_placement = "after", -- right_align
       padding = " ",
       show = {
         git = true,
