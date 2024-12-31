@@ -93,10 +93,12 @@ local custom_on_attach = function(client, bufnr)
     if client.server_capabilities.textDocument.codeLens then
       require("virtualtypes").on_attach(client, bufnr)
       attach_codelens(client, bufnr)
+
+      vim.keymap.set("n", "<leader>cl", vim.lsp.codelens.run, { buffer = bufnr, silent = true })
     end
   end
 
-  if client.server_capabilities["documentSymbolProvider"] then
+  if client.server_capabilities.documentSymbolProvider then
     require("nvim-navic").attach(client, bufnr)
   end
 
