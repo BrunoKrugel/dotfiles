@@ -126,11 +126,11 @@ if g.neovide then
   g.neovide_scroll_animation_far_lines = 1
   g.neovide_hide_mouse_when_typing = true
   g.neovide_underline_automatic_scaling = true
-  g.neovide_increment_scale_factor = 0.1
-  g.neovide_scale_factor = 1
-  g.neovide_scale_factor = 1
-  g.neovide_max_scale_factor = 2.0
-  g.neovide_min_scale_factor = 0.7
+  -- g.neovide_increment_scale_factor = 0.1
+  -- g.neovide_scale_factor = 1
+  -- g.neovide_scale_factor = 1
+  -- g.neovide_max_scale_factor = 2.0
+  -- g.neovide_min_scale_factor = 0.7
 
   -- See https://github.com/neovide/neovide/issues/2330
   vim.schedule(function()
