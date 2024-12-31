@@ -306,18 +306,6 @@ M.text = {
   },
 }
 
-M.go = {
-  n = {
-    ["<leader>fi"] = { " <CMD>:GoImports<CR>", " Format imports", opts = { silent = true } },
-    ["<leader>gif"] = { " <CMD>:GoIfErr<CR>", " Create If Err", opts = { silent = true } },
-    ["<leader>gfs"] = { " <CMD>:GoFillStruct<CR>", " Fill struct", opts = { silent = true } },
-    ["<leader>gcv"] = { " <CMD>:GoCoverage -p<CR>", " Show coverage", opts = { silent = true } },
-    ["<leader>gt"] = { " <CMD>:GoAlt!<CR>", " Go to test", opts = { silent = true } },
-    ["<leader>gca"] = { " <CMD>:GoCodeAction<CR>", " Code action", opts = { silent = true } },
-    ["<leader>cl"] = { " <CMD>:GoCodeLenAct<CR>", " Code Lens", opts = { silent = true } },
-  },
-}
-
 M.window = {
   n = {
     ["<leader><leader>h"] = { "<CMD>vs <CR>", "󰤼 Vertical split", opts = { nowait = true } },
@@ -570,12 +558,6 @@ M.tabufline = {
       end,
       " Close all but current buffer",
     },
-  },
-}
-
-M.docker = {
-  n = {
-    ["<leader>ld"] = { "<CMD> LazyDocker <CR>", "󰡨 Open LazyDocker" },
   },
 }
 
