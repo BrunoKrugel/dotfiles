@@ -19,7 +19,7 @@ opt.showmode = false
 opt.smoothscroll = true
 
 o.mousemoveevent = true
-vim.opt.sessionoptions="blank,buffers,curdir,tabpages,winsize,winpos,terminal,localoptions"
+vim.opt.sessionoptions = "blank,buffers,curdir,tabpages,winsize,winpos,terminal,localoptions"
 
 opt.clipboard = "unnamedplus"
 opt.cursorline = true
@@ -124,8 +124,13 @@ if g.neovide then
   g.neovide_light_radius = 10
   g.neovide_scroll_animation_length = 0.5
   g.neovide_scroll_animation_far_lines = 1
-  vim.g.neovide_hide_mouse_when_typing = true
-  vim.g.neovide_underline_automatic_scaling = true
+  g.neovide_hide_mouse_when_typing = true
+  g.neovide_underline_automatic_scaling = true
+  g.neovide_increment_scale_factor = 0.1
+  g.neovide_scale_factor = 1
+  g.neovide_scale_factor = 1
+  g.neovide_max_scale_factor = 2.0
+  g.neovide_min_scale_factor = 0.7
 
   -- See https://github.com/neovide/neovide/issues/2330
   vim.schedule(function()
