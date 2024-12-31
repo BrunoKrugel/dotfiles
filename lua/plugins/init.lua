@@ -896,7 +896,7 @@ return {
           size = { height = 0.1 },
         },
         { ft = "qf", title = "QuickFix" },
-        { ft = "dap-repl", title = " Debug REPL" },
+        { ft = "dap-repl", size = { height = 0.2 }, title = " Debug REPL" },
         { ft = "dapui_console", size = { height = 0.2 }, title = "Debug Console" },
         "Trouble",
         "Noice",
