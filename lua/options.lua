@@ -126,6 +126,13 @@ if g.neovide then
   g.neovide_scroll_animation_far_lines = 1
   g.neovide_hide_mouse_when_typing = true
   g.neovide_underline_automatic_scaling = true
+  g.neovide_floating_corner_radius = 10.0
+
+  -- vim.g.neovide_floating_shadow = true
+  -- vim.g.neovide_floating_z_height = 10
+  -- vim.g.neovide_light_angle_degrees = 45
+  -- vim.g.neovide_light_radius = 5
+
   -- g.neovide_increment_scale_factor = 0.1
   -- g.neovide_scale_factor = 1
   -- g.neovide_scale_factor = 1
