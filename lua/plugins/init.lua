@@ -136,6 +136,7 @@ return {
       trailing_stiffness = 0.6,
       trailing_exponent = 0,
       distance_stop_animating = 0.5,
+      windows_zindex = 47,
       hide_target_hack = false,
     },
   },
@@ -245,7 +246,7 @@ return {
         -- Colorful menu highlights for Go.
         if vim.bo.filetype == "go" then
           local completion_item = entry:get_completion_item()
-          local highlights_info = require("colorful-menu").highlights(completion_item, vim.bo.filetype)
+          local highlights_info = require("colorful-menu").highlights(completion_item)
           -- error, such as missing parser, fallback to use raw label.
           if highlights_info == nil then
             item.abbr = completion_item.label
