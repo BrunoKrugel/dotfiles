@@ -105,7 +105,7 @@ else
 end
 
 if g.neovide then
-  opt.guifont = "Hack Nerd Font:h12"
+  opt.guifont = "JetbrainsMono Nerd Font:h12"
   -- opt.guifont = "JetbrainsMono Nerd Font:h12"
   g.neovide_refresh_rate = 120
   g.neovide_remember_window_size = true
