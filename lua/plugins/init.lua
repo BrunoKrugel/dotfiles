@@ -6,7 +6,25 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       {
+        "artemave/workspace-diagnostics.nvim",
+        "jubnzv/virtual-types.nvim",
         "williamboman/mason.nvim",
+        dependencies = {
+          "williamboman/mason-lspconfig.nvim",
+          {
+            "WhoIsSethDaniel/mason-tool-installer.nvim",
+            opts = {
+              auto_update = true,
+              run_on_start = true,
+              ensure_installed = {
+                "impl",
+                "gomodifytags",
+                "iferr",
+                "gotests",
+              },
+            },
+          },
+        },
         opts = overrides.mason,
         config = function(_, opts)
           require("mason").setup(opts)
@@ -19,31 +37,8 @@ return {
               }
             end, 100)
           end)
-          vim.api.nvim_create_user_command("MasonInstallAll", function()
-            vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
-          end, {})
           require "configs.lspconfig"
         end,
-      },
-      "artemave/workspace-diagnostics.nvim",
-      "jubnzv/virtual-types.nvim",
-      "williamboman/mason-lspconfig.nvim",
-      {
-        "WhoIsSethDaniel/mason-tool-installer.nvim",
-        opts = {
-          auto_update = true,
-          run_on_start = true,
-          ensure_installed = {
-            "impl",
-            "gomodifytags",
-            "go-debug-adapter",
-            "iferr",
-            "gotests",
-          },
-        },
-        cmd = "MasonToolsUpdate",
-        event = "BufReadPre",
-        dependencies = "williamboman/mason.nvim",
       },
     },
     config = function() end,
@@ -224,16 +219,16 @@ return {
         end
 
         --   -- Use the item's detail as a fallback if there's no documentation.
-          if item.detail then
-            local ft = self.context.filetype
-            local dot_index = string.find(ft, "%.")
-            if dot_index ~= nil then
-              ft = string.sub(ft, 0, dot_index - 1)
-            end
-            return (vim.split(("```%s\n%s```"):format(ft, vim.trim(item.detail)), "\n"))
+        if item.detail then
+          local ft = self.context.filetype
+          local dot_index = string.find(ft, "%.")
+          if dot_index ~= nil then
+            ft = string.sub(ft, 0, dot_index - 1)
           end
+          return (vim.split(("```%s\n%s```"):format(ft, vim.trim(item.detail)), "\n"))
+        end
 
-          return {}
+        return {}
       end
 
       local cmp_autopairs = require "nvim-autopairs.completion.cmp"
@@ -513,7 +508,13 @@ return {
           }
         end,
       },
-      "jay-babu/mason-nvim-dap.nvim",
+      {
+        "jay-babu/mason-nvim-dap.nvim",
+        opts = {
+          automatic_setup = true,
+          ensure_installed = { "delve" },
+        },
+      },
       "ofirgall/goto-breakpoints.nvim",
       {
         "LiadOz/nvim-dap-repl-highlights",
@@ -1028,54 +1029,60 @@ return {
   },
   ----------------------------------------- language plugins ------------------------------------------
   {
-    "ray-x/go.nvim",
+    "Jay-Madden/auto-fix-return.nvim",
     ft = { "go", "gomod", "gosum", "gowork", "gotmpl", "templ" },
-    dependencies = {
-      "Jay-Madden/auto-fix-return.nvim",
-      "catgoose/templ-goto-definition",
-      {
-        "ray-x/guihua.lua",
-        build = "cd lua/fzy && make",
-      },
-      {
-        "jack-rabe/impl.nvim",
-        opts = {
-          layout_strategy = "vertical",
-          layout_config = {
-            width = 0.5,
-          },
-        },
-      },
-    },
-    opts = {
-      lsp_inlay_hints = {
-        enable = false,
-        other_hints_prefix = "•",
-      },
-      trouble = true,
-      lsp_keymaps = false,
-      diagnostic = false,
-      lsp_codelens = true,
-      floaterm = {
-        posititon = "auto",
-        width = 0.45,
-        height = 0.98,
-        title_colors = "dracula",
-      },
-      icons = { breakpoint = "", currentpos = "" },
-      gocoverage_sign = "│",
-      -- dap_debug_gui = core.dapui,
-      dap_debug_gui = false,
-      dap_debug = false,
-    },
-    config = function(_, opts)
-      require("go").setup(ops)
-      vim.api.nvim_set_hl(0, "goCoverageUncover", { fg = "#f9e2af" })
-      vim.api.nvim_set_hl(0, "goCoverageUncovered", { fg = "#F38BA8" })
-      vim.api.nvim_set_hl(0, "goCoverageCovered", { fg = "#a6e3a1" })
-    end,
-    build = ':lua require("go.install").update_all_sync()',
+    opts = {},
   },
+  -- {
+  --   "ray-x/go.nvim",
+  --   ft = { "go", "gomod", "gosum", "gowork", "gotmpl", "templ" },
+  --   dependencies = {
+  --     "Jay-Madden/auto-fix-return.nvim",
+  --     "catgoose/templ-goto-definition",
+  --     {
+  --       "ray-x/guihua.lua",
+  --       build = "cd lua/fzy && make",
+  --     },
+  --     {
+  --       "jack-rabe/impl.nvim",
+  --       opts = {
+  --         layout_strategy = "vertical",
+  --         layout_config = {
+  --           width = 0.5,
+  --         },
+  --       },
+  --     },
+  --   },
+  --   opts = {
+  --     lsp_inlay_hints = {
+  --       enable = false,
+  --       other_hints_prefix = "•",
+  --     },
+  --     trouble = true,
+  --     lsp_keymaps = false,
+  --     diagnostic = false,
+  --     lsp_codelens = true,
+  --     floaterm = {
+  --       posititon = "auto",
+  --       width = 0.45,
+  --       height = 0.98,
+  --       title_colors = "dracula",
+  --     },
+  --     icons = { breakpoint = "", currentpos = "" },
+  --     gocoverage_sign = "│",
+  --     -- dap_debug_gui = core.dapui,
+  --     dap_debug_gui = false,
+  --     dap_debug = false,
+  --     signs = { "󰅙", "", "󰋼", "󰌵" },
+  --   },
+  --   config = function(_, opts)
+  --     require("go").setup(ops)
+  --     vim.api.nvim_set_hl(0, "goCoverageUncover", { fg = "#f9e2af" })
+  --     vim.api.nvim_set_hl(0, "goCoverageUncovered", { fg = "#F38BA8" })
+  --     vim.api.nvim_set_hl(0, "goCoverageCovered", { fg = "#a6e3a1" })
+  --   end,
+  --   build = ':lua require("go.install").update_all_sync()',
+  -- },
   {
     "dmmulroy/ts-error-translator.nvim",
     ft = {

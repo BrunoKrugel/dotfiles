@@ -63,6 +63,7 @@ M.mason = {
     "gomodifytags",
     "impl",
     "iferr",
+    "go-debug-adapter",
   },
 }
 
