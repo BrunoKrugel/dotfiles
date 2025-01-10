@@ -5,25 +5,12 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
+      "artemave/workspace-diagnostics.nvim",
+      "jubnzv/virtual-types.nvim",
       {
-        "artemave/workspace-diagnostics.nvim",
-        "jubnzv/virtual-types.nvim",
         "williamboman/mason.nvim",
         dependencies = {
           "williamboman/mason-lspconfig.nvim",
-          {
-            "WhoIsSethDaniel/mason-tool-installer.nvim",
-            opts = {
-              auto_update = true,
-              run_on_start = true,
-              ensure_installed = {
-                "impl",
-                "gomodifytags",
-                "iferr",
-                "gotests",
-              },
-            },
-          },
         },
         opts = overrides.mason,
         config = function(_, opts)
