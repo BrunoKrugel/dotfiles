@@ -8,24 +8,22 @@ local core = require "custom.utils.core"
 dapui.setup(core.dapui)
 -- require("dap.ext.vscode").load_launchjs "launch.json"
 
-if not dap.adapters.go then
-  dap.adapters.go = {
-    type = "executable",
-    command = "node",
-    args = { get_install_path "go-debug-adapter" .. "/extension/dist/debugAdapter.js" },
-  }
+dap.adapters.go = {
+  type = "executable",
+  command = "node",
+  args = { get_install_path "go-debug-adapter" .. "/extension/dist/debugAdapter.js" },
+}
 
-  dap.configurations.go = {
-    {
-      type = "go",
-      name = "Debug: Go",
-      request = "launch",
-      showLog = false,
-      program = "${workspaceFolder}/cmd/${workspaceFolderBasename}",
-      dlvToolPath = vim.fn.exepath "dlv",
-    },
-  }
-end
+dap.configurations.go = {
+  {
+    type = "go",
+    name = "Debug: Go",
+    request = "launch",
+    showLog = false,
+    program = "${workspaceFolder}/cmd/${workspaceFolderBasename}",
+    dlvToolPath = vim.fn.exepath "dlv",
+  },
+}
 
 dap.listeners.before.event_initialized["dapui_config"] = function()
   local api = require "nvim-tree.api"

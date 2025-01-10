@@ -52,10 +52,6 @@ noice.setup {
       filter = {
         event = "notify",
         any = {
-          -- Neo-tree
-          { find = "Toggling hidden files: true" },
-          { find = "Toggling hidden files: false" },
-          { find = "Operation canceled" },
           { find = "^No code actions available$" },
 
           -- Telescope
@@ -64,6 +60,10 @@ noice.setup {
           { find = "Highlight group" },
           { find = "no manual entry for" },
           { find = "not have parser for" },
+
+          -- Dap
+          { find = "Debug adapter didn't respond" },
+          { find = "setExceptionBreakpoints is currently not supported" },
 
           -- ts
           { find = "_ts_parse_query" },
@@ -213,4 +213,3 @@ noice.setup {
     inc_rename = true,
   },
 }
-

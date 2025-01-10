@@ -85,6 +85,9 @@ M.override = {
 M.add = {
 
   DapStoppedLine = { link = "Visual" },
+  NvimDapVirtualTextError = { fg = "red", italic = true },
+  NvimDapVirtualText = { fg = "cyan", italic = true },
+  NvimDapVirtualTextChanged = { fg = "yellow", italic = true },
 
   -- LazyDimmed = { fg = colors.grey },
 
