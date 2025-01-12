@@ -67,6 +67,50 @@ local function limit_lsp_types(entry, ctx)
   return true
 end
 
+local function go_sort(entry1, entry2)
+  local types = require "cmp.types"
+
+  local kind1 = entry1:get_kind() --- @type lsp.CompletionItemKind | number
+  local kind2 = entry2:get_kind() --- @type lsp.CompletionItemKind | number
+  kind1 = kind1 == types.lsp.CompletionItemKind.Text and 100 or kind1
+  kind2 = kind2 == types.lsp.CompletionItemKind.Text and 100 or kind2
+
+  -- Snippet lower
+  if kind1 == types.lsp.CompletionItemKind.Snippet then
+    return false
+  end
+  if kind2 == types.lsp.CompletionItemKind.Snippet then
+    return true
+  end
+  -- Field higher than function/method
+  if (kind1 == 2 or kind1 == 3) and kind2 == 5 then
+    return false
+  elseif (kind2 == 2 or kind2 == 3) and kind1 == 5 then
+    return true
+  end
+  -- Variable the highest
+  if kind1 ~= 6 and kind2 == 6 then
+    return false
+  elseif kind2 ~= 6 and kind1 == 6 then
+    return true
+  end
+  -- Put down moudle
+  -- if kind1 == 9 then
+  --     return false
+  -- end
+  -- if kind2 == 9 then
+  --     return true
+  -- end
+  return nil
+end
+
+local function sort(entry1, entry2)
+  if vim.bo.filetype == "go" then
+    return go_sort(entry1, entry2)
+  end
+  return nil
+end
+
 local function has_words_before()
   local buftype = vim.api.nvim_buf_get_option(0, "buftype")
   if buftype == "prompt" then
@@ -306,6 +350,7 @@ M.cmp = {
     priority_weight = 2,
     comparators = {
       -- Definitions of compare function https://github.com/hrsh7th/nvim-cmp/blob/main/lua/cmp/config/compare.lua
+      sort,
       deprioritize_snippet,
       require("cmp").config.compare.exact,
       require("cmp").config.compare.locality,
