@@ -28,6 +28,12 @@ local filterReactDTS = function(value)
 end
 
 glance.setup {
+  use_trouble_qf = true,
+  height = 23, -- Height of the window
+  zindex = 10,
+  border = {
+    enable = not vim.g.neovide,
+  },
   hooks = {
     before_open = function(results, open, jump, method)
       if #results == 1 then
