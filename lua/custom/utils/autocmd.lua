@@ -23,6 +23,7 @@ autocmd({
     require("barbecue.ui").update()
   end,
 })
+
 autocmd("ModeChanged", {
   desc = "Move to relative line number when in visual mode",
   callback = function(args)

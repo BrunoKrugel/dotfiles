@@ -1006,7 +1006,7 @@ return {
     },
   },
   {
-    "mbwilding/barbecue.nvim",
+    "BrunoKrugel/bbq.nvim",
     event = "LspAttach",
     dependencies = { "SmiteshP/nvim-navic" },
     opts = {
