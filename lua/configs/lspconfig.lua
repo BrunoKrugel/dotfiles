@@ -145,13 +145,13 @@ local go_on_attach = function(client, bufnr)
   -- end
 
   -- Go
-  -- vim.api.nvim_create_autocmd("BufWritePre", {
-  --   pattern = "*.go",
-  --   callback = function()
-  --     organize_imports(client, bufnr)
-  --     vim.lsp.buf.format { async = false }
-  --   end,
-  -- })
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*.go",
+    callback = function()
+      organize_imports(client, bufnr)
+      vim.lsp.buf.format { async = false }
+    end,
+  })
 end
 
 -- Update mappings when registering dynamic capabilities.
