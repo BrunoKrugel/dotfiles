@@ -806,10 +806,17 @@ return {
   },
   {
     "0xAdk/full_visual_line.nvim",
-    keys = { "V" },
+    keys = { "V", "v" },
     config = function()
       require("full_visual_line").setup {}
     end,
+  },
+  {
+    "wurli/visimatch.nvim",
+    keys = { "V", "v" },
+    opts = {
+      hl_group = "Visual",
+    },
   },
   {
     "FeiyouG/command_center.nvim",
@@ -999,7 +1006,7 @@ return {
     },
   },
   {
-    "utilyre/barbecue.nvim",
+    "mbwilding/barbecue.nvim",
     event = "LspAttach",
     dependencies = { "SmiteshP/nvim-navic" },
     opts = {
