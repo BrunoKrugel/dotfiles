@@ -477,6 +477,7 @@ require("mason-lspconfig").setup_handlers {
           buildFlags = { "-tags=wireinject" },
           usePlaceholders = true,
           directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
+          experimentalPostfixCompletions = true,
           completeUnimported = true,
           vulncheck = "Imports",
           gofumpt = true,
