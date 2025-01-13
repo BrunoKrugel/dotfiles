@@ -1027,56 +1027,6 @@ return {
     ft = { "go", "gomod", "gosum", "gowork", "gotmpl", "templ" },
     opts = {},
   },
-  -- {
-  --   "ray-x/go.nvim",
-  --   ft = { "go", "gomod", "gosum", "gowork", "gotmpl", "templ" },
-  --   dependencies = {
-  --     "Jay-Madden/auto-fix-return.nvim",
-  --     "catgoose/templ-goto-definition",
-  --     {
-  --       "ray-x/guihua.lua",
-  --       build = "cd lua/fzy && make",
-  --     },
-  --     {
-  --       "jack-rabe/impl.nvim",
-  --       opts = {
-  --         layout_strategy = "vertical",
-  --         layout_config = {
-  --           width = 0.5,
-  --         },
-  --       },
-  --     },
-  --   },
-  --   opts = {
-  --     lsp_inlay_hints = {
-  --       enable = false,
-  --       other_hints_prefix = "•",
-  --     },
-  --     trouble = true,
-  --     lsp_keymaps = false,
-  --     diagnostic = false,
-  --     lsp_codelens = true,
-  --     floaterm = {
-  --       posititon = "auto",
-  --       width = 0.45,
-  --       height = 0.98,
-  --       title_colors = "dracula",
-  --     },
-  --     icons = { breakpoint = "", currentpos = "" },
-  --     gocoverage_sign = "│",
-  --     -- dap_debug_gui = core.dapui,
-  --     dap_debug_gui = false,
-  --     dap_debug = false,
-  --     signs = { "󰅙", "", "󰋼", "󰌵" },
-  --   },
-  --   config = function(_, opts)
-  --     require("go").setup(ops)
-  --     vim.api.nvim_set_hl(0, "goCoverageUncover", { fg = "#f9e2af" })
-  --     vim.api.nvim_set_hl(0, "goCoverageUncovered", { fg = "#F38BA8" })
-  --     vim.api.nvim_set_hl(0, "goCoverageCovered", { fg = "#a6e3a1" })
-  --   end,
-  --   build = ':lua require("go.install").update_all_sync()',
-  -- },
   {
     "dmmulroy/ts-error-translator.nvim",
     ft = {
