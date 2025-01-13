@@ -251,7 +251,6 @@ M.text = {
     -- Renamer
     -- ["<C-R>"] = { "<CMD>:MurenToggle<CR>", "󱝪 Toggle Search" },
     ["<leader>sp"] = { "<CMD>:TSJToggle<CR>", "󰯌 Toggle split/join" },
-    ["<A-d>"] = { "<CMD>:MCstart<CR>", "Multi cursor" },
     ["dd"] = {
       function()
         if vim.api.nvim_get_current_line():match "^%s*$" then
