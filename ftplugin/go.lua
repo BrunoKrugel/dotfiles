@@ -20,6 +20,16 @@ local function handler(_, result, ctx)
   end
 end
 
+local function add_tags()
+  local struct = vim.fn.expand "<cword>"
+  local type = vim.fn.input("Type: ", "json")
+  local file = vim.fn.expand "%:p"
+  local view = vim.fn.winsaveview()
+  local response = vim.fn.systemlist(string.format("gomodifytags -file %s -struct %s -add-tags %s", file, struct, type))
+  vim.api.nvim_buf_set_lines(0, 0, -1, true, response)
+  vim.fn.winrestview(view)
+end
+
 local function golang_goto_def()
   local old = vim.lsp.buf.definition
   local opts = {
@@ -122,3 +132,23 @@ map("v", "<Tab>", function()
     vim.lsp.buf_request(0, "textDocument/hover", param, handler)
   end
 end, { buffer = true })
+
+-- jump between test and source file
+map("n", "<C-n>", function()
+  -- check if a _test.go file exists
+  local test_file = vim.fn.expand "%:p:h" .. "/" .. vim.fn.expand "%:t:r" .. "_test.go"
+  if vim.fn.filereadable(test_file) == 1 then
+    vim.cmd("e " .. test_file)
+    return
+  end
+
+  -- check if file is a test file
+  if string.match(vim.fn.expand "%:t", "_test.go$") then
+    local main_file = vim.fn.expand "%:p:h" .. "/" .. string.gsub(vim.fn.expand "%:t:r", "_test", "") .. ".go"
+    if vim.fn.filereadable(main_file) == 1 then
+      vim.cmd("e " .. main_file)
+    end
+  end
+end, { desc = "Jump between test and source file", silent = true })
+
+vim.api.nvim_create_user_command("GoAddTags", add_tags, { force = true })
