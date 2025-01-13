@@ -1195,17 +1195,4 @@ return {
       dapSharedKeymaps = false,
     },
   },
-  {
-    "ThePrimeagen/refactoring.nvim",
-    cmd = "Refactor",
-    opts = {
-      prompt_func_return_type = {
-        go = true,
-      },
-      prompt_func_param_type = {
-        go = true,
-      },
-      show_success_message = true,
-    },
-  },
 }

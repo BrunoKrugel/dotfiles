@@ -464,12 +464,6 @@ M.telescope = {
     },
     ["<leader>fu"] = { "<CMD>Telescope undo<CR>", " Undo tree" },
     ["<leader>fg"] = { "<CMD>Telescope ast_grep<CR>", " Structural Search" },
-    ["<leader>fre"] = {
-      function()
-        require("telescope").extensions.refactoring.refactors()
-      end,
-      "Refactor",
-    },
     ["<leader>fz"] = {
       "<CMD>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<CR>",
       " Find current file",
