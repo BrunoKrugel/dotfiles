@@ -456,23 +456,12 @@ M.telescope = {
     ["<leader>li"] = { "<CMD>Telescope highlights<CR>", "Highlights" },
     ["<leader>fk"] = { "<CMD>Telescope keymaps<CR>", " Find keymaps" },
     ["<leader>fs"] = { "<CMD>Telescope lsp_document_symbols<CR>", " Find document symbols" },
-    ["<leader>fa"] = {
-      function()
-        require("search").open()
-      end,
-      " Find",
-    },
     ["<leader>fu"] = { "<CMD>Telescope undo<CR>", " Undo tree" },
-    ["<leader>fg"] = { "<CMD>Telescope ast_grep<CR>", " Structural Search" },
-    ["<leader>fz"] = {
-      "<CMD>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<CR>",
-      " Find current file",
-    },
-    ["<leader>ff"] = {
+    ["<leader>fa"] = {
       function()
         local builtin = require "telescope.builtin"
         -- ignore opened buffers if not in dashboard or directory
-        if vim.fn.isdirectory(vim.fn.expand "%") == 1 or vim.bo.filetype == "alpha" then
+        if vim.fn.isdirectory(vim.fn.expand "%") == 1 or vim.bo.filetype == "nvdash" then
           builtin.find_files()
         else
           local function literalize(str)

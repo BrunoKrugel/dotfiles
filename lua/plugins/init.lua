@@ -63,8 +63,6 @@ return {
     "nvim-telescope/telescope.nvim",
     opts = overrides.telescope,
     dependencies = {
-      "FabianWirth/search.nvim",
-      "Marskey/telescope-sg",
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
@@ -75,9 +73,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       "windwp/nvim-ts-autotag",
-      "filNaj/tree-setter",
       "RRethy/nvim-treesitter-textsubjects",
-      "danymat/neogen",
       {
         "folke/ts-comments.nvim",
         opts = {},
@@ -106,6 +102,11 @@ return {
   {
     "NvChad/nvim-colorizer.lua",
     enabled = false,
+  },
+  {
+    "danymat/neogen",
+    event = "BufReadPost",
+   opts = {},
   },
   {
     "sphamba/smear-cursor.nvim",

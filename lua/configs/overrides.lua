@@ -373,7 +373,6 @@ M.telescope = {
   extensions_list = {
     "themes",
     "undo",
-    "ast_grep",
     "ctags_plus",
     "luasnip",
     "fzf",
@@ -384,15 +383,6 @@ M.telescope = {
       override_file_sorter = true,
       case_mode = "smart_case",
       fuzzy = true,
-    },
-    ast_grep = {
-      command = {
-        "sg",
-        "--json=stream",
-        "-p",
-      },
-      grep_open_files = false,
-      lang = nil,
     },
     import = {
       insert_at_top = true,
