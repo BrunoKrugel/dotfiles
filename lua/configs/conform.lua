@@ -35,6 +35,7 @@ conform.setup {
     query = { 'format-queries' },
     lua = { "stylua" },
     http = { "kulala" },
+    sql = { "sqlfmt" },
     go = function(bufnr)
       return { first(bufnr, "goimports", "gofumpt") }
     end,
