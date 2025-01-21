@@ -109,6 +109,12 @@ return {
    opts = {},
   },
   {
+    "nvzone/typr",
+    cmd = "TyprStats",
+    dependencies = "nvzone/volt",
+    opts = {},
+  },
+  {
     "sphamba/smear-cursor.nvim",
     event = "VeryLazy",
     cond = function()
@@ -873,7 +879,7 @@ return {
   },
   {
     "Wansmer/symbol-usage.nvim",
-    event = "BufReadPre",
+    event = "LspAttach",
     config = function()
       require "configs.symbol"
     end,
