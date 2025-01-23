@@ -54,6 +54,118 @@ local function move_or_create_win(key)
   end
 end
 
+local function is_diag_for_cur_pos()
+  local diagnostics = vim.diagnostic.get(0)
+  local pos = vim.api.nvim_win_get_cursor(0)
+  if #diagnostics == 0 then
+    return false
+  end
+  local message = vim.tbl_filter(function(d)
+    return d.col == pos[2] and d.lnum == pos[1] - 1
+  end, diagnostics)
+  return #message > 0
+end
+
+local function is_diag_neotest()
+  local diagnostics = vim.diagnostic.get(0)
+  local found = false
+  for _, d in ipairs(diagnostics) do
+    if d.source and d.source:match "neotest" then
+      found = true
+      break
+    end
+  end
+  return found
+end
+
+local function hover_handler()
+  local dap_ok, dap = pcall(require, "dap")
+  if dap_ok and dap.session() ~= nil then
+    local dapui_ok, dapui = pcall(require, "dap.ui.widgets")
+    if dapui_ok and vim.bo.filetype ~= "dap-float" then
+      dapui.hover()
+    end
+  end
+  local ufo_ok, ufo = pcall(require, "ufo")
+  if ufo_ok then
+    local winid = ufo.peekFoldedLinesUnderCursor()
+    if winid then
+      return
+    end
+  end
+  local ft = vim.bo.filetype
+  if vim.tbl_contains({ "vim", "help" }, ft) then
+    vim.cmd("silent! h " .. vim.fn.expand "<cword>")
+  elseif vim.tbl_contains({ "man" }, ft) then
+    vim.cmd("silent! Man " .. vim.fn.expand "<cword>")
+  elseif is_diag_for_cur_pos() then
+    if is_diag_neotest() then
+      local nt_ok, nt = pcall(require, "neotest")
+      if nt_ok then
+        nt.output.open {
+          enter = true,
+          auto_close = true,
+        }
+      end
+    else
+      vim.diagnostic.open_float()
+    end
+  else
+    require("hover").hover()
+  end
+end
+
+local function resolve_conflict()
+  -- Get the current line and buffer
+  local current_line = vim.api.nvim_win_get_cursor(0)[1]
+  local buffer = vim.api.nvim_get_current_buf()
+  -- Fetch lines around the cursor
+  local lines = vim.api.nvim_buf_get_lines(buffer, current_line - 1, current_line + 10, false)
+  -- Detect a conflict
+  local conflict_start, conflict_middle, conflict_end
+  for i, line in ipairs(lines) do
+    if line:match "^<<<<" then
+      conflict_start = current_line + i - 2
+    elseif line:match "^====" then
+      conflict_middle = current_line + i - 2
+    elseif line:match "^>>>>" then
+      conflict_end = current_line + i - 2
+      break
+    end
+  end
+  -- Ensure all markers are found
+  if not (conflict_start and conflict_middle and conflict_end) then
+    vim.notify("No conflict markers found.", vim.log.levels.ERROR)
+    return
+  end
+  -- Prepare options
+  local options = { "Top (yours)", "Bottom (theirs)" }
+  vim.ui.select(options, { prompt = "Select conflict resolution:" }, function(choice)
+    if choice then
+      if choice == "Top (yours)" then
+        vim.api.nvim_buf_set_lines(
+          buffer,
+          conflict_start,
+          conflict_end + 1,
+          false,
+          vim.api.nvim_buf_get_lines(buffer, conflict_start + 1, conflict_middle, false)
+        )
+      elseif choice == "Bottom (theirs)" then
+        vim.api.nvim_buf_set_lines(
+          buffer,
+          conflict_start,
+          conflict_end + 1,
+          false,
+          vim.api.nvim_buf_get_lines(buffer, conflict_middle + 1, conflict_end, false)
+        )
+      end
+      vim.notify("Conflict resolved with " .. choice .. ".", vim.log.levels.INFO)
+    else
+      vim.notify("Conflict resolution canceled.", vim.log.levels.WARN)
+    end
+  end)
+end
+
 local function find_files()
   local entry_maker = require("configs.entry").find_files_entry_maker
   local opts = {
@@ -236,6 +348,10 @@ map("n", "<A-R>", function()
   vim.cmd "GrugFar"
 end, { desc = "Toggle GrugFar" })
 
+map("n", "<leader>gxx", function()
+  resolve_conflict()
+end, { desc = "Resolve conflict" })
+
 -- GitSigns
 map("n", "]c", "<cmd>Gitsigns next_hunk<CR>", { desc = "Next hunk" })
 map("n", "[c", "<cmd>Gitsigns prev_hunk<CR>", { desc = "Previous hunk" })
@@ -360,10 +476,11 @@ map("n", "<leader><leader>c", "<cmd>CoverageLoad<cr><cmd>CoverageSummary<cr>", {
 --------------------------------------------------- LSP ---------------------------------------------------
 -- map('n', '<MouseMove>', require("hover").hover, { desc = "Hover" })
 map("n", "K", function()
-  local winid = require("ufo").peekFoldedLinesUnderCursor()
-  if not winid then
-    require("hover").hover()
-  end
+  -- local winid = require("ufo").peekFoldedLinesUnderCursor()
+  -- if not winid then
+  --   require("hover").hover()
+  -- end
+  hover_handler()
 end, { desc = "hover.nvim" })
 
 map("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
