@@ -69,3 +69,7 @@ vim.fn.sign_define(
   "DapBreakpointRejected",
   { text = "", numhl = "DapBreakpointRejected", texthl = "DapBreakpointRejected" }
 )
+vim.fn.sign_define(
+  "DapBreakpointCondition",
+  { text = "", numhl = "DapBreakpointCondition", texthl = "DapBreakpointCondition" }
+)
