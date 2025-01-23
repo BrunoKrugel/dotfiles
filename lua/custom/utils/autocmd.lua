@@ -12,6 +12,14 @@ local function close_all_floating_wins()
   end
 end
 
+autocmd({ "BufLeave", "FocusLost", "QuitPre", "VimSuspend" }, {
+  desc = "Format buffer on leave",
+  pattern = "*",
+  callback = function(args)
+    require("conform").format { bufnr = args.buf }
+  end,
+})
+
 autocmd({
   "WinResized",
   "BufWinEnter",
