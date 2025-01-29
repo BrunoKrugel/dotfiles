@@ -58,7 +58,7 @@ dap.listeners.before.event_exited["dapui_config"] = function()
   require("nvim-dap-virtual-text.virtual_text").clear_virtual_text()
 end
 
-local widgets = require("dap.ui.widgets")
+local widgets = require "dap.ui.widgets"
 vim.keymap.set("n", "<leader>ds", function()
   widgets.centered_float(widgets.scopes, { border = "rounded" })
 end, { noremap = true })
