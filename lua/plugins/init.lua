@@ -934,7 +934,6 @@ return {
           ft = "diff",
           title = " Diffs",
         },
-
         {
           ft = "DiffviewFileHistory",
           title = " Diffs",
