@@ -85,6 +85,7 @@ M.override = {
 M.add = {
 
   DapStoppedLine = { link = "Visual" },
+  -- NvimDapVirtualText = { fg = "#6272A4" },
   NvimDapVirtualTextError = { fg = "red", italic = true },
   NvimDapVirtualText = { fg = "cyan", italic = true },
   NvimDapVirtualTextChanged = { fg = "yellow", italic = true },
@@ -108,9 +109,6 @@ M.add = {
   MultiCursor = { bg = "white", fg = "black2" },
   MultiCursorMain = { bg = "white", fg = "black2" },
 
-  DapBreakpoint = { fg = "red" },
-  NvimDapVirtualText = { fg = "#6272A4" },
-
   LightBulbSign = { bg = "black", fg = "yellow" },
 
   NvimTreeOpenedFolderName = { fg = "purple", bold = true },
@@ -124,7 +122,7 @@ M.add = {
   -- Cmp Highlights
   CmpItemKindCodeium = { fg = "green" },
   CmpItemKindTabNine = { fg = "pink" },
-  CmpItemKindSupermaven = {fg ="cyan"},
+  CmpItemKindSupermaven = { fg = "cyan" },
 
   PackageInfoOutdatedVersion = { fg = "red" },
   PackageInfoUpToDateVersion = { fg = "green" },
