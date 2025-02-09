@@ -138,8 +138,6 @@ function GetTrouble()
     title = false,
     filter = { range = true },
     format = "{kind_icon}{symbol.name:Normal}",
-    -- The following line is needed to fix the background color
-    -- Set it to the lualine section you want to use
     hl_group = "lualine_c_normal",
   }
 
@@ -368,7 +366,7 @@ M.statusline = {
         return ""
       end
 
-      return "%#StGit#  " .. vim.b[stbufnr()].gitsigns_status_dict.head .. "" .. Get_Conflict()
+      return "%#StGit#%@v:lua.ClickBranch@ " .. vim.b[stbufnr()].gitsigns_status_dict.head .. "" .. Get_Conflict()
     end,
 
     git_changed = function()
@@ -447,7 +445,7 @@ M.statusline = {
     end,
 
     notification = function()
-      return "%#StText#" .. "%@v:lua.ClickMe@ " .. " %#St_lspError#" .. Get_Cmp()
+      return "%#StText#" .. "%@v:lua.ClickNotifications@ " .. " %#St_lspError#" .. Get_Cmp()
     end,
 
     dap = function()

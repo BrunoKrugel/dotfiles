@@ -1,6 +1,6 @@
 local M = {}
 
-_G.ClickMe = function()
+_G.ClickNotifications = function()
   require("noice").cmd "history"
 end
 
@@ -15,6 +15,10 @@ end
 _G.ClickUpdate = function()
   require("base46").load_all_highlights()
   vim.notify "Highlights reloaded!"
+end
+
+_G.ClickBranch = function()
+  require("telescope.builtin").git_branches { use_file_path = true }
 end
 
 return M
