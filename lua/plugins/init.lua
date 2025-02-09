@@ -925,10 +925,6 @@ return {
           title = "Diagnostics",
         },
         {
-          ft = "noice",
-          title = "Notifications",
-        },
-        {
           ft = "DiffviewFileHistory",
           title = " Diffs",
         },
