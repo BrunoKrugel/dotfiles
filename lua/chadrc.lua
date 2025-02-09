@@ -73,6 +73,8 @@ M.base46 = {
     "cmp",
     "defaults",
     "devicons",
+    "edgy",
+    "grug_far",
     "git",
     "lsp",
     "markview",
