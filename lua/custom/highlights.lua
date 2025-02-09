@@ -85,6 +85,7 @@ M.override = {
 M.add = {
 
   DapStoppedLine = { link = "Visual" },
+  DapBreakpoint = { fg = "red" },
   -- NvimDapVirtualText = { fg = "#6272A4" },
   NvimDapVirtualTextError = { fg = "red", italic = true },
   NvimDapVirtualText = { fg = "cyan", italic = true },
