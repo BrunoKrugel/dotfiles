@@ -127,6 +127,9 @@ return {
       distance_stop_animating = 0.5,
       windows_zindex = 47,
       hide_target_hack = false,
+      filetypes_disabled = {
+        "lazy",
+    },
     },
   },
   {
@@ -1106,7 +1109,7 @@ return {
   },
   {
     "stevearc/conform.nvim",
-    event = "BufReadPre",
+    event = "BufWritePre",
     dependencies = { "zapling/mason-conform.nvim" },
     config = function()
       require "configs.conform"
