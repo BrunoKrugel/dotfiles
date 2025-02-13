@@ -106,7 +106,7 @@ return {
   {
     "danymat/neogen",
     event = "BufReadPost",
-   opts = {},
+    opts = {},
   },
   {
     "nvzone/typr",
@@ -129,7 +129,7 @@ return {
       hide_target_hack = false,
       filetypes_disabled = {
         "lazy",
-    },
+      },
     },
   },
   {
@@ -369,7 +369,7 @@ return {
         },
         bullet = {
           right_pad = 1,
-      },
+        },
         pipe_table = {
           style = "full", -- use 'normal' if colorcolumn is important for you.
         },
