@@ -145,13 +145,13 @@ end
 --   desc = "Redirect help to floating window",
 -- })
 
-vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+autocmd("QuickFixCmdPost", {
   callback = function()
     vim.cmd [[Trouble qflist open]]
   end,
 })
 
-vim.api.nvim_create_autocmd("BufRead", {
+autocmd("BufRead", {
   callback = function(ev)
     if vim.bo[ev.buf].buftype == "quickfix" then
       vim.schedule(function()
