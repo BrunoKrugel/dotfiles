@@ -132,17 +132,18 @@ local go_on_attach = function(client, bufnr)
     return
   end
 
-  if not client.server_capabilities.semanticTokensProvider then
-    local semantic = client.config.capabilities.textDocument.semanticTokens
-    client.server_capabilities.semanticTokensProvider = {
-      full = true,
-      legend = {
-        tokenTypes = semantic.tokenTypes,
-        tokenModifiers = semantic.tokenModifiers,
-      },
-      range = true,
-    }
-  end
+  -- Causes [LSP] Client with id 1 not attached to buffer 1
+  -- if not client.server_capabilities.semanticTokensProvider then
+  --   local semantic = client.config.capabilities.textDocument.semanticTokens
+  --   client.server_capabilities.semanticTokensProvider = {
+  --     full = true,
+  --     legend = {
+  --       tokenTypes = semantic.tokenTypes,
+  --       tokenModifiers = semantic.tokenModifiers,
+  --     },
+  --     range = true,
+  --   }
+  -- end
 
   -- Go
   vim.api.nvim_create_autocmd("BufWritePre", {
