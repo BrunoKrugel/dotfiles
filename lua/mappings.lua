@@ -371,6 +371,12 @@ map({ "n", "i" }, "<C-b>", "<cmd> NvimTreeToggle <CR>", { desc = "Toggle nvimtre
 map({ "n" }, "<leader>to", "<CMD>TSJToggle<CR>", { desc = "󱓡 Toggle split/join" })
 
 --------------------------------------------------- Text ---------------------------------------------------
+map("n", "<C-z>", "<CMD>u<CR>", { desc = "󰕌 Undo" })
+map("n", "<BS>", "<C-o>", { desc = "Return" })
+map("n", "<C-x>", "x", { desc = "󰆐 Cut"})
+map("n", "<C-v>", "p`[v`]=", { desc = "󰆒 Paste"})
+map("n", "<C-c>", "y", { desc = " Copy"})
+map("n", "p", "p`[v`]=", { desc = "󰆒 Paste" })
 map("n", "<S-CR>", "o<ESC>", { desc = " New line" })
 map("s", "<BS>", "<C-o>c", { desc = "Better backspace in select mode" })
 map({ "n", "i", "v" }, "<C-a>", "<cmd>normal! ggVG<cr>", { desc = "Select all" })
