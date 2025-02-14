@@ -149,6 +149,11 @@ create_cmd("CmpToggle", function()
   end
 end, {})
 
+create_cmd("Confetti", function()
+    os.execute "open -g 'raycast://extensions/raycast/raycast/confetti'"
+  end,
+{})
+
 create_cmd("Debug", function()
   require("dapui").toggle()
   require("dap").run {
