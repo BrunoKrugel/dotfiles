@@ -247,12 +247,20 @@ M.lazy = {
     enabled = true,
     notify = false,
   },
-  concurrency = 5,
+  checker = { enabled = true, concurrency = 5, frequency = 2 * 86400, wait = true },
+  -- concurrency = 10,
   git = {
     log = { "-8" },
     timeout = 35,
     url_format = "https://github.com/%s.git",
     filter = true,
+    -- rate of network related git operations (clone, fetch, checkout)
+    throttle = {
+      enabled = true, -- not enabled by default
+      rate = 2,
+      duration = 5 * 1000, -- in ms
+    },
+    cooldown = 5,
   },
 }
 
