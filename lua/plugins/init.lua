@@ -109,12 +109,6 @@ return {
     opts = {},
   },
   {
-    "nvzone/typr",
-    cmd = "TyprStats",
-    dependencies = "nvzone/volt",
-    opts = {},
-  },
-  {
     "sphamba/smear-cursor.nvim",
     event = "VeryLazy",
     cond = function()
@@ -850,11 +844,6 @@ return {
           augroup END
       ]]
     end,
-  },
-  {
-    "tzachar/highlight-undo.nvim",
-    event = "BufReadPost",
-    opts = {},
   },
   {
     "lewis6991/hover.nvim",
