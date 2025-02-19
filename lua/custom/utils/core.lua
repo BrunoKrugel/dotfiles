@@ -322,6 +322,7 @@ M.statusline = {
   theme = "vscode_colored",
   order = {
     "modes",
+    -- "relativepath",
     "icons",
     "old_git",
     "diagnostics",
@@ -362,11 +363,20 @@ M.statusline = {
             filename = '%{&ft == "NvimTree" ? " File Explorer " : ""}'
           end
 
-          icon_text = "%#St_" .. icon_hl .. "# " .. icon .. "%#StText# " .. filename .. " "
+          icon_text = "%#St_" .. icon_hl .. "#" .. icon .. "%#StText# " .. filename .. " "
         end
       end
 
       return icon_text or ("%#StText# " .. icon .. filename)
+    end,
+
+    relativepath = function()
+      local path = vim.api.nvim_buf_get_name(stbufnr())
+      if path == "" then
+        return ""
+      end
+
+      return "%#St_relativepath# " .. vim.fn.expand("%:.:h") .. " /"
     end,
 
     old_git = function()
@@ -374,7 +384,7 @@ M.statusline = {
         return ""
       end
 
-      return "%#StGit# " .. vim.b[stbufnr()].gitsigns_status_dict.head .. "" .. Get_Conflict()
+      return "%#StGit#  " .. vim.b[stbufnr()].gitsigns_status_dict.head .. "" .. Get_Conflict()
     end,
 
     git_changed = function()
