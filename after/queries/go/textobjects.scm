@@ -1,36 +1,23 @@
-; extends
+(call_expression
+  function: (selector_expression
+    operand: (identifier) @id
+    field: (field_identifier) @method_object_call
+  )
+  (#not-match? @id "fmt")
+  (#not-match? @id "errors")
+  (#not-match? @id "strings")
+)
 
-(return_statement
-  (expression_list
-    "," @_start
-    .
-    (_) @parameter.inner
-    (#make-range! "parameter.outer" @_start @parameter.inner)))
+(call_expression
+  function: (selector_expression
+    operand: (selector_expression
+        operand: (identifier) @id
+        field: (field_identifier))
+    field: (field_identifier) @method_object_call)
+  (#not-match? @id "fmt"))
+  (#not-match? @id "errors")
+  (#not-match? @id "strings")
 
-(return_statement
-  (expression_list
-    .
-    (_) @parameter.inner
-    .
-    ","? @_end
-    (#make-range! "parameter.outer" @parameter.inner @_end)))
-
-(literal_element) @parameter.inner
-
-(keyed_element) @parameter.inner
-
-(literal_element) @parameter.outer
-
-(keyed_element) @parameter.outer
-
-(literal_element) @keyed_element
-
-(if_statement
-  condition: (_) @parameter.inner)
-
-(expression_list) @expression_list
-
-(call_expression) @call_expression
 
 ; inner function textobject
 (function_declaration
@@ -83,22 +70,51 @@
 (type_declaration
   (type_spec
     (type_identifier)
-    (struct_type
-      (field_declaration_list
-        (_)?) @class.inner))) @class.outer
+    (struct_type))) @class.outer
 
 (type_declaration
   (type_spec
     (type_identifier)
-    (interface_type) @class.inner)) @class.outer
+    (struct_type
+      (field_declaration_list
+        "{"
+        .
+        _ @_start @_end
+        _? @_end
+        .
+        "}"
+        (#make-range! "class.inner" @_start @_end)))))
+
+(type_declaration
+  (type_spec
+    (type_identifier)
+    (interface_type))) @class.outer
+
+(type_declaration
+  (type_spec
+    (type_identifier)
+    (interface_type
+      "{"
+      .
+      _ @_start @_end
+      _? @_end
+      .
+      "}"
+      (#make-range! "class.inner" @_start @_end))))
 
 ; struct literals as class textobject
 (composite_literal
-  (type_identifier)?
-  (struct_type
-    (_))?
+  (literal_value)) @class.outer
+
+(composite_literal
   (literal_value
-    (_)) @class.inner) @class.outer
+    "{"
+    .
+    _ @_start @_end
+    _? @_end
+    .
+    "}")
+  (#make-range! "class.inner" @_start @_end))
 
 ; conditionals
 (if_statement
@@ -106,14 +122,31 @@
     (_) @conditional.inner)?) @conditional.outer
 
 (if_statement
-  consequence: (block)? @conditional.inner)
+  consequence: (block
+    "{"
+    .
+    _ @_start @_end
+    _? @_end
+    .
+    "}"
+    (#make-range! "conditional.inner" @_start @_end)))
 
 (if_statement
   condition: (_) @conditional.inner)
 
 ; loops
+(for_statement) @loop.outer
+
 (for_statement
-  body: (block)? @loop.inner) @loop.outer
+  body: (block
+    .
+    "{"
+    .
+    _ @_start @_end
+    _? @_end
+    .
+    "}"
+    (#make-range! "loop.inner" @_start @_end)))
 
 ; blocks
 (_
@@ -155,12 +188,12 @@
   (#make-range! "parameter.outer" @parameter.inner @_end))
 
 (parameter_declaration
-  (identifier)
-  (identifier) @parameter.inner)
+  name: (identifier)
+  type: (_)) @parameter.inner
 
 (parameter_declaration
-  (identifier) @parameter.inner
-  (identifier))
+  name: (identifier)
+  type: (_)) @parameter.inner
 
 (parameter_list
   "," @_start
@@ -182,36 +215,31 @@
   ","? @_end
   (#make-range! "parameter.outer" @parameter.inner @_end))
 
-; ===== CUSTOM =====
-(function_declaration
-  body: (block)? @function.inside) @function.around
+; assignments
+(short_var_declaration
+  left: (_) @assignment.lhs
+  right: (_) @assignment.rhs @assignment.inner) @assignment.outer
 
-(func_literal
-  (_)? @function.inside) @function.around
+(assignment_statement
+  left: (_) @assignment.lhs
+  right: (_) @assignment.rhs @assignment.inner) @assignment.outer
 
-(method_declaration
-  body: (block)? @function.inside) @function.around
+(var_declaration
+  (var_spec
+    name: (_) @assignment.lhs
+    value: (_) @assignment.rhs @assignment.inner)) @assignment.outer
 
-; struct and interface declaration as class textobject?
-(type_declaration
-  (type_spec
-    (type_identifier)
-    (struct_type
-      (field_declaration_list
-        (_)?) @class.inside))) @class.around
+(var_declaration
+  (var_spec
+    name: (_) @assignment.inner
+    type: (_))) @assignment.outer
 
-(type_declaration
-  (type_spec
-    (type_identifier)
-    (interface_type
-      (method_spec)+ @class.inside))) @class.around
+(const_declaration
+  (const_spec
+    name: (_) @assignment.lhs
+    value: (_) @assignment.rhs @assignment.inner)) @assignment.outer
 
-(parameter_list
-  (_) @parameter.inside)
-
-(argument_list
-  (_) @parameter.inside)
-
-(comment) @comment.inside
-
-(comment)+ @comment.around
+(const_declaration
+  (const_spec
+    name: (_) @assignment.inner
+    type: (_))) @assignment.outer
