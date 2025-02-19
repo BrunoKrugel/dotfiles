@@ -226,25 +226,19 @@ return {
       cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
       local format_kinds = opts.formatting.format
-      opts.formatting.format = function(entry, item)
+      opts.formatting.format = function(entry, vim_item)
         -- Ensure that we get the NvChad formatting for the completion kind.
-        format_kinds(entry, item)
-        -- Colorful menu highlights for Go.
-        if vim.bo.filetype == "go" then
-          local completion_item = entry:get_completion_item()
-          local highlights_info = require("colorful-menu").highlights(completion_item)
-          -- error, such as missing parser, fallback to use raw label.
-          if highlights_info == nil then
-            item.abbr = completion_item.label
-          else
-            item.abbr_hl_group = highlights_info.highlights
-            item.abbr = highlights_info.text
-          end
+        format_kinds(entry, vim_item)
+
+        local highlights_info = require("colorful-menu").cmp_highlights(entry)
+        if highlights_info ~= nil then
+          vim_item.abbr_hl_group = highlights_info.highlights
+          vim_item.abbr = highlights_info.text
         end
-        if string.len(item.abbr) > 40 then
-          item.abbr = item.abbr:sub(1, 40)
-        end
-        return format_kinds(entry, item)
+        -- if string.len(vim_item.abbr) > 40 then
+        --   vim_item.abbr = vim_item.abbr:sub(1, 40)
+        -- end
+        return format_kinds(entry, vim_item)
       end
 
       cmp.setup(opts)
