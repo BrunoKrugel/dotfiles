@@ -374,7 +374,7 @@ M.statusline = {
         return ""
       end
 
-      return "%#StGit#%@v:lua.ClickBranch@ " .. vim.b[stbufnr()].gitsigns_status_dict.head .. "" .. Get_Conflict()
+      return "%#StGit# " .. vim.b[stbufnr()].gitsigns_status_dict.head .. "" .. Get_Conflict()
     end,
 
     git_changed = function()
