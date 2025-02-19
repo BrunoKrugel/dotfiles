@@ -8,12 +8,6 @@
     <a href="https://github.com/BrunoKrugel/dotfiles/stargazers">
       <img alt="Stars" src="https://img.shields.io/github/stars/BrunoKrugel/dotfiles?style=for-the-badge&logo=starship&color=c69ff5&logoColor=D9E0EE&labelColor=302D41" />
     </a>
-    <a href="https://github.com/BrunoKrugel/dotfiles/issues">
-      <img alt="Issues" src="https://img.shields.io/github/issues/BrunoKrugel/dotfiles?style=for-the-badge&logo=bilibili&color=F5E0DC&logoColor=D9E0EE&labelColor=302D41" />
-    </a>
-    <a href="https://github.com/BrunoKrugek/dotfiles">
-      <img alt="Repo Size" src="https://img.shields.io/github/repo-size/BrunoKrugel/dotfiles?color=%23DDB6F2&label=SIZE&logo=codesandbox&style=for-the-badge&logoColor=D9E0EE&labelColor=302D41" />
-    </a>
 </div>
 
 ![prv-min](./img/prv.png)
@@ -22,12 +16,6 @@
 
 </h3>
 <hr>
-
-<div align="center">
-<a href="https://dotfyle.com/BrunoKrugel/dotfiles"><img src="https://dotfyle.com/BrunoKrugel/dotfiles/badges/plugins?style=flat" /></a>
-<a href="https://dotfyle.com/BrunoKrugel/dotfiles"><img src="https://dotfyle.com/BrunoKrugel/dotfiles/badges/leaderkey?style=flat" /></a>
-<a href="https://dotfyle.com/BrunoKrugel/dotfiles"><img src="https://dotfyle.com/BrunoKrugel/dotfiles/badges/plugin-manager?style=flat" /></a>
-</div>
 
 ## Introduction
 
