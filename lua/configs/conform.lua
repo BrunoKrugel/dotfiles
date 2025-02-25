@@ -15,13 +15,6 @@ end
 
 conform.setup {
   notify_on_error = false,
-  formatters = {
-    kulala = {
-      command = "kulala-fmt",
-      args = { "$FILENAME" },
-      stdin = false,
-    },
-  },
   formatters_by_ft = {
     javascript = { "prettier" },
     typescript = { "prettier" },
@@ -34,7 +27,7 @@ conform.setup {
     markdown = { "prettier" },
     query = { 'format-queries' },
     lua = { "stylua" },
-    http = { "kulala" },
+    http = { "kulala-fmt" },
     sql = { "sqlfmt" },
     go = function(bufnr)
       return { first(bufnr, "goimports", "gofumpt") }
