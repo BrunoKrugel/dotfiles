@@ -308,18 +308,6 @@ require("mason-lspconfig").setup {
 --   }
 -- end
 
-local configs = require "lspconfig.configs"
-
-if not configs.kulala_ls then
-  configs.kulala_ls = {
-    default_config = {
-      cmd = { "kulala-ls", "--stdio" },
-      root_dir = lspconfig.util.root_pattern "http-client.env.json",
-      filetypes = { "http" },
-    },
-  }
-end
-
 require("lspconfig").kulala_ls.setup {
   on_attach = custom_on_attach,
   capabilities = capabilities,
@@ -337,14 +325,6 @@ require("mason-lspconfig").setup_handlers {
       capabilities = capabilities,
     }
   end,
-
-  -- ["kulala_ls"] = function()
-  --   return {
-  --     on_attach = custom_on_attach,
-  --     capabilities = capabilities,
-  --     on_init = on_init,
-  --   }
-  -- end,
 
   ["jsonls"] = function()
     lspconfig["jsonls"].setup {
