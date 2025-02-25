@@ -139,6 +139,10 @@ M.treesitter = {
     "markdown",
     "markdown_inline",
 
+    "http",
+    "xml",
+    "graphql",
+
     -- Go Lang
     "go",
     "gomod",

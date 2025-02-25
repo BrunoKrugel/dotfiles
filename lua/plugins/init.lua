@@ -408,7 +408,7 @@ return {
   },
   {
     "folke/lazydev.nvim",
-    ft = "lua", -- only load on lua files
+    ft = "lua",
     dependencies = { "gonstoll/wezterm-types" },
     opts = {
       library = {
@@ -427,7 +427,7 @@ return {
   },
   {
     "mistweaverco/kulala.nvim",
-    ft = { "http" },
+    ft = {"http", "rest"},
     opts = {
       winbar = true,
       icons = {
