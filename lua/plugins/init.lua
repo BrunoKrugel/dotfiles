@@ -150,7 +150,20 @@ return {
     opts = cmp_opt.cmp,
     dependencies = {
       "ray-x/cmp-treesitter",
-      "xzbdmw/colorful-menu.nvim",
+      {
+        "xzbdmw/colorful-menu.nvim",
+        opts = {
+          ls = {
+            lua_ls = {
+              -- Maybe you want to dim arguments a bit.
+              arguments_hl = "@comment",
+            },
+            gopls = {
+              align_type_to_right = true,
+            },
+          },
+        },
+      },
       {
         "Exafunction/codeium.nvim",
         opts = {},
