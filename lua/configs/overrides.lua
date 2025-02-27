@@ -45,15 +45,20 @@ M.devicons = {
         color = "#519aba",
         name = "Mod",
       },
-      ["yarn.lock"] = {
-        icon = "",
-        color = "#0288D1",
-        name = "Yarn",
+      ["gotmpl"] = {
+        icon = "󰟓",
+        color = "#f1502f",
+        name = "GoTemplate",
       },
       ["sum"] = {
         icon = "󰟓",
         color = "#cbcb40",
         name = "Sum",
+      },
+      ["yarn.lock"] = {
+        icon = "",
+        color = "#0288D1",
+        name = "Yarn",
       },
       [".gitignore"] = {
         icon = "",
