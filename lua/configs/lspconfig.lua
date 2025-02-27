@@ -125,12 +125,13 @@ local custom_on_attach = function(client, bufnr)
 end
 
 local go_on_attach = function(client, bufnr)
-  custom_on_attach(client, bufnr)
-  organize_imports(client, bufnr)
 
   if client.name ~= "gopls" then
     return
   end
+
+  custom_on_attach(client, bufnr)
+  organize_imports(client, bufnr)
 
   -- Causes [LSP] Client with id 1 not attached to buffer 1
   -- if not client.server_capabilities.semanticTokensProvider then
