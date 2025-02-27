@@ -276,14 +276,6 @@ return {
     end,
   },
   {
-    "skywind3000/gutentags_plus",
-    event = "VeryLazy",
-    dependencies = { "ludovicchabant/vim-gutentags" },
-    config = function()
-      require "configs.tags"
-    end,
-  },
-  {
     "aznhe21/actions-preview.nvim",
     event = "LspAttach",
     config = function()
