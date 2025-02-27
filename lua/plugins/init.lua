@@ -1037,13 +1037,9 @@ return {
     },
   },
   {
-    "BrunoKrugel/bbq.nvim",
-    event = "LspAttach",
-    dependencies = { "SmiteshP/nvim-navic" },
-    opts = {
-      create_autocmd = false,
-      attach_navic = false,
-    },
+    'Bekaboo/dropbar.nvim',
+    event = "BufReadPost",
+    opts = {},
   },
   {
     "dnlhc/glance.nvim",

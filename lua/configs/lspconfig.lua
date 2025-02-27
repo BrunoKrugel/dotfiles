@@ -98,10 +98,6 @@ local custom_on_attach = function(client, bufnr)
     end
   end
 
-  if client.server_capabilities.documentSymbolProvider then
-    require("nvim-navic").attach(client, bufnr)
-  end
-
   if client.server_capabilities.signatureHelpProvider then
     vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
   end
