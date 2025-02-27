@@ -62,7 +62,7 @@ M.polish_hl = {
     ["Function"] = { fg = M.base_30.blue },
 
     ["@function"] = { fg = M.base_30.blue },
-    ["@keyword"] = { fg = M.base_30.pink },
+    ["@keyword"] = { fg = M.base_30.purple },
 
     ["@property"] = { fg = M.base_30.cyan },
     -- ["@type"] = { fg = M.base_30.purple },
