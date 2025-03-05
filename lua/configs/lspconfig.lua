@@ -276,11 +276,12 @@ local servers = {
   "vuels",
   "yamlls",
   "terraformls",
+   "vtsls",
 }
 
 vim.lsp.handlers["textDocument/hover"] = require("noice").hover
 vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
-  local ts_lsp = { "ts_ls", "angularls", "volar" }
+  local ts_lsp = { "ts_ls", "angularls", "volar", "vtsls" }
   local clients = vim.lsp.get_clients { id = ctx.client_id }
   if vim.tbl_contains(ts_lsp, clients[1].name) then
     local filtered_result = {
@@ -357,7 +358,6 @@ require("mason-lspconfig").setup_handlers {
         "typescript",
         "typescriptreact",
         "typescript.tsx",
-        "vue",
         "astro",
       },
       settings = {
@@ -371,17 +371,10 @@ require("mason-lspconfig").setup_handlers {
               entriesLimit = 50,
             },
           },
-          tsserver = {
-            globalPlugins = {
-              {
-                name = "@vue/typescript-plugin",
-                location = get_pkg_path("vue-language-server", "/node_modules/@vue/language-server"),
-                languages = { "vue" },
-                configNamespace = "typescript",
-                enableForWorkspaceTypeScriptVersions = true,
-              },
-            },
-          },
+        },
+        javascript = {
+          updateImportsOnFileMove = { enabled = "always" },
+          suggest = { completeFunctionCalls = true },
         },
         typescript = {
           format = {
