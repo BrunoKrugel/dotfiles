@@ -440,7 +440,7 @@ return {
   },
   {
     "mistweaverco/kulala.nvim",
-    ft = {"http", "rest"},
+    ft = { "http", "rest" },
     opts = {
       winbar = true,
       icons = {
@@ -1037,7 +1037,7 @@ return {
     },
   },
   {
-    'Bekaboo/dropbar.nvim',
+    "Bekaboo/dropbar.nvim",
     event = "BufReadPost",
     opts = {},
   },
