@@ -1,19 +1,39 @@
-local present, lint = pcall(require, "linter")
+require("lint").linters.deadcode = {
+  cmd = "deadcode",
+  stdin = false, -- deadcode does not support stdin
+  append_fname = false, -- We will pass `./...` manually
+  ignore_exitcode = true,
+  args = { "-test", "./..." },
+  stream = "stdout",
+  parser = function(output, bufnr)
+    local diagnostics = {}
+    local current_file = vim.api.nvim_buf_get_name(bufnr) -- Absolute path of the current file
 
-if not present then
-  return
-end
+    for line in output:gmatch "[^\r\n]+" do
+      local file, lnum, col, message = line:match "([^:]+):(%d+):(%d+): (.+)"
+      if file and lnum and col and message then
+        local absolute_file = vim.fn.fnamemodify(file, ":p")
 
-local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
-vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-  group = lint_augroup,
-  callback = function()
-    lint.try_lint()
+        -- Only shows diagnostics for the current file
+        if absolute_file == current_file then
+          table.insert(diagnostics, {
+            bufnr = bufnr,
+            lnum = tonumber(lnum) - 1, -- Convert to 0-based indexing
+            col = tonumber(col) - 1,
+            end_lnum = tonumber(lnum) - 1,
+            end_col = tonumber(col),
+            severity = vim.diagnostic.severity.WARN,
+            source = "deadcode",
+            message = message,
+          })
+        end
+      end
+    end
+    return diagnostics
   end,
-})
+}
 
-lint.linters_by_ft = {
-  lua = { "luacheck" },
+require("lint").linters_by_ft = {
   yaml = {
     "yamllint",
     "actionlint",
@@ -23,4 +43,5 @@ lint.linters_by_ft = {
   typescript = { "eslint_d" },
   javascriptreact = { "eslint_d" },
   typescriptreact = { "eslint_d" },
+  go = { "deadcode" },
 }
