@@ -1124,7 +1124,6 @@ return {
   },
   {
     "mfussenegger/nvim-lint",
-    dependencies = { "rshkarin/mason-nvim-lint" },
     event = {
       "BufReadPre",
       "BufNewFile",
