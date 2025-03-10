@@ -56,3 +56,10 @@
     (raw_string_literal) @json))
   (#lua-match? @_var ".*[J|j]son.*")
   (#offset! @json 0 1 0 -1))
+
+(field_declaration
+  name: (field_identifier)
+  type: (type_identifier)
+  tag: (raw_string_literal
+    (raw_string_literal_content) @injection.content
+    (#set! injection.language "go_tags")))
