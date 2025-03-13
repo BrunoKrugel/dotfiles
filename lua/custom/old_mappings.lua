@@ -379,12 +379,6 @@ M.node = {
       end,
       "󰎙 Install package",
     },
-    ["<leader>jc"] = {
-      function()
-        require("nvim-js-actions").js_arrow_fn.toggle()
-      end,
-      "󰎙 Toggle arrow",
-    },
   },
 }
 
@@ -540,29 +534,6 @@ M.searchbox = {
   n = {
     ["<C-F>"] = { "<CMD> SearchBoxMatchAll clear_matches=true<CR>", "󱘟 Search matching all" },
     -- ["<A-R>"] = { "<CMD> SearchBoxReplace confirm=menu<CR>", " Replace" },
-  },
-}
-
-M.lspsaga = {
-  n = {
-    ["<leader>."] = {
-      function()
-        require("actions-preview").code_actions()
-      end,
-      "󰅱 Code Action",
-    },
-    ["<leader>k"] = {
-      require("hover").hover,
-      "󱙼 Hover lsp",
-    },
-    --  LSP
-    ["gr"] = { "<CMD>Telescope lsp_references<CR>", " Lsp references" },
-    ["<leader>qf"] = {
-      function()
-        vim.diagnostic.setloclist()
-      end,
-      "󰁨 Lsp Quickfix",
-    },
   },
 }
 
