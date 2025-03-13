@@ -117,24 +117,6 @@ return {
     opts = {},
   },
   {
-    "sphamba/smear-cursor.nvim",
-    event = "VeryLazy",
-    cond = function()
-      return not vim.g.neovide
-    end,
-    opts = {
-      stiffness = 0.8,
-      trailing_stiffness = 0.6,
-      trailing_exponent = 0,
-      distance_stop_animating = 0.5,
-      windows_zindex = 47,
-      hide_target_hack = false,
-      filetypes_disabled = {
-        "lazy",
-      },
-    },
-  },
-  {
     "NStefan002/visual-surround.nvim",
     event = "BufEnter",
     config = function()
@@ -281,19 +263,6 @@ return {
     event = { "InsertLeave", "TextChanged" },
     config = function()
       require "configs.autosave"
-    end,
-  },
-  {
-    "aznhe21/actions-preview.nvim",
-    event = "LspAttach",
-    config = function()
-      require("actions-preview").setup {
-        diff = {
-          algorithm = "patience",
-          ignore_whitespace = true,
-        },
-        telescope = require("telescope.themes").get_dropdown { winblend = 10 },
-      }
     end,
   },
   {
