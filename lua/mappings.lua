@@ -56,7 +56,6 @@ end
 
 local code_actions = function()
   local function apply_specific_code_action(res)
-    -- vim.notify(vim.inspect(res))
     vim.lsp.buf.code_action {
       filter = function(action)
         return action.title == res.title
@@ -555,6 +554,10 @@ map("n", "K", function()
   hover_handler()
 end, { desc = "hover.nvim" })
 
+map("n", "<leader>k", function()
+  require("hover").hover()
+end, { desc = "LSP Hover" })
+
 map("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
 map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 map("n", "<C-n>", function()
@@ -562,6 +565,10 @@ map("n", "<C-n>", function()
 end, { desc = "hover.nvim (next source)" })
 
 map({ "n", "i", "v" }, "<C-.>", function()
+  require("fastaction").code_action()
+end, { desc = "Code Action" })
+
+map({ "n" }, "<leader>.", function()
   code_actions()
 end, { desc = "Code Action" })
 

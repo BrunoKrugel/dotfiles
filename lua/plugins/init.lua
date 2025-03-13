@@ -883,6 +883,13 @@ return {
     end,
   },
   {
+    'Chaitanyabsprip/fastaction.nvim',
+    ---@type FastActionConfig
+    opts = {
+      dismiss_keys = { "<ESC>", "q" },
+    },
+  },
+  {
     "folke/edgy.nvim",
     event = "BufReadPost",
     init = function()
