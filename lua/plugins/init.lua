@@ -769,6 +769,7 @@ return {
             layout = "diff3_mixed",
             disable_diagnostics = true,
             diff_binaries = false,
+            winbar_info = true,
           },
         },
         hooks = {
