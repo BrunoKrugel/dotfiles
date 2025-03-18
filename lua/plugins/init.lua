@@ -700,6 +700,9 @@ return {
         scroll = {
           enable = false,
         },
+        cursor = {
+          enable = false,
+        },
       }
     end,
   },
@@ -884,7 +887,7 @@ return {
     end,
   },
   {
-    'Chaitanyabsprip/fastaction.nvim',
+    "Chaitanyabsprip/fastaction.nvim",
     ---@type FastActionConfig
     opts = {
       dismiss_keys = { "<ESC>", "q" },
