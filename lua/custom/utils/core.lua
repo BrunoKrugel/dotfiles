@@ -247,6 +247,12 @@ M.lazy = {
     enabled = true,
     notify = false,
   },
+  ui = {
+    size = {
+      width = 0.8,
+      height = 0.8,
+    },
+  },
   checker = { enabled = true, concurrency = 5, frequency = 2 * 86400, wait = true },
   -- concurrency = 10,
   git = {

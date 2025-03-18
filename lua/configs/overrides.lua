@@ -210,16 +210,13 @@ M.treesitter = {
 
 M.mason = {
   ui = {
+    width = 0.8,
+    height = 0.8,
     icons = {
       package_pending = " ",
       package_installed = "󰄳 ",
       package_uninstalled = "󰇚 ",
     },
-
-    border = "rounded",
-    width = 0.8,
-    height = 0.8,
-
     keymaps = {
       toggle_server_expand = "<CR>",
       install_server = "i",
