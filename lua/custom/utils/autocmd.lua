@@ -125,13 +125,6 @@ end
 --   end,
 -- })
 
--- autocmd("BufWinEnter", {
---   callback = function(data)
---     open_help(data.buf)
---   end,
---   group = general,
---   desc = "Redirect help to floating window",
--- })
 
 autocmd("QuickFixCmdPost", {
   callback = function()
@@ -475,6 +468,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "dapui_stacks",
     "dapui_breakpoints",
     "dapui_scopes",
+    "checkhealth",
     "lazy",
   },
   callback = function()
