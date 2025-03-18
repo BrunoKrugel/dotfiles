@@ -174,6 +174,14 @@ create_cmd("Commandcenter", function()
   vim.cmd "Telescope commander"
 end, {})
 
+create_cmd("TestSummary", function()
+  require("neotest").summary.toggle()
+end, {})
+
+create_cmd("Coverage", function()
+  rrequire("coverage").load(true)
+end, {})
+
 create_cmd("GitOpen", function()
   -- Current file
   local git_root = vim.fn.system("git rev-parse --show-toplevel"):gsub("\n", "")
