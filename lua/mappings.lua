@@ -542,6 +542,11 @@ map("n", "<leader>nt", function()
   require("coverage").load(true)
 end, { desc = "󰤑 Run neotest" })
 
+map("n", "<leader>rt", function()
+  require("neotest").run.run()
+  require("coverage").load(true)
+end, { desc = "󰤑 Run neotest" })
+
 map("n", "<leader>tc", "<cmd>CoverageToggle<cr>", { desc = "Coverage in gutter" })
 map("n", "<leader><leader>c", "<cmd>CoverageLoad<cr><cmd>CoverageSummary<cr>", { desc = "Coverage summary" })
 --------------------------------------------------- LSP ---------------------------------------------------
