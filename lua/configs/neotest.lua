@@ -20,7 +20,6 @@ require("neotest").setup {
     },
   },
   diagnostic = {
-    enabled = false,
     enabled = true,
   },
   floating = {
