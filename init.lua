@@ -62,6 +62,10 @@ end)
 require "custom.utils.usercmd"
 require "custom.utils.autocmd"
 
+if vim.g.neovide and vim.fn.getcwd() == "/" then
+  vim.cmd "cd ~"
+end
+
 vim.fn.sign_define("DapBreakpoint", { text = "󰙧", numhl = "DapBreakpoint", texthl = "DapBreakpoint" })
 vim.fn.sign_define("DagLogPoint", { text = "", numhl = "DapLogPoint", texthl = "DapLogPoint" })
 vim.fn.sign_define("DapStopped", { text = "", numhl = "DapStopped", texthl = "DapStopped" })
