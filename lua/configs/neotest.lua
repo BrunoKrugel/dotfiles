@@ -19,13 +19,9 @@ require("neotest").setup {
       args = { "-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out" },
     },
   },
-  quickfix = {
-    open = function()
-      vim.cmd "Trouble qflist toggle"
-    end,
-  },
   diagnostic = {
     enabled = false,
+    enabled = true,
   },
   floating = {
     border = "rounded",
