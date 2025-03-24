@@ -557,7 +557,7 @@ autocmd("BufDelete", {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+autocmd({ "CursorHold", "CursorHoldI" }, {
   callback = function()
     require("lint").try_lint()
   end,
