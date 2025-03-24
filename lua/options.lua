@@ -4,6 +4,9 @@ local o = vim.o
 
 -- vim.wo.statuscolumn = ""
 
+o.mousemoveevent = true
+o.diffopt = "internal,filler,closeoff,linematch:60"
+
 opt.encoding = "utf-8"
 opt.backup = false --- Recommended by coc
 opt.swapfile = false
@@ -18,7 +21,6 @@ opt.laststatus = 3 -- global statusline
 opt.showmode = false
 opt.smoothscroll = true
 
-o.mousemoveevent = true
 vim.opt.sessionoptions = "blank,buffers,curdir,tabpages,winsize,winpos,terminal,localoptions"
 
 opt.clipboard = "unnamedplus"
