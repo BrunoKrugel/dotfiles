@@ -20,5 +20,6 @@ vim.filetype.add {
     ["http"] = "http",
     ["scm"] = "query",
     ["query"] = "query",
+    ["log"] = "log",
   },
 }
