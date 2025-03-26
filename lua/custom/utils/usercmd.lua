@@ -89,16 +89,6 @@ create_cmd("ToggleVirtualText", function()
   end
 end, {})
 
--- Command to toggle diagnostics
-create_cmd("DiagnosticsToggle", function()
-  local current_value = vim.diagnostic.is_disabled()
-  if current_value then
-    vim.diagnostic.enable()
-  else
-    vim.diagnostic.disable()
-  end
-end, {})
-
 create_cmd("Format", function(args)
   local range = nil
   if args.count ~= -1 then

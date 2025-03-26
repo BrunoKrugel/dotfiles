@@ -159,32 +159,6 @@ autocmd("BufEnter", {
   command = [[if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]],
 })
 
-autocmd("BufWritePre", {
-  group = vim.api.nvim_create_augroup("TS_add_missing_imports", { clear = true }),
-  desc = "TS_add_missing_imports",
-  pattern = { "*.ts" },
-  callback = function()
-    local params = vim.lsp.util.make_range_params()
-    params.context = {
-      only = { "source.addMissingImports.ts" },
-    }
-    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
-    for _, res in pairs(result or {}) do
-      for _, r in pairs(res.result or {}) do
-        if r.kind == "source.addMissingImports.ts" then
-          vim.lsp.buf.code_action {
-            apply = true,
-            context = {
-              only = { "source.addMissingImports.ts" },
-            },
-          }
-          vim.cmd "write"
-        end
-      end
-    end
-  end,
-})
-
 -- Define the VimEnter autocmd
 autocmd("VimEnter", {
   callback = function()
@@ -285,17 +259,6 @@ autocmd("TextYankPost", {
   group = augroup("YankHighlight", { clear = true }),
 })
 
-autocmd("ModeChanged", {
-  group = vim.api.nvim_create_augroup("user_diagnostic", { clear = true }),
-  pattern = { "n:i", "n:v", "i:v" },
-  command = "lua vim.diagnostic.disable(0)",
-})
-
-autocmd("ModeChanged", {
-  group = vim.api.nvim_create_augroup("user_diagnostic", { clear = true }),
-  pattern = "i:n",
-  command = "lua vim.diagnostic.enable(0)",
-})
 
 autocmd({ "InsertLeave", "WinEnter" }, {
   desc = "Show cursor line only in active window",
