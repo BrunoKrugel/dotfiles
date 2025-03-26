@@ -34,10 +34,6 @@ require("lint").linters.deadcode = {
 }
 
 require("lint").linters_by_ft = {
-  yaml = {
-    "yamllint",
-    "actionlint",
-  },
   codespell = { "codespell" },
   javascript = { "eslint_d" },
   typescript = { "eslint_d" },
