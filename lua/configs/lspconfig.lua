@@ -147,7 +147,7 @@ local go_on_attach = function(client, bufnr)
     pattern = "*.go",
     callback = function()
       organize_imports(client, bufnr)
-      vim.lsp.buf.format { async = false }
+      -- vim.lsp.buf.format { async = false }
     end,
   })
 end
