@@ -46,7 +46,9 @@ end
 ---@param client vim.lsp.Client gopls instance
 ---@param bufnr number buffer to organize imports for
 local function organize_imports(client, bufnr)
-  local params = vim.lsp.util.make_range_params()
+  local gopls = vim.lsp.get_clients({ bufnr = 0, name = 'gopls' })
+
+  local params = vim.lsp.util.make_range_params(0, gopls[1].offset_encoding)
   params.context = { only = { "source.organizeImports" } }
 
   local resp = client.request_sync("textDocument/codeAction", params, 3000, bufnr)
@@ -718,7 +720,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end, opts)
 
     -- Mouse mappings for easily navigating code
-    if client.supports_method "definitionProvider" then
+    if client:supports_method "definitionProvider" then
       vim.keymap.set("n", "<2-LeftMouse>", function()
         vim.lsp.buf.definition()
       end, opts)

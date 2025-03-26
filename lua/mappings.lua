@@ -72,11 +72,11 @@ local code_actions = function()
   actions["Rename"] = { priority = 400, call = vim.lsp.buf.rename }
 
   local bufnr = vim.api.nvim_get_current_buf()
-  local params = vim.lsp.util.make_range_params()
+  local params = vim.lsp.util.make_range_params(0, "utf-8")
 
   params.context = {
     triggerKind = vim.lsp.protocol.CodeActionTriggerKind.Invoked,
-    diagnostics = vim.lsp.diagnostic.get_line_diagnostics(),
+    diagnostics = vim.diagnostic.get(bufnr, { lnum = vim.api.nvim_win_get_cursor(0)[1] - 1 }),
   }
 
   vim.lsp.buf_request(bufnr, "textDocument/codeAction", params, function(_, results, _, _)
