@@ -1104,20 +1104,6 @@ return {
     opts = {},
   },
   {
-    "epwalsh/pomo.nvim",
-    cmd = { "TimerStart", "TimerStop", "TimerRepeat" },
-    opts = {
-      notifiers = {
-        {
-          name = "Default",
-          opts = {
-            sticky = false,
-          },
-        },
-      },
-    },
-  },
-  {
     "chrisgrieser/nvim-recorder",
     keys = { "q", "Q" },
     opts = {
