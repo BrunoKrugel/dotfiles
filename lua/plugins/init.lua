@@ -256,7 +256,6 @@ return {
   ----------------------------------------- enhance plugins ------------------------------------------
   {
     "okuuva/auto-save.nvim",
-    event = { "InsertLeave", "TextChanged" },
     config = function()
       require "configs.autosave"
     end,

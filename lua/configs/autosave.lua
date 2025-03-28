@@ -6,7 +6,7 @@ end
 autoSave.setup {
   -- The name of the augroup.
   augroup_name = "AutoSavePlug",
-  events = { "InsertLeave", "TextChanged" },
+  events = { "InsertLeave" },
   silent = true,
   callbacks = {
     before_saving = function()
