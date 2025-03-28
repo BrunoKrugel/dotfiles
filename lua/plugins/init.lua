@@ -785,6 +785,15 @@ return {
         },
       }
     end,
+    init = function()
+      vim.api.nvim_create_autocmd("VimLeavePre", {
+        callback = function()
+          for _, view in ipairs(require("diffview.lib").views) do
+            view:close()
+          end
+        end,
+      })
+    end,
   },
   {
     "0xAdk/full_visual_line.nvim",
