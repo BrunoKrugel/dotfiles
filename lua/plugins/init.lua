@@ -32,7 +32,7 @@ return {
   },
   {
     "folke/which-key.nvim",
-    enabled = true,
+    enabled = false,
   },
   {
     "nvzone/volt",
@@ -523,7 +523,7 @@ return {
   },
   {
     "MagicDuck/grug-far.nvim",
-    event = "VeryLazy",
+    cmd = { "GrugFar" },
     config = function()
       local map = vim.keymap.set
 
@@ -563,7 +563,7 @@ return {
   },
   {
     "zeioth/garbage-day.nvim",
-    event = "VeryLazy",
+    event = "LspAttach",
     opts = {
       notifications = false,
     },
@@ -1063,7 +1063,7 @@ return {
   },
   {
     "andythigpen/nvim-coverage",
-    ft = { "go", "javascript", "typescript", "javascriptreact", "typescriptreact" },
+    cmd = "Coverage",
     opts = {
       auto_reload = true,
       lang = {
