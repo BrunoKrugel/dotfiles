@@ -167,14 +167,6 @@ M.treesitter = {
     use_virtual_text = true,
     lint_events = { "BufWrite", "CursorHold" },
   },
-  textsubjects = {
-    enable = true,
-    keymaps = {
-      ["."] = "textsubjects-smart",
-      [";"] = "textsubjects-container-outer",
-      ["i;"] = "textsubjects-container-inner",
-    },
-  },
   textobjects = {
     swap = {
       enable = true,

@@ -73,7 +73,6 @@ return {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       "windwp/nvim-ts-autotag",
-      "RRethy/nvim-treesitter-textsubjects",
     },
     opts = overrides.treesitter,
     build = ":TSUpdate",
