@@ -74,10 +74,6 @@ return {
     dependencies = {
       "windwp/nvim-ts-autotag",
       "RRethy/nvim-treesitter-textsubjects",
-      {
-        "folke/ts-comments.nvim",
-        opts = {},
-      },
     },
     opts = overrides.treesitter,
     build = ":TSUpdate",
@@ -705,10 +701,6 @@ return {
         },
       }
     end,
-  },
-  {
-    "kdheepak/lazygit.nvim",
-    cmd = "LazyGit",
   },
   {
     "BrunoKrugel/muren.nvim",
