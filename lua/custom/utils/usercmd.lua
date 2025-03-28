@@ -160,10 +160,6 @@ create_cmd("Healthcheck", function()
   vim.cmd "checkhealth"
 end, {})
 
-create_cmd("Commandcenter", function()
-  vim.cmd "Telescope commander"
-end, {})
-
 create_cmd("TestSummary", function()
   require("neotest").summary.toggle()
 end, {})

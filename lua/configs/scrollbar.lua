@@ -130,6 +130,5 @@ scrollbar.setup {
     diagnostic = true,
     gitsigns = true, -- Requires gitsigns
     handle = true,
-    search = true, -- Requires hlslens
   },
 }

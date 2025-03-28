@@ -809,31 +809,6 @@ return {
     },
   },
   {
-    "FeiyouG/command_center.nvim",
-    cmd = "Commandcenter",
-    config = function()
-      require "configs.command"
-    end,
-  },
-  {
-    "kevinhwang91/nvim-hlslens",
-    event = "BufReadPost",
-    config = function()
-      require("hlslens").setup {
-        build_position_cb = function(plist, _, _, _)
-          require("scrollbar.handlers.search").handler.show(plist.start_pos)
-        end,
-      }
-
-      vim.cmd [[
-          augroup scrollbar_search_hide
-              autocmd!
-              autocmd CmdlineLeave : lua require('scrollbar.handlers.search').handler.hide()
-          augroup END
-      ]]
-    end,
-  },
-  {
     "lewis6991/hover.nvim",
     config = function()
       require("hover").setup {
