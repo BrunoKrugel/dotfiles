@@ -150,10 +150,6 @@ return {
         },
       },
       {
-        "Exafunction/codeium.nvim",
-        opts = {},
-      },
-      {
         "tzachar/cmp-tabnine",
         build = "./install.sh",
         config = function()

@@ -307,10 +307,6 @@ M.cmp = {
   sources = {
     { name = "supermaven", max_item_count = 2 },
     {
-      name = "codeium",
-      max_item_count = 2,
-    },
-    {
       name = "cmp_tabnine",
       max_item_count = 2,
     },
