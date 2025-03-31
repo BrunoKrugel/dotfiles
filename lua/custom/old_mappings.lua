@@ -343,12 +343,12 @@ M.diagnostics = {
     ["<leader>td"] = { "<CMD>Trouble qflist toggle<CR>", " Todo/Fix/Fixme" },
     ["<leader>el"] = { "<CMD>ErrorLensToggle<CR>", "󱇭 Toggle error lens" },
     ["<leader>ft"] = { "<CMD>TodoTelescope<CR>", " Telescope TODO" },
-    ["<Leader>ll"] = {
-      function()
-        require("lsp_lines").toggle()
-      end,
-      " Toggle lsp_lines",
-    },
+    -- ["<Leader>ll"] = {
+    --   function()
+    --     require("lsp_lines").toggle()
+    --   end,
+    --   " Toggle lsp_lines",
+    -- },
   },
 }
 
