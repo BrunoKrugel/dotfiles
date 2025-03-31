@@ -131,6 +131,8 @@ local go_on_attach = function(client, bufnr)
   custom_on_attach(client, bufnr)
   organize_imports(client, bufnr)
 
+  vim.opt.formatprg = ""
+
   -- Causes [LSP] Client with id 1 not attached to buffer 1
   -- if not client.server_capabilities.semanticTokensProvider then
   --   local semantic = client.config.capabilities.textDocument.semanticTokens
@@ -445,29 +447,35 @@ require("mason-lspconfig").setup_handlers {
       on_init = on_init,
       capabilities = capabilities,
       filetypes = { "go", "gomod", "gowork", "gosum", "goimpl" },
+      init_options = {
+        usePlaceholders = true,
+      },
       settings = {
         gopls = {
           buildFlags = { "-tags=wireinject" },
-          usePlaceholders = true,
           directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
+          usePlaceholders = true,
           experimentalPostfixCompletions = true,
           completeUnimported = true,
           vulncheck = "Imports",
           gofumpt = true,
           staticcheck = true,
+          semanticTokens = true,
           analyses = {
-            unusedparams = true,
+            fieldalignment = true,
             shadow = true,
             fillreturns = true,
             nonewvars = true,
-            unusedwrite = true,
             staticcheck = true,
             structure = true,
             unparam = true,
-            unusedresult = true,
             deadcode = true,
             nilness = true,
             typeparams = true,
+
+            unusedwrite = true,
+            unusedparams = true,
+            unusedresult = true,
           },
           codelenses = {
             references = true,
