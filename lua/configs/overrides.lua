@@ -309,7 +309,7 @@ M.telescope = {
     },
   },
   defaults = {
-    -- winblend = 10, -- Neovide
+    winblend = 0, -- Neovide
     mappings = {
       i = {
         ["<C-k>"] = actions.move_selection_previous, -- move to prev result
