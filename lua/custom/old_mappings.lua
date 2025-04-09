@@ -569,6 +569,13 @@ M.harpoon = {
       end,
       "󱡁 Harpoon Add file",
     },
+    ["<leader>hc"] = {
+      function()
+        local harpoon = require "harpoon"
+        harpoon:list():clear()
+      end,
+      "󱡁 Harpoon Clear",
+    },
     ["<leader>ta"] = { "<CMD>Telescope harpoon marks<CR>", "󱡀 Toggle quick menu" },
     ["<leader>hb"] = {
       function()
