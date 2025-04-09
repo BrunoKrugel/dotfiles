@@ -577,8 +577,6 @@ map({ "n" }, "<leader>.", function()
   code_actions()
 end, { desc = "Code Action" })
 
-map("n", "<F12>", "<CMD>Glance references<CR>", { desc = "󰘐 References" })
-
 map("n", "<leader>wl", function()
   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 end, { desc = "LSP list workspace folders" })

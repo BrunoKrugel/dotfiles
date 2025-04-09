@@ -157,16 +157,6 @@ From left to right:
 1. GitHub UI (on click will open `LazyGit` window)
 2. Split window button (on click will split the current window vertically)
 
-## References
-
-<div align="center">
-
-![Reference](./img/reference.png)
-
-_With [Glance](https://github.com/DNLHC/glance.nvim)_
-
-</div>
-
 ## Keybinds
 All the keybindings are available in the `mappings.lua` file, and also described in the `NVCheatSheet`, you can access it with `<leader>ch`.
 

@@ -1000,13 +1000,6 @@ return {
     event = "BufReadPost",
     opts = {},
   },
-  {
-    "dnlhc/glance.nvim",
-    cmd = "Glance",
-    config = function()
-      require "configs.glance"
-    end,
-  },
   ----------------------------------------- language plugins ------------------------------------------
   {
     "Jay-Madden/auto-fix-return.nvim",

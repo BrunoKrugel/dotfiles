@@ -1,3 +1,4 @@
+-- https://go.dev/blog/deadcode
 require("lint").linters.deadcode = {
   cmd = "deadcode",
   stdin = false, -- deadcode does not support stdin
