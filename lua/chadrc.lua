@@ -14,7 +14,7 @@ M.ui = {
     icons = true,
     lspkind_text = true,
     format_colors = {
-      tailwind = true,
+      lsp = true,
       icon = "󱓻",
     },
     style = "default", -- default/flat_light/flat_dark/atom/atom_colored
