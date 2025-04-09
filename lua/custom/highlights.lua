@@ -10,10 +10,6 @@ M.override = {
   IndentBlanklineContextStart = { bg = "none" },
 
   LspInlayHint = { fg = "#4e5665", bg = "NONE" },
-  FloatBorder = { link = "TelescopeBorder" },
-
-  CmpDoc = { bg = "black" },
-  CmpDocBorder = { fg = "black", bg = "black" },
 
   -- DiagnosticError = { bg = "#4B252C", fg = "#FF6363" },
   -- DiagnosticWarn =  { bg = "#403733", fg = "#FA973A" },
