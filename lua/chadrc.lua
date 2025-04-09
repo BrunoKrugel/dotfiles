@@ -6,7 +6,6 @@ local core = require "custom.utils.core"
 -- Path to overriding theme and highlights files
 local highlights = require "custom.highlights"
 M.ui = {
-  lsp_semantic_tokens = false,
   statusline = core.statusline,
   tabufline = core.tabufline,
 
