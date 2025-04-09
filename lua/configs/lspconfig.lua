@@ -14,16 +14,10 @@ local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = vim.tbl_deep_extend(
   "force",
   vim.lsp.protocol.make_client_capabilities(),
-  require("cmp_nvim_lsp").default_capabilities(),
   require("nvchad.configs.lspconfig").capabilities
 )
 
 local lspconfig = require "lspconfig"
-
-local present, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if present then
-  capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
-end
 
 local ok, _ = pcall(require, "ufo")
 if ok then
