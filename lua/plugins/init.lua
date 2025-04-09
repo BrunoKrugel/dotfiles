@@ -313,7 +313,10 @@ return {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
     event = "VeryLazy",
-    opts = {},
+    confing = function()
+      local harpoon = require("harpoon")
+      harpoon:setup()
+    end,
   },
   {
     "obsidian-nvim/obsidian.nvim",
