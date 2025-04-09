@@ -406,7 +406,7 @@ map("n", "<leader>pp", function()
 end, { desc = "Paste in URL" })
 
 map("n", "<leader>th", function()
-  require("nvchad.themes").open { style = "flat" }
+  require("nvchad.themes").open { style = "bordered" }
 end, { desc = "Open NvChad theme selector" })
 
 map("n", "<A-R>", function()
