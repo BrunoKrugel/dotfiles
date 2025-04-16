@@ -251,7 +251,7 @@ return {
   ----------------------------------------- enhance plugins ------------------------------------------
   {
     "okuuva/auto-save.nvim",
-    event = { "InsertLeave" },
+    event = { "ModeChanged" },
     config = function()
       require "configs.autosave"
     end,
@@ -1004,11 +1004,6 @@ return {
     opts = {},
   },
   ----------------------------------------- language plugins ------------------------------------------
-  {
-    "Jay-Madden/auto-fix-return.nvim",
-    ft = { "go", "gomod", "gosum", "gowork", "gotmpl", "templ" },
-    opts = {},
-  },
   {
     "dmmulroy/ts-error-translator.nvim",
     ft = {
