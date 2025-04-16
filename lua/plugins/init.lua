@@ -95,7 +95,7 @@ return {
   },
   {
     "NStefan002/visual-surround.nvim",
-    event = "BufEnter",
+    event = "InsertEnter",
     config = function()
       require("visual-surround").setup {
         use_default_keymaps = false,
@@ -385,7 +385,7 @@ return {
   },
   {
     "m-demare/hlargs.nvim",
-    event = "BufWinEnter",
+    event = "LspAttach",
     opts = {
       hl_priority = 200,
       extras = { named_parameters = true },
@@ -464,7 +464,6 @@ return {
           ensure_installed = { "delve" },
         },
       },
-      "ofirgall/goto-breakpoints.nvim",
       {
         "LiadOz/nvim-dap-repl-highlights",
         build = ":TSInstall dap_repl",
@@ -1024,10 +1023,7 @@ return {
   },
   {
     "mfussenegger/nvim-lint",
-    event = {
-      "BufReadPre",
-      "BufNewFile",
-    },
+    event = "LspAttach",
     config = function()
       require "configs.linter"
     end,
