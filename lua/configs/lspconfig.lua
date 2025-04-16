@@ -143,16 +143,17 @@ local servers = {
   "yamlls",
   "terraformls",
   "vtsls",
-}
-
-require("mason-lspconfig").setup {
-  ensure_installed = servers,
-  automatic_installation = true,
+  "gopls",
 }
 
 vim.lsp.enable(servers)
 
+vim.lsp.config("lua_ls", {
+  on_attach = custom_on_attach,
+})
+
 vim.lsp.config("jsonls", {
+  on_attach = custom_on_attach,
   settings = {
     json = {
       schemas = require("schemastore").json.schemas(),
@@ -161,7 +162,25 @@ vim.lsp.config("jsonls", {
   },
 })
 
+vim.lsp.config("yamlls", {
+  on_attach = custom_on_attach,
+  settings = {
+    yaml = {
+      schemaStore = {
+        url = vim.env.SCHEMA_NEXUS,
+        enable = true,
+      },
+      schemas = {
+        [vim.env.SCHEMA_BACKEND] = ".gitlab-ci.yml",
+        [vim.env.SCHEMA_DOCKER] = ".gitlab-ci.yml",
+        [vim.env.SCHEMA_HELM] = ".gitlab-ci.yml",
+      },
+    },
+  },
+})
+
 vim.lsp.config("vtsls", {
+  on_attach = custom_on_attach,
   filetypes = {
     "javascript",
     "javascriptreact",
@@ -212,203 +231,68 @@ vim.lsp.config("vtsls", {
   },
 })
 
+vim.lsp.config("gopls", {
+  on_attach = go_on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+  filetypes = { "go", "gomod", "gowork", "gosum", "goimpl" },
+  init_options = {
+    usePlaceholders = true,
+  },
+  settings = {
+    gopls = {
+      buildFlags = { "-tags=wireinject" },
+      directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
+      usePlaceholders = true,
+      experimentalPostfixCompletions = true,
+      completeUnimported = true,
+      vulncheck = "Imports",
+      gofumpt = true,
+      staticcheck = true,
+      semanticTokens = true,
+      analyses = {
+        fieldalignment = true,
+        shadow = true,
+        fillreturns = true,
+        nonewvars = true,
+        staticcheck = true,
+        structure = true,
+        unparam = true,
+        deadcode = true,
+        nilness = true,
+        typeparams = true,
+
+        unusedwrite = true,
+        unusedparams = true,
+        unusedresult = true,
+      },
+      codelenses = {
+        references = true,
+        test = true,
+        tidy = true,
+        upgrade_dependency = true,
+        regenerate_cgo = true,
+        generate = true,
+        gc_details = false,
+        run_govulncheck = true,
+        vendor = true,
+      },
+      hints = {
+        assignVariableTypes = true,
+        compositeLiteralFields = true,
+        compositeLiteralTypes = true,
+        constantValues = true,
+        functionTypeParameters = true,
+        parameterNames = true,
+        rangeVariableTypes = true,
+      },
+    },
+  },
+})
+
 require("lspconfig").kulala_ls.setup {
   on_attach = custom_on_attach,
   capabilities = capabilities,
-}
-
-require("mason-lspconfig").setup_handlers {
-  function(server_name)
-    lspconfig[server_name].setup {
-      on_attach = custom_on_attach,
-      on_init = on_init,
-      capabilities = capabilities,
-    }
-  end,
-
-  ["gopls"] = function()
-    lspconfig["gopls"].setup {
-      on_attach = go_on_attach,
-      on_init = on_init,
-      capabilities = capabilities,
-      filetypes = { "go", "gomod", "gowork", "gosum", "goimpl" },
-      init_options = {
-        usePlaceholders = true,
-      },
-      settings = {
-        gopls = {
-          buildFlags = { "-tags=wireinject" },
-          directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
-          usePlaceholders = true,
-          experimentalPostfixCompletions = true,
-          completeUnimported = true,
-          vulncheck = "Imports",
-          gofumpt = true,
-          staticcheck = true,
-          semanticTokens = true,
-          analyses = {
-            fieldalignment = true,
-            shadow = true,
-            fillreturns = true,
-            nonewvars = true,
-            staticcheck = true,
-            structure = true,
-            unparam = true,
-            deadcode = true,
-            nilness = true,
-            typeparams = true,
-
-            unusedwrite = true,
-            unusedparams = true,
-            unusedresult = true,
-          },
-          codelenses = {
-            references = true,
-            test = true,
-            tidy = true,
-            upgrade_dependency = true,
-            regenerate_cgo = true,
-            generate = true,
-            gc_details = false,
-            run_govulncheck = true,
-            vendor = true,
-          },
-          hints = {
-            assignVariableTypes = true,
-            compositeLiteralFields = true,
-            compositeLiteralTypes = true,
-            constantValues = true,
-            functionTypeParameters = true,
-            parameterNames = true,
-            rangeVariableTypes = true,
-          },
-        },
-      },
-    }
-  end,
-
-  ["yamlls"] = function()
-    return {
-      lspconfig["yamlls"].setup {
-        on_attach = custom_on_attach,
-        on_init = on_init,
-        capabilities = capabilities,
-        settings = {
-          yaml = {
-            schemaStore = {
-              url = vim.env.SCHEMA_NEXUS,
-              enable = true,
-            },
-            schemas = {
-              [vim.env.SCHEMA_BACKEND] = ".gitlab-ci.yml",
-              [vim.env.SCHEMA_DOCKER] = ".gitlab-ci.yml",
-              [vim.env.SCHEMA_HELM] = ".gitlab-ci.yml",
-            },
-          },
-        },
-      },
-    }
-  end,
-
-  ["astro"] = function()
-    return {
-      lspconfig["astro"].setup {
-        on_attach = custom_on_attach,
-        capabilities = capabilities,
-        init_options = {
-          typescript = {
-            tsdk = "node_modules/typescript/lib",
-          },
-        },
-      },
-    }
-  end,
-
-  ["eslint"] = function()
-    lspconfig["eslint"].setup {
-      on_attach = custom_on_attach,
-      capabilities = capabilities,
-      filetypes = {
-        "javascript",
-        "javascriptreact",
-        "javascript.jsx",
-        "typescript",
-        "typescriptreact",
-        "typescript.tsx",
-        "vue",
-        "astro",
-      },
-      cmd = { "vscode-eslint-language-server", "--stdio" },
-      handlers = {
-        ["eslint/confirmESLintExecution"] = function(_, result)
-          if not result then
-            return
-          end
-          return 4 -- approved
-        end,
-
-        ["eslint/noLibrary"] = function()
-          return {}
-        end,
-
-        ["eslint/openDoc"] = function(_, result)
-          if not result then
-            return
-          end
-          local sysname = vim.uv.os_uname().sysname
-          if sysname:match "Windows_NT" then
-            os.execute(string.format("start %q", result.url))
-          elseif sysname:match "Linux" then
-            os.execute(string.format("xdg-open %q", result.url))
-          else
-            os.execute(string.format("open %q", result.url))
-          end
-          return {}
-        end,
-
-        ["eslint/probeFailed"] = function()
-          vim.notify("[lspconfig] ESLint probe failed.", vim.log.levels.WARN)
-          return {}
-        end,
-      },
-      root_dir = require("lspconfig").util.root_pattern(
-        ".eslintrc",
-        ".eslintrc.js",
-        ".eslintrc.cjs",
-        ".eslintrc.yaml",
-        ".eslintrc.yml",
-        ".eslintrc.json",
-        "package.json"
-      ),
-      settings = {
-        codeAction = {
-          disableRuleComment = {
-            enable = true,
-            location = "separateLine",
-          },
-          showDocumentation = {
-            enable = true,
-          },
-        },
-        codeActionOnSave = {
-          enable = false,
-          mode = "all",
-        },
-        format = true,
-        nodePath = "",
-        onIgnoredFiles = "off",
-        packageManager = "npm",
-        quiet = false,
-        rulesCustomizations = {},
-        run = "onType",
-        useESLintClass = false,
-        validate = "on",
-        workingDirectory = {
-          mode = "location",
-        },
-      },
-    }
-  end,
 }
 
 -- If the buffer has been edited before formatting has completed, do not try to apply the changes

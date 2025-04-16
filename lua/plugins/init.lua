@@ -7,28 +7,10 @@ return {
     dependencies = {
       "artemave/workspace-diagnostics.nvim",
       "jubnzv/virtual-types.nvim",
-      {
-        "williamboman/mason.nvim",
-        dependencies = {
-          "williamboman/mason-lspconfig.nvim",
-        },
-        opts = overrides.mason,
-        config = function(_, opts)
-          require("mason").setup(opts)
-          local mr = require "mason-registry"
-          mr:on("package:install:success", function()
-            vim.defer_fn(function()
-              require("lazy.core.handler.event").trigger {
-                event = "FileType",
-                buf = vim.api.nvim_get_current_buf(),
-              }
-            end, 100)
-          end)
-          require "configs.lspconfig"
-        end,
-      },
     },
-    config = function() end,
+    config = function()
+      require "configs.lspconfig"
+    end,
   },
   {
     "folke/which-key.nvim",
@@ -314,7 +296,7 @@ return {
     branch = "harpoon2",
     event = "VeryLazy",
     confing = function()
-      local harpoon = require("harpoon")
+      local harpoon = require "harpoon"
       harpoon:setup()
     end,
   },
