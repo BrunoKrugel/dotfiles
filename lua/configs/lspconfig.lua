@@ -1,10 +1,6 @@
 -- Load defaults from NvChad
 require("nvchad.configs.lspconfig").defaults()
 
-local finders = require "telescope.finders"
-local pickers = require "telescope.pickers"
-local make_entry = require "telescope.make_entry"
-local conf = require("telescope.config").values
 local methods = vim.lsp.protocol.Methods
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
@@ -118,102 +114,6 @@ vim.lsp.handlers[methods.client_registerCapability] = function(err, res, ctx)
   return register_capability(err, res, ctx)
 end
 
--- If the LSP response includes any `node_modules`, then try to remove them and
--- see if there are any options left. We probably want to navigate to the code
--- in OUR codebase, not inside `node_modules`.
---
--- This can happen if a type is used to explicitly type a variable:
--- ```ts
--- const MyComponent: React.FC<Props> = () => <div />
--- ````
---
--- Running "Go to definition" on `MyComponent` would give the `React.FC`
--- definition in `node_modules/react` as the first result, but we don't want
--- that.
-local function filter_out_libraries_from_lsp_items(results)
-  local without_node_modules = vim.tbl_filter(function(item)
-    return item.targetUri and not string.match(item.targetUri, "node_modules")
-  end, results)
-
-  if #without_node_modules > 0 then
-    return without_node_modules
-  end
-
-  return results
-end
-
-local function filter_out_same_location_from_lsp_items(results)
-  return vim.tbl_filter(function(item)
-    local from = item.originSelectionRange
-    local to = item.targetSelectionRange
-
-    return not (
-      from
-      and from.start.character == to.start.character
-      and from.start.line == to.start.line
-      and from["end"].character == to["end"].character
-      and from["end"].line == to["end"].line
-    )
-  end, results)
-end
-
--- This function is mostly copied from Telescope, I only added the
--- `node_modules` filtering.
-local function list_or_jump(action, title, opts)
-  opts = opts or {}
-
-  local params = vim.lsp.util.make_position_params()
-  vim.lsp.buf_request(0, action, params, function(err, result, ctx, _)
-    if err then
-      vim.api.nvim_err_writeln("Error when executing " .. action .. " : " .. err.message)
-      return
-    end
-    local flattened_results = {}
-    if result then
-      -- textDocument/definition can return Location or Location[]
-      if not vim.tbl_islist(result) then
-        flattened_results = { result }
-      end
-
-      vim.list_extend(flattened_results, result)
-    end
-
-    -- This is the only added step to the Telescope function
-    flattened_results = filter_out_same_location_from_lsp_items(filter_out_libraries_from_lsp_items(flattened_results))
-
-    local offset_encoding = vim.lsp.get_client_by_id(ctx.client_id).offset_encoding
-
-    if #flattened_results == 0 then
-      return
-    elseif #flattened_results == 1 and opts.jump_type ~= "never" then
-      if opts.jump_type == "tab" then
-        vim.cmd.tabedit()
-      elseif opts.jump_type == "split" then
-        vim.cmd.new()
-      elseif opts.jump_type == "vsplit" then
-        vim.cmd.vnew()
-      end
-      vim.lsp.util.jump_to_location(flattened_results[1], offset_encoding)
-    else
-      local locations = vim.lsp.util.locations_to_items(flattened_results, offset_encoding)
-      pickers
-        .new(opts, {
-          prompt_title = title,
-          finder = finders.new_table {
-            results = locations,
-            entry_maker = opts.entry_maker or make_entry.gen_from_quickfix(opts),
-          },
-          previewer = conf.qflist_previewer(opts),
-          sorter = conf.generic_sorter(opts),
-        })
-        :find()
-    end
-  end)
-end
-
-local function definitions(opts)
-  return list_or_jump("textDocument/definition", "LSP Definitions", opts)
-end
 
 -- if you just want default config for the servers then put them in a table
 local servers = {
@@ -652,10 +552,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- Set up keymaps
     local opts = { buffer = event.buf, silent = true }
     local client = vim.lsp.get_client_by_id(event.data.client_id)
-
-    vim.keymap.set("n", "<c-}>", function()
-      definitions()
-    end, opts)
 
     -- Mouse mappings for easily navigating code
     if client:supports_method "definitionProvider" then
