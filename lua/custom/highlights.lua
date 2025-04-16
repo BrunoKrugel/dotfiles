@@ -11,11 +11,6 @@ M.override = {
 
   LspInlayHint = { fg = "#4e5665", bg = "NONE" },
 
-  -- DiagnosticError = { bg = "#4B252C", fg = "#FF6363" },
-  -- DiagnosticWarn =  { bg = "#403733", fg = "#FA973A" },
-  -- DiagnosticInfo = { bg = "#20355A", fg = "#387EFF" },
-  -- DiagnosticHint = { bg = "#254435", fg = "#16C53B" },
-
   TelescopePromptNormal = { blend = 100 },
   -- TreeSitter highlights
   Repeat = { fg = "pink" },
@@ -82,14 +77,11 @@ M.add = {
 
   DapStoppedLine = { link = "Visual" },
   DapBreakpoint = { fg = "red" },
-  -- NvimDapVirtualText = { fg = "#6272A4" },
+
   NvimDapVirtualTextError = { fg = "red", italic = true },
   NvimDapVirtualText = { fg = "cyan", italic = true },
   NvimDapVirtualTextChanged = { fg = "yellow", italic = true },
 
-  -- LazyDimmed = { fg = colors.grey },
-
-  CodeActionSignHl = { fg = "#f9e2af" },
 
   ["@number.luadoc"] = { fg = "Comment" },
   ["@markup.quote.markdown"] = { bg = "NONE" },
