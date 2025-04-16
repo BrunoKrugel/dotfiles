@@ -41,24 +41,6 @@ local function organize_imports(client, bufnr)
   end
 end
 
-capabilities.textDocument.completion.completionItem = {
-  documentationFormat = { "markdown", "plaintext" },
-  snippetSupport = true,
-  preselectSupport = true,
-  insertReplaceSupport = true,
-  labelDetailsSupport = true,
-  deprecatedSupport = true,
-  commitCharactersSupport = true,
-  tagSupport = { valueSet = { 1 } },
-  resolveSupport = {
-    properties = {
-      "documentation",
-      "detail",
-      "additionalTextEdits",
-    },
-  },
-}
-
 local function attach_codelens(_, bufnr)
   vim.api.nvim_create_autocmd({ "BufReadPost", "CursorHold", "InsertLeave" }, {
     buffer = bufnr,
@@ -112,19 +94,6 @@ local go_on_attach = function(client, bufnr)
   organize_imports(client, bufnr)
 
   vim.opt.formatprg = ""
-
-  -- Causes [LSP] Client with id 1 not attached to buffer 1
-  -- if not client.server_capabilities.semanticTokensProvider then
-  --   local semantic = client.config.capabilities.textDocument.semanticTokens
-  --   client.server_capabilities.semanticTokensProvider = {
-  --     full = true,
-  --     legend = {
-  --       tokenTypes = semantic.tokenTypes,
-  --       tokenModifiers = semantic.tokenModifiers,
-  --     },
-  --     range = true,
-  --   }
-  -- end
 
   -- Go
   vim.api.nvim_create_autocmd("BufWritePre", {
@@ -499,25 +468,6 @@ require("mason-lspconfig").setup_handlers {
               [vim.env.SCHEMA_DOCKER] = ".gitlab-ci.yml",
               [vim.env.SCHEMA_HELM] = ".gitlab-ci.yml",
             },
-            -- schemas = require("schemastore").yaml.schemas {
-            --   extra = {
-            --     {
-            --       description = "My custom backend JSON schema",
-            --       fileMatch = ".gitlab-ci.yml",
-            --       url = vim.env.SCHEMA_BACKEND,
-            --     },
-            --     {
-            --       description = "My custom docker JSON schema",
-            --       fileMatch = ".gitlab-ci.yml",
-            --       url = vim.env.SCHEMA_DOCKER,
-            --     },
-            --     {
-            --       description = "My custom helm JSON schema",
-            --       fileMatch = ".gitlab-ci.yml",
-            --       url = vim.env.SCHEMA_HELM,
-            --     },
-            --   },
-            -- },
           },
         },
       },
