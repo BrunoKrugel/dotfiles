@@ -6,7 +6,6 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       "artemave/workspace-diagnostics.nvim",
-      "jubnzv/virtual-types.nvim",
     },
     config = function()
       require "configs.lspconfig"
