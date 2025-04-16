@@ -25,7 +25,7 @@ conform.setup {
     css = { "prettier" },
     html = { "prettier" },
     markdown = { "prettier" },
-    query = { 'format-queries' },
+    query = { "format-queries" },
     lua = { "stylua" },
     http = { "kulala-fmt" },
     sql = { "sqlfmt" },

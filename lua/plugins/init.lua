@@ -353,7 +353,6 @@ return {
           enable = true, -- set to false to disable all additional syntax features
           update_debounce = 200, -- update delay after a text change (in milliseconds)
           checkboxes = {
-            -- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
             [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
             ["x"] = { char = "", hl_group = "ObsidianDone" },
             [">"] = { char = "", hl_group = "ObsidianRightArrow" },
