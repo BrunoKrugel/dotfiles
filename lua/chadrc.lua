@@ -43,6 +43,7 @@ M.mason = {
     "typescript-language-server",
     "prettier",
     "eslint-lsp",
+    "eslint_d",
     "emmet-ls",
     "rustywind",
 
