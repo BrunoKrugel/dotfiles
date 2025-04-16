@@ -6,6 +6,7 @@ require("lint").linters.deadcode = {
   ignore_exitcode = true,
   args = { "-test", "./..." },
   stream = "stdout",
+  name = "deadcode",
   parser = function(output, bufnr)
     local diagnostics = {}
     local current_file = vim.api.nvim_buf_get_name(bufnr) -- Absolute path of the current file
