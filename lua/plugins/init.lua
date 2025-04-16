@@ -251,7 +251,7 @@ return {
   ----------------------------------------- enhance plugins ------------------------------------------
   {
     "okuuva/auto-save.nvim",
-    event = { "ModeChanged" },
+    event = { "BufReadPost" },
     config = function()
       require "configs.autosave"
     end,
