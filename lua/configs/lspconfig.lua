@@ -22,7 +22,7 @@ end
 ---@param client vim.lsp.Client gopls instance
 ---@param bufnr number buffer to organize imports for
 local function organize_imports(client, bufnr)
-  local gopls = vim.lsp.get_clients({ bufnr = 0, name = 'gopls' })
+  local gopls = vim.lsp.get_clients { bufnr = 0, name = "gopls" }
 
   local params = vim.lsp.util.make_range_params(0, gopls[1].offset_encoding)
   params.context = { only = { "source.organizeImports" } }
@@ -81,7 +81,6 @@ local custom_on_attach = function(client, bufnr)
 end
 
 local go_on_attach = function(client, bufnr)
-
   if client.name ~= "gopls" then
     return
   end
@@ -114,24 +113,6 @@ vim.lsp.handlers[methods.client_registerCapability] = function(err, res, ctx)
   return register_capability(err, res, ctx)
 end
 
-
--- if you just want default config for the servers then put them in a table
-local servers = {
-  "html",
-  "cssls",
-  "clangd",
-  "astro",
-  "marksman",
-  "emmet_ls",
-  "jsonls",
-  "dockerls",
-  "lua_ls",
-  "vuels",
-  "yamlls",
-  "terraformls",
-   "vtsls",
-}
-
 vim.lsp.handlers["textDocument/hover"] = require("noice").hover
 vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
   local ts_lsp = { "ts_ls", "angularls", "volar", "vtsls" }
@@ -147,17 +128,89 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx,
   vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx, config)
 end
 
+-- if you just want default config for the servers then put them in a table
+local servers = {
+  "html",
+  "cssls",
+  "clangd",
+  "astro",
+  "marksman",
+  "emmet_ls",
+  "jsonls",
+  "dockerls",
+  "lua_ls",
+  "vuels",
+  "yamlls",
+  "terraformls",
+  "vtsls",
+}
+
 require("mason-lspconfig").setup {
   ensure_installed = servers,
   automatic_installation = true,
 }
 
--- for _, lsp in ipairs(servers) do
---   lspconfig[lsp].setup {
---     on_attach = on_attach,
---     capabilities = capabilities,
---   }
--- end
+vim.lsp.enable(servers)
+
+vim.lsp.config("jsonls", {
+  settings = {
+    json = {
+      schemas = require("schemastore").json.schemas(),
+      validate = { enable = true },
+    },
+  },
+})
+
+vim.lsp.config("vtsls", {
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx",
+    "astro",
+  },
+  settings = {
+    complete_function_calls = true,
+    vtsls = {
+      enableMoveToFileCodeAction = true,
+      autoUseWorkspaceTsdk = true,
+      experimental = {
+        completion = {
+          enableServerSideFuzzyMatch = true,
+          entriesLimit = 50,
+        },
+      },
+    },
+    javascript = {
+      updateImportsOnFileMove = { enabled = "always" },
+      suggest = { completeFunctionCalls = true },
+    },
+    typescript = {
+      format = {
+        indentSize = vim.o.shiftwidth,
+        convertTabsToSpaces = vim.o.expandtab,
+        tabSize = vim.o.tabstop,
+      },
+      preferences = {
+        importModuleSpecifier = "non-relative",
+        includePackageJsonAutoImports = "off",
+        autoImportFileExcludePatterns = { ".git", "node_modules" },
+      },
+      updateImportsOnFileMove = { enabled = "always" },
+      suggest = { completeFunctionCalls = true },
+      inlayHints = {
+        enumMemberValues = { enabled = true },
+        functionLikeReturnTypes = { enabled = false },
+        parameterNames = { enabled = "all" },
+        parameterTypes = { enabled = false },
+        propertyDeclarationTypes = { enabled = true },
+        variableTypes = { enabled = false },
+      },
+    },
+  },
+})
 
 require("lspconfig").kulala_ls.setup {
   on_attach = custom_on_attach,
@@ -166,127 +219,10 @@ require("lspconfig").kulala_ls.setup {
 
 require("mason-lspconfig").setup_handlers {
   function(server_name)
-    if server_name == "tsserver" then
-      server_name = "ts_ls"
-    end
-
     lspconfig[server_name].setup {
       on_attach = custom_on_attach,
       on_init = on_init,
       capabilities = capabilities,
-    }
-  end,
-
-  ["jsonls"] = function()
-    lspconfig["jsonls"].setup {
-      on_attach = custom_on_attach,
-      on_init = on_init,
-      capabilities = capabilities,
-      settings = {
-        json = {
-          schemas = require("schemastore").json.schemas(),
-          validate = { enable = true },
-        },
-      },
-    }
-  end,
-
-  ["terraformls"] = function()
-    lspconfig["terraformls"].setup {
-      on_attach = custom_on_attach,
-      on_init = on_init,
-      capabilities = capabilities,
-    }
-  end,
-
-  ["vtsls"] = function()
-    lspconfig["vtsls"].setup {
-      on_attach = custom_on_attach,
-      capabilities = capabilities,
-      on_init = on_init,
-      filetypes = {
-        "javascript",
-        "javascriptreact",
-        "javascript.jsx",
-        "typescript",
-        "typescriptreact",
-        "typescript.tsx",
-        "astro",
-      },
-      settings = {
-        complete_function_calls = true,
-        vtsls = {
-          enableMoveToFileCodeAction = true,
-          autoUseWorkspaceTsdk = true,
-          experimental = {
-            completion = {
-              enableServerSideFuzzyMatch = true,
-              entriesLimit = 50,
-            },
-          },
-        },
-        javascript = {
-          updateImportsOnFileMove = { enabled = "always" },
-          suggest = { completeFunctionCalls = true },
-        },
-        typescript = {
-          format = {
-            indentSize = vim.o.shiftwidth,
-            convertTabsToSpaces = vim.o.expandtab,
-            tabSize = vim.o.tabstop,
-          },
-          preferences = {
-            importModuleSpecifier = "non-relative",
-            includePackageJsonAutoImports = "off",
-            autoImportFileExcludePatterns = { ".git", "node_modules" },
-          },
-          updateImportsOnFileMove = { enabled = "always" },
-          suggest = { completeFunctionCalls = true },
-          inlayHints = {
-            enumMemberValues = { enabled = true },
-            functionLikeReturnTypes = { enabled = false },
-            parameterNames = { enabled = "all" },
-            parameterTypes = { enabled = false },
-            propertyDeclarationTypes = { enabled = true },
-            variableTypes = { enabled = false },
-          },
-        },
-      },
-    }
-  end,
-
-  ["lua_ls"] = function()
-    lspconfig["lua_ls"].setup {
-      on_attach = custom_on_attach,
-      on_init = on_init,
-      capabilities = capabilities,
-      settings = {
-        Lua = {
-          runtime = {
-            version = "LuaJIT",
-          },
-          diagnostics = {
-            globals = { "use", "vim" },
-          },
-          hint = {
-            enable = true,
-            setType = true,
-          },
-          telemetry = {
-            enable = false,
-          },
-          workspace = {
-            library = {
-              [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-              [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
-              [vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types"] = true,
-              [vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy"] = true,
-            },
-            maxPreload = 100000,
-            preloadFileSize = 10000,
-          },
-        },
-      },
     }
   end,
 
