@@ -292,15 +292,6 @@ return {
     end,
   },
   {
-    "ThePrimeagen/harpoon",
-    branch = "harpoon2",
-    event = "VeryLazy",
-    confing = function()
-      local harpoon = require "harpoon"
-      harpoon:setup()
-    end,
-  },
-  {
     "obsidian-nvim/obsidian.nvim",
     event = {
       "BufReadPre /users/bruno.krugel/Library/Mobile Documents/iCloud~md~obsidian/Documents/Annotation/**.md",

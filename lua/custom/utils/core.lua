@@ -264,48 +264,11 @@ M.tabufline = {
     buttons = function()
       return "%#SplitHl#%@v:lua.ClickUpdate@  %#SplitHl#%@v:lua.ClickGit@  %#SplitHl#%@v:lua.ClickSplit@ "
     end,
-    harpoon = function()
-      local options = {
-        icon = "󰀱 ",
-        indicators = { "1", "2", "3", "4" },
-        active_indicators = { "[1]", "[2]", "[3]", "[4]" },
-        separator = " ",
-      }
-      local list = require("harpoon"):list()
-      local root_dir = list.config:get_root_dir()
-      local current_file_path = vim.api.nvim_buf_get_name(0)
-
-      local length = math.min(list:length(), #options.indicators)
-
-      local status = {}
-      local get_full_path = function(root, value)
-        if vim.uv.os_uname().sysname == "Windows_NT" then
-          return root .. "\\" .. value
-        end
-
-        return root .. "/" .. value
-      end
-
-      for i = 1, length do
-        local value = list:get(i).value
-        local full_path = get_full_path(root_dir, value)
-
-        if full_path == current_file_path then
-          table.insert(status, options.active_indicators[i])
-        else
-          table.insert(status, options.indicators[i])
-        end
-      end
-
-      -- TODO: Only show if Harpoon is open with package.loaded
-      return "%#HarpoonHl# 󰀱 " .. table.concat(status, options.separator) .. " | "
-    end,
   },
   order = {
     "treeOffset",
     "buffers",
     "tabs",
-    "harpoon",
     "buttons",
   },
 }

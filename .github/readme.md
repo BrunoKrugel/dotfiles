@@ -140,9 +140,8 @@ _With [Muren](https://github.com/BrunoKrugel/muren.nvim)_
 ## Custom Statusline tweaks
 
 1. It will show when it's recording a macro.
-2. It will show a custom icon when the file is hooked by Harpoon.
-3. It will show colored icons for the file icon.
-4. It will show a Git icon with the status of the copilot
+2. It will show colored icons for the file icon.
+3. It will show a Git icon with the status of the copilot
 
 ## Custom Tabufline icons
 
@@ -190,5 +189,4 @@ _With [LazyGit](https://github.com/kdheepak/lazygit.nvim)_
 - UI overhaul with [Noice](https://github.com/folke/noice.nvim)
 - UI Improvement with [Telescope-ui-select](https://github.com/nvim-telescope/telescope-ui-select.nvim)
 - Arguments highlights with [hlargs](https://github.com/m-demare/hlargs.nvim)
-- Quick file navigation with [Harpoon](https://github.com/ThePrimeagen/harpoon)
 

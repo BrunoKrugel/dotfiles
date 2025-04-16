@@ -179,7 +179,6 @@ core.load_mappings "telescope"
 core.load_mappings "tabufline"
 core.load_mappings "searchbox"
 core.load_mappings "nvterm"
-core.load_mappings "harpoon"
 core.load_mappings "lspconfig"
 
 return M

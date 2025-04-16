@@ -421,66 +421,6 @@ M.nvterm = {
   },
 }
 
-M.harpoon = {
-  n = {
-    ["<leader>ha"] = {
-      function()
-        local harpoon = require "harpoon"
-        harpoon:list():add()
-      end,
-      "󱡁 Harpoon Add file",
-    },
-    ["<leader>hc"] = {
-      function()
-        local harpoon = require "harpoon"
-        harpoon:list():clear()
-      end,
-      "󱡁 Harpoon Clear",
-    },
-    ["<leader>ta"] = { "<CMD>Telescope harpoon marks<CR>", "󱡀 Toggle quick menu" },
-    ["<leader>hb"] = {
-      function()
-        local harpoon = require "harpoon"
-        harpoon.ui:toggle_quick_menu(harpoon:list(), {
-          title = " Harpoon ",
-          title_pos = "center",
-          border = "rounded",
-          ui_width_ratio = 0.40,
-        })
-      end,
-      "󱠿 Harpoon Menu",
-    },
-    ["<leader>1"] = {
-      function()
-        local harpoon = require "harpoon"
-        harpoon:list():select(1)
-      end,
-      "󱪼 Navigate to file 1",
-    },
-    ["<leader>2"] = {
-      function()
-        local harpoon = require "harpoon"
-        harpoon:list():select(2)
-      end,
-      "󱪽 Navigate to file 2",
-    },
-    ["<leader>3"] = {
-      function()
-        local harpoon = require "harpoon"
-        harpoon:list():select(3)
-      end,
-      "󱪾 Navigate to file 3",
-    },
-    ["<leader>4"] = {
-      function()
-        local harpoon = require "harpoon"
-        harpoon:list():select(4)
-      end,
-      "󱪿 Navigate to file 4",
-    },
-  },
-}
-
 M.lspconfig = {
   n = {
     ["<leader><leader>n"] = { "<CMD> lua require('tsht').nodes() <CR>", " Select Node" },

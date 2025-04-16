@@ -190,7 +190,6 @@ M.add = {
   CodeActionNumber = { link = "Number" },
 
   SplitHl = { fg = "white", bg = "black2" },
-  HarpoonHl = { fg = "white", bg = "black2" },
 
   -- Blankline
   IndentBlanklineContextChar = { fg = "none" },
@@ -209,8 +208,6 @@ M.add = {
   NoicePopup = { fg = "cyan" },
   NoicePopupBorder = { fg = "cyan" },
   NoicePopupmenu = { fg = "cyan" },
-
-  HarpoonBorder = { fg = "cyan" },
 }
 
 return M
