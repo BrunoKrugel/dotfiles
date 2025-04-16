@@ -1,12 +1,9 @@
 -- Load defaults from NvChad
 require("nvchad.configs.lspconfig").defaults()
+local capabilities = require("nvchad.configs.lspconfig").capabilities
+local on_attach = require("nvchad.configs.lspconfig").on_attach
 
 local methods = vim.lsp.protocol.Methods
-
-local on_attach = require("nvchad.configs.lspconfig").on_attach
-local on_init = require("nvchad.configs.lspconfig").on_init
-
-local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
 
@@ -37,22 +34,19 @@ local function organize_imports(client, bufnr)
   end
 end
 
-local function attach_codelens(_, bufnr)
-  vim.api.nvim_create_autocmd({ "BufReadPost", "CursorHold", "InsertLeave" }, {
-    buffer = bufnr,
-    callback = function()
-      vim.lsp.codelens.refresh { bufnr = bufnr }
-    end,
-  })
-end
-
 local custom_on_attach = function(client, bufnr)
   on_attach(client, bufnr)
 
   if client.server_capabilities.textDocument then
     if client.server_capabilities.textDocument.codeLens then
       require("virtualtypes").on_attach(client, bufnr)
-      attach_codelens(client, bufnr)
+
+      vim.api.nvim_create_autocmd({ "BufReadPost", "CursorHold", "InsertLeave" }, {
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.codelens.refresh { bufnr = bufnr }
+        end,
+      })
 
       vim.keymap.set("n", "<leader>cl", vim.lsp.codelens.run, { buffer = bufnr, silent = true })
     end
@@ -238,7 +232,6 @@ vim.lsp.config("vtsls", {
 
 vim.lsp.config("gopls", {
   on_attach = go_on_attach,
-  on_init = on_init,
   capabilities = capabilities,
   filetypes = { "go", "gomod", "gowork", "gosum", "goimpl" },
   init_options = {
