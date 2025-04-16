@@ -150,40 +150,6 @@ autocmd("BufEnter", {
   command = [[if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]],
 })
 
--- Define the VimEnter autocmd
-autocmd("VimEnter", {
-  callback = function()
-    vim.g.status_version = ""
-    local cwd = vim.fn.getcwd()
-
-    -- Check if it's a Go workspace
-    local go_mod_filepath = cwd .. "/go.mod"
-    local go_mod_exists = vim.fn.filereadable(go_mod_filepath) == 1
-
-    if go_mod_exists then
-      local command = "go version"
-      local handle = io.popen(command)
-      local result = handle:read "*a"
-      handle:close()
-      local version = string.match(result, "go(%d+%.%d+%.%d+)")
-      vim.g.status_version = "Go " .. version .. " 󱐋 "
-    else
-      -- Check if it's a Node.js workspace
-      local package_json_filepath = cwd .. "/package.json"
-      local package_json_exists = vim.fn.filereadable(package_json_filepath) == 1
-
-      if package_json_exists then
-        local command = "node --version"
-        local handle = io.popen(command)
-        local result = handle:read "*a"
-        handle:close()
-        local version = string.match(result, "v([%d.]+)")
-        vim.g.status_version = "Node " .. version .. " 󱐋 "
-      end
-    end
-  end,
-})
-
 autocmd("BufEnter", {
   desc = "Prevent auto comment new line",
   command = [[set formatoptions-=cro]],

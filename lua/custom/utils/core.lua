@@ -87,14 +87,6 @@ local function hasLspErrors()
   return false
 end
 
-function Get_Version()
-  if vim.g.status_version ~= nil then
-    return vim.g.status_version
-  else
-    return ""
-  end
-end
-
 function Get_Conflict()
   local conflict = ""
 
