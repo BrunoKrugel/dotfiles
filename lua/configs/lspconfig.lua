@@ -144,11 +144,16 @@ local servers = {
   "terraformls",
   "vtsls",
   "gopls",
+  "kulala_ls",
 }
 
 vim.lsp.enable(servers)
 
 vim.lsp.config("lua_ls", {
+  on_attach = custom_on_attach,
+})
+
+vim.lsp.config("kulala_ls", {
   on_attach = custom_on_attach,
 })
 
@@ -290,11 +295,6 @@ vim.lsp.config("gopls", {
   },
 })
 
-require("lspconfig").kulala_ls.setup {
-  on_attach = custom_on_attach,
-  capabilities = capabilities,
-}
-
 -- If the buffer has been edited before formatting has completed, do not try to apply the changes
 vim.lsp.handlers["textDocument/formatting"] = function(err, result, ctx, _)
   if err ~= nil or result == nil then
@@ -365,20 +365,3 @@ vim.diagnostic.config {
   update_in_insert = false,
   severity_sort = true,
 }
-
-vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-  callback = function(event)
-    -- Set up keymaps
-    local opts = { buffer = event.buf, silent = true }
-    local client = vim.lsp.get_client_by_id(event.data.client_id)
-
-    -- Mouse mappings for easily navigating code
-    if client:supports_method "definitionProvider" then
-      vim.keymap.set("n", "<2-LeftMouse>", function()
-        vim.lsp.buf.definition()
-      end, opts)
-      vim.keymap.set("n", "<RightMouse>", '<LeftMouse><cmd>lua vim.lsp.buf.hover({border = "single"})<CR>', opts)
-    end
-  end,
-})

@@ -259,7 +259,6 @@ autocmd("TextYankPost", {
   group = augroup("YankHighlight", { clear = true }),
 })
 
-
 autocmd({ "InsertLeave", "WinEnter" }, {
   desc = "Show cursor line only in active window",
   pattern = "*",
@@ -540,4 +539,20 @@ autocmd({ "LspDetach" }, {
     client:stop()
   end,
   desc = "Stop lsp client when no buffer is attached",
+})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(event)
+    -- Set up keymaps
+    local opts = { buffer = event.buf, silent = true }
+    local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+    -- Mouse mappings for easily navigating code
+    if client:supports_method "definitionProvider" then
+      vim.keymap.set("n", "<2-LeftMouse>", function()
+        vim.lsp.buf.definition()
+      end, opts)
+      vim.keymap.set("n", "<RightMouse>", '<LeftMouse><cmd>lua vim.lsp.buf.hover({border = "single"})<CR>', opts)
+    end
+  end,
 })
