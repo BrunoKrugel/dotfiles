@@ -607,7 +607,6 @@ return {
   },
   {
     "folke/trouble.nvim",
-    ft = { "qf" },
     cmd = "Trouble",
     config = function()
       require("trouble").setup {
@@ -844,7 +843,6 @@ return {
   },
   {
     "Chaitanyabsprip/fastaction.nvim",
-    ---@type FastActionConfig
     opts = {
       dismiss_keys = { "<ESC>", "q" },
     },
@@ -887,6 +885,7 @@ return {
         {
           ft = "trouble",
           title = "Diagnostics",
+          size = { height = 0.3 },
         },
         {
           ft = "DiffviewFileHistory",
