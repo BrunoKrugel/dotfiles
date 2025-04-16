@@ -111,46 +111,6 @@ local function sort(entry1, entry2)
   return nil
 end
 
-local function has_words_before()
-  local buftype = vim.api.nvim_buf_get_option(0, "buftype")
-  if buftype == "prompt" then
-    return false
-  end
-
-  local _, col = unpack(vim.api.nvim_win_get_cursor(0))
-  if col == 0 then
-    return false
-  end
-
-  local line = vim.api.nvim_buf_get_lines(0, line - 1, line - 1, true)[1]
-  return not line:match "^%s*$"
-end
-
-local function get_lsp_completion_context(completion, source)
-  local source_name = source.source.client.config.name
-
-  if source_name == "ts_ls" or source_name == "typescript-tools" then
-    return completion.detail
-  elseif source_name == "pyright" and completion.labelDetails ~= nil then
-    return completion.labelDetails.description
-  end
-end
-
-local buffer_option = {
-  get_bufnrs = function()
-    local buf_size_limit = 1024 * 1024
-    local bufs = {}
-    for _, win in ipairs(vim.api.nvim_list_wins()) do
-      local buf = vim.api.nvim_win_get_buf(win)
-      local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
-      if byte_size <= buf_size_limit then
-        bufs[buf] = true
-      end
-    end
-    return vim.tbl_keys(bufs)
-  end,
-}
-
 local is_dap_buffer = function(bufnr)
   local filetype = vim.api.nvim_get_option_value("filetype", { buf = bufnr or 0 })
   if filetype == "dap-repl" or vim.startswith(filetype, "dapui_") then
