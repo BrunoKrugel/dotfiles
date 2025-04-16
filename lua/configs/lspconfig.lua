@@ -5,17 +5,12 @@ local finders = require "telescope.finders"
 local pickers = require "telescope.pickers"
 local make_entry = require "telescope.make_entry"
 local conf = require("telescope.config").values
-local builtin = require "telescope.builtin"
 local methods = vim.lsp.protocol.Methods
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 
-local capabilities = vim.tbl_deep_extend(
-  "force",
-  vim.lsp.protocol.make_client_capabilities(),
-  require("nvchad.configs.lspconfig").capabilities
-)
+local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
 
@@ -25,15 +20,6 @@ if ok then
     dynamicRegistration = false,
     lineFoldingOnly = true,
   }
-end
-
-local function get_pkg_path(pkg, path, opts)
-  local root = vim.env.MASON or (vim.fn.stdpath "data" .. "/mason")
-  opts = opts or {}
-  opts.warn = opts.warn == nil and true or opts.warn
-  path = path or ""
-  local ret = root .. "/packages/" .. pkg .. "/" .. path
-  return ret
 end
 
 ---gopls_organize_imports will organize imports for the provided buffer
