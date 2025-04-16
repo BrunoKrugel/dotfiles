@@ -5,8 +5,6 @@ local on_attach = require("nvchad.configs.lspconfig").on_attach
 
 local methods = vim.lsp.protocol.Methods
 
-local lspconfig = require "lspconfig"
-
 local ok, _ = pcall(require, "ufo")
 if ok then
   capabilities.textDocument.foldingRange = {
@@ -108,7 +106,7 @@ vim.lsp.handlers[methods.client_registerCapability] = function(err, res, ctx)
 end
 
 vim.lsp.handlers["textDocument/hover"] = require("noice").hover
-vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
+vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx)
   local ts_lsp = { "ts_ls", "angularls", "volar", "vtsls" }
   local clients = vim.lsp.get_clients { id = ctx.client_id }
   if vim.tbl_contains(ts_lsp, clients[1].name) then
@@ -117,9 +115,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx,
         return d.severity == 1
       end, result.diagnostics),
     }
-    require("ts-error-translator").translate_diagnostics(err, filtered_result, ctx, config)
+    require("ts-error-translator").translate_diagnostics(err, filtered_result, ctx)
   end
-  vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx, config)
+  vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx)
 end
 
 -- if you just want default config for the servers then put them in a table
