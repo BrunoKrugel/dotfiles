@@ -1036,7 +1036,6 @@ return {
   {
     "stevearc/conform.nvim",
     event = "BufWritePre",
-    dependencies = { "zapling/mason-conform.nvim" },
     config = function()
       require "configs.conform"
     end,
