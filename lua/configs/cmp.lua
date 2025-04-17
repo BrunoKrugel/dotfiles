@@ -232,11 +232,13 @@ M.cmp = {
   },
   -- explanations: https://github.com/hrsh7th/nvim-cmp/blob/main/doc/cmp.txt#L425
   performance = {
-    debounce = 30,
-    throttle = 20,
-    async_budget = 0.8,
+    debounce = 60,
+    throttle = 30,
+    async_budget = 1,
     max_view_entries = 10,
     fetching_timeout = 250,
+    confirm_resolve_timeout = 80,
+    filtering_context_budget = 3,
   },
   snippet = {
     expand = function(args)
@@ -275,11 +277,12 @@ M.cmp = {
     { name = "luasnip_choice" },
   },
   matching = {
-    disallow_fuzzy_matching = true,
-    disallow_fullfuzzy_matching = true,
+    disallow_fuzzy_matching = false,
+    disallow_fullfuzzy_matching = false,
     disallow_partial_fuzzy_matching = true,
     disallow_partial_matching = false,
-    disallow_prefix_unmatching = true,
+    disallow_prefix_unmatching = false,
+    disallow_symbol_nonprefix_matching = true,
   },
   sorting = {
     priority_weight = 2,
