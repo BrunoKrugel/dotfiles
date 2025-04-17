@@ -185,8 +185,6 @@ M.cmp = {
         require("luasnip").expand_or_jump()
       elseif suggestion.has_suggestion() then
         suggestion.on_accept_suggestion()
-      elseif require("neogen").jumpable() then
-        require("neogen").jump()
       elseif check_backspace() then
         fallback()
       else
@@ -197,11 +195,7 @@ M.cmp = {
       "s",
     }),
     ["<S-tab>"] = require("cmp").mapping(function(fallback)
-      if require("neogen").jumpable(true) then
-        require("neogen").jump_prev()
-      else
         fallback()
-      end
     end, {
       "i",
       "s",

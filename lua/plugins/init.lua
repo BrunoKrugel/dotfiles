@@ -85,11 +85,6 @@ return {
     enabled = false,
   },
   {
-    "danymat/neogen",
-    event = "BufReadPost",
-    opts = {},
-  },
-  {
     "NStefan002/visual-surround.nvim",
     event = "InsertEnter",
     config = function()
