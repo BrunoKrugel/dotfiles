@@ -94,13 +94,6 @@ local function go_sort(entry1, entry2)
   elseif kind2 ~= 6 and kind1 == 6 then
     return true
   end
-  -- Put down moudle
-  -- if kind1 == 9 then
-  --     return false
-  -- end
-  -- if kind2 == 9 then
-  --     return true
-  -- end
   return nil
 end
 
@@ -195,7 +188,7 @@ M.cmp = {
       "s",
     }),
     ["<S-tab>"] = require("cmp").mapping(function(fallback)
-        fallback()
+      fallback()
     end, {
       "i",
       "s",
@@ -248,13 +241,10 @@ M.cmp = {
     {
       name = "nvim_lsp",
       keyword_length = 2,
-      max_item_count = 10,
-      -- entry_filter = function(entry, ctx)
-      --   return require("cmp").lsp.CompletionItemKind.Text ~= entry:get_kind()
-      -- end,
+      max_item_count = 5,
+
       entry_filter = limit_lsp_types,
     },
-    { name = "treesitter" },
     {
       name = "luasnip",
       max_item_count = 2,
@@ -267,7 +257,10 @@ M.cmp = {
         return not in_string and not in_comment
       end,
     },
-    { name = "lazydev" },
+    {
+      name = "lazydev",
+      max_item_count = 2,
+    },
     { name = "luasnip_choice" },
   },
   matching = {
