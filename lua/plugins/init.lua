@@ -112,7 +112,6 @@ return {
     url = "https://github.com/iguanacucumber/magazine.nvim",
     opts = cmp_opt.cmp,
     dependencies = {
-      "ray-x/cmp-treesitter",
       {
         "xzbdmw/colorful-menu.nvim",
         opts = {
