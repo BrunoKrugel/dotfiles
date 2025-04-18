@@ -226,7 +226,7 @@ return {
   ----------------------------------------- enhance plugins ------------------------------------------
   {
     "okuuva/auto-save.nvim",
-    event = { "BufReadPost" },
+    event = { "ModeChanged" },
     config = function()
       require "configs.autosave"
     end,
@@ -299,7 +299,7 @@ return {
         },
         code = {
           sign = false,
-          width = "block", -- use 'language' if colorcolumn is important for you.
+          width = "block",
           right_pad = 1,
         },
         dash = {
@@ -309,7 +309,7 @@ return {
           right_pad = 1,
         },
         pipe_table = {
-          style = "full", -- use 'normal' if colorcolumn is important for you.
+          style = "full",
         },
       },
     },
@@ -327,27 +327,20 @@ return {
           nvim_cmp = true,
           min_chars = 2,
         },
-        -- Optional, customize how markdown links are formatted.
-        ---@param opts {path: string, label: string, id: string|?}
-        ---@return string
         markdown_link_func = function(opts)
           return string.format("[%s](%s)", opts.label, opts.path)
         end,
         ui = {
-          enable = true, -- set to false to disable all additional syntax features
-          update_debounce = 200, -- update delay after a text change (in milliseconds)
+          enable = true,
+          update_debounce = 200,
           checkboxes = {
             [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
             ["x"] = { char = "", hl_group = "ObsidianDone" },
             [">"] = { char = "", hl_group = "ObsidianRightArrow" },
             ["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
-            -- You can also add more custom ones...
           },
-          -- Use bullet marks for non-checkbox lists.
           bullets = { char = "•", hl_group = "ObsidianBullet" },
           external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
-          -- Replace the above with this if you don't have a patched font:
-          -- external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
           reference_text = { hl_group = "ObsidianRefText" },
           highlight_text = { hl_group = "ObsidianHighlightText" },
           tags = { hl_group = "ObsidianTag" },
@@ -1023,7 +1016,7 @@ return {
   },
   {
     "sustech-data/wildfire.nvim",
-    event = "VeryLazy",
+    event = "CursorMoved",
     opts = {},
   },
   {
