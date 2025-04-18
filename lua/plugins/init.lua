@@ -214,14 +214,20 @@ return {
     end,
   },
   {
-    "karb94/neoscroll.nvim",
-    keys = { "<C-d>", "<C-u>" },
-    config = function()
-      require("neoscroll").setup { mappings = {
-        "<C-u>",
-        "<C-d>",
-      } }
-    end,
+    "folke/snacks.nvim",
+    event = "VeryLazy",
+    ---@type snacks.Config
+    opts = {
+      animate = {
+        ---@type snacks.animate.Duration|number
+        enabled = true,
+        duration = 20,
+        easing = "linear",
+        fps = 60,
+      },
+      scroll = { enabled = true },
+      lazygit = { enabled = true },
+    },
   },
   ----------------------------------------- enhance plugins ------------------------------------------
   {
@@ -463,21 +469,6 @@ return {
     end,
   },
   {
-    "mawkler/modicator.nvim",
-    event = "ModeChanged",
-    init = function()
-      vim.o.cursorline = true
-      vim.o.number = true
-      vim.o.termguicolors = true
-    end,
-    opts = {
-      show_warnings = false,
-      highlights = {
-        defaults = { bold = true },
-      },
-    },
-  },
-  {
     "MagicDuck/grug-far.nvim",
     cmd = { "GrugFar" },
     config = function()
@@ -640,20 +631,6 @@ return {
     event = "VeryLazy",
     config = function()
       require("telescope").load_extension "ui-select"
-    end,
-  },
-  {
-    "echasnovski/mini.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("mini.animate").setup {
-        scroll = {
-          enable = false,
-        },
-        cursor = {
-          enable = false,
-        },
-      }
     end,
   },
   {
