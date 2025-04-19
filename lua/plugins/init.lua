@@ -993,7 +993,7 @@ return {
   },
   {
     "sustech-data/wildfire.nvim",
-    event = "CursorMoved",
+    keys = { "<CR>" },
     opts = {},
   },
   {
