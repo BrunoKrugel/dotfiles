@@ -428,18 +428,6 @@ return {
         end,
       },
       {
-        "jay-babu/mason-nvim-dap.nvim",
-        opts = {
-          automatic_setup = true,
-          ensure_installed = { "delve" },
-        },
-      },
-      {
-        "LiadOz/nvim-dap-repl-highlights",
-        build = ":TSInstall dap_repl",
-        opts = {},
-      },
-      {
         "rcarriga/nvim-dap-ui",
         config = function()
           require "configs.dapui"
