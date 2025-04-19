@@ -183,13 +183,6 @@ autocmd("User", {
   end,
 })
 
-autocmd('BufRead', {
-  pattern = '*.go',
-  callback = function()
-    require('cmp_tabnine'):prefetch(vim.fn.expand('%:p'))
-  end
-})
-
 autocmd("BufWritePost", {
   desc = "Reload NvimTree after writing the buffer",
   callback = function()

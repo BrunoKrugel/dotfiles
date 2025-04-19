@@ -125,22 +125,6 @@ return {
         },
       },
       {
-        "tzachar/cmp-tabnine",
-        build = "./install.sh",
-        config = function()
-          local tabnine = require "cmp_tabnine.config"
-          tabnine:setup {
-            max_lines = 1000,
-            max_num_results = 3,
-            sort = true,
-            show_prediction_strength = false,
-            run_on_every_keystroke = true,
-            snipper_placeholder = "..",
-            ignored_file_types = {},
-          }
-        end,
-      },
-      {
         "L3MON4D3/LuaSnip",
         build = "make install_jsregexp",
         config = function(_, opts)

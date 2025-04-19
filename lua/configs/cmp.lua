@@ -235,10 +235,6 @@ M.cmp = {
   sources = {
     { name = "supermaven", max_item_count = 2 },
     {
-      name = "cmp_tabnine",
-      max_item_count = 2,
-    },
-    {
       name = "nvim_lsp",
       keyword_length = 2,
       max_item_count = 5,
