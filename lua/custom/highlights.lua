@@ -7,6 +7,7 @@ M.override = {
   Visual = { bg = "black2" },
   Comment = { italic = true },
   NvDashAscii = { fg = "purple", bg = "none" },
+  IndentBlanklineContextChar = { fg = "none" },
   IndentBlanklineContextStart = { bg = "none" },
 
   LspInlayHint = { fg = "#4e5665", bg = "NONE" },
@@ -191,9 +192,8 @@ M.add = {
 
   SplitHl = { fg = "white", bg = "black2" },
 
-  -- Blankline
-  IndentBlanklineContextChar = { fg = "none" },
-  IndentBlanklineContextStart = { bg = "none" },
+  -- SnacksIndent
+  SnacksIndentScope = { link = "NonText" },
 
   DiagnosticUnnecessary = { link = "", fg = "light_grey" },
   LspInlayHint = { link = "", fg = "light_grey" },

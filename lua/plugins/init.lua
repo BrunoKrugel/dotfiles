@@ -2,6 +2,7 @@ local overrides = require "configs.overrides"
 local cmp_opt = require "configs.cmp"
 
 return {
+  -- { import = "nvchad.blink.lazyspec" },
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -13,6 +14,10 @@ return {
   },
   {
     "folke/which-key.nvim",
+    enabled = false,
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
     enabled = false,
   },
   {
@@ -211,6 +216,7 @@ return {
       },
       scroll = { enabled = true },
       lazygit = { enabled = true },
+      indent = { enabled = true },
     },
   },
   ----------------------------------------- enhance plugins ------------------------------------------
@@ -369,13 +375,6 @@ return {
           error = "",
         },
       },
-    },
-  },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    opts = {
-      scope = { enabled = false },
     },
   },
   {
