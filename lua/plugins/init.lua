@@ -43,7 +43,6 @@ return {
       require "nvchad.configs.gitsigns"
     end,
     config = function(_, opts)
-      require("scrollbar.handlers.gitsigns").setup()
       require("gitsigns").setup(opts)
     end,
   },
@@ -535,13 +534,6 @@ return {
       vim.lsp.handlers["textDocument/hover"] = require("noice").hover
       ---@diagnostic disable-next-line: different-requires
       vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
-    end,
-  },
-  {
-    "petertriho/nvim-scrollbar",
-    event = "WinScrolled",
-    config = function()
-      require "configs.scrollbar"
     end,
   },
   {
