@@ -13,6 +13,11 @@ return {
     end,
   },
   {
+  "williamboman/mason.nvim",
+  url = "https://github.com/iguanacucumber/mason.nvim",
+  branch = "next"
+  },
+  {
     "folke/which-key.nvim",
     enabled = false,
   },
