@@ -26,6 +26,10 @@ return {
     enabled = false,
   },
   {
+    "hrsh7th/cmp-path",
+    enabled = false,
+  },
+  {
     "nvzone/volt",
     event = "BufReadPost",
     dependencies = {
@@ -601,13 +605,6 @@ return {
   {
     "b0o/schemastore.nvim",
     ft = { "json", "yaml", "yml" },
-  },
-  {
-    "nvim-telescope/telescope-ui-select.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("telescope").load_extension "ui-select"
-    end,
   },
   {
     "BrunoKrugel/muren.nvim",
