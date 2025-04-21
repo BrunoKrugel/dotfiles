@@ -21,7 +21,7 @@ opt.laststatus = 3 -- global statusline
 opt.showmode = false
 opt.smoothscroll = true
 
-vim.opt.sessionoptions = "blank,buffers,curdir,tabpages,winsize,winpos,terminal,localoptions"
+opt.sessionoptions = "blank,buffers,curdir,tabpages,winsize,winpos,terminal,localoptions"
 
 opt.clipboard = "unnamedplus"
 opt.cursorline = true
@@ -65,7 +65,7 @@ g.mapleader = " "
 g.maplocalleader = " "
 g.dap_virtual_text = true
 g.bookmark_sign = ""
-vim.g.query_lint_on = { "BufWrite" }
+g.query_lint_on = { "BufWrite" }
 
 opt.conceallevel = 2
 opt.concealcursor = "" --- Set to an empty string to expand tailwind class when on cursorline
@@ -76,15 +76,13 @@ opt.foldcolumn = "auto" -- show foldcolumn in nvim 0.9
 opt.foldnestmax = 0
 opt.foldlevel = 99
 opt.foldlevelstart = 99
-vim.opt.fillchars = {
+opt.fillchars = {
   fold = " ",
   foldopen = "",
   -- foldopen = '◡',
   foldsep = " ",
   foldclose = "",
-  -- foldclose = '▹',
   -- foldclose = '◠',
-  -- [eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
   stl = " ",
   eob = " ",
 }
