@@ -85,7 +85,19 @@ opt.fillchars = {
   -- foldclose = '◠',
   stl = " ",
   eob = " ",
+  diff = "╱",
 }
+
+opt.diffopt = {
+  "internal",
+  "filler",
+  "closeoff",
+  "context:12",
+  "algorithm:histogram",
+  "linematch:200",
+  "indent-heuristic",
+}
+
 -- opt.foldmethod = "expr"
 -- opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
