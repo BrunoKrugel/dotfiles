@@ -230,21 +230,6 @@ vim.lsp.config("eslint", {
       return {}
     end,
 
-    ["eslint/openDoc"] = function(_, result)
-      if not result then
-        return
-      end
-      local sysname = vim.uv.os_uname().sysname
-      if sysname:match "Windows_NT" then
-        os.execute(string.format("start %q", result.url))
-      elseif sysname:match "Linux" then
-        os.execute(string.format("xdg-open %q", result.url))
-      else
-        os.execute(string.format("open %q", result.url))
-      end
-      return {}
-    end,
-
     ["eslint/probeFailed"] = function()
       vim.notify("[lspconfig] ESLint probe failed.", vim.log.levels.WARN)
       return {}
