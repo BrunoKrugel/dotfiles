@@ -83,7 +83,6 @@ M.add = {
   NvimDapVirtualText = { fg = "cyan", italic = true },
   NvimDapVirtualTextChanged = { fg = "yellow", italic = true },
 
-
   ["@number.luadoc"] = { fg = "Comment" },
   ["@markup.quote.markdown"] = { bg = "NONE" },
 
@@ -177,11 +176,6 @@ M.add = {
   -- Deprecated
   cssDeprecated = { strikethrough = true },
   javaScriptDeprecated = { strikethrough = true },
-
-  -- Search highlights
-  HlSearchNear = { fg = "#2E3440", bg = "yellow" },
-  HlSearchLens = { fg = "#2E3440", bg = "blue" },
-  HlSearchLensNear = { fg = "#2E3440", bg = "yellow" },
 
   -- LSP Saga
   SagaBorder = { fg = "blue" },
