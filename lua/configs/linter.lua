@@ -37,6 +37,7 @@ require("lint").linters.deadcode = {
 
 require("lint").linters_by_ft = {
   codespell = { "codespell" },
+  dockerfile = { "hadolint" },
   javascript = { "eslint_d" },
   typescript = { "eslint_d" },
   javascriptreact = { "eslint_d" },
