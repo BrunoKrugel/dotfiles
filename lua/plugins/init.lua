@@ -859,6 +859,13 @@ return {
     },
   },
   {
+    "nvim-telescope/telescope-ui-select.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("telescope").load_extension "ui-select"
+    end,
+  },
+  {
     "akinsho/toggleterm.nvim",
     keys = { [[<C-\>]] },
     cmd = { "ToggleTerm", "ToggleTermOpenAll", "ToggleTermCloseAll" },
