@@ -55,6 +55,8 @@ M.mason = {
     "json-lsp",
 
     "dockerfile-language-server",
+    "hadolint",
+    "docker-compose-language-service",
 
     -- golang
     "gopls",
