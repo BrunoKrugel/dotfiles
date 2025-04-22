@@ -122,6 +122,7 @@ M.devicons = {
 
 M.treesitter = {
   auto_install = true,
+  highlight = { enable = true, disable = { 'dockerfile' } },
   ensure_installed = {
     "vim",
     "lua",
