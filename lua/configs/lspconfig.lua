@@ -130,6 +130,7 @@ local servers = {
   "emmet_ls",
   "jsonls",
   "dockerls",
+  "docker_compose_language_service",
   "lua_ls",
   "vuels",
   "yamlls",
@@ -174,6 +175,14 @@ vim.lsp.config("lua_ls", {
 })
 
 vim.lsp.config("kulala_ls", {
+  on_attach = custom_on_attach,
+})
+
+vim.lsp.config("dockerls", {
+  on_attach = custom_on_attach,
+})
+
+vim.lsp.config("docker_compose_language_service", {
   on_attach = custom_on_attach,
 })
 
