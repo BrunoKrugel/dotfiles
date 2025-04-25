@@ -337,9 +337,12 @@ vim.lsp.config("vtsls", {
 vim.lsp.config("gopls", {
   on_attach = go_on_attach,
   capabilities = capabilities,
-  filetypes = { "go", "gomod", "gowork", "gosum", "goimpl" },
+  filetypes = { "go", "gomod", "gowork", "gosum", "goimpl", "gohtmltmpl", "gotexttmpl", "gohtml" },
   init_options = {
     usePlaceholders = true,
+  },
+  flags = {
+    debounce_text_changes = 150,
   },
   settings = {
     gopls = {
@@ -352,6 +355,9 @@ vim.lsp.config("gopls", {
       gofumpt = true,
       staticcheck = true,
       semanticTokens = true,
+      symbolMatcher = "fuzzy",
+      completeUnimported = true,
+      diagnosticsDelay = "500ms",
       analyses = {
         fieldalignment = true,
         shadow = true,
