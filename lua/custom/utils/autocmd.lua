@@ -306,15 +306,13 @@ autocmd("BufWritePre", {
   end,
 })
 
--- Nvimtree open file on creation
-local function open_file_created()
-  require("nvim-tree.api").events.subscribe("FileCreated", function(file)
-    vim.cmd("edit " .. file.fname)
-  end)
-end
-
 autocmd({ "VimEnter" }, {
-  callback = open_file_created,
+  desc = "Nvimtree open file on creation",
+  callback = function()
+    require("nvim-tree.api").events.subscribe("FileCreated", function(file)
+      vim.cmd("edit " .. file.fname)
+    end)
+  end,
 })
 
 -- prevent comment from being inserted when entering new line in existing comment
@@ -330,7 +328,10 @@ autocmd("BufEnter", {
 })
 
 -- Show `` in specific files
-autocmd({ "BufRead", "BufNewFile" }, { pattern = { "*.txt", "*.md", "*.json" }, command = "setlocal conceallevel=2" })
+autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.txt", "*.md", "*.json" },
+  command = "setlocal conceallevel=2",
+})
 
 -- Switch to insert mode when terminal is open
 local term_augroup = vim.api.nvim_create_augroup("Terminal", { clear = true })
@@ -403,20 +404,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.api.nvim_create_autocmd("OptionSet", {
-  pattern = "diff",
-  callback = function()
-    local ok, ibl = pcall(require, "ibl")
-    if ok then
-      if vim.opt.diff:get() then
-        ibl.update { enabled = false }
-      else
-        ibl.update { enabled = true }
-      end
-    end
-  end,
-})
-
 autocmd({ "BufEnter", "BufNewFile" }, {
   callback = function()
     if vim.bo.filetype == "markdown" then
@@ -482,6 +469,7 @@ autocmd({ "InsertEnter", "WinLeave" }, {
 })
 
 autocmd("BufDelete", {
+  desc = "Show NvDash when all buffers are closed",
   callback = function()
     local bufs = vim.t.bufs
     if #bufs == 1 and vim.api.nvim_buf_get_name(bufs[1]) == "" then
@@ -491,6 +479,7 @@ autocmd("BufDelete", {
 })
 
 autocmd({ "CursorHold", "CursorHoldI" }, {
+  desc = "Run Lint",
   callback = function()
     require("lint").try_lint()
   end,
