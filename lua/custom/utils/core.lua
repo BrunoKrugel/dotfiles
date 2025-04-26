@@ -122,19 +122,6 @@ function GetTrouble()
   return symbols.get
 end
 
-function Get_npm()
-  local ok, package = pcall(require, "package-info")
-  if ok then
-    local status = package.get_status()
-    if status ~= "" then
-      return "  " .. status .. " "
-    end
-    return ""
-  else
-    return ""
-  end
-end
-
 function Get_dap()
   if package.loaded["dap"] then
     local ok, dap = pcall(require, "dap")
@@ -400,7 +387,7 @@ M.statusline = {
 
       local modes = utils.modes
 
-      modes["n"][3] = "  "
+      modes["n"][3] = " 󰀘 "
       modes["v"][3] = "  "
       modes["i"][3] = "  "
       modes["t"][3] = "  "
