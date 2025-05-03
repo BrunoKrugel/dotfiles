@@ -199,6 +199,7 @@ M.treesitter = {
   playground = {
     enable = true,
   },
+  indent = { enable = false }, --NOTE: This is an experimental feature(also create some lag on rapid keystorks).
 }
 
 M.mason = {
