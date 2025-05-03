@@ -1,8 +1,13 @@
 local overrides = require "configs.overrides"
 local cmp_opt = require "configs.cmp"
+local blink_opt = require "configs.blink"
 
 return {
-  -- { import = "nvchad.blink.lazyspec" },
+
+  -- {
+  --   'saghen/blink.cmp',
+  --   opts = blink_opt.blink,
+  -- },
   {
     "neovim/nvim-lspconfig",
     dependencies = {
