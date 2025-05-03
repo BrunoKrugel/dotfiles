@@ -18,9 +18,9 @@ return {
     end,
   },
   {
-  "williamboman/mason.nvim",
-  url = "https://github.com/iguanacucumber/mason.nvim",
-  branch = "next"
+    "williamboman/mason.nvim",
+    url = "https://github.com/iguanacucumber/mason.nvim",
+    branch = "next",
   },
   {
     "folke/which-key.nvim",
@@ -32,6 +32,10 @@ return {
   },
   {
     "hrsh7th/cmp-path",
+    enabled = false,
+  },
+  {
+    "NvChad/nvim-colorizer.lua",
     enabled = false,
   },
   {
@@ -97,10 +101,6 @@ return {
       require("nvim-tree").setup(opts)
       require("nvim-tree.diagnostics").update_lsp()
     end,
-  },
-  {
-    "NvChad/nvim-colorizer.lua",
-    enabled = false,
   },
   {
     "NStefan002/visual-surround.nvim",
