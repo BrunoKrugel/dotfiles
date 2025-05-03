@@ -1,0 +1,85 @@
+local M = {}
+-- WIP
+M.blink = {
+  signature = {
+    enabled = false,
+  },
+  completion = {
+    list = {
+      max_items = 5,
+      selection = {
+        preselect = false,
+        auto_insert = false,
+      },
+      cycle = {
+        from_bottom = true,
+        from_top = true,
+      },
+    },
+    accept = {
+      auto_brackets = {
+        enabled = false,
+      },
+    },
+    trigger = {
+      prefetch_on_insert = true,
+      show_on_keyword = false,
+    },
+    menu = {
+      draw = {
+        columns = { { "kind_icon" }, { "label", gap = 1 } },
+        components = {
+          label = {
+            text = function(ctx)
+              return require("colorful-menu").blink_components_text(ctx)
+            end,
+            highlight = function(ctx)
+              return require("colorful-menu").blink_components_highlight(ctx)
+            end,
+          },
+        },
+      },
+    },
+  },
+  sources = {
+    default = {
+      "lsp",
+      "path",
+    },
+    providers = {
+      lsp = { fallbacks = { "lazydev" } },
+      lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
+    },
+    transform_items = function(_, items)
+      return vim.tbl_filter(function(item)
+        return item.kind ~= require("blink.cmp.types").CompletionItemKind.Snippet
+      end, items)
+    end,
+  },
+  fuzzy = {
+    sorts = {
+      "exact",
+      "score",
+      "sort_text",
+    },
+  },
+  keymap = {
+    ["<Up>"] = { "select_prev", "fallback" },
+    ["<Down>"] = { "select_next", "fallback" },
+    ["<Tab>"] = {
+      function(_)
+        local suggestion = require "supermaven-nvim.completion_preview"
+        if suggestion.has_suggestion() then
+          suggestion.on_accept_suggestion()
+        end
+      end,
+      "snippet_forward",
+      "fallback",
+    },
+    ["<S-Tab>"] = { "snippet_backward", "fallback" },
+    ["<Esc>"] = { "cancel", "fallback" },
+    ["Enter"] = { "select_and_accept", "fallback" },
+  },
+}
+
+return M
