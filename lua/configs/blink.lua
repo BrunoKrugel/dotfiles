@@ -5,6 +5,7 @@ M.blink = {
     enabled = false,
   },
   completion = {
+    ghost_text = { enabled = false  },
     list = {
       max_items = 5,
       selection = {
@@ -25,9 +26,13 @@ M.blink = {
       prefetch_on_insert = true,
       show_on_keyword = false,
     },
+    documentation = {
+      auto_show = true,
+      auto_show_delay_ms = 500,
+    },
     menu = {
       draw = {
-        columns = { { "kind_icon" }, { "label", gap = 1 } },
+        columns = { { "kind_icon" }, { "label", gap = 1 }, { "kind" } },
         components = {
           label = {
             text = function(ctx)
@@ -67,13 +72,13 @@ M.blink = {
     ["<Up>"] = { "select_prev", "fallback" },
     ["<Down>"] = { "select_next", "fallback" },
     ["<Tab>"] = {
-      function(_)
-        local suggestion = require "supermaven-nvim.completion_preview"
-        if suggestion.has_suggestion() then
-          suggestion.on_accept_suggestion()
-        end
-      end,
-      "snippet_forward",
+      -- function(_)
+      --   local suggestion = require "supermaven-nvim.completion_preview"
+      --   if suggestion.has_suggestion() then
+      --     suggestion.on_accept_suggestion()
+      --   end
+      -- end,
+      -- "snippet_forward",
       "fallback",
     },
     ["<S-Tab>"] = { "snippet_backward", "fallback" },
