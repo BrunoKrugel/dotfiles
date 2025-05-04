@@ -129,20 +129,6 @@ return {
       { "hrsh7th/cmp-buffer", url = "https://github.com/iguanacucumber/mag-buffer" },
       { "hrsh7th/cmp-nvim-lua", url = "https://github.com/iguanacucumber/mag-nvim-lua" },
       {
-        "xzbdmw/colorful-menu.nvim",
-        opts = {
-          ls = {
-            lua_ls = {
-              -- Maybe you want to dim arguments a bit.
-              arguments_hl = "@comment",
-            },
-            gopls = {
-              align_type_to_right = true,
-            },
-          },
-        },
-      },
-      {
         "L3MON4D3/LuaSnip",
         build = "make install_jsregexp",
         config = function(_, opts)
@@ -156,14 +142,6 @@ return {
         "windwp/nvim-autopairs",
         config = function()
           require "configs.autopair"
-        end,
-      },
-      {
-        "supermaven-inc/supermaven-nvim",
-        config = function()
-          require("supermaven-nvim").setup {
-            disable_keymaps = true,
-          }
         end,
       },
     },
@@ -230,6 +208,28 @@ return {
       scroll = { enabled = true },
       lazygit = { enabled = true },
       indent = { enabled = true },
+    },
+  },
+  {
+    "supermaven-inc/supermaven-nvim",
+    event = "InsertEnter",
+    config = function()
+      require("supermaven-nvim").setup {
+        disable_keymaps = true,
+      }
+    end,
+  },
+  {
+    "xzbdmw/colorful-menu.nvim",
+    opts = {
+      ls = {
+        lua_ls = {
+          arguments_hl = "@comment",
+        },
+        gopls = {
+          align_type_to_right = true,
+        },
+      },
     },
   },
   ----------------------------------------- enhance plugins ------------------------------------------
