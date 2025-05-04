@@ -100,14 +100,6 @@ function Get_Conflict()
   return conflict
 end
 
-function Get_Cmp()
-  if vim.g.cmptoggle == true then
-    return "󰞏  "
-  else
-    return "󱜞  "
-  end
-end
-
 function GetTrouble()
   local trouble = require "trouble"
   local symbols = trouble.statusline {
@@ -397,7 +389,7 @@ M.statusline = {
     end,
 
     notification = function()
-      return "%#StText#" .. "%@v:lua.ClickNotifications@ " .. " %#St_lspError#" .. Get_Cmp()
+      return "%#StText#" .. "%@v:lua.ClickNotifications@ " .. " %#St_lspError#"
     end,
 
     dap = function()
