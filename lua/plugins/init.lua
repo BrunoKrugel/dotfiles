@@ -3,9 +3,8 @@ local cmp_opt = require "configs.cmp"
 local blink_opt = require "configs.blink"
 
 return {
-
   -- {
-  --   'saghen/blink.cmp',
+  --   "saghen/blink.cmp",
   --   opts = blink_opt.blink,
   -- },
   {
