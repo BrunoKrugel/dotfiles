@@ -194,7 +194,21 @@ return {
         easing = "linear",
         fps = 60,
       },
-      scroll = { enabled = true },
+      scroll = {
+        enabled = true,
+        animate = {
+          duration = {
+            step = 15,
+            total = 250,
+          },
+          easing = "outQuad",
+        },
+        animate_repeat = {
+          delay = 100,
+          duration = { step = 5, total = 50 },
+          easing = "outQuad",
+        },
+      },
       lazygit = { enabled = true },
       indent = { enabled = true },
     },
@@ -473,13 +487,6 @@ return {
         toggle_grugfar()
       end, { desc = "Toggle GrugFar" })
     end,
-  },
-  {
-    "yorickpeterse/nvim-dd",
-    event = "LspAttach",
-    opts = {
-      timeout = 1000,
-    },
   },
   {
     "zeioth/garbage-day.nvim",
