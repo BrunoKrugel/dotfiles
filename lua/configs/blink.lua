@@ -5,7 +5,13 @@ M.blink = {
     enabled = false,
   },
   completion = {
-    ghost_text = { enabled = false  },
+    ghost_text = {
+      enabled = false,
+      show_with_menu = false,
+      show_with_selection = false,
+      show_without_selection = false,
+      show_without_menu = false,
+    },
     list = {
       max_items = 5,
       selection = {
@@ -32,6 +38,7 @@ M.blink = {
     },
     menu = {
       draw = {
+        align_to = "cursor",
         columns = { { "kind_icon" }, { "label", gap = 1 }, { "kind" } },
         components = {
           label = {
@@ -46,6 +53,12 @@ M.blink = {
       },
     },
   },
+  enabled = function()
+    if require("cmp_dap").is_dap_buffer() then
+      return "force"
+    end
+    return true
+  end,
   sources = {
     default = {
       "lsp",
@@ -69,20 +82,31 @@ M.blink = {
     },
   },
   keymap = {
+    preset = "super-tab",
     ["<Up>"] = { "select_prev", "fallback" },
     ["<Down>"] = { "select_next", "fallback" },
     ["<Tab>"] = {
-      -- function(_)
-      --   local suggestion = require "supermaven-nvim.completion_preview"
-      --   if suggestion.has_suggestion() then
-      --     suggestion.on_accept_suggestion()
-      --   end
-      -- end,
+      function(_)
+        local suggestion = require "supermaven-nvim.completion_preview"
+        if suggestion.has_suggestion() then
+          suggestion.on_accept_suggestion()
+        end
+      end,
       -- "snippet_forward",
       "fallback",
     },
     ["<S-Tab>"] = { "snippet_backward", "fallback" },
-    ["<Esc>"] = { "cancel", "fallback" },
+    ["<Esc>"] = {
+      function(cmp)
+        if cmp.is_visible() then
+          cmp.cancel()
+        else
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-c>", true, true, true), "n", true)
+        end
+      end,
+      "hide",
+      "fallback",
+    },
     ["Enter"] = { "select_and_accept", "fallback" },
   },
 }
