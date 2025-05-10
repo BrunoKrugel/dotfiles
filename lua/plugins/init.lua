@@ -17,11 +17,6 @@ return {
     end,
   },
   {
-    "williamboman/mason.nvim",
-    url = "https://github.com/iguanacucumber/mason.nvim",
-    branch = "next",
-  },
-  {
     "folke/which-key.nvim",
     enabled = false,
   },
@@ -122,6 +117,7 @@ return {
   {
     "hrsh7th/nvim-cmp",
     url = "https://github.com/iguanacucumber/magazine.nvim",
+    event = "InsertEnter",
     opts = cmp_opt.cmp,
     dependencies = {
       { "hrsh7th/cmp-nvim-lsp", url = "https://github.com/iguanacucumber/mag-nvim-lsp" },
@@ -135,12 +131,6 @@ return {
           require "nvchad.configs.luasnip"
           ---@diagnostic disable-next-line: different-requires
           require "configs.luasnip"
-        end,
-      },
-      {
-        "windwp/nvim-autopairs",
-        config = function()
-          require "configs.autopair"
         end,
       },
     },
