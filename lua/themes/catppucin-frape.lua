@@ -55,7 +55,7 @@ M.base_16 = {
 
 M.polish_hl = {
   treesitter = {
-    -- ["@variable"] = { fg = M.base_30.lavender },
+    ["@variable"] = { fg = M.base_30.lavender },
     ["@variable.builtin"] = { fg = M.base_30.red },
 
     ["@function.builtin"] = { fg = M.base_30.cyan },
@@ -68,7 +68,7 @@ M.polish_hl = {
     -- ["@type"] = { fg = M.base_30.purple },
     ["@type.builtin"] = { fg = M.base_30.purple },
 
-    ["@variable"] = { fg = M.base_30.sun },
+    -- ["@variable"] = { fg = M.base_30.sun },
   },
 }
 
