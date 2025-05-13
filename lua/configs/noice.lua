@@ -1,10 +1,4 @@
-local present, noice = pcall(require, "noice")
-
-if not present then
-  return
-end
-
-noice.setup {
+require("noice").setup {
   cmdline = {
     enabled = true,
     view = "cmdline_popup",
