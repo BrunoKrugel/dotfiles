@@ -11,7 +11,7 @@ dapui.setup(core.dapui)
 dap.adapters.go = {
   type = "executable",
   command = "node",
-  args = { vim.fn.exepath("go-debug-adapter") .. "/extension/dist/debugAdapter.js" },
+  args = { vim.fn.expand("$MASON") .. "/packages/go-debug-adapter/extension/dist/debugAdapter.js" },
 }
 
 dap.configurations.go = {
