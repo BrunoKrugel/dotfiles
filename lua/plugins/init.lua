@@ -41,15 +41,6 @@ return {
     },
   },
   {
-    "lewis6991/gitsigns.nvim",
-    opts = function()
-      require "nvchad.configs.gitsigns"
-    end,
-    config = function(_, opts)
-      require("gitsigns").setup(opts)
-    end,
-  },
-  {
     "nvim-tree/nvim-web-devicons",
     opts = overrides.devicons,
   },
@@ -129,8 +120,6 @@ return {
         config = function(_, opts)
           require("luasnip").config.set_config(opts)
           require "nvchad.configs.luasnip"
-          ---@diagnostic disable-next-line: different-requires
-          require "configs.luasnip"
         end,
       },
     },
