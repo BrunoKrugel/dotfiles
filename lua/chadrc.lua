@@ -135,21 +135,6 @@ M.colorify = {
   },
 }
 
-M.settings = {
-  cc_size = "130",
-  so_size = 10,
-
-  -- Blacklisted files where cc and so must be disabled
-  blacklist = {
-    "NvimTree",
-    "nvdash",
-    "nvcheatsheet",
-    "terminal",
-    "Trouble",
-    "help",
-  },
-}
-
 M.lazy_nvim = core.lazy
 
 M.gitsigns = {
