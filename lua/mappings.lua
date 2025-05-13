@@ -433,8 +433,6 @@ map("n", "<leader>qq", "<<CMD>qa!<CR>", { desc = "󰗼 Exit" })
 map({ "n" }, "<leader>e", "<cmd> NvimTreeToggle <CR>", { desc = "󰔱 Toggle nvimtree" })
 map({ "n", "i" }, "<C-b>", "<cmd> NvimTreeToggle <CR>", { desc = "Toggle nvimtree" })
 
-map({ "n" }, "<leader>to", "<CMD>TSJToggle<CR>", { desc = "󱓡 Toggle split/join" })
-
 --------------------------------------------------- Text ---------------------------------------------------
 map("n", "<C-z>", "<CMD>u<CR>", { desc = "󰕌 Undo" })
 map("n", "<BS>", "<C-o>", { desc = "Return" })
