@@ -3,23 +3,6 @@ local cmd = vim.api.nvim_command
 local augroup = vim.api.nvim_create_augroup
 local fn = vim.fn
 
-autocmd("ModeChanged", {
-  desc = "Move to relative line number when in visual mode",
-  callback = function(args)
-    local newmode = args.match:match ":(.*)"
-    local visual_modes = {
-      ["v"] = true,
-      ["V"] = true,
-      [""] = true,
-    }
-    if visual_modes[newmode] then
-      cmd "set relativenumber"
-    else
-      cmd "set norelativenumber"
-    end
-  end,
-})
-
 autocmd("FileType", {
   desc = "Workaround for NvMenu being below NvimTree.",
   pattern = "NvMenu",
