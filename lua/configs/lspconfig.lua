@@ -115,7 +115,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx)
         return d.severity == 1
       end, result.diagnostics),
     }
-    require("ts-error-translator").translate_diagnostics(err, filtered_result, ctx)
   end
   vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx)
 end

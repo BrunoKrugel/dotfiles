@@ -911,15 +911,6 @@ return {
   },
   ----------------------------------------- language plugins ------------------------------------------
   {
-    "dmmulroy/ts-error-translator.nvim",
-    ft = {
-      "javascript",
-      "typescript",
-      "javascriptreact",
-      "typescriptreact",
-    },
-  },
-  {
     "nvim-neotest/neotest",
     ft = { "go", "javascript", "typescript", "javascriptreact", "typescriptreact" },
     dependencies = {
@@ -963,11 +954,6 @@ return {
     init = function()
       vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
     end,
-  },
-  {
-    "sustech-data/wildfire.nvim",
-    keys = { "<CR>" },
-    opts = {},
   },
   {
     "chrisgrieser/nvim-recorder",
