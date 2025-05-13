@@ -1,9 +1,4 @@
-local present, autoSave = pcall(require, "auto-save")
-if not present then
-  return
-end
-
-autoSave.setup {
+require("auto-save").setup {
   -- The name of the augroup.
   augroup_name = "AutoSavePlug",
   events = { "InsertLeave" },
