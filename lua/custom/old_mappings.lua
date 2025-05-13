@@ -231,35 +231,6 @@ M.diagnostics = {
   },
 }
 
-M.node = {
-  n = {
-    ["<leader>ns"] = {
-      function()
-        require("package-info").show()
-      end,
-      "󰎙 Show package info",
-    },
-    ["<leader>up"] = {
-      function()
-        require("package-info").update()
-      end,
-      "󰎙 Update package",
-    },
-    ["<leader>nd"] = {
-      function()
-        require("package-info").delete()
-      end,
-      "󰎙 Delete package",
-    },
-    ["<leader>np"] = {
-      function()
-        require("package-info").change_version()
-      end,
-      "󰎙 Install package",
-    },
-  },
-}
-
 -- Go to breakpoints
 -- map('n', ']b', breakpoint.next, 'Go to next breakpoint')
 -- map('n', '[b', breakpoint.prev, 'Go to previous breakpoint')
