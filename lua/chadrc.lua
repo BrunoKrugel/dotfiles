@@ -22,9 +22,6 @@ M.ui = {
   },
 
   telescope = { style = "bordered" },
-
-  hl_override = highlights.override,
-  hl_add = highlights.add,
 }
 
 M.nvdash = core.nvdash
