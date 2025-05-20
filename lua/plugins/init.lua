@@ -205,11 +205,10 @@ return {
   {
     "supermaven-inc/supermaven-nvim",
     event = "InsertEnter",
-    config = function()
-      require("supermaven-nvim").setup {
-        disable_keymaps = true,
-      }
-    end,
+    opts = {
+      disable_keymaps = true,
+      ignore_filetypes = { "bigfile", "snacks_input", "snacks_notif" },
+    },
   },
   {
     "xzbdmw/colorful-menu.nvim",
@@ -227,7 +226,7 @@ return {
   ----------------------------------------- enhance plugins ------------------------------------------
   {
     "okuuva/auto-save.nvim",
-    event = { "ModeChanged" },
+    event = { "InsertLeave", "TextChanged" },
     config = function()
       require "configs.autosave"
     end,
