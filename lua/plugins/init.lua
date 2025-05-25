@@ -228,6 +228,10 @@ return {
     end,
   },
   {
+    "soulis-1256/eagle.nvim",
+    opts = {},
+  },
+  {
     "hiphish/rainbow-delimiters.nvim",
     event = "BufReadPost",
     config = function()
