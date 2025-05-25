@@ -57,15 +57,20 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    branch = "main",
     dependencies = {
       "windwp/nvim-ts-autotag",
     },
     opts = overrides.treesitter,
     build = ":TSUpdate",
+    init = function(plugin)
+      -- perf: make treesitter queries available at startup.
+      require("lazy.core.loader").add_to_rtp(plugin)
+      require "nvim-treesitter.query_predicates"
+    end,
     config = function(_, opts)
-      require("nvim-treesitter").setup(opts)
-      require('nvim-treesitter.parsers').go_tags = {
+      require("nvim-treesitter.configs").setup(opts)
+      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+      parser_config.go_tags = {
         install_info = {
           url = "https://github.com/DanWlker/tree-sitter-go_tags",
           files = { "src/parser.c" },
@@ -478,6 +483,13 @@ return {
     opts = {
       notifications = false,
     },
+  },
+  {
+    "0oAstro/dim.lua",
+    event = "LspAttach",
+    config = function()
+      require("dim").setup {}
+    end,
   },
   ----------------------------------------- ui plugins ------------------------------------------
   {
