@@ -5,6 +5,7 @@ local blink_opt = require "configs.blink"
 return {
   -- {
   --   "saghen/blink.cmp",
+  --   dependencies = { "supermaven-nvim", "saghen/blink.compat" },
   --   opts = blink_opt.blink,
   -- },
   {

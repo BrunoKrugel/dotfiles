@@ -64,9 +64,15 @@ M.blink = {
       "lsp",
       "path",
     },
+    compat = { "supermaven" },
     providers = {
       lsp = { fallbacks = { "lazydev" } },
       lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
+      supermaven = {
+        kind = "Supermaven",
+        score_offset = 100,
+        async = true,
+      },
     },
     transform_items = function(_, items)
       return vim.tbl_filter(function(item)
@@ -82,29 +88,32 @@ M.blink = {
     },
   },
   keymap = {
-    preset = "super-tab",
+    -- preset = "enter",
     ["<Up>"] = { "select_prev", "fallback" },
     ["<Down>"] = { "select_next", "fallback" },
     ["<Tab>"] = {
-      function(_)
+      function()
         local suggestion = require "supermaven-nvim.completion_preview"
         if suggestion.has_suggestion() then
-          suggestion.on_accept_suggestion()
+          vim.schedule(function()
+            suggestion.on_accept_suggestion()
+          end)
         end
+        return true
       end,
       -- "snippet_forward",
-      "fallback",
+      -- "fallback",
     },
     ["<S-Tab>"] = { "snippet_backward", "fallback" },
     ["<Esc>"] = {
-      function(cmp)
-        if cmp.is_visible() then
-          cmp.cancel()
-        else
-          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-c>", true, true, true), "n", true)
-        end
-      end,
-      "hide",
+      -- function(cmp)
+      --   if cmp.is_visible() then
+      --     cmp.cancel()
+      --   else
+      --     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-c>", true, true, true), "n", true)
+      --   end
+      -- end,
+      "cancel",
       "fallback",
     },
     ["Enter"] = { "select_and_accept", "fallback" },
