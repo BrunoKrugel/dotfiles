@@ -258,7 +258,7 @@ M.statusline = {
         return ""
       end
 
-      return "%#St_relativepath# " .. vim.fn.expand("%:.:h") .. " /"
+      return "%#St_relativepath# " .. vim.fn.expand "%:.:h" .. " /"
     end,
 
     old_git = function()

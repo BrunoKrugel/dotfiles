@@ -40,7 +40,6 @@ create_cmd("DapUiFloatElement", ":lua require'dapui'.float_element()", {})
 create_cmd("DapUiWidget", ":lua require'dap.ui.widgets'.hover()", {})
 create_cmd("DapUiEval", ":lua require'dapui'.eval()", {})
 
-
 create_cmd("Http", function()
   require("kulala").run()
 end, {})
@@ -111,9 +110,8 @@ create_cmd("CmpToggle", function()
 end, {})
 
 create_cmd("Confetti", function()
-    os.execute "open -g 'raycast://extensions/raycast/raycast/confetti'"
-  end,
-{})
+  os.execute "open -g 'raycast://extensions/raycast/raycast/confetti'"
+end, {})
 
 create_cmd("Debug", function()
   require("dapui").toggle()

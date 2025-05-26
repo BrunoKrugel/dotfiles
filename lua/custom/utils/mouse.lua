@@ -9,7 +9,7 @@ _G.ClickSplit = function()
 end
 
 _G.ClickGit = function()
-  vim.cmd "LazyGit"
+    Snacks.terminal('lazygit')
 end
 
 _G.ClickUpdate = function()
