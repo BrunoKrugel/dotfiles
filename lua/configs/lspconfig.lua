@@ -150,7 +150,7 @@ vim.lsp.config("lua_ls", {
         version = "LuaJIT",
       },
       diagnostics = {
-        globals = { "use", "vim" },
+        globals = { "use", "vim", "Snacks" },
       },
       hint = {
         enable = true,
