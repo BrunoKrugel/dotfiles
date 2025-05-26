@@ -255,7 +255,6 @@ M.git = {
     ["<leader>gc"] = { "<CMD>Telescope git_commits<CR>", "  Git commits" },
     ["<leader>gb"] = { "<CMD>Telescope git_branches<CR>", "  Git branches" },
     ["<leader>gs"] = { "<CMD>Telescope git_status<CR>", "  Git status" },
-    ["<leader>lg"] = { "<CMD>LazyGit<CR>", "  LazyGit" },
     ["<leader>gvd"] = { "<CMD> DiffviewOpen<CR>", "  Show git diff" },
     ["<leader>gvf"] = { "<CMD> DiffviewFileHistory %<CR>", "  Show file history" },
     ["<leader>gvp"] = { "<CMD> DiffviewOpen --cached<CR>", "  Show staged diffs" },
