@@ -340,6 +340,8 @@ M.statusline = {
       modes["i"][3] = "  "
       modes["t"][3] = "  "
 
+      modes["ic"][1] = "INSERT"
+
       local m = vim.api.nvim_get_mode().mode
       return "%#St_" .. modes[m][2] .. "mode#" .. (modes[m][3] or "  ") .. modes[m][1] .. " "
     end,
