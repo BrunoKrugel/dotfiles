@@ -62,11 +62,13 @@ local custom_on_attach = function(client, bufnr)
     vim.api.nvim_create_autocmd({ "CursorHold", "InsertLeave" }, {
       desc = "Highlight references under the cursor",
       buffer = bufnr,
+      group = vim.api.nvim_create_augroup('lsp_documentHighlight', {}),
       callback = vim.lsp.buf.document_highlight,
     })
     vim.api.nvim_create_autocmd({ "CursorMoved", "InsertEnter", "BufLeave" }, {
       desc = "Clear highlight references",
       buffer = bufnr,
+      group = vim.api.nvim_create_augroup('lsp_documentHighlight', {}),
       callback = vim.lsp.buf.clear_references,
     })
   end
