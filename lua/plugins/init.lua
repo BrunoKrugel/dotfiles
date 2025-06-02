@@ -478,13 +478,6 @@ return {
     end,
   },
   {
-    "zeioth/garbage-day.nvim",
-    event = "LspAttach",
-    opts = {
-      notifications = false,
-    },
-  },
-  {
     "0oAstro/dim.lua",
     event = "LspAttach",
     config = function()
