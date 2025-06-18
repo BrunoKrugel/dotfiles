@@ -30,6 +30,10 @@ return {
     enabled = false,
   },
   {
+    "https://codeberg.org/FelipeLema/cmp-async-path.git",
+    enabled = false,
+  },
+  {
     "NvChad/nvim-colorizer.lua",
     enabled = false,
   },
