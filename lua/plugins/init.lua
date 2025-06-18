@@ -67,11 +67,6 @@ return {
     },
     opts = overrides.treesitter,
     build = ":TSUpdate",
-    init = function(plugin)
-      -- perf: make treesitter queries available at startup.
-      require("lazy.core.loader").add_to_rtp(plugin)
-      require "nvim-treesitter.query_predicates"
-    end,
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
       local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
@@ -480,13 +475,6 @@ return {
       map("n", "<leader>gr", function()
         toggle_grugfar()
       end, { desc = "Toggle GrugFar" })
-    end,
-  },
-  {
-    "0oAstro/dim.lua",
-    event = "LspAttach",
-    config = function()
-      require("dim").setup {}
     end,
   },
   ----------------------------------------- ui plugins ------------------------------------------
