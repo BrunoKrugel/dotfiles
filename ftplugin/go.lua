@@ -166,10 +166,7 @@ local function highlight_go_tags()
     )
   ]]
 
-  local query = vim.treesitter.query.parse(
-    'go',
-    queryContent
-  )
+  local query = vim.treesitter.query.parse("go", queryContent)
   for id, node in query:iter_captures(root, bufnr, 0, -1) do
     local name = query.captures[id]
     if name == "tag.content" then
