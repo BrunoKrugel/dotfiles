@@ -1,11 +1,21 @@
 local overrides = require "configs.overrides"
 local cmp_opt = require "configs.cmp"
-local blink_opt = require "configs.blink"
+-- local blink_opt = require "configs.blink"
 
 return {
+  -- { import = "nvchad.blink.lazyspec" },
   -- {
   --   "saghen/blink.cmp",
-  --   dependencies = { "supermaven-nvim", "saghen/blink.compat" },
+  --   dependencies = {
+  --     {
+  --       "supermaven-inc/supermaven-nvim",
+  --       opts = {
+  --         disable_keymaps = true,
+  --         ignore_filetypes = { "bigfile", "snacks_input", "snacks_notif" },
+  --       },
+  --     },
+  --     "saghen/blink.compat",
+  --   },
   --   opts = blink_opt.blink,
   -- },
   {
