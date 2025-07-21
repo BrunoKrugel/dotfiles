@@ -208,6 +208,13 @@ return {
           duration = { step = 5, total = 50 },
           easing = "outQuad",
         },
+        image = {
+          resolve = function(path, src)
+            if require("obsidian.api").path_is_note(path) then
+              return require("obsidian.api").resolve_image_path(src)
+            end
+          end,
+        },
       },
       lazygit = { enabled = true },
       indent = { enabled = true },
@@ -338,6 +345,14 @@ return {
             path = "~/users/bruno.krugel/Library/Mobile Documents/iCloud~md~obsidian/Documents/Annotation",
           },
         },
+        legacy_commands = false,
+        attachments = {
+          image_text_func = function(path)
+            local name = vim.fs.basename(tostring(path))
+            local encoded_name = require("obsidian.util").urlencode(name)
+            return string.format("![%s](%s)", name, encoded_name)
+          end,
+        },
         completion = {
           nvim_cmp = true,
           min_chars = 2,
@@ -345,6 +360,9 @@ return {
         markdown_link_func = function(opts)
           return string.format("[%s](%s)", opts.label, opts.path)
         end,
+        statusline = {
+          enabled = false, -- turn it off
+        },
         ui = {
           enable = true,
           update_debounce = 200,
