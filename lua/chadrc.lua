@@ -100,8 +100,6 @@ M.base46 = {
 
   hl_override = highlights.override,
   hl_add = highlights.add,
-
-  nvdash = core.nvdash,
 }
 
 M.term = {
