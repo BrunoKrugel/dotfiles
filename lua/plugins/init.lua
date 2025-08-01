@@ -48,6 +48,13 @@ return {
     enabled = false,
   },
   {
+    "NvChad/ui",
+    branch = "dev",
+    -- config = function()
+    --   require "nvchad"
+    -- end
+  },
+  {
     "nvzone/volt",
     event = "BufReadPost",
     dependencies = {
@@ -123,7 +130,6 @@ return {
     opts = cmp_opt.cmp,
     dependencies = {
       { "hrsh7th/cmp-nvim-lsp", url = "https://github.com/iguanacucumber/mag-nvim-lsp" },
-      { "hrsh7th/cmp-buffer", url = "https://github.com/iguanacucumber/mag-buffer" },
       { "hrsh7th/cmp-nvim-lua", url = "https://github.com/iguanacucumber/mag-nvim-lua" },
       {
         "L3MON4D3/LuaSnip",

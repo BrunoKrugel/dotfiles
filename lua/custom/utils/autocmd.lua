@@ -499,3 +499,25 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function(args)
+    if vim.bo[args.buf].buflisted then
+      local recent_folders = vim.g.RECENT_PROJECTS or {}
+
+      local pwd = vim.uv.cwd()
+      local home = os.getenv "HOME" .. "/"
+
+      if not (home ~= pwd and not vim.tbl_contains(recent_folders, pwd)) then
+        return
+      end
+
+      if #recent_folders == 5 then
+        table.remove(recent_folders, 1)
+      end
+
+      table.insert(recent_folders, pwd)
+      vim.g.RECENT_PROJECTS = recent_folders
+    end
+  end,
+})
