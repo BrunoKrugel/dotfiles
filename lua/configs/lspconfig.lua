@@ -371,7 +371,8 @@ vim.lsp.config("gopls", {
         deadcode = true,
         nilness = true,
         typeparams = true,
-
+        -- disable annoying "at least one file in a package should have a package comment" warning
+        ST1000 = false,
         unusedwrite = true,
         unusedparams = true,
         unusedresult = true,
