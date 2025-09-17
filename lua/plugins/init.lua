@@ -47,13 +47,13 @@ return {
     "NvChad/nvim-colorizer.lua",
     enabled = false,
   },
-  {
-    "NvChad/ui",
-    branch = "dev",
+  -- {
+    -- "NvChad/ui",
+    -- branch = "dev",
     -- config = function()
     --   require "nvchad"
     -- end
-  },
+  -- },
   {
     "nvzone/volt",
     event = "BufReadPost",
