@@ -437,7 +437,7 @@ return {
     end,
   },
   {
-    "echasnovski/mini.surround",
+    "nvim-mini/mini.surround",
     event = { "ModeChanged" },
     ops = {},
   },
