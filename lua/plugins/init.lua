@@ -78,7 +78,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    branch = "master",
+    -- branch = "master",
     dependencies = {
       "windwp/nvim-ts-autotag",
     },
