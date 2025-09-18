@@ -52,6 +52,7 @@ M.blink = {
           },
         },
       },
+      scrollbar = false,
     },
   },
   sources = {
@@ -62,7 +63,11 @@ M.blink = {
     },
     providers = {
       lsp = { fallbacks = { "lazydev" } },
-      lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
+      lazydev = {
+        name = "LazyDev",
+        module = "lazydev.integrations.blink",
+        score_offset = 100,
+      },
       supermaven = {
         module = "blink.compat.source",
         score_offset = 100,
