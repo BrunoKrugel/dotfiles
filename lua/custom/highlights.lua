@@ -104,6 +104,18 @@ M.add = {
   CoverageCovered = { fg = "green" },
   CoverageUncovered = { fg = "red" },
 
+  BlinkPairsOrange = { fg = "orange" },
+  BlinkPairsPurple = { fg = "purple" },
+  BlinkPairsBlue = { fg = "blue" },
+  BlinkPairsRed = { fg = "red" },
+  BlinkPairsYellow = { fg = "yellow" },
+  BlinkPairsGreen = { fg = "green" },
+  BlinkPairsCyan = { fg = "cyan" },
+  BlinkPairsViolet = { fg = "violet" },
+
+  BlinkPairsUnmatched = { fg = "red" },
+  BlinkPairsMatchParen = { fg = "cyan" },
+
   -- Cmp Highlights
   CmpItemKindCodeium = { fg = "green" },
   CmpItemKindTabNine = { fg = "pink" },
