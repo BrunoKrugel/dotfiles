@@ -301,7 +301,7 @@ return {
         enabled = true,
         auto_save = true,
         auto_restore = true,
-        use_git_branch = true,
+        git_use_branch_name = true,
       }
     end,
   },
