@@ -45,7 +45,7 @@ For questions feel free to open an issue or you can find me in the [NvChad disco
 
 TreeSitter is enabled and will automatically install parsers for you.
 
-## CMP fully integrated with AI completions
+## Blink.cmp fully integrated with AI completions
 
 <div align="center">
 
@@ -53,11 +53,11 @@ TreeSitter is enabled and will automatically install parsers for you.
 
 </div>
 
-Cmp has some custom configs for performance, and it will open automatically.
+Blink.cmp has some custom configs for performance, and it will open automatically.
 
-You can disable cmp auto-complete with cmd `CmpToggle`.
+You can disable blink auto-complete with cmd `BlinkToggle`.
 
-To trigger it, press `<C-Space>`, you can navigate between the options with `<Up>` and `<Down>` and select with `<CR`>`.
+To trigger it, press `<C-Space>`, you can navigate between the options with `<Up>` and `<Down>` and select with `<CR>`.
 
 If Cmp is visible, you can use `<Esc>` to close it without leaving `Insert` mode.
 
