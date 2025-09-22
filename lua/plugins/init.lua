@@ -1,23 +1,46 @@
 local overrides = require "configs.overrides"
-local cmp_opt = require "configs.cmp"
--- local blink_opt = require "configs.blink"
+local blink_opt = require "configs.blink"
 
 return {
-  -- { import = "nvchad.blink.lazyspec" },
-  -- {
-  --   "saghen/blink.cmp",
-  --   dependencies = {
-  --     {
-  --       "supermaven-inc/supermaven-nvim",
-  --       opts = {
-  --         disable_keymaps = true,
-  --         ignore_filetypes = { "bigfile", "snacks_input", "snacks_notif" },
-  --       },
-  --     },
-  --     "saghen/blink.compat",
-  --   },
-  --   opts = blink_opt.blink,
-  -- },
+  { import = "nvchad.blink.lazyspec" },
+  {
+    "saghen/blink.cmp",
+    dependencies = {
+      {
+        "supermaven-inc/supermaven-nvim",
+        opts = {
+          disable_keymaps = true,
+          ignore_filetypes = { "bigfile", "snacks_input", "snacks_notif" },
+        },
+      },
+      "saghen/blink.compat",
+    },
+    opts = blink_opt.blink,
+  },
+  {
+    "windwp/nvim-autopairs",
+    enabled = false,
+  },
+  {
+    "saghen/blink.pairs",
+    version = "*",
+    dependencies = "saghen/blink.download",
+    event = { "BufNewFile", "BufReadPost" },
+    opts = {
+      highlights = {
+        enabled = true,
+        groups = {
+          "BlinkPairsRed",
+          "BlinkPairsOrange",
+          "BlinkPairsYellow",
+          "BlinkPairsGreen",
+          "BlinkPairsCyan",
+          "BlinkPairsBlue",
+          "BlinkPairsViolet",
+        },
+      },
+    },
+  },
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -117,71 +140,6 @@ return {
     end,
   },
   {
-    "hrsh7th/nvim-cmp",
-    url = "https://github.com/iguanacucumber/magazine.nvim",
-    event = "InsertEnter",
-    opts = cmp_opt.cmp,
-    dependencies = {
-      { "hrsh7th/cmp-nvim-lsp", url = "https://github.com/iguanacucumber/mag-nvim-lsp" },
-      { "hrsh7th/cmp-nvim-lua", url = "https://github.com/iguanacucumber/mag-nvim-lua" },
-      {
-        "L3MON4D3/LuaSnip",
-        build = "make install_jsregexp",
-        config = function(_, opts)
-          require("luasnip").config.set_config(opts)
-          require "nvchad.configs.luasnip"
-        end,
-      },
-    },
-    config = function(_, opts)
-      ---@diagnostic disable-next-line: different-requires
-      local cmp = require "cmp"
-
-      -- Override the documentation handler to remove the redundant detail section.
-      ---@diagnostic disable-next-line: duplicate-set-field
-      require("cmp.entry").get_documentation = function(self)
-        local item = self.completion_item
-
-        if item.documentation then
-          return vim.lsp.util.convert_input_to_markdown_lines(item.documentation)
-        end
-
-        --   -- Use the item's detail as a fallback if there's no documentation.
-        if item.detail then
-          local ft = self.context.filetype
-          local dot_index = string.find(ft, "%.")
-          if dot_index ~= nil then
-            ft = string.sub(ft, 0, dot_index - 1)
-          end
-          return (vim.split(("```%s\n%s```"):format(ft, vim.trim(item.detail)), "\n"))
-        end
-
-        return {}
-      end
-
-      local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-
-      local format_kinds = opts.formatting.format
-      opts.formatting.format = function(entry, vim_item)
-        -- Ensure that we get the NvChad formatting for the completion kind.
-        format_kinds(entry, vim_item)
-
-        local highlights_info = require("colorful-menu").cmp_highlights(entry)
-        if highlights_info ~= nil then
-          vim_item.abbr_hl_group = highlights_info.highlights
-          vim_item.abbr = highlights_info.text
-        end
-        -- if string.len(vim_item.abbr) > 40 then
-        --   vim_item.abbr = vim_item.abbr:sub(1, 40)
-        -- end
-        return format_kinds(entry, vim_item)
-      end
-
-      cmp.setup(opts)
-    end,
-  },
-  {
     "folke/snacks.nvim",
     event = "VeryLazy",
     ---@type snacks.Config
@@ -220,14 +178,6 @@ return {
     },
   },
   {
-    "supermaven-inc/supermaven-nvim",
-    event = "InsertEnter",
-    opts = {
-      disable_keymaps = true,
-      ignore_filetypes = { "bigfile", "snacks_input", "snacks_notif" },
-    },
-  },
-  {
     "xzbdmw/colorful-menu.nvim",
     opts = {
       ls = {
@@ -251,33 +201,6 @@ return {
   {
     "soulis-1256/eagle.nvim",
     opts = {},
-  },
-  {
-    "hiphish/rainbow-delimiters.nvim",
-    event = "BufReadPost",
-    config = function()
-      local rainbow_delimiters = require "rainbow-delimiters"
-
-      vim.g.rainbow_delimiters = {
-        strategy = {
-          [""] = rainbow_delimiters.strategy["global"],
-          vim = rainbow_delimiters.strategy["local"],
-        },
-        query = {
-          [""] = "rainbow-delimiters",
-          lua = "rainbow-blocks",
-        },
-        highlight = {
-          "RainbowDelimiterRed",
-          "RainbowDelimiterYellow",
-          "RainbowDelimiterBlue",
-          "RainbowDelimiterOrange",
-          "RainbowDelimiterGreen",
-          "RainbowDelimiterViolet",
-          "RainbowDelimiterCyan",
-        },
-      }
-    end,
   },
   {
     "gbprod/cutlass.nvim",
