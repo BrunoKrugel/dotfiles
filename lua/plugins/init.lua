@@ -306,7 +306,7 @@ return {
   {
     "folke/lazydev.nvim",
     ft = "lua",
-    dependencies = { "gonstoll/wezterm-types" },
+    dependencies = { "DrKJeff16/wezterm-types" },
     opts = {
       library = {
         { path = vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types", words = { "ChadrcConfig", "NvPluginSpec" } },
