@@ -24,8 +24,7 @@ M.override = {
   ["@constant"] = { link = "Constant" },
   ["@number.float"] = { link = "Float" },
   ["@modules"] = { fg = "white" },
-  -- ["@variable.go"] = { fg = "green" },
-  -- ["@variable"] = { fg = "white" },
+
   ["@attribute"] = { link = "Constant" },
 
   ["@keyword"] = { italic = true },
@@ -36,7 +35,10 @@ M.override = {
   ["@function.call"] = { link = "Function" },
 
   ["@variable"] = { fg = "white" },
+
+  ["@variable.parameter.go"] = { fg = "white" },
   ["@function.call.go"] = { fg = "green" },
+
   ["@variable.member"] = { fg = "white" },
   ["@constructor"] = { fg = "blue" },
 
