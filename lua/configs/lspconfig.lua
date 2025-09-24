@@ -357,7 +357,8 @@ vim.lsp.config("gopls", {
       gofumpt = true,
       staticcheck = true,
       semanticTokens = true,
-      symbolMatcher = "fuzzy",
+      matcher = 'Fuzzy',
+      symbolMatcher = "FastFuzzy",
       completeUnimported = true,
       diagnosticsDelay = "500ms",
       analyses = {
@@ -375,6 +376,7 @@ vim.lsp.config("gopls", {
         ST1000 = false,
         unusedwrite = true,
         unusedparams = true,
+        useany = true,
         unusedresult = true,
       },
       codelenses = {
