@@ -63,3 +63,15 @@
   tag: (raw_string_literal
     (raw_string_literal_content) @injection.content
     (#set! injection.language "go_tags")))
+
+(if_statement
+  condition: (binary_expression
+    left: (identifier) @err_var
+    (#eq? @err_var "err")
+    operator: "!="
+    right: (nil))
+  consequence: (block
+    (return_statement
+      (expression_list
+        (identifier) @ret_err
+        (#eq? @ret_err "err"))))) @iferr_block
