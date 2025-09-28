@@ -4,6 +4,17 @@ local function get_install_path(package)
   return mason.get_package(package):get_install_path()
 end
 
+local function vs_launch()
+  local workfolder = vim.lsp.buf.list_workspace_folders()[1] or vim.fn.getcwd()
+
+  local launch_json = (workfolder .. "/.vscode/launch.json")
+  if vim.fn.filereadable(launch_json) == 1 then
+    return true, launch_json
+  else
+    return false, launch_json
+  end
+end
+
 local core = require "custom.utils.core"
 dapui.setup(core.dapui)
 -- require("dap.ext.vscode").load_launchjs "launch.json"
@@ -11,7 +22,7 @@ dapui.setup(core.dapui)
 dap.adapters.go = {
   type = "executable",
   command = "node",
-  args = { vim.fn.expand("$MASON") .. "/packages/go-debug-adapter/extension/dist/debugAdapter.js" },
+  args = { vim.fn.expand "$MASON" .. "/packages/go-debug-adapter/extension/dist/debugAdapter.js" },
 }
 
 dap.configurations.go = {
