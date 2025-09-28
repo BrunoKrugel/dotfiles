@@ -62,13 +62,13 @@ local custom_on_attach = function(client, bufnr)
     vim.api.nvim_create_autocmd({ "CursorHold", "InsertLeave" }, {
       desc = "Highlight references under the cursor",
       buffer = bufnr,
-      group = vim.api.nvim_create_augroup('lsp_documentHighlight', {}),
+      group = vim.api.nvim_create_augroup("lsp_documentHighlight", {}),
       callback = vim.lsp.buf.document_highlight,
     })
     vim.api.nvim_create_autocmd({ "CursorMoved", "InsertEnter", "BufLeave" }, {
       desc = "Clear highlight references",
       buffer = bufnr,
-      group = vim.api.nvim_create_augroup('lsp_documentHighlight', {}),
+      group = vim.api.nvim_create_augroup("lsp_documentHighlight", {}),
       callback = vim.lsp.buf.clear_references,
     })
   end
@@ -140,6 +140,7 @@ local servers = {
   "gopls",
   "kulala_ls",
   "eslint",
+  "copilot_ls",
 }
 
 vim.lsp.enable(servers)
@@ -179,6 +180,7 @@ vim.lsp.config("kulala_ls", {
   on_attach = custom_on_attach,
 })
 
+vim.lsp.config("copilot_lsp", {
 vim.lsp.config("dockerls", {
   on_attach = custom_on_attach,
 })
@@ -338,8 +340,8 @@ vim.lsp.config("vtsls", {
 vim.lsp.config("gopls", {
   on_attach = go_on_attach,
   capabilities = capabilities,
-  filetypes = { "go", "gomod", "gowork", "gosum", "goimpl", "gohtmltmpl", "gotexttmpl", "gohtml", 'gotmpl' },
-  root_markers = { 'go.work', 'go.mod', '.git' },
+  filetypes = { "go", "gomod", "gowork", "gosum", "goimpl", "gohtmltmpl", "gotexttmpl", "gohtml", "gotmpl" },
+  root_markers = { "go.work", "go.mod", ".git" },
   init_options = {
     usePlaceholders = true,
   },
@@ -357,9 +359,8 @@ vim.lsp.config("gopls", {
       gofumpt = true,
       staticcheck = true,
       semanticTokens = true,
-      matcher = 'Fuzzy',
+      matcher = "Fuzzy",
       symbolMatcher = "FastFuzzy",
-      completeUnimported = true,
       diagnosticsDelay = "500ms",
       analyses = {
         fieldalignment = true,
@@ -385,7 +386,6 @@ vim.lsp.config("gopls", {
         -- tidy = true,
         -- upgrade_dependency = true,
         -- regenerate_cgo = true,
-        -- generate = true,
         -- gc_details = false,
         run_govulncheck = true,
         vendor = true,
