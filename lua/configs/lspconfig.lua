@@ -140,7 +140,7 @@ local servers = {
   "gopls",
   "kulala_ls",
   "eslint",
-  "copilot_ls",
+  "copilot",
 }
 
 vim.lsp.enable(servers)
@@ -180,7 +180,10 @@ vim.lsp.config("kulala_ls", {
   on_attach = custom_on_attach,
 })
 
-vim.lsp.config("copilot_lsp", {
+vim.lsp.config("copilot", {
+  on_attach = custom_on_attach,
+})
+
 vim.lsp.config("dockerls", {
   on_attach = custom_on_attach,
 })
@@ -386,6 +389,7 @@ vim.lsp.config("gopls", {
         -- tidy = true,
         -- upgrade_dependency = true,
         -- regenerate_cgo = true,
+        generate = false,
         -- gc_details = false,
         run_govulncheck = true,
         vendor = true,
