@@ -276,7 +276,7 @@ return {
           end,
         },
         completion = {
-          nvim_cmp = true,
+          blink = true,
           min_chars = 2,
         },
         markdown_link_func = function(opts)
@@ -828,6 +828,7 @@ return {
     "nvim-neotest/neotest",
     ft = { "go", "javascript", "typescript", "javascriptreact", "typescriptreact" },
     dependencies = {
+      -- https://fredrikaverpil.github.io/neotest-golang/install/ in the future migrate to this
       "nvim-neotest/neotest-go",
       "nvim-neotest/nvim-nio",
     },
