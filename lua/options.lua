@@ -9,6 +9,8 @@ local o = vim.o
 o.mousemoveevent = true
 o.diffopt = "internal,filler,closeoff,linematch:60"
 
+g.copilot_assume_mapped = true
+
 opt.encoding = "utf-8"
 opt.backup = false --- Recommended by coc
 opt.swapfile = false
