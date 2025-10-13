@@ -337,6 +337,10 @@ return {
     },
   },
   {
+    "mason-org/mason.nvim",
+    lazy = false,
+  },
+  {
     "smoka7/hop.nvim",
     cmd = { "HopWord", "HopLine", "HopLineStart", "HopWordCurrentLine", "HopNodes" },
     config = function()
