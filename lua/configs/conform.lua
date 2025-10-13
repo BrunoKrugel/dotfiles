@@ -29,6 +29,7 @@ conform.setup {
     lua = { "stylua" },
     http = { "kulala-fmt" },
     sql = { "sqlfmt" },
+    kotlin = { "ktfmt" },
     go = function(bufnr)
       return { first(bufnr, "goimports", "gofumpt") }
     end,
