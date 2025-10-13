@@ -67,7 +67,7 @@ M.blink = {
   },
   sources = {
     default = {
-      "supermaven",
+      -- "supermaven",
       "lsp",
       "path",
     },
@@ -77,11 +77,6 @@ M.blink = {
         name = "LazyDev",
         module = "lazydev.integrations.blink",
         score_offset = 100,
-      },
-      supermaven = {
-        module = "blink.compat.source",
-        score_offset = 100,
-        async = true,
       },
       snippets = {
         name = "snippets",
@@ -157,16 +152,23 @@ M.blink = {
           return
         end
 
-        local suggestion = require "supermaven-nvim.completion_preview"
-        if suggestion.has_suggestion() then
-          vim.schedule(function()
-            suggestion.on_accept_suggestion()
-          end)
+        if require("copilot.suggestion").is_visible() then
+          return require("copilot.suggestion").accept()
         end
-        return true
+
+        -- local suggestion = require "supermaven-nvim.completion_preview"
+        -- if suggestion.has_suggestion() then
+        --   vim.schedule(function()
+        --     suggestion.on_accept_suggestion()
+        --   end)
+        -- end
+        -- return true
+      end,
+      function() -- sidekick next edit suggestion
+        return require("sidekick").nes_jump_or_apply()
       end,
       -- "snippet_forward",
-      -- "fallback",
+      "fallback",
     },
     ["<S-Tab>"] = { "snippet_backward", "fallback" },
     ["<Esc>"] = {
