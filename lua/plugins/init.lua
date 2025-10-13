@@ -5,17 +5,47 @@ return {
   { import = "nvchad.blink.lazyspec" },
   {
     "saghen/blink.cmp",
-    dependencies = {
-      {
-        "supermaven-inc/supermaven-nvim",
-        opts = {
-          disable_keymaps = true,
-          ignore_filetypes = { "bigfile", "snacks_input", "snacks_notif" },
-        },
-      },
-      "saghen/blink.compat",
-    },
     opts = blink_opt.blink,
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    requires = {
+      "copilotlsp-nvim/copilot-lsp",
+    },
+    event = "InsertEnter",
+    opts = {
+      panel = {
+        enabled = false,
+      },
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+      },
+      nes = {
+        enabled = false,
+      },
+    },
+  },
+  {
+    "jonahgoldwastaken/copilot-status.nvim",
+    event = "LspAttach",
+    config = function()
+      require("copilot_status").setup {
+        icons = {
+          idle = " ",
+          error = " ",
+          offline = " ",
+          warning = " ",
+          loading = " ",
+        },
+        debug = false,
+      }
+    end,
+  },
+  {
+    "folke/sidekick.nvim",
+    event = "LspAttach",
+    opts = {},
   },
   {
     "windwp/nvim-autopairs",
