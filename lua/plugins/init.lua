@@ -285,6 +285,11 @@ return {
         statusline = {
           enabled = false, -- turn it off
         },
+        checkbox = {
+          enabled = true,
+          create_new = true,
+          order = { " ", "~", "!", ">", "x" },
+        },
         ui = {
           enable = true,
           update_debounce = 200,
