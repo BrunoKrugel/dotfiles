@@ -49,6 +49,7 @@ end
 local function on_attach(bufnr)
   local api = require "nvim-tree.api"
   local lib = require "nvim-tree.lib"
+  local tree_actions = require "nvim-tree.actions"
 
   local function opts(desc)
     return {
@@ -58,6 +59,58 @@ local function on_attach(bufnr)
       silent = true,
       nowait = true,
     }
+  end
+
+  local function fancy_prompt(action_type, default_text, callback)
+    local buf = api.nvim_create_buf(false, true)
+    local winopts = {
+      height = 1,
+      style = "minimal",
+      border = "single",
+      row = 1,
+      col = 1,
+      relative = "cursor",
+      width = #default_text + 15,
+      title = { { action_type == "rename" and " Rename " or " Create ", "@comment.danger" } },
+      title_pos = "center",
+    }
+    local win = api.nvim_open_win(buf, true, winopts)
+    vim.wo[win].winhl = "Normal:Normal,FloatBorder:Removed"
+    vim.api.nvim_set_current_win(win)
+    vim.api.nvim_buf_set_lines(buf, 0, -1, true, { " " .. default_text })
+    vim.bo[buf].buftype = "prompt"
+    vim.fn.prompt_setprompt(buf, "")
+    vim.api.nvim_input "A"
+
+    vim.keymap.set({ "i", "n" }, "<Esc>", function()
+      vim.api.nvim_buf_delete(buf, { force = true })
+      vim.cmd "mode" -- Ensure normal mode
+    end, { buffer = buf })
+
+    vim.fn.prompt_setcallback(buf, function(text)
+      local new_name = vim.trim(text)
+      vim.api.nvim_buf_delete(buf, { force = true })
+      vim.cmd "mode" -- Ensure normal mode
+      if #new_name > 0 and new_name ~= default_text then
+        callback(new_name)
+      end
+    end)
+  end
+
+  local function custom_rename()
+    local node = require("nvim-tree.lib").get_node_at_cursor()
+    if not node then
+      return
+    end
+    local default_text = vim.fn.fnamemodify(node.absolute_path, ":t")
+    fancy_prompt("rename", default_text, function(new_name)
+      tree_actions.fs.rename_node.apply(node, new_name)
+    end)
+  end
+  local function custom_create()
+    fancy_prompt("create", "", function(new_name)
+      tree_actions.fs.create_file.apply(new_name)
+    end)
   end
 
   local function smart_close_q()
@@ -90,7 +143,7 @@ local function on_attach(bufnr)
   map("n", "<", api.node.navigate.sibling.prev, opts "Previous Sibling")
   map("n", ".", api.node.run.cmd, opts "Run Command")
   map("n", "-", api.tree.change_root_to_parent, opts "Up")
-  map("n", "a", api.fs.create, opts "Create")
+  -- map("n", "a", api.fs.create, opts "Create")
   map("n", "bmv", api.marks.bulk.move, opts "Move Bookmarked")
   map("n", "B", api.tree.toggle_no_buffer_filter, opts "Toggle No Buffer")
   map("n", "c", api.fs.copy.node, opts "Copy")
@@ -117,7 +170,9 @@ local function on_attach(bufnr)
   map("n", "p", api.fs.paste, opts "Paste")
   map("n", "P", api.node.navigate.parent, opts "Parent Directory")
   map("n", "q", smart_close_q, opts "Close")
-  map("n", "r", api.fs.rename, opts "Rename")
+  -- map("n", "r", api.fs.rename, opts "Rename")
+  map("n", "r", custom_rename, opts "Rename")
+  map("n", "a", custom_create, opts "Create")
   map("n", "R", api.tree.reload, opts "Refresh")
   map("n", "s", api.node.run.system, opts "Run System")
   map("n", "S", api.tree.search_node, opts "Search")
