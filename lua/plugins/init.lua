@@ -715,6 +715,7 @@ return {
   {
     "Chaitanyabsprip/fastaction.nvim",
     opts = {
+      keys = "123456789",
       dismiss_keys = { "<ESC>", "q" },
     },
   },
