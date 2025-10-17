@@ -1,4 +1,4 @@
-<h1 align="center">Nvim(Chad) configuration</h1>
+<h1 align="center">My Nvim(Chad) configuration</h1>
 <p align="center">Powered by <a href="https://github.com/NvChad/NvChad">NvChad</a> v2.5<p>
 
 <div align="center"><p>
@@ -42,7 +42,6 @@ For questions feel free to open an issue or you can find me in the [NvChad disco
 - [x] Web development (JS, TS, HTML, CSS, React, Astro)
 - [x] Markdown
 
-
 TreeSitter is enabled and will automatically install parsers for you.
 
 ## Blink.cmp fully integrated with AI completions
@@ -53,17 +52,11 @@ TreeSitter is enabled and will automatically install parsers for you.
 
 </div>
 
-Blink.cmp has some custom configs for performance, and it will open automatically.
-
-You can disable blink auto-complete with cmd `BlinkToggle`.
-
-To trigger it, press `<C-Space>`, you can navigate between the options with `<Up>` and `<Down>` and select with `<CR>`.
-
 If Cmp is visible, you can use `<Esc>` to close it without leaving `Insert` mode.
 
 If the copilot suggestion is active, you can use `<Tab>` to select the copilot option.
 
-## Code foldable in a VSCode style
+## Folding in VSCode style
 
 <div align="center">
 
@@ -127,21 +120,12 @@ _With [Grug Far](https://github.com/MagicDuck/grug-far.nvim)_
 
 </div>
 
-### Local rename
-
-<div align="center">
-
-![muren](./img/muren.png)
-
-_With [Muren](https://github.com/BrunoKrugel/muren.nvim)_
-
-</div>
-
 ## Custom Statusline tweaks
 
-1. It will show when it's recording a macro.
-2. It will show colored icons for the file icon.
-3. It will show a Git icon with the status of the copilot
+1. Recording a macro status
+2. Colored icons for the file icon.
+3. A Git icon with the status of the copilot lsp
+4. Connected LSP servers
 
 ## Custom Tabufline icons
 
@@ -169,19 +153,7 @@ Common Text key binds are also available:
 
 ## Formatting
 
-I do not like the format on save, so my config is set to format on `<leader>fm` only, but you can change it to whatever you want, to do it, just uncomment the autocmd in the `autocmd.lua` file.
-
-For `.go` files, you can use `<leader>fi` to complete imports.
-
-## Github
-
-<div align="center">
-
-![LazyGit](./img/lazygit.png)
-
-_With [LazyGit](https://github.com/kdheepak/lazygit.nvim)_
-
-</div>
+Formatting is handled by `Conform` and I do not like the format on save, so my config is set to format on `<leader>fm` only, but you can change it to whatever you want, to do it, just uncomment the autocmd in the `autocmd.lua` file.
 
 ## Other plugins
 
