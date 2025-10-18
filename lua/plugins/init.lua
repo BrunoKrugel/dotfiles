@@ -109,6 +109,16 @@ return {
     },
   },
   {
+    "nvzone/floaterm",
+    dependencies = "nvzone/volt",
+    opts = {
+      border = true,
+      h = 50,
+      w = 40,
+    },
+    cmd = "FloatermToggle",
+  },
+  {
     "nvim-tree/nvim-web-devicons",
     opts = overrides.devicons,
   },

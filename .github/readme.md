@@ -1,14 +1,6 @@
-<h1 align="center">My Nvim(Chad) configuration</h1>
+<h1 align="center">My NvChad configuration</h1>
 <p align="center">Powered by <a href="https://github.com/NvChad/NvChad">NvChad</a> v2.5<p>
 
-<div align="center"><p>
-    <a href="https://github.com/BrunoKrugel/dotfiles/pulse">
-      <img alt="Last commit" src="https://img.shields.io/github/last-commit/BrunoKrugel/dotfiles?style=for-the-badge&logo=starship&color=8bd5ca&logoColor=D9E0EE&labelColor=302D41"/>
-    </a>
-    <a href="https://github.com/BrunoKrugel/dotfiles/stargazers">
-      <img alt="Stars" src="https://img.shields.io/github/stars/BrunoKrugel/dotfiles?style=for-the-badge&logo=starship&color=c69ff5&logoColor=D9E0EE&labelColor=302D41" />
-    </a>
-</div>
 
 ![prv-min](./img/prv.png)
 
@@ -23,7 +15,7 @@
 
 I do not own anything related to NvChad, this is only the configs that I use with it.
 
-I have been a VSCode user for years and I am slowly moving forward to `NVIM`, so this is my config that mimics `VSCode` key binds and UI, with a goal of removing plugins as I am getting used to it and learning more about `NVIM`.
+I have been a VSCode user for years and I am slowly moving forward to `nvim`, so this is my config that mimics `VSCode` key binds and UI, with a goal of removing plugins as I am getting used to it and learning more about `nvim`.
 
 ## Installation guide
 
@@ -38,13 +30,13 @@ For questions feel free to open an issue or you can find me in the [NvChad disco
 ## Configured environments
 
 - [x] Lua
-- [x] Go ([go.nvim](https://github.com/ray-x/go.nvim))
+- [x] Go
 - [x] Web development (JS, TS, HTML, CSS, React, Astro)
-- [x] Markdown
+- [x] Markdown (Obsidian)
 
 TreeSitter is enabled and will automatically install parsers for you.
 
-## Blink.cmp fully integrated with AI completions
+## Blink.cmp
 
 <div align="center">
 
@@ -75,16 +67,6 @@ _With [UFO](https://github.com/kevinhwang91/nvim-ufo)_
 ![diagnostics](./img/diagnostics.png)
 
 _With [Trouble](https://github.com/folke/trouble.nvim)_
-
-</div>
-
-### Diagnostics with LSP Lines
-
-<div align="center">
-
-![scrollbar](./img/lsp.png)
-
-_With [lsp-lines](https://github.com/ErichDonGubler/lsp_lines.nvim)_
 
 </div>
 
