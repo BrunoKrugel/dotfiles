@@ -565,11 +565,7 @@ map("n", "<leader>k", function()
   require("hover").open()
 end, { desc = "LSP Hover" })
 
-map("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
 map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
-map("n", "<C-n>", function()
-  require("hover").hover_switch "next"
-end, { desc = "hover.nvim (next source)" })
 
 map({ "n", "i", "v" }, "<C-.>", function()
   require("fastaction").code_action()

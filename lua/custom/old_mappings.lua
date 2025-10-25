@@ -177,13 +177,6 @@ M.text = {
   },
 }
 
-M.window = {
-  n = {
-    ["<leader><leader>h"] = { "<CMD>vs <CR>", "󰤼 Vertical split", opts = { nowait = true } },
-    ["<leader><leader>v"] = { "<CMD>sp <CR>", "󰤻 Horizontal split", opts = { nowait = true } },
-  },
-}
-
 M.general = {
   n = {
     [";"] = {
@@ -250,24 +243,6 @@ M.debug = {
   },
 }
 
-M.git = {
-  n = {
-    ["<leader>gc"] = { "<CMD>Telescope git_commits<CR>", "  Git commits" },
-    ["<leader>gb"] = { "<CMD>Telescope git_branches<CR>", "  Git branches" },
-    ["<leader>gs"] = { "<CMD>Telescope git_status<CR>", "  Git status" },
-    ["<leader>gvd"] = { "<CMD> DiffviewOpen<CR>", "  Show git diff" },
-    ["<leader>gvf"] = { "<CMD> DiffviewFileHistory %<CR>", "  Show file history" },
-    ["<leader>gvp"] = { "<CMD> DiffviewOpen --cached<CR>", "  Show staged diffs" },
-    ["<leader>gvr"] = { "<CMD> DiffviewRefresh<CR>", "  Refresh diff view" },
-    ["<leader>gvc"] = { "<CMD> DiffviewClose<CR>", "  Close diff view" },
-    ["<Leader>gcb"] = { "<CMD>GitConflictChooseBoth<CR>", "Choose both" },
-    ["<Leader>gcn"] = { "<CMD>GitConflictNextConflict<CR>", "Move to next conflict" },
-    ["<Leader>gco"] = { "<CMD>GitConflictChooseOurs<CR>", "Choose ours" },
-    ["<Leader>gcp"] = { "<CMD>GitConflictPrevConflict<CR>", "Move to prev conflict" },
-    ["<Leader>gct"] = { "<CMD>GitConflictChooseTheirs<CR>", "Choose theirs" },
-  },
-}
-
 M.telescope = {
   n = {
     ["<leader>li"] = { "<CMD>Telescope highlights<CR>", "Highlights" },
@@ -321,12 +296,12 @@ M.tabufline = {
 
   n = {
     -- cycle through buffers
-    ["<Tab>"] = {
-      function()
-        require("nvchad.tabufline").next()
-      end,
-      " Goto next buffer",
-    },
+    -- ["<Tab>"] = {
+    --   function()
+    --     require("nvchad.tabufline").next()
+    --   end,
+    --   " Goto next buffer",
+    -- },
 
     ["<S-Tab>"] = {
       function()
