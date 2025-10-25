@@ -562,7 +562,7 @@ map("n", "K", function()
 end, { desc = "hover.nvim" })
 
 map("n", "<leader>k", function()
-  require("hover").hover()
+  require("hover").open()
 end, { desc = "LSP Hover" })
 
 map("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
@@ -582,6 +582,13 @@ end, { desc = "Code Action" })
 map("n", "<leader>wl", function()
   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 end, { desc = "LSP list workspace folders" })
+
+map("n", "<tab>", function()
+  if require("sidekick").nes_jump_or_apply() then
+    return -- jumped or applied
+  end
+  require("nvchad.tabufline").next()
+end, { desc = "buffer goto next" })
 
 -- vim.api.nvim_set_keymap('n', '<RightMouse>', '<LeftMouse><cmd>lua vim.lsp.buf.definition()<CR>', { noremap=true, silent=true })
 
