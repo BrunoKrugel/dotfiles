@@ -75,6 +75,27 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       "artemave/workspace-diagnostics.nvim",
+      {
+        "rachartier/tiny-inline-diagnostic.nvim",
+        opts = {
+          preset = "modern",
+          -- transparent_bg = false,
+          signs = {
+            arrow = "   ",
+          },
+
+          hi = {
+            background = "black", -- Background highlight for diagnostics
+          },
+
+          options = {
+            multilines = {
+              enabled = true, -- Enable support for multiline diagnostic messages
+              always_show = true, -- Always show messages on all lines of multiline diagnostics
+            },
+          },
+        },
+      },
     },
     config = function()
       require "configs.lspconfig"

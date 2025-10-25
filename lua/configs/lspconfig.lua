@@ -438,11 +438,11 @@ local x = vim.diagnostic.severity
 vim.diagnostic.config {
 
   virtual_lines = false,
-  virtual_text = {
-    prefix = "■",
-    spacing = 2,
-  },
-  -- virtual_text = false,
+  -- virtual_text = {
+  --   prefix = "■",
+  --   spacing = 2,
+  -- },
+  virtual_text = false,
   float = {
     border = "rounded",
     format = function(diagnostic)
