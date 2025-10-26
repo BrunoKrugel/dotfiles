@@ -87,6 +87,14 @@ function Get_dap()
   end
 end
 
+function Get_Sidekick()
+  local status = require("sidekick.status").get()
+  if status and status.kind == "Error" then
+    return " "
+  end
+  return " "
+end
+
 function Get_record()
   if package.loaded["recorder"] then
     local ok, recorder = pcall(require, "recorder")
@@ -320,7 +328,7 @@ M.statusline = {
             )
           then
             count = count + 1
-            local copilot = "%#CopilotHl#" .. require("copilot_status").status_string() .. " "
+            local copilot = "%#CopilotHl#" .. Get_Sidekick() .. " "
             local lsp_name = client.name
             if client.name == "typescript-tools" then
               lsp_name = "typescript"
