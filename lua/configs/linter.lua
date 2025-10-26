@@ -90,5 +90,13 @@ require("lint").linters_by_ft = {
   typescriptreact = { "eslint_d" },
   kotlin = { "ktlint" },
   -- go = { "deadcode", "fieldalignment", "staticcheck" },
-  go = { "staticcheck" },
+  go = { "staticcheck", "golangcilint" },
+}
+
+require("lint").linters.golangcilint.args = {
+  "run",
+  "--output.json.path=stdout",
+  "--show-stats=false",
+  "--issues-exit-code",
+  "0",
 }
