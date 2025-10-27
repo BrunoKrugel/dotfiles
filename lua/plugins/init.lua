@@ -29,7 +29,27 @@ return {
   {
     "folke/sidekick.nvim",
     event = "LspAttach",
-    opts = {},
+    opts = { nes = { enabled = true } },
+    config = function(_, opts)
+      require("sidekick").setup(opts)
+      local disabled = false
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "SidekickNesHide",
+        callback = function()
+          if disabled then
+            disabled = false
+            require("tiny-inline-diagnostic").enable()
+          end
+        end,
+      })
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "SidekickNesShow",
+        callback = function()
+          disabled = true
+          require("tiny-inline-diagnostic").disable()
+        end,
+      })
+    end,
   },
   {
     "windwp/nvim-autopairs",
