@@ -697,25 +697,20 @@ return {
   },
   {
     "lewis6991/hover.nvim",
-    config = function()
-      require("hover").setup {
-        init = function()
-          require "hover.providers.lsp"
-          require "hover.providers.dap"
-          require "hover.providers.fold_preview"
-          require "hover.providers.diagnostic"
-        end,
-        preview_opts = {
-          border = "single",
-        },
-        preview_window = false,
-        title = true,
-        mouse_providers = {
-          "LSP",
-        },
-        mouse_delay = 1000,
-      }
-    end,
+    opts = {
+      providers = {
+        "hover.providers.diagnostic",
+        "hover.providers.lsp",
+        "hover.providers.dap",
+        "hover.providers.fold_preview",
+      },
+      preview_opts = {
+        border = "rounded",
+      },
+      mouse_providers = {
+        "hover.providers.lsp",
+      },
+    },
   },
   {
     "rachartier/tiny-glimmer.nvim",
