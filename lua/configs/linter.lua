@@ -90,7 +90,7 @@ require("lint").linters_by_ft = {
   typescriptreact = { "eslint_d" },
   kotlin = { "ktlint" },
   -- go = { "deadcode", "fieldalignment", "staticcheck" },
-  go = { "staticcheck", "golangcilint" },
+  go = { "staticcheck" },
 }
 
 require("lint").linters.golangcilint.args = {
