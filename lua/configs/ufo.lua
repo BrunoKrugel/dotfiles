@@ -48,8 +48,6 @@ require("ufo").setup {
       return ""
     end
 
-    -- return ftMap[filetype] or { "treesitter", "indent" }
-    -- return { "treesitter", "indent" }
     local function handleFallbackException(bufnr, err, providerName)
       if type(err) == "string" and err:match "UfoFallbackException" then
         return require("ufo").getFolds(bufnr, providerName)

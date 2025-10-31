@@ -67,7 +67,6 @@ M.blink = {
   },
   sources = {
     default = {
-      -- "supermaven",
       "lsp",
       "path",
     },
@@ -156,13 +155,6 @@ M.blink = {
           return require("copilot.suggestion").accept()
         end
 
-        -- local suggestion = require "supermaven-nvim.completion_preview"
-        -- if suggestion.has_suggestion() then
-        --   vim.schedule(function()
-        --     suggestion.on_accept_suggestion()
-        --   end)
-        -- end
-        -- return true
       end,
       function() -- sidekick next edit suggestion
         return require("sidekick").nes_jump_or_apply()
@@ -172,13 +164,6 @@ M.blink = {
     },
     ["<S-Tab>"] = { "snippet_backward", "fallback" },
     ["<Esc>"] = {
-      -- function(cmp)
-      --   if cmp.is_visible() then
-      --     cmp.cancel()
-      --   else
-      --     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-c>", true, true, true), "n", true)
-      --   end
-      -- end,
       "cancel",
       "fallback",
     },

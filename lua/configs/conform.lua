@@ -40,7 +40,7 @@ conform.setup {
     ["markdown.mdx"] = { "prettier" },
     ["graphql"] = { "prettier" },
     ["handlebars"] = { "prettier" },
-    ['_'] = { lsp_format = 'first' },
-    ['*'] = { 'trim_whitespace', 'trim_newlines', 'keep-sorted' },
+    ["_"] = { lsp_format = "first" },
+    ["*"] = { "trim_whitespace", "trim_newlines", "keep-sorted" },
   },
 }

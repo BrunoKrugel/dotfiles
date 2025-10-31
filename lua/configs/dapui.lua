@@ -60,10 +60,12 @@ dap.listeners.after.disconnect["dapui_config"] = function()
   dapui.close()
   require("nvim-dap-virtual-text.virtual_text").clear_virtual_text()
 end
+
 dap.listeners.before.event_terminated["dapui_config"] = function()
   dapui.close()
   require("nvim-dap-virtual-text.virtual_text").clear_virtual_text()
 end
+
 dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
   require("nvim-dap-virtual-text.virtual_text").clear_virtual_text()
@@ -73,6 +75,7 @@ local widgets = require "dap.ui.widgets"
 vim.keymap.set("n", "<leader>ds", function()
   widgets.centered_float(widgets.scopes, { border = "rounded" })
 end, { noremap = true })
+
 vim.keymap.set("n", "<leader>du", function()
   widgets.centered_float(widgets.frames, { border = "rounded" })
 end, { noremap = true })
