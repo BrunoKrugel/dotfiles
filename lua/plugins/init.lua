@@ -897,7 +897,7 @@ return {
   ----------------------------------------- language plugins ------------------------------------------
   {
     "nvim-neotest/neotest",
-    ft = { "go", "javascript", "typescript", "javascriptreact", "typescriptreact" },
+    event = { "BufEnter *_test.go" },
     dependencies = {
       -- https://fredrikaverpil.github.io/neotest-golang/install/ in the future migrate to this
       "nvim-neotest/neotest-go",
