@@ -207,10 +207,8 @@ return {
   {
     "folke/snacks.nvim",
     event = "VeryLazy",
-    ---@type snacks.Config
     opts = {
       animate = {
-        ---@type snacks.animate.Duration|number
         enabled = true,
         duration = 20,
         easing = "linear",
