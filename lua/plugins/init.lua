@@ -159,15 +159,11 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    branch = "main",
     dependencies = {
       "windwp/nvim-ts-autotag",
     },
     opts = overrides.treesitter,
     build = ":TSUpdate",
-    config = function(_, opts)
-      require("nvim-treesitter").setup(opts)
-    end,
   },
   {
     "nvim-tree/nvim-tree.lua",
