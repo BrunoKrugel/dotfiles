@@ -885,13 +885,65 @@ return {
     "nvim-neotest/neotest",
     event = { "BufEnter *_test.go" },
     dependencies = {
-      -- https://fredrikaverpil.github.io/neotest-golang/install/ in the future migrate to this
-      "nvim-neotest/neotest-go",
+      "fredrikaverpil/neotest-golang",
       "nvim-neotest/nvim-nio",
     },
     config = function()
-      ---@diagnostic disable-next-line: different-requires
-      require "configs.neotest"
+      require("neotest").setup {
+        adapters = {
+          require "neotest-golang" {
+            runner = "go",
+            go_test_args = {
+              "-v",
+              "-race",
+              "-count=1",
+              "-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out",
+            },
+          },
+        },
+        diagnostic = {
+          enabled = true,
+        },
+        default_strategy = "integrated",
+        icons = {
+          child_indent = "│",
+          child_prefix = "├",
+          collapsed = "─",
+          expanded = "╮",
+          failed = "",
+          final_child_indent = " ",
+          final_child_prefix = "╰",
+          non_collapsible = "─",
+          passed = "",
+          running = "",
+          skipped = "",
+          unknown = "",
+        },
+        output = {
+          enabled = true,
+          open_on_run = true,
+        },
+        floating = {
+          border = "rounded",
+          max_height = 0.6,
+          max_width = 0.6,
+          options = {},
+        },
+        run = {
+          enabled = true,
+        },
+        status = {
+          enabled = true,
+          signs = true,
+          virtual_text = false,
+        },
+        strategies = {
+          integrated = {
+            height = 40,
+            width = 120,
+          },
+        },
+      }
     end,
   },
   {
