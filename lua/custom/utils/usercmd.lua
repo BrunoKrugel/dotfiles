@@ -114,6 +114,7 @@ create_cmd("Confetti", function()
 end, {})
 
 create_cmd("Debug", function()
+  vim.notify("Debug started.", vim.log.levels.INFO)
   require("dapui").toggle()
   require("dap").run {
     type = "go",
