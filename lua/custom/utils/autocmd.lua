@@ -21,6 +21,14 @@ autocmd("FileType", {
   end,
 })
 
+vim.api.nvim_create_autocmd("Filetype", {
+  pattern = "sql",
+  callback = function()
+    vim.keymap.del("i", "<left>", { buffer = true })
+    vim.keymap.del("i", "<right>", { buffer = true })
+  end,
+})
+
 -- nicer cmp docs highlights for Nvim 0.10
 autocmd("FileType", {
   pattern = "cmp_docs",
