@@ -467,15 +467,15 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.api.nvim_create_autocmd('User', {
- pattern = 'TSUpdate',
- group = vim.api.nvim_create_augroup('nvim-treesitter-parser', { clear = true }),
- callback = function()
-   require('nvim-treesitter.parsers').go_tags = {
-     install_info = {
-       url = 'https://github.com/DanWlker/tree-sitter-go_tags',
-       branch = 'tree-sitter-1.25.5',
-     },
-   }
- end,
+vim.api.nvim_create_autocmd("User", {
+  pattern = "TSUpdate",
+  group = vim.api.nvim_create_augroup("nvim-treesitter-parser", { clear = true }),
+  callback = function()
+    require("nvim-treesitter.parsers").go_tags = {
+      install_info = {
+        url = "https://github.com/DanWlker/tree-sitter-go_tags",
+        branch = "tree-sitter-1.25.5",
+      },
+    }
+  end,
 })
