@@ -122,11 +122,17 @@ end
 if g.neovide then
   opt.guifont = "JetbrainsMono Nerd Font:h12"
   -- opt.guifont = "JetbrainsMono Nerd Font:h12"
-  g.neovide_refresh_rate = 120
+  g.neovide_macos_simple_fullscreen = true
   g.neovide_remember_window_size = true
+  g.neovide_refresh_rate = 120
+
+  g.neovide_cursor_hack = true
   g.neovide_cursor_antialiasing = true
+  g.neovide_cursor_smooth_blink = true
+
   g.neovide_input_macos_option_key_is_meta = "both"
   g.neovide_input_use_logo = false
+
   g.neovide_padding_top = 0
   g.neovide_padding_bottom = 0
   g.neovide_padding_right = 0
@@ -135,6 +141,7 @@ if g.neovide then
   g.neovide_floating_blur_amount_y = 0.0
   g.neovide_floating_shadow = false
   g.neovide_floating_z_height = 40
+
   g.neovide_light_angle_degrees = 45
   g.neovide_light_radius = 10
   g.neovide_scroll_animation_length = 0.5
