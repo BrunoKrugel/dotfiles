@@ -13,6 +13,9 @@ if ok then
   }
 end
 
+-- Disable snippets capabilities
+capabilities.textDocument.completion.completionItem.snippetSupport = false
+
 ---gopls_organize_imports will organize imports for the provided buffer
 ---@param client vim.lsp.Client gopls instance
 ---@param bufnr number buffer to organize imports for
@@ -138,7 +141,6 @@ local servers = {
   "terraformls",
   "vtsls",
   "gopls",
-  "kulala_ls",
   "eslint",
   "copilot",
 }
@@ -174,10 +176,6 @@ vim.lsp.config("lua_ls", {
       },
     },
   },
-})
-
-vim.lsp.config("kulala_ls", {
-  on_attach = custom_on_attach,
 })
 
 vim.lsp.config("copilot", {
