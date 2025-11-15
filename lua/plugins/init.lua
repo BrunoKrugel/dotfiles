@@ -29,7 +29,16 @@ return {
   {
     "folke/sidekick.nvim",
     event = "LspAttach",
-    opts = { nes = { enabled = true } },
+    opts = {
+      nes = { enabled = true },
+      tools = {
+        crush = {
+          cmd = { "crush" },
+          -- crush uses <a-p> for its own functionality, so we override the default
+          keys = { prompt = { "<a-p>", "prompt" } },
+        },
+      },
+    },
     config = function(_, opts)
       require("sidekick").setup(opts)
       local disabled = false

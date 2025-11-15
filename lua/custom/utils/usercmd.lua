@@ -4,22 +4,6 @@ local create_cmd = vim.api.nvim_create_user_command
 local g = vim.g
 local fn = vim.fn
 
-local function setAutoCmp(mode)
-  if mode then
-    require("cmp").setup {
-      completion = {
-        autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
-      },
-    }
-  else
-    require("cmp").setup {
-      completion = {
-        autocomplete = false,
-      },
-    }
-  end
-end
-
 local function yank_file_path(expr)
   fn.setreg("+", fn.expand(expr))
   vim.notify("Yanked file path: " .. fn.getreg "+")
@@ -39,10 +23,6 @@ create_cmd("DapUiToggle", ":lua require'dapui'.toggle()", {})
 create_cmd("DapUiFloatElement", ":lua require'dapui'.float_element()", {})
 create_cmd("DapUiWidget", ":lua require'dap.ui.widgets'.hover()", {})
 create_cmd("DapUiEval", ":lua require'dapui'.eval()", {})
-
-create_cmd("Http", function()
-  require("kulala").run()
-end, {})
 
 create_cmd("ToggleInlayHints", function()
   ---@diagnostic disable-next-line
@@ -80,33 +60,9 @@ create_cmd("Format", function(args)
   require("conform").format(opts)
 end, { range = true })
 
--- -- Toggle colorcolumn
--- create_cmd("TCC", function()
---   vim.g.ccenable = not vim.g.ccenable
-
---   if vim.g.ccenable then
---     vim.opt.cc = settings.cc_size
---   else
---     vim.opt.cc = "0"
---   end
--- end, {})
-
 -- Open DapUi
 create_cmd("TDebug", function()
   require("dapui").toggle()
-end, {})
-
--- Toggle CMP
-g.cmptoggle = true
-create_cmd("CmpToggle", function()
-  g.cmptoggle = not g.cmptoggle
-  if g.cmptoggle then
-    vim.cmd 'echo  "CmpAutoComplete is on"'
-    setAutoCmp(true)
-  else
-    vim.cmd 'echo  "CmpAutoComplete is off"'
-    setAutoCmp(false)
-  end
 end, {})
 
 create_cmd("Confetti", function()
