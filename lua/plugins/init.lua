@@ -181,6 +181,7 @@ return {
     config = function(_, opts)
       require("nvim-tree").setup(opts)
       require("nvim-tree.diagnostics").update_lsp()
+      require("lsp-file-operations").setup()
     end,
   },
   {
@@ -386,20 +387,6 @@ return {
     opts = {
       hl_priority = 200,
       extras = { named_parameters = true },
-    },
-  },
-  {
-    "mistweaverco/kulala.nvim",
-    ft = { "http", "rest" },
-    opts = {
-      winbar = true,
-      icons = {
-        inlay = {
-          loading = "",
-          done = "",
-          error = "",
-        },
-      },
     },
   },
   {
