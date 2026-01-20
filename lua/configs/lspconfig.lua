@@ -82,6 +82,10 @@ local go_on_attach = function(client, bufnr)
     return
   end
 
+  -- Disable insertReplaceSupport to fix completion error with gopls
+  -- See: https://github.com/neovim/neovim/issues/30332
+  capabilities.textDocument.completion.completionItem.insertReplaceSupport = false
+
   custom_on_attach(client, bufnr)
   organize_imports(client, bufnr)
 
