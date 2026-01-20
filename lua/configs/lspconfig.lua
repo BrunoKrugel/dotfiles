@@ -184,6 +184,9 @@ vim.lsp.config("lua_ls", {
 
 vim.lsp.config("copilot", {
   on_attach = custom_on_attach,
+  filetypes = {
+    "*",
+  },
 })
 
 vim.lsp.config("dockerls", {
