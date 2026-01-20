@@ -1,8 +1,4 @@
-local dap, dapui, mason, dap_virtual_text =
-  require "dap", require "dapui", require "mason-registry", pcall(require, "nvim-dap-virtual-text")
-local function get_install_path(package)
-  return mason.get_package(package):get_install_path()
-end
+local dap, dapui = require "dap", require "dapui"
 
 local function vs_launch()
   local workfolder = vim.lsp.buf.list_workspace_folders()[1] or vim.fn.getcwd()
