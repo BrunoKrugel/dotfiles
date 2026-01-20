@@ -322,7 +322,7 @@ return {
     config = function()
       require("obsidian").setup {
         dir = "/users/bruno.krugel/Library/Mobile Documents/iCloud~md~obsidian/Documents/Annotation",
-        disable_frontmatter = true,
+        frontmatter = { enabled = false },
         workspaces = {
           {
             name = "Annotation",
@@ -336,6 +336,8 @@ return {
             local encoded_name = require("obsidian.util").urlencode(name)
             return string.format("![%s](%s)", name, encoded_name)
           end,
+          folder = "attachments",
+          confirm_img_paste = false,
         },
         completion = {
           blink = true,
@@ -347,20 +349,11 @@ return {
         statusline = {
           enabled = false, -- turn it off
         },
-        checkbox = {
-          enabled = true,
-          create_new = true,
-          order = { " ", "~", "!", ">", "x" },
-        },
+        preferred_link_style = "markdown",
         ui = {
           enable = true,
           update_debounce = 200,
-          checkboxes = {
-            [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
-            ["x"] = { char = "", hl_group = "ObsidianDone" },
-            [">"] = { char = "", hl_group = "ObsidianRightArrow" },
-            ["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
-          },
+          ignore_conceal_warn = false,
           bullets = { char = "•", hl_group = "ObsidianBullet" },
           external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
           reference_text = { hl_group = "ObsidianRefText" },
