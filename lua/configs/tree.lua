@@ -1,4 +1,4 @@
-local UserDecorator = require "nvim-tree.renderer.decorator.user"
+local UserDecorator = require "nvim-tree.renderer.decorator"
 
 ---A string with one or more highlight groups applied to it
 ---@class (exact) HighlightedString
