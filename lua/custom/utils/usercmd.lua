@@ -72,14 +72,20 @@ end, {})
 create_cmd("Debug", function()
   vim.notify("Debug started.", vim.log.levels.INFO)
   require("dapui").toggle()
-  require("dap").run {
-    type = "go",
-    name = "Debug: Go",
-    request = "launch",
-    showLog = false,
-    program = "${workspaceFolder}/cmd/${workspaceFolderBasename}",
-    dlvToolPath = vim.fn.exepath "dlv",
-  }
+
+  -- Ensure all Go configs have dlvToolPath before starting
+  local dap = require("dap")
+  local dlv_path = vim.fn.exepath("dlv")
+  if dlv_path == "" then
+    dlv_path = vim.fn.expand("$HOME/go/bin/dlv")
+  end
+
+  for _, cfg in ipairs(dap.configurations.go or {}) do
+    cfg.dlvToolPath = dlv_path
+  end
+
+  -- Use continue() to show config picker if multiple configs exist
+  dap.continue()
 end, {})
 
 create_cmd("Healthcheck", function()
