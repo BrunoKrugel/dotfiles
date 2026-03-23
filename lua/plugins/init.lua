@@ -343,11 +343,25 @@ return {
           blink = true,
           min_chars = 2,
         },
+        -- Optional, customize how note file names are generated given the ID, target directory, and title.
+        ---@param spec { id: string, dir: obsidian.Path, title: string|? }
+        ---@return string|obsidian.Path The full path to the new note.
+        note_path_func = function(spec)
+          -- This is equivalent to the default behavior.
+          local path = spec.dir / tostring(spec.id)
+          return path:with_suffix ".md"
+        end,
+
+        note_id_func = function(title)
+          return title
+        end,
+
         markdown_link_func = function(opts)
           return string.format("[%s](%s)", opts.label, opts.path)
         end,
         statusline = {
           enabled = false, -- turn it off
+          format = "Backlinks: {{backlinks}} | Words: {{words}}",
         },
         preferred_link_style = "markdown",
         ui = {
@@ -359,6 +373,21 @@ return {
           reference_text = { hl_group = "ObsidianRefText" },
           highlight_text = { hl_group = "ObsidianHighlightText" },
           tags = { hl_group = "ObsidianTag" },
+        },
+        picker = {
+          name = "snacks.pick",
+          note_mappings = {
+            -- Create a new note from your query.
+            new = "<C-x>",
+            -- Insert a link to the selected note.
+            insert_link = "<C-l>",
+          },
+          tag_mappings = {
+            -- Add tag(s) to current note.
+            tag_note = "<C-x>",
+            -- Insert a tag at the current location.
+            insert_tag = "<C-l>",
+          },
         },
       }
     end,
