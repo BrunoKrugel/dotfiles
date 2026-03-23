@@ -16,6 +16,13 @@ end
 -- Disable snippets capabilities
 capabilities.textDocument.completion.completionItem.snippetSupport = false
 
+capabilities.workspace = {
+  didChangeWatchedFiles = {
+    dynamicRegistration = true, -- needs fswatch on linux
+    relativePatternSupport = true,
+  },
+}
+
 ---gopls_organize_imports will organize imports for the provided buffer
 ---@param client vim.lsp.Client gopls instance
 ---@param bufnr number buffer to organize imports for
@@ -169,6 +176,7 @@ vim.lsp.config("lua_ls", {
         enable = false,
       },
       workspace = {
+        checkThirdParty = false,
         library = {
           [vim.fn.expand "$VIMRUNTIME/lua"] = true,
           [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
