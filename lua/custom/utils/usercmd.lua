@@ -74,10 +74,10 @@ create_cmd("Debug", function()
   require("dapui").toggle()
 
   -- Ensure all Go configs have dlvToolPath before starting
-  local dap = require("dap")
-  local dlv_path = vim.fn.exepath("dlv")
+  local dap = require "dap"
+  local dlv_path = vim.fn.exepath "dlv"
   if dlv_path == "" then
-    dlv_path = vim.fn.expand("$HOME/go/bin/dlv")
+    dlv_path = vim.fn.expand "$HOME/go/bin/dlv"
   end
 
   for _, cfg in ipairs(dap.configurations.go or {}) do
@@ -130,7 +130,7 @@ create_cmd("GitOpen", function()
   vim.fn.system("open " .. github_file_url)
 end, {})
 
-vim.api.nvim_create_user_command("LintInfo", function()
+create_cmd("LintInfo", function()
   local filetype = vim.bo.filetype
   local linters = require("lint").linters_by_ft[filetype]
 
@@ -140,3 +140,16 @@ vim.api.nvim_create_user_command("LintInfo", function()
     print("No linters configured for filetype: " .. filetype)
   end
 end, {})
+
+create_cmd("LspLog", function(_)
+  local state_path = vim.fn.stdpath "state"
+  local log_path = vim.fs.joinpath(state_path, "lsp.log")
+
+  vim.cmd(string.format("edit %s", log_path))
+end, {
+  desc = "Show LSP log",
+})
+
+create_cmd("LspRestart", "lsp restart", {
+  desc = "Restart LSP",
+})
