@@ -460,6 +460,10 @@ return {
     cmd = { "DapContinue", "DapStepOver", "DapStepInto", "DapStepOut", "DapToggleBreakpoint" },
     dependencies = {
       {
+        "Joakker/lua-json5",
+        build = "./install.sh",
+      },
+      {
         "theHamsta/nvim-dap-virtual-text",
         config = function()
           require("nvim-dap-virtual-text").setup {
