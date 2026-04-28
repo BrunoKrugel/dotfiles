@@ -439,6 +439,7 @@ end, { desc = "Lazy Git" })
 
 --------------------------------------------------- Text ---------------------------------------------------
 map("n", "<C-z>", "<CMD>u<CR>", { desc = "󰕌 Undo" })
+map("n", "<C-R>", "<CMD>Match<CR>", { desc = "Replace" })
 map("n", "<BS>", "<C-o>", { desc = "Return" })
 map("n", "<C-x>", "x", { desc = "󰆐 Cut" })
 map("n", "<C-v>", "p`[v`]=", { desc = "󰆒 Paste" })

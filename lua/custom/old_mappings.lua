@@ -121,7 +121,6 @@ M.text = {
     ["<C-Up>"] = { "<CMD>m .-2<CR>==", "󰜸 Move line up" },
     ["<C-Down>"] = { "<CMD>m .+1<CR>==", "󰜯 Move line down" },
     -- Renamer
-    -- ["<C-R>"] = { "<CMD>:MurenToggle<CR>", "󱝪 Toggle Search" },
     ["<leader>sp"] = { "<CMD>:TSJToggle<CR>", "󰯌 Toggle split/join" },
     ["dd"] = {
       function()

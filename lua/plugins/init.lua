@@ -508,6 +508,11 @@ return {
   },
   ----------------------------------------- ui plugins ------------------------------------------
   {
+    "ankushbhagats/match.nvim",
+    cmd = "Match",
+    config = true,
+  },
+  {
     "folke/noice.nvim",
     event = "VeryLazy",
     dependencies = {
@@ -591,11 +596,6 @@ return {
   {
     "b0o/schemastore.nvim",
     ft = { "json", "yaml", "yml" },
-  },
-  {
-    "BrunoKrugel/muren.nvim",
-    cmd = "MurenToggle",
-    config = true,
   },
   {
     "akinsho/git-conflict.nvim",
