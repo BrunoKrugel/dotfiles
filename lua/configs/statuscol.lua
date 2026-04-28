@@ -45,10 +45,6 @@ require("statuscol").setup {
     {
       sign = {
         namespace = { "diagnostic" },
-        -- name = {
-        --   "Dap",
-        --   "neotest",
-        -- },
         name = { ".*" },
         maxwidth = 1,
         colwidth = 1,

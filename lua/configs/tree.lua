@@ -1,4 +1,4 @@
-local UserDecorator = require "nvim-tree.renderer.decorator.user"
+local UserDecorator = require "nvim-tree.renderer.decorator"
 
 ---A string with one or more highlight groups applied to it
 ---@class (exact) HighlightedString
@@ -49,7 +49,6 @@ end
 local function on_attach(bufnr)
   local api = require "nvim-tree.api"
   local lib = require "nvim-tree.lib"
-  local tree_actions = require "nvim-tree.actions"
 
   local function opts(desc)
     return {
@@ -94,22 +93,6 @@ local function on_attach(bufnr)
       if #new_name > 0 and new_name ~= default_text then
         callback(new_name)
       end
-    end)
-  end
-
-  local function custom_rename()
-    local node = require("nvim-tree.lib").get_node_at_cursor()
-    if not node then
-      return
-    end
-    local default_text = vim.fn.fnamemodify(node.absolute_path, ":t")
-    fancy_prompt("rename", default_text, function(new_name)
-      tree_actions.fs.rename_node.apply(node, new_name)
-    end)
-  end
-  local function custom_create()
-    fancy_prompt("create", "", function(new_name)
-      tree_actions.fs.create_file.apply(new_name)
     end)
   end
 
@@ -170,9 +153,8 @@ local function on_attach(bufnr)
   map("n", "p", api.fs.paste, opts "Paste")
   map("n", "P", api.node.navigate.parent, opts "Parent Directory")
   map("n", "q", smart_close_q, opts "Close")
-  -- map("n", "r", api.fs.rename, opts "Rename")
-  map("n", "r", custom_rename, opts "Rename")
-  map("n", "a", custom_create, opts "Create")
+  map("n", "r", api.fs.rename, opts "Rename")
+  map("n", "a", api.fs.create, opts "Create")
   map("n", "R", api.tree.reload, opts "Refresh")
   map("n", "s", api.node.run.system, opts "Run System")
   map("n", "S", api.tree.search_node, opts "Search")

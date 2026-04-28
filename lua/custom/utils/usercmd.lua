@@ -4,22 +4,6 @@ local create_cmd = vim.api.nvim_create_user_command
 local g = vim.g
 local fn = vim.fn
 
-local function setAutoCmp(mode)
-  if mode then
-    require("cmp").setup {
-      completion = {
-        autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
-      },
-    }
-  else
-    require("cmp").setup {
-      completion = {
-        autocomplete = false,
-      },
-    }
-  end
-end
-
 local function yank_file_path(expr)
   fn.setreg("+", fn.expand(expr))
   vim.notify("Yanked file path: " .. fn.getreg "+")
@@ -39,10 +23,6 @@ create_cmd("DapUiToggle", ":lua require'dapui'.toggle()", {})
 create_cmd("DapUiFloatElement", ":lua require'dapui'.float_element()", {})
 create_cmd("DapUiWidget", ":lua require'dap.ui.widgets'.hover()", {})
 create_cmd("DapUiEval", ":lua require'dapui'.eval()", {})
-
-create_cmd("Http", function()
-  require("kulala").run()
-end, {})
 
 create_cmd("ToggleInlayHints", function()
   ---@diagnostic disable-next-line
@@ -80,33 +60,9 @@ create_cmd("Format", function(args)
   require("conform").format(opts)
 end, { range = true })
 
--- -- Toggle colorcolumn
--- create_cmd("TCC", function()
---   vim.g.ccenable = not vim.g.ccenable
-
---   if vim.g.ccenable then
---     vim.opt.cc = settings.cc_size
---   else
---     vim.opt.cc = "0"
---   end
--- end, {})
-
 -- Open DapUi
 create_cmd("TDebug", function()
   require("dapui").toggle()
-end, {})
-
--- Toggle CMP
-g.cmptoggle = true
-create_cmd("CmpToggle", function()
-  g.cmptoggle = not g.cmptoggle
-  if g.cmptoggle then
-    vim.cmd 'echo  "CmpAutoComplete is on"'
-    setAutoCmp(true)
-  else
-    vim.cmd 'echo  "CmpAutoComplete is off"'
-    setAutoCmp(false)
-  end
 end, {})
 
 create_cmd("Confetti", function()
@@ -114,15 +70,22 @@ create_cmd("Confetti", function()
 end, {})
 
 create_cmd("Debug", function()
+  vim.notify("Debug started.", vim.log.levels.INFO)
   require("dapui").toggle()
-  require("dap").run {
-    type = "go",
-    name = "Debug: Go",
-    request = "launch",
-    showLog = false,
-    program = "${workspaceFolder}/cmd/${workspaceFolderBasename}",
-    dlvToolPath = vim.fn.exepath "dlv",
-  }
+
+  -- Ensure all Go configs have dlvToolPath before starting
+  local dap = require "dap"
+  local dlv_path = vim.fn.exepath "dlv"
+  if dlv_path == "" then
+    dlv_path = vim.fn.expand "$HOME/go/bin/dlv"
+  end
+
+  for _, cfg in ipairs(dap.configurations.go or {}) do
+    cfg.dlvToolPath = dlv_path
+  end
+
+  -- Use continue() to show config picker if multiple configs exist
+  dap.continue()
 end, {})
 
 create_cmd("Healthcheck", function()
@@ -167,7 +130,7 @@ create_cmd("GitOpen", function()
   vim.fn.system("open " .. github_file_url)
 end, {})
 
-vim.api.nvim_create_user_command("LintInfo", function()
+create_cmd("LintInfo", function()
   local filetype = vim.bo.filetype
   local linters = require("lint").linters_by_ft[filetype]
 
@@ -177,3 +140,16 @@ vim.api.nvim_create_user_command("LintInfo", function()
     print("No linters configured for filetype: " .. filetype)
   end
 end, {})
+
+create_cmd("LspLog", function(_)
+  local state_path = vim.fn.stdpath "state"
+  local log_path = vim.fs.joinpath(state_path, "lsp.log")
+
+  vim.cmd(string.format("edit %s", log_path))
+end, {
+  desc = "Show LSP log",
+})
+
+create_cmd("LspRestart", "lsp restart", {
+  desc = "Restart LSP",
+})

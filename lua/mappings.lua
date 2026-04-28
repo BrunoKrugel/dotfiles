@@ -148,7 +148,7 @@ local function hover_handler()
   if dap_ok and dap.session() ~= nil then
     local dapui_ok, dapui = pcall(require, "dap.ui.widgets")
     if dapui_ok and vim.bo.filetype ~= "dap-float" then
-      dapui.hover()
+      dapui.hover(nil, { border = "rounded" })
     end
   end
   local ufo_ok, ufo = pcall(require, "ufo")
@@ -176,7 +176,7 @@ local function hover_handler()
       vim.diagnostic.open_float()
     end
   else
-    require("hover").hover()
+    require("hover").open()
   end
 end
 
@@ -439,6 +439,7 @@ end, { desc = "Lazy Git" })
 
 --------------------------------------------------- Text ---------------------------------------------------
 map("n", "<C-z>", "<CMD>u<CR>", { desc = "󰕌 Undo" })
+map("n", "<C-R>", "<CMD>Match<CR>", { desc = "Replace" })
 map("n", "<BS>", "<C-o>", { desc = "Return" })
 map("n", "<C-x>", "x", { desc = "󰆐 Cut" })
 map("n", "<C-v>", "p`[v`]=", { desc = "󰆒 Paste" })
@@ -447,6 +448,20 @@ map("n", "p", "p`[v`]=", { desc = "󰆒 Paste" })
 map("n", "<S-CR>", "o<ESC>", { desc = " New line" })
 map("s", "<BS>", "<C-o>c", { desc = "Better backspace in select mode" })
 map({ "n", "i", "v" }, "<C-a>", "<cmd>normal! ggVG<cr>", { desc = "Select all" })
+
+if vim.g.neovide then
+  vim.keymap.set("v", "<D-c>", '"+y') -- Copy
+  vim.keymap.set("n", "<D-v>", '"+P') -- Paste normal mode
+  vim.keymap.set("v", "<D-v>", '"+P') -- Paste visual mode
+  vim.keymap.set("c", "<D-v>", "<C-R>+") -- Paste command mode
+  vim.keymap.set("i", "<D-v>", '<ESC>l"+Pli') -- Paste insert mode
+end
+
+-- Allow clipboard copy paste in neovim
+vim.api.nvim_set_keymap("", "<D-v>", "+p<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("!", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<D-v>", "<C-R>+", { noremap = true, silent = true })
 
 map("i", "<S-CR>", function()
   vim.cmd "normal o"

@@ -21,6 +21,14 @@ autocmd("FileType", {
   end,
 })
 
+vim.api.nvim_create_autocmd("Filetype", {
+  pattern = "sql",
+  callback = function()
+    vim.keymap.del("i", "<left>", { buffer = true })
+    vim.keymap.del("i", "<right>", { buffer = true })
+  end,
+})
+
 -- nicer cmp docs highlights for Nvim 0.10
 autocmd("FileType", {
   pattern = "cmp_docs",
@@ -456,5 +464,18 @@ vim.api.nvim_create_autocmd("FileType", {
       table.insert(recent_folders, pwd)
       vim.g.RECENT_PROJECTS = recent_folders
     end
+  end,
+})
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "TSUpdate",
+  group = vim.api.nvim_create_augroup("nvim-treesitter-parser", { clear = true }),
+  callback = function()
+    require("nvim-treesitter.parsers").go_tags = {
+      install_info = {
+        url = "https://github.com/DanWlker/tree-sitter-go_tags",
+        branch = "tree-sitter-1.25.5",
+      },
+    }
   end,
 })

@@ -27,7 +27,6 @@ conform.setup {
     markdown = { "prettier" },
     query = { "format-queries" },
     lua = { "stylua" },
-    http = { "kulala-fmt" },
     sql = { "sqlfmt" },
     kotlin = { "ktfmt" },
     go = function(bufnr)

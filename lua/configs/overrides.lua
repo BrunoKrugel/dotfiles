@@ -372,10 +372,6 @@ M.telescope = {
     },
   },
   extensions_list = {
-    "themes",
-    "undo",
-    "ctags_plus",
-    "luasnip",
     "fzf",
   },
   extensions = {
@@ -384,9 +380,6 @@ M.telescope = {
       override_file_sorter = true,
       case_mode = "smart_case",
       fuzzy = true,
-    },
-    import = {
-      insert_at_top = true,
     },
   },
 }

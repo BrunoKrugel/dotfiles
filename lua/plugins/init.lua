@@ -29,7 +29,16 @@ return {
   {
     "folke/sidekick.nvim",
     event = "LspAttach",
-    opts = { nes = { enabled = true } },
+    opts = {
+      nes = { enabled = true },
+      tools = {
+        crush = {
+          cmd = { "crush" },
+          -- crush uses <a-p> for its own functionality, so we override the default
+          keys = { prompt = { "<a-p>", "prompt" } },
+        },
+      },
+    },
     config = function(_, opts)
       require("sidekick").setup(opts)
       local disabled = false
@@ -54,6 +63,21 @@ return {
   {
     "windwp/nvim-autopairs",
     enabled = false,
+  },
+  {
+    "AlexandrosAlexiou/kotlin.nvim",
+    ft = { "kotlin" },
+    config = function()
+      require("kotlin").setup {
+        -- Optional: Specify root markers for multi-module projects
+        root_markers = {
+          "gradlew",
+          ".git",
+          "mvnw",
+          "settings.gradle",
+        },
+      }
+    end,
   },
   {
     "saghen/blink.pairs",
@@ -159,23 +183,11 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    -- branch = "master",
     dependencies = {
       "windwp/nvim-ts-autotag",
     },
     opts = overrides.treesitter,
     build = ":TSUpdate",
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
-      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-      parser_config.go_tags = {
-        install_info = {
-          url = "https://github.com/DanWlker/tree-sitter-go_tags",
-          files = { "src/parser.c" },
-          branch = "main",
-        },
-      }
-    end,
   },
   {
     "nvim-tree/nvim-tree.lua",
@@ -184,6 +196,7 @@ return {
     config = function(_, opts)
       require("nvim-tree").setup(opts)
       require("nvim-tree.diagnostics").update_lsp()
+      require("lsp-file-operations").setup()
     end,
   },
   {
@@ -324,7 +337,7 @@ return {
     config = function()
       require("obsidian").setup {
         dir = "/users/bruno.krugel/Library/Mobile Documents/iCloud~md~obsidian/Documents/Annotation",
-        disable_frontmatter = true,
+        frontmatter = { enabled = false },
         workspaces = {
           {
             name = "Annotation",
@@ -338,36 +351,58 @@ return {
             local encoded_name = require("obsidian.util").urlencode(name)
             return string.format("![%s](%s)", name, encoded_name)
           end,
+          folder = "attachments",
+          confirm_img_paste = false,
         },
         completion = {
           blink = true,
           min_chars = 2,
         },
+        -- Optional, customize how note file names are generated given the ID, target directory, and title.
+        ---@param spec { id: string, dir: obsidian.Path, title: string|? }
+        ---@return string|obsidian.Path The full path to the new note.
+        note_path_func = function(spec)
+          -- This is equivalent to the default behavior.
+          local path = spec.dir / tostring(spec.id)
+          return path:with_suffix ".md"
+        end,
+
+        note_id_func = function(title)
+          return title
+        end,
+
         markdown_link_func = function(opts)
           return string.format("[%s](%s)", opts.label, opts.path)
         end,
         statusline = {
           enabled = false, -- turn it off
+          format = "Backlinks: {{backlinks}} | Words: {{words}}",
         },
-        checkbox = {
-          enabled = true,
-          create_new = true,
-          order = { " ", "~", "!", ">", "x" },
-        },
+        preferred_link_style = "markdown",
         ui = {
           enable = true,
           update_debounce = 200,
-          checkboxes = {
-            [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
-            ["x"] = { char = "", hl_group = "ObsidianDone" },
-            [">"] = { char = "", hl_group = "ObsidianRightArrow" },
-            ["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
-          },
+          ignore_conceal_warn = false,
           bullets = { char = "•", hl_group = "ObsidianBullet" },
           external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
           reference_text = { hl_group = "ObsidianRefText" },
           highlight_text = { hl_group = "ObsidianHighlightText" },
           tags = { hl_group = "ObsidianTag" },
+        },
+        picker = {
+          name = "snacks.pick",
+          note_mappings = {
+            -- Create a new note from your query.
+            new = "<C-x>",
+            -- Insert a link to the selected note.
+            insert_link = "<C-l>",
+          },
+          tag_mappings = {
+            -- Add tag(s) to current note.
+            tag_note = "<C-x>",
+            -- Insert a tag at the current location.
+            insert_tag = "<C-l>",
+          },
         },
       }
     end,
@@ -389,20 +424,6 @@ return {
     opts = {
       hl_priority = 200,
       extras = { named_parameters = true },
-    },
-  },
-  {
-    "mistweaverco/kulala.nvim",
-    ft = { "http", "rest" },
-    opts = {
-      winbar = true,
-      icons = {
-        inlay = {
-          loading = "",
-          done = "",
-          error = "",
-        },
-      },
     },
   },
   {
@@ -438,6 +459,10 @@ return {
     "mfussenegger/nvim-dap",
     cmd = { "DapContinue", "DapStepOver", "DapStepInto", "DapStepOut", "DapToggleBreakpoint" },
     dependencies = {
+      {
+        "Joakker/lua-json5",
+        build = "./install.sh",
+      },
       {
         "theHamsta/nvim-dap-virtual-text",
         config = function()
@@ -501,6 +526,11 @@ return {
     end,
   },
   ----------------------------------------- ui plugins ------------------------------------------
+  {
+    "ankushbhagats/match.nvim",
+    cmd = "Match",
+    config = true,
+  },
   {
     "folke/noice.nvim",
     event = "VeryLazy",
@@ -585,11 +615,6 @@ return {
   {
     "b0o/schemastore.nvim",
     ft = { "json", "yaml", "yml" },
-  },
-  {
-    "BrunoKrugel/muren.nvim",
-    cmd = "MurenToggle",
-    config = true,
   },
   {
     "akinsho/git-conflict.nvim",
@@ -897,13 +922,65 @@ return {
     "nvim-neotest/neotest",
     event = { "BufEnter *_test.go" },
     dependencies = {
-      -- https://fredrikaverpil.github.io/neotest-golang/install/ in the future migrate to this
-      "nvim-neotest/neotest-go",
+      "fredrikaverpil/neotest-golang",
       "nvim-neotest/nvim-nio",
     },
     config = function()
-      ---@diagnostic disable-next-line: different-requires
-      require "configs.neotest"
+      require("neotest").setup {
+        adapters = {
+          require "neotest-golang" {
+            runner = "go",
+            go_test_args = {
+              "-v",
+              "-race",
+              "-count=1",
+              "-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out",
+            },
+          },
+        },
+        diagnostic = {
+          enabled = true,
+        },
+        default_strategy = "integrated",
+        icons = {
+          child_indent = "│",
+          child_prefix = "├",
+          collapsed = "─",
+          expanded = "╮",
+          failed = "",
+          final_child_indent = " ",
+          final_child_prefix = "╰",
+          non_collapsible = "─",
+          passed = "",
+          running = "",
+          skipped = "",
+          unknown = "",
+        },
+        output = {
+          enabled = true,
+          open_on_run = true,
+        },
+        floating = {
+          border = "rounded",
+          max_height = 0.6,
+          max_width = 0.6,
+          options = {},
+        },
+        run = {
+          enabled = true,
+        },
+        status = {
+          enabled = true,
+          signs = true,
+          virtual_text = false,
+        },
+        strategies = {
+          integrated = {
+            height = 40,
+            width = 120,
+          },
+        },
+      }
     end,
   },
   {

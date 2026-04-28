@@ -78,6 +78,26 @@ M.override = {
 
 M.add = {
 
+  SidekickDiffContext = { link = "TinyInlineDiagnosticVirtualTextWarn" },
+  SidekickDiffAdd = { link = "TinyInlineDiagnosticVirtualTextInfo" },
+  SidekickDiffDelete = { link = "TinyInlineDiagnosticVirtualTextError" },
+
+  NeotestFailed = { fg = "red" },
+  NeotestTarget = { fg = "red" },
+  NeotestAdapterName = { fg = "red" },
+
+  NeotestDir = { fg = "cyan" },
+  NeotestFile = { fg = "cyan" },
+  NeotestSkipped = { fg = "cyan" },
+  NeotestWinSelect = { fg = "cyan" },
+
+  NeotestPassed = { fg = "green" },
+
+  NeotestRunning = { fg = "yellow" },
+  NeotestWatching = { fg = "yellow" },
+
+  NeotestNamespace = { fg = "purple" },
+
   DapStoppedLine = { link = "Visual" },
   DapBreakpoint = { fg = "red" },
 
@@ -91,7 +111,7 @@ M.add = {
   WinBar = { link = "Normal" },
   WinBarNC = { link = "Normal" },
 
-  YankVisual = { fg = "black2", bg = "cyan" },
+  YankVisual = { fg = "black2", bg = "blue" },
 
   MultiCursor = { bg = "white", fg = "black2" },
   MultiCursorMain = { bg = "white", fg = "black2" },

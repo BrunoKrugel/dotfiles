@@ -57,6 +57,14 @@ local function hasLspErrors()
   return false
 end
 
+function Sidekick_cli()
+  local status = require("sidekick.status").cli()
+  if #status > 0 then
+    return M.get_or_create_hl("Special", "StatusLine") .. "  "
+  end
+  return ""
+end
+
 function Get_Conflict()
   local conflict = ""
 
@@ -333,7 +341,7 @@ M.statusline = {
             if client.name == "typescript-tools" then
               lsp_name = "typescript"
             end
-            return (vim.o.columns > 100 and copilot .. ("%#St_Lsp#  " .. lsp_name .. " (" .. count .. ")"))
+            return (vim.o.columns > 100 and copilot .. ("%#St_Lsp# " .. lsp_name .. " (" .. count .. ")"))
               or copilot .. "  LSP (" .. count .. ") "
           end
         end

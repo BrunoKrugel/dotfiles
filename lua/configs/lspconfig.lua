@@ -13,6 +13,16 @@ if ok then
   }
 end
 
+-- Disable snippets capabilities
+capabilities.textDocument.completion.completionItem.snippetSupport = false
+
+capabilities.workspace = {
+  didChangeWatchedFiles = {
+    dynamicRegistration = true, -- needs fswatch on linux
+    relativePatternSupport = true,
+  },
+}
+
 ---gopls_organize_imports will organize imports for the provided buffer
 ---@param client vim.lsp.Client gopls instance
 ---@param bufnr number buffer to organize imports for
@@ -79,6 +89,10 @@ local go_on_attach = function(client, bufnr)
     return
   end
 
+  -- Disable insertReplaceSupport to fix completion error with gopls
+  -- See: https://github.com/neovim/neovim/issues/30332
+  capabilities.textDocument.completion.completionItem.insertReplaceSupport = false
+
   custom_on_attach(client, bufnr)
   organize_imports(client, bufnr)
 
@@ -138,7 +152,6 @@ local servers = {
   "terraformls",
   "vtsls",
   "gopls",
-  "kulala_ls",
   "eslint",
   "copilot",
 }
@@ -163,6 +176,7 @@ vim.lsp.config("lua_ls", {
         enable = false,
       },
       workspace = {
+        checkThirdParty = false,
         library = {
           [vim.fn.expand "$VIMRUNTIME/lua"] = true,
           [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
@@ -176,12 +190,11 @@ vim.lsp.config("lua_ls", {
   },
 })
 
-vim.lsp.config("kulala_ls", {
-  on_attach = custom_on_attach,
-})
-
 vim.lsp.config("copilot", {
   on_attach = custom_on_attach,
+  filetypes = {
+    "*",
+  },
 })
 
 vim.lsp.config("dockerls", {
@@ -353,8 +366,8 @@ vim.lsp.config("gopls", {
   },
   settings = {
     gopls = {
-      buildFlags = { "-tags=wireinject" },
       directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
+      buildFlags = { "-tags=integration" },
       usePlaceholders = true,
       experimentalPostfixCompletions = true,
       completeUnimported = true,
@@ -378,30 +391,33 @@ vim.lsp.config("gopls", {
         typeparams = true,
         -- disable annoying "at least one file in a package should have a package comment" warning
         ST1000 = false,
+        ST1003 = false,
+        ST1020 = false,
+        ST1021 = false,
         unusedwrite = true,
         unusedparams = true,
         useany = true,
         unusedresult = true,
       },
       codelenses = {
-        -- references = true,
-        test = true,
-        -- tidy = true,
         -- upgrade_dependency = true,
         -- regenerate_cgo = true,
-        generate = false,
-        -- gc_details = false,
         run_govulncheck = true,
+        -- gc_details = false,
+        -- references = true,
+        generate = false,
+        -- tidy = true,
         vendor = true,
+        test = true,
       },
       hints = {
-        assignVariableTypes = true,
         compositeLiteralFields = true,
-        compositeLiteralTypes = true,
-        constantValues = true,
         functionTypeParameters = true,
-        parameterNames = true,
+        compositeLiteralTypes = true,
+        assignVariableTypes = true,
         rangeVariableTypes = true,
+        constantValues = true,
+        parameterNames = true,
       },
     },
   },

@@ -147,7 +147,7 @@ M.blink = {
     ["<Down>"] = { "select_next", "fallback" },
     ["<Tab>"] = {
       function()
-        if not has_words_before() then
+        if not has_words_before() and not require("copilot.suggestion").is_visible() then
           return
         end
 
