@@ -65,6 +65,21 @@ return {
     enabled = false,
   },
   {
+    "AlexandrosAlexiou/kotlin.nvim",
+    ft = { "kotlin" },
+    config = function()
+      require("kotlin").setup {
+        -- Optional: Specify root markers for multi-module projects
+        root_markers = {
+          "gradlew",
+          ".git",
+          "mvnw",
+          "settings.gradle",
+        },
+      }
+    end,
+  },
+  {
     "saghen/blink.pairs",
     version = "*",
     dependencies = "saghen/blink.download",
