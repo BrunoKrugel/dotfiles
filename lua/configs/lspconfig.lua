@@ -32,12 +32,12 @@ local function organize_imports(client, bufnr)
   local params = vim.lsp.util.make_range_params(0, gopls[1].offset_encoding)
   params.context = { only = { "source.organizeImports" } }
 
-  local resp = client.request_sync("textDocument/codeAction", params, 3000, bufnr)
+  local resp = client:request_sync("textDocument/codeAction", params, 3000, bufnr)
   for _, r in pairs(resp and resp.result or {}) do
     if r.edit then
       vim.lsp.util.apply_workspace_edit(r.edit, client.offset_encoding or "utf-16")
     else
-      vim.lsp.buf.execute_command(r.command)
+      client:exec_cmd(r.command)
     end
   end
 end
