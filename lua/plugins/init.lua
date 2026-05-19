@@ -182,12 +182,13 @@ return {
     },
   },
   {
-    "nvim-treesitter/nvim-treesitter",
+    "neovim-treesitter/nvim-treesitter",
     dependencies = {
       "windwp/nvim-ts-autotag",
     },
     opts = overrides.treesitter,
     build = ":TSUpdate",
+    dependencies = { 'neovim-treesitter/treesitter-parser-registry', lazy = false },
   },
   {
     "nvim-tree/nvim-tree.lua",
