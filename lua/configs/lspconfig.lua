@@ -52,7 +52,7 @@ local custom_on_attach = function(client, bufnr)
       vim.api.nvim_create_autocmd({ "BufReadPost", "CursorHold", "InsertLeave" }, {
         buffer = bufnr,
         callback = function()
-          vim.lsp.codelens.refresh { bufnr = bufnr }
+          vim.lsp.codelens.refresh()
         end,
       })
 
