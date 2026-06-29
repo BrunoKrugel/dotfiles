@@ -84,6 +84,7 @@ return {
     version = "*",
     dependencies = "saghen/blink.download",
     event = { "BufNewFile", "BufReadPost" },
+    build = function() require("blink.pairs").build():pwait(60000) end,
     opts = {
       highlights = {
         enabled = true,
