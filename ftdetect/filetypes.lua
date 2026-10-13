@@ -2,6 +2,7 @@ vim.filetype.add {
   pattern = {
     [".*%.scm"] = "query",
     ["tsconfig*.json"] = "jsonc",
+    ["crushrc"] = "bash",
     [".*/%.vscode/.*%.json"] = "jsonc",
     -- Borrowed from LazyVim. Mark huge files to disable features later.
     [".*"] = function(path, bufnr)
