@@ -121,6 +121,16 @@ vim.lsp.handlers[methods.client_registerCapability] = function(err, res, ctx)
   return register_capability(err, res, ctx)
 end
 
+  -- local default_handler = vim.lsp.handlers[methods.window_showMessage]
+  -- vim.lsp.handlers[methods.window_showMessage] = function(err, result, ctx, config)
+  --   -- Ignores annoying gopls inlayhints error when it can't find package
+  --   -- metadata for a file.
+  --   if result and result.message and result.message:match("no package metadata for file") then
+  --     return
+  --   end
+  --   return default_handler(err, result, ctx, config)
+  -- end
+
 vim.lsp.handlers["textDocument/hover"] = require("noice").hover
 vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx)
   local ts_lsp = { "ts_ls", "angularls", "volar", "vtsls" }

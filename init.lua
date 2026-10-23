@@ -22,6 +22,7 @@ require("lazy").setup({
     "BrunoKrugel/NvChad",
     lazy = false,
     branch = "v2.5",
+    dir = "/Users/bruno.krugel/GitHub/NvChad",
     import = "nvchad.plugins",
     config = function()
       require "options"
