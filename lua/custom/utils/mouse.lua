@@ -9,7 +9,7 @@ _G.ClickSplit = function()
 end
 
 _G.ClickGit = function()
-    Snacks.terminal('lazygit')
+  Snacks.terminal "lazygit"
 end
 
 _G.ClickUpdate = function()
