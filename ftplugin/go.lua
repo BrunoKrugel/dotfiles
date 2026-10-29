@@ -24,45 +24,29 @@ end
 
 local function add_tags()
   local struct = vim.fn.expand "<cword>"
-  local type = vim.fn.input("Type: ", "json")
+  local tag = vim.fn.input("Type: ", "json")
   local file = vim.fn.expand "%:p"
   local view = vim.fn.winsaveview()
-  local response = vim.fn.systemlist(string.format("gomodifytags -file %s -struct %s -add-tags %s", file, struct, type))
+  local response = vim.fn.systemlist(
+    string.format(
+      "gomodifytags -file %s -struct %s -add-tags %s",
+      vim.fn.shellescape(file),
+      vim.fn.shellescape(struct),
+      vim.fn.shellescape(tag)
+    )
+  )
+  if vim.v.shell_error ~= 0 then
+    vim.notify("gomodifytags failed: " .. table.concat(response, "\n"), vim.log.levels.ERROR)
+    return
+  end
   vim.api.nvim_buf_set_lines(0, 0, -1, true, response)
   vim.fn.winrestview(view)
-end
-
-local function golang_goto_def()
-  local old = vim.lsp.buf.definition
-  local opts = {
-    on_list = function(options)
-      if options == nil or options.items == nil or #options.items == 0 then
-        return
-      end
-      local targetFile = options.items[1].filename
-      local prefix = string.match(targetFile, "(.-)_templ%.go$")
-      if prefix then
-        local function_name = vim.fn.expand "<cword>"
-        options.items[1].filename = prefix .. ".templ"
-        vim.fn.setqflist({}, " ", options)
-        vim.api.nvim_command "cfirst"
-        vim.api.nvim_command("silent! /templ " .. function_name)
-      else
-        old()
-      end
-    end,
-  }
-  vim.lsp.buf.definition = function(o)
-    o = o or {}
-    o = vim.tbl_extend("keep", o, opts)
-    old(o)
-  end
 end
 
 local function gopls_extract_all()
   local mode = vim.api.nvim_get_mode().mode
 
-  local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+  local row, col = table.unpack(vim.api.nvim_win_get_cursor(0))
   if mode == "v" or mode == "V" then
     local range = vim.lsp.buf.range_from_selection(0, mode)
     local params = vim.lsp.util.make_given_range_params(range.start, range["end"], 0, "utf-8")
@@ -90,7 +74,7 @@ local function gopls_extract_all()
                 end
               end
               local minimal_distance = 1000000000
-              local which_one = {}
+              local which_one
               for _, rang in ipairs(ranges) do
                 local start_row, start_col = rang.start.line, rang.start.character
                 if
@@ -104,8 +88,10 @@ local function gopls_extract_all()
                 end
               end
               api.nvim_feedkeys(api.nvim_replace_termcodes("<esc>", true, false, true), "n", false)
-              vim.api.nvim_win_set_cursor(0, { which_one[1] + 1, which_one[2] })
-              api.nvim_feedkeys(api.nvim_replace_termcodes("<leader>rn", true, false, true), "m", false)
+              if which_one then
+                vim.api.nvim_win_set_cursor(0, { which_one[1] + 1, which_one[2] })
+                api.nvim_feedkeys(api.nvim_replace_termcodes("<leader>rn", true, false, true), "m", false)
+              end
             end
           end)
         end
@@ -140,7 +126,7 @@ map("n", "<C-n>", function()
   -- check if a _test.go file exists
   local test_file = vim.fn.expand "%:p:h" .. "/" .. vim.fn.expand "%:t:r" .. "_test.go"
   if vim.fn.filereadable(test_file) == 1 then
-    vim.cmd("e " .. test_file)
+    vim.cmd.edit(vim.fn.fnameescape(test_file))
     return
   end
 
@@ -148,12 +134,14 @@ map("n", "<C-n>", function()
   if string.match(vim.fn.expand "%:t", "_test.go$") then
     local main_file = vim.fn.expand "%:p:h" .. "/" .. string.gsub(vim.fn.expand "%:t:r", "_test", "") .. ".go"
     if vim.fn.filereadable(main_file) == 1 then
-      vim.cmd("e " .. main_file)
+      vim.cmd.edit(vim.fn.fnameescape(main_file))
     end
   end
 end, { desc = "Jump between test and source file", silent = true })
 
 create_cmd("GoAddTags", add_tags, { force = true })
+
+local go_tag_ns = api.nvim_create_namespace "go_tag_highlight"
 
 local function highlight_go_tags()
   local bufnr = vim.api.nvim_get_current_buf()
@@ -167,6 +155,7 @@ local function highlight_go_tags()
   ]]
 
   local query = vim.treesitter.query.parse("go", queryContent)
+  api.nvim_buf_clear_namespace(bufnr, go_tag_ns, 0, -1)
   for id, node in query:iter_captures(root, bufnr, 0, -1) do
     local name = query.captures[id]
     if name == "tag.content" then
@@ -182,7 +171,7 @@ local function highlight_go_tags()
           -- Convert this relative position to a full buffer range
           api.nvim_buf_add_highlight(
             bufnr,
-            -1, -- Your highlight namespace or -1 for new
+            go_tag_ns,
             "Identifier", -- Assume this or create your linked group
             start_row,
             start_col + start - 1,
