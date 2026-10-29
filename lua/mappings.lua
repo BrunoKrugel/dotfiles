@@ -4,7 +4,7 @@ local opts = { noremap = true, silent = true, buffer = 0 }
 
 local function handle_copy()
   local mode = vim.fn.mode()
-  if mode == "v" or mode == "V" or mode == "" then
+  if mode:find "^[vV\22]$" then
     if vim.fn.line "'<" == vim.fn.line "'>" and vim.fn.col "'<" == vim.fn.col "'>" then
       vim.cmd.normal '"+yy'
     else
@@ -72,7 +72,9 @@ local code_actions = function()
   actions["Rename"] = { priority = 400, call = vim.lsp.buf.rename }
 
   local bufnr = vim.api.nvim_get_current_buf()
-  local params = vim.lsp.util.make_range_params(0, "utf-8")
+  local clients = vim.lsp.get_clients { bufnr = bufnr }
+  local offset_encoding = clients[1] and clients[1].offset_encoding or "utf-16"
+  local params = vim.lsp.util.make_range_params(0, offset_encoding)
 
   params.context = {
     triggerKind = vim.lsp.protocol.CodeActionTriggerKind.Invoked,
@@ -427,7 +429,7 @@ map({ "n" }, "<ESC>", function()
 end, { desc = " Clear highlights" })
 
 map("n", "<leader>q", "<CMD>q<CR>", { desc = "󰗼 Close" })
-map("n", "<leader>qq", "<<CMD>qa!<CR>", { desc = "󰗼 Exit" })
+map("n", "<leader>qq", "<CMD>qa!<CR>", { desc = "󰗼 Exit" })
 
 -- NvimTree
 map({ "n" }, "<leader>e", "<cmd> NvimTreeToggle <CR>", { desc = "󰔱 Toggle nvimtree" })
@@ -440,13 +442,13 @@ end, { desc = "Lazy Git" })
 --------------------------------------------------- Text ---------------------------------------------------
 map("n", "<C-z>", "<CMD>u<CR>", { desc = "󰕌 Undo" })
 map("n", "<C-R>", "<CMD>Match<CR>", { desc = "Replace" })
+map("n", "<C-S-z>", "<CMD>redo<CR>", { desc = "󰕌 Redo" })
 map("n", "<BS>", "<C-o>", { desc = "Return" })
 map("n", "<C-x>", "x", { desc = "󰆐 Cut" })
 map("n", "<C-v>", "p`[v`]=", { desc = "󰆒 Paste" })
 map("n", "<C-c>", "y", { desc = " Copy" })
 map("n", "p", "p`[v`]=", { desc = "󰆒 Paste" })
 map("n", "<S-CR>", "o<ESC>", { desc = " New line" })
-map("s", "<BS>", "<C-o>c", { desc = "Better backspace in select mode" })
 map({ "n", "i", "v" }, "<C-a>", "<cmd>normal! ggVG<cr>", { desc = "Select all" })
 
 if vim.g.neovide then
@@ -610,6 +612,171 @@ map({ "n", "v" }, "gl", "$", { desc = "[P]go to the end of the line" })
 -- In visual mode, after going to the end of the line, come back 1 character
 map("v", "gl", "$h", { desc = "[P]Go to the end of the line" })
 
-map("n", "<leader><leader>x", ":%bd|e#|bd#<cr>|'\"<CR>", { desc = "Buffer close except current" }) --https://stackoverflow.com/a/60948057
+map("n", "<leader><leader>x", ":%bd|e#|bd#<cr>", { desc = "Buffer close except current" }) --https://stackoverflow.com/a/60948057
 -- grug far current file
 -- require('grug-far').grug_far({ prefills = { paths = vim.fn.expand("%") } })
+
+--------------------------------------------------- Migrated from old_mappings ---------------------------------------------------
+
+-- Folds
+map("n", "<leader>a", function()
+  if vim.fn.foldclosed(vim.fn.line ".") == -1 then
+    vim.cmd "silent! normal! zc"
+  else
+    vim.cmd "silent! normal! zo"
+  end
+end, { desc = "󰴋 Toggle folder" })
+
+-- Development
+map("n", "<leader>i", function()
+  require("nvim-toggler").toggle()
+end, { desc = "󰌁 Invert text" })
+map("n", "gd", vim.lsp.buf.definition, { desc = "󰑊 Go to definition" })
+map("n", "gi", vim.lsp.buf.implementation, { desc = "󰑊 Go to implementation" })
+
+--------------------------------------------------- Text ---------------------------------------------------
+map("i", "<C-Up>", "<CMD>m .-2<CR>==", { desc = "󰜸 Move line up" })
+map("i", "<C-Down>", "<CMD>m .+1<CR>==", { desc = "󰜯 Move line down" })
+map("i", "<A-Left>", "<ESC>I", { desc = " Move to beginning of line" })
+map("i", "<A-Right>", "<ESC>A", { desc = " Move to end of line" })
+map("i", "<A-d>", "<ESC>diw", { desc = " Delete word" })
+
+map("n", "J", "mzJ`z", { desc = "Join line keeping cursor" })
+map("n", "<C-Left>", "0", { desc = "󰜲 Move to beginning of line" })
+map("n", "<C-Right>", "$", { desc = "󰜵 Move to end of line" })
+map("n", "<F3>", "nzzzv", { desc = " Next match" })
+map("n", "<S-F3>", "Nzzzv", { desc = " Previous match" })
+map("n", "<leader><leader>p", "printf('`[%s`]', getregtype()[0])", { desc = "Reselect last pasted area", expr = true })
+map("n", "<leader><leader>d", "viw", { desc = " Select word" })
+map("n", "<leader>d", 'viw"_di', { desc = " Delete word" })
+map("n", "<C-Up>", "<CMD>m .-2<CR>==", { desc = "󰜸 Move line up" })
+map("n", "<C-Down>", "<CMD>m .+1<CR>==", { desc = "󰜯 Move line down" })
+map("n", "dd", function()
+  if vim.api.nvim_get_current_line():match "^%s*$" then
+    return '"_dd'
+  end
+  return "dd"
+end, { desc = "Smart dd (delete blank lines to blackhole)", expr = true })
+
+map({ "n", "v" }, "<C-d>", "<C-d>zz", { desc = " Scroll down centered" })
+map({ "n", "v" }, "<C-u>", "<C-u>zz", { desc = " Scroll up centered" })
+
+map("v", "<C-Up>", ":m'<-2<CR>gv=gv", { desc = "󰜸 Move selection up" })
+map("v", "<C-Down>", ":m'>+1<CR>gv=gv", { desc = "󰜯 Move selection down" })
+map("v", "<Home>", "gg", { desc = "Home" })
+map("v", "<End>", "G", { desc = "End" })
+map("v", "y", "y`]", { desc = "Yank and move to end" })
+map("v", "<", "<gv", { desc = " Indent backward" })
+map("v", ">", ">gv", { desc = " Indent forward" })
+map("v", "<C-Left>", "0", { desc = "󰜲 Move to beginning of line" })
+map("v", "<C-Right>", "$h", { desc = "󰜵 Move to end of line (back 1 char)" })
+map("v", "$", function()
+  if vim.fn.mode() == "v" then
+    return "$h"
+  end
+  return "$"
+end, { desc = "End of line", expr = true })
+
+-- Command-line bracket completion
+map("c", "(", "()<left>", { desc = "Auto complete (", silent = false })
+map("c", "<", "<><left>", { desc = "Auto complete <", silent = false })
+map("c", '"', '""<left>', { desc = 'Auto complete "', silent = false })
+map("c", "'", "''<left>", { desc = "Auto complete '", silent = false })
+
+--------------------------------------------------- General ---------------------------------------------------
+map("n", ";", function()
+  require("telescope.builtin").resume(require("telescope.themes").get_ivy {})
+end, { desc = "Resume telescope", nowait = true })
+
+map("n", "<leader>tr", function()
+  require("base46").toggle_transparency()
+end, { desc = "󰂵 Toggle transparency" })
+map("n", "<leader>w", function()
+  if vim.bo.buftype == "terminal" then
+    vim.cmd ":q"
+  else
+    require("nvchad.tabufline").close_buffer()
+  end
+end, { desc = " Close buffer" })
+
+--------------------------------------------------- Diagnostics / Search ---------------------------------------------------
+map("n", "<leader>t", "<CMD>Trouble diagnostics toggle focus=true<CR>", { desc = "󰔫 Toggle warnings" })
+map("n", "<leader>td", "<CMD>Trouble qflist toggle<CR>", { desc = " Todo/Fix/Fixme" })
+map("n", "<leader>ft", "<CMD>TodoTelescope<CR>", { desc = " Telescope TODO" })
+map("n", "<C-F>", "<CMD>SearchBoxMatchAll clear_matches=true<CR>", { desc = "󱘟 Search matching all" })
+
+--------------------------------------------------- Debug ---------------------------------------------------
+map("n", "<leader>tt", "<CMD>DapToggleBreakpoint<CR>", { desc = " Debug: Toggle breakpoint" })
+map("n", "<F5>", "<CMD>DapContinue<CR>", { desc = " Debug: Continue" })
+map("n", "<F10>", "<CMD>DapStepOver<CR>", { desc = " Debug: Step over" })
+map("n", "<F11>", "<CMD>DapStepInto<CR>", { desc = " Debug: Step into" })
+map("n", "<F9>", "<CMD>DapStepOut<CR>", { desc = " Debug: Step out" })
+map("n", "<leader><leader>dr", function()
+  require("dap").repl.toggle()
+end, { desc = "Debug: Open REPL" })
+
+--------------------------------------------------- Telescope ---------------------------------------------------
+map("n", "<leader>li", "<CMD>Telescope highlights<CR>", { desc = "Highlights" })
+map("n", "<leader>fk", "<CMD>Telescope keymaps<CR>", { desc = " Find keymaps" })
+map("n", "<leader>fs", "<CMD>Telescope lsp_document_symbols<CR>", { desc = " Find document symbols" })
+map("n", "<leader>fu", "<CMD>Telescope undo<CR>", { desc = " Undo tree" })
+map("n", "<leader>fa", function()
+  local builtin = require "telescope.builtin"
+  if vim.fn.isdirectory(vim.fn.expand "%") == 1 or vim.bo.filetype == "nvdash" then
+    builtin.find_files()
+  else
+    local function literalize(str)
+      return str:gsub("[%(%)%.%%%+%-%*%?%[%]%^%$]", function(c)
+        return "%" .. c
+      end)
+    end
+
+    local function get_open_buffers()
+      local buffers = {}
+      local len = 0
+      for buf = 1, vim.fn.bufnr "$" do
+        if vim.fn.buflisted(buf) == 1 then
+          len = len + 1
+          buffers[len] = "^"
+            .. literalize(string.gsub(vim.api.nvim_buf_get_name(buf), literalize(vim.uv.cwd()), ""):sub(2))
+            .. "$"
+        end
+      end
+      return buffers
+    end
+
+    builtin.find_files { file_ignore_patterns = get_open_buffers() }
+  end
+end, { desc = "Find files (excluding open buffers)" })
+
+--------------------------------------------------- Tabufline ---------------------------------------------------
+map("n", "<S-Tab>", function()
+  require("nvchad.tabufline").prev()
+end, { desc = " Goto prev buffer" })
+map("n", "<leader>bx", function()
+  local current_buf = vim.api.nvim_get_current_buf()
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if buf ~= current_buf and vim.fn.getbufinfo(buf)[1].changed ~= 1 then
+      vim.api.nvim_buf_delete(buf, { force = true })
+    end
+  end
+end, { desc = " Close all but current buffer" })
+
+--------------------------------------------------- Terminal ---------------------------------------------------
+map({ "n", "t" }, "<leader>h", function()
+  require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm", size = 0.2 }
+end, { desc = " Toggle horizontal term" })
+map("t", "<Esc>", [[<C-\><C-c>]], { desc = "󰜺 Send SigInt" })
+map("t", "<C-c>", [[<C-\><C-c>]], { desc = "󰜺 Send SigInt" })
+
+--------------------------------------------------- LSP ---------------------------------------------------
+map("n", "<leader>aa", function()
+  local params = {
+    textDocument = vim.lsp.util.make_text_document_params(),
+    context = { diagnostics = vim.diagnostic.get(0, { lnum = vim.api.nvim_win_get_cursor(0)[1] - 1 }) },
+  }
+  local actions = vim.lsp.buf_request_sync(vim.fn.bufnr(), "textDocument/codeAction", params, 1000)
+  if actions and next(actions) ~= nil then
+    vim.lsp.buf.code_action()
+  end
+end, { desc = "Code action (if available)" })
