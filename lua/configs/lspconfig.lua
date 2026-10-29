@@ -27,9 +27,12 @@ capabilities.workspace = {
 ---@param client vim.lsp.Client gopls instance
 ---@param bufnr number buffer to organize imports for
 local function organize_imports(client, bufnr)
-  local gopls = vim.lsp.get_clients { bufnr = 0, name = "gopls" }
+  local gopls = vim.lsp.get_clients({ bufnr = bufnr, name = "gopls" })[1]
+  if not gopls then
+    return
+  end
 
-  local params = vim.lsp.util.make_range_params(0, gopls[1].offset_encoding)
+  local params = vim.lsp.util.make_range_params(bufnr, gopls.offset_encoding)
   params.context = { only = { "source.organizeImports" } }
 
   local resp = client:request_sync("textDocument/codeAction", params, 3000, bufnr)
@@ -67,31 +70,30 @@ local custom_on_attach = function(client, bufnr)
   require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
 
   if client.server_capabilities.documentHighlightProvider then
-    vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
-    vim.api.nvim_clear_autocmds { buffer = bufnr, group = "lsp_document_highlight" }
+    local group = vim.api.nvim_create_augroup("lsp_documentHighlight", { clear = true })
     vim.api.nvim_create_autocmd({ "CursorHold", "InsertLeave" }, {
       desc = "Highlight references under the cursor",
       buffer = bufnr,
-      group = vim.api.nvim_create_augroup("lsp_documentHighlight", {}),
+      group = group,
       callback = vim.lsp.buf.document_highlight,
     })
     vim.api.nvim_create_autocmd({ "CursorMoved", "InsertEnter", "BufLeave" }, {
       desc = "Clear highlight references",
       buffer = bufnr,
-      group = vim.api.nvim_create_augroup("lsp_documentHighlight", {}),
+      group = group,
       callback = vim.lsp.buf.clear_references,
     })
   end
 end
 
+-- Disable insertReplaceSupport to fix completion error with gopls
+-- See: https://github.com/neovim/neovim/issues/30332
+capabilities.textDocument.completion.completionItem.insertReplaceSupport = false
+
 local go_on_attach = function(client, bufnr)
   if client.name ~= "gopls" then
     return
   end
-
-  -- Disable insertReplaceSupport to fix completion error with gopls
-  -- See: https://github.com/neovim/neovim/issues/30332
-  capabilities.textDocument.completion.completionItem.insertReplaceSupport = false
 
   custom_on_attach(client, bufnr)
   organize_imports(client, bufnr)
@@ -121,26 +123,24 @@ vim.lsp.handlers[methods.client_registerCapability] = function(err, res, ctx)
   return register_capability(err, res, ctx)
 end
 
-  -- local default_handler = vim.lsp.handlers[methods.window_showMessage]
-  -- vim.lsp.handlers[methods.window_showMessage] = function(err, result, ctx, config)
-  --   -- Ignores annoying gopls inlayhints error when it can't find package
-  --   -- metadata for a file.
-  --   if result and result.message and result.message:match("no package metadata for file") then
-  --     return
-  --   end
-  --   return default_handler(err, result, ctx, config)
-  -- end
+-- local default_handler = vim.lsp.handlers[methods.window_showMessage]
+-- vim.lsp.handlers[methods.window_showMessage] = function(err, result, ctx, config)
+--   -- Ignores annoying gopls inlayhints error when it can't find package
+--   -- metadata for a file.
+--   if result and result.message and result.message:match("no package metadata for file") then
+--     return
+--   end
+--   return default_handler(err, result, ctx, config)
+-- end
 
 vim.lsp.handlers["textDocument/hover"] = require("noice").hover
 vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx)
   local ts_lsp = { "ts_ls", "angularls", "volar", "vtsls" }
   local clients = vim.lsp.get_clients { id = ctx.client_id }
-  if vim.tbl_contains(ts_lsp, clients[1].name) then
-    local filtered_result = {
-      diagnostics = vim.tbl_filter(function(d)
-        return d.severity == 1
-      end, result.diagnostics),
-    }
+  if clients[1] and vim.tbl_contains(ts_lsp, clients[1].name) then
+    result.diagnostics = vim.tbl_filter(function(d)
+      return d.severity == 1
+    end, result.diagnostics)
   end
   vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx)
 end
@@ -245,13 +245,20 @@ vim.lsp.config("yamlls", {
 vim.lsp.config("eslint", {
   on_attach = custom_on_attach,
   capabilities = capabilities,
+  root_markers = {
+    ".eslintrc",
+    ".eslintrc.js",
+    ".eslintrc.cjs",
+    ".eslintrc.yaml",
+    ".eslintrc.yml",
+    ".eslintrc.json",
+    "package.json",
+  },
   filetypes = {
     "javascript",
     "javascriptreact",
-    "javascript.jsx",
     "typescript",
     "typescriptreact",
-    "typescript.tsx",
     "vue",
     "astro",
   },
@@ -273,15 +280,6 @@ vim.lsp.config("eslint", {
       return {}
     end,
   },
-  root_dir = require("lspconfig").util.root_pattern(
-    ".eslintrc",
-    ".eslintrc.js",
-    ".eslintrc.cjs",
-    ".eslintrc.yaml",
-    ".eslintrc.yml",
-    ".eslintrc.json",
-    "package.json"
-  ),
   settings = {
     codeAction = {
       disableRuleComment = {
@@ -316,10 +314,8 @@ vim.lsp.config("vtsls", {
   filetypes = {
     "javascript",
     "javascriptreact",
-    "javascript.jsx",
     "typescript",
     "typescriptreact",
-    "typescript.tsx",
     "astro",
   },
   settings = {
@@ -370,9 +366,6 @@ vim.lsp.config("gopls", {
   root_markers = { "go.work", "go.mod", ".git" },
   init_options = {
     usePlaceholders = true,
-  },
-  flags = {
-    debounce_text_changes = 150,
   },
   settings = {
     gopls = {
@@ -440,7 +433,7 @@ vim.lsp.handlers["textDocument/formatting"] = function(err, result, ctx, _)
   end
 
   -- If the buffer hasn't been modified before the formatting has finished, update the buffer
-  if not vim.api.nvim_buf_get_option(ctx.bufnr, "modified") then
+  if not vim.bo[ctx.bufnr].modified then
     local view = vim.fn.winsaveview()
     local client = vim.lsp.get_client_by_id(ctx.client_id)
     vim.lsp.util.apply_text_edits(result, ctx.bufnr, client.offset_encoding)
