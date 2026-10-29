@@ -32,7 +32,8 @@ local function organize_imports(client, bufnr)
     return
   end
 
-  local params = vim.lsp.util.make_range_params(bufnr, gopls.offset_encoding)
+  local win = vim.fn.bufwinid(bufnr)
+  local params = vim.lsp.util.make_range_params(win ~= -1 and win or 0, gopls.offset_encoding)
   params.context = { only = { "source.organizeImports" } }
 
   local resp = client:request_sync("textDocument/codeAction", params, 3000, bufnr)
