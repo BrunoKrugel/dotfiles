@@ -125,6 +125,13 @@ if g.neovide then
   -- g.neovide_macos_simple_fullscreen = true
   g.neovide_remember_window_size = true
   g.neovide_refresh_rate = 120
+  g.neovide_refresh_rate_idle = 5
+
+  g.neovide_fill_bottom_background = false -- Fill the bottom, but its currently bugged
+  g.neovide_proxy_icon = true
+
+  g.neovide_hide_mouse_when_typing = true
+  g.neovide_underline_stroke_scale = 1.0
 
   g.neovide_cursor_hack = true
   g.neovide_cursor_antialiasing = true
@@ -141,6 +148,9 @@ if g.neovide then
   g.neovide_floating_blur_amount_y = 0.0
   g.neovide_floating_shadow = false
   g.neovide_floating_z_height = 40
+  g.neovide_floating_blur_amount_x = 30
+  g.neovide_floating_blur_amount_y = 30
+  g.neovide_floating_corner_radius = 10.0
 
   g.neovide_light_angle_degrees = 45
   g.neovide_light_radius = 10
@@ -148,7 +158,11 @@ if g.neovide then
   g.neovide_scroll_animation_far_lines = 1
   g.neovide_hide_mouse_when_typing = true
   g.neovide_underline_automatic_scaling = true
-  g.neovide_floating_corner_radius = 10.0
+
+  g.neovide_show_border = true
+
+  opt.winblend = 100
+  opt.pumblend = 100
 
   -- vim.g.neovide_floating_shadow = true
   -- vim.g.neovide_floating_z_height = 10
