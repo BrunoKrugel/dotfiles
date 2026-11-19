@@ -148,21 +148,28 @@ if g.neovide then
   g.neovide_floating_blur_amount_y = 0.0
   g.neovide_floating_shadow = false
   g.neovide_floating_z_height = 40
-  g.neovide_floating_blur_amount_x = 30
-  g.neovide_floating_blur_amount_y = 30
+  -- g.neovide_floating_blur_amount_x = 30
+  -- g.neovide_floating_blur_amount_y = 30
   g.neovide_floating_corner_radius = 10.0
 
   g.neovide_light_angle_degrees = 45
   g.neovide_light_radius = 10
-  g.neovide_scroll_animation_length = 0.5
+  g.neovide_scroll_animation_length = 0.06
   g.neovide_scroll_animation_far_lines = 1
   g.neovide_hide_mouse_when_typing = true
   g.neovide_underline_automatic_scaling = true
+  g.neovide_cursor_animate_command_line = true
+
+    -- Progress bar
+  g.neovide_progress_bar_enabled = true
+  g.neovide_progress_bar_height = 2.0
+  g.neovide_progress_bar_animation_speed = 150.0
+  g.neovide_progress_bar_hide_delay = 1.0
 
   g.neovide_show_border = true
 
-  opt.winblend = 100
-  opt.pumblend = 100
+  -- opt.winblend = 100
+  -- opt.pumblend = 100
 
   -- vim.g.neovide_floating_shadow = true
   -- vim.g.neovide_floating_z_height = 10
