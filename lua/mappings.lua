@@ -448,11 +448,19 @@ map("n", "<S-CR>", "o<ESC>", { desc = " New line" })
 map({ "n", "i", "v" }, "<C-a>", "<cmd>normal! ggVG<cr>", { desc = "Select all" })
 
 if vim.g.neovide then
-  vim.keymap.set("v", "<D-c>", '"+y') -- Copy
-  vim.keymap.set("n", "<D-v>", '"+P') -- Paste normal mode
-  vim.keymap.set("v", "<D-v>", '"+P') -- Paste visual mode
-  vim.keymap.set("c", "<D-v>", "<C-R>+") -- Paste command mode
-  vim.keymap.set("i", "<D-v>", '<ESC>l"+Pli') -- Paste insert mode
+  local all = { "n", "v", "i", "c", "s", "t" }
+  map("v", "<D-c>", '"+y', { desc = "Copy neovide" })
+  map({ "n", "v" }, "<D-v>", '"+P', { desc = "Paste Neovide" })
+  map("c", "<D-v>", "<C-R>+", { desc = "Paste neovide" })
+  map({ "n", "v" }, "<D-x>", '"+d', { desc = "Cut to clipboard" })
+  map("i", "<D-v>", '<ESC>l"+Pli', { desc = "Paste Neovide Insert" })
+  map(all, "<D-CR>", function()
+    vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen
+  end, { desc = "Toggle fullscreen" })
+map({ "n", "i", "v" }, "<D-.>", function()
+  require("fastaction").code_action()
+end, { desc = "Code Action" })
+
 end
 
 -- Allow clipboard copy paste in neovim
