@@ -784,3 +784,34 @@ map("n", "<leader>aa", function()
     vim.lsp.buf.code_action()
   end
 end, { desc = "Code action (if available)" })
+
+local function git_root()
+  return vim.fs.root(vim.uv.cwd(), ".git") or vim.uv.cwd()
+end
+
+local function tuicr(args)
+  Snacks.terminal("tuicr " .. args, { cwd = git_root(), interactive = true })
+end
+
+map("n", "<leader>rr", function()
+  tuicr "-w"
+end, { desc = "Review working tree" })
+
+map("n", "<leader>rb", function()
+  local out = vim.fn.systemlist { "git", "-C", git_root(), "symbolic-ref", "--short", "refs/remotes/origin/HEAD" }
+  local base = vim.v.shell_error == 0 and out[1] and out[1]:gsub("^origin/", "") or "main"
+  tuicr("-r " .. base .. "..HEAD")
+end, { desc = "Review branch vs base" })
+
+map("n", "<leader>rf", function()
+  tuicr("--file " .. vim.fn.shellescape(vim.fn.expand "%:p"))
+end, { desc = "Review current file" })
+
+map("n", "<leader>rp", function()
+  local pr = vim.fn.systemlist("gh pr view --json number --jq .number")[1]
+  if vim.v.shell_error ~= 0 or not pr or pr == "" then
+    vim.notify("No PR for the current branch", vim.log.levels.WARN)
+    return
+  end
+  tuicr("pr " .. pr)
+end, { desc = "Review PR for current branch" })
